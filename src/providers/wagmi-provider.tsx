@@ -1,7 +1,7 @@
+import { getDefaultConfig } from "@rainbow-me/rainbowkit";
 import { ReactNode } from "react";
 import { WagmiProvider as BaseWagmiProvider } from "wagmi";
-import { sepolia, bscTestnet } from "wagmi/chains";
-import { getDefaultConfig } from "@rainbow-me/rainbowkit";
+import { bscTestnet, sepolia } from "wagmi/chains";
 
 const config = getDefaultConfig({
   appName: "Scalar",

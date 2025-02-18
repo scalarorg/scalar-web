@@ -4,12 +4,19 @@ import react from "@vitejs/plugin-react";
 import wasm from "vite-plugin-wasm";
 import topLevelAwait from "vite-plugin-top-level-await";
 import { defineConfig } from "vite";
-
+import { TanStackRouterVite } from "@tanstack/router-plugin/vite";
 import { nodePolyfills } from "vite-plugin-node-polyfills";
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), tailwindcss(), wasm(), topLevelAwait(), nodePolyfills()],
+  plugins: [
+    TanStackRouterVite({ autoCodeSplitting: true }),
+    react(),
+    tailwindcss(),
+    wasm(),
+    topLevelAwait(),
+    nodePolyfills(),
+  ],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),

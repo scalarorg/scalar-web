@@ -1,12 +1,20 @@
 import { NetworkProvider, QueryProvider, WagmiProvider } from "@/providers";
-import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import * as ec from "@bitcoin-js/tiny-secp256k1-asmjs";
+import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import * as bitcoin from "bitcoinjs-lib";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import App from "./App.tsx";
 import "@rainbow-me/rainbowkit/styles.css";
+import { RouterProvider, createRouter } from "@tanstack/react-router";
+import { routeTree } from "./routeTree.gen";
 import "./index.css";
+
+const router = createRouter({ routeTree });
+declare module "@tanstack/react-router" {
+  interface Register {
+    router: typeof router;
+  }
+}
 
 bitcoin.initEccLib(ec);
 
@@ -16,10 +24,10 @@ createRoot(document.getElementById("root")!).render(
       <QueryProvider>
         <RainbowKitProvider>
           <NetworkProvider>
-            <App />
+            <RouterProvider router={router} />
           </NetworkProvider>
         </RainbowKitProvider>
       </QueryProvider>
     </WagmiProvider>
-  </StrictMode>
+  </StrictMode>,
 );

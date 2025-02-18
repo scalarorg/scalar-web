@@ -1,7 +1,12 @@
-import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { Button } from "@/components/ui/button";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { createFileRoute } from "@tanstack/react-router";
 
-function App() {
+export const Route = createFileRoute("/")({
+  component: Home,
+});
+
+function Home() {
   return (
     <div className="flex h-screen flex-col items-center justify-center gap-2">
       <h1 className="font-bold text-2xl">React + Vite + Tailwind</h1>
@@ -98,5 +103,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
