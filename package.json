@@ -26,6 +26,7 @@
   "dependencies": {
     "@bitcoin-js/tiny-secp256k1-asmjs": "^2.2.3",
     "@radix-ui/react-slot": "^1.1.2",
+    "@rainbow-me/rainbowkit": "^2.2.3",
     "@scalar-lab/bitcoin-vault": "^0.0.33",
     "@tailwindcss/vite": "^4.0.6",
     "@tanstack/react-query": "^5.66.5",
@@ -39,7 +40,9 @@
     "react-dom": "^19.0.0",
     "tailwind-merge": "^3.0.1",
     "tailwindcss": "^4.0.6",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "viem": "^2.23.2",
+    "wagmi": "^2.14.11"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
