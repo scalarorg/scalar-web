@@ -142,7 +142,8 @@
 			"./src/lib/graphql/generated",
 			"./src/lib/graphql/api/generated",
 			"./src/lib/graphql/hermes/generated"
-		]
+		],
+		"maxSize": 3000000
 	},
 	"overrides": [
 		{
