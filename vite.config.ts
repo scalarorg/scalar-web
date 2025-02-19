@@ -6,6 +6,7 @@ import topLevelAwait from "vite-plugin-top-level-await";
 import { defineConfig } from "vite";
 import { TanStackRouterVite } from "@tanstack/router-plugin/vite";
 import { nodePolyfills } from "vite-plugin-node-polyfills";
+import svgr from "vite-plugin-svgr";
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -16,6 +17,16 @@ export default defineConfig({
     wasm(),
     topLevelAwait(),
     nodePolyfills(),
+    svgr({
+      // svgr options: https://react-svgr.com/docs/options/
+      svgrOptions: {
+        exportType: "default",
+        ref: true,
+        svgo: false,
+        titleProp: true,
+      },
+      include: ["**/*.svg"],
+    }),
   ],
   resolve: {
     alias: {
