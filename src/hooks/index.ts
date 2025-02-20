@@ -1,2 +1,3 @@
-export * from "./useScalarNetParams";
-export * from "./useVault";
+export * from "./use-scalar";
+export * from "./use-vault";
+export * from "./use-fee-rates";

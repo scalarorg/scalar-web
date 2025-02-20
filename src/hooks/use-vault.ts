@@ -18,7 +18,8 @@ export const useVault = (protocolTag?: string) => {
   const { network } = useNetwork();
 
   if (!protocolTag) {
-    throw new Error("Protocol tag not found");
+    // throw new Error("Protocol tag not found");
+    return;
   }
 
   if (isLoadingScalarnetParams) {

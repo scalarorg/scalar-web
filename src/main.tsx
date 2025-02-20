@@ -1,10 +1,17 @@
-import { NetworkProvider, QueryProvider, WagmiProvider } from "@/providers";
+import {
+  ErrorProvider,
+  NetworkProvider,
+  QueryProvider,
+  WagmiProvider,
+  WalletProvider,
+} from "@/providers";
 import * as ec from "@bitcoin-js/tiny-secp256k1-asmjs";
 import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import * as bitcoin from "bitcoinjs-lib";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "@rainbow-me/rainbowkit/styles.css";
+import { Toaster } from "@/components/ui/toaster";
 import { RouterProvider, createRouter } from "@tanstack/react-router";
 import { routeTree } from "./routeTree.gen";
 import "./index.css";
@@ -22,12 +29,17 @@ createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <WagmiProvider>
       <QueryProvider>
-        <RainbowKitProvider>
-          <NetworkProvider>
-            <RouterProvider router={router} />
-          </NetworkProvider>
-        </RainbowKitProvider>
+        <ErrorProvider>
+          <RainbowKitProvider>
+            <NetworkProvider>
+              <WalletProvider>
+                <RouterProvider router={router} />
+              </WalletProvider>
+            </NetworkProvider>
+          </RainbowKitProvider>
+        </ErrorProvider>
       </QueryProvider>
     </WagmiProvider>
+    <Toaster />
   </StrictMode>,
 );

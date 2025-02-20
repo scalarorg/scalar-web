@@ -55,6 +55,7 @@ export const INTERNAL_NETWORK_NAMES = {
 export type WalletInfo = {
   publicKeyHex: string;
   address: string;
+  balance: number;
 };
 
 /**
@@ -161,4 +162,18 @@ export abstract class WalletProvider {
    * @returns A promise that resolves to the block height.
    */
   abstract getBTCTipHeight(): Promise<number>;
+
+  /**
+   * Disconnects the wallet from the provider.
+   * @returns A promise that resolves when the wallet is disconnected.
+   */
+  abstract disconnect(): Promise<void>;
+
+  abstract getWalletInfo(): WalletInfo | undefined;
+
+  abstract init(): Promise<{
+    balance: number;
+    address: string;
+    pubkey: string;
+  }>;
 }

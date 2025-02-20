@@ -7,12 +7,14 @@ import { defineConfig } from "vite";
 import { TanStackRouterVite } from "@tanstack/router-plugin/vite";
 import { nodePolyfills } from "vite-plugin-node-polyfills";
 import svgr from "vite-plugin-svgr";
+import { optimizeLodashImports } from "@optimize-lodash/rollup-plugin";
 
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
     TanStackRouterVite({ autoCodeSplitting: true }),
     react(),
+    optimizeLodashImports(),
     tailwindcss(),
     wasm(),
     topLevelAwait(),

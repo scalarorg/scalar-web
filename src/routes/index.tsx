@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui/button";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { BridgeForm } from "@/features/bridge";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/")({
@@ -8,98 +8,19 @@ export const Route = createFileRoute("/")({
 
 function Home() {
   return (
-    <div className="flex h-screen flex-col items-center justify-center gap-2">
-      <h1 className="font-bold text-2xl">React + Vite + Tailwind</h1>
-      <ConnectButton.Custom>
-        {({
-          account,
-          chain,
-          openAccountModal,
-          openChainModal,
-          openConnectModal,
-          authenticationStatus,
-          mounted,
-        }) => {
-          // Note: If your app doesn't use authentication, you
-          // can remove all 'authenticationStatus' checks
-          const ready = mounted && authenticationStatus !== "loading";
-          const connected =
-            ready &&
-            account &&
-            chain &&
-            (!authenticationStatus || authenticationStatus === "authenticated");
-
-          return (
-            <div
-              {...(!ready && {
-                "aria-hidden": true,
-                style: {
-                  opacity: 0,
-                  pointerEvents: "none",
-                  userSelect: "none",
-                },
-              })}
-            >
-              {(() => {
-                if (!connected) {
-                  return (
-                    <Button onClick={openConnectModal} type="button">
-                      Connect Wallet
-                    </Button>
-                  );
-                }
-
-                if (chain.unsupported) {
-                  return (
-                    <Button onClick={openChainModal} type="button">
-                      Wrong network
-                    </Button>
-                  );
-                }
-
-                return (
-                  <div style={{ display: "flex", gap: 12 }}>
-                    <Button
-                      onClick={openChainModal}
-                      style={{ display: "flex", alignItems: "center" }}
-                      type="button"
-                    >
-                      {chain.hasIcon && (
-                        <div
-                          style={{
-                            background: chain.iconBackground,
-                            width: 12,
-                            height: 12,
-                            borderRadius: 999,
-                            overflow: "hidden",
-                            marginRight: 4,
-                          }}
-                        >
-                          {chain.iconUrl && (
-                            <img
-                              alt={chain.name ?? "Chain icon"}
-                              src={chain.iconUrl}
-                              style={{ width: 12, height: 12 }}
-                            />
-                          )}
-                        </div>
-                      )}
-                      {chain.name}
-                    </Button>
-
-                    <Button onClick={openAccountModal} type="button">
-                      {account.displayName}
-                      {account.displayBalance
-                        ? ` (${account.displayBalance})`
-                        : ""}
-                    </Button>
-                  </div>
-                );
-              })()}
-            </div>
-          );
-        }}
-      </ConnectButton.Custom>
+    <div className="flex h-screen justify-center gap-2 p-5">
+      <Tabs defaultValue="bridge" className="min-w-[500px] max-w-[800px]">
+        <TabsList className="w-full">
+          <TabsTrigger value="bridge">Bridge</TabsTrigger>
+          <TabsTrigger value="transfers">Transfers</TabsTrigger>
+          <TabsTrigger value="redeem">Redeem</TabsTrigger>
+        </TabsList>
+        <TabsContent value="bridge">
+          <BridgeForm />
+        </TabsContent>
+        <TabsContent value="transfers">Transfers</TabsContent>
+        <TabsContent value="redeem">Redeem</TabsContent>
+      </Tabs>
     </div>
   );
 }
