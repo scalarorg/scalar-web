@@ -138,6 +138,6 @@ export const formatBTC = (sats: bigint | number) => {
   return Number(formatUnits(sats as bigint, 8));
 };
 
-export const parseBTC = (btc: string) => {
+export const parseSats = (btc: string) => {
   return parseUnits(btc, 8);
 };

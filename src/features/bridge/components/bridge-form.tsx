@@ -25,7 +25,7 @@ import {
   getChainID,
   isBtcChain,
   isEvmChain,
-  parseBTC,
+  parseSats,
   prepareCustodianPubkeysArray,
   validateRequiredFields,
 } from "@/lib/utils";
@@ -78,7 +78,7 @@ export const BridgeForm = () => {
       toast({
         title: "Transfer transaction successful",
         description: (
-          <div className="mt-2 w-[640px] rounded-md bg-slate-950">
+          <div className="mt-2 w-[640px] rounded-md">
             <p className="text-white">
               Txid:{" "}
               <a
@@ -99,7 +99,7 @@ export const BridgeForm = () => {
 
   const onSubmit = async (values: TBridgeForm) => {
     const [_, chainSeleted] = values.destinationChain?.split("-") || [];
-    const parseTransferAmount = parseBTC(String(values.transferAmount));
+    const parseTransferAmount = parseSats(String(values.transferAmount));
 
     try {
       if (!isBtcChain(protocol?.asset?.chain) || !isEvmChain(chainSeleted)) {
@@ -220,7 +220,7 @@ export const BridgeForm = () => {
   useEffect(() => {
     if (
       transferAmountForm &&
-      parseBTC(String(transferAmountForm)) > Number(walletInfo.balance)
+      parseSats(String(transferAmountForm)) > Number(walletInfo.balance)
     ) {
       setError("transferAmount", {
         type: "manual",
