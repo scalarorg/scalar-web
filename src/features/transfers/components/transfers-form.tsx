@@ -53,10 +53,12 @@ export const TransfersForm = () => {
   const { switchChain } = useSwitchChain();
   const { address: evmAddress } = useAccount();
   const chainId = useChainId();
-  const { data: { protocols = [] } = {} } = useScalarProtocols();
+  const {
+    data: { protocols = [] } = {},
+  } = useScalarProtocols();
   const { networkConfig } = useWalletProvider();
   const filterProtocols = protocols.filter(
-    (p) => filterEvmChains(p.chains).length >= MIN_EVM
+    (p) => filterEvmChains(p.chains).length >= MIN_EVM,
   );
   const keyByFilterProtocols = keyBy(filterProtocols, "scalar_address");
 
@@ -74,7 +76,7 @@ export const TransfersForm = () => {
   const chainsFromToken =
     filterEvmChains(keyByFilterProtocols[watchForm.token]?.chains) || [];
   const sourceChainAddress = chainsFromToken.find(
-    (c) => c.chain === watchForm.sourceChain
+    (c) => c.chain === watchForm.sourceChain,
   )?.address;
 
   const {
@@ -149,7 +151,7 @@ export const TransfersForm = () => {
         ),
       });
     },
-    [networkConfig?.mempoolApiUrl]
+    [networkConfig?.mempoolApiUrl],
   );
 
   useEffect(() => {
@@ -204,12 +206,12 @@ export const TransfersForm = () => {
       const protocol = keyByFilterProtocols[values.token];
       const newTransferAmount = parseUnits(
         String(values.transferAmount),
-        Number(decimals)
+        Number(decimals),
       );
 
       if (balance < BigInt(newTransferAmount)) {
         throw new Error(
-          `Insufficient balance, your balance is ${balance} ${protocol?.asset?.name}. Please try a smaller amount.`
+          `Insufficient balance, your balance is ${balance} ${protocol?.asset?.name}. Please try a smaller amount.`,
         );
       }
 
@@ -217,7 +219,7 @@ export const TransfersForm = () => {
         sourceChainAddress || "",
         gateway?.address as `0x${string}`,
         BigInt(newTransferAmount),
-        { checkAllowance, approveERC20 }
+        { checkAllowance, approveERC20 },
       );
 
       try {
@@ -233,7 +235,7 @@ export const TransfersForm = () => {
 
         const transferConfirmed = await Promise.race([
           new Promise((_, reject) =>
-            setTimeout(() => reject(new Error("Transfer timeout")), 60000)
+            setTimeout(() => reject(new Error("Transfer timeout")), 60000),
           ),
           transferTx.wait(),
         ]);
@@ -247,7 +249,7 @@ export const TransfersForm = () => {
       } catch (error: any) {
         if (error.message?.includes("contract runner")) {
           throw new Error(
-            "Please ensure your wallet is connected and network is correct"
+            "Please ensure your wallet is connected and network is correct",
           );
         }
         throw error;
@@ -451,7 +453,7 @@ export const TransfersForm = () => {
             />
 
             {/* Fee Information */}
-            <div className="space-y-2 rounded-lg bg-[#F6F8FF] p-4">
+            {/* <div className="space-y-2 rounded-lg bg-[#F6F8FF] p-4">
               <div className="flex justify-between">
                 <span className="text-muted-foreground">Bridge Fee</span>
                 <span>0.00001 BTC</span>
@@ -462,7 +464,7 @@ export const TransfersForm = () => {
                 </span>
                 <span>~1 minute</span>
               </div>
-            </div>
+            </div> */}
 
             <Button
               type="submit"

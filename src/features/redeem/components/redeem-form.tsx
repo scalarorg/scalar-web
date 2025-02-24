@@ -80,7 +80,9 @@ export const RedeemForm = () => {
   const watchForm = watch();
 
   const { pubkey: btcPubkey, address: btcAddress } = useWalletInfo();
-  const { data: { protocols = [] } = {} } = useScalarProtocols();
+  const {
+    data: { protocols = [] } = {},
+  } = useScalarProtocols();
   const { networkConfig, btcNetwork, mempoolClient, walletProvider } =
     useWalletProvider();
 
@@ -89,18 +91,18 @@ export const RedeemForm = () => {
 
   const protocolSelected = filterProtocols.find((p) =>
     p?.chains?.find(
-      (c) => `${p?.asset?.name}-${c?.chain}` === watchForm.sourceChain
-    )
+      (c) => `${p?.asset?.name}-${c?.chain}` === watchForm.sourceChain,
+    ),
   );
 
   const vault = useVault(
     protocolSelected?.tag
       ? decodeScalarBytesToString(protocolSelected.tag)
-      : undefined
+      : undefined,
   );
 
   const originalChain = protocolSelected?.chains?.find(
-    (c) => c?.chain === protocolSelected?.asset?.chain
+    (c) => c?.chain === protocolSelected?.asset?.chain,
   );
 
   const sourceChainSelected = getChainSelected(watchForm.sourceChain);
@@ -117,13 +119,13 @@ export const RedeemForm = () => {
     }
 
     const custodianPubkeysBufferArray = prepareCustodianPubkeysArray(
-      protocolSelected.custodian_group.custodians
+      protocolSelected.custodian_group.custodians,
     );
 
     const userPubkey = hexToBytes(btcPubkey.replace("0x", ""));
 
     const protocolPubkey = decodeScalarBytesToUint8Array(
-      protocolSelected.bitcoin_pubkey
+      protocolSelected.bitcoin_pubkey,
     );
 
     const script = vault.upcLockingScript({
@@ -149,7 +151,7 @@ export const RedeemForm = () => {
     ],
     queryFn: async () => {
       const satsAmount = parseSats(
-        watchForm.transferAmount ? String(watchForm.transferAmount) : ""
+        watchForm.transferAmount ? String(watchForm.transferAmount) : "",
       );
 
       if (!isBtcChain(originalChain?.chain)) return [];
@@ -173,7 +175,7 @@ export const RedeemForm = () => {
       }
 
       return utxos.sort(
-        (a, b) => b.value - a.value || b.txid.localeCompare(a.txid)
+        (a, b) => b.value - a.value || b.txid.localeCompare(a.txid),
       );
     },
     enabled: !!(upcLockingAddress && mempoolClient),
@@ -181,11 +183,11 @@ export const RedeemForm = () => {
 
   const { data: gateway } = useGateway(sourceChainSelected);
   const { callContractWithToken } = useGatewayContract(
-    gateway?.address as `0x${string}`
+    gateway?.address as `0x${string}`,
   );
 
   const tokenAddress = protocolSelected?.chains?.find(
-    (c) => c.chain === sourceChainSelected
+    (c) => c.chain === sourceChainSelected,
   )?.address;
 
   const {
@@ -291,7 +293,7 @@ export const RedeemForm = () => {
         ),
       });
     },
-    [networkConfig?.mempoolApiUrl]
+    [networkConfig?.mempoolApiUrl],
   );
 
   const onSubmit = async (values: TRedeemForm) => {
@@ -306,7 +308,7 @@ export const RedeemForm = () => {
 
       const newTransferAmount = parseUnits(
         String(values.transferAmount),
-        Number(decimals)
+        Number(decimals),
       );
 
       if ((sourceChainBalance || 0n) < BigInt(newTransferAmount)) {
@@ -321,12 +323,12 @@ export const RedeemForm = () => {
         evmAddress!,
         gateway?.address as `0x${string}`,
         BigInt(newTransferAmount),
-        { checkAllowance, approveERC20 }
+        { checkAllowance, approveERC20 },
       );
 
       const lockingScript = bitcoin.address.toOutputScript(
         values.destRecipientAddress,
-        btcNetwork
+        btcNetwork,
       );
 
       let payload = "";
@@ -352,10 +354,10 @@ export const RedeemForm = () => {
         }
 
         const protocolPubkey = decodeScalarBytesToUint8Array(
-          protocolSelected!.bitcoin_pubkey!
+          protocolSelected!.bitcoin_pubkey!,
         );
         const custodianPubkeys = prepareCustodianPubkeysArray(
-          protocolSelected!.custodian_group!.custodians!
+          protocolSelected!.custodian_group!.custodians!,
         );
         const custodianQuorum = protocolSelected!.custodian_group!.quorum!;
         const stakerPubkey = hexToBytes(btcPubkey.replace("0x", ""));
@@ -413,7 +415,7 @@ export const RedeemForm = () => {
 
       const contractCallConfirmed = await Promise.race([
         new Promise((_, reject) =>
-          setTimeout(() => reject(new Error("Transfer timeout")), 60000)
+          setTimeout(() => reject(new Error("Transfer timeout")), 60000),
         ),
         contractCallTx.wait(),
       ]);
@@ -481,7 +483,7 @@ export const RedeemForm = () => {
                                         </SelectItem>
                                       ))}
                                   </SelectGroup>
-                                )
+                                ),
                               )}
                             </SelectContent>
                           </Select>
