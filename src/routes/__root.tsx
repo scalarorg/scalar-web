@@ -8,7 +8,7 @@ export const Route = createRootRoute({
       <Header extra={<ConnectDropdown />} />
       <hr className="shadow-md" />
       <div className="grow overflow-auto">
-        <div className="container">
+        <div className="container flex h-full flex-col">
           <Outlet />
           <Footer />
         </div>
