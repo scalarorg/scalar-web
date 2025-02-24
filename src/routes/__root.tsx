@@ -9,10 +9,12 @@ export const Route = createRootRoute({
       <div className="flex h-screen flex-col">
         <Header extra={<ConnectDropdown />} />
         <hr className="shadow-md" />
-        <div className="container grow overflow-auto">
-          <Outlet />
+        <div className="grow overflow-auto">
+          <div className="container">
+            <Outlet />
+            <Footer />
+          </div>
         </div>
-        <Footer />
       </div>
       <TanStackRouterDevtools />
     </>

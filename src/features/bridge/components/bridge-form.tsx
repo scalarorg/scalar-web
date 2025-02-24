@@ -94,7 +94,7 @@ export const BridgeForm = () => {
         ),
       });
     },
-    [networkConfig?.mempoolApiUrl],
+    [networkConfig?.mempoolApiUrl]
   );
 
   const onSubmit = async (values: TBridgeForm) => {
@@ -112,7 +112,7 @@ export const BridgeForm = () => {
       const currentChains = protocol?.chains || [];
 
       const [destination] = currentChains.filter(
-        (c) => c.chain === chainSeleted,
+        (c) => c.chain === chainSeleted
       );
 
       validateRequiredFields({
@@ -133,7 +133,7 @@ export const BridgeForm = () => {
 
       const addressUtxos = await walletProvider?.getUtxos(
         btcAddress,
-        Number(parseTransferAmount),
+        Number(parseTransferAmount)
       );
 
       if (!addressUtxos) throw new Error("Not enough UTXOs");
@@ -152,14 +152,14 @@ export const BridgeForm = () => {
         addresses: {
           btcUserPk: hexToBytes(btcPubkey),
           destinationRecipient: hexToBytesViem(
-            values.destRecipientAddress as Hex,
+            values.destRecipientAddress as Hex
           ),
           destinationToken: hexToBytesViem(destination.address as Hex),
         },
       };
 
       const custodianPubkeysBufferArray = prepareCustodianPubkeysArray(
-        protocol?.custodian_group?.custodians || [],
+        protocol?.custodian_group?.custodians || []
       );
 
       const chainID = getChainID(chainSeleted);
@@ -167,7 +167,7 @@ export const BridgeForm = () => {
 
       const destinationChain = new DestinationChain(
         ChainType.EVM,
-        BigInt(chainID),
+        BigInt(chainID)
       );
 
       const psbtFormData: TBuildCustodianOnlyStakingPsbt = {
@@ -191,7 +191,7 @@ export const BridgeForm = () => {
         unsignedVaultPsbt.toHex(),
         {
           autoFinalized: true,
-        },
+        }
       );
 
       if (!signedPsbt) throw new Error("Failed to sign the PSBT");
@@ -212,7 +212,7 @@ export const BridgeForm = () => {
     const [newProtocol] =
       data?.protocols?.filter(
         (p) =>
-          (p.chains?.filter((c) => c.chain === chainSeleted) || []).length > 0,
+          (p.chains?.filter((c) => c.chain === chainSeleted) || []).length > 0
       ) || [];
     setProtocol(newProtocol);
   }, [destinationChainForm, data]);
@@ -232,7 +232,7 @@ export const BridgeForm = () => {
   }, [transferAmountForm, walletInfo.balance, setError, clearErrors]);
 
   return (
-    <Card className="mx-auto w-full max-w-2xl">
+    <Card className="mx-auto w-full max-w-2xl border-none shadow-none">
       <CardHeader className="flex flex-row items-center justify-between">
         <CardTitle className="font-bold text-2xl">Bridge</CardTitle>
         <div className="text-right">
@@ -305,7 +305,7 @@ export const BridgeForm = () => {
                                         </SelectItem>
                                       ))}
                                   </SelectGroup>
-                                ),
+                                )
                               )}
                             </SelectContent>
                           </Select>
@@ -338,7 +338,7 @@ export const BridgeForm = () => {
             />
 
             {/* Fee Information */}
-            <div className="space-y-2 rounded-lg bg-[#F6F8FF] p-4">
+            {/* <div className="space-y-2 rounded-lg bg-[#F6F8FF] p-4">
               <div className="flex justify-between">
                 <span className="text-muted-foreground">Bridge Fee</span>
                 <span>0.00001 BTC</span>
@@ -349,7 +349,7 @@ export const BridgeForm = () => {
                 </span>
                 <span>~1 minute</span>
               </div>
-            </div>
+            </div> */}
 
             <Button
               type="submit"
