@@ -82,6 +82,16 @@ const WalletProvider = ({ children }: { children: React.ReactNode }) => {
   const [btcNetwork, setBtcNetwork] = useState<networks.Network>();
   const [mempoolClient, setMempoolClient] = useState<BtcMempool | undefined>();
 
+  const initProvider = useCallback(() => {
+    const btcNetwork = toNetwork(globalNetwork);
+    const config = getNetworkConfig(globalNetwork);
+    const client = new BtcMempool(`${config.mempoolApiUrl}/api`);
+
+    setBtcNetwork(btcNetwork);
+    setNetworkConfig(config);
+    setMempoolClient(client);
+  }, []);
+
   const { network: globalNetwork } = useNetwork();
   const { showError } = useError();
 
@@ -110,15 +120,7 @@ const WalletProvider = ({ children }: { children: React.ReactNode }) => {
         isConnected: true,
       });
 
-      setWalletProvider(walletProvider);
-      const btcNetwork = toNetwork(globalNetwork);
-      setBtcNetwork(btcNetwork);
-      const config = getNetworkConfig(globalNetwork);
-      setNetworkConfig(config);
-
-      const client = new BtcMempool(`${config.mempoolApiUrl}/api`);
-
-      setMempoolClient(client);
+      initProvider();
     } catch (error: unknown) {
       if (
         error instanceof WalletError &&
@@ -136,7 +138,7 @@ const WalletProvider = ({ children }: { children: React.ReactNode }) => {
         retryAction: () => connectWallet(),
       });
     }
-  }, [globalNetwork, showError, walletProvider]);
+  }, [globalNetwork, showError, walletProvider, initProvider]);
 
   const disconnectWallet = useCallback(async () => {
     if (!walletProvider) {
@@ -173,9 +175,8 @@ const WalletProvider = ({ children }: { children: React.ReactNode }) => {
   }, [walletProvider]);
 
   useEffect(() => {
-    const config = getNetworkConfig(globalNetwork);
-    setNetworkConfig(config);
-  }, [globalNetwork]);
+    initProvider();
+  }, [initProvider]);
 
   useEffect(() => {
     const walletProvider = walletList.find((w) => w.name === "Unisat")?.wallet;

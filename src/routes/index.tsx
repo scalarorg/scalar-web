@@ -1,5 +1,6 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { BridgeForm } from "@/features/bridge";
+import { RedeemForm } from "@/features/redeem";
 import { TransfersForm } from "@/features/transfers";
 import { createFileRoute } from "@tanstack/react-router";
 import { ReactNode } from "react";
@@ -26,7 +27,7 @@ const tabs: {
   {
     name: "Redeem",
     value: "redeem",
-    content: "Redeem",
+    content: <RedeemForm />,
   },
 ] as const;
 

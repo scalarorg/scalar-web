@@ -57,31 +57,32 @@ export const handleTokenApproval = async (
     gatewayAddress,
   );
 
-  if (currentAllowance < transferAmount) {
-    try {
-      const approvalTx = await approveERC20(gatewayAddress, transferAmount);
-      if (!approvalTx) throw new Error("Failed to create approval transaction");
+  if (currentAllowance >= transferAmount) {
+    return;
+  }
+  try {
+    const approvalTx = await approveERC20(gatewayAddress, transferAmount);
+    if (!approvalTx) throw new Error("Failed to create approval transaction");
 
-      const approvalConfirmed = await Promise.race([
-        new Promise((_, reject) =>
-          setTimeout(() => reject(new Error("Approval timeout")), 60000),
-        ),
-        approvalTx.wait(),
-      ]);
+    const approvalConfirmed = await Promise.race([
+      new Promise((_, reject) =>
+        setTimeout(() => reject(new Error("Approval timeout")), 60000),
+      ),
+      approvalTx.wait(),
+    ]);
 
-      if (!approvalConfirmed) {
-        throw new Error("Approval failed");
-      }
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        if (error.message?.includes("contract runner")) {
-          throw new Error(
-            "Please ensure your wallet is connected and network is correct",
-          );
-        }
-      }
-      throw error;
+    if (!approvalConfirmed) {
+      throw new Error("Approval failed");
     }
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      if (error.message?.includes("contract runner")) {
+        throw new Error(
+          "Please ensure your wallet is connected and network is correct",
+        );
+      }
+    }
+    throw error;
   }
 };
 
@@ -133,11 +134,14 @@ export const validateTransferConfig = (
     throw new Error("Invalid configuration");
   }
 };
+export const BTC_DECIMALS = 8;
 
 export const formatBTC = (sats: bigint | number) => {
-  return Number(formatUnits(sats as bigint, 8));
+  return Number(formatUnits(sats as bigint, BTC_DECIMALS));
 };
 
 export const parseSats = (btc: string) => {
-  return parseUnits(btc, 8);
+  return parseUnits(btc, BTC_DECIMALS);
 };
+
+export const VOUT_INDEX_OF_LOCKING_OUTPUT = 1;
