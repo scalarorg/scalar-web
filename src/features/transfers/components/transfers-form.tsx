@@ -285,7 +285,7 @@ export const TransfersForm = () => {
 
   return (
     <Card className="mx-auto w-full max-w-2xl border-none shadow-none">
-      <CardHeader className="flex flex-row items-center justify-between">
+      <CardHeader className="flex flex-row items-center justify-between px-0">
         <CardTitle className="font-bold text-2xl">Transfers</CardTitle>
         <div className="text-right">
           <span className="text-muted-foreground text-sm">
@@ -296,7 +296,7 @@ export const TransfersForm = () => {
           )}
         </div>
       </CardHeader>
-      <CardContent>
+      <CardContent className="px-0">
         <Form {...form}>
           <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
             {/* Select Token */}
