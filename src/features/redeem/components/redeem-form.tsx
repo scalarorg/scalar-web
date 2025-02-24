@@ -344,7 +344,7 @@ export const RedeemForm = () => {
 
       let payload = "";
 
-      if (protocolSelected?.attribute?.model === ELiquidityModel.POOLING) {
+      if (protocolSelected?.attribute?.model === ELiquidityModel.POOL) {
         const reciepientChainIdentifier =
           Buffer.from(redeemLockingScript).toString("hex");
         payload = calculateContractCallWithTokenPayload({
@@ -546,8 +546,8 @@ export const RedeemForm = () => {
             />
 
             {isConnectedEvm ? (
-              protocolSelected?.attribute?.model ===
-                ELiquidityModel.TRANSACTIONAL && !isConnectedBtc ? (
+              protocolSelected?.attribute?.model === ELiquidityModel.UPC &&
+              !isConnectedBtc ? (
                 <Popover>
                   <PopoverTrigger className="w-full">
                     <Button type="button" className="h-12 w-full text-lg">
