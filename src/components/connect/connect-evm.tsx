@@ -1,12 +1,21 @@
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 
-export const ConnectEvm = () => {
+export const ConnectEvm = ({
+  hideTitle,
+  className,
+}: {
+  hideTitle?: boolean;
+  className?: string;
+}) => {
   return (
     <div className="flex w-full flex-col gap-2">
-      <div className="flex items-center justify-between gap-2">
-        <span className="font-semibold text-[22px]">EVM</span>
-      </div>
+      {!hideTitle && (
+        <div className="flex items-center justify-between gap-2">
+          <span className="font-semibold text-[22px]">EVM</span>
+        </div>
+      )}
       <ConnectButton.Custom>
         {({
           account,
@@ -43,7 +52,7 @@ export const ConnectEvm = () => {
                     <Button
                       onClick={openConnectModal}
                       type="button"
-                      className="w-full"
+                      className={cn("w-full", className)}
                     >
                       Connect wallet
                     </Button>

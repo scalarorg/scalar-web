@@ -8,7 +8,7 @@ import { createElement, useEffect, useMemo, useState } from "react";
 // And whether or not it should be injected
 const BROWSER = "btcwallet" as keyof typeof window;
 
-export const ConnectBtc = () => {
+export const ConnectBtc = ({ hideTitle }: { hideTitle?: boolean }) => {
   const walletInfo = useWalletInfo();
 
   const [selectedWallet, setSelectedWallet] = useState("Unisat");
@@ -50,12 +50,14 @@ export const ConnectBtc = () => {
 
   return (
     <div className="flex w-full flex-col gap-2">
-      <div className="flex items-center justify-between gap-2">
-        <span className="font-semibold text-[22px]">BTC</span>
-        {walletInfo.isConnected && (
-          <Power onClick={disconnectWallet} className="cursor-pointer" />
-        )}
-      </div>
+      {!hideTitle && (
+        <div className="flex items-center justify-between gap-2">
+          <span className="font-semibold text-[22px]">BTC</span>
+          {walletInfo.isConnected && (
+            <Power onClick={disconnectWallet} className="cursor-pointer" />
+          )}
+        </div>
+      )}
       {walletInfo.isConnected ? (
         <div className="space-y-1 text-[18px]">
           <div className="flex items-center justify-between gap-1">

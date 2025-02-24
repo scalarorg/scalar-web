@@ -1,3 +1,4 @@
+import { ConnectBtc } from "@/components/connect";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -9,6 +10,11 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import {
   Select,
   SelectContent,
@@ -351,13 +357,26 @@ export const BridgeForm = () => {
               </div>
             </div> */}
 
-            <Button
-              type="submit"
-              className="h-12 w-full text-lg"
-              disabled={!walletInfo.balance}
-            >
-              Submit
-            </Button>
+            {walletInfo.isConnected ? (
+              <Button
+                type="submit"
+                className="h-12 w-full text-lg"
+                disabled={!walletInfo.balance}
+              >
+                Submit
+              </Button>
+            ) : (
+              <Popover>
+                <PopoverTrigger className="w-full">
+                  <Button type="button" className="h-12 w-full text-lg">
+                    Connect wallet
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent side="top">
+                  <ConnectBtc hideTitle />
+                </PopoverContent>
+              </Popover>
+            )}
           </form>
         </Form>
       </CardContent>

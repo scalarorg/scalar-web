@@ -1,3 +1,4 @@
+import { ConnectBtc, ConnectEvm } from "@/components/connect";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -9,6 +10,11 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import {
   Select,
   SelectContent,
@@ -70,7 +76,7 @@ const getChainSelected = (value = "") => {
 
 export const RedeemForm = () => {
   const { switchChain } = useSwitchChain();
-  const { address: evmAddress } = useAccount();
+  const { address: evmAddress, isConnected: isConnectedEvm } = useAccount();
   const chainId = useChainId();
 
   const form = useForm<TRedeemForm>({
@@ -79,7 +85,11 @@ export const RedeemForm = () => {
   const { control, watch, setError, clearErrors, handleSubmit } = form;
   const watchForm = watch();
 
-  const { pubkey: btcPubkey, address: btcAddress } = useWalletInfo();
+  const {
+    pubkey: btcPubkey,
+    address: btcAddress,
+    isConnected: isConnectedBtc,
+  } = useWalletInfo();
   const {
     data: { protocols = [] } = {},
   } = useScalarProtocols();
@@ -111,6 +121,7 @@ export const RedeemForm = () => {
     if (
       !vault ||
       !btcNetwork ||
+      !btcPubkey ||
       !protocolSelected?.custodian_group?.custodians ||
       !protocolSelected.custodian_group.quorum ||
       !protocolSelected.bitcoin_pubkey
@@ -326,7 +337,7 @@ export const RedeemForm = () => {
         { checkAllowance, approveERC20 },
       );
 
-      const lockingScript = bitcoin.address.toOutputScript(
+      const redeemLockingScript = bitcoin.address.toOutputScript(
         values.destRecipientAddress,
         btcNetwork,
       );
@@ -335,7 +346,7 @@ export const RedeemForm = () => {
 
       if (protocolSelected?.attribute?.model === ELiquidityModel.POOLING) {
         const reciepientChainIdentifier =
-          Buffer.from(lockingScript).toString("hex");
+          Buffer.from(redeemLockingScript).toString("hex");
         payload = calculateContractCallWithTokenPayload({
           type: "custodianOnly",
           custodianOnly: {
@@ -370,7 +381,7 @@ export const RedeemForm = () => {
             script_pubkey: Uint8Array.from(upcLockingScript),
           })),
           output: {
-            script: lockingScript,
+            script: redeemLockingScript,
             value: newTransferAmount,
           },
           stakerPubkey,
@@ -388,13 +399,11 @@ export const RedeemForm = () => {
 
         const signedPsbt = await walletProvider?.signPsbt(hexPsbt, {
           autoFinalized: false,
-          toSignInputs: [
-            {
-              index: 0,
-              address: btcAddress,
-              disableTweakSigner: true,
-            },
-          ],
+          toSignInputs: params.inputs.map((_input, index) => ({
+            index,
+            address: btcAddress,
+            disableTweakSigner: true,
+          })),
         });
 
         payload = calculateContractCallWithTokenPayload({
@@ -536,13 +545,31 @@ export const RedeemForm = () => {
               )}
             />
 
-            <Button
-              type="submit"
-              className="h-12 w-full text-lg"
-              disabled={!sourceChainBalance}
-            >
-              Redeem
-            </Button>
+            {isConnectedEvm ? (
+              protocolSelected?.attribute?.model ===
+                ELiquidityModel.TRANSACTIONAL && !isConnectedBtc ? (
+                <Popover>
+                  <PopoverTrigger className="w-full">
+                    <Button type="button" className="h-12 w-full text-lg">
+                      Connect wallet
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent side="top">
+                    <ConnectBtc hideTitle />
+                  </PopoverContent>
+                </Popover>
+              ) : (
+                <Button
+                  type="submit"
+                  className="h-12 w-full text-lg"
+                  disabled={!sourceChainBalance}
+                >
+                  Redeem
+                </Button>
+              )
+            ) : (
+              <ConnectEvm hideTitle className="h-12 text-lg" />
+            )}
           </form>
         </Form>
       </CardContent>

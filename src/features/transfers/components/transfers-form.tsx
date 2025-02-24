@@ -1,4 +1,5 @@
 import { IGateway_ABI } from "@/abis/igateway";
+import { ConnectEvm } from "@/components/connect";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -51,7 +52,7 @@ const filterEvmChains = (chains: TProtocol["chains"] = []) =>
 
 export const TransfersForm = () => {
   const { switchChain } = useSwitchChain();
-  const { address: evmAddress } = useAccount();
+  const { address: evmAddress, isConnected } = useAccount();
   const chainId = useChainId();
   const {
     data: { protocols = [] } = {},
@@ -466,13 +467,17 @@ export const TransfersForm = () => {
               </div>
             </div> */}
 
-            <Button
-              type="submit"
-              className="h-12 w-full text-lg"
-              disabled={!sourceChainBalance}
-            >
-              Transfer
-            </Button>
+            {isConnected ? (
+              <Button
+                type="submit"
+                className="h-12 w-full text-lg"
+                disabled={!sourceChainBalance}
+              >
+                Transfer
+              </Button>
+            ) : (
+              <ConnectEvm hideTitle className="h-12 text-lg" />
+            )}
           </form>
         </Form>
       </CardContent>
