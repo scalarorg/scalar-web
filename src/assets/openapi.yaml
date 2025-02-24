@@ -5534,12 +5534,6 @@ paths:
                     capacity:
                       type: string
                       format: byte
-                    model:
-                      type: string
-                      enum:
-                        - TOKEN_MODEL_POOL
-                        - TOKEN_MODEL_UTXO
-                      default: TOKEN_MODEL_POOL
                 address:
                   type: string
                   format: byte
@@ -5960,9 +5954,10 @@ paths:
                         model:
                           type: string
                           enum:
-                            - TOKEN_MODEL_POOL
-                            - TOKEN_MODEL_UTXO
-                          default: TOKEN_MODEL_POOL
+                            - LIQUIDITY_MODEL_UNSPECIFIED
+                            - LIQUIDITY_MODEL_POOL
+                            - LIQUIDITY_MODEL_UPC
+                          default: LIQUIDITY_MODEL_UNSPECIFIED
                 title: |-
                   ERC20TokensResponse describes the asset and symbol for all
                   ERC20 tokens requested for a chain
@@ -6195,6 +6190,8 @@ paths:
                           transfer_id:
                             type: string
                             format: uint64
+                          command_id:
+                            type: string
                           sender:
                             type: string
                           destination_chain:
@@ -7984,7 +7981,7 @@ paths:
         - MsgService
   /scalar/chains/v1beta1/sign_btc_commands:
     post:
-      operationId: SignBTCCommands
+      operationId: SignPsbtCommand
       responses:
         "200":
           description: A successful response.
@@ -8414,12 +8411,6 @@ paths:
                       capacity:
                         type: string
                         format: byte
-                      model:
-                        type: string
-                        enum:
-                          - TOKEN_MODEL_POOL
-                          - TOKEN_MODEL_UTXO
-                        default: TOKEN_MODEL_POOL
                   address:
                     type: string
                   confirmed:
@@ -8660,9 +8651,10 @@ paths:
                             model:
                               type: string
                               enum:
-                                - LIQUIDITY_MODEL_POOLING
-                                - LIQUIDITY_MODEL_TRANSACTIONAL
-                              default: LIQUIDITY_MODEL_POOLING
+                                - LIQUIDITY_MODEL_UNSPECIFIED
+                                - LIQUIDITY_MODEL_POOL
+                                - LIQUIDITY_MODEL_UPC
+                              default: LIQUIDITY_MODEL_UNSPECIFIED
                         status:
                           type: string
                           enum:
@@ -8677,7 +8669,7 @@ paths:
                               type: string
                             name:
                               type: string
-                            btc_pubkey:
+                            bitcoin_pubkey:
                               type: string
                               format: byte
                             quorum:
@@ -8700,7 +8692,9 @@ paths:
                                 properties:
                                   name:
                                     type: string
-                                  btc_pubkey:
+                                  val_address:
+                                    type: string
+                                  bitcoin_pubkey:
                                     type: string
                                     format: byte
                                   status:
@@ -8740,6 +8734,9 @@ paths:
                               address:
                                 type: string
                             title: DestinationChain represents a blockchain where tokens can be sent
+                        avatar:
+                          type: string
+                          format: byte
                   total:
                     type: string
                     format: uint64
@@ -8976,9 +8973,10 @@ paths:
                           model:
                             type: string
                             enum:
-                              - LIQUIDITY_MODEL_POOLING
-                              - LIQUIDITY_MODEL_TRANSACTIONAL
-                            default: LIQUIDITY_MODEL_POOLING
+                              - LIQUIDITY_MODEL_UNSPECIFIED
+                              - LIQUIDITY_MODEL_POOL
+                              - LIQUIDITY_MODEL_UPC
+                            default: LIQUIDITY_MODEL_UNSPECIFIED
                       status:
                         type: string
                         enum:
@@ -8993,7 +8991,7 @@ paths:
                             type: string
                           name:
                             type: string
-                          btc_pubkey:
+                          bitcoin_pubkey:
                             type: string
                             format: byte
                           quorum:
@@ -9016,7 +9014,9 @@ paths:
                               properties:
                                 name:
                                   type: string
-                                btc_pubkey:
+                                val_address:
+                                  type: string
+                                bitcoin_pubkey:
                                   type: string
                                   format: byte
                                 status:
@@ -9056,6 +9056,9 @@ paths:
                             address:
                               type: string
                           title: DestinationChain represents a blockchain where tokens can be sent
+                      avatar:
+                        type: string
+                        format: byte
         default:
           description: An unexpected error response
           content:
@@ -9283,9 +9286,10 @@ paths:
                           model:
                             type: string
                             enum:
-                              - LIQUIDITY_MODEL_POOLING
-                              - LIQUIDITY_MODEL_TRANSACTIONAL
-                            default: LIQUIDITY_MODEL_POOLING
+                              - LIQUIDITY_MODEL_UNSPECIFIED
+                              - LIQUIDITY_MODEL_POOL
+                              - LIQUIDITY_MODEL_UPC
+                            default: LIQUIDITY_MODEL_UNSPECIFIED
                       status:
                         type: string
                         enum:
@@ -9300,7 +9304,7 @@ paths:
                             type: string
                           name:
                             type: string
-                          btc_pubkey:
+                          bitcoin_pubkey:
                             type: string
                             format: byte
                           quorum:
@@ -9323,7 +9327,9 @@ paths:
                               properties:
                                 name:
                                   type: string
-                                btc_pubkey:
+                                val_address:
+                                  type: string
+                                bitcoin_pubkey:
                                   type: string
                                   format: byte
                                 status:
@@ -9363,6 +9369,9 @@ paths:
                             address:
                               type: string
                           title: DestinationChain represents a blockchain where tokens can be sent
+                      avatar:
+                        type: string
+                        format: byte
         default:
           description: An unexpected error response
           content:
@@ -9552,9 +9561,10 @@ paths:
                     model:
                       type: string
                       enum:
-                        - LIQUIDITY_MODEL_POOLING
-                        - LIQUIDITY_MODEL_TRANSACTIONAL
-                      default: LIQUIDITY_MODEL_POOLING
+                        - LIQUIDITY_MODEL_UNSPECIFIED
+                        - LIQUIDITY_MODEL_POOL
+                        - LIQUIDITY_MODEL_UPC
+                      default: LIQUIDITY_MODEL_UNSPECIFIED
                 custodian_group:
                   type: object
                   properties:
@@ -9562,7 +9572,7 @@ paths:
                       type: string
                     name:
                       type: string
-                    btc_pubkey:
+                    bitcoin_pubkey:
                       type: string
                       format: byte
                     quorum:
@@ -9585,7 +9595,9 @@ paths:
                         properties:
                           name:
                             type: string
-                          btc_pubkey:
+                          val_address:
+                            type: string
+                          bitcoin_pubkey:
                             type: string
                             format: byte
                           status:
@@ -9621,9 +9633,9 @@ paths:
         required: true
       tags:
         - Msg
-  /scalar/protocol/v1beta1/protocol_asset:
+  /scalar/protocol/v1beta1/protocol:
     get:
-      operationId: ProtocolAsset
+      operationId: Protocol
       responses:
         "200":
           description: A successful response.
@@ -9632,13 +9644,34 @@ paths:
               schema:
                 type: object
                 properties:
-                  asset:
+                  protocol:
                     type: object
                     properties:
-                      chain:
+                      key_id:
                         type: string
-                      name:
+                      custodians_pubkey:
                         type: string
+                        format: byte
+                      liquidity_model:
+                        type: string
+                        enum:
+                          - LIQUIDITY_MODEL_UNSPECIFIED
+                          - LIQUIDITY_MODEL_POOL
+                          - LIQUIDITY_MODEL_UPC
+                        default: LIQUIDITY_MODEL_UNSPECIFIED
+                      symbol:
+                        type: string
+                      origin_chain:
+                        type: string
+                      minor_addresses:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            chain_name:
+                              type: string
+                            address:
+                              type: string
         default:
           description: An unexpected error response
           content:
@@ -9810,17 +9843,22 @@ paths:
                               "value": "1.212s"
                             }
       parameters:
-        - name: source_chain
+        - name: origin_chain
           in: query
           required: false
           schema:
             type: string
-        - name: destination_chain
+        - name: minor_chain
           in: query
           required: false
           schema:
             type: string
-        - name: token_address
+        - name: symbol
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: address
           in: query
           required: false
           schema:
@@ -9861,9 +9899,10 @@ paths:
                           model:
                             type: string
                             enum:
-                              - LIQUIDITY_MODEL_POOLING
-                              - LIQUIDITY_MODEL_TRANSACTIONAL
-                            default: LIQUIDITY_MODEL_POOLING
+                              - LIQUIDITY_MODEL_UNSPECIFIED
+                              - LIQUIDITY_MODEL_POOL
+                              - LIQUIDITY_MODEL_UPC
+                            default: LIQUIDITY_MODEL_UNSPECIFIED
                       status:
                         type: string
                         enum:
@@ -9878,7 +9917,7 @@ paths:
                             type: string
                           name:
                             type: string
-                          btc_pubkey:
+                          bitcoin_pubkey:
                             type: string
                             format: byte
                           quorum:
@@ -9901,7 +9940,9 @@ paths:
                               properties:
                                 name:
                                   type: string
-                                btc_pubkey:
+                                val_address:
+                                  type: string
+                                bitcoin_pubkey:
                                   type: string
                                   format: byte
                                 status:
@@ -9941,6 +9982,9 @@ paths:
                             address:
                               type: string
                           title: DestinationChain represents a blockchain where tokens can be sent
+                      avatar:
+                        type: string
+                        format: byte
         default:
           description: An unexpected error response
           content:
@@ -10163,9 +10207,10 @@ paths:
                           model:
                             type: string
                             enum:
-                              - LIQUIDITY_MODEL_POOLING
-                              - LIQUIDITY_MODEL_TRANSACTIONAL
-                            default: LIQUIDITY_MODEL_POOLING
+                              - LIQUIDITY_MODEL_UNSPECIFIED
+                              - LIQUIDITY_MODEL_POOL
+                              - LIQUIDITY_MODEL_UPC
+                            default: LIQUIDITY_MODEL_UNSPECIFIED
                       status:
                         type: string
                         enum:
@@ -10180,7 +10225,7 @@ paths:
                             type: string
                           name:
                             type: string
-                          btc_pubkey:
+                          bitcoin_pubkey:
                             type: string
                             format: byte
                           quorum:
@@ -10203,7 +10248,9 @@ paths:
                               properties:
                                 name:
                                   type: string
-                                btc_pubkey:
+                                val_address:
+                                  type: string
+                                bitcoin_pubkey:
                                   type: string
                                   format: byte
                                 status:
@@ -10243,6 +10290,9 @@ paths:
                             address:
                               type: string
                           title: DestinationChain represents a blockchain where tokens can be sent
+                      avatar:
+                        type: string
+                        format: byte
         default:
           description: An unexpected error response
           content:
@@ -16990,6 +17040,9 @@ paths:
                             - TRANSFER_STATE_INSUFFICIENT_AMOUNT
                             - TRANSFER_STATE_FAILED
                           default: TRANSFER_STATE_UNSPECIFIED
+                        source_tx_hash:
+                          type: string
+                          format: byte
                       title: >-
                         CrossChainTransfer represents a generalized transfer of
                         some asset to a
@@ -52100,12 +52153,6 @@ components:
             capacity:
               type: string
               format: byte
-            model:
-              type: string
-              enum:
-                - TOKEN_MODEL_POOL
-                - TOKEN_MODEL_UTXO
-              default: TOKEN_MODEL_POOL
         address:
           type: string
           format: byte
@@ -52158,9 +52205,10 @@ components:
               model:
                 type: string
                 enum:
-                  - TOKEN_MODEL_POOL
-                  - TOKEN_MODEL_UTXO
-                default: TOKEN_MODEL_POOL
+                  - LIQUIDITY_MODEL_UNSPECIFIED
+                  - LIQUIDITY_MODEL_POOL
+                  - LIQUIDITY_MODEL_UPC
+                default: LIQUIDITY_MODEL_UNSPECIFIED
       title: |-
         ERC20TokensResponse describes the asset and symbol for all
         ERC20 tokens requested for a chain
@@ -52174,9 +52222,10 @@ components:
         model:
           type: string
           enum:
-            - TOKEN_MODEL_POOL
-            - TOKEN_MODEL_UTXO
-          default: TOKEN_MODEL_POOL
+            - LIQUIDITY_MODEL_UNSPECIFIED
+            - LIQUIDITY_MODEL_POOL
+            - LIQUIDITY_MODEL_UPC
+          default: LIQUIDITY_MODEL_UNSPECIFIED
     scalar.chains.v1beta1.Event:
       type: object
       properties:
@@ -52206,6 +52255,8 @@ components:
             transfer_id:
               type: string
               format: uint64
+            command_id:
+              type: string
             sender:
               type: string
             destination_chain:
@@ -52470,6 +52521,8 @@ components:
                 transfer_id:
                   type: string
                   format: uint64
+                command_id:
+                  type: string
                 sender:
                   type: string
                 destination_chain:
@@ -52631,6 +52684,8 @@ components:
         transfer_id:
           type: string
           format: uint64
+        command_id:
+          type: string
         sender:
           type: string
         destination_chain:
@@ -52910,7 +52965,32 @@ components:
           format: byte
     scalar.chains.v1beta1.SetGatewayResponse:
       type: object
-    scalar.chains.v1beta1.SignBTCCommandsRequest:
+    scalar.chains.v1beta1.SignBtcCommandsRequest:
+      type: object
+      properties:
+        sender:
+          type: string
+          format: byte
+        chain:
+          type: string
+    scalar.chains.v1beta1.SignCommandsRequest:
+      type: object
+      properties:
+        sender:
+          type: string
+          format: byte
+        chain:
+          type: string
+    scalar.chains.v1beta1.SignCommandsResponse:
+      type: object
+      properties:
+        batched_commands_id:
+          type: string
+          format: byte
+        command_count:
+          type: integer
+          format: int64
+    scalar.chains.v1beta1.SignPsbtCommandRequest:
       type: object
       properties:
         sender:
@@ -52921,24 +53001,7 @@ components:
         psbt:
           type: string
           format: byte
-    scalar.chains.v1beta1.SignBTCCommandsResponse:
-      type: object
-      properties:
-        batched_commands_id:
-          type: string
-          format: byte
-        command_count:
-          type: integer
-          format: int64
-    scalar.chains.v1beta1.SignCommandsRequest:
-      type: object
-      properties:
-        sender:
-          type: string
-          format: byte
-        chain:
-          type: string
-    scalar.chains.v1beta1.SignCommandsResponse:
+    scalar.chains.v1beta1.SignPsbtCommandResponse:
       type: object
       properties:
         batched_commands_id:
@@ -52982,12 +53045,6 @@ components:
         capacity:
           type: string
           format: byte
-        model:
-          type: string
-          enum:
-            - TOKEN_MODEL_POOL
-            - TOKEN_MODEL_UTXO
-          default: TOKEN_MODEL_POOL
     scalar.chains.v1beta1.TokenInfoResponse:
       type: object
       properties:
@@ -53006,12 +53063,6 @@ components:
             capacity:
               type: string
               format: byte
-            model:
-              type: string
-              enum:
-                - TOKEN_MODEL_POOL
-                - TOKEN_MODEL_UTXO
-              default: TOKEN_MODEL_POOL
         address:
           type: string
         confirmed:
@@ -53022,12 +53073,6 @@ components:
           format: boolean
         burner_code_hash:
           type: string
-    scalar.chains.v1beta1.TokenModel:
-      type: string
-      enum:
-        - TOKEN_MODEL_POOL
-        - TOKEN_MODEL_UTXO
-      default: TOKEN_MODEL_POOL
     scalar.chains.v1beta1.TokenType:
       type: string
       enum:
@@ -53035,6 +53080,13 @@ components:
         - TOKEN_TYPE_INTERNAL
         - TOKEN_TYPE_EXTERNAL
       default: TOKEN_TYPE_UNSPECIFIED
+    scalar.protocol.exported.v1beta1.LiquidityModel:
+      type: string
+      enum:
+        - LIQUIDITY_MODEL_UNSPECIFIED
+        - LIQUIDITY_MODEL_POOL
+        - LIQUIDITY_MODEL_UPC
+      default: LIQUIDITY_MODEL_UNSPECIFIED
     scalar.utils.v1beta1.Threshold:
       type: object
       properties:
@@ -53054,7 +53106,9 @@ components:
       properties:
         name:
           type: string
-        btc_pubkey:
+        val_address:
+          type: string
+        bitcoin_pubkey:
           type: string
           format: byte
         status:
@@ -53075,7 +53129,7 @@ components:
           type: string
         name:
           type: string
-        btc_pubkey:
+        bitcoin_pubkey:
           type: string
           format: byte
         quorum:
@@ -53098,7 +53152,9 @@ components:
             properties:
               name:
                 type: string
-              btc_pubkey:
+              val_address:
+                type: string
+              bitcoin_pubkey:
                 type: string
                 format: byte
               status:
@@ -53123,6 +53179,41 @@ components:
         - STATUS_ACTIVATED
         - STATUS_DEACTIVATED
       default: STATUS_UNSPECIFIED
+    scalar.protocol.exported.v1beta1.MinorAddress:
+      type: object
+      properties:
+        chain_name:
+          type: string
+        address:
+          type: string
+    scalar.protocol.exported.v1beta1.ProtocolInfo:
+      type: object
+      properties:
+        key_id:
+          type: string
+        custodians_pubkey:
+          type: string
+          format: byte
+        liquidity_model:
+          type: string
+          enum:
+            - LIQUIDITY_MODEL_UNSPECIFIED
+            - LIQUIDITY_MODEL_POOL
+            - LIQUIDITY_MODEL_UPC
+          default: LIQUIDITY_MODEL_UNSPECIFIED
+        symbol:
+          type: string
+        origin_chain:
+          type: string
+        minor_addresses:
+          type: array
+          items:
+            type: object
+            properties:
+              chain_name:
+                type: string
+              address:
+                type: string
     scalar.protocol.v1beta1.AddSupportedChainRequest:
       type: object
       properties:
@@ -53165,9 +53256,10 @@ components:
                 model:
                   type: string
                   enum:
-                    - LIQUIDITY_MODEL_POOLING
-                    - LIQUIDITY_MODEL_TRANSACTIONAL
-                  default: LIQUIDITY_MODEL_POOLING
+                    - LIQUIDITY_MODEL_UNSPECIFIED
+                    - LIQUIDITY_MODEL_POOL
+                    - LIQUIDITY_MODEL_UPC
+                  default: LIQUIDITY_MODEL_UNSPECIFIED
             status:
               type: string
               enum:
@@ -53182,7 +53274,7 @@ components:
                   type: string
                 name:
                   type: string
-                btc_pubkey:
+                bitcoin_pubkey:
                   type: string
                   format: byte
                 quorum:
@@ -53205,7 +53297,9 @@ components:
                     properties:
                       name:
                         type: string
-                      btc_pubkey:
+                      val_address:
+                        type: string
+                      bitcoin_pubkey:
                         type: string
                         format: byte
                       status:
@@ -53245,6 +53339,9 @@ components:
                   address:
                     type: string
                 title: DestinationChain represents a blockchain where tokens can be sent
+            avatar:
+              type: string
+              format: byte
     scalar.protocol.v1beta1.CreateProtocolRequest:
       type: object
       properties:
@@ -53261,9 +53358,10 @@ components:
             model:
               type: string
               enum:
-                - LIQUIDITY_MODEL_POOLING
-                - LIQUIDITY_MODEL_TRANSACTIONAL
-              default: LIQUIDITY_MODEL_POOLING
+                - LIQUIDITY_MODEL_UNSPECIFIED
+                - LIQUIDITY_MODEL_POOL
+                - LIQUIDITY_MODEL_UPC
+              default: LIQUIDITY_MODEL_UNSPECIFIED
         custodian_group:
           type: object
           properties:
@@ -53271,7 +53369,7 @@ components:
               type: string
             name:
               type: string
-            btc_pubkey:
+            bitcoin_pubkey:
               type: string
               format: byte
             quorum:
@@ -53294,7 +53392,9 @@ components:
                 properties:
                   name:
                     type: string
-                  btc_pubkey:
+                  val_address:
+                    type: string
+                  bitcoin_pubkey:
                     type: string
                     format: byte
                   status:
@@ -53353,9 +53453,10 @@ components:
                 model:
                   type: string
                   enum:
-                    - LIQUIDITY_MODEL_POOLING
-                    - LIQUIDITY_MODEL_TRANSACTIONAL
-                  default: LIQUIDITY_MODEL_POOLING
+                    - LIQUIDITY_MODEL_UNSPECIFIED
+                    - LIQUIDITY_MODEL_POOL
+                    - LIQUIDITY_MODEL_UPC
+                  default: LIQUIDITY_MODEL_UNSPECIFIED
             status:
               type: string
               enum:
@@ -53370,7 +53471,7 @@ components:
                   type: string
                 name:
                   type: string
-                btc_pubkey:
+                bitcoin_pubkey:
                   type: string
                   format: byte
                 quorum:
@@ -53393,7 +53494,9 @@ components:
                     properties:
                       name:
                         type: string
-                      btc_pubkey:
+                      val_address:
+                        type: string
+                      bitcoin_pubkey:
                         type: string
                         format: byte
                       status:
@@ -53433,12 +53536,9 @@ components:
                   address:
                     type: string
                 title: DestinationChain represents a blockchain where tokens can be sent
-    scalar.protocol.v1beta1.LiquidityModel:
-      type: string
-      enum:
-        - LIQUIDITY_MODEL_POOLING
-        - LIQUIDITY_MODEL_TRANSACTIONAL
-      default: LIQUIDITY_MODEL_POOLING
+            avatar:
+              type: string
+              format: byte
     scalar.protocol.v1beta1.Protocol:
       type: object
       properties:
@@ -53462,9 +53562,10 @@ components:
             model:
               type: string
               enum:
-                - LIQUIDITY_MODEL_POOLING
-                - LIQUIDITY_MODEL_TRANSACTIONAL
-              default: LIQUIDITY_MODEL_POOLING
+                - LIQUIDITY_MODEL_UNSPECIFIED
+                - LIQUIDITY_MODEL_POOL
+                - LIQUIDITY_MODEL_UPC
+              default: LIQUIDITY_MODEL_UNSPECIFIED
         status:
           type: string
           enum:
@@ -53479,7 +53580,7 @@ components:
               type: string
             name:
               type: string
-            btc_pubkey:
+            bitcoin_pubkey:
               type: string
               format: byte
             quorum:
@@ -53502,7 +53603,9 @@ components:
                 properties:
                   name:
                     type: string
-                  btc_pubkey:
+                  val_address:
+                    type: string
+                  bitcoin_pubkey:
                     type: string
                     format: byte
                   status:
@@ -53542,25 +53645,50 @@ components:
               address:
                 type: string
             title: DestinationChain represents a blockchain where tokens can be sent
-    scalar.protocol.v1beta1.ProtocolAssetResponse:
-      type: object
-      properties:
-        asset:
-          type: object
-          properties:
-            chain:
-              type: string
-            name:
-              type: string
+        avatar:
+          type: string
+          format: byte
     scalar.protocol.v1beta1.ProtocolAttribute:
       type: object
       properties:
         model:
           type: string
           enum:
-            - LIQUIDITY_MODEL_POOLING
-            - LIQUIDITY_MODEL_TRANSACTIONAL
-          default: LIQUIDITY_MODEL_POOLING
+            - LIQUIDITY_MODEL_UNSPECIFIED
+            - LIQUIDITY_MODEL_POOL
+            - LIQUIDITY_MODEL_UPC
+          default: LIQUIDITY_MODEL_UNSPECIFIED
+    scalar.protocol.v1beta1.ProtocolResponse:
+      type: object
+      properties:
+        protocol:
+          type: object
+          properties:
+            key_id:
+              type: string
+            custodians_pubkey:
+              type: string
+              format: byte
+            liquidity_model:
+              type: string
+              enum:
+                - LIQUIDITY_MODEL_UNSPECIFIED
+                - LIQUIDITY_MODEL_POOL
+                - LIQUIDITY_MODEL_UPC
+              default: LIQUIDITY_MODEL_UNSPECIFIED
+            symbol:
+              type: string
+            origin_chain:
+              type: string
+            minor_addresses:
+              type: array
+              items:
+                type: object
+                properties:
+                  chain_name:
+                    type: string
+                  address:
+                    type: string
     scalar.protocol.v1beta1.ProtocolsResponse:
       type: object
       properties:
@@ -53589,9 +53717,10 @@ components:
                   model:
                     type: string
                     enum:
-                      - LIQUIDITY_MODEL_POOLING
-                      - LIQUIDITY_MODEL_TRANSACTIONAL
-                    default: LIQUIDITY_MODEL_POOLING
+                      - LIQUIDITY_MODEL_UNSPECIFIED
+                      - LIQUIDITY_MODEL_POOL
+                      - LIQUIDITY_MODEL_UPC
+                    default: LIQUIDITY_MODEL_UNSPECIFIED
               status:
                 type: string
                 enum:
@@ -53606,7 +53735,7 @@ components:
                     type: string
                   name:
                     type: string
-                  btc_pubkey:
+                  bitcoin_pubkey:
                     type: string
                     format: byte
                   quorum:
@@ -53629,7 +53758,9 @@ components:
                       properties:
                         name:
                           type: string
-                        btc_pubkey:
+                        val_address:
+                          type: string
+                        bitcoin_pubkey:
                           type: string
                           format: byte
                         status:
@@ -53669,6 +53800,9 @@ components:
                     address:
                       type: string
                   title: DestinationChain represents a blockchain where tokens can be sent
+              avatar:
+                type: string
+                format: byte
         total:
           type: string
           format: uint64
@@ -53726,9 +53860,10 @@ components:
                 model:
                   type: string
                   enum:
-                    - LIQUIDITY_MODEL_POOLING
-                    - LIQUIDITY_MODEL_TRANSACTIONAL
-                  default: LIQUIDITY_MODEL_POOLING
+                    - LIQUIDITY_MODEL_UNSPECIFIED
+                    - LIQUIDITY_MODEL_POOL
+                    - LIQUIDITY_MODEL_UPC
+                  default: LIQUIDITY_MODEL_UNSPECIFIED
             status:
               type: string
               enum:
@@ -53743,7 +53878,7 @@ components:
                   type: string
                 name:
                   type: string
-                btc_pubkey:
+                bitcoin_pubkey:
                   type: string
                   format: byte
                 quorum:
@@ -53766,7 +53901,9 @@ components:
                     properties:
                       name:
                         type: string
-                      btc_pubkey:
+                      val_address:
+                        type: string
+                      bitcoin_pubkey:
                         type: string
                         format: byte
                       status:
@@ -53806,6 +53943,9 @@ components:
                   address:
                     type: string
                 title: DestinationChain represents a blockchain where tokens can be sent
+            avatar:
+              type: string
+              format: byte
     scalar.protocol.v1beta1.UpdateSupportedChainRequest:
       type: object
       properties:
@@ -53850,9 +53990,10 @@ components:
                 model:
                   type: string
                   enum:
-                    - LIQUIDITY_MODEL_POOLING
-                    - LIQUIDITY_MODEL_TRANSACTIONAL
-                  default: LIQUIDITY_MODEL_POOLING
+                    - LIQUIDITY_MODEL_UNSPECIFIED
+                    - LIQUIDITY_MODEL_POOL
+                    - LIQUIDITY_MODEL_UPC
+                  default: LIQUIDITY_MODEL_UNSPECIFIED
             status:
               type: string
               enum:
@@ -53867,7 +54008,7 @@ components:
                   type: string
                 name:
                   type: string
-                btc_pubkey:
+                bitcoin_pubkey:
                   type: string
                   format: byte
                 quorum:
@@ -53890,7 +54031,9 @@ components:
                     properties:
                       name:
                         type: string
-                      btc_pubkey:
+                      val_address:
+                        type: string
+                      bitcoin_pubkey:
                         type: string
                         format: byte
                       status:
@@ -53930,6 +54073,9 @@ components:
                   address:
                     type: string
                 title: DestinationChain represents a blockchain where tokens can be sent
+            avatar:
+              type: string
+              format: byte
     scalar.multisig.exported.v1beta1.KeyState:
       type: string
       enum:
@@ -54381,6 +54527,9 @@ components:
             - TRANSFER_STATE_INSUFFICIENT_AMOUNT
             - TRANSFER_STATE_FAILED
           default: TRANSFER_STATE_UNSPECIFIED
+        source_tx_hash:
+          type: string
+          format: byte
       title: |-
         CrossChainTransfer represents a generalized transfer of some asset to a
         registered blockchain
@@ -55240,6 +55389,9 @@ components:
                   - TRANSFER_STATE_INSUFFICIENT_AMOUNT
                   - TRANSFER_STATE_FAILED
                 default: TRANSFER_STATE_UNSPECIFIED
+              source_tx_hash:
+                type: string
+                format: byte
             title: >-
               CrossChainTransfer represents a generalized transfer of some asset
               to a

@@ -636,7 +636,7 @@ export interface paths {
     };
     get?: never;
     put?: never;
-    post: operations["SignBTCCommands"];
+    post: operations["SignPsbtCommand"];
     delete?: never;
     options?: never;
     head?: never;
@@ -727,14 +727,14 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  "/scalar/protocol/v1beta1/protocol_asset": {
+  "/scalar/protocol/v1beta1/protocol": {
     parameters: {
       query?: never;
       header?: never;
       path?: never;
       cookie?: never;
     };
-    get: operations["ProtocolAsset"];
+    get: operations["Protocol"];
     put?: never;
     post?: never;
     delete?: never;
@@ -4105,11 +4105,6 @@ export interface components {
         decimals?: number;
         /** Format: byte */
         capacity?: string;
-        /**
-         * @default TOKEN_MODEL_POOL
-         * @enum {string}
-         */
-        model: "TOKEN_MODEL_POOL" | "TOKEN_MODEL_UTXO";
       };
       /** Format: byte */
       address?: string;
@@ -4144,20 +4139,26 @@ export interface components {
         asset?: string;
         symbol?: string;
         /**
-         * @default TOKEN_MODEL_POOL
+         * @default LIQUIDITY_MODEL_UNSPECIFIED
          * @enum {string}
          */
-        model: "TOKEN_MODEL_POOL" | "TOKEN_MODEL_UTXO";
+        model:
+          | "LIQUIDITY_MODEL_UNSPECIFIED"
+          | "LIQUIDITY_MODEL_POOL"
+          | "LIQUIDITY_MODEL_UPC";
       }[];
     };
     "scalar.chains.v1beta1.ERC20TokensResponse.Token": {
       asset?: string;
       symbol?: string;
       /**
-       * @default TOKEN_MODEL_POOL
+       * @default LIQUIDITY_MODEL_UNSPECIFIED
        * @enum {string}
        */
-      model: "TOKEN_MODEL_POOL" | "TOKEN_MODEL_UTXO";
+      model:
+        | "LIQUIDITY_MODEL_UNSPECIFIED"
+        | "LIQUIDITY_MODEL_POOL"
+        | "LIQUIDITY_MODEL_UPC";
     };
     "scalar.chains.v1beta1.Event": {
       chain?: string;
@@ -4179,6 +4180,7 @@ export interface components {
         event_id?: string;
         /** Format: uint64 */
         transfer_id?: string;
+        command_id?: string;
         sender?: string;
         destination_chain?: string;
         destination_address?: string;
@@ -4339,6 +4341,7 @@ export interface components {
           event_id?: string;
           /** Format: uint64 */
           transfer_id?: string;
+          command_id?: string;
           sender?: string;
           destination_chain?: string;
           destination_address?: string;
@@ -4434,6 +4437,7 @@ export interface components {
       event_id?: string;
       /** Format: uint64 */
       transfer_id?: string;
+      command_id?: string;
       sender?: string;
       destination_chain?: string;
       destination_address?: string;
@@ -4605,18 +4609,10 @@ export interface components {
       address?: string;
     };
     "scalar.chains.v1beta1.SetGatewayResponse": Record<string, never>;
-    "scalar.chains.v1beta1.SignBTCCommandsRequest": {
+    "scalar.chains.v1beta1.SignBtcCommandsRequest": {
       /** Format: byte */
       sender?: string;
       chain?: string;
-      /** Format: byte */
-      psbt?: string;
-    };
-    "scalar.chains.v1beta1.SignBTCCommandsResponse": {
-      /** Format: byte */
-      batched_commands_id?: string;
-      /** Format: int64 */
-      command_count?: number;
     };
     "scalar.chains.v1beta1.SignCommandsRequest": {
       /** Format: byte */
@@ -4624,6 +4620,19 @@ export interface components {
       chain?: string;
     };
     "scalar.chains.v1beta1.SignCommandsResponse": {
+      /** Format: byte */
+      batched_commands_id?: string;
+      /** Format: int64 */
+      command_count?: number;
+    };
+    "scalar.chains.v1beta1.SignPsbtCommandRequest": {
+      /** Format: byte */
+      sender?: string;
+      chain?: string;
+      /** Format: byte */
+      psbt?: string;
+    };
+    "scalar.chains.v1beta1.SignPsbtCommandResponse": {
       /** Format: byte */
       batched_commands_id?: string;
       /** Format: int64 */
@@ -4649,11 +4658,6 @@ export interface components {
       decimals?: number;
       /** Format: byte */
       capacity?: string;
-      /**
-       * @default TOKEN_MODEL_POOL
-       * @enum {string}
-       */
-      model: "TOKEN_MODEL_POOL" | "TOKEN_MODEL_UTXO";
     };
     "scalar.chains.v1beta1.TokenInfoResponse": {
       asset?: string;
@@ -4664,11 +4668,6 @@ export interface components {
         decimals?: number;
         /** Format: byte */
         capacity?: string;
-        /**
-         * @default TOKEN_MODEL_POOL
-         * @enum {string}
-         */
-        model: "TOKEN_MODEL_POOL" | "TOKEN_MODEL_UTXO";
       };
       address?: string;
       /** Format: boolean */
@@ -4678,11 +4677,6 @@ export interface components {
       burner_code_hash?: string;
     };
     /**
-     * @default TOKEN_MODEL_POOL
-     * @enum {string}
-     */
-    "scalar.chains.v1beta1.TokenModel": "TOKEN_MODEL_POOL" | "TOKEN_MODEL_UTXO";
-    /**
      * @default TOKEN_TYPE_UNSPECIFIED
      * @enum {string}
      */
@@ -4690,6 +4684,14 @@ export interface components {
       | "TOKEN_TYPE_UNSPECIFIED"
       | "TOKEN_TYPE_INTERNAL"
       | "TOKEN_TYPE_EXTERNAL";
+    /**
+     * @default LIQUIDITY_MODEL_UNSPECIFIED
+     * @enum {string}
+     */
+    "scalar.protocol.exported.v1beta1.LiquidityModel":
+      | "LIQUIDITY_MODEL_UNSPECIFIED"
+      | "LIQUIDITY_MODEL_POOL"
+      | "LIQUIDITY_MODEL_UPC";
     "scalar.utils.v1beta1.Threshold": {
       /**
        * split threshold into Numerator and denominator to avoid floating point
@@ -4703,8 +4705,9 @@ export interface components {
     /** Custodian represents an individual custodian configuration */
     "scalar.covenant.v1beta1.Custodian": {
       name?: string;
+      val_address?: string;
       /** Format: byte */
-      btc_pubkey?: string;
+      bitcoin_pubkey?: string;
       /**
        * "0215da913b3e87b4932b1e1b87d9667c28e7250aa0ed60b3a31095f541e1641488"
        * @default STATUS_UNSPECIFIED
@@ -4720,7 +4723,7 @@ export interface components {
       uid?: string;
       name?: string;
       /** Format: byte */
-      btc_pubkey?: string;
+      bitcoin_pubkey?: string;
       /**
        * "tb1p07q440mdl4uyywns325dk8pvjphwety3psp4zvkngtjf3z3hhr2sfar3hv"
        * Format: int64
@@ -4734,8 +4737,9 @@ export interface components {
       description?: string;
       custodians?: {
         name?: string;
+        val_address?: string;
         /** Format: byte */
-        btc_pubkey?: string;
+        bitcoin_pubkey?: string;
         /**
          * "0215da913b3e87b4932b1e1b87d9667c28e7250aa0ed60b3a31095f541e1641488"
          * @default STATUS_UNSPECIFIED
@@ -4756,6 +4760,29 @@ export interface components {
       | "STATUS_UNSPECIFIED"
       | "STATUS_ACTIVATED"
       | "STATUS_DEACTIVATED";
+    "scalar.protocol.exported.v1beta1.MinorAddress": {
+      chain_name?: string;
+      address?: string;
+    };
+    "scalar.protocol.exported.v1beta1.ProtocolInfo": {
+      key_id?: string;
+      /** Format: byte */
+      custodians_pubkey?: string;
+      /**
+       * @default LIQUIDITY_MODEL_UNSPECIFIED
+       * @enum {string}
+       */
+      liquidity_model:
+        | "LIQUIDITY_MODEL_UNSPECIFIED"
+        | "LIQUIDITY_MODEL_POOL"
+        | "LIQUIDITY_MODEL_UPC";
+      symbol?: string;
+      origin_chain?: string;
+      minor_addresses?: {
+        chain_name?: string;
+        address?: string;
+      }[];
+    };
     "scalar.protocol.v1beta1.AddSupportedChainRequest": {
       /** Format: byte */
       sender?: string;
@@ -4779,10 +4806,13 @@ export interface components {
         tag?: string;
         attribute?: {
           /**
-           * @default LIQUIDITY_MODEL_POOLING
+           * @default LIQUIDITY_MODEL_UNSPECIFIED
            * @enum {string}
            */
-          model: "LIQUIDITY_MODEL_POOLING" | "LIQUIDITY_MODEL_TRANSACTIONAL";
+          model:
+            | "LIQUIDITY_MODEL_UNSPECIFIED"
+            | "LIQUIDITY_MODEL_POOL"
+            | "LIQUIDITY_MODEL_UPC";
         };
         /**
          * @default STATUS_UNSPECIFIED
@@ -4799,7 +4829,7 @@ export interface components {
           uid?: string;
           name?: string;
           /** Format: byte */
-          btc_pubkey?: string;
+          bitcoin_pubkey?: string;
           /**
            * "tb1p07q440mdl4uyywns325dk8pvjphwety3psp4zvkngtjf3z3hhr2sfar3hv"
            * Format: int64
@@ -4816,8 +4846,9 @@ export interface components {
           description?: string;
           custodians?: {
             name?: string;
+            val_address?: string;
             /** Format: byte */
-            btc_pubkey?: string;
+            bitcoin_pubkey?: string;
             /**
              * "0215da913b3e87b4932b1e1b87d9667c28e7250aa0ed60b3a31095f541e1641488"
              * @default STATUS_UNSPECIFIED
@@ -4839,6 +4870,8 @@ export interface components {
           name?: string;
           address?: string;
         }[];
+        /** Format: byte */
+        avatar?: string;
       };
     };
     "scalar.protocol.v1beta1.CreateProtocolRequest": {
@@ -4848,10 +4881,13 @@ export interface components {
       tag?: string;
       attribute?: {
         /**
-         * @default LIQUIDITY_MODEL_POOLING
+         * @default LIQUIDITY_MODEL_UNSPECIFIED
          * @enum {string}
          */
-        model: "LIQUIDITY_MODEL_POOLING" | "LIQUIDITY_MODEL_TRANSACTIONAL";
+        model:
+          | "LIQUIDITY_MODEL_UNSPECIFIED"
+          | "LIQUIDITY_MODEL_POOL"
+          | "LIQUIDITY_MODEL_UPC";
       };
       /** CustodianGroup represents a group of custodians with their configuration
        *     uid is used as identity of the group, btc_pubkey is change by list of
@@ -4860,7 +4896,7 @@ export interface components {
         uid?: string;
         name?: string;
         /** Format: byte */
-        btc_pubkey?: string;
+        bitcoin_pubkey?: string;
         /**
          * "tb1p07q440mdl4uyywns325dk8pvjphwety3psp4zvkngtjf3z3hhr2sfar3hv"
          * Format: int64
@@ -4877,8 +4913,9 @@ export interface components {
         description?: string;
         custodians?: {
           name?: string;
+          val_address?: string;
           /** Format: byte */
-          btc_pubkey?: string;
+          bitcoin_pubkey?: string;
           /**
            * "0215da913b3e87b4932b1e1b87d9667c28e7250aa0ed60b3a31095f541e1641488"
            * @default STATUS_UNSPECIFIED
@@ -4910,10 +4947,13 @@ export interface components {
         tag?: string;
         attribute?: {
           /**
-           * @default LIQUIDITY_MODEL_POOLING
+           * @default LIQUIDITY_MODEL_UNSPECIFIED
            * @enum {string}
            */
-          model: "LIQUIDITY_MODEL_POOLING" | "LIQUIDITY_MODEL_TRANSACTIONAL";
+          model:
+            | "LIQUIDITY_MODEL_UNSPECIFIED"
+            | "LIQUIDITY_MODEL_POOL"
+            | "LIQUIDITY_MODEL_UPC";
         };
         /**
          * @default STATUS_UNSPECIFIED
@@ -4930,7 +4970,7 @@ export interface components {
           uid?: string;
           name?: string;
           /** Format: byte */
-          btc_pubkey?: string;
+          bitcoin_pubkey?: string;
           /**
            * "tb1p07q440mdl4uyywns325dk8pvjphwety3psp4zvkngtjf3z3hhr2sfar3hv"
            * Format: int64
@@ -4947,8 +4987,9 @@ export interface components {
           description?: string;
           custodians?: {
             name?: string;
+            val_address?: string;
             /** Format: byte */
-            btc_pubkey?: string;
+            bitcoin_pubkey?: string;
             /**
              * "0215da913b3e87b4932b1e1b87d9667c28e7250aa0ed60b3a31095f541e1641488"
              * @default STATUS_UNSPECIFIED
@@ -4970,15 +5011,10 @@ export interface components {
           name?: string;
           address?: string;
         }[];
+        /** Format: byte */
+        avatar?: string;
       };
     };
-    /**
-     * @default LIQUIDITY_MODEL_POOLING
-     * @enum {string}
-     */
-    "scalar.protocol.v1beta1.LiquidityModel":
-      | "LIQUIDITY_MODEL_POOLING"
-      | "LIQUIDITY_MODEL_TRANSACTIONAL";
     "scalar.protocol.v1beta1.Protocol": {
       /** Format: byte */
       bitcoin_pubkey?: string;
@@ -4991,10 +5027,13 @@ export interface components {
       tag?: string;
       attribute?: {
         /**
-         * @default LIQUIDITY_MODEL_POOLING
+         * @default LIQUIDITY_MODEL_UNSPECIFIED
          * @enum {string}
          */
-        model: "LIQUIDITY_MODEL_POOLING" | "LIQUIDITY_MODEL_TRANSACTIONAL";
+        model:
+          | "LIQUIDITY_MODEL_UNSPECIFIED"
+          | "LIQUIDITY_MODEL_POOL"
+          | "LIQUIDITY_MODEL_UPC";
       };
       /**
        * @default STATUS_UNSPECIFIED
@@ -5008,7 +5047,7 @@ export interface components {
         uid?: string;
         name?: string;
         /** Format: byte */
-        btc_pubkey?: string;
+        bitcoin_pubkey?: string;
         /**
          * "tb1p07q440mdl4uyywns325dk8pvjphwety3psp4zvkngtjf3z3hhr2sfar3hv"
          * Format: int64
@@ -5025,8 +5064,9 @@ export interface components {
         description?: string;
         custodians?: {
           name?: string;
+          val_address?: string;
           /** Format: byte */
-          btc_pubkey?: string;
+          bitcoin_pubkey?: string;
           /**
            * "0215da913b3e87b4932b1e1b87d9667c28e7250aa0ed60b3a31095f541e1641488"
            * @default STATUS_UNSPECIFIED
@@ -5048,19 +5088,39 @@ export interface components {
         name?: string;
         address?: string;
       }[];
-    };
-    "scalar.protocol.v1beta1.ProtocolAssetResponse": {
-      asset?: {
-        chain?: string;
-        name?: string;
-      };
+      /** Format: byte */
+      avatar?: string;
     };
     "scalar.protocol.v1beta1.ProtocolAttribute": {
       /**
-       * @default LIQUIDITY_MODEL_POOLING
+       * @default LIQUIDITY_MODEL_UNSPECIFIED
        * @enum {string}
        */
-      model: "LIQUIDITY_MODEL_POOLING" | "LIQUIDITY_MODEL_TRANSACTIONAL";
+      model:
+        | "LIQUIDITY_MODEL_UNSPECIFIED"
+        | "LIQUIDITY_MODEL_POOL"
+        | "LIQUIDITY_MODEL_UPC";
+    };
+    "scalar.protocol.v1beta1.ProtocolResponse": {
+      protocol?: {
+        key_id?: string;
+        /** Format: byte */
+        custodians_pubkey?: string;
+        /**
+         * @default LIQUIDITY_MODEL_UNSPECIFIED
+         * @enum {string}
+         */
+        liquidity_model:
+          | "LIQUIDITY_MODEL_UNSPECIFIED"
+          | "LIQUIDITY_MODEL_POOL"
+          | "LIQUIDITY_MODEL_UPC";
+        symbol?: string;
+        origin_chain?: string;
+        minor_addresses?: {
+          chain_name?: string;
+          address?: string;
+        }[];
+      };
     };
     "scalar.protocol.v1beta1.ProtocolsResponse": {
       protocols?: {
@@ -5075,10 +5135,13 @@ export interface components {
         tag?: string;
         attribute?: {
           /**
-           * @default LIQUIDITY_MODEL_POOLING
+           * @default LIQUIDITY_MODEL_UNSPECIFIED
            * @enum {string}
            */
-          model: "LIQUIDITY_MODEL_POOLING" | "LIQUIDITY_MODEL_TRANSACTIONAL";
+          model:
+            | "LIQUIDITY_MODEL_UNSPECIFIED"
+            | "LIQUIDITY_MODEL_POOL"
+            | "LIQUIDITY_MODEL_UPC";
         };
         /**
          * @default STATUS_UNSPECIFIED
@@ -5095,7 +5158,7 @@ export interface components {
           uid?: string;
           name?: string;
           /** Format: byte */
-          btc_pubkey?: string;
+          bitcoin_pubkey?: string;
           /**
            * "tb1p07q440mdl4uyywns325dk8pvjphwety3psp4zvkngtjf3z3hhr2sfar3hv"
            * Format: int64
@@ -5112,8 +5175,9 @@ export interface components {
           description?: string;
           custodians?: {
             name?: string;
+            val_address?: string;
             /** Format: byte */
-            btc_pubkey?: string;
+            bitcoin_pubkey?: string;
             /**
              * "0215da913b3e87b4932b1e1b87d9667c28e7250aa0ed60b3a31095f541e1641488"
              * @default STATUS_UNSPECIFIED
@@ -5135,6 +5199,8 @@ export interface components {
           name?: string;
           address?: string;
         }[];
+        /** Format: byte */
+        avatar?: string;
       }[];
       /** Format: uint64 */
       total?: string;
@@ -5173,10 +5239,13 @@ export interface components {
         tag?: string;
         attribute?: {
           /**
-           * @default LIQUIDITY_MODEL_POOLING
+           * @default LIQUIDITY_MODEL_UNSPECIFIED
            * @enum {string}
            */
-          model: "LIQUIDITY_MODEL_POOLING" | "LIQUIDITY_MODEL_TRANSACTIONAL";
+          model:
+            | "LIQUIDITY_MODEL_UNSPECIFIED"
+            | "LIQUIDITY_MODEL_POOL"
+            | "LIQUIDITY_MODEL_UPC";
         };
         /**
          * @default STATUS_UNSPECIFIED
@@ -5193,7 +5262,7 @@ export interface components {
           uid?: string;
           name?: string;
           /** Format: byte */
-          btc_pubkey?: string;
+          bitcoin_pubkey?: string;
           /**
            * "tb1p07q440mdl4uyywns325dk8pvjphwety3psp4zvkngtjf3z3hhr2sfar3hv"
            * Format: int64
@@ -5210,8 +5279,9 @@ export interface components {
           description?: string;
           custodians?: {
             name?: string;
+            val_address?: string;
             /** Format: byte */
-            btc_pubkey?: string;
+            bitcoin_pubkey?: string;
             /**
              * "0215da913b3e87b4932b1e1b87d9667c28e7250aa0ed60b3a31095f541e1641488"
              * @default STATUS_UNSPECIFIED
@@ -5233,6 +5303,8 @@ export interface components {
           name?: string;
           address?: string;
         }[];
+        /** Format: byte */
+        avatar?: string;
       };
     };
     "scalar.protocol.v1beta1.UpdateSupportedChainRequest": {
@@ -5260,10 +5332,13 @@ export interface components {
         tag?: string;
         attribute?: {
           /**
-           * @default LIQUIDITY_MODEL_POOLING
+           * @default LIQUIDITY_MODEL_UNSPECIFIED
            * @enum {string}
            */
-          model: "LIQUIDITY_MODEL_POOLING" | "LIQUIDITY_MODEL_TRANSACTIONAL";
+          model:
+            | "LIQUIDITY_MODEL_UNSPECIFIED"
+            | "LIQUIDITY_MODEL_POOL"
+            | "LIQUIDITY_MODEL_UPC";
         };
         /**
          * @default STATUS_UNSPECIFIED
@@ -5280,7 +5355,7 @@ export interface components {
           uid?: string;
           name?: string;
           /** Format: byte */
-          btc_pubkey?: string;
+          bitcoin_pubkey?: string;
           /**
            * "tb1p07q440mdl4uyywns325dk8pvjphwety3psp4zvkngtjf3z3hhr2sfar3hv"
            * Format: int64
@@ -5297,8 +5372,9 @@ export interface components {
           description?: string;
           custodians?: {
             name?: string;
+            val_address?: string;
             /** Format: byte */
-            btc_pubkey?: string;
+            bitcoin_pubkey?: string;
             /**
              * "0215da913b3e87b4932b1e1b87d9667c28e7250aa0ed60b3a31095f541e1641488"
              * @default STATUS_UNSPECIFIED
@@ -5320,6 +5396,8 @@ export interface components {
           name?: string;
           address?: string;
         }[];
+        /** Format: byte */
+        avatar?: string;
       };
     };
     /**
@@ -5654,6 +5732,8 @@ export interface components {
         | "TRANSFER_STATE_ARCHIVED"
         | "TRANSFER_STATE_INSUFFICIENT_AMOUNT"
         | "TRANSFER_STATE_FAILED";
+      /** Format: byte */
+      source_tx_hash?: string;
     };
     "scalar.nexus.exported.v1beta1.FeeInfo": {
       chain?: string;
@@ -6237,6 +6317,8 @@ export interface components {
           | "TRANSFER_STATE_ARCHIVED"
           | "TRANSFER_STATE_INSUFFICIENT_AMOUNT"
           | "TRANSFER_STATE_FAILED";
+        /** Format: byte */
+        source_tx_hash?: string;
       }[];
       /** @description PageResponse is to be embedded in gRPC response messages where the
        *     corresponding request message has used PageRequest.
@@ -22675,11 +22757,6 @@ export interface operations {
             decimals?: number;
             /** Format: byte */
             capacity?: string;
-            /**
-             * @default TOKEN_MODEL_POOL
-             * @enum {string}
-             */
-            model?: "TOKEN_MODEL_POOL" | "TOKEN_MODEL_UTXO";
           };
           /** Format: byte */
           address?: string;
@@ -22921,10 +22998,13 @@ export interface operations {
               asset?: string;
               symbol?: string;
               /**
-               * @default TOKEN_MODEL_POOL
+               * @default LIQUIDITY_MODEL_UNSPECIFIED
                * @enum {string}
                */
-              model: "TOKEN_MODEL_POOL" | "TOKEN_MODEL_UTXO";
+              model:
+                | "LIQUIDITY_MODEL_UNSPECIFIED"
+                | "LIQUIDITY_MODEL_POOL"
+                | "LIQUIDITY_MODEL_UPC";
             }[];
           };
         };
@@ -23019,6 +23099,7 @@ export interface operations {
                 event_id?: string;
                 /** Format: uint64 */
                 transfer_id?: string;
+                command_id?: string;
                 sender?: string;
                 destination_chain?: string;
                 destination_address?: string;
@@ -23743,7 +23824,7 @@ export interface operations {
       };
     };
   };
-  SignBTCCommands: {
+  SignPsbtCommand: {
     parameters: {
       query?: never;
       header?: never;
@@ -23939,11 +24020,6 @@ export interface operations {
               decimals?: number;
               /** Format: byte */
               capacity?: string;
-              /**
-               * @default TOKEN_MODEL_POOL
-               * @enum {string}
-               */
-              model: "TOKEN_MODEL_POOL" | "TOKEN_MODEL_UTXO";
             };
             address?: string;
             /** Format: boolean */
@@ -24041,12 +24117,13 @@ export interface operations {
               tag?: string;
               attribute?: {
                 /**
-                 * @default LIQUIDITY_MODEL_POOLING
+                 * @default LIQUIDITY_MODEL_UNSPECIFIED
                  * @enum {string}
                  */
                 model:
-                  | "LIQUIDITY_MODEL_POOLING"
-                  | "LIQUIDITY_MODEL_TRANSACTIONAL";
+                  | "LIQUIDITY_MODEL_UNSPECIFIED"
+                  | "LIQUIDITY_MODEL_POOL"
+                  | "LIQUIDITY_MODEL_UPC";
               };
               /**
                * @default STATUS_UNSPECIFIED
@@ -24063,7 +24140,7 @@ export interface operations {
                 uid?: string;
                 name?: string;
                 /** Format: byte */
-                btc_pubkey?: string;
+                bitcoin_pubkey?: string;
                 /**
                  * "tb1p07q440mdl4uyywns325dk8pvjphwety3psp4zvkngtjf3z3hhr2sfar3hv"
                  * Format: int64
@@ -24080,8 +24157,9 @@ export interface operations {
                 description?: string;
                 custodians?: {
                   name?: string;
+                  val_address?: string;
                   /** Format: byte */
-                  btc_pubkey?: string;
+                  bitcoin_pubkey?: string;
                   /**
                    * "0215da913b3e87b4932b1e1b87d9667c28e7250aa0ed60b3a31095f541e1641488"
                    * @default STATUS_UNSPECIFIED
@@ -24103,6 +24181,8 @@ export interface operations {
                 name?: string;
                 address?: string;
               }[];
+              /** Format: byte */
+              avatar?: string;
             }[];
             /** Format: uint64 */
             total?: string;
@@ -24201,12 +24281,13 @@ export interface operations {
               tag?: string;
               attribute?: {
                 /**
-                 * @default LIQUIDITY_MODEL_POOLING
+                 * @default LIQUIDITY_MODEL_UNSPECIFIED
                  * @enum {string}
                  */
                 model:
-                  | "LIQUIDITY_MODEL_POOLING"
-                  | "LIQUIDITY_MODEL_TRANSACTIONAL";
+                  | "LIQUIDITY_MODEL_UNSPECIFIED"
+                  | "LIQUIDITY_MODEL_POOL"
+                  | "LIQUIDITY_MODEL_UPC";
               };
               /**
                * @default STATUS_UNSPECIFIED
@@ -24223,7 +24304,7 @@ export interface operations {
                 uid?: string;
                 name?: string;
                 /** Format: byte */
-                btc_pubkey?: string;
+                bitcoin_pubkey?: string;
                 /**
                  * "tb1p07q440mdl4uyywns325dk8pvjphwety3psp4zvkngtjf3z3hhr2sfar3hv"
                  * Format: int64
@@ -24240,8 +24321,9 @@ export interface operations {
                 description?: string;
                 custodians?: {
                   name?: string;
+                  val_address?: string;
                   /** Format: byte */
-                  btc_pubkey?: string;
+                  bitcoin_pubkey?: string;
                   /**
                    * "0215da913b3e87b4932b1e1b87d9667c28e7250aa0ed60b3a31095f541e1641488"
                    * @default STATUS_UNSPECIFIED
@@ -24263,6 +24345,8 @@ export interface operations {
                 name?: string;
                 address?: string;
               }[];
+              /** Format: byte */
+              avatar?: string;
             };
           };
         };
@@ -24334,10 +24418,13 @@ export interface operations {
           tag?: string;
           attribute?: {
             /**
-             * @default LIQUIDITY_MODEL_POOLING
+             * @default LIQUIDITY_MODEL_UNSPECIFIED
              * @enum {string}
              */
-            model?: "LIQUIDITY_MODEL_POOLING" | "LIQUIDITY_MODEL_TRANSACTIONAL";
+            model?:
+              | "LIQUIDITY_MODEL_UNSPECIFIED"
+              | "LIQUIDITY_MODEL_POOL"
+              | "LIQUIDITY_MODEL_UPC";
           };
           /** CustodianGroup represents a group of custodians with their configuration
            *     uid is used as identity of the group, btc_pubkey is change by list of
@@ -24346,7 +24433,7 @@ export interface operations {
             uid?: string;
             name?: string;
             /** Format: byte */
-            btc_pubkey?: string;
+            bitcoin_pubkey?: string;
             /**
              * "tb1p07q440mdl4uyywns325dk8pvjphwety3psp4zvkngtjf3z3hhr2sfar3hv"
              * Format: int64
@@ -24363,8 +24450,9 @@ export interface operations {
             description?: string;
             custodians?: {
               name?: string;
+              val_address?: string;
               /** Format: byte */
-              btc_pubkey?: string;
+              bitcoin_pubkey?: string;
               /**
                * "0215da913b3e87b4932b1e1b87d9667c28e7250aa0ed60b3a31095f541e1641488"
                * @default STATUS_UNSPECIFIED
@@ -24405,12 +24493,13 @@ export interface operations {
               tag?: string;
               attribute?: {
                 /**
-                 * @default LIQUIDITY_MODEL_POOLING
+                 * @default LIQUIDITY_MODEL_UNSPECIFIED
                  * @enum {string}
                  */
                 model:
-                  | "LIQUIDITY_MODEL_POOLING"
-                  | "LIQUIDITY_MODEL_TRANSACTIONAL";
+                  | "LIQUIDITY_MODEL_UNSPECIFIED"
+                  | "LIQUIDITY_MODEL_POOL"
+                  | "LIQUIDITY_MODEL_UPC";
               };
               /**
                * @default STATUS_UNSPECIFIED
@@ -24427,7 +24516,7 @@ export interface operations {
                 uid?: string;
                 name?: string;
                 /** Format: byte */
-                btc_pubkey?: string;
+                bitcoin_pubkey?: string;
                 /**
                  * "tb1p07q440mdl4uyywns325dk8pvjphwety3psp4zvkngtjf3z3hhr2sfar3hv"
                  * Format: int64
@@ -24444,8 +24533,9 @@ export interface operations {
                 description?: string;
                 custodians?: {
                   name?: string;
+                  val_address?: string;
                   /** Format: byte */
-                  btc_pubkey?: string;
+                  bitcoin_pubkey?: string;
                   /**
                    * "0215da913b3e87b4932b1e1b87d9667c28e7250aa0ed60b3a31095f541e1641488"
                    * @default STATUS_UNSPECIFIED
@@ -24467,6 +24557,8 @@ export interface operations {
                 name?: string;
                 address?: string;
               }[];
+              /** Format: byte */
+              avatar?: string;
             };
           };
         };
@@ -24522,12 +24614,13 @@ export interface operations {
       };
     };
   };
-  ProtocolAsset: {
+  Protocol: {
     parameters: {
       query?: {
-        source_chain?: string;
-        destination_chain?: string;
-        token_address?: string;
+        origin_chain?: string;
+        minor_chain?: string;
+        symbol?: string;
+        address?: string;
       };
       header?: never;
       path?: never;
@@ -24542,9 +24635,24 @@ export interface operations {
         };
         content: {
           "*/*": {
-            asset?: {
-              chain?: string;
-              name?: string;
+            protocol?: {
+              key_id?: string;
+              /** Format: byte */
+              custodians_pubkey?: string;
+              /**
+               * @default LIQUIDITY_MODEL_UNSPECIFIED
+               * @enum {string}
+               */
+              liquidity_model:
+                | "LIQUIDITY_MODEL_UNSPECIFIED"
+                | "LIQUIDITY_MODEL_POOL"
+                | "LIQUIDITY_MODEL_UPC";
+              symbol?: string;
+              origin_chain?: string;
+              minor_addresses?: {
+                chain_name?: string;
+                address?: string;
+              }[];
             };
           };
         };
@@ -24637,12 +24745,13 @@ export interface operations {
               tag?: string;
               attribute?: {
                 /**
-                 * @default LIQUIDITY_MODEL_POOLING
+                 * @default LIQUIDITY_MODEL_UNSPECIFIED
                  * @enum {string}
                  */
                 model:
-                  | "LIQUIDITY_MODEL_POOLING"
-                  | "LIQUIDITY_MODEL_TRANSACTIONAL";
+                  | "LIQUIDITY_MODEL_UNSPECIFIED"
+                  | "LIQUIDITY_MODEL_POOL"
+                  | "LIQUIDITY_MODEL_UPC";
               };
               /**
                * @default STATUS_UNSPECIFIED
@@ -24659,7 +24768,7 @@ export interface operations {
                 uid?: string;
                 name?: string;
                 /** Format: byte */
-                btc_pubkey?: string;
+                bitcoin_pubkey?: string;
                 /**
                  * "tb1p07q440mdl4uyywns325dk8pvjphwety3psp4zvkngtjf3z3hhr2sfar3hv"
                  * Format: int64
@@ -24676,8 +24785,9 @@ export interface operations {
                 description?: string;
                 custodians?: {
                   name?: string;
+                  val_address?: string;
                   /** Format: byte */
-                  btc_pubkey?: string;
+                  bitcoin_pubkey?: string;
                   /**
                    * "0215da913b3e87b4932b1e1b87d9667c28e7250aa0ed60b3a31095f541e1641488"
                    * @default STATUS_UNSPECIFIED
@@ -24699,6 +24809,8 @@ export interface operations {
                 name?: string;
                 address?: string;
               }[];
+              /** Format: byte */
+              avatar?: string;
             };
           };
         };
@@ -24800,12 +24912,13 @@ export interface operations {
               tag?: string;
               attribute?: {
                 /**
-                 * @default LIQUIDITY_MODEL_POOLING
+                 * @default LIQUIDITY_MODEL_UNSPECIFIED
                  * @enum {string}
                  */
                 model:
-                  | "LIQUIDITY_MODEL_POOLING"
-                  | "LIQUIDITY_MODEL_TRANSACTIONAL";
+                  | "LIQUIDITY_MODEL_UNSPECIFIED"
+                  | "LIQUIDITY_MODEL_POOL"
+                  | "LIQUIDITY_MODEL_UPC";
               };
               /**
                * @default STATUS_UNSPECIFIED
@@ -24822,7 +24935,7 @@ export interface operations {
                 uid?: string;
                 name?: string;
                 /** Format: byte */
-                btc_pubkey?: string;
+                bitcoin_pubkey?: string;
                 /**
                  * "tb1p07q440mdl4uyywns325dk8pvjphwety3psp4zvkngtjf3z3hhr2sfar3hv"
                  * Format: int64
@@ -24839,8 +24952,9 @@ export interface operations {
                 description?: string;
                 custodians?: {
                   name?: string;
+                  val_address?: string;
                   /** Format: byte */
-                  btc_pubkey?: string;
+                  bitcoin_pubkey?: string;
                   /**
                    * "0215da913b3e87b4932b1e1b87d9667c28e7250aa0ed60b3a31095f541e1641488"
                    * @default STATUS_UNSPECIFIED
@@ -24862,6 +24976,8 @@ export interface operations {
                 name?: string;
                 address?: string;
               }[];
+              /** Format: byte */
+              avatar?: string;
             };
           };
         };
@@ -27602,6 +27718,8 @@ export interface operations {
                 | "TRANSFER_STATE_ARCHIVED"
                 | "TRANSFER_STATE_INSUFFICIENT_AMOUNT"
                 | "TRANSFER_STATE_FAILED";
+              /** Format: byte */
+              source_tx_hash?: string;
             }[];
             /** @description PageResponse is to be embedded in gRPC response messages where the
              *     corresponding request message has used PageRequest.
