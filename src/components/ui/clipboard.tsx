@@ -27,7 +27,7 @@ export function Clipboard({ text, label = "Copy", className }: ClipboardProps) {
       <Button
         variant="ghost"
         size="sm"
-        className="gap-1 hover:bg-transparent"
+        className="gap-1 px-0 hover:bg-transparent"
         onClick={handleCopy}
         aria-label={`Copy ${label} to clipboard`}
       >
