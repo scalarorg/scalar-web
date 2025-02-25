@@ -21,10 +21,10 @@ export const ConnectDropdown = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button className="bg-[#222] p-2 hover:bg-[#222]">
-          <BTCIcon className={cn(!isConnectedBtc && "text-[#555]")} />
+        <Button variant="black">
+          <BTCIcon className={cn("!h-6", !isConnectedBtc && "text-[#555]")} />
           <Separator orientation="vertical" className="bg-[#555]" />
-          <EVMIcon className={cn(!isConnectedEvm && "text-[#555]")} />
+          <EVMIcon className={cn("!h-6", !isConnectedEvm && "text-[#555]")} />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="min-w-[350px] shadow-md" align="end">

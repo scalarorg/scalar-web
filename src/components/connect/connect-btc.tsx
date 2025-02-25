@@ -54,7 +54,10 @@ export const ConnectBtc = ({ hideTitle }: { hideTitle?: boolean }) => {
         <div className="flex items-center justify-between gap-2">
           <span className="font-semibold text-[22px]">BTC</span>
           {walletInfo.isConnected && (
-            <Power onClick={disconnectWallet} className="cursor-pointer" />
+            <Power
+              onClick={disconnectWallet}
+              className="size-5 cursor-pointer"
+            />
           )}
         </div>
       )}
@@ -70,16 +73,14 @@ export const ConnectBtc = ({ hideTitle }: { hideTitle?: boolean }) => {
           </div>
           <div className="flex items-center justify-between gap-1">
             <span>Balance</span>
-            <span className="px-2.5 font-semibold">
+            <span className="font-semibold">
               {formatBTC(walletInfo.balance)} BTC
             </span>
           </div>
           {networkConfig?.network && (
             <div className="flex items-center justify-between gap-1">
               <span>Network</span>
-              <span className="px-2.5 font-semibold">
-                {networkConfig.network}
-              </span>
+              <span className="font-semibold">{networkConfig.network}</span>
             </div>
           )}
         </div>
