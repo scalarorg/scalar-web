@@ -48,3 +48,17 @@ export default tseslint.config({
   },
 })
 ```
+
+# Docker
+
+## Build
+
+```bash
+docker build -t scalarog/scalar-web:latest .
+```
+
+## Run
+
+```bash
+docker run -d -p 80:80 scalarog/scalar-web:latest
+```
