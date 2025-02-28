@@ -1,19 +1,19 @@
 # Step 1. Rebuild the source code only when needed
 # FROM oven/bun:1 AS builder
-FROM node:20 AS builder
+FROM node:22-slim AS builder
 # Set NODE_OPTIONS to increase memory limit
 ENV NODE_OPTIONS="--max-old-space-size=8192"
 # ENV VITE_SCALAR_API_URL=https://testnet.nodeapi.scalar.org
 # ENV VITE_REOWN_CLOUD_PROJECT_ID=    
 # ENV VITE_MEMPOOL_API=https://mempool.space
 RUN npm install -g bun 
-# RUN apt-get update && apt-get install -y g++ gcc make python3 python3-pip && rm -rf /var/lib/apt/lists/*
+# RUN apt-get update && apt-get install -y g++ gcc make python3 && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 COPY package.json bun.* ./
 # Install dependencies with bun
-RUN bun install --no-optional || bun add -d node-gyp && bun install --no-optional
-
+# RUN bun install --no-optional || bun add -d node-gyp && bun install --no-optional
+RUN bun add -d node-gyp && bun install --no-optional
 
 COPY src ./src
 COPY public ./public
@@ -25,7 +25,6 @@ COPY tsconfig.node.json ./
 COPY vite.config.ts ./
 COPY .env ./
 RUN bun run build
-# RUN npm run build
 
 # Step 2. Copy build file to nginx
 FROM nginx:1.27.4-bookworm-perl
