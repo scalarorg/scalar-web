@@ -34,6 +34,7 @@ createRoot(document.getElementById("root")!).render(
           <RainbowKitProvider>
             <NetworkProvider>
               <WalletProvider>
+                
                 <RouterProvider router={router} />
               </WalletProvider>
             </NetworkProvider>

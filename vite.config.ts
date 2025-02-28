@@ -17,8 +17,16 @@ export default defineConfig({
     optimizeLodashImports(),
     tailwindcss(),
     wasm(),
-    topLevelAwait(),
-    nodePolyfills(),
+    topLevelAwait({
+      promiseExportName: "default",
+    }),
+    nodePolyfills({
+      globals: {
+        Buffer: true,
+        global: true,
+        process: true,
+      },
+    }),
     svgr({
       // svgr options: https://react-svgr.com/docs/options/
       svgrOptions: {
@@ -37,5 +45,14 @@ export default defineConfig({
   },
   optimizeDeps: {
     exclude: ["@syntect/wasm"],
+    esbuildOptions: {
+      target: 'esnext'
+    }
   },
+  build: {
+    target: 'esnext',
+    commonjsOptions: {
+      transformMixedEsModules: true
+    }
+  }
 });

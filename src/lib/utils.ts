@@ -5,16 +5,25 @@ import { keyBy } from "lodash";
 import { twMerge } from "tailwind-merge";
 import { formatUnits, parseUnits } from "viem";
 import { decodeScalarBytesToUint8Array } from "./scalar";
-
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export const formatTokenAmount = (amount: bigint, decimals = 8) => {
-  return (Number(amount) / 10 ** decimals).toLocaleString(undefined, {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 8,
-  });
+export const formatTokenAmount = (
+  amount: bigint,
+  decimals = 18,
+  precision = 4,
+) => {
+  const amountStr = formatUnits(amount, decimals);
+
+  const [integerPart, decimalPart] = amountStr.split(".");
+  // chunk integer part into groups of 3
+  const integerPartChunks = integerPart.match(/.{1,3}/g);
+  const integerPartStr = integerPartChunks?.join(",");
+  if (decimalPart) {
+    return `${integerPartStr}.${decimalPart.slice(0, precision)}`;
+  }
+  return integerPartStr || "0";
 };
 
 export const isBtcChain: (chain?: TProtocolChain | string) => boolean = (

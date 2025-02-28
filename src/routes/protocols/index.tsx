@@ -18,7 +18,9 @@ import {
 import { COMMON_VALIDATE_PAGE_SEARCH_PARAMS } from "@/constants";
 import { PROTOCOL_STATUS, ProtocolForm } from "@/features/protocol";
 import { useScalarProtocols } from "@/hooks";
+import { scalarConfig } from "@/lib/scalar/wallet";
 import { cn, fuzzyMatch } from "@/lib/utils";
+import { KeplrProvider } from "@/providers/keplr-provider";
 import { TProtocol } from "@/types/protocol";
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { createColumnHelper } from "@tanstack/react-table";
@@ -132,44 +134,46 @@ function Protocols() {
   );
 
   return (
-    <div className="flex flex-col gap-5 py-[60px]">
-      <Heading>All Protocols</Heading>
-      <Card className="p-0">
-        <CardContent className="flex items-center gap-6 p-4">
-          <div className="flex size-[70px] items-center justify-center rounded-lg bg-[#EDF1FF]">
-            <NoteIcon />
-          </div>
-          <p className="mr-auto text-lg">Rigister your protocol.</p>
-          <Dialog open={open} onOpenChange={setOpen}>
-            <DialogTrigger asChild>
-              <Button variant="black" className="px-5 text-lg">
-                Register
-              </Button>
-            </DialogTrigger>
-            <DialogContent closeClassName="[&_svg:not([class*='size-'])]:size-6">
-              <DialogHeader>
-                <DialogTitle className="text-3xl">New Protocol</DialogTitle>
-                <DialogDescription>
-                  <ProtocolForm setOpen={setOpen} />
-                </DialogDescription>
-              </DialogHeader>
-            </DialogContent>
-          </Dialog>
-        </CardContent>
-      </Card>
-      <Card className="p-0">
-        <CardContent className="flex flex-col gap-4 p-4">
-          <InputSearchBox />
-          <DataTable
-            columns={columns}
-            data={filteredProtocols as TProtocol[]}
-            pagination={{}}
-            showPagination={false}
-            isLoading={isLoading}
-            isRefetching={isRefetching}
-          />
-        </CardContent>
-      </Card>
-    </div>
+    <KeplrProvider config={scalarConfig()}>
+      <div className="flex flex-col gap-5 py-[60px]">
+        <Heading>All Protocols</Heading>
+        <Card className="p-0">
+          <CardContent className="flex items-center gap-6 p-4">
+            <div className="flex size-[70px] items-center justify-center rounded-lg bg-[#EDF1FF]">
+              <NoteIcon />
+            </div>
+            <p className="mr-auto text-lg">Rigister your protocol.</p>
+            <Dialog open={open} onOpenChange={setOpen}>
+              <DialogTrigger asChild>
+                <Button variant="black" className="px-5 text-lg">
+                  Register
+                </Button>
+              </DialogTrigger>
+              <DialogContent closeClassName="[&_svg:not([class*='size-'])]:size-6">
+                <DialogHeader>
+                  <DialogTitle className="text-3xl">New Protocol</DialogTitle>
+                  <DialogDescription>
+                    <ProtocolForm setOpen={setOpen} />
+                  </DialogDescription>
+                </DialogHeader>
+              </DialogContent>
+            </Dialog>
+          </CardContent>
+        </Card>
+        <Card className="p-0">
+          <CardContent className="flex flex-col gap-4 p-4">
+            <InputSearchBox />
+            <DataTable
+              columns={columns}
+              data={filteredProtocols as TProtocol[]}
+              pagination={{}}
+              showPagination={false}
+              isLoading={isLoading}
+              isRefetching={isRefetching}
+            />
+          </CardContent>
+        </Card>
+      </div>
+    </KeplrProvider>
   );
 }
