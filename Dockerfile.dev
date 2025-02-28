@@ -3,7 +3,7 @@
 FROM node:20-slim AS builder
 # Set NODE_OPTIONS to increase memory limit
 ENV NODE_OPTIONS="--max-old-space-size=8192"
-ENV VITE_SCALAR_API_URL=https://testnet.nodeapi.scalar.org
+ENV VITE_SCALAR_REST_URL=https://testnet.nodeapi.scalar.org
 ENV VITE_REOWN_CLOUD_PROJECT_ID=
 ENV VITE_MEMPOOL_API=https://mempool.space
 # install required packages for slim image

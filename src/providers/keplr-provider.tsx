@@ -39,7 +39,22 @@ export const KeplrProvider: React.FC<
           setIsInstalled(!!keplr);
 
           if (!keplr) {
-            throw new Error("Please install Keplr");
+            // throw new Error("Please install Keplr");
+            toastSonner(
+              <p className="w-fit">
+                You need to install Keplr on{" "}
+                <a
+                  href="https://chromewebstore.google.com/detail/keplr/dmkamcknogkgcdfhhbddcghachkejeap"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary underline"
+                >
+                  Chrome Web Extension
+                </a>
+              </p>
+            );
+
+            return;
           }
 
           if (!window.getOfflineSigner) {
@@ -52,7 +67,7 @@ export const KeplrProvider: React.FC<
           }
         } catch (error) {
           toastSonner.error(
-            error instanceof Error ? error.message : "Unknown error",
+            error instanceof Error ? error.message : "Unknown error"
           );
         } finally {
           setIsLoading(false);
@@ -67,7 +82,7 @@ export const KeplrProvider: React.FC<
         }
       };
     },
-    [config, keplr, reconnectOnMount],
+    [config, keplr, reconnectOnMount]
   );
 
   if (isLoading) {
@@ -201,7 +216,7 @@ const connectKeplr = async (keplr: Keplr, config: ChainInfo) => {
     _scalarClient = {
       raw: await SigningStargateClient.connectWithSigner(
         config.rpc,
-        offlineSigner,
+        offlineSigner
       ),
       offlineSigner,
     };

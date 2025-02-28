@@ -1,11 +1,14 @@
 import { ChainInfo } from "@keplr-wallet/types";
 
+const rpc = import.meta.env.VITE_SCALAR_RPC_URL || "ws://localhost:26657";
+const rest = import.meta.env.VITE_SCALAR_REST_URL || "http://localhost:1317";
+
 export const scalarConfig = (): ChainInfo =>
   ({
     chainId: "cosmos|73475",
     chainName: "Scalar",
-    rpc: "ws://localhost:26657",
-    rest: "http://localhost:1317",
+    rpc,
+    rest,
     bip44: {
       coinType: 118,
     },
