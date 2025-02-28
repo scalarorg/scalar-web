@@ -1,6 +1,7 @@
-import { TProtocolChain } from "@/types/protocol";
+import { TCustodian, TProtocolChain } from "@/types/protocol";
 import { type ClassValue, clsx } from "clsx";
 import { isHexString } from "ethers";
+import { keyBy } from "lodash";
 import { twMerge } from "tailwind-merge";
 import { formatUnits, parseUnits } from "viem";
 import { decodeScalarBytesToUint8Array } from "./scalar";
@@ -86,21 +87,16 @@ export const handleTokenApproval = async (
   }
 };
 
-export const prepareCustodianPubkeys = (
-  custodians: {
-    name?: string;
-    btc_pubkey?: string;
-    status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED";
-    description?: string;
-  }[],
-) => {
+export const prepareCustodianPubkeys = (custodians: TCustodian[]) => {
   if (!custodians) return null;
   const custodian = custodians.filter(
     (custodian) => custodian.status === "STATUS_ACTIVATED",
   );
   return custodian
-    .filter((custodian) => !!custodian.btc_pubkey)
-    .map((custodian) => decodeScalarBytesToUint8Array(custodian.btc_pubkey!));
+    .filter((custodian) => !!custodian.bitcoin_pubkey)
+    .map((custodian) =>
+      decodeScalarBytesToUint8Array(custodian.bitcoin_pubkey!),
+    );
 };
 
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>
@@ -145,3 +141,54 @@ export const parseSats = (btc: string) => {
 };
 
 export const VOUT_INDEX_OF_LOCKING_OUTPUT = 1;
+
+export class UtilityList<T extends Record<"label", string>> {
+  public readonly LIST: T[];
+
+  constructor(list: T[]) {
+    this.LIST = list;
+  }
+
+  get OBJECT() {
+    return keyBy(this.LIST, "value");
+  }
+}
+
+const levenshtein = (a: string, b: string) => {
+  const m = a.length;
+  const n = b.length;
+
+  const dp = Array.from({ length: m + 1 }, () => Array(n + 1).fill(0));
+
+  for (let i = 0; i <= m; i++) dp[i][0] = i;
+  for (let j = 0; j <= m; j++) dp[j][0] = j;
+
+  for (let i = 1; i <= m; i++) {
+    for (let j = 1; j <= n; j++) {
+      dp[i][j] =
+        a[i - 1] === b[j - 1]
+          ? dp[i - 1][j - 1]
+          : Math.min(dp[i - 1][j - 1] + 1, dp[i - 1][j] + 1, dp[i][j - 1] + 1);
+    }
+  }
+
+  return dp[m][n];
+};
+
+export const fuzzyMatch = (candidate: string, query: string) => {
+  const lowerCandidate = candidate.toLowerCase();
+  const lowerQuery = query.toLowerCase();
+
+  if (lowerCandidate.includes(lowerQuery)) return true;
+
+  const candidateWords = lowerCandidate.split(/\s+/);
+  const queryWords = lowerQuery.split(/\s+/);
+
+  return queryWords.every((qw) =>
+    candidateWords.some((cw) => {
+      const distance = levenshtein(cw, qw);
+      const threshold = Math.max(1, Math.floor(qw.length / 3));
+      return distance <= threshold;
+    }),
+  );
+};

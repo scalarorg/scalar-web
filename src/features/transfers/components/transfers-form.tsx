@@ -41,6 +41,7 @@ import { isNil, keyBy } from "lodash";
 import { ArrowRightLeft } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast as sonnerToast } from "sonner";
 import { decodeErrorResult, formatUnits, parseUnits } from "viem";
 import { useAccount, useChainId, useSwitchChain } from "wagmi";
 import { TTransfersForm, transfersFormSchema } from "../schemas";
@@ -51,6 +52,7 @@ const filterEvmChains = (chains: TProtocol["chains"] = []) =>
   chains.filter((c) => isEvmChain(c));
 
 export const TransfersForm = () => {
+  const [_isLoading, setIsLoading] = useState(false);
   const { switchChain } = useSwitchChain();
   const { address: evmAddress, isConnected } = useAccount();
   const chainId = useChainId();
@@ -84,7 +86,7 @@ export const TransfersForm = () => {
     balanceOf,
     checkAllowance,
     approve: approveERC20,
-    getDecimals,
+    decimals,
   } = useERC20(sourceChainAddress as `0x${string}`);
 
   const { data: sourceChainBalance } = useQuery({
@@ -107,19 +109,6 @@ export const TransfersForm = () => {
       isEvmChain(watchForm.sourceChain) &&
       !!evmAddress,
   });
-
-  const [decimals, setDecimals] = useState<bigint | undefined>();
-
-  useEffect(() => {
-    const fetchDecimals = async () => {
-      if (getDecimals) {
-        const decimals = await getDecimals();
-        setDecimals(decimals);
-      }
-    };
-
-    fetchDecimals();
-  }, [getDecimals]);
 
   const showSuccessTx = useCallback(
     (txid: string, chain: string) => {
@@ -189,6 +178,8 @@ export const TransfersForm = () => {
   ]);
 
   const onSubmit = async (values: TTransfersForm) => {
+    setIsLoading(true);
+
     try {
       validateTransferConfig(sourceChainAddress, gateway);
 
@@ -279,7 +270,9 @@ export const TransfersForm = () => {
         errorMessage = error.message;
       }
 
-      throw new Error(errorMessage);
+      sonnerToast.error(errorMessage);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -287,20 +280,12 @@ export const TransfersForm = () => {
     <Card className="mx-auto w-full max-w-2xl border-none shadow-none">
       <CardHeader className="flex flex-row items-center justify-between px-0">
         <CardTitle className="font-bold text-2xl">Transfers</CardTitle>
-        <div className="text-right">
-          <span className="text-muted-foreground text-sm">
-            {keyByFilterProtocols[watchForm.token]?.asset?.name}
-          </span>
-          {!isNil(sourceChainBalance) && (
-            <span>: {formatUnits(sourceChainBalance, Number(decimals))}</span>
-          )}
-        </div>
       </CardHeader>
       <CardContent className="px-0">
         <Form {...form}>
           <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
             {/* Select Token */}
-            <div className="space-y-4 rounded-lg bg-[#F6F8FF] p-4">
+            <div className="space-y-1 rounded-lg bg-[#F6F8FF] p-4">
               <FormField
                 control={control}
                 name="token"
@@ -315,7 +300,7 @@ export const TransfersForm = () => {
                       defaultValue={value}
                     >
                       <FormControl>
-                        <SelectTrigger className="w-[160px]">
+                        <SelectTrigger className="!text-lg w-fit min-w-[160px]">
                           <SelectValue placeholder="Select Token" />
                         </SelectTrigger>
                       </FormControl>
@@ -324,6 +309,7 @@ export const TransfersForm = () => {
                           <SelectItem
                             key={scalar_address}
                             value={scalar_address || ""}
+                            className="text-lg"
                           >
                             {asset?.name}
                           </SelectItem>
@@ -344,13 +330,22 @@ export const TransfersForm = () => {
                         {...field}
                         type="number"
                         placeholder="Please enter the amount"
-                        className="rounded-none border-0 border-accent border-b-2 bg-transparent px-0 shadow-none ring-0 focus-visible:ring-0"
+                        className="!text-lg rounded-none border-0 border-accent border-b-2 bg-transparent px-0 shadow-none ring-0 focus-visible:ring-0"
                       />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
+              <p className="text-right text-lg">
+                <span className="text-border">Available wallet:</span>{" "}
+                <span>
+                  {!isNil(sourceChainBalance)
+                    ? formatUnits(sourceChainBalance, Number(decimals))
+                    : 0}{" "}
+                  {keyByFilterProtocols[watchForm.token]?.asset?.name}
+                </span>
+              </p>
             </div>
 
             {/* From - To */}
@@ -360,14 +355,14 @@ export const TransfersForm = () => {
                 name="sourceChain"
                 render={({ field: { onChange, value } }) => (
                   <FormItem className="flex flex-1 flex-col gap-2 rounded-lg bg-[#F6F8FF] p-4">
-                    <FormLabel>From</FormLabel>
+                    <FormLabel className="text-lg">From</FormLabel>
                     <Select
                       disabled={!watchForm.token}
                       onValueChange={onChange}
                       value={value}
                     >
                       <FormControl>
-                        <SelectTrigger>
+                        <SelectTrigger className="!text-lg">
                           <SelectValue placeholder="Select chain" />
                         </SelectTrigger>
                       </FormControl>
@@ -377,6 +372,7 @@ export const TransfersForm = () => {
                             disabled={chain === watchForm.destinationChain}
                             key={chain}
                             value={chain || ""}
+                            className="text-lg"
                           >
                             {name || chain}
                           </SelectItem>
@@ -406,14 +402,14 @@ export const TransfersForm = () => {
                 name="destinationChain"
                 render={({ field: { onChange, value } }) => (
                   <FormItem className="flex flex-1 flex-col gap-2 rounded-lg bg-[#F6F8FF] p-4">
-                    <FormLabel>To</FormLabel>
+                    <FormLabel className="text-lg">To</FormLabel>
                     <Select
                       disabled={!watchForm.token}
                       onValueChange={onChange}
                       value={value}
                     >
                       <FormControl>
-                        <SelectTrigger>
+                        <SelectTrigger className="!text-lg">
                           <SelectValue placeholder="Select chain" />
                         </SelectTrigger>
                       </FormControl>
@@ -423,6 +419,7 @@ export const TransfersForm = () => {
                             disabled={chain === watchForm.sourceChain}
                             key={chain}
                             value={chain || ""}
+                            className="text-lg"
                           >
                             {name || chain}
                           </SelectItem>
@@ -445,7 +442,7 @@ export const TransfersForm = () => {
                     <Input
                       {...field}
                       placeholder="Destination address"
-                      className="rounded-none border-0 border-accent border-b-2 bg-transparent px-0 shadow-none ring-0 focus-visible:ring-0"
+                      className="!text-lg rounded-none border-0 border-accent border-b-2 bg-transparent px-0 shadow-none ring-0 focus-visible:ring-0"
                     />
                   </FormControl>
                   <FormMessage />

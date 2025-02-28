@@ -11,6 +11,7 @@ import * as bitcoin from "bitcoinjs-lib";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "@rainbow-me/rainbowkit/styles.css";
+import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { RouterProvider, createRouter } from "@tanstack/react-router";
 import { routeTree } from "./routeTree.gen";
@@ -41,5 +42,6 @@ createRoot(document.getElementById("root")!).render(
       </QueryProvider>
     </WagmiProvider>
     <Toaster />
+    <Sonner richColors />
   </StrictMode>,
 );

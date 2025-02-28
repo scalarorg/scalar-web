@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { CheckIcon, ClipboardIcon } from "lucide-react";
 import { useState } from "react";
+import { toast } from "sonner";
 
 interface ClipboardProps {
   text: string;
@@ -17,8 +18,9 @@ export function Clipboard({ text, label = "Copy", className }: ClipboardProps) {
       await navigator.clipboard.writeText(text);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
-    } catch (err) {
-      console.error("Failed to copy text: ", err);
+      toast.success("Copied to clipboard");
+    } catch (_err) {
+      toast.error("Failed to copy text");
     }
   };
 

@@ -1,3 +1,9 @@
+import { ELiquidityModel, EProtocolStatus } from "@/enums";
+
+export type TProtocolModel = `${ELiquidityModel}`;
+
+export type TProtocolStatus = `${EProtocolStatus}`;
+
 export type TProtocol = {
   bitcoin_pubkey?: string;
   scalar_pubkey?: string;
@@ -5,23 +11,19 @@ export type TProtocol = {
   asset?: TAsset;
   name?: string;
   tag?: string;
-  attribute?: {
-    model: "LIQUIDITY_MODEL_POOLING" | "LIQUIDITY_MODEL_TRANSACTIONAL";
+  attributes?: {
+    model: TProtocolModel;
   };
-  status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED";
+  avatar?: string | null;
+  status: TProtocolStatus;
   custodian_group?: {
     uid?: string;
     name?: string;
-    btc_pubkey?: string;
+    bitcoin_pubkey?: string;
     quorum?: number;
-    status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED";
+    status: TProtocolStatus;
     description?: string;
-    custodians?: Array<{
-      name?: string;
-      btc_pubkey?: string;
-      status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED";
-      description?: string;
-    }>;
+    custodians?: TCustodian[];
   };
   chains?: TProtocolChain[];
 };
@@ -30,6 +32,13 @@ export type TProtocolChain = {
   chain?: string;
   name?: string;
   address?: string;
+};
+
+export type TCustodian = {
+  name?: string;
+  bitcoin_pubkey?: string;
+  status: TProtocolStatus;
+  description?: string;
 };
 
 export type TAsset = {

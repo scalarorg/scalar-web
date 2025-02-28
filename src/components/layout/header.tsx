@@ -18,7 +18,7 @@ const links: {
   label: string;
   icon: ReactNode;
 }[] = [
-  { to: "/", label: "HOME", icon: <ThunderIcon /> },
+  { to: "/", label: "BRIDGE", icon: <ThunderIcon /> },
   { to: "/protocols", label: "PROTOCOL", icon: <ProtocolIcon /> },
   { to: "/explore", label: "EXPLORE", icon: <WrapIcon /> },
 ];

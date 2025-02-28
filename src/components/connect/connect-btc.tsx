@@ -1,4 +1,4 @@
-import { Clipboard } from "@/components/ui/clipboard";
+import { Clipboard } from "@/components/common";
 import { formatBTC } from "@/lib/utils";
 import { WalletProvider, walletList } from "@/lib/wallet";
 import { useWalletInfo, useWalletProvider } from "@/providers/wallet-provider";
@@ -54,10 +54,13 @@ export const ConnectBtc = ({ hideTitle }: { hideTitle?: boolean }) => {
         <div className="flex items-center justify-between gap-2">
           <span className="font-semibold text-[22px]">BTC</span>
           {walletInfo.isConnected && (
-            <Power
+            <button
+              type="button"
               onClick={disconnectWallet}
-              className="size-5 cursor-pointer"
-            />
+              className="cursor-pointer"
+            >
+              <Power className="size-5" />
+            </button>
           )}
         </div>
       )}

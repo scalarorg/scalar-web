@@ -41,6 +41,7 @@ import {
 import {
   EMPTY_ADDRESS,
   VOUT_INDEX_OF_LOCKING_OUTPUT,
+  formatBTC,
   getChainID,
   handleTokenApproval,
   isBtcChain,
@@ -64,6 +65,7 @@ import * as bitcoin from "bitcoinjs-lib";
 import { isNil } from "lodash";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast as sonnerToast } from "sonner";
 import { formatUnits, parseUnits } from "viem";
 import { useAccount, useChainId, useSwitchChain } from "wagmi";
 import { TRedeemForm, redeemFormSchema } from "../schemas";
@@ -75,6 +77,7 @@ const getChainSelected = (value = "") => {
 };
 
 export const RedeemForm = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const { switchChain } = useSwitchChain();
   const { address: evmAddress, isConnected: isConnectedEvm } = useAccount();
   const chainId = useChainId();
@@ -99,20 +102,20 @@ export const RedeemForm = () => {
   const feeRates = useFeeRates(btcAddress, mempoolClient);
   const filterProtocols = protocols.filter((p) => isBtcChain(p?.asset?.chain));
 
-  const protocolSelected = filterProtocols.find((p) =>
+  const selectedProtocol = filterProtocols.find((p) =>
     p?.chains?.find(
       (c) => `${p?.asset?.name}-${c?.chain}` === watchForm.sourceChain,
     ),
   );
 
   const vault = useVault(
-    protocolSelected?.tag
-      ? decodeScalarBytesToString(protocolSelected.tag)
+    selectedProtocol?.tag
+      ? decodeScalarBytesToString(selectedProtocol.tag)
       : undefined,
   );
 
-  const originalChain = protocolSelected?.chains?.find(
-    (c) => c?.chain === protocolSelected?.asset?.chain,
+  const originalChain = selectedProtocol?.chains?.find(
+    (c) => c?.chain === selectedProtocol?.asset?.chain,
   );
 
   const sourceChainSelected = getChainSelected(watchForm.sourceChain);
@@ -122,32 +125,32 @@ export const RedeemForm = () => {
       !vault ||
       !btcNetwork ||
       !btcPubkey ||
-      !protocolSelected?.custodian_group?.custodians ||
-      !protocolSelected.custodian_group.quorum ||
-      !protocolSelected.bitcoin_pubkey
+      !selectedProtocol?.custodian_group?.custodians ||
+      !selectedProtocol.custodian_group.quorum ||
+      !selectedProtocol.bitcoin_pubkey
     ) {
       return null;
     }
 
     const custodianPubkeysBufferArray = prepareCustodianPubkeysArray(
-      protocolSelected.custodian_group.custodians,
+      selectedProtocol.custodian_group.custodians,
     );
 
     const userPubkey = hexToBytes(btcPubkey.replace("0x", ""));
 
     const protocolPubkey = decodeScalarBytesToUint8Array(
-      protocolSelected.bitcoin_pubkey,
+      selectedProtocol.bitcoin_pubkey,
     );
 
     const script = vault.upcLockingScript({
       userPubkey,
       protocolPubkey,
       custodianPubkeys: custodianPubkeysBufferArray,
-      custodianQuorum: protocolSelected.custodian_group.quorum,
+      custodianQuorum: selectedProtocol.custodian_group.quorum,
     });
 
     return Buffer.from(script);
-  }, [vault, btcNetwork, protocolSelected, btcPubkey]);
+  }, [vault, btcNetwork, selectedProtocol, btcPubkey]);
 
   const upcLockingAddress = useMemo(() => {
     if (!upcLockingScript) return null;
@@ -197,7 +200,7 @@ export const RedeemForm = () => {
     gateway?.address as `0x${string}`,
   );
 
-  const tokenAddress = protocolSelected?.chains?.find(
+  const tokenAddress = selectedProtocol?.chains?.find(
     (c) => c.chain === sourceChainSelected,
   )?.address;
 
@@ -205,16 +208,11 @@ export const RedeemForm = () => {
     balanceOf,
     checkAllowance,
     approve: approveERC20,
-    getDecimals,
+    decimals,
   } = useERC20(tokenAddress as `0x${string}`);
 
   const { data: sourceChainBalance } = useQuery({
-    queryKey: [
-      "sourceChainBalance",
-      protocolSelected?.asset?.name,
-      sourceChainSelected,
-      evmAddress ?? "",
-    ],
+    queryKey: ["sourceChainBalance", sourceChainSelected, evmAddress ?? ""],
     queryFn: async () => {
       if (!sourceChainSelected) return BigInt(0);
       let balance = BigInt(0);
@@ -226,19 +224,6 @@ export const RedeemForm = () => {
     enabled:
       !!sourceChainSelected && isEvmChain(sourceChainSelected) && !!evmAddress,
   });
-
-  const [decimals, setDecimals] = useState<bigint | undefined>();
-
-  useEffect(() => {
-    const fetchDecimals = async () => {
-      if (getDecimals) {
-        const decimals = await getDecimals();
-        setDecimals(decimals);
-      }
-    };
-
-    fetchDecimals();
-  }, [getDecimals]);
 
   useEffect(() => {
     if (!sourceChainSelected) return;
@@ -252,7 +237,7 @@ export const RedeemForm = () => {
   }, [sourceChainSelected, switchChain, chainId]);
 
   useEffect(() => {
-    if (decimals && watchForm.transferAmount && sourceChainBalance) {
+    if (watchForm.transferAmount && sourceChainBalance && decimals) {
       if (
         parseUnits(String(watchForm.transferAmount), Number(decimals)) >
         sourceChainBalance
@@ -308,6 +293,7 @@ export const RedeemForm = () => {
   );
 
   const onSubmit = async (values: TRedeemForm) => {
+    setIsLoading(true);
     try {
       validateTransferConfig(tokenAddress, gateway);
 
@@ -344,7 +330,7 @@ export const RedeemForm = () => {
 
       let payload = "";
 
-      if (protocolSelected?.attribute?.model === ELiquidityModel.POOL) {
+      if (selectedProtocol?.attributes?.model === ELiquidityModel.POOL) {
         const reciepientChainIdentifier =
           Buffer.from(redeemLockingScript).toString("hex");
         payload = calculateContractCallWithTokenPayload({
@@ -365,12 +351,12 @@ export const RedeemForm = () => {
         }
 
         const protocolPubkey = decodeScalarBytesToUint8Array(
-          protocolSelected!.bitcoin_pubkey!,
+          selectedProtocol!.bitcoin_pubkey!,
         );
         const custodianPubkeys = prepareCustodianPubkeysArray(
-          protocolSelected!.custodian_group!.custodians!,
+          selectedProtocol!.custodian_group!.custodians!,
         );
-        const custodianQuorum = protocolSelected!.custodian_group!.quorum!;
+        const custodianQuorum = selectedProtocol!.custodian_group!.quorum!;
         const stakerPubkey = hexToBytes(btcPubkey.replace("0x", ""));
 
         const params: TBuildUPCUnstakingPsbt = {
@@ -418,7 +404,7 @@ export const RedeemForm = () => {
         destinationChain: originalChain?.chain!,
         destinationContractAddress: EMPTY_ADDRESS,
         payload,
-        symbol: protocolSelected?.asset?.name || "",
+        symbol: selectedProtocol?.asset?.name || "",
         amount: BigInt(newTransferAmount),
       });
 
@@ -435,18 +421,38 @@ export const RedeemForm = () => {
         throw new Error("Transfer failed");
       }
     } catch (error) {
-      console.error(error);
+      sonnerToast.error((error as Error).message || "Something went wrong");
+    } finally {
+      setIsLoading(false);
     }
   };
+
+  const availableBalance = useMemo(() => {
+    const total =
+      availableUnstakedUtxos?.reduce(
+        (acc, tx) => acc + BigInt(tx.value),
+        BigInt(0),
+      ) || BigInt(0);
+    return total;
+  }, [availableUnstakedUtxos]);
 
   return (
     <Card className="mx-auto w-full max-w-2xl border-none shadow-none">
       <CardHeader className="flex flex-row items-center justify-between px-0">
         <CardTitle className="font-bold text-2xl">Redeem</CardTitle>
         <div className="text-right">
-          <span className="text-muted-foreground text-sm">
-            {protocolSelected?.asset?.name}
+          <span>
+            {formatBTC(availableBalance)}{" "}
+            <span className="text-muted-foreground text-sm">BTC</span>
           </span>
+          {selectedProtocol?.asset?.name && (
+            <>
+              <span className="mx-2">|</span>
+              <span className="text-muted-foreground text-sm">
+                {selectedProtocol?.asset?.name}
+              </span>
+            </>
+          )}
           {!isNil(sourceChainBalance) && (
             <span>: {formatUnits(sourceChainBalance, Number(decimals))}</span>
           )}
@@ -456,7 +462,7 @@ export const RedeemForm = () => {
         <Form {...form}>
           <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
             {/* From Section */}
-            <div className="space-y-4 rounded-lg bg-[#F6F8FF] p-4">
+            <div className="space-y-1 rounded-lg bg-[#F6F8FF] p-4">
               <FormField
                 control={control}
                 name="sourceChain"
@@ -465,13 +471,13 @@ export const RedeemForm = () => {
                     <div className="flex items-center gap-2 rounded-lg">
                       <div className="flex flex-1 flex-col gap-2">
                         <div className="flex items-center gap-2">
-                          <FormLabel>From</FormLabel>
+                          <FormLabel className="text-lg">From</FormLabel>
                           <Select
                             onValueChange={field.onChange}
                             defaultValue={field.value}
                           >
                             <FormControl>
-                              <SelectTrigger className="w-[160px]">
+                              <SelectTrigger className="!text-lg w-fit min-w-[160px]">
                                 <SelectValue placeholder="Select Token" />
                               </SelectTrigger>
                             </FormControl>
@@ -486,7 +492,7 @@ export const RedeemForm = () => {
                                         <SelectItem
                                           key={`${asset?.name}-${chain}`}
                                           value={`${asset?.name}-${chain}`}
-                                          className="capitalize"
+                                          className="text-lg capitalize"
                                         >
                                           {name || chain}
                                         </SelectItem>
@@ -513,17 +519,31 @@ export const RedeemForm = () => {
                         {...field}
                         type="number"
                         placeholder="Please enter the amount"
-                        className="rounded-none border-0 border-accent border-b-2 bg-transparent px-0 shadow-none ring-0 focus-visible:ring-0"
+                        className="!text-lg rounded-none border-0 border-accent border-b-2 bg-transparent px-0 shadow-none ring-0 focus-visible:ring-0"
                       />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
+              <p className="text-right text-lg">
+                <span className="text-border">Available wallet:</span>{" "}
+                <span className="mr-1 border-black border-r-2 pr-1">
+                  {formatBTC(availableBalance)} BTC
+                </span>
+                <span>
+                  {!isNil(sourceChainBalance)
+                    ? formatUnits(sourceChainBalance, Number(decimals))
+                    : 0}
+                </span>
+                {selectedProtocol?.asset?.name && (
+                  <span> {selectedProtocol?.asset?.name}</span>
+                )}
+              </p>
             </div>
 
             {/* To Section */}
-            <p className="space-y-4 rounded-lg bg-[#F6F8FF] p-4">
+            <p className="space-y-4 rounded-lg bg-[#F6F8FF] p-4 text-lg">
               To {originalChain?.name || originalChain?.chain}
             </p>
 
@@ -537,7 +557,7 @@ export const RedeemForm = () => {
                     <Input
                       {...field}
                       placeholder="Destination address"
-                      className="rounded-none border-0 border-accent border-b-2 bg-transparent px-0 shadow-none ring-0 focus-visible:ring-0"
+                      className="!text-lg rounded-none border-0 border-accent border-b-2 bg-transparent px-0 shadow-none ring-0 focus-visible:ring-0"
                     />
                   </FormControl>
                   <FormMessage />
@@ -546,10 +566,10 @@ export const RedeemForm = () => {
             />
 
             {isConnectedEvm ? (
-              protocolSelected?.attribute?.model === ELiquidityModel.UPC &&
+              selectedProtocol?.attributes?.model === ELiquidityModel.UPC &&
               !isConnectedBtc ? (
                 <Popover>
-                  <PopoverTrigger className="w-full">
+                  <PopoverTrigger className="w-full" asChild>
                     <Button type="button" className="h-12 w-full text-lg">
                       Connect wallet
                     </Button>
@@ -563,6 +583,7 @@ export const RedeemForm = () => {
                   type="submit"
                   className="h-12 w-full text-lg"
                   disabled={!sourceChainBalance}
+                  isLoading={isLoading}
                 >
                   Redeem
                 </Button>

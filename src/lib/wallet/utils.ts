@@ -27,3 +27,18 @@ export const isSupportedAddressType = (address: string): boolean => {
     address.length === taprootAddressLength
   );
 };
+
+export const convertToBytes = (
+  value: number,
+  unit: "B" | "KB" | "MB" | "GB" | "TB",
+): number => {
+  const unitMap: Record<string, number> = {
+    B: 1,
+    KB: 1024,
+    MB: 1024 ** 2,
+    GB: 1024 ** 3,
+    TB: 1024 ** 4,
+  };
+
+  return value * (unitMap[unit] || 1);
+};

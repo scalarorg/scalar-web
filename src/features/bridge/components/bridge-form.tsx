@@ -27,6 +27,7 @@ import {
 import { toast } from "@/components/ui/use-toast";
 import { useFeeRates, useScalarProtocols, useVault } from "@/hooks";
 import {
+  BTC_DECIMALS,
   formatBTC,
   getChainID,
   isBtcChain,
@@ -48,10 +49,12 @@ import {
 import * as bitcoin from "bitcoinjs-lib";
 import { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast as sonnerToast } from "sonner";
 import { Hex, hexToBytes as hexToBytesViem } from "viem";
 import { TBridgeForm, bridgeFormSchema } from "../schemas";
 
 export const BridgeForm = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const walletInfo = useWalletInfo();
   const [protocol, setProtocol] = useState<TProtocol | undefined>();
   const vault = useVault(protocol?.tag);
@@ -105,7 +108,12 @@ export const BridgeForm = () => {
 
   const onSubmit = async (values: TBridgeForm) => {
     const [_, chainSeleted] = values.destinationChain?.split("-") || [];
-    const parseTransferAmount = parseSats(String(values.transferAmount));
+
+    const parseTransferAmount = parseSats(
+      values.transferAmount.toFixed(BTC_DECIMALS),
+    );
+
+    setIsLoading(true);
 
     try {
       if (!isBtcChain(protocol?.asset?.chain) || !isEvmChain(chainSeleted)) {
@@ -209,7 +217,9 @@ export const BridgeForm = () => {
 
       showSuccessTx(txId!, protocol?.asset?.chain as string);
     } catch (error) {
-      console.error(error);
+      sonnerToast.error((error as Error).message || "Something went wrong");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -226,7 +236,8 @@ export const BridgeForm = () => {
   useEffect(() => {
     if (
       transferAmountForm &&
-      parseSats(String(transferAmountForm)) > Number(walletInfo.balance)
+      parseSats(Number(transferAmountForm).toFixed(BTC_DECIMALS)) >
+        Number(walletInfo.balance)
     ) {
       setError("transferAmount", {
         type: "manual",
@@ -241,10 +252,6 @@ export const BridgeForm = () => {
     <Card className="mx-auto w-full max-w-2xl border-none shadow-none">
       <CardHeader className="flex flex-row items-center justify-between px-0">
         <CardTitle className="font-bold text-2xl">Bridge</CardTitle>
-        <div className="text-right">
-          <span className="text-muted-foreground text-sm">BTC Balance: </span>
-          <span>{formatBTC(walletInfo.balance)} BTC</span>
-        </div>
       </CardHeader>
       <CardContent className="px-0">
         <Form {...form}>
@@ -254,8 +261,8 @@ export const BridgeForm = () => {
               control={form.control}
               name="transferAmount"
               render={({ field }) => (
-                <FormItem className="space-y-4 rounded-lg bg-[#F6F8FF] p-4">
-                  <FormLabel>From</FormLabel>
+                <FormItem className="space-y-1 rounded-lg bg-[#F6F8FF] p-4">
+                  <FormLabel className="text-lg">From</FormLabel>
                   <div className="flex items-center gap-2 rounded-lg">
                     <div className="flex flex-1 flex-col gap-2">
                       <FormControl>
@@ -263,12 +270,16 @@ export const BridgeForm = () => {
                           {...field}
                           type="number"
                           placeholder="Please enter the amount"
-                          className="rounded-none border-0 border-accent border-b-2 bg-transparent px-0 shadow-none ring-0 focus-visible:ring-0"
+                          className="!text-lg rounded-none border-0 border-accent border-b-2 bg-transparent px-0 shadow-none ring-0 focus-visible:ring-0"
                         />
                       </FormControl>
                     </div>
-                    <div className="font-medium">BTC</div>
+                    <div className="font-medium text-lg">BTC</div>
                   </div>
+                  <p className="text-right text-lg">
+                    <span className="text-border">Available wallet:</span>{" "}
+                    <span>{formatBTC(walletInfo.balance)} BTC</span>
+                  </p>
                   <FormMessage />
                 </FormItem>
               )}
@@ -284,13 +295,13 @@ export const BridgeForm = () => {
                     <div className="flex items-center gap-2 rounded-lg">
                       <div className="flex flex-1 flex-col gap-2">
                         <div className="flex items-center gap-2">
-                          <FormLabel>To</FormLabel>
+                          <FormLabel className="text-lg">To</FormLabel>
                           <Select
                             onValueChange={field.onChange}
                             defaultValue={field.value}
                           >
                             <FormControl>
-                              <SelectTrigger className="w-[160px]">
+                              <SelectTrigger className="!text-lg w-fit min-w-[160px]">
                                 <SelectValue placeholder="Select Token" />
                               </SelectTrigger>
                             </FormControl>
@@ -298,14 +309,16 @@ export const BridgeForm = () => {
                               {data?.protocols?.map(
                                 ({ scalar_address, asset, chains }) => (
                                   <SelectGroup key={scalar_address}>
-                                    <SelectLabel>{asset?.name}</SelectLabel>
+                                    <SelectLabel className="text-lg">
+                                      {asset?.name}
+                                    </SelectLabel>
                                     {chains
                                       ?.filter((c) => c.chain !== asset?.chain)
                                       .map(({ name, chain }) => (
                                         <SelectItem
                                           key={`${asset?.name}-${chain}`}
                                           value={`${asset?.name}-${chain}`}
-                                          className="capitalize"
+                                          className="text-lg capitalize"
                                         >
                                           {name || chain}
                                         </SelectItem>
@@ -316,7 +329,9 @@ export const BridgeForm = () => {
                             </SelectContent>
                           </Select>
                         </div>
-                        {watch("transferAmount") || 0}
+                        <span className="text-lg">
+                          {watch("transferAmount") || 0}
+                        </span>
                       </div>
                     </div>
                     <FormMessage />
@@ -335,7 +350,7 @@ export const BridgeForm = () => {
                     <Input
                       {...field}
                       placeholder="Destination address"
-                      className="rounded-none border-0 border-accent border-b-2 bg-transparent px-0 shadow-none ring-0 focus-visible:ring-0"
+                      className="!text-lg rounded-none border-0 border-accent border-b-2 bg-transparent px-0 shadow-none ring-0 focus-visible:ring-0"
                     />
                   </FormControl>
                   <FormMessage />
@@ -362,12 +377,13 @@ export const BridgeForm = () => {
                 type="submit"
                 className="h-12 w-full text-lg"
                 disabled={!walletInfo.balance}
+                isLoading={isLoading}
               >
                 Submit
               </Button>
             ) : (
               <Popover>
-                <PopoverTrigger className="w-full">
+                <PopoverTrigger className="w-full" asChild>
                   <Button type="button" className="h-12 w-full text-lg">
                     Connect wallet
                   </Button>

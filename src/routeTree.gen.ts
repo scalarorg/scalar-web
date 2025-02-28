@@ -12,7 +12,9 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
+import { Route as ProtocolsIndexImport } from './routes/protocols/index'
 import { Route as ExploreIndexImport } from './routes/explore/index'
+import { Route as ProtocolsSlugImport } from './routes/protocols/$slug'
 
 // Create/Update Routes
 
@@ -22,9 +24,21 @@ const IndexRoute = IndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const ProtocolsIndexRoute = ProtocolsIndexImport.update({
+  id: '/protocols/',
+  path: '/protocols/',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const ExploreIndexRoute = ExploreIndexImport.update({
   id: '/explore/',
   path: '/explore/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ProtocolsSlugRoute = ProtocolsSlugImport.update({
+  id: '/protocols/$slug',
+  path: '/protocols/$slug',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -39,11 +53,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
+    '/protocols/$slug': {
+      id: '/protocols/$slug'
+      path: '/protocols/$slug'
+      fullPath: '/protocols/$slug'
+      preLoaderRoute: typeof ProtocolsSlugImport
+      parentRoute: typeof rootRoute
+    }
     '/explore/': {
       id: '/explore/'
       path: '/explore'
       fullPath: '/explore'
       preLoaderRoute: typeof ExploreIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/protocols/': {
+      id: '/protocols/'
+      path: '/protocols'
+      fullPath: '/protocols'
+      preLoaderRoute: typeof ProtocolsIndexImport
       parentRoute: typeof rootRoute
     }
   }
@@ -53,37 +81,47 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/protocols/$slug': typeof ProtocolsSlugRoute
   '/explore': typeof ExploreIndexRoute
+  '/protocols': typeof ProtocolsIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/protocols/$slug': typeof ProtocolsSlugRoute
   '/explore': typeof ExploreIndexRoute
+  '/protocols': typeof ProtocolsIndexRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/protocols/$slug': typeof ProtocolsSlugRoute
   '/explore/': typeof ExploreIndexRoute
+  '/protocols/': typeof ProtocolsIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/explore'
+  fullPaths: '/' | '/protocols/$slug' | '/explore' | '/protocols'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/explore'
-  id: '__root__' | '/' | '/explore/'
+  to: '/' | '/protocols/$slug' | '/explore' | '/protocols'
+  id: '__root__' | '/' | '/protocols/$slug' | '/explore/' | '/protocols/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ProtocolsSlugRoute: typeof ProtocolsSlugRoute
   ExploreIndexRoute: typeof ExploreIndexRoute
+  ProtocolsIndexRoute: typeof ProtocolsIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ProtocolsSlugRoute: ProtocolsSlugRoute,
   ExploreIndexRoute: ExploreIndexRoute,
+  ProtocolsIndexRoute: ProtocolsIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -97,14 +135,22 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/explore/"
+        "/protocols/$slug",
+        "/explore/",
+        "/protocols/"
       ]
     },
     "/": {
       "filePath": "index.tsx"
     },
+    "/protocols/$slug": {
+      "filePath": "protocols/$slug.tsx"
+    },
     "/explore/": {
       "filePath": "explore/index.tsx"
+    },
+    "/protocols/": {
+      "filePath": "protocols/index.tsx"
     }
   }
 }

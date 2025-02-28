@@ -4138,27 +4138,11 @@ export interface components {
       tokens?: {
         asset?: string;
         symbol?: string;
-        /**
-         * @default LIQUIDITY_MODEL_UNSPECIFIED
-         * @enum {string}
-         */
-        model:
-          | "LIQUIDITY_MODEL_UNSPECIFIED"
-          | "LIQUIDITY_MODEL_POOL"
-          | "LIQUIDITY_MODEL_UPC";
       }[];
     };
     "scalar.chains.v1beta1.ERC20TokensResponse.Token": {
       asset?: string;
       symbol?: string;
-      /**
-       * @default LIQUIDITY_MODEL_UNSPECIFIED
-       * @enum {string}
-       */
-      model:
-        | "LIQUIDITY_MODEL_UNSPECIFIED"
-        | "LIQUIDITY_MODEL_POOL"
-        | "LIQUIDITY_MODEL_UPC";
     };
     "scalar.chains.v1beta1.Event": {
       chain?: string;
@@ -4684,14 +4668,6 @@ export interface components {
       | "TOKEN_TYPE_UNSPECIFIED"
       | "TOKEN_TYPE_INTERNAL"
       | "TOKEN_TYPE_EXTERNAL";
-    /**
-     * @default LIQUIDITY_MODEL_UNSPECIFIED
-     * @enum {string}
-     */
-    "scalar.protocol.exported.v1beta1.LiquidityModel":
-      | "LIQUIDITY_MODEL_UNSPECIFIED"
-      | "LIQUIDITY_MODEL_POOL"
-      | "LIQUIDITY_MODEL_UPC";
     "scalar.utils.v1beta1.Threshold": {
       /**
        * split threshold into Numerator and denominator to avoid floating point
@@ -4713,13 +4689,18 @@ export interface components {
        * @default STATUS_UNSPECIFIED
        * @enum {string}
        */
-      status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED";
+      status:
+        | "STATUS_UNSPECIFIED"
+        | "STATUS_ACTIVATED"
+        | "STATUS_DEACTIVATED"
+        | "STATUS_PENDING";
       description?: string;
     };
     /** CustodianGroup represents a group of custodians with their configuration
      *     uid is used as identity of the group, btc_pubkey is change by list of
      *     custodians */
     "scalar.covenant.v1beta1.CustodianGroup": {
+      /** the UID is unique, to distinguish between custodian groups */
       uid?: string;
       name?: string;
       /** Format: byte */
@@ -4733,7 +4714,11 @@ export interface components {
        * @default STATUS_UNSPECIFIED
        * @enum {string}
        */
-      status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED";
+      status:
+        | "STATUS_UNSPECIFIED"
+        | "STATUS_ACTIVATED"
+        | "STATUS_DEACTIVATED"
+        | "STATUS_PENDING";
       description?: string;
       custodians?: {
         name?: string;
@@ -4748,7 +4733,8 @@ export interface components {
         status:
           | "STATUS_UNSPECIFIED"
           | "STATUS_ACTIVATED"
-          | "STATUS_DEACTIVATED";
+          | "STATUS_DEACTIVATED"
+          | "STATUS_PENDING";
         description?: string;
       }[];
     };
@@ -4759,34 +4745,43 @@ export interface components {
     "scalar.covenant.v1beta1.Status":
       | "STATUS_UNSPECIFIED"
       | "STATUS_ACTIVATED"
-      | "STATUS_DEACTIVATED";
-    "scalar.protocol.exported.v1beta1.MinorAddress": {
-      chain_name?: string;
-      address?: string;
-    };
-    "scalar.protocol.exported.v1beta1.ProtocolInfo": {
-      key_id?: string;
-      /** Format: byte */
-      custodians_pubkey?: string;
+      | "STATUS_DEACTIVATED"
+      | "STATUS_PENDING";
+    /**
+     * @default LIQUIDITY_MODEL_UNSPECIFIED
+     * @enum {string}
+     */
+    "scalar.protocol.exported.v1beta1.LiquidityModel":
+      | "LIQUIDITY_MODEL_UNSPECIFIED"
+      | "LIQUIDITY_MODEL_POOL"
+      | "LIQUIDITY_MODEL_UPC";
+    "scalar.protocol.exported.v1beta1.ProtocolAttributes": {
       /**
        * @default LIQUIDITY_MODEL_UNSPECIFIED
        * @enum {string}
        */
-      liquidity_model:
+      model:
         | "LIQUIDITY_MODEL_UNSPECIFIED"
         | "LIQUIDITY_MODEL_POOL"
         | "LIQUIDITY_MODEL_UPC";
-      symbol?: string;
-      origin_chain?: string;
-      minor_addresses?: {
-        chain_name?: string;
-        address?: string;
-      }[];
+    };
+    /**
+     * @default STATUS_UNSPECIFIED
+     * @enum {string}
+     */
+    "scalar.protocol.exported.v1beta1.Status":
+      | "STATUS_UNSPECIFIED"
+      | "STATUS_ACTIVATED"
+      | "STATUS_DEACTIVATED"
+      | "STATUS_PENDING";
+    "scalar.protocol.exported.v1beta1.SupportedChain": {
+      chain?: string;
+      name?: string;
+      address?: string;
     };
     "scalar.protocol.v1beta1.AddSupportedChainRequest": {
       /** Format: byte */
       sender?: string;
-      /** DestinationChain represents a blockchain where tokens can be sent */
       chain?: {
         chain?: string;
         name?: string;
@@ -4804,7 +4799,7 @@ export interface components {
         name?: string;
         /** Format: byte */
         tag?: string;
-        attribute?: {
+        attributes?: {
           /**
            * @default LIQUIDITY_MODEL_UNSPECIFIED
            * @enum {string}
@@ -4821,46 +4816,10 @@ export interface components {
         status:
           | "STATUS_UNSPECIFIED"
           | "STATUS_ACTIVATED"
-          | "STATUS_DEACTIVATED";
-        /** CustodianGroup represents a group of custodians with their configuration
-         *     uid is used as identity of the group, btc_pubkey is change by list of
-         *     custodians */
-        custodian_group?: {
-          uid?: string;
-          name?: string;
-          /** Format: byte */
-          bitcoin_pubkey?: string;
-          /**
-           * "tb1p07q440mdl4uyywns325dk8pvjphwety3psp4zvkngtjf3z3hhr2sfar3hv"
-           * Format: int64
-           */
-          quorum?: number;
-          /**
-           * @default STATUS_UNSPECIFIED
-           * @enum {string}
-           */
-          status:
-            | "STATUS_UNSPECIFIED"
-            | "STATUS_ACTIVATED"
-            | "STATUS_DEACTIVATED";
-          description?: string;
-          custodians?: {
-            name?: string;
-            val_address?: string;
-            /** Format: byte */
-            bitcoin_pubkey?: string;
-            /**
-             * "0215da913b3e87b4932b1e1b87d9667c28e7250aa0ed60b3a31095f541e1641488"
-             * @default STATUS_UNSPECIFIED
-             * @enum {string}
-             */
-            status:
-              | "STATUS_UNSPECIFIED"
-              | "STATUS_ACTIVATED"
-              | "STATUS_DEACTIVATED";
-            description?: string;
-          }[];
-        };
+          | "STATUS_DEACTIVATED"
+          | "STATUS_PENDING";
+        /** scalar.covenant.v1beta1.CustodianGroup custodian_group = 8; */
+        custodian_group_uid?: string;
         asset?: {
           chain?: string;
           name?: string;
@@ -4877,9 +4836,13 @@ export interface components {
     "scalar.protocol.v1beta1.CreateProtocolRequest": {
       /** Format: byte */
       sender?: string;
+      /** Format: byte */
+      bitcoin_pubkey?: string;
+      /** Format: byte */
+      scalar_pubkey?: string;
       name?: string;
       tag?: string;
-      attribute?: {
+      attributes?: {
         /**
          * @default LIQUIDITY_MODEL_UNSPECIFIED
          * @enum {string}
@@ -4889,50 +4852,13 @@ export interface components {
           | "LIQUIDITY_MODEL_POOL"
           | "LIQUIDITY_MODEL_UPC";
       };
-      /** CustodianGroup represents a group of custodians with their configuration
-       *     uid is used as identity of the group, btc_pubkey is change by list of
-       *     custodians */
-      custodian_group?: {
-        uid?: string;
-        name?: string;
-        /** Format: byte */
-        bitcoin_pubkey?: string;
-        /**
-         * "tb1p07q440mdl4uyywns325dk8pvjphwety3psp4zvkngtjf3z3hhr2sfar3hv"
-         * Format: int64
-         */
-        quorum?: number;
-        /**
-         * @default STATUS_UNSPECIFIED
-         * @enum {string}
-         */
-        status:
-          | "STATUS_UNSPECIFIED"
-          | "STATUS_ACTIVATED"
-          | "STATUS_DEACTIVATED";
-        description?: string;
-        custodians?: {
-          name?: string;
-          val_address?: string;
-          /** Format: byte */
-          bitcoin_pubkey?: string;
-          /**
-           * "0215da913b3e87b4932b1e1b87d9667c28e7250aa0ed60b3a31095f541e1641488"
-           * @default STATUS_UNSPECIFIED
-           * @enum {string}
-           */
-          status:
-            | "STATUS_UNSPECIFIED"
-            | "STATUS_ACTIVATED"
-            | "STATUS_DEACTIVATED";
-          description?: string;
-        }[];
-      };
-      chains?: {
+      custodian_group_uid?: string;
+      asset?: {
         chain?: string;
         name?: string;
-        address?: string;
-      }[];
+      };
+      /** Format: byte */
+      avatar?: string;
     };
     "scalar.protocol.v1beta1.CreateProtocolResponse": {
       protocol?: {
@@ -4945,7 +4871,7 @@ export interface components {
         name?: string;
         /** Format: byte */
         tag?: string;
-        attribute?: {
+        attributes?: {
           /**
            * @default LIQUIDITY_MODEL_UNSPECIFIED
            * @enum {string}
@@ -4962,46 +4888,10 @@ export interface components {
         status:
           | "STATUS_UNSPECIFIED"
           | "STATUS_ACTIVATED"
-          | "STATUS_DEACTIVATED";
-        /** CustodianGroup represents a group of custodians with their configuration
-         *     uid is used as identity of the group, btc_pubkey is change by list of
-         *     custodians */
-        custodian_group?: {
-          uid?: string;
-          name?: string;
-          /** Format: byte */
-          bitcoin_pubkey?: string;
-          /**
-           * "tb1p07q440mdl4uyywns325dk8pvjphwety3psp4zvkngtjf3z3hhr2sfar3hv"
-           * Format: int64
-           */
-          quorum?: number;
-          /**
-           * @default STATUS_UNSPECIFIED
-           * @enum {string}
-           */
-          status:
-            | "STATUS_UNSPECIFIED"
-            | "STATUS_ACTIVATED"
-            | "STATUS_DEACTIVATED";
-          description?: string;
-          custodians?: {
-            name?: string;
-            val_address?: string;
-            /** Format: byte */
-            bitcoin_pubkey?: string;
-            /**
-             * "0215da913b3e87b4932b1e1b87d9667c28e7250aa0ed60b3a31095f541e1641488"
-             * @default STATUS_UNSPECIFIED
-             * @enum {string}
-             */
-            status:
-              | "STATUS_UNSPECIFIED"
-              | "STATUS_ACTIVATED"
-              | "STATUS_DEACTIVATED";
-            description?: string;
-          }[];
-        };
+          | "STATUS_DEACTIVATED"
+          | "STATUS_PENDING";
+        /** scalar.covenant.v1beta1.CustodianGroup custodian_group = 8; */
+        custodian_group_uid?: string;
         asset?: {
           chain?: string;
           name?: string;
@@ -5025,7 +4915,7 @@ export interface components {
       name?: string;
       /** Format: byte */
       tag?: string;
-      attribute?: {
+      attributes?: {
         /**
          * @default LIQUIDITY_MODEL_UNSPECIFIED
          * @enum {string}
@@ -5039,11 +4929,71 @@ export interface components {
        * @default STATUS_UNSPECIFIED
        * @enum {string}
        */
-      status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED";
+      status:
+        | "STATUS_UNSPECIFIED"
+        | "STATUS_ACTIVATED"
+        | "STATUS_DEACTIVATED"
+        | "STATUS_PENDING";
+      /** scalar.covenant.v1beta1.CustodianGroup custodian_group = 8; */
+      custodian_group_uid?: string;
+      asset?: {
+        chain?: string;
+        name?: string;
+      };
+      chains?: {
+        chain?: string;
+        name?: string;
+        address?: string;
+      }[];
+      /** Format: byte */
+      avatar?: string;
+    };
+    "scalar.protocol.v1beta1.ProtocolDetails": {
+      /** Format: byte */
+      bitcoin_pubkey?: string;
+      /** Format: byte */
+      scalar_pubkey?: string;
+      /** Format: byte */
+      scalar_address?: string;
+      name?: string;
+      /** Format: byte */
+      tag?: string;
+      attributes?: {
+        /**
+         * @default LIQUIDITY_MODEL_UNSPECIFIED
+         * @enum {string}
+         */
+        model:
+          | "LIQUIDITY_MODEL_UNSPECIFIED"
+          | "LIQUIDITY_MODEL_POOL"
+          | "LIQUIDITY_MODEL_UPC";
+      };
+      /**
+       * @default STATUS_UNSPECIFIED
+       * @enum {string}
+       */
+      status:
+        | "STATUS_UNSPECIFIED"
+        | "STATUS_ACTIVATED"
+        | "STATUS_DEACTIVATED"
+        | "STATUS_PENDING";
+      custodian_group_uid?: string;
+      asset?: {
+        chain?: string;
+        name?: string;
+      };
+      chains?: {
+        chain?: string;
+        name?: string;
+        address?: string;
+      }[];
+      /** Format: byte */
+      avatar?: string;
       /** CustodianGroup represents a group of custodians with their configuration
        *     uid is used as identity of the group, btc_pubkey is change by list of
        *     custodians */
       custodian_group?: {
+        /** the UID is unique, to distinguish between custodian groups */
         uid?: string;
         name?: string;
         /** Format: byte */
@@ -5060,7 +5010,8 @@ export interface components {
         status:
           | "STATUS_UNSPECIFIED"
           | "STATUS_ACTIVATED"
-          | "STATUS_DEACTIVATED";
+          | "STATUS_DEACTIVATED"
+          | "STATUS_PENDING";
         description?: string;
         custodians?: {
           name?: string;
@@ -5075,55 +5026,14 @@ export interface components {
           status:
             | "STATUS_UNSPECIFIED"
             | "STATUS_ACTIVATED"
-            | "STATUS_DEACTIVATED";
+            | "STATUS_DEACTIVATED"
+            | "STATUS_PENDING";
           description?: string;
         }[];
       };
-      asset?: {
-        chain?: string;
-        name?: string;
-      };
-      chains?: {
-        chain?: string;
-        name?: string;
-        address?: string;
-      }[];
-      /** Format: byte */
-      avatar?: string;
-    };
-    "scalar.protocol.v1beta1.ProtocolAttribute": {
-      /**
-       * @default LIQUIDITY_MODEL_UNSPECIFIED
-       * @enum {string}
-       */
-      model:
-        | "LIQUIDITY_MODEL_UNSPECIFIED"
-        | "LIQUIDITY_MODEL_POOL"
-        | "LIQUIDITY_MODEL_UPC";
     };
     "scalar.protocol.v1beta1.ProtocolResponse": {
       protocol?: {
-        key_id?: string;
-        /** Format: byte */
-        custodians_pubkey?: string;
-        /**
-         * @default LIQUIDITY_MODEL_UNSPECIFIED
-         * @enum {string}
-         */
-        liquidity_model:
-          | "LIQUIDITY_MODEL_UNSPECIFIED"
-          | "LIQUIDITY_MODEL_POOL"
-          | "LIQUIDITY_MODEL_UPC";
-        symbol?: string;
-        origin_chain?: string;
-        minor_addresses?: {
-          chain_name?: string;
-          address?: string;
-        }[];
-      };
-    };
-    "scalar.protocol.v1beta1.ProtocolsResponse": {
-      protocols?: {
         /** Format: byte */
         bitcoin_pubkey?: string;
         /** Format: byte */
@@ -5133,7 +5043,7 @@ export interface components {
         name?: string;
         /** Format: byte */
         tag?: string;
-        attribute?: {
+        attributes?: {
           /**
            * @default LIQUIDITY_MODEL_UNSPECIFIED
            * @enum {string}
@@ -5150,11 +5060,25 @@ export interface components {
         status:
           | "STATUS_UNSPECIFIED"
           | "STATUS_ACTIVATED"
-          | "STATUS_DEACTIVATED";
+          | "STATUS_DEACTIVATED"
+          | "STATUS_PENDING";
+        custodian_group_uid?: string;
+        asset?: {
+          chain?: string;
+          name?: string;
+        };
+        chains?: {
+          chain?: string;
+          name?: string;
+          address?: string;
+        }[];
+        /** Format: byte */
+        avatar?: string;
         /** CustodianGroup represents a group of custodians with their configuration
          *     uid is used as identity of the group, btc_pubkey is change by list of
          *     custodians */
         custodian_group?: {
+          /** the UID is unique, to distinguish between custodian groups */
           uid?: string;
           name?: string;
           /** Format: byte */
@@ -5171,7 +5095,8 @@ export interface components {
           status:
             | "STATUS_UNSPECIFIED"
             | "STATUS_ACTIVATED"
-            | "STATUS_DEACTIVATED";
+            | "STATUS_DEACTIVATED"
+            | "STATUS_PENDING";
           description?: string;
           custodians?: {
             name?: string;
@@ -5186,10 +5111,44 @@ export interface components {
             status:
               | "STATUS_UNSPECIFIED"
               | "STATUS_ACTIVATED"
-              | "STATUS_DEACTIVATED";
+              | "STATUS_DEACTIVATED"
+              | "STATUS_PENDING";
             description?: string;
           }[];
         };
+      };
+    };
+    "scalar.protocol.v1beta1.ProtocolsResponse": {
+      protocols?: {
+        /** Format: byte */
+        bitcoin_pubkey?: string;
+        /** Format: byte */
+        scalar_pubkey?: string;
+        /** Format: byte */
+        scalar_address?: string;
+        name?: string;
+        /** Format: byte */
+        tag?: string;
+        attributes?: {
+          /**
+           * @default LIQUIDITY_MODEL_UNSPECIFIED
+           * @enum {string}
+           */
+          model:
+            | "LIQUIDITY_MODEL_UNSPECIFIED"
+            | "LIQUIDITY_MODEL_POOL"
+            | "LIQUIDITY_MODEL_UPC";
+        };
+        /**
+         * @default STATUS_UNSPECIFIED
+         * @enum {string}
+         */
+        status:
+          | "STATUS_UNSPECIFIED"
+          | "STATUS_ACTIVATED"
+          | "STATUS_DEACTIVATED"
+          | "STATUS_PENDING";
+        custodian_group_uid?: string;
         asset?: {
           chain?: string;
           name?: string;
@@ -5201,23 +5160,51 @@ export interface components {
         }[];
         /** Format: byte */
         avatar?: string;
+        /** CustodianGroup represents a group of custodians with their configuration
+         *     uid is used as identity of the group, btc_pubkey is change by list of
+         *     custodians */
+        custodian_group?: {
+          /** the UID is unique, to distinguish between custodian groups */
+          uid?: string;
+          name?: string;
+          /** Format: byte */
+          bitcoin_pubkey?: string;
+          /**
+           * "tb1p07q440mdl4uyywns325dk8pvjphwety3psp4zvkngtjf3z3hhr2sfar3hv"
+           * Format: int64
+           */
+          quorum?: number;
+          /**
+           * @default STATUS_UNSPECIFIED
+           * @enum {string}
+           */
+          status:
+            | "STATUS_UNSPECIFIED"
+            | "STATUS_ACTIVATED"
+            | "STATUS_DEACTIVATED"
+            | "STATUS_PENDING";
+          description?: string;
+          custodians?: {
+            name?: string;
+            val_address?: string;
+            /** Format: byte */
+            bitcoin_pubkey?: string;
+            /**
+             * "0215da913b3e87b4932b1e1b87d9667c28e7250aa0ed60b3a31095f541e1641488"
+             * @default STATUS_UNSPECIFIED
+             * @enum {string}
+             */
+            status:
+              | "STATUS_UNSPECIFIED"
+              | "STATUS_ACTIVATED"
+              | "STATUS_DEACTIVATED"
+              | "STATUS_PENDING";
+            description?: string;
+          }[];
+        };
       }[];
       /** Format: uint64 */
       total?: string;
-    };
-    /**
-     * @default STATUS_UNSPECIFIED
-     * @enum {string}
-     */
-    "scalar.protocol.v1beta1.Status":
-      | "STATUS_UNSPECIFIED"
-      | "STATUS_ACTIVATED"
-      | "STATUS_DEACTIVATED";
-    /** DestinationChain represents a blockchain where tokens can be sent */
-    "scalar.protocol.v1beta1.SupportedChain": {
-      chain?: string;
-      name?: string;
-      address?: string;
     };
     /** pubkey used as protocol unique id */
     "scalar.protocol.v1beta1.UpdateProtocolRequest": {
@@ -5237,7 +5224,7 @@ export interface components {
         name?: string;
         /** Format: byte */
         tag?: string;
-        attribute?: {
+        attributes?: {
           /**
            * @default LIQUIDITY_MODEL_UNSPECIFIED
            * @enum {string}
@@ -5254,46 +5241,10 @@ export interface components {
         status:
           | "STATUS_UNSPECIFIED"
           | "STATUS_ACTIVATED"
-          | "STATUS_DEACTIVATED";
-        /** CustodianGroup represents a group of custodians with their configuration
-         *     uid is used as identity of the group, btc_pubkey is change by list of
-         *     custodians */
-        custodian_group?: {
-          uid?: string;
-          name?: string;
-          /** Format: byte */
-          bitcoin_pubkey?: string;
-          /**
-           * "tb1p07q440mdl4uyywns325dk8pvjphwety3psp4zvkngtjf3z3hhr2sfar3hv"
-           * Format: int64
-           */
-          quorum?: number;
-          /**
-           * @default STATUS_UNSPECIFIED
-           * @enum {string}
-           */
-          status:
-            | "STATUS_UNSPECIFIED"
-            | "STATUS_ACTIVATED"
-            | "STATUS_DEACTIVATED";
-          description?: string;
-          custodians?: {
-            name?: string;
-            val_address?: string;
-            /** Format: byte */
-            bitcoin_pubkey?: string;
-            /**
-             * "0215da913b3e87b4932b1e1b87d9667c28e7250aa0ed60b3a31095f541e1641488"
-             * @default STATUS_UNSPECIFIED
-             * @enum {string}
-             */
-            status:
-              | "STATUS_UNSPECIFIED"
-              | "STATUS_ACTIVATED"
-              | "STATUS_DEACTIVATED";
-            description?: string;
-          }[];
-        };
+          | "STATUS_DEACTIVATED"
+          | "STATUS_PENDING";
+        /** scalar.covenant.v1beta1.CustodianGroup custodian_group = 8; */
+        custodian_group_uid?: string;
         asset?: {
           chain?: string;
           name?: string;
@@ -5317,7 +5268,11 @@ export interface components {
        * @default STATUS_UNSPECIFIED
        * @enum {string}
        */
-      status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED";
+      status:
+        | "STATUS_UNSPECIFIED"
+        | "STATUS_ACTIVATED"
+        | "STATUS_DEACTIVATED"
+        | "STATUS_PENDING";
     };
     "scalar.protocol.v1beta1.UpdateSupportedChainResponse": {
       protocol?: {
@@ -5330,7 +5285,7 @@ export interface components {
         name?: string;
         /** Format: byte */
         tag?: string;
-        attribute?: {
+        attributes?: {
           /**
            * @default LIQUIDITY_MODEL_UNSPECIFIED
            * @enum {string}
@@ -5347,46 +5302,10 @@ export interface components {
         status:
           | "STATUS_UNSPECIFIED"
           | "STATUS_ACTIVATED"
-          | "STATUS_DEACTIVATED";
-        /** CustodianGroup represents a group of custodians with their configuration
-         *     uid is used as identity of the group, btc_pubkey is change by list of
-         *     custodians */
-        custodian_group?: {
-          uid?: string;
-          name?: string;
-          /** Format: byte */
-          bitcoin_pubkey?: string;
-          /**
-           * "tb1p07q440mdl4uyywns325dk8pvjphwety3psp4zvkngtjf3z3hhr2sfar3hv"
-           * Format: int64
-           */
-          quorum?: number;
-          /**
-           * @default STATUS_UNSPECIFIED
-           * @enum {string}
-           */
-          status:
-            | "STATUS_UNSPECIFIED"
-            | "STATUS_ACTIVATED"
-            | "STATUS_DEACTIVATED";
-          description?: string;
-          custodians?: {
-            name?: string;
-            val_address?: string;
-            /** Format: byte */
-            bitcoin_pubkey?: string;
-            /**
-             * "0215da913b3e87b4932b1e1b87d9667c28e7250aa0ed60b3a31095f541e1641488"
-             * @default STATUS_UNSPECIFIED
-             * @enum {string}
-             */
-            status:
-              | "STATUS_UNSPECIFIED"
-              | "STATUS_ACTIVATED"
-              | "STATUS_DEACTIVATED";
-            description?: string;
-          }[];
-        };
+          | "STATUS_DEACTIVATED"
+          | "STATUS_PENDING";
+        /** scalar.covenant.v1beta1.CustodianGroup custodian_group = 8; */
+        custodian_group_uid?: string;
         asset?: {
           chain?: string;
           name?: string;
@@ -22997,14 +22916,6 @@ export interface operations {
             tokens?: {
               asset?: string;
               symbol?: string;
-              /**
-               * @default LIQUIDITY_MODEL_UNSPECIFIED
-               * @enum {string}
-               */
-              model:
-                | "LIQUIDITY_MODEL_UNSPECIFIED"
-                | "LIQUIDITY_MODEL_POOL"
-                | "LIQUIDITY_MODEL_UPC";
             }[];
           };
         };
@@ -24090,7 +24001,8 @@ export interface operations {
         status?:
           | "STATUS_UNSPECIFIED"
           | "STATUS_ACTIVATED"
-          | "STATUS_DEACTIVATED";
+          | "STATUS_DEACTIVATED"
+          | "STATUS_PENDING";
       };
       header?: never;
       path?: never;
@@ -24115,7 +24027,7 @@ export interface operations {
               name?: string;
               /** Format: byte */
               tag?: string;
-              attribute?: {
+              attributes?: {
                 /**
                  * @default LIQUIDITY_MODEL_UNSPECIFIED
                  * @enum {string}
@@ -24132,11 +24044,25 @@ export interface operations {
               status:
                 | "STATUS_UNSPECIFIED"
                 | "STATUS_ACTIVATED"
-                | "STATUS_DEACTIVATED";
+                | "STATUS_DEACTIVATED"
+                | "STATUS_PENDING";
+              custodian_group_uid?: string;
+              asset?: {
+                chain?: string;
+                name?: string;
+              };
+              chains?: {
+                chain?: string;
+                name?: string;
+                address?: string;
+              }[];
+              /** Format: byte */
+              avatar?: string;
               /** CustodianGroup represents a group of custodians with their configuration
                *     uid is used as identity of the group, btc_pubkey is change by list of
                *     custodians */
               custodian_group?: {
+                /** the UID is unique, to distinguish between custodian groups */
                 uid?: string;
                 name?: string;
                 /** Format: byte */
@@ -24153,7 +24079,8 @@ export interface operations {
                 status:
                   | "STATUS_UNSPECIFIED"
                   | "STATUS_ACTIVATED"
-                  | "STATUS_DEACTIVATED";
+                  | "STATUS_DEACTIVATED"
+                  | "STATUS_PENDING";
                 description?: string;
                 custodians?: {
                   name?: string;
@@ -24168,21 +24095,11 @@ export interface operations {
                   status:
                     | "STATUS_UNSPECIFIED"
                     | "STATUS_ACTIVATED"
-                    | "STATUS_DEACTIVATED";
+                    | "STATUS_DEACTIVATED"
+                    | "STATUS_PENDING";
                   description?: string;
                 }[];
               };
-              asset?: {
-                chain?: string;
-                name?: string;
-              };
-              chains?: {
-                chain?: string;
-                name?: string;
-                address?: string;
-              }[];
-              /** Format: byte */
-              avatar?: string;
             }[];
             /** Format: uint64 */
             total?: string;
@@ -24252,7 +24169,6 @@ export interface operations {
         "application/json": {
           /** Format: byte */
           sender?: string;
-          /** DestinationChain represents a blockchain where tokens can be sent */
           chain?: {
             chain?: string;
             name?: string;
@@ -24279,7 +24195,7 @@ export interface operations {
               name?: string;
               /** Format: byte */
               tag?: string;
-              attribute?: {
+              attributes?: {
                 /**
                  * @default LIQUIDITY_MODEL_UNSPECIFIED
                  * @enum {string}
@@ -24296,46 +24212,10 @@ export interface operations {
               status:
                 | "STATUS_UNSPECIFIED"
                 | "STATUS_ACTIVATED"
-                | "STATUS_DEACTIVATED";
-              /** CustodianGroup represents a group of custodians with their configuration
-               *     uid is used as identity of the group, btc_pubkey is change by list of
-               *     custodians */
-              custodian_group?: {
-                uid?: string;
-                name?: string;
-                /** Format: byte */
-                bitcoin_pubkey?: string;
-                /**
-                 * "tb1p07q440mdl4uyywns325dk8pvjphwety3psp4zvkngtjf3z3hhr2sfar3hv"
-                 * Format: int64
-                 */
-                quorum?: number;
-                /**
-                 * @default STATUS_UNSPECIFIED
-                 * @enum {string}
-                 */
-                status:
-                  | "STATUS_UNSPECIFIED"
-                  | "STATUS_ACTIVATED"
-                  | "STATUS_DEACTIVATED";
-                description?: string;
-                custodians?: {
-                  name?: string;
-                  val_address?: string;
-                  /** Format: byte */
-                  bitcoin_pubkey?: string;
-                  /**
-                   * "0215da913b3e87b4932b1e1b87d9667c28e7250aa0ed60b3a31095f541e1641488"
-                   * @default STATUS_UNSPECIFIED
-                   * @enum {string}
-                   */
-                  status:
-                    | "STATUS_UNSPECIFIED"
-                    | "STATUS_ACTIVATED"
-                    | "STATUS_DEACTIVATED";
-                  description?: string;
-                }[];
-              };
+                | "STATUS_DEACTIVATED"
+                | "STATUS_PENDING";
+              /** scalar.covenant.v1beta1.CustodianGroup custodian_group = 8; */
+              custodian_group_uid?: string;
               asset?: {
                 chain?: string;
                 name?: string;
@@ -24414,9 +24294,13 @@ export interface operations {
         "application/json": {
           /** Format: byte */
           sender?: string;
+          /** Format: byte */
+          bitcoin_pubkey?: string;
+          /** Format: byte */
+          scalar_pubkey?: string;
           name?: string;
           tag?: string;
-          attribute?: {
+          attributes?: {
             /**
              * @default LIQUIDITY_MODEL_UNSPECIFIED
              * @enum {string}
@@ -24426,50 +24310,13 @@ export interface operations {
               | "LIQUIDITY_MODEL_POOL"
               | "LIQUIDITY_MODEL_UPC";
           };
-          /** CustodianGroup represents a group of custodians with their configuration
-           *     uid is used as identity of the group, btc_pubkey is change by list of
-           *     custodians */
-          custodian_group?: {
-            uid?: string;
-            name?: string;
-            /** Format: byte */
-            bitcoin_pubkey?: string;
-            /**
-             * "tb1p07q440mdl4uyywns325dk8pvjphwety3psp4zvkngtjf3z3hhr2sfar3hv"
-             * Format: int64
-             */
-            quorum?: number;
-            /**
-             * @default STATUS_UNSPECIFIED
-             * @enum {string}
-             */
-            status?:
-              | "STATUS_UNSPECIFIED"
-              | "STATUS_ACTIVATED"
-              | "STATUS_DEACTIVATED";
-            description?: string;
-            custodians?: {
-              name?: string;
-              val_address?: string;
-              /** Format: byte */
-              bitcoin_pubkey?: string;
-              /**
-               * "0215da913b3e87b4932b1e1b87d9667c28e7250aa0ed60b3a31095f541e1641488"
-               * @default STATUS_UNSPECIFIED
-               * @enum {string}
-               */
-              status?:
-                | "STATUS_UNSPECIFIED"
-                | "STATUS_ACTIVATED"
-                | "STATUS_DEACTIVATED";
-              description?: string;
-            }[];
-          };
-          chains?: {
+          custodian_group_uid?: string;
+          asset?: {
             chain?: string;
             name?: string;
-            address?: string;
-          }[];
+          };
+          /** Format: byte */
+          avatar?: string;
         };
       };
     };
@@ -24491,7 +24338,7 @@ export interface operations {
               name?: string;
               /** Format: byte */
               tag?: string;
-              attribute?: {
+              attributes?: {
                 /**
                  * @default LIQUIDITY_MODEL_UNSPECIFIED
                  * @enum {string}
@@ -24508,46 +24355,10 @@ export interface operations {
               status:
                 | "STATUS_UNSPECIFIED"
                 | "STATUS_ACTIVATED"
-                | "STATUS_DEACTIVATED";
-              /** CustodianGroup represents a group of custodians with their configuration
-               *     uid is used as identity of the group, btc_pubkey is change by list of
-               *     custodians */
-              custodian_group?: {
-                uid?: string;
-                name?: string;
-                /** Format: byte */
-                bitcoin_pubkey?: string;
-                /**
-                 * "tb1p07q440mdl4uyywns325dk8pvjphwety3psp4zvkngtjf3z3hhr2sfar3hv"
-                 * Format: int64
-                 */
-                quorum?: number;
-                /**
-                 * @default STATUS_UNSPECIFIED
-                 * @enum {string}
-                 */
-                status:
-                  | "STATUS_UNSPECIFIED"
-                  | "STATUS_ACTIVATED"
-                  | "STATUS_DEACTIVATED";
-                description?: string;
-                custodians?: {
-                  name?: string;
-                  val_address?: string;
-                  /** Format: byte */
-                  bitcoin_pubkey?: string;
-                  /**
-                   * "0215da913b3e87b4932b1e1b87d9667c28e7250aa0ed60b3a31095f541e1641488"
-                   * @default STATUS_UNSPECIFIED
-                   * @enum {string}
-                   */
-                  status:
-                    | "STATUS_UNSPECIFIED"
-                    | "STATUS_ACTIVATED"
-                    | "STATUS_DEACTIVATED";
-                  description?: string;
-                }[];
-              };
+                | "STATUS_DEACTIVATED"
+                | "STATUS_PENDING";
+              /** scalar.covenant.v1beta1.CustodianGroup custodian_group = 8; */
+              custodian_group_uid?: string;
               asset?: {
                 chain?: string;
                 name?: string;
@@ -24636,23 +24447,88 @@ export interface operations {
         content: {
           "*/*": {
             protocol?: {
-              key_id?: string;
               /** Format: byte */
-              custodians_pubkey?: string;
+              bitcoin_pubkey?: string;
+              /** Format: byte */
+              scalar_pubkey?: string;
+              /** Format: byte */
+              scalar_address?: string;
+              name?: string;
+              /** Format: byte */
+              tag?: string;
+              attributes?: {
+                /**
+                 * @default LIQUIDITY_MODEL_UNSPECIFIED
+                 * @enum {string}
+                 */
+                model:
+                  | "LIQUIDITY_MODEL_UNSPECIFIED"
+                  | "LIQUIDITY_MODEL_POOL"
+                  | "LIQUIDITY_MODEL_UPC";
+              };
               /**
-               * @default LIQUIDITY_MODEL_UNSPECIFIED
+               * @default STATUS_UNSPECIFIED
                * @enum {string}
                */
-              liquidity_model:
-                | "LIQUIDITY_MODEL_UNSPECIFIED"
-                | "LIQUIDITY_MODEL_POOL"
-                | "LIQUIDITY_MODEL_UPC";
-              symbol?: string;
-              origin_chain?: string;
-              minor_addresses?: {
-                chain_name?: string;
+              status:
+                | "STATUS_UNSPECIFIED"
+                | "STATUS_ACTIVATED"
+                | "STATUS_DEACTIVATED"
+                | "STATUS_PENDING";
+              custodian_group_uid?: string;
+              asset?: {
+                chain?: string;
+                name?: string;
+              };
+              chains?: {
+                chain?: string;
+                name?: string;
                 address?: string;
               }[];
+              /** Format: byte */
+              avatar?: string;
+              /** CustodianGroup represents a group of custodians with their configuration
+               *     uid is used as identity of the group, btc_pubkey is change by list of
+               *     custodians */
+              custodian_group?: {
+                /** the UID is unique, to distinguish between custodian groups */
+                uid?: string;
+                name?: string;
+                /** Format: byte */
+                bitcoin_pubkey?: string;
+                /**
+                 * "tb1p07q440mdl4uyywns325dk8pvjphwety3psp4zvkngtjf3z3hhr2sfar3hv"
+                 * Format: int64
+                 */
+                quorum?: number;
+                /**
+                 * @default STATUS_UNSPECIFIED
+                 * @enum {string}
+                 */
+                status:
+                  | "STATUS_UNSPECIFIED"
+                  | "STATUS_ACTIVATED"
+                  | "STATUS_DEACTIVATED"
+                  | "STATUS_PENDING";
+                description?: string;
+                custodians?: {
+                  name?: string;
+                  val_address?: string;
+                  /** Format: byte */
+                  bitcoin_pubkey?: string;
+                  /**
+                   * "0215da913b3e87b4932b1e1b87d9667c28e7250aa0ed60b3a31095f541e1641488"
+                   * @default STATUS_UNSPECIFIED
+                   * @enum {string}
+                   */
+                  status:
+                    | "STATUS_UNSPECIFIED"
+                    | "STATUS_ACTIVATED"
+                    | "STATUS_DEACTIVATED"
+                    | "STATUS_PENDING";
+                  description?: string;
+                }[];
+              };
             };
           };
         };
@@ -24743,7 +24619,7 @@ export interface operations {
               name?: string;
               /** Format: byte */
               tag?: string;
-              attribute?: {
+              attributes?: {
                 /**
                  * @default LIQUIDITY_MODEL_UNSPECIFIED
                  * @enum {string}
@@ -24760,46 +24636,10 @@ export interface operations {
               status:
                 | "STATUS_UNSPECIFIED"
                 | "STATUS_ACTIVATED"
-                | "STATUS_DEACTIVATED";
-              /** CustodianGroup represents a group of custodians with their configuration
-               *     uid is used as identity of the group, btc_pubkey is change by list of
-               *     custodians */
-              custodian_group?: {
-                uid?: string;
-                name?: string;
-                /** Format: byte */
-                bitcoin_pubkey?: string;
-                /**
-                 * "tb1p07q440mdl4uyywns325dk8pvjphwety3psp4zvkngtjf3z3hhr2sfar3hv"
-                 * Format: int64
-                 */
-                quorum?: number;
-                /**
-                 * @default STATUS_UNSPECIFIED
-                 * @enum {string}
-                 */
-                status:
-                  | "STATUS_UNSPECIFIED"
-                  | "STATUS_ACTIVATED"
-                  | "STATUS_DEACTIVATED";
-                description?: string;
-                custodians?: {
-                  name?: string;
-                  val_address?: string;
-                  /** Format: byte */
-                  bitcoin_pubkey?: string;
-                  /**
-                   * "0215da913b3e87b4932b1e1b87d9667c28e7250aa0ed60b3a31095f541e1641488"
-                   * @default STATUS_UNSPECIFIED
-                   * @enum {string}
-                   */
-                  status:
-                    | "STATUS_UNSPECIFIED"
-                    | "STATUS_ACTIVATED"
-                    | "STATUS_DEACTIVATED";
-                  description?: string;
-                }[];
-              };
+                | "STATUS_DEACTIVATED"
+                | "STATUS_PENDING";
+              /** scalar.covenant.v1beta1.CustodianGroup custodian_group = 8; */
+              custodian_group_uid?: string;
               asset?: {
                 chain?: string;
                 name?: string;
@@ -24888,7 +24728,8 @@ export interface operations {
           status?:
             | "STATUS_UNSPECIFIED"
             | "STATUS_ACTIVATED"
-            | "STATUS_DEACTIVATED";
+            | "STATUS_DEACTIVATED"
+            | "STATUS_PENDING";
         };
       };
     };
@@ -24910,7 +24751,7 @@ export interface operations {
               name?: string;
               /** Format: byte */
               tag?: string;
-              attribute?: {
+              attributes?: {
                 /**
                  * @default LIQUIDITY_MODEL_UNSPECIFIED
                  * @enum {string}
@@ -24927,46 +24768,10 @@ export interface operations {
               status:
                 | "STATUS_UNSPECIFIED"
                 | "STATUS_ACTIVATED"
-                | "STATUS_DEACTIVATED";
-              /** CustodianGroup represents a group of custodians with their configuration
-               *     uid is used as identity of the group, btc_pubkey is change by list of
-               *     custodians */
-              custodian_group?: {
-                uid?: string;
-                name?: string;
-                /** Format: byte */
-                bitcoin_pubkey?: string;
-                /**
-                 * "tb1p07q440mdl4uyywns325dk8pvjphwety3psp4zvkngtjf3z3hhr2sfar3hv"
-                 * Format: int64
-                 */
-                quorum?: number;
-                /**
-                 * @default STATUS_UNSPECIFIED
-                 * @enum {string}
-                 */
-                status:
-                  | "STATUS_UNSPECIFIED"
-                  | "STATUS_ACTIVATED"
-                  | "STATUS_DEACTIVATED";
-                description?: string;
-                custodians?: {
-                  name?: string;
-                  val_address?: string;
-                  /** Format: byte */
-                  bitcoin_pubkey?: string;
-                  /**
-                   * "0215da913b3e87b4932b1e1b87d9667c28e7250aa0ed60b3a31095f541e1641488"
-                   * @default STATUS_UNSPECIFIED
-                   * @enum {string}
-                   */
-                  status:
-                    | "STATUS_UNSPECIFIED"
-                    | "STATUS_ACTIVATED"
-                    | "STATUS_DEACTIVATED";
-                  description?: string;
-                }[];
-              };
+                | "STATUS_DEACTIVATED"
+                | "STATUS_PENDING";
+              /** scalar.covenant.v1beta1.CustodianGroup custodian_group = 8; */
+              custodian_group_uid?: string;
               asset?: {
                 chain?: string;
                 name?: string;
