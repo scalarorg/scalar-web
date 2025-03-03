@@ -180,7 +180,7 @@ export class ScalarSigningStargateClient extends SigningStargateClient {
 
     const createMsg: CreateProtocolEncodeObject = {
       typeUrl: typeUrlCreateProtocolRequest,
-      value: {
+      value: CreateProtocolRequest.fromPartial({
         sender: fromBech32(creator).data,
         bitcoinPubkey: Uint8Array.from(Buffer.from(params.bitcoin_pubkey.replace("0x", ""), "hex")),
         name: params.name,
@@ -194,8 +194,11 @@ export class ScalarSigningStargateClient extends SigningStargateClient {
           chain: params.asset.chain
         },
         avatar: Uint8Array.from(Buffer.from(params.avatar, "base64"))
-      },
+      }),
     }
+
+    console.log({ createMsg })
+
     return this.signAndBroadcast(creator, [createMsg], fee, memo)
   }
 }

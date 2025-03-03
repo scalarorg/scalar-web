@@ -3,7 +3,7 @@ import { type ClassValue, clsx } from "clsx";
 import { isHexString } from "ethers";
 import { keyBy } from "lodash";
 import { twMerge } from "tailwind-merge";
-import { formatUnits, isHex, parseUnits } from "viem";
+import { formatUnits, parseUnits } from "viem";
 import { decodeScalarBytesToUint8Array } from "./scalar";
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -211,13 +211,10 @@ export const fuzzyMatch = (candidate: string, query: string) => {
 const PUBKEY_LENGTH = 33;
 
 export const isSecp256k1Pubkey = (pubkey: string) => {
-<<<<<<< HEAD
-  const isHex = isHexString(pubkey);
-  const isLengthPubkey = pubkey.startsWith("0x")
-    ? pubkey.length === PUBKEY_LENGTH_WITH_0X
-    : pubkey.length === PUBKEY_LENGTH;
-
-  return isHex && isLengthPubkey;
+  if (pubkey.startsWith("0x")) {
+    return isHexString(pubkey, PUBKEY_LENGTH);
+  }
+  return isHexString(`0x${pubkey}`, PUBKEY_LENGTH);
 };
 
 export const extractBase64Data = (base64String: string) => {
@@ -227,10 +224,3 @@ export const extractBase64Data = (base64String: string) => {
 export const addBase64Prefix = (base64Data: string, mimeType = "image/png") => {
   return `data:${mimeType};base64,${base64Data}`;
 };
-=======
-  if (pubkey.startsWith("0x")) {
-    return isHexString(pubkey, PUBKEY_LENGTH);
-  }
-  return isHexString(`0x${pubkey}`, PUBKEY_LENGTH);
-};
->>>>>>> 09227c8 (Feat: setup sign create protocol request)

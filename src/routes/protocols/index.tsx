@@ -18,7 +18,7 @@ import {
 import { COMMON_VALIDATE_PAGE_SEARCH_PARAMS } from "@/constants";
 import { PROTOCOL_STATUS, ProtocolForm } from "@/features/protocol";
 import { useScalarProtocols } from "@/hooks";
-import { cn, fuzzyMatch } from "@/lib/utils";
+import { addBase64Prefix, cn, fuzzyMatch } from "@/lib/utils";
 import { useAccount, useConnectKeplr } from "@/providers/keplr-provider";
 import { TProtocolDetails } from "@/types/protocol";
 import { Link, createFileRoute } from "@tanstack/react-router";
@@ -58,8 +58,18 @@ const columns = [
     header: "Token",
     cell: ({ row }) => {
       const { chain } = row.original?.asset || {};
+      const avatar = row.original?.avatar || "";
 
-      return chain || "No token";
+      return (
+        <div className="flex items-center gap-2">
+          <img
+            src={addBase64Prefix(avatar)}
+            className="size-6 rounded-full"
+            alt="avatar"
+          />
+          <p>{chain}</p>
+        </div>
+      );
     },
   }),
   accessor("chains", {
