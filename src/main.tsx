@@ -18,6 +18,7 @@ import { RouterProvider, createRouter } from "@tanstack/react-router";
 import { scalarConfig } from "./lib/scalar";
 import { routeTree } from "./routeTree.gen";
 import "./index.css";
+import { ConfirmDialogProvider } from "./components/common";
 
 const router = createRouter({ routeTree });
 declare module "@tanstack/react-router" {
@@ -37,7 +38,9 @@ createRoot(document.getElementById("root")!).render(
             <NetworkProvider>
               <WalletProvider>
                 <KeplrProvider config={scalarConfig()}>
-                  <RouterProvider router={router} />
+                  <ConfirmDialogProvider>
+                    <RouterProvider router={router} />
+                  </ConfirmDialogProvider>
                 </KeplrProvider>
               </WalletProvider>
             </NetworkProvider>
