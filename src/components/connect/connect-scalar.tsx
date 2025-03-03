@@ -1,28 +1,42 @@
+import { Clipboard } from "@/components/common";
+import { Button } from "@/components/ui/button";
+import { usePathname } from "@/hooks";
+import { cn } from "@/lib/utils";
 import {
   useAccount,
-  useBalance,
   useConnectKeplr,
   useDisconnectKeplr,
 } from "@/providers/keplr-provider";
+import { Power } from "lucide-react";
 
 export const ConnectScalar = () => {
   const { account, isConnected } = useAccount();
   const { connect } = useConnectKeplr();
   const { disconnect } = useDisconnectKeplr();
-  const { data: balance } = useBalance();
+  const pathname = usePathname();
+
+  const isProtocolPage = pathname.includes("/protocols");
 
   return (
-    <div className="flex w-full flex-col gap-2">
-      <h2>Connect Scalar</h2>
-      <button
-        type="button"
-        className="w-40 cursor-pointer rounded-md bg-blue-500 p-2 text-white hover:bg-blue-600"
-        onClick={() => (isConnected ? disconnect() : connect())}
-      >
-        {isConnected ? "Disconnect" : "Connect"}
-      </button>
-      <p>Address: {account?.address}</p>
-      <p>Balance: {balance ?? "~"} $ASCAL</p>
+    <div className={cn("flex items-center gap-1", !isProtocolPage && "hidden")}>
+      {isConnected ? (
+        <>
+          <Clipboard
+            className="[&_span]:text-[18px]"
+            label={account?.address || ""}
+            text={account?.address || ""}
+          />
+          <button
+            type="button"
+            onClick={() => disconnect()}
+            className="cursor-pointer"
+          >
+            <Power className="size-5" />
+          </button>
+        </>
+      ) : (
+        <Button onClick={() => connect()}>Connect Scalar</Button>
+      )}
     </div>
   );
 };

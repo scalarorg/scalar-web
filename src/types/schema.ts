@@ -776,6 +776,192 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
+  "/scalar/convenant/v1beta1/custodians": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** Get custodians */
+    get: operations["Custodians"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/scalar/covenant/v1beta1/add_custodian_to_group": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** Add Custodian to custodian group
+     *     recalculate taproot pubkey when adding custodian to custodian group */
+    post: operations["AddCustodianToGroup"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/scalar/covenant/v1beta1/create_custodian": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** Create custodian */
+    post: operations["CreateCustodian"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/scalar/covenant/v1beta1/create_custodian_group": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** Create custodian group */
+    post: operations["CreateCustodianGroup"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/scalar/covenant/v1beta1/custodian_groups": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** Get custodian groups */
+    get: operations["Groups"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/scalar/covenant/v1beta1/params": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations["CovenantParams"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/scalar/covenant/v1beta1/remove_custodian_from_group": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** Remove Custodian from custodian group
+     *     recalculate taproot address when deleting custodian from custodian group */
+    post: operations["RemoveCustodianFromGroup"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/scalar/covenant/v1beta1/rotate_key": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    post: operations["CovenantRotateKey"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/scalar/covenant/v1beta1/submit_tap_script_sigs": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    post: operations["SubmitTapScriptSigs"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/scalar/covenant/v1beta1/update_custodian": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** Update custodian */
+    post: operations["UpdateCustodian"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/scalar/covenant/v1beta1/update_custodian_group": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** Update Custodian group */
+    post: operations["UpdateCustodianGroup"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
   "/scalar/multisig/rotate_key": {
     parameters: {
       query?: never;
@@ -4793,8 +4979,6 @@ export interface components {
         /** Format: byte */
         bitcoin_pubkey?: string;
         /** Format: byte */
-        scalar_pubkey?: string;
-        /** Format: byte */
         scalar_address?: string;
         name?: string;
         /** Format: byte */
@@ -4838,8 +5022,6 @@ export interface components {
       sender?: string;
       /** Format: byte */
       bitcoin_pubkey?: string;
-      /** Format: byte */
-      scalar_pubkey?: string;
       name?: string;
       tag?: string;
       attributes?: {
@@ -4864,8 +5046,6 @@ export interface components {
       protocol?: {
         /** Format: byte */
         bitcoin_pubkey?: string;
-        /** Format: byte */
-        scalar_pubkey?: string;
         /** Format: byte */
         scalar_address?: string;
         name?: string;
@@ -4908,8 +5088,6 @@ export interface components {
     "scalar.protocol.v1beta1.Protocol": {
       /** Format: byte */
       bitcoin_pubkey?: string;
-      /** Format: byte */
-      scalar_pubkey?: string;
       /** Format: byte */
       scalar_address?: string;
       name?: string;
@@ -5218,8 +5396,6 @@ export interface components {
         /** Format: byte */
         bitcoin_pubkey?: string;
         /** Format: byte */
-        scalar_pubkey?: string;
-        /** Format: byte */
         scalar_address?: string;
         name?: string;
         /** Format: byte */
@@ -5279,8 +5455,6 @@ export interface components {
         /** Format: byte */
         bitcoin_pubkey?: string;
         /** Format: byte */
-        scalar_pubkey?: string;
-        /** Format: byte */
         scalar_address?: string;
         name?: string;
         /** Format: byte */
@@ -5317,6 +5491,450 @@ export interface components {
         }[];
         /** Format: byte */
         avatar?: string;
+      };
+    };
+    "scalar.covenant.exported.v1beta1.TapScriptSig": {
+      /** Format: byte */
+      key_x_only?: string;
+      /** Format: byte */
+      leaf_hash?: string;
+      /** Format: byte */
+      signature?: string;
+    };
+    "scalar.covenant.exported.v1beta1.TapScriptSigsEntry": {
+      /** Format: uint64 */
+      index?: string;
+      sigs?: {
+        list?: {
+          /** Format: byte */
+          key_x_only?: string;
+          /** Format: byte */
+          leaf_hash?: string;
+          /** Format: byte */
+          signature?: string;
+        }[];
+      };
+    };
+    "scalar.covenant.exported.v1beta1.TapScriptSigsList": {
+      list?: {
+        /** Format: byte */
+        key_x_only?: string;
+        /** Format: byte */
+        leaf_hash?: string;
+        /** Format: byte */
+        signature?: string;
+      }[];
+    };
+    /** The reason we use a list instead of a map is because the map is not ensured
+     *     the deterministic order of the entries */
+    "scalar.covenant.exported.v1beta1.TapScriptSigsMap": {
+      inner?: {
+        /** Format: uint64 */
+        index?: string;
+        sigs?: {
+          list?: {
+            /** Format: byte */
+            key_x_only?: string;
+            /** Format: byte */
+            leaf_hash?: string;
+            /** Format: byte */
+            signature?: string;
+          }[];
+        };
+      }[];
+    };
+    "scalar.covenant.v1beta1.AddCustodianToGroupRequest": {
+      /** Format: byte */
+      sender?: string;
+      guid?: string;
+      /** Format: byte */
+      custodian_pubkey?: string;
+      description?: string;
+    };
+    "scalar.covenant.v1beta1.CreateCustodianGroupRequest": {
+      /** Format: byte */
+      sender?: string;
+      uid?: string;
+      name?: string;
+      /** Format: int64 */
+      quorum?: number;
+      /**
+       * @default STATUS_UNSPECIFIED
+       * @enum {string}
+       */
+      status:
+        | "STATUS_UNSPECIFIED"
+        | "STATUS_ACTIVATED"
+        | "STATUS_DEACTIVATED"
+        | "STATUS_PENDING";
+      description?: string;
+      custodian?: string[];
+    };
+    "scalar.covenant.v1beta1.CreateCustodianGroupResponse": {
+      /** CustodianGroup represents a group of custodians with their configuration
+       *     uid is used as identity of the group, btc_pubkey is change by list of
+       *     custodians */
+      group?: {
+        /** the UID is unique, to distinguish between custodian groups */
+        uid?: string;
+        name?: string;
+        /** Format: byte */
+        bitcoin_pubkey?: string;
+        /**
+         * "tb1p07q440mdl4uyywns325dk8pvjphwety3psp4zvkngtjf3z3hhr2sfar3hv"
+         * Format: int64
+         */
+        quorum?: number;
+        /**
+         * @default STATUS_UNSPECIFIED
+         * @enum {string}
+         */
+        status:
+          | "STATUS_UNSPECIFIED"
+          | "STATUS_ACTIVATED"
+          | "STATUS_DEACTIVATED"
+          | "STATUS_PENDING";
+        description?: string;
+        custodians?: {
+          name?: string;
+          val_address?: string;
+          /** Format: byte */
+          bitcoin_pubkey?: string;
+          /**
+           * "0215da913b3e87b4932b1e1b87d9667c28e7250aa0ed60b3a31095f541e1641488"
+           * @default STATUS_UNSPECIFIED
+           * @enum {string}
+           */
+          status:
+            | "STATUS_UNSPECIFIED"
+            | "STATUS_ACTIVATED"
+            | "STATUS_DEACTIVATED"
+            | "STATUS_PENDING";
+          description?: string;
+        }[];
+      };
+    };
+    "scalar.covenant.v1beta1.CreateCustodianRequest": {
+      /** Format: byte */
+      sender?: string;
+      name?: string;
+      /** Format: byte */
+      bitcoin_pubkey?: string;
+      /**
+       * @default STATUS_UNSPECIFIED
+       * @enum {string}
+       */
+      status:
+        | "STATUS_UNSPECIFIED"
+        | "STATUS_ACTIVATED"
+        | "STATUS_DEACTIVATED"
+        | "STATUS_PENDING";
+      description?: string;
+    };
+    "scalar.covenant.v1beta1.CreateCustodianResponse": {
+      /** Custodian represents an individual custodian configuration */
+      custodian?: {
+        name?: string;
+        val_address?: string;
+        /** Format: byte */
+        bitcoin_pubkey?: string;
+        /**
+         * "0215da913b3e87b4932b1e1b87d9667c28e7250aa0ed60b3a31095f541e1641488"
+         * @default STATUS_UNSPECIFIED
+         * @enum {string}
+         */
+        status:
+          | "STATUS_UNSPECIFIED"
+          | "STATUS_ACTIVATED"
+          | "STATUS_DEACTIVATED"
+          | "STATUS_PENDING";
+        description?: string;
+      };
+    };
+    "scalar.covenant.v1beta1.CustodianToGroupResponse": {
+      /** CustodianGroup represents a group of custodians with their configuration
+       *     uid is used as identity of the group, btc_pubkey is change by list of
+       *     custodians */
+      group?: {
+        /** the UID is unique, to distinguish between custodian groups */
+        uid?: string;
+        name?: string;
+        /** Format: byte */
+        bitcoin_pubkey?: string;
+        /**
+         * "tb1p07q440mdl4uyywns325dk8pvjphwety3psp4zvkngtjf3z3hhr2sfar3hv"
+         * Format: int64
+         */
+        quorum?: number;
+        /**
+         * @default STATUS_UNSPECIFIED
+         * @enum {string}
+         */
+        status:
+          | "STATUS_UNSPECIFIED"
+          | "STATUS_ACTIVATED"
+          | "STATUS_DEACTIVATED"
+          | "STATUS_PENDING";
+        description?: string;
+        custodians?: {
+          name?: string;
+          val_address?: string;
+          /** Format: byte */
+          bitcoin_pubkey?: string;
+          /**
+           * "0215da913b3e87b4932b1e1b87d9667c28e7250aa0ed60b3a31095f541e1641488"
+           * @default STATUS_UNSPECIFIED
+           * @enum {string}
+           */
+          status:
+            | "STATUS_UNSPECIFIED"
+            | "STATUS_ACTIVATED"
+            | "STATUS_DEACTIVATED"
+            | "STATUS_PENDING";
+          description?: string;
+        }[];
+      };
+    };
+    "scalar.covenant.v1beta1.CustodiansResponse": {
+      custodians?: {
+        name?: string;
+        val_address?: string;
+        /** Format: byte */
+        bitcoin_pubkey?: string;
+        /**
+         * "0215da913b3e87b4932b1e1b87d9667c28e7250aa0ed60b3a31095f541e1641488"
+         * @default STATUS_UNSPECIFIED
+         * @enum {string}
+         */
+        status:
+          | "STATUS_UNSPECIFIED"
+          | "STATUS_ACTIVATED"
+          | "STATUS_DEACTIVATED"
+          | "STATUS_PENDING";
+        description?: string;
+      }[];
+    };
+    "scalar.covenant.v1beta1.GroupsResponse": {
+      groups?: {
+        /** the UID is unique, to distinguish between custodian groups */
+        uid?: string;
+        name?: string;
+        /** Format: byte */
+        bitcoin_pubkey?: string;
+        /**
+         * "tb1p07q440mdl4uyywns325dk8pvjphwety3psp4zvkngtjf3z3hhr2sfar3hv"
+         * Format: int64
+         */
+        quorum?: number;
+        /**
+         * @default STATUS_UNSPECIFIED
+         * @enum {string}
+         */
+        status:
+          | "STATUS_UNSPECIFIED"
+          | "STATUS_ACTIVATED"
+          | "STATUS_DEACTIVATED"
+          | "STATUS_PENDING";
+        description?: string;
+        custodians?: {
+          name?: string;
+          val_address?: string;
+          /** Format: byte */
+          bitcoin_pubkey?: string;
+          /**
+           * "0215da913b3e87b4932b1e1b87d9667c28e7250aa0ed60b3a31095f541e1641488"
+           * @default STATUS_UNSPECIFIED
+           * @enum {string}
+           */
+          status:
+            | "STATUS_UNSPECIFIED"
+            | "STATUS_ACTIVATED"
+            | "STATUS_DEACTIVATED"
+            | "STATUS_PENDING";
+          description?: string;
+        }[];
+      }[];
+    };
+    /** Params represent the genesis parameters for the module */
+    "scalar.covenant.v1beta1.Params": {
+      signing_threshold?: {
+        /**
+         * split threshold into Numerator and denominator to avoid floating point
+         *     errors down the line
+         * Format: int64
+         */
+        numerator?: string;
+        /** Format: int64 */
+        denominator?: string;
+      };
+      /** Format: int64 */
+      signing_timeout?: string;
+      /** Format: int64 */
+      signing_grace_period?: string;
+      /** Format: uint64 */
+      active_epoch_count?: string;
+    };
+    "scalar.covenant.v1beta1.ParamsResponse": {
+      /** Params represent the genesis parameters for the module */
+      params?: {
+        signing_threshold?: {
+          /**
+           * split threshold into Numerator and denominator to avoid floating point
+           *     errors down the line
+           * Format: int64
+           */
+          numerator?: string;
+          /** Format: int64 */
+          denominator?: string;
+        };
+        /** Format: int64 */
+        signing_timeout?: string;
+        /** Format: int64 */
+        signing_grace_period?: string;
+        /** Format: uint64 */
+        active_epoch_count?: string;
+      };
+    };
+    "scalar.covenant.v1beta1.RemoveCustodianFromGroupRequest": {
+      /** Format: byte */
+      sender?: string;
+      guid?: string;
+      /** Format: byte */
+      custodian_pubkey?: string;
+      description?: string;
+    };
+    /** Rotate key for custodian group */
+    "scalar.covenant.v1beta1.RotateKeyRequest": {
+      /** Format: byte */
+      sender?: string;
+      chain?: string;
+    };
+    "scalar.covenant.v1beta1.RotateKeyResponse": Record<string, never>;
+    "scalar.covenant.v1beta1.SubmitTapScriptSigsRequest": {
+      /** Format: byte */
+      sender?: string;
+      /** Format: uint64 */
+      sig_id?: string;
+      list_of_tap_script_sigs_map?: {
+        inner?: {
+          /** Format: uint64 */
+          index?: string;
+          sigs?: {
+            list?: {
+              /** Format: byte */
+              key_x_only?: string;
+              /** Format: byte */
+              leaf_hash?: string;
+              /** Format: byte */
+              signature?: string;
+            }[];
+          };
+        }[];
+      }[];
+    };
+    "scalar.covenant.v1beta1.SubmitTapScriptSigsResponse": Record<
+      string,
+      never
+    >;
+    "scalar.covenant.v1beta1.UpdateCustodianGroupRequest": {
+      /** Format: byte */
+      sender?: string;
+      uid?: string;
+      name?: string;
+      /** Format: int64 */
+      quorum?: number;
+      /**
+       * @default STATUS_UNSPECIFIED
+       * @enum {string}
+       */
+      status:
+        | "STATUS_UNSPECIFIED"
+        | "STATUS_ACTIVATED"
+        | "STATUS_DEACTIVATED"
+        | "STATUS_PENDING";
+      description?: string;
+      custodian?: string[];
+    };
+    "scalar.covenant.v1beta1.UpdateCustodianGroupResponse": {
+      /** CustodianGroup represents a group of custodians with their configuration
+       *     uid is used as identity of the group, btc_pubkey is change by list of
+       *     custodians */
+      group?: {
+        /** the UID is unique, to distinguish between custodian groups */
+        uid?: string;
+        name?: string;
+        /** Format: byte */
+        bitcoin_pubkey?: string;
+        /**
+         * "tb1p07q440mdl4uyywns325dk8pvjphwety3psp4zvkngtjf3z3hhr2sfar3hv"
+         * Format: int64
+         */
+        quorum?: number;
+        /**
+         * @default STATUS_UNSPECIFIED
+         * @enum {string}
+         */
+        status:
+          | "STATUS_UNSPECIFIED"
+          | "STATUS_ACTIVATED"
+          | "STATUS_DEACTIVATED"
+          | "STATUS_PENDING";
+        description?: string;
+        custodians?: {
+          name?: string;
+          val_address?: string;
+          /** Format: byte */
+          bitcoin_pubkey?: string;
+          /**
+           * "0215da913b3e87b4932b1e1b87d9667c28e7250aa0ed60b3a31095f541e1641488"
+           * @default STATUS_UNSPECIFIED
+           * @enum {string}
+           */
+          status:
+            | "STATUS_UNSPECIFIED"
+            | "STATUS_ACTIVATED"
+            | "STATUS_DEACTIVATED"
+            | "STATUS_PENDING";
+          description?: string;
+        }[];
+      };
+    };
+    /** Pubkey used as key for lookup custodian to update other values */
+    "scalar.covenant.v1beta1.UpdateCustodianRequest": {
+      /** Format: byte */
+      sender?: string;
+      /** Format: byte */
+      bitcoin_pubkey?: string;
+      name?: string;
+      /**
+       * @default STATUS_UNSPECIFIED
+       * @enum {string}
+       */
+      status:
+        | "STATUS_UNSPECIFIED"
+        | "STATUS_ACTIVATED"
+        | "STATUS_DEACTIVATED"
+        | "STATUS_PENDING";
+      description?: string;
+    };
+    "scalar.covenant.v1beta1.UpdateCustodianResponse": {
+      /** Custodian represents an individual custodian configuration */
+      custodian?: {
+        name?: string;
+        val_address?: string;
+        /** Format: byte */
+        bitcoin_pubkey?: string;
+        /**
+         * "0215da913b3e87b4932b1e1b87d9667c28e7250aa0ed60b3a31095f541e1641488"
+         * @default STATUS_UNSPECIFIED
+         * @enum {string}
+         */
+        status:
+          | "STATUS_UNSPECIFIED"
+          | "STATUS_ACTIVATED"
+          | "STATUS_DEACTIVATED"
+          | "STATUS_PENDING";
+        description?: string;
       };
     };
     /**
@@ -20537,6 +21155,41 @@ export interface components {
         };
       };
     };
+    AddCustodianToGroupBody: {
+      content: {
+        "application/json": {
+          /** Format: byte */
+          sender?: string;
+          guid?: string;
+          /** Format: byte */
+          custodian_pubkey?: string;
+          description?: string;
+        };
+      };
+    };
+    CreateCustodianGroupBody: {
+      content: {
+        "application/json": {
+          /** Format: byte */
+          sender?: string;
+          uid?: string;
+          name?: string;
+          /** Format: int64 */
+          quorum?: number;
+          /**
+           * @default STATUS_UNSPECIFIED
+           * @enum {string}
+           */
+          status?:
+            | "STATUS_UNSPECIFIED"
+            | "STATUS_ACTIVATED"
+            | "STATUS_DEACTIVATED"
+            | "STATUS_PENDING";
+          description?: string;
+          custodian?: string[];
+        };
+      };
+    };
   };
   headers: never;
   pathItems: never;
@@ -24189,8 +24842,6 @@ export interface operations {
               /** Format: byte */
               bitcoin_pubkey?: string;
               /** Format: byte */
-              scalar_pubkey?: string;
-              /** Format: byte */
               scalar_address?: string;
               name?: string;
               /** Format: byte */
@@ -24296,8 +24947,6 @@ export interface operations {
           sender?: string;
           /** Format: byte */
           bitcoin_pubkey?: string;
-          /** Format: byte */
-          scalar_pubkey?: string;
           name?: string;
           tag?: string;
           attributes?: {
@@ -24331,8 +24980,6 @@ export interface operations {
             protocol?: {
               /** Format: byte */
               bitcoin_pubkey?: string;
-              /** Format: byte */
-              scalar_pubkey?: string;
               /** Format: byte */
               scalar_address?: string;
               name?: string;
@@ -24613,8 +25260,6 @@ export interface operations {
               /** Format: byte */
               bitcoin_pubkey?: string;
               /** Format: byte */
-              scalar_pubkey?: string;
-              /** Format: byte */
               scalar_address?: string;
               name?: string;
               /** Format: byte */
@@ -24745,8 +25390,6 @@ export interface operations {
               /** Format: byte */
               bitcoin_pubkey?: string;
               /** Format: byte */
-              scalar_pubkey?: string;
-              /** Format: byte */
               scalar_address?: string;
               name?: string;
               /** Format: byte */
@@ -24838,14 +25481,761 @@ export interface operations {
       };
     };
   };
-  RotateKey: {
+  Custodians: {
+    parameters: {
+      query?: {
+        name?: string;
+        pubkey?: string;
+        status?:
+          | "STATUS_UNSPECIFIED"
+          | "STATUS_ACTIVATED"
+          | "STATUS_DEACTIVATED"
+          | "STATUS_PENDING";
+      };
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description A successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "*/*": {
+            custodians?: {
+              name?: string;
+              val_address?: string;
+              /** Format: byte */
+              bitcoin_pubkey?: string;
+              /**
+               * "0215da913b3e87b4932b1e1b87d9667c28e7250aa0ed60b3a31095f541e1641488"
+               * @default STATUS_UNSPECIFIED
+               * @enum {string}
+               */
+              status:
+                | "STATUS_UNSPECIFIED"
+                | "STATUS_ACTIVATED"
+                | "STATUS_DEACTIVATED"
+                | "STATUS_PENDING";
+              description?: string;
+            }[];
+          };
+        };
+      };
+      /** @description An unexpected error response */
+      default: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "*/*": {
+            error?: string;
+            /** Format: int32 */
+            code?: number;
+            message?: string;
+            details?: {
+              /** @description A URL/resource name that uniquely identifies the type of the serialized
+               *     protocol buffer message. This string must contain at least
+               *     one "/" character. The last segment of the URL's path must represent
+               *     the fully qualified name of the type (as in
+               *     `path/google.protobuf.Duration`). The name should be in a canonical form
+               *     (e.g., leading "." is not accepted).
+               *
+               *     In practice, teams usually precompile into the binary all types that they
+               *     expect it to use in the context of Any. However, for URLs which use the
+               *     scheme `http`, `https`, or no scheme, one can optionally set up a type
+               *     server that maps type URLs to message definitions as follows:
+               *
+               *     * If no scheme is provided, `https` is assumed.
+               *     * An HTTP GET on the URL must yield a [google.protobuf.Type][]
+               *       value in binary format, or produce an error.
+               *     * Applications are allowed to cache lookup results based on the
+               *       URL, or have them precompiled into a binary to avoid any
+               *       lookup. Therefore, binary compatibility needs to be preserved
+               *       on changes to types. (Use versioned type names to manage
+               *       breaking changes.)
+               *
+               *     Note: this functionality is not currently available in the official
+               *     protobuf release, and it is not used for type URLs beginning with
+               *     type.googleapis.com.
+               *
+               *     Schemes other than `http`, `https` (or the empty scheme) might be
+               *     used with implementation specific semantics. */
+              type_url?: string;
+              /**
+               * Format: byte
+               * @description Must be a valid serialized protocol buffer of the above specified type.
+               */
+              value?: string;
+            }[];
+          };
+        };
+      };
+    };
+  };
+  AddCustodianToGroup: {
     parameters: {
       query?: never;
       header?: never;
       path?: never;
       cookie?: never;
     };
-    requestBody: components["requestBodies"]["CreateTransferOperatorshipBody"];
+    requestBody: components["requestBodies"]["AddCustodianToGroupBody"];
+    responses: {
+      /** @description A successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "*/*": {
+            /** CustodianGroup represents a group of custodians with their configuration
+             *     uid is used as identity of the group, btc_pubkey is change by list of
+             *     custodians */
+            group?: {
+              /** the UID is unique, to distinguish between custodian groups */
+              uid?: string;
+              name?: string;
+              /** Format: byte */
+              bitcoin_pubkey?: string;
+              /**
+               * "tb1p07q440mdl4uyywns325dk8pvjphwety3psp4zvkngtjf3z3hhr2sfar3hv"
+               * Format: int64
+               */
+              quorum?: number;
+              /**
+               * @default STATUS_UNSPECIFIED
+               * @enum {string}
+               */
+              status:
+                | "STATUS_UNSPECIFIED"
+                | "STATUS_ACTIVATED"
+                | "STATUS_DEACTIVATED"
+                | "STATUS_PENDING";
+              description?: string;
+              custodians?: {
+                name?: string;
+                val_address?: string;
+                /** Format: byte */
+                bitcoin_pubkey?: string;
+                /**
+                 * "0215da913b3e87b4932b1e1b87d9667c28e7250aa0ed60b3a31095f541e1641488"
+                 * @default STATUS_UNSPECIFIED
+                 * @enum {string}
+                 */
+                status:
+                  | "STATUS_UNSPECIFIED"
+                  | "STATUS_ACTIVATED"
+                  | "STATUS_DEACTIVATED"
+                  | "STATUS_PENDING";
+                description?: string;
+              }[];
+            };
+          };
+        };
+      };
+      /** @description An unexpected error response */
+      default: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "*/*": {
+            error?: string;
+            /** Format: int32 */
+            code?: number;
+            message?: string;
+            details?: {
+              /** @description A URL/resource name that uniquely identifies the type of the serialized
+               *     protocol buffer message. This string must contain at least
+               *     one "/" character. The last segment of the URL's path must represent
+               *     the fully qualified name of the type (as in
+               *     `path/google.protobuf.Duration`). The name should be in a canonical form
+               *     (e.g., leading "." is not accepted).
+               *
+               *     In practice, teams usually precompile into the binary all types that they
+               *     expect it to use in the context of Any. However, for URLs which use the
+               *     scheme `http`, `https`, or no scheme, one can optionally set up a type
+               *     server that maps type URLs to message definitions as follows:
+               *
+               *     * If no scheme is provided, `https` is assumed.
+               *     * An HTTP GET on the URL must yield a [google.protobuf.Type][]
+               *       value in binary format, or produce an error.
+               *     * Applications are allowed to cache lookup results based on the
+               *       URL, or have them precompiled into a binary to avoid any
+               *       lookup. Therefore, binary compatibility needs to be preserved
+               *       on changes to types. (Use versioned type names to manage
+               *       breaking changes.)
+               *
+               *     Note: this functionality is not currently available in the official
+               *     protobuf release, and it is not used for type URLs beginning with
+               *     type.googleapis.com.
+               *
+               *     Schemes other than `http`, `https` (or the empty scheme) might be
+               *     used with implementation specific semantics. */
+              type_url?: string;
+              /**
+               * Format: byte
+               * @description Must be a valid serialized protocol buffer of the above specified type.
+               */
+              value?: string;
+            }[];
+          };
+        };
+      };
+    };
+  };
+  CreateCustodian: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": {
+          /** Format: byte */
+          sender?: string;
+          name?: string;
+          /** Format: byte */
+          bitcoin_pubkey?: string;
+          /**
+           * @default STATUS_UNSPECIFIED
+           * @enum {string}
+           */
+          status?:
+            | "STATUS_UNSPECIFIED"
+            | "STATUS_ACTIVATED"
+            | "STATUS_DEACTIVATED"
+            | "STATUS_PENDING";
+          description?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description A successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "*/*": {
+            /** Custodian represents an individual custodian configuration */
+            custodian?: {
+              name?: string;
+              val_address?: string;
+              /** Format: byte */
+              bitcoin_pubkey?: string;
+              /**
+               * "0215da913b3e87b4932b1e1b87d9667c28e7250aa0ed60b3a31095f541e1641488"
+               * @default STATUS_UNSPECIFIED
+               * @enum {string}
+               */
+              status:
+                | "STATUS_UNSPECIFIED"
+                | "STATUS_ACTIVATED"
+                | "STATUS_DEACTIVATED"
+                | "STATUS_PENDING";
+              description?: string;
+            };
+          };
+        };
+      };
+      /** @description An unexpected error response */
+      default: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "*/*": {
+            error?: string;
+            /** Format: int32 */
+            code?: number;
+            message?: string;
+            details?: {
+              /** @description A URL/resource name that uniquely identifies the type of the serialized
+               *     protocol buffer message. This string must contain at least
+               *     one "/" character. The last segment of the URL's path must represent
+               *     the fully qualified name of the type (as in
+               *     `path/google.protobuf.Duration`). The name should be in a canonical form
+               *     (e.g., leading "." is not accepted).
+               *
+               *     In practice, teams usually precompile into the binary all types that they
+               *     expect it to use in the context of Any. However, for URLs which use the
+               *     scheme `http`, `https`, or no scheme, one can optionally set up a type
+               *     server that maps type URLs to message definitions as follows:
+               *
+               *     * If no scheme is provided, `https` is assumed.
+               *     * An HTTP GET on the URL must yield a [google.protobuf.Type][]
+               *       value in binary format, or produce an error.
+               *     * Applications are allowed to cache lookup results based on the
+               *       URL, or have them precompiled into a binary to avoid any
+               *       lookup. Therefore, binary compatibility needs to be preserved
+               *       on changes to types. (Use versioned type names to manage
+               *       breaking changes.)
+               *
+               *     Note: this functionality is not currently available in the official
+               *     protobuf release, and it is not used for type URLs beginning with
+               *     type.googleapis.com.
+               *
+               *     Schemes other than `http`, `https` (or the empty scheme) might be
+               *     used with implementation specific semantics. */
+              type_url?: string;
+              /**
+               * Format: byte
+               * @description Must be a valid serialized protocol buffer of the above specified type.
+               */
+              value?: string;
+            }[];
+          };
+        };
+      };
+    };
+  };
+  CreateCustodianGroup: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: components["requestBodies"]["CreateCustodianGroupBody"];
+    responses: {
+      /** @description A successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "*/*": {
+            /** CustodianGroup represents a group of custodians with their configuration
+             *     uid is used as identity of the group, btc_pubkey is change by list of
+             *     custodians */
+            group?: {
+              /** the UID is unique, to distinguish between custodian groups */
+              uid?: string;
+              name?: string;
+              /** Format: byte */
+              bitcoin_pubkey?: string;
+              /**
+               * "tb1p07q440mdl4uyywns325dk8pvjphwety3psp4zvkngtjf3z3hhr2sfar3hv"
+               * Format: int64
+               */
+              quorum?: number;
+              /**
+               * @default STATUS_UNSPECIFIED
+               * @enum {string}
+               */
+              status:
+                | "STATUS_UNSPECIFIED"
+                | "STATUS_ACTIVATED"
+                | "STATUS_DEACTIVATED"
+                | "STATUS_PENDING";
+              description?: string;
+              custodians?: {
+                name?: string;
+                val_address?: string;
+                /** Format: byte */
+                bitcoin_pubkey?: string;
+                /**
+                 * "0215da913b3e87b4932b1e1b87d9667c28e7250aa0ed60b3a31095f541e1641488"
+                 * @default STATUS_UNSPECIFIED
+                 * @enum {string}
+                 */
+                status:
+                  | "STATUS_UNSPECIFIED"
+                  | "STATUS_ACTIVATED"
+                  | "STATUS_DEACTIVATED"
+                  | "STATUS_PENDING";
+                description?: string;
+              }[];
+            };
+          };
+        };
+      };
+      /** @description An unexpected error response */
+      default: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "*/*": {
+            error?: string;
+            /** Format: int32 */
+            code?: number;
+            message?: string;
+            details?: {
+              /** @description A URL/resource name that uniquely identifies the type of the serialized
+               *     protocol buffer message. This string must contain at least
+               *     one "/" character. The last segment of the URL's path must represent
+               *     the fully qualified name of the type (as in
+               *     `path/google.protobuf.Duration`). The name should be in a canonical form
+               *     (e.g., leading "." is not accepted).
+               *
+               *     In practice, teams usually precompile into the binary all types that they
+               *     expect it to use in the context of Any. However, for URLs which use the
+               *     scheme `http`, `https`, or no scheme, one can optionally set up a type
+               *     server that maps type URLs to message definitions as follows:
+               *
+               *     * If no scheme is provided, `https` is assumed.
+               *     * An HTTP GET on the URL must yield a [google.protobuf.Type][]
+               *       value in binary format, or produce an error.
+               *     * Applications are allowed to cache lookup results based on the
+               *       URL, or have them precompiled into a binary to avoid any
+               *       lookup. Therefore, binary compatibility needs to be preserved
+               *       on changes to types. (Use versioned type names to manage
+               *       breaking changes.)
+               *
+               *     Note: this functionality is not currently available in the official
+               *     protobuf release, and it is not used for type URLs beginning with
+               *     type.googleapis.com.
+               *
+               *     Schemes other than `http`, `https` (or the empty scheme) might be
+               *     used with implementation specific semantics. */
+              type_url?: string;
+              /**
+               * Format: byte
+               * @description Must be a valid serialized protocol buffer of the above specified type.
+               */
+              value?: string;
+            }[];
+          };
+        };
+      };
+    };
+  };
+  Groups: {
+    parameters: {
+      query?: {
+        uid?: string;
+      };
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description A successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "*/*": {
+            groups?: {
+              /** the UID is unique, to distinguish between custodian groups */
+              uid?: string;
+              name?: string;
+              /** Format: byte */
+              bitcoin_pubkey?: string;
+              /**
+               * "tb1p07q440mdl4uyywns325dk8pvjphwety3psp4zvkngtjf3z3hhr2sfar3hv"
+               * Format: int64
+               */
+              quorum?: number;
+              /**
+               * @default STATUS_UNSPECIFIED
+               * @enum {string}
+               */
+              status:
+                | "STATUS_UNSPECIFIED"
+                | "STATUS_ACTIVATED"
+                | "STATUS_DEACTIVATED"
+                | "STATUS_PENDING";
+              description?: string;
+              custodians?: {
+                name?: string;
+                val_address?: string;
+                /** Format: byte */
+                bitcoin_pubkey?: string;
+                /**
+                 * "0215da913b3e87b4932b1e1b87d9667c28e7250aa0ed60b3a31095f541e1641488"
+                 * @default STATUS_UNSPECIFIED
+                 * @enum {string}
+                 */
+                status:
+                  | "STATUS_UNSPECIFIED"
+                  | "STATUS_ACTIVATED"
+                  | "STATUS_DEACTIVATED"
+                  | "STATUS_PENDING";
+                description?: string;
+              }[];
+            }[];
+          };
+        };
+      };
+      /** @description An unexpected error response */
+      default: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "*/*": {
+            error?: string;
+            /** Format: int32 */
+            code?: number;
+            message?: string;
+            details?: {
+              /** @description A URL/resource name that uniquely identifies the type of the serialized
+               *     protocol buffer message. This string must contain at least
+               *     one "/" character. The last segment of the URL's path must represent
+               *     the fully qualified name of the type (as in
+               *     `path/google.protobuf.Duration`). The name should be in a canonical form
+               *     (e.g., leading "." is not accepted).
+               *
+               *     In practice, teams usually precompile into the binary all types that they
+               *     expect it to use in the context of Any. However, for URLs which use the
+               *     scheme `http`, `https`, or no scheme, one can optionally set up a type
+               *     server that maps type URLs to message definitions as follows:
+               *
+               *     * If no scheme is provided, `https` is assumed.
+               *     * An HTTP GET on the URL must yield a [google.protobuf.Type][]
+               *       value in binary format, or produce an error.
+               *     * Applications are allowed to cache lookup results based on the
+               *       URL, or have them precompiled into a binary to avoid any
+               *       lookup. Therefore, binary compatibility needs to be preserved
+               *       on changes to types. (Use versioned type names to manage
+               *       breaking changes.)
+               *
+               *     Note: this functionality is not currently available in the official
+               *     protobuf release, and it is not used for type URLs beginning with
+               *     type.googleapis.com.
+               *
+               *     Schemes other than `http`, `https` (or the empty scheme) might be
+               *     used with implementation specific semantics. */
+              type_url?: string;
+              /**
+               * Format: byte
+               * @description Must be a valid serialized protocol buffer of the above specified type.
+               */
+              value?: string;
+            }[];
+          };
+        };
+      };
+    };
+  };
+  CovenantParams: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description A successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "*/*": {
+            /** Params represent the genesis parameters for the module */
+            params?: {
+              signing_threshold?: {
+                /**
+                 * split threshold into Numerator and denominator to avoid floating point
+                 *     errors down the line
+                 * Format: int64
+                 */
+                numerator?: string;
+                /** Format: int64 */
+                denominator?: string;
+              };
+              /** Format: int64 */
+              signing_timeout?: string;
+              /** Format: int64 */
+              signing_grace_period?: string;
+              /** Format: uint64 */
+              active_epoch_count?: string;
+            };
+          };
+        };
+      };
+      /** @description An unexpected error response */
+      default: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "*/*": {
+            error?: string;
+            /** Format: int32 */
+            code?: number;
+            message?: string;
+            details?: {
+              /** @description A URL/resource name that uniquely identifies the type of the serialized
+               *     protocol buffer message. This string must contain at least
+               *     one "/" character. The last segment of the URL's path must represent
+               *     the fully qualified name of the type (as in
+               *     `path/google.protobuf.Duration`). The name should be in a canonical form
+               *     (e.g., leading "." is not accepted).
+               *
+               *     In practice, teams usually precompile into the binary all types that they
+               *     expect it to use in the context of Any. However, for URLs which use the
+               *     scheme `http`, `https`, or no scheme, one can optionally set up a type
+               *     server that maps type URLs to message definitions as follows:
+               *
+               *     * If no scheme is provided, `https` is assumed.
+               *     * An HTTP GET on the URL must yield a [google.protobuf.Type][]
+               *       value in binary format, or produce an error.
+               *     * Applications are allowed to cache lookup results based on the
+               *       URL, or have them precompiled into a binary to avoid any
+               *       lookup. Therefore, binary compatibility needs to be preserved
+               *       on changes to types. (Use versioned type names to manage
+               *       breaking changes.)
+               *
+               *     Note: this functionality is not currently available in the official
+               *     protobuf release, and it is not used for type URLs beginning with
+               *     type.googleapis.com.
+               *
+               *     Schemes other than `http`, `https` (or the empty scheme) might be
+               *     used with implementation specific semantics. */
+              type_url?: string;
+              /**
+               * Format: byte
+               * @description Must be a valid serialized protocol buffer of the above specified type.
+               */
+              value?: string;
+            }[];
+          };
+        };
+      };
+    };
+  };
+  RemoveCustodianFromGroup: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: components["requestBodies"]["AddCustodianToGroupBody"];
+    responses: {
+      /** @description A successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "*/*": {
+            /** CustodianGroup represents a group of custodians with their configuration
+             *     uid is used as identity of the group, btc_pubkey is change by list of
+             *     custodians */
+            group?: {
+              /** the UID is unique, to distinguish between custodian groups */
+              uid?: string;
+              name?: string;
+              /** Format: byte */
+              bitcoin_pubkey?: string;
+              /**
+               * "tb1p07q440mdl4uyywns325dk8pvjphwety3psp4zvkngtjf3z3hhr2sfar3hv"
+               * Format: int64
+               */
+              quorum?: number;
+              /**
+               * @default STATUS_UNSPECIFIED
+               * @enum {string}
+               */
+              status:
+                | "STATUS_UNSPECIFIED"
+                | "STATUS_ACTIVATED"
+                | "STATUS_DEACTIVATED"
+                | "STATUS_PENDING";
+              description?: string;
+              custodians?: {
+                name?: string;
+                val_address?: string;
+                /** Format: byte */
+                bitcoin_pubkey?: string;
+                /**
+                 * "0215da913b3e87b4932b1e1b87d9667c28e7250aa0ed60b3a31095f541e1641488"
+                 * @default STATUS_UNSPECIFIED
+                 * @enum {string}
+                 */
+                status:
+                  | "STATUS_UNSPECIFIED"
+                  | "STATUS_ACTIVATED"
+                  | "STATUS_DEACTIVATED"
+                  | "STATUS_PENDING";
+                description?: string;
+              }[];
+            };
+          };
+        };
+      };
+      /** @description An unexpected error response */
+      default: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "*/*": {
+            error?: string;
+            /** Format: int32 */
+            code?: number;
+            message?: string;
+            details?: {
+              /** @description A URL/resource name that uniquely identifies the type of the serialized
+               *     protocol buffer message. This string must contain at least
+               *     one "/" character. The last segment of the URL's path must represent
+               *     the fully qualified name of the type (as in
+               *     `path/google.protobuf.Duration`). The name should be in a canonical form
+               *     (e.g., leading "." is not accepted).
+               *
+               *     In practice, teams usually precompile into the binary all types that they
+               *     expect it to use in the context of Any. However, for URLs which use the
+               *     scheme `http`, `https`, or no scheme, one can optionally set up a type
+               *     server that maps type URLs to message definitions as follows:
+               *
+               *     * If no scheme is provided, `https` is assumed.
+               *     * An HTTP GET on the URL must yield a [google.protobuf.Type][]
+               *       value in binary format, or produce an error.
+               *     * Applications are allowed to cache lookup results based on the
+               *       URL, or have them precompiled into a binary to avoid any
+               *       lookup. Therefore, binary compatibility needs to be preserved
+               *       on changes to types. (Use versioned type names to manage
+               *       breaking changes.)
+               *
+               *     Note: this functionality is not currently available in the official
+               *     protobuf release, and it is not used for type URLs beginning with
+               *     type.googleapis.com.
+               *
+               *     Schemes other than `http`, `https` (or the empty scheme) might be
+               *     used with implementation specific semantics. */
+              type_url?: string;
+              /**
+               * Format: byte
+               * @description Must be a valid serialized protocol buffer of the above specified type.
+               */
+              value?: string;
+            }[];
+          };
+        };
+      };
+    };
+  };
+  CovenantRotateKey: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": {
+          /** Format: byte */
+          sender?: string;
+          chain?: string;
+        };
+      };
+    };
     responses: {
       /** @description A successful response. */
       200: {
@@ -24907,7 +26297,7 @@ export interface operations {
       };
     };
   };
-  StartKeygen: {
+  SubmitTapScriptSigs: {
     parameters: {
       query?: never;
       header?: never;
@@ -24917,8 +26307,26 @@ export interface operations {
     requestBody: {
       content: {
         "application/json": {
+          /** Format: byte */
           sender?: string;
-          key_id?: string;
+          /** Format: uint64 */
+          sig_id?: string;
+          list_of_tap_script_sigs_map?: {
+            inner?: {
+              /** Format: uint64 */
+              index?: string;
+              sigs?: {
+                list?: {
+                  /** Format: byte */
+                  key_x_only?: string;
+                  /** Format: byte */
+                  leaf_hash?: string;
+                  /** Format: byte */
+                  signature?: string;
+                }[];
+              };
+            }[];
+          }[];
         };
       };
     };
@@ -24976,6 +26384,311 @@ export interface operations {
                * Format: byte
                * @description Must be a valid serialized protocol buffer of the above specified type.
                */
+              value?: string;
+            }[];
+          };
+        };
+      };
+    };
+  };
+  UpdateCustodian: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": {
+          /** Format: byte */
+          sender?: string;
+          /** Format: byte */
+          bitcoin_pubkey?: string;
+          name?: string;
+          /**
+           * @default STATUS_UNSPECIFIED
+           * @enum {string}
+           */
+          status?:
+            | "STATUS_UNSPECIFIED"
+            | "STATUS_ACTIVATED"
+            | "STATUS_DEACTIVATED"
+            | "STATUS_PENDING";
+          description?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description A successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "*/*": {
+            /** Custodian represents an individual custodian configuration */
+            custodian?: {
+              name?: string;
+              val_address?: string;
+              /** Format: byte */
+              bitcoin_pubkey?: string;
+              /**
+               * "0215da913b3e87b4932b1e1b87d9667c28e7250aa0ed60b3a31095f541e1641488"
+               * @default STATUS_UNSPECIFIED
+               * @enum {string}
+               */
+              status:
+                | "STATUS_UNSPECIFIED"
+                | "STATUS_ACTIVATED"
+                | "STATUS_DEACTIVATED"
+                | "STATUS_PENDING";
+              description?: string;
+            };
+          };
+        };
+      };
+      /** @description An unexpected error response */
+      default: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "*/*": {
+            error?: string;
+            /** Format: int32 */
+            code?: number;
+            message?: string;
+            details?: {
+              /** @description A URL/resource name that uniquely identifies the type of the serialized
+               *     protocol buffer message. This string must contain at least
+               *     one "/" character. The last segment of the URL's path must represent
+               *     the fully qualified name of the type (as in
+               *     `path/google.protobuf.Duration`). The name should be in a canonical form
+               *     (e.g., leading "." is not accepted).
+               *
+               *     In practice, teams usually precompile into the binary all types that they
+               *     expect it to use in the context of Any. However, for URLs which use the
+               *     scheme `http`, `https`, or no scheme, one can optionally set up a type
+               *     server that maps type URLs to message definitions as follows:
+               *
+               *     * If no scheme is provided, `https` is assumed.
+               *     * An HTTP GET on the URL must yield a [google.protobuf.Type][]
+               *       value in binary format, or produce an error.
+               *     * Applications are allowed to cache lookup results based on the
+               *       URL, or have them precompiled into a binary to avoid any
+               *       lookup. Therefore, binary compatibility needs to be preserved
+               *       on changes to types. (Use versioned type names to manage
+               *       breaking changes.)
+               *
+               *     Note: this functionality is not currently available in the official
+               *     protobuf release, and it is not used for type URLs beginning with
+               *     type.googleapis.com.
+               *
+               *     Schemes other than `http`, `https` (or the empty scheme) might be
+               *     used with implementation specific semantics. */
+              type_url?: string;
+              /**
+               * Format: byte
+               * @description Must be a valid serialized protocol buffer of the above specified type.
+               */
+              value?: string;
+            }[];
+          };
+        };
+      };
+    };
+  };
+  UpdateCustodianGroup: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: components["requestBodies"]["CreateCustodianGroupBody"];
+    responses: {
+      /** @description A successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "*/*": {
+            /** CustodianGroup represents a group of custodians with their configuration
+             *     uid is used as identity of the group, btc_pubkey is change by list of
+             *     custodians */
+            group?: {
+              /** the UID is unique, to distinguish between custodian groups */
+              uid?: string;
+              name?: string;
+              /** Format: byte */
+              bitcoin_pubkey?: string;
+              /**
+               * "tb1p07q440mdl4uyywns325dk8pvjphwety3psp4zvkngtjf3z3hhr2sfar3hv"
+               * Format: int64
+               */
+              quorum?: number;
+              /**
+               * @default STATUS_UNSPECIFIED
+               * @enum {string}
+               */
+              status:
+                | "STATUS_UNSPECIFIED"
+                | "STATUS_ACTIVATED"
+                | "STATUS_DEACTIVATED"
+                | "STATUS_PENDING";
+              description?: string;
+              custodians?: {
+                name?: string;
+                val_address?: string;
+                /** Format: byte */
+                bitcoin_pubkey?: string;
+                /**
+                 * "0215da913b3e87b4932b1e1b87d9667c28e7250aa0ed60b3a31095f541e1641488"
+                 * @default STATUS_UNSPECIFIED
+                 * @enum {string}
+                 */
+                status:
+                  | "STATUS_UNSPECIFIED"
+                  | "STATUS_ACTIVATED"
+                  | "STATUS_DEACTIVATED"
+                  | "STATUS_PENDING";
+                description?: string;
+              }[];
+            };
+          };
+        };
+      };
+      /** @description An unexpected error response */
+      default: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "*/*": {
+            error?: string;
+            /** Format: int32 */
+            code?: number;
+            message?: string;
+            details?: {
+              /** @description A URL/resource name that uniquely identifies the type of the serialized
+               *     protocol buffer message. This string must contain at least
+               *     one "/" character. The last segment of the URL's path must represent
+               *     the fully qualified name of the type (as in
+               *     `path/google.protobuf.Duration`). The name should be in a canonical form
+               *     (e.g., leading "." is not accepted).
+               *
+               *     In practice, teams usually precompile into the binary all types that they
+               *     expect it to use in the context of Any. However, for URLs which use the
+               *     scheme `http`, `https`, or no scheme, one can optionally set up a type
+               *     server that maps type URLs to message definitions as follows:
+               *
+               *     * If no scheme is provided, `https` is assumed.
+               *     * An HTTP GET on the URL must yield a [google.protobuf.Type][]
+               *       value in binary format, or produce an error.
+               *     * Applications are allowed to cache lookup results based on the
+               *       URL, or have them precompiled into a binary to avoid any
+               *       lookup. Therefore, binary compatibility needs to be preserved
+               *       on changes to types. (Use versioned type names to manage
+               *       breaking changes.)
+               *
+               *     Note: this functionality is not currently available in the official
+               *     protobuf release, and it is not used for type URLs beginning with
+               *     type.googleapis.com.
+               *
+               *     Schemes other than `http`, `https` (or the empty scheme) might be
+               *     used with implementation specific semantics. */
+              type_url?: string;
+              /**
+               * Format: byte
+               * @description Must be a valid serialized protocol buffer of the above specified type.
+               */
+              value?: string;
+            }[];
+          };
+        };
+      };
+    };
+  };
+  RotateKey: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: components["requestBodies"]["CreateTransferOperatorshipBody"];
+    responses: {
+      /** @description A successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "*/*": Record<string, never>;
+        };
+      };
+      /** @description An unexpected error response */
+      default: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "*/*": {
+            error?: string;
+            /** Format: int32 */
+            code?: number;
+            message?: string;
+            details?: {
+              type_url?: string;
+              /** Format: byte */
+              value?: string;
+            }[];
+          };
+        };
+      };
+    };
+  };
+  StartKeygen: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": {
+          sender?: string;
+          key_id?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description A successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "*/*": Record<string, never>;
+        };
+      };
+      /** @description An unexpected error response */
+      default: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "*/*": {
+            error?: string;
+            /** Format: int32 */
+            code?: number;
+            message?: string;
+            details?: {
+              type_url?: string;
+              /** Format: byte */
               value?: string;
             }[];
           };
@@ -25024,38 +26737,8 @@ export interface operations {
             code?: number;
             message?: string;
             details?: {
-              /** @description A URL/resource name that uniquely identifies the type of the serialized
-               *     protocol buffer message. This string must contain at least
-               *     one "/" character. The last segment of the URL's path must represent
-               *     the fully qualified name of the type (as in
-               *     `path/google.protobuf.Duration`). The name should be in a canonical form
-               *     (e.g., leading "." is not accepted).
-               *
-               *     In practice, teams usually precompile into the binary all types that they
-               *     expect it to use in the context of Any. However, for URLs which use the
-               *     scheme `http`, `https`, or no scheme, one can optionally set up a type
-               *     server that maps type URLs to message definitions as follows:
-               *
-               *     * If no scheme is provided, `https` is assumed.
-               *     * An HTTP GET on the URL must yield a [google.protobuf.Type][]
-               *       value in binary format, or produce an error.
-               *     * Applications are allowed to cache lookup results based on the
-               *       URL, or have them precompiled into a binary to avoid any
-               *       lookup. Therefore, binary compatibility needs to be preserved
-               *       on changes to types. (Use versioned type names to manage
-               *       breaking changes.)
-               *
-               *     Note: this functionality is not currently available in the official
-               *     protobuf release, and it is not used for type URLs beginning with
-               *     type.googleapis.com.
-               *
-               *     Schemes other than `http`, `https` (or the empty scheme) might be
-               *     used with implementation specific semantics. */
               type_url?: string;
-              /**
-               * Format: byte
-               * @description Must be a valid serialized protocol buffer of the above specified type.
-               */
+              /** Format: byte */
               value?: string;
             }[];
           };
@@ -25103,38 +26786,8 @@ export interface operations {
             code?: number;
             message?: string;
             details?: {
-              /** @description A URL/resource name that uniquely identifies the type of the serialized
-               *     protocol buffer message. This string must contain at least
-               *     one "/" character. The last segment of the URL's path must represent
-               *     the fully qualified name of the type (as in
-               *     `path/google.protobuf.Duration`). The name should be in a canonical form
-               *     (e.g., leading "." is not accepted).
-               *
-               *     In practice, teams usually precompile into the binary all types that they
-               *     expect it to use in the context of Any. However, for URLs which use the
-               *     scheme `http`, `https`, or no scheme, one can optionally set up a type
-               *     server that maps type URLs to message definitions as follows:
-               *
-               *     * If no scheme is provided, `https` is assumed.
-               *     * An HTTP GET on the URL must yield a [google.protobuf.Type][]
-               *       value in binary format, or produce an error.
-               *     * Applications are allowed to cache lookup results based on the
-               *       URL, or have them precompiled into a binary to avoid any
-               *       lookup. Therefore, binary compatibility needs to be preserved
-               *       on changes to types. (Use versioned type names to manage
-               *       breaking changes.)
-               *
-               *     Note: this functionality is not currently available in the official
-               *     protobuf release, and it is not used for type URLs beginning with
-               *     type.googleapis.com.
-               *
-               *     Schemes other than `http`, `https` (or the empty scheme) might be
-               *     used with implementation specific semantics. */
               type_url?: string;
-              /**
-               * Format: byte
-               * @description Must be a valid serialized protocol buffer of the above specified type.
-               */
+              /** Format: byte */
               value?: string;
             }[];
           };
@@ -25199,38 +26852,8 @@ export interface operations {
             code?: number;
             message?: string;
             details?: {
-              /** @description A URL/resource name that uniquely identifies the type of the serialized
-               *     protocol buffer message. This string must contain at least
-               *     one "/" character. The last segment of the URL's path must represent
-               *     the fully qualified name of the type (as in
-               *     `path/google.protobuf.Duration`). The name should be in a canonical form
-               *     (e.g., leading "." is not accepted).
-               *
-               *     In practice, teams usually precompile into the binary all types that they
-               *     expect it to use in the context of Any. However, for URLs which use the
-               *     scheme `http`, `https`, or no scheme, one can optionally set up a type
-               *     server that maps type URLs to message definitions as follows:
-               *
-               *     * If no scheme is provided, `https` is assumed.
-               *     * An HTTP GET on the URL must yield a [google.protobuf.Type][]
-               *       value in binary format, or produce an error.
-               *     * Applications are allowed to cache lookup results based on the
-               *       URL, or have them precompiled into a binary to avoid any
-               *       lookup. Therefore, binary compatibility needs to be preserved
-               *       on changes to types. (Use versioned type names to manage
-               *       breaking changes.)
-               *
-               *     Note: this functionality is not currently available in the official
-               *     protobuf release, and it is not used for type URLs beginning with
-               *     type.googleapis.com.
-               *
-               *     Schemes other than `http`, `https` (or the empty scheme) might be
-               *     used with implementation specific semantics. */
               type_url?: string;
-              /**
-               * Format: byte
-               * @description Must be a valid serialized protocol buffer of the above specified type.
-               */
+              /** Format: byte */
               value?: string;
             }[];
           };
@@ -25272,38 +26895,8 @@ export interface operations {
             code?: number;
             message?: string;
             details?: {
-              /** @description A URL/resource name that uniquely identifies the type of the serialized
-               *     protocol buffer message. This string must contain at least
-               *     one "/" character. The last segment of the URL's path must represent
-               *     the fully qualified name of the type (as in
-               *     `path/google.protobuf.Duration`). The name should be in a canonical form
-               *     (e.g., leading "." is not accepted).
-               *
-               *     In practice, teams usually precompile into the binary all types that they
-               *     expect it to use in the context of Any. However, for URLs which use the
-               *     scheme `http`, `https`, or no scheme, one can optionally set up a type
-               *     server that maps type URLs to message definitions as follows:
-               *
-               *     * If no scheme is provided, `https` is assumed.
-               *     * An HTTP GET on the URL must yield a [google.protobuf.Type][]
-               *       value in binary format, or produce an error.
-               *     * Applications are allowed to cache lookup results based on the
-               *       URL, or have them precompiled into a binary to avoid any
-               *       lookup. Therefore, binary compatibility needs to be preserved
-               *       on changes to types. (Use versioned type names to manage
-               *       breaking changes.)
-               *
-               *     Note: this functionality is not currently available in the official
-               *     protobuf release, and it is not used for type URLs beginning with
-               *     type.googleapis.com.
-               *
-               *     Schemes other than `http`, `https` (or the empty scheme) might be
-               *     used with implementation specific semantics. */
               type_url?: string;
-              /**
-               * Format: byte
-               * @description Must be a valid serialized protocol buffer of the above specified type.
-               */
+              /** Format: byte */
               value?: string;
             }[];
           };
@@ -25341,38 +26934,8 @@ export interface operations {
             code?: number;
             message?: string;
             details?: {
-              /** @description A URL/resource name that uniquely identifies the type of the serialized
-               *     protocol buffer message. This string must contain at least
-               *     one "/" character. The last segment of the URL's path must represent
-               *     the fully qualified name of the type (as in
-               *     `path/google.protobuf.Duration`). The name should be in a canonical form
-               *     (e.g., leading "." is not accepted).
-               *
-               *     In practice, teams usually precompile into the binary all types that they
-               *     expect it to use in the context of Any. However, for URLs which use the
-               *     scheme `http`, `https`, or no scheme, one can optionally set up a type
-               *     server that maps type URLs to message definitions as follows:
-               *
-               *     * If no scheme is provided, `https` is assumed.
-               *     * An HTTP GET on the URL must yield a [google.protobuf.Type][]
-               *       value in binary format, or produce an error.
-               *     * Applications are allowed to cache lookup results based on the
-               *       URL, or have them precompiled into a binary to avoid any
-               *       lookup. Therefore, binary compatibility needs to be preserved
-               *       on changes to types. (Use versioned type names to manage
-               *       breaking changes.)
-               *
-               *     Note: this functionality is not currently available in the official
-               *     protobuf release, and it is not used for type URLs beginning with
-               *     type.googleapis.com.
-               *
-               *     Schemes other than `http`, `https` (or the empty scheme) might be
-               *     used with implementation specific semantics. */
               type_url?: string;
-              /**
-               * Format: byte
-               * @description Must be a valid serialized protocol buffer of the above specified type.
-               */
+              /** Format: byte */
               value?: string;
             }[];
           };
@@ -25410,38 +26973,8 @@ export interface operations {
             code?: number;
             message?: string;
             details?: {
-              /** @description A URL/resource name that uniquely identifies the type of the serialized
-               *     protocol buffer message. This string must contain at least
-               *     one "/" character. The last segment of the URL's path must represent
-               *     the fully qualified name of the type (as in
-               *     `path/google.protobuf.Duration`). The name should be in a canonical form
-               *     (e.g., leading "." is not accepted).
-               *
-               *     In practice, teams usually precompile into the binary all types that they
-               *     expect it to use in the context of Any. However, for URLs which use the
-               *     scheme `http`, `https`, or no scheme, one can optionally set up a type
-               *     server that maps type URLs to message definitions as follows:
-               *
-               *     * If no scheme is provided, `https` is assumed.
-               *     * An HTTP GET on the URL must yield a [google.protobuf.Type][]
-               *       value in binary format, or produce an error.
-               *     * Applications are allowed to cache lookup results based on the
-               *       URL, or have them precompiled into a binary to avoid any
-               *       lookup. Therefore, binary compatibility needs to be preserved
-               *       on changes to types. (Use versioned type names to manage
-               *       breaking changes.)
-               *
-               *     Note: this functionality is not currently available in the official
-               *     protobuf release, and it is not used for type URLs beginning with
-               *     type.googleapis.com.
-               *
-               *     Schemes other than `http`, `https` (or the empty scheme) might be
-               *     used with implementation specific semantics. */
               type_url?: string;
-              /**
-               * Format: byte
-               * @description Must be a valid serialized protocol buffer of the above specified type.
-               */
+              /** Format: byte */
               value?: string;
             }[];
           };
@@ -25513,38 +27046,8 @@ export interface operations {
             code?: number;
             message?: string;
             details?: {
-              /** @description A URL/resource name that uniquely identifies the type of the serialized
-               *     protocol buffer message. This string must contain at least
-               *     one "/" character. The last segment of the URL's path must represent
-               *     the fully qualified name of the type (as in
-               *     `path/google.protobuf.Duration`). The name should be in a canonical form
-               *     (e.g., leading "." is not accepted).
-               *
-               *     In practice, teams usually precompile into the binary all types that they
-               *     expect it to use in the context of Any. However, for URLs which use the
-               *     scheme `http`, `https`, or no scheme, one can optionally set up a type
-               *     server that maps type URLs to message definitions as follows:
-               *
-               *     * If no scheme is provided, `https` is assumed.
-               *     * An HTTP GET on the URL must yield a [google.protobuf.Type][]
-               *       value in binary format, or produce an error.
-               *     * Applications are allowed to cache lookup results based on the
-               *       URL, or have them precompiled into a binary to avoid any
-               *       lookup. Therefore, binary compatibility needs to be preserved
-               *       on changes to types. (Use versioned type names to manage
-               *       breaking changes.)
-               *
-               *     Note: this functionality is not currently available in the official
-               *     protobuf release, and it is not used for type URLs beginning with
-               *     type.googleapis.com.
-               *
-               *     Schemes other than `http`, `https` (or the empty scheme) might be
-               *     used with implementation specific semantics. */
               type_url?: string;
-              /**
-               * Format: byte
-               * @description Must be a valid serialized protocol buffer of the above specified type.
-               */
+              /** Format: byte */
               value?: string;
             }[];
           };
@@ -25586,38 +27089,8 @@ export interface operations {
             code?: number;
             message?: string;
             details?: {
-              /** @description A URL/resource name that uniquely identifies the type of the serialized
-               *     protocol buffer message. This string must contain at least
-               *     one "/" character. The last segment of the URL's path must represent
-               *     the fully qualified name of the type (as in
-               *     `path/google.protobuf.Duration`). The name should be in a canonical form
-               *     (e.g., leading "." is not accepted).
-               *
-               *     In practice, teams usually precompile into the binary all types that they
-               *     expect it to use in the context of Any. However, for URLs which use the
-               *     scheme `http`, `https`, or no scheme, one can optionally set up a type
-               *     server that maps type URLs to message definitions as follows:
-               *
-               *     * If no scheme is provided, `https` is assumed.
-               *     * An HTTP GET on the URL must yield a [google.protobuf.Type][]
-               *       value in binary format, or produce an error.
-               *     * Applications are allowed to cache lookup results based on the
-               *       URL, or have them precompiled into a binary to avoid any
-               *       lookup. Therefore, binary compatibility needs to be preserved
-               *       on changes to types. (Use versioned type names to manage
-               *       breaking changes.)
-               *
-               *     Note: this functionality is not currently available in the official
-               *     protobuf release, and it is not used for type URLs beginning with
-               *     type.googleapis.com.
-               *
-               *     Schemes other than `http`, `https` (or the empty scheme) might be
-               *     used with implementation specific semantics. */
               type_url?: string;
-              /**
-               * Format: byte
-               * @description Must be a valid serialized protocol buffer of the above specified type.
-               */
+              /** Format: byte */
               value?: string;
             }[];
           };
@@ -25689,38 +27162,8 @@ export interface operations {
             code?: number;
             message?: string;
             details?: {
-              /** @description A URL/resource name that uniquely identifies the type of the serialized
-               *     protocol buffer message. This string must contain at least
-               *     one "/" character. The last segment of the URL's path must represent
-               *     the fully qualified name of the type (as in
-               *     `path/google.protobuf.Duration`). The name should be in a canonical form
-               *     (e.g., leading "." is not accepted).
-               *
-               *     In practice, teams usually precompile into the binary all types that they
-               *     expect it to use in the context of Any. However, for URLs which use the
-               *     scheme `http`, `https`, or no scheme, one can optionally set up a type
-               *     server that maps type URLs to message definitions as follows:
-               *
-               *     * If no scheme is provided, `https` is assumed.
-               *     * An HTTP GET on the URL must yield a [google.protobuf.Type][]
-               *       value in binary format, or produce an error.
-               *     * Applications are allowed to cache lookup results based on the
-               *       URL, or have them precompiled into a binary to avoid any
-               *       lookup. Therefore, binary compatibility needs to be preserved
-               *       on changes to types. (Use versioned type names to manage
-               *       breaking changes.)
-               *
-               *     Note: this functionality is not currently available in the official
-               *     protobuf release, and it is not used for type URLs beginning with
-               *     type.googleapis.com.
-               *
-               *     Schemes other than `http`, `https` (or the empty scheme) might be
-               *     used with implementation specific semantics. */
               type_url?: string;
-              /**
-               * Format: byte
-               * @description Must be a valid serialized protocol buffer of the above specified type.
-               */
+              /** Format: byte */
               value?: string;
             }[];
           };

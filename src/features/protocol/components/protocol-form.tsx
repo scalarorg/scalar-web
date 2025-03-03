@@ -19,12 +19,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { cn } from "@/lib/utils";
+import { useScalarChains, useScalarCustodianGroups } from "@/hooks";
+import { cn, isBtcChain } from "@/lib/utils";
 import { convertToBytes } from "@/lib/wallet";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Dispatch, SetStateAction, useCallback, useState } from "react";
 import { FileWithPath, useDropzone } from "react-dropzone";
 import { useForm } from "react-hook-form";
+import { toast as sonnerToast } from "sonner";
 import { LIQUIDITY_MODEL, MAX_FILE_SIZE } from "../constans";
 import { TProtocolForm, protocolFormSchema } from "../schemas";
 
@@ -33,10 +35,19 @@ type Props = {
 };
 
 export const ProtocolForm = ({ setOpen }: Props) => {
+  const {
+    data: { groups } = {},
+  } = useScalarCustodianGroups();
+  const {
+    data: { chains } = {},
+  } = useScalarChains();
+
+  const filterChains = chains?.filter((c) => isBtcChain(c));
+
   const form = useForm<TProtocolForm>({
     resolver: zodResolver(protocolFormSchema),
     defaultValues: {
-      type: "LIQUIDITY_MODEL_POOL",
+      model: "LIQUIDITY_MODEL_POOL",
     },
   });
 
@@ -49,13 +60,13 @@ export const ProtocolForm = ({ setOpen }: Props) => {
       const file = acceptedFiles[0];
       const fileSize = file.size;
 
-      if (fileSize > convertToBytes(MAX_FILE_SIZE, "KB")) {
-        alert("Selected image is too large!");
+      if (fileSize > convertToBytes(MAX_FILE_SIZE, "MB")) {
+        sonnerToast.error("Selected image is too large!");
         return;
       }
 
       const preview = URL.createObjectURL(file);
-      setValue("icon", preview);
+      setValue("avatar", preview);
       setOpenCropper(true);
     },
     [setValue],
@@ -68,7 +79,18 @@ export const ProtocolForm = ({ setOpen }: Props) => {
     },
   });
 
-  const onSubmit = (_values: TProtocolForm) => {
+  const onSubmit = (values: TProtocolForm) => {
+    const { model, ...rest } = values;
+    const newValues = {
+      attribute: {
+        model,
+      },
+      ...rest,
+    };
+
+    // biome-ignore lint/suspicious/noConsoleLog: <explanation>
+    console.log({ newValues });
+
     setOpen(false);
   };
 
@@ -77,17 +99,18 @@ export const ProtocolForm = ({ setOpen }: Props) => {
       <form
         onSubmit={handleSubmit(onSubmit)}
         className={cn(
-          // Margin
-          "mt-5",
+          // Layout
+          "max-h-[550px] space-y-5 overflow-y-auto px-1",
 
-          // Spacing between child elements
-          "space-y-5",
+          // Position & Margin
+          "relative mt-5",
 
           // Styling for label elements with data-slot="form-label"
-          "[&_label[data-slot=form-label]]:text-lg",
+          "[&_label[data-slot=form-label]]:text-[22px]",
 
           // Styling for input elements with data-slot="form-control"
-          "[&_input[data-slot=form-control]]:h-10",
+          "[&_input[data-slot=form-control]]:h-[50px]",
+          "[&_button[data-slot=form-control]]:h-[50px]",
         )}
       >
         <FormField
@@ -97,7 +120,11 @@ export const ProtocolForm = ({ setOpen }: Props) => {
             <FormItem>
               <FormLabel>Protocol name</FormLabel>
               <FormControl>
-                <Input {...field} placeholder="Protocol name" />
+                <Input
+                  {...field}
+                  placeholder="Protocol name"
+                  className="!text-lg"
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -105,12 +132,16 @@ export const ProtocolForm = ({ setOpen }: Props) => {
         />
         <FormField
           control={control}
-          name="token"
+          name="asset_name"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Token name</FormLabel>
               <FormControl>
-                <Input {...field} placeholder="Token name" />
+                <Input
+                  {...field}
+                  placeholder="Token name"
+                  className="!text-lg"
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -118,10 +149,27 @@ export const ProtocolForm = ({ setOpen }: Props) => {
         />
         <FormField
           control={control}
-          name="icon"
+          name="bitcoin_pubkey"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Bitcoin pubkey</FormLabel>
+              <FormControl>
+                <Input
+                  {...field}
+                  placeholder="Bitcoin pubkey"
+                  className="!text-lg"
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={control}
+          name="avatar"
           render={({ field: { value, onChange } }) => (
             <FormItem>
-              <Card className="flex-row items-center p-4">
+              <Card className="flex-row items-center gap-11 p-4">
                 {value ? (
                   <ImageCropper
                     dialogOpen={openCropper}
@@ -141,9 +189,9 @@ export const ProtocolForm = ({ setOpen }: Props) => {
                   </Avatar>
                 )}
                 <div className="flex flex-col gap-2">
-                  <p className="font-semibold text-lg">Icon</p>
-                  <p className="text-[#C9C9C9]">
-                    File smaller than {MAX_FILE_SIZE}KB
+                  <p className="font-semibold text-[22px]">Icon</p>
+                  <p className="text-[#C9C9C9] text-lg">
+                    File smaller than {MAX_FILE_SIZE}MB
                   </p>
                 </div>
               </Card>
@@ -151,22 +199,22 @@ export const ProtocolForm = ({ setOpen }: Props) => {
             </FormItem>
           )}
         />
-        <div className="flex items-center gap-5">
+        <div className="flex items-start gap-5">
           <FormField
             control={control}
-            name="type"
+            name="model"
             render={({ field: { onChange, value } }) => (
               <FormItem>
                 <FormLabel>Type</FormLabel>
                 <Select defaultValue={value} onValueChange={onChange}>
                   <FormControl>
-                    <SelectTrigger className="w-[140px]">
+                    <SelectTrigger className="!text-lg w-[200px]">
                       <SelectValue placeholder="Select type" />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
                     {LIQUIDITY_MODEL.LIST.map(({ label, value }) => (
-                      <SelectItem key={value} value={value}>
+                      <SelectItem key={value} value={value} className="text-lg">
                         {label}
                       </SelectItem>
                     ))}
@@ -176,8 +224,82 @@ export const ProtocolForm = ({ setOpen }: Props) => {
               </FormItem>
             )}
           />
+          <FormField
+            control={control}
+            name="custodian_group_uid"
+            render={({ field: { onChange, value } }) => (
+              <FormItem className="grow">
+                <FormLabel>Custodian group</FormLabel>
+                <Select defaultValue={value} onValueChange={onChange}>
+                  <FormControl>
+                    <SelectTrigger className="!text-lg">
+                      <SelectValue placeholder="Select custodian group" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    {groups?.map(({ uid, name }) => (
+                      <SelectItem
+                        key={uid}
+                        value={uid || ""}
+                        className="text-lg"
+                      >
+                        {name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
         </div>
-        <Button type="submit" className="w-full">
+        <div className="flex items-start gap-5">
+          <FormField
+            control={control}
+            name="chain_name"
+            render={({ field: { onChange, value } }) => (
+              <FormItem className="flex-1">
+                <FormLabel>Chain name</FormLabel>
+                <Select defaultValue={value} onValueChange={onChange}>
+                  <FormControl>
+                    <SelectTrigger className="!text-lg">
+                      <SelectValue placeholder="Select chain" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    {filterChains?.map((name) => (
+                      <SelectItem
+                        key={name}
+                        value={name || ""}
+                        className="text-lg"
+                      >
+                        {name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={control}
+            name="tag"
+            render={({ field }) => (
+              <FormItem className="flex-1">
+                <FormLabel>Tag</FormLabel>
+                <FormControl>
+                  <Input {...field} placeholder="Tag" className="!text-lg" />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
+        <Button
+          type="submit"
+          className="sticky bottom-0 h-[50px] w-full text-lg"
+        >
           Submit
         </Button>
       </form>

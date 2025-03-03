@@ -207,3 +207,15 @@ export const fuzzyMatch = (candidate: string, query: string) => {
     }),
   );
 };
+
+const PUBKEY_LENGTH = 66;
+const PUBKEY_LENGTH_WITH_0X = PUBKEY_LENGTH + 2;
+
+export const isSecp256k1Pubkey = (pubkey: string) => {
+  const isHex = isHexString(pubkey);
+  const isLengthPubkey = pubkey.startsWith("0x")
+    ? pubkey.length === PUBKEY_LENGTH_WITH_0X
+    : pubkey.length === PUBKEY_LENGTH;
+
+  return isHex && isLengthPubkey;
+};

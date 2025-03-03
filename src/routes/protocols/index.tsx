@@ -1,4 +1,5 @@
 import NoteIcon from "@/assets/icons/note.svg";
+import WalletIcon from "@/assets/icons/wallet.svg";
 import {
   Clipboard,
   DataTable,
@@ -10,7 +11,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -19,6 +19,7 @@ import { COMMON_VALIDATE_PAGE_SEARCH_PARAMS } from "@/constants";
 import { PROTOCOL_STATUS, ProtocolForm } from "@/features/protocol";
 import { useScalarProtocols } from "@/hooks";
 import { cn, fuzzyMatch } from "@/lib/utils";
+import { useAccount, useConnectKeplr } from "@/providers/keplr-provider";
 import { TProtocolDetails } from "@/types/protocol";
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { createColumnHelper } from "@tanstack/react-table";
@@ -118,6 +119,8 @@ const columns = [
 ];
 
 function Protocols() {
+  const { isConnected } = useAccount();
+  const { connect } = useConnectKeplr();
   const [open, setOpen] = useState(false);
   const { q } = Route.useSearch();
 
@@ -137,21 +140,30 @@ function Protocols() {
       <Card className="p-0">
         <CardContent className="flex items-center gap-6 p-4">
           <div className="flex size-[70px] items-center justify-center rounded-lg bg-[#EDF1FF]">
-            <NoteIcon />
+            {isConnected ? <NoteIcon /> : <WalletIcon />}
           </div>
-          <p className="mr-auto text-lg">Rigister your protocol.</p>
+          <p className="mr-auto text-lg">
+            {isConnected
+              ? "Rigister your protocol."
+              : "Connect your wallet to register protocol."}
+          </p>
           <Dialog open={open} onOpenChange={setOpen}>
-            <DialogTrigger asChild>
-              <Button variant="black" className="px-5 text-lg">
-                Register
-              </Button>
-            </DialogTrigger>
-            <DialogContent closeClassName="[&_svg:not([class*='size-'])]:size-6">
+            {isConnected ? (
+              <DialogTrigger asChild>
+                <Button variant="black" className="px-5 text-lg">
+                  Register
+                </Button>
+              </DialogTrigger>
+            ) : (
+              <Button onClick={() => connect()}>Connect Scalar</Button>
+            )}
+            <DialogContent
+              closeClassName="[&_svg:not([class*='size-'])]:size-6"
+              className="min-w-[800px]"
+            >
               <DialogHeader>
-                <DialogTitle className="text-3xl">New Protocol</DialogTitle>
-                <DialogDescription>
-                  <ProtocolForm setOpen={setOpen} />
-                </DialogDescription>
+                <DialogTitle className="text-[40px]">New Protocol</DialogTitle>
+                <ProtocolForm setOpen={setOpen} />
               </DialogHeader>
             </DialogContent>
           </Dialog>

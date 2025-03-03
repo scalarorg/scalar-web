@@ -5,7 +5,7 @@ export const LIQUIDITY_MODEL = new UtilityList([
   { label: "UPC", value: "LIQUIDITY_MODEL_UPC" },
 ]);
 
-export const MAX_FILE_SIZE = 90; // KB
+export const MAX_FILE_SIZE = 1; // MB
 
 export const PROTOCOL_STATUS = new UtilityList([
   {

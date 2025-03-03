@@ -1,5 +1,6 @@
 import {
   ErrorProvider,
+  KeplrProvider,
   NetworkProvider,
   QueryProvider,
   WagmiProvider,
@@ -14,6 +15,7 @@ import "@rainbow-me/rainbowkit/styles.css";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { RouterProvider, createRouter } from "@tanstack/react-router";
+import { scalarConfig } from "./lib/scalar";
 import { routeTree } from "./routeTree.gen";
 import "./index.css";
 
@@ -34,7 +36,9 @@ createRoot(document.getElementById("root")!).render(
           <RainbowKitProvider>
             <NetworkProvider>
               <WalletProvider>
-                <RouterProvider router={router} />
+                <KeplrProvider config={scalarConfig()}>
+                  <RouterProvider router={router} />
+                </KeplrProvider>
               </WalletProvider>
             </NetworkProvider>
           </RainbowKitProvider>
