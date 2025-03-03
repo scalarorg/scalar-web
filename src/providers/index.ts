@@ -1,4 +1,5 @@
 import { ErrorProvider } from "./error-provider";
+import { KeplrProvider } from "./keplr-provider";
 import NetworkProvider from "./network-provider";
 import QueryProvider from "./query-provider";
 import WagmiProvider from "./wagmi-provider";
@@ -10,4 +11,5 @@ export {
   WagmiProvider,
   ErrorProvider,
   WalletProvider,
+  KeplrProvider,
 };

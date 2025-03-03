@@ -18,9 +18,7 @@ import {
 import { COMMON_VALIDATE_PAGE_SEARCH_PARAMS } from "@/constants";
 import { PROTOCOL_STATUS, ProtocolForm } from "@/features/protocol";
 import { useScalarProtocols } from "@/hooks";
-// import { scalarConfig } from "@/lib/scalar/wallet";
 import { cn, fuzzyMatch } from "@/lib/utils";
-// import { KeplrProvider } from "@/providers/keplr-provider";
 import { TProtocolDetails } from "@/types/protocol";
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { createColumnHelper } from "@tanstack/react-table";
@@ -134,7 +132,6 @@ function Protocols() {
   );
 
   return (
-    // <KeplrProvider config={scalarConfig()}>
     <div className="flex flex-col gap-5 py-[60px]">
       <Heading>All Protocols</Heading>
       <Card className="p-0">
@@ -174,6 +171,5 @@ function Protocols() {
         </CardContent>
       </Card>
     </div>
-    // </KeplrProvider>
   );
 }
