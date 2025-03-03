@@ -20,7 +20,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useScalarChains, useScalarCustodianGroups } from "@/hooks";
-import { cn, isBtcChain } from "@/lib/utils";
+import { cn, extractBase64Data, isBtcChain } from "@/lib/utils";
 import { convertToBytes } from "@/lib/wallet";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Dispatch, SetStateAction, useCallback, useState } from "react";
@@ -80,11 +80,12 @@ export const ProtocolForm = ({ setOpen }: Props) => {
   });
 
   const onSubmit = (values: TProtocolForm) => {
-    const { model, ...rest } = values;
+    const { model, avatar, ...rest } = values;
     const newValues = {
       attribute: {
         model,
       },
+      avatar: extractBase64Data(avatar),
       ...rest,
     };
 
@@ -100,7 +101,7 @@ export const ProtocolForm = ({ setOpen }: Props) => {
         onSubmit={handleSubmit(onSubmit)}
         className={cn(
           // Layout
-          "max-h-[550px] space-y-5 overflow-y-auto px-1",
+          "max-h-[500px] space-y-5 overflow-y-auto px-1",
 
           // Position & Margin
           "relative mt-5",

@@ -218,7 +218,7 @@ const DataTableInnerForwardRef = <TData,>(
                         <TableHead
                           key={header.id}
                           className={cn(
-                            "w-fit whitespace-nowrap bg-neutral-gray",
+                            "w-fit whitespace-nowrap bg-neutral-gray px-5",
                             classNames.headerCell,
                             meta?.className,
                             meta?.header?.className,
@@ -266,6 +266,7 @@ const DataTableInnerForwardRef = <TData,>(
                           <TableCell
                             key={cell.id}
                             className={cn(
+                              "px-5",
                               meta?.className,
                               meta?.cell?.className,
                             )}

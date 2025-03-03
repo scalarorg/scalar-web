@@ -219,3 +219,11 @@ export const isSecp256k1Pubkey = (pubkey: string) => {
 
   return isHex && isLengthPubkey;
 };
+
+export const extractBase64Data = (base64String: string) => {
+  return base64String.replace(/^data:image\/\w+;base64,/, "");
+};
+
+export const addBase64Prefix = (base64Data: string, mimeType = "image/png") => {
+  return `data:${mimeType};base64,${base64Data}`;
+};
