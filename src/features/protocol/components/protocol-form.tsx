@@ -29,6 +29,8 @@ import { useForm } from "react-hook-form";
 import { toast as sonnerToast } from "sonner";
 import { LIQUIDITY_MODEL, MAX_FILE_SIZE } from "../constans";
 import { TProtocolForm, protocolFormSchema } from "../schemas";
+import { useAccount, useKeplrClient } from "@/providers/keplr-provider";
+import { CreateProtocolParams, LiquidityModelParams } from "@/lib/scalar/interface";
 
 type Props = {
   setOpen: Dispatch<SetStateAction<boolean>>;
@@ -41,6 +43,11 @@ export const ProtocolForm = ({ setOpen }: Props) => {
   const {
     data: { chains } = {},
   } = useScalarChains();
+
+  const { data: scalarClient, isLoading: isScalarClientLoading } =
+    useKeplrClient();
+
+  const { account } = useAccount()
 
   const filterChains = chains?.filter((c) => isBtcChain(c));
 
@@ -79,20 +86,36 @@ export const ProtocolForm = ({ setOpen }: Props) => {
     },
   });
 
-  const onSubmit = (values: TProtocolForm) => {
-    const { model, avatar, ...rest } = values;
-    const newValues = {
-      attribute: {
-        model,
-      },
-      avatar: extractBase64Data(avatar),
-      ...rest,
-    };
+  const onSubmit = async (values: TProtocolForm) => {
+    try {
+      if (isScalarClientLoading || !scalarClient || !account)
+        return;
+      const newValues: CreateProtocolParams = {
+        bitcoin_pubkey: values.bitcoin_pubkey,
+        name: values.name,
+        tag: values.tag,
+        attributes: {
+          model: values.model as LiquidityModelParams,
+        },
+        custodian_group_uid: values.custodian_group_uid,
+        asset: {
+          chain: values.chain_name,
+          name: values.asset_name,
+        },
+        avatar: extractBase64Data(values.avatar),
+      };
 
-    // biome-ignore lint/suspicious/noConsoleLog: <explanation>
-    console.log({ newValues });
+      // biome-ignore lint/suspicious/noConsoleLog: <explanation>
+      console.log({ newValues });
 
-    setOpen(false);
+      const result = await scalarClient.raw.createProtocol(account.address, newValues, "auto", "nothing")
+
+      console.log({ result })
+
+      setOpen(false);
+    } catch (error) {
+      console.error(error)
+    }
   };
 
   return (

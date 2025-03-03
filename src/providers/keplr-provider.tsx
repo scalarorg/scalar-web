@@ -1,9 +1,9 @@
+import { createContext, use, useEffect, useState } from "react";
+import { ScalarSigningStargateClient } from "@/lib/scalar/signingClient";
 import { formatTokenAmount } from "@/lib/utils";
 import { OfflineSigner } from "@cosmjs/proto-signing";
-import { SigningStargateClient } from "@cosmjs/stargate";
 import type { ChainInfo, Keplr } from "@keplr-wallet/types";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { createContext, use, useEffect, useState } from "react";
 import { toast as toastSonner } from "sonner";
 
 interface KeplrContextProps {
@@ -17,7 +17,7 @@ interface KeplrContextProps {
 const KeplrContext = createContext<KeplrContextProps | undefined>(undefined);
 
 let _scalarClient: {
-  raw: SigningStargateClient;
+  raw: ScalarSigningStargateClient;
   offlineSigner: OfflineSigner;
 } | null = null;
 
@@ -213,7 +213,7 @@ const connectKeplr = async (keplr: Keplr, config: ChainInfo) => {
 
     const offlineSigner = window!.getOfflineSigner!(config.chainId);
     _scalarClient = {
-      raw: await SigningStargateClient.connectWithSigner(
+      raw: await ScalarSigningStargateClient.connectWithSigner(
         config.rpc,
         offlineSigner,
       ),
