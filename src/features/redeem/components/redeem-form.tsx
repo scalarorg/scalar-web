@@ -25,7 +25,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { toast } from "@/components/ui/use-toast";
-import { ELiquidityModel } from "@/enums";
 import {
   useERC20,
   useFeeRates,
@@ -330,7 +329,7 @@ export const RedeemForm = () => {
 
       let payload = "";
 
-      if (selectedProtocol?.attributes?.model === ELiquidityModel.POOL) {
+      if (selectedProtocol?.attributes?.model === "LIQUIDITY_MODEL_POOL") {
         const reciepientChainIdentifier =
           Buffer.from(redeemLockingScript).toString("hex");
         payload = calculateContractCallWithTokenPayload({
@@ -566,7 +565,7 @@ export const RedeemForm = () => {
             />
 
             {isConnectedEvm ? (
-              selectedProtocol?.attributes?.model === ELiquidityModel.UPC &&
+              selectedProtocol?.attributes?.model === "LIQUIDITY_MODEL_UPC" &&
               !isConnectedBtc ? (
                 <Popover>
                   <PopoverTrigger className="w-full" asChild>

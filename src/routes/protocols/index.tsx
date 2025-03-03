@@ -21,7 +21,7 @@ import { useScalarProtocols } from "@/hooks";
 // import { scalarConfig } from "@/lib/scalar/wallet";
 import { cn, fuzzyMatch } from "@/lib/utils";
 // import { KeplrProvider } from "@/providers/keplr-provider";
-import { TProtocol } from "@/types/protocol";
+import { TProtocolDetails } from "@/types/protocol";
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { createColumnHelper } from "@tanstack/react-table";
 import { useMemo, useState } from "react";
@@ -31,7 +31,7 @@ export const Route = createFileRoute("/protocols/")({
   validateSearch: COMMON_VALIDATE_PAGE_SEARCH_PARAMS,
 });
 
-const { display, accessor } = createColumnHelper<TProtocol>();
+const { display, accessor } = createColumnHelper<TProtocolDetails>();
 
 const columns = [
   accessor("asset.name", {
@@ -105,7 +105,7 @@ const columns = [
           <div
             className={cn(
               "mx-auto flex w-fit items-center justify-center rounded-full px-4 py-1 text-lg text-white",
-              findStatus.className
+              findStatus.className,
             )}
           >
             <span>{findStatus.label}</span>
@@ -128,9 +128,9 @@ function Protocols() {
   const filteredProtocols = useMemo(
     () =>
       data?.protocols?.filter((protocol) =>
-        fuzzyMatch(protocol.asset?.name || "", q || "")
+        fuzzyMatch(protocol.asset?.name || "", q || ""),
       ),
-    [data?.protocols, q]
+    [data?.protocols, q],
   );
 
   return (
@@ -165,7 +165,7 @@ function Protocols() {
           <InputSearchBox />
           <DataTable
             columns={columns}
-            data={filteredProtocols as TProtocol[]}
+            data={filteredProtocols as TProtocolDetails[]}
             pagination={{}}
             showPagination={false}
             isLoading={isLoading}

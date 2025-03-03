@@ -34,7 +34,7 @@ import {
 } from "@/lib/utils";
 import { getWagmiChain, isSupportedChain } from "@/lib/wagmi";
 import { useWalletProvider } from "@/providers/wallet-provider";
-import { TProtocol } from "@/types/protocol";
+import { TProtocolDetails } from "@/types/protocol";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useQuery } from "@tanstack/react-query";
 import { isNil, keyBy } from "lodash";
@@ -48,7 +48,7 @@ import { TTransfersForm, transfersFormSchema } from "../schemas";
 
 const MIN_EVM = 2;
 
-const filterEvmChains = (chains: TProtocol["chains"] = []) =>
+const filterEvmChains = (chains: TProtocolDetails["chains"] = []) =>
   chains.filter((c) => isEvmChain(c));
 
 export const TransfersForm = () => {

@@ -1,8 +1,8 @@
 import { createContext, use, useEffect, useState } from "react";
 
+import { ScalarSigningStargateClient } from "@/lib/scalar/client";
 import { formatTokenAmount } from "@/lib/utils";
 import { OfflineSigner } from "@cosmjs/proto-signing";
-import { SigningStargateClient } from "@cosmjs/stargate";
 import type { ChainInfo, Keplr } from "@keplr-wallet/types";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast as toastSonner } from "sonner";
@@ -18,7 +18,7 @@ interface KeplrContextProps {
 const KeplrContext = createContext<KeplrContextProps | undefined>(undefined);
 
 let _scalarClient: {
-  raw: SigningStargateClient;
+  raw: ScalarSigningStargateClient;
   offlineSigner: OfflineSigner;
 } | null = null;
 
@@ -51,7 +51,7 @@ export const KeplrProvider: React.FC<
                 >
                   Chrome Web Extension
                 </a>
-              </p>
+              </p>,
             );
 
             return;
@@ -67,7 +67,7 @@ export const KeplrProvider: React.FC<
           }
         } catch (error) {
           toastSonner.error(
-            error instanceof Error ? error.message : "Unknown error"
+            error instanceof Error ? error.message : "Unknown error",
           );
         } finally {
           setIsLoading(false);
@@ -82,7 +82,7 @@ export const KeplrProvider: React.FC<
         }
       };
     },
-    [config, keplr, reconnectOnMount]
+    [config, keplr, reconnectOnMount],
   );
 
   if (isLoading) {
@@ -214,9 +214,9 @@ const connectKeplr = async (keplr: Keplr, config: ChainInfo) => {
 
     const offlineSigner = window!.getOfflineSigner!(config.chainId);
     _scalarClient = {
-      raw: await SigningStargateClient.connectWithSigner(
+      raw: await ScalarSigningStargateClient.connectWithSigner(
         config.rpc,
-        offlineSigner
+        offlineSigner,
       ),
       offlineSigner,
     };

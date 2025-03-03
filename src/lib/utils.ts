@@ -18,7 +18,13 @@ export const formatTokenAmount = (
 
   const [integerPart, decimalPart] = amountStr.split(".");
   // chunk integer part into groups of 3
-  const integerPartChunks = integerPart.match(/.{1,3}/g);
+  const integerPartChunks = integerPart
+    .split("")
+    .reverse()
+    .join("")
+    .match(/.{1,3}/g)
+    ?.map((chunk) => chunk.split("").reverse().join(""))
+    .reverse();
   const integerPartStr = integerPartChunks?.join(",");
   if (decimalPart) {
     return `${integerPartStr}.${decimalPart.slice(0, precision)}`;

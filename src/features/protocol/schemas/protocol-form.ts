@@ -1,4 +1,3 @@
-import { ELiquidityModel } from "@/enums";
 import { z } from "zod";
 
 const message = {
@@ -23,7 +22,7 @@ export const protocolFormSchema = z.object({
       required_error: message.icon,
     })
     .min(1, { message: message.icon }),
-  type: z.enum([ELiquidityModel.POOL, ELiquidityModel.UPC], {
+  type: z.enum(["LIQUIDITY_MODEL_POOL", "LIQUIDITY_MODEL_UPC"], {
     required_error: message.type,
   }),
 });

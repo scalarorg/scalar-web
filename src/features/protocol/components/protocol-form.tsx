@@ -19,7 +19,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { ELiquidityModel } from "@/enums";
 import { cn } from "@/lib/utils";
 import { convertToBytes } from "@/lib/wallet";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -37,7 +36,7 @@ export const ProtocolForm = ({ setOpen }: Props) => {
   const form = useForm<TProtocolForm>({
     resolver: zodResolver(protocolFormSchema),
     defaultValues: {
-      type: ELiquidityModel.POOL,
+      type: "LIQUIDITY_MODEL_POOL",
     },
   });
 

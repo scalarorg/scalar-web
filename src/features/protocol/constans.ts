@@ -1,9 +1,8 @@
-import { ELiquidityModel, EProtocolStatus } from "@/enums";
 import { UtilityList } from "@/lib/utils";
 
 export const LIQUIDITY_MODEL = new UtilityList([
-  { label: "Pool", value: ELiquidityModel.POOL },
-  { label: "UPC", value: ELiquidityModel.UPC },
+  { label: "Pool", value: "LIQUIDITY_MODEL_POOL" },
+  { label: "UPC", value: "LIQUIDITY_MODEL_UPC" },
 ]);
 
 export const MAX_FILE_SIZE = 90; // KB
@@ -11,22 +10,22 @@ export const MAX_FILE_SIZE = 90; // KB
 export const PROTOCOL_STATUS = new UtilityList([
   {
     label: "Unspecified",
-    value: EProtocolStatus.UNSPECIFIED,
+    value: "STATUS_UNSPECIFIED",
     className: "bg-blue-500",
   },
   {
     label: "Activated",
-    value: EProtocolStatus.ACTIVATED,
+    value: "STATUS_ACTIVATED",
     className: "bg-green-500",
   },
   {
     label: "Deactivated",
-    value: EProtocolStatus.DEACTIVATED,
+    value: "STATUS_DEACTIVATED",
     className: "bg-red-500",
   },
   {
     label: "Pending",
-    value: EProtocolStatus.PENDING,
+    value: "STATUS_PENDING",
     className: "bg-yellow-500",
   },
 ]);

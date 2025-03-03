@@ -38,7 +38,7 @@ import {
 } from "@/lib/utils";
 import { getWagmiChain, isSupportedChain } from "@/lib/wagmi";
 import { useWalletInfo, useWalletProvider } from "@/providers/wallet-provider";
-import { TProtocol } from "@/types/protocol";
+import { TProtocolDetails } from "@/types/protocol";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   ChainType,
@@ -56,7 +56,7 @@ import { TBridgeForm, bridgeFormSchema } from "../schemas";
 export const BridgeForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const walletInfo = useWalletInfo();
-  const [protocol, setProtocol] = useState<TProtocol | undefined>();
+  const [protocol, setProtocol] = useState<TProtocolDetails | undefined>();
   const vault = useVault(protocol?.tag);
   const { networkConfig, walletProvider, mempoolClient } = useWalletProvider();
 
