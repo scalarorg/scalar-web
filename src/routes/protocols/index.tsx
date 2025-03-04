@@ -1,5 +1,6 @@
 import NoteIcon from "@/assets/icons/note.svg";
 import WalletIcon from "@/assets/icons/wallet.svg";
+import DEFAULT_ICON from "@/assets/images/default-icon.png";
 import {
   Clipboard,
   DataTable,
@@ -58,13 +59,13 @@ const columns = [
     header: "Token",
     cell: ({ row }) => {
       const { chain } = row.original?.asset || {};
-      const avatar = row.original?.avatar || "";
+      const avatar = row.original?.avatar;
 
       return (
         <div className="flex items-center gap-2">
           <img
-            src={addBase64Prefix(avatar)}
-            className="size-6 rounded-full"
+            src={avatar ? addBase64Prefix(avatar) : DEFAULT_ICON}
+            className="size-8 rounded-full"
             alt="avatar"
           />
           <p>{chain}</p>

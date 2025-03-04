@@ -40,13 +40,13 @@ type Props = {
 };
 
 export const ProtocolForm = ({ setOpen }: Props) => {
+  const [formLoading, setFormLoading] = useState(false);
   const {
     data: { groups } = {},
   } = useScalarCustodianGroups();
   const {
     data: { chains } = {},
   } = useScalarChains();
-
   const { data: scalarClient, isLoading: isScalarClientLoading } =
     useKeplrClient();
 
@@ -89,11 +89,11 @@ export const ProtocolForm = ({ setOpen }: Props) => {
     },
   });
 
-  // TODO: add loading state
-
   const onSubmit = async (values: TProtocolForm) => {
+    if (isScalarClientLoading || !scalarClient || !account) return;
+
+    setFormLoading(true);
     try {
-      if (isScalarClientLoading || !scalarClient || !account) return;
       const newValues: CreateProtocolParams = {
         bitcoin_pubkey: values.bitcoin_pubkey,
         name: values.name,
@@ -136,6 +136,8 @@ export const ProtocolForm = ({ setOpen }: Props) => {
       setOpen(false);
     } catch (error) {
       console.error(error);
+    } finally {
+      setFormLoading(false);
     }
   };
 
@@ -341,12 +343,15 @@ export const ProtocolForm = ({ setOpen }: Props) => {
             )}
           />
         </div>
-        <Button
-          type="submit"
-          className="sticky bottom-0 h-[50px] w-full text-lg"
-        >
-          Submit
-        </Button>
+        <div className="sticky bottom-0">
+          <Button
+            type="submit"
+            className="h-[50px] w-full text-lg"
+            isLoading={formLoading}
+          >
+            Submit
+          </Button>
+        </div>
       </form>
     </Form>
   );
