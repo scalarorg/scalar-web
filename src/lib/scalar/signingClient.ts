@@ -1,4 +1,8 @@
-import { type GeneratedType, type OfflineSigner, Registry } from "@cosmjs/proto-signing";
+import {
+  type GeneratedType,
+  type OfflineSigner,
+  Registry,
+} from "@cosmjs/proto-signing";
 
 import { fromBech32 } from "@cosmjs/encoding";
 
@@ -19,18 +23,25 @@ import {
   type ScalarEncodeObject,
   type ScalarMsgClient,
   createMsgClient,
-} from "@scalarorg/scalarjs-sdk/stargate/messages";
+} from "@scalar-lab/scalarjs-sdk/stargate/messages";
 
-import { createQueryClient, type ScalarQueryClient } from "@scalarorg/scalarjs-sdk/stargate/queryClient";
+import {
+  type ScalarQueryClient,
+  createQueryClient,
+} from "@scalar-lab/scalarjs-sdk/stargate/queryClient";
 
-import { CreateProtocolRequest } from "@scalarorg/scalarjs-sdk/proto/scalar/protocol/v1beta1/tx";
+import { CreateProtocolRequest } from "@scalar-lab/scalarjs-sdk/proto/scalar/protocol/v1beta1/tx";
 
 import { STANDARD_GAS_PRICE } from "./constants";
 
-import { LiquidityModel } from "@scalarorg/scalarjs-sdk/proto/scalar/protocol/exported/v1beta1/types";
+import { LiquidityModel } from "@scalar-lab/scalarjs-sdk/proto/scalar/protocol/exported/v1beta1/types";
 import type { TxRaw } from "cosmjs-types/cosmos/tx/v1beta1/tx";
 import { isSecp256k1Pubkey } from "../utils";
-import type { CreateProtocolEncodeObject, CreateProtocolParams, LiquidityModelParams } from "./interface";
+import type {
+  CreateProtocolEncodeObject,
+  CreateProtocolParams,
+  LiquidityModelParams,
+} from "./interface";
 
 import { typeUrlCreateProtocolRequest } from "./interface";
 
@@ -151,65 +162,65 @@ export class ScalarSigningStargateClient extends SigningStargateClient {
     memo = "",
   ): Promise<DeliverTxResponse> {
     if (!params.bitcoin_pubkey) {
-      throw "Empty bitcoin pubkey"
+      throw "Empty bitcoin pubkey";
     }
 
     if (!isSecp256k1Pubkey(params.bitcoin_pubkey)) {
-      throw "Invalid bitcoin pubkey"
+      throw "Invalid bitcoin pubkey";
     }
 
     if (!params.name) {
-      throw "Empty name"
+      throw "Empty name";
     }
 
     if (!params.tag) {
-      throw "Empty tag"
+      throw "Empty tag";
     }
 
     if (!params.custodian_group_uid) {
-      throw "Empty custodian group uid"
+      throw "Empty custodian group uid";
     }
 
     if (!params.avatar) {
-      throw "Empty avatar"
+      throw "Empty avatar";
     }
 
     if (!params.asset || !params.asset.chain || !params.asset.name) {
-      throw "Invalid asset"
+      throw "Invalid asset";
     }
 
     const createMsg: CreateProtocolEncodeObject = {
       typeUrl: typeUrlCreateProtocolRequest,
-      value: CreateProtocolRequest.fromPartial({
+      value: {
         sender: fromBech32(creator).data,
-        bitcoinPubkey: Uint8Array.from(Buffer.from(params.bitcoin_pubkey.replace("0x", ""), "hex")),
+        bitcoinPubkey: Uint8Array.from(
+          Buffer.from(params.bitcoin_pubkey.replace("0x", ""), "hex"),
+        ),
         name: params.name,
         tag: params.tag,
         attributes: {
-          model: LiquidityModel.LIQUIDITY_MODEL_POOL
+          model: mapLiquidityModel(params.attributes?.model),
         },
         custodianGroupUid: params.custodian_group_uid,
         asset: {
           name: params.asset.name,
-          chain: params.asset.chain
+          chain: params.asset.chain,
         },
-        avatar: Uint8Array.from(Buffer.from(params.avatar, "base64"))
-      }),
-    }
+        avatar: Uint8Array.from(Buffer.from(params.avatar, "base64")),
+      },
+    };
 
-    console.log({ createMsg })
-
-    return this.signAndBroadcast(creator, [createMsg], fee, memo)
+    return this.signAndBroadcast(creator, [createMsg], fee, memo);
   }
 }
 
 const mapLiquidityModel = (model: LiquidityModelParams): LiquidityModel => {
   switch (model) {
     case "LIQUIDITY_MODEL_POOL":
-      return LiquidityModel.LIQUIDITY_MODEL_POOL
+      return LiquidityModel.LIQUIDITY_MODEL_POOL;
     case "LIQUIDITY_MODEL_UPC":
-      return LiquidityModel.LIQUIDITY_MODEL_UPC
+      return LiquidityModel.LIQUIDITY_MODEL_UPC;
     default:
-      throw "Invalid liquidity model"
+      throw "Invalid liquidity model";
   }
-}
+};

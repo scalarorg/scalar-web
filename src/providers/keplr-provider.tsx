@@ -1,9 +1,9 @@
-import { createContext, use, useEffect, useState } from "react";
 import { ScalarSigningStargateClient } from "@/lib/scalar/signingClient";
 import { formatTokenAmount } from "@/lib/utils";
 import { OfflineSigner } from "@cosmjs/proto-signing";
 import type { ChainInfo, Keplr } from "@keplr-wallet/types";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { createContext, use, useEffect, useState } from "react";
 import { toast as toastSonner } from "sonner";
 
 interface KeplrContextProps {

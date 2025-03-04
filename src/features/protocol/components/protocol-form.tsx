@@ -20,17 +20,20 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useScalarChains, useScalarCustodianGroups } from "@/hooks";
+import {
+  CreateProtocolParams,
+  LiquidityModelParams,
+} from "@/lib/scalar/interface";
 import { cn, extractBase64Data, isBtcChain } from "@/lib/utils";
 import { convertToBytes } from "@/lib/wallet";
+import { useAccount, useKeplrClient } from "@/providers/keplr-provider";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Dispatch, SetStateAction, useCallback, useState } from "react";
 import { FileWithPath, useDropzone } from "react-dropzone";
 import { useForm } from "react-hook-form";
-import { toast as sonnerToast } from "sonner";
+import { toast } from "sonner";
 import { LIQUIDITY_MODEL, MAX_FILE_SIZE } from "../constans";
 import { TProtocolForm, protocolFormSchema } from "../schemas";
-import { useAccount, useKeplrClient } from "@/providers/keplr-provider";
-import { CreateProtocolParams, LiquidityModelParams } from "@/lib/scalar/interface";
 
 type Props = {
   setOpen: Dispatch<SetStateAction<boolean>>;
@@ -47,7 +50,7 @@ export const ProtocolForm = ({ setOpen }: Props) => {
   const { data: scalarClient, isLoading: isScalarClientLoading } =
     useKeplrClient();
 
-  const { account } = useAccount()
+  const { account } = useAccount();
 
   const filterChains = chains?.filter((c) => isBtcChain(c));
 
@@ -68,7 +71,7 @@ export const ProtocolForm = ({ setOpen }: Props) => {
       const fileSize = file.size;
 
       if (fileSize > convertToBytes(MAX_FILE_SIZE, "MB")) {
-        sonnerToast.error("Selected image is too large!");
+        toast.error("Selected image is too large!");
         return;
       }
 
@@ -86,10 +89,11 @@ export const ProtocolForm = ({ setOpen }: Props) => {
     },
   });
 
+  // TODO: add loading state
+
   const onSubmit = async (values: TProtocolForm) => {
     try {
-      if (isScalarClientLoading || !scalarClient || !account)
-        return;
+      if (isScalarClientLoading || !scalarClient || !account) return;
       const newValues: CreateProtocolParams = {
         bitcoin_pubkey: values.bitcoin_pubkey,
         name: values.name,
@@ -105,16 +109,33 @@ export const ProtocolForm = ({ setOpen }: Props) => {
         avatar: extractBase64Data(values.avatar),
       };
 
-      // biome-ignore lint/suspicious/noConsoleLog: <explanation>
-      console.log({ newValues });
+      const result = await scalarClient.raw.createProtocol(
+        account.address,
+        newValues,
+        "auto",
+        "",
+      );
 
-      const result = await scalarClient.raw.createProtocol(account.address, newValues, "auto", "nothing")
+      const txHash = result.transactionHash;
 
-      console.log({ result })
+      toast.success(
+        <p className="w-fit">
+          Protocol created successfully!
+          <a
+            //TODO: replace with explorer url
+            href={`https://explorer.scalarorg.com/tx/${txHash}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-primary underline"
+          >
+            {txHash}
+          </a>
+        </p>,
+      );
 
       setOpen(false);
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
   };
 
