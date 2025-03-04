@@ -31,13 +31,13 @@ function RouteComponent() {
   const { data } = useScalarProtocols();
 
   const protocol = data?.protocols?.find(
-    (protocol) => protocol.asset?.name === slug,
+    (protocol) => protocol.asset?.symbol === slug,
   );
 
   const items: TItem[] = [
     {
       label: "Name",
-      content: <p className="font-semibold">{protocol?.asset?.name}</p>,
+      content: <p className="font-semibold">{protocol?.asset?.symbol}</p>,
     },
     {
       label: "Token",

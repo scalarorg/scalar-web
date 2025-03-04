@@ -92,7 +92,7 @@ export const ImageCropper = ({
   return (
     <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
       <DialogTrigger>
-        <Avatar className="size-36 cursor-pointer ring-2 ring-slate-200 ring-offset-2">
+        <Avatar className="size-[100px] cursor-pointer ring-2 ring-slate-200 ring-offset-2">
           <AvatarImage src={imageUrl} alt="icon" />
           <AvatarFallback>Icon</AvatarFallback>
         </Avatar>

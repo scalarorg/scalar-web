@@ -4138,7 +4138,7 @@ export interface components {
     "scalar.chains.v1beta1.AddChainResponse": Record<string, never>;
     "scalar.chains.v1beta1.Asset": {
       chain?: string;
-      name?: string;
+      symbol?: string;
     };
     "scalar.chains.v1beta1.BatchedCommandsResponse": {
       id?: string;
@@ -4250,7 +4250,7 @@ export interface components {
       tx_id?: string;
       asset?: {
         chain?: string;
-        name?: string;
+        symbol?: string;
       };
     };
     "scalar.chains.v1beta1.ConfirmTokenResponse": Record<string, never>;
@@ -4280,21 +4280,10 @@ export interface components {
       /** Format: byte */
       sender?: string;
       chain?: string;
-      asset?: {
-        chain?: string;
-        name?: string;
-      };
-      token_details?: {
-        token_name?: string;
-        symbol?: string;
-        /** Format: int64 */
-        decimals?: number;
-        /** Format: byte */
-        capacity?: string;
-      };
+      token_symbol?: string;
+      aliased_token_name?: string;
       /** Format: byte */
       address?: string;
-      daily_mint_limit?: string;
     };
     "scalar.chains.v1beta1.CreateDeployTokenResponse": Record<string, never>;
     /** CreatePendingTransfersRequest represents a message to trigger the creation of
@@ -4821,14 +4810,6 @@ export interface components {
       destination_contract_address?: string;
       destination_recipient_address?: string;
     };
-    "scalar.chains.v1beta1.TokenDetails": {
-      token_name?: string;
-      symbol?: string;
-      /** Format: int64 */
-      decimals?: number;
-      /** Format: byte */
-      capacity?: string;
-    };
     "scalar.chains.v1beta1.TokenInfoResponse": {
       asset?: string;
       details?: {
@@ -4854,6 +4835,14 @@ export interface components {
       | "TOKEN_TYPE_UNSPECIFIED"
       | "TOKEN_TYPE_INTERNAL"
       | "TOKEN_TYPE_EXTERNAL";
+    "scalar.nexus.exported.v1beta1.TokenDetails": {
+      token_name?: string;
+      symbol?: string;
+      /** Format: int64 */
+      decimals?: number;
+      /** Format: byte */
+      capacity?: string;
+    };
     "scalar.utils.v1beta1.Threshold": {
       /**
        * split threshold into Numerator and denominator to avoid floating point
@@ -5004,10 +4993,6 @@ export interface components {
           | "STATUS_PENDING";
         /** scalar.covenant.v1beta1.CustodianGroup custodian_group = 8; */
         custodian_group_uid?: string;
-        asset?: {
-          chain?: string;
-          name?: string;
-        };
         chains?: {
           chain?: string;
           name?: string;
@@ -5015,6 +5000,20 @@ export interface components {
         }[];
         /** Format: byte */
         avatar?: string;
+        asset?: {
+          chain?: string;
+          symbol?: string;
+        };
+        token_details?: {
+          token_name?: string;
+          symbol?: string;
+          /** Format: int64 */
+          decimals?: number;
+          /** Format: byte */
+          capacity?: string;
+        };
+        /** Format: byte */
+        token_daily_mint_limit?: string;
       };
     };
     "scalar.protocol.v1beta1.CreateProtocolRequest": {
@@ -5035,12 +5034,17 @@ export interface components {
           | "LIQUIDITY_MODEL_UPC";
       };
       custodian_group_uid?: string;
-      asset?: {
-        chain?: string;
-        name?: string;
-      };
       /** Format: byte */
       avatar?: string;
+      asset?: {
+        chain?: string;
+        symbol?: string;
+      };
+      token_name?: string;
+      /** Format: int64 */
+      token_decimals?: number;
+      token_capacity?: string;
+      token_daily_mint_limit?: string;
     };
     "scalar.protocol.v1beta1.CreateProtocolResponse": {
       protocol?: {
@@ -5072,10 +5076,6 @@ export interface components {
           | "STATUS_PENDING";
         /** scalar.covenant.v1beta1.CustodianGroup custodian_group = 8; */
         custodian_group_uid?: string;
-        asset?: {
-          chain?: string;
-          name?: string;
-        };
         chains?: {
           chain?: string;
           name?: string;
@@ -5083,6 +5083,20 @@ export interface components {
         }[];
         /** Format: byte */
         avatar?: string;
+        asset?: {
+          chain?: string;
+          symbol?: string;
+        };
+        token_details?: {
+          token_name?: string;
+          symbol?: string;
+          /** Format: int64 */
+          decimals?: number;
+          /** Format: byte */
+          capacity?: string;
+        };
+        /** Format: byte */
+        token_daily_mint_limit?: string;
       };
     };
     "scalar.protocol.v1beta1.Protocol": {
@@ -5114,10 +5128,6 @@ export interface components {
         | "STATUS_PENDING";
       /** scalar.covenant.v1beta1.CustodianGroup custodian_group = 8; */
       custodian_group_uid?: string;
-      asset?: {
-        chain?: string;
-        name?: string;
-      };
       chains?: {
         chain?: string;
         name?: string;
@@ -5125,14 +5135,26 @@ export interface components {
       }[];
       /** Format: byte */
       avatar?: string;
+      asset?: {
+        chain?: string;
+        symbol?: string;
+      };
+      token_details?: {
+        token_name?: string;
+        symbol?: string;
+        /** Format: int64 */
+        decimals?: number;
+        /** Format: byte */
+        capacity?: string;
+      };
+      /** Format: byte */
+      token_daily_mint_limit?: string;
     };
     "scalar.protocol.v1beta1.ProtocolDetails": {
       /** Format: byte */
-      bitcoin_pubkey?: string;
-      /** Format: byte */
-      scalar_pubkey?: string;
-      /** Format: byte */
       scalar_address?: string;
+      /** Format: byte */
+      bitcoin_pubkey?: string;
       name?: string;
       /** Format: byte */
       tag?: string;
@@ -5156,10 +5178,6 @@ export interface components {
         | "STATUS_DEACTIVATED"
         | "STATUS_PENDING";
       custodian_group_uid?: string;
-      asset?: {
-        chain?: string;
-        name?: string;
-      };
       chains?: {
         chain?: string;
         name?: string;
@@ -5209,15 +5227,27 @@ export interface components {
           description?: string;
         }[];
       };
+      asset?: {
+        chain?: string;
+        symbol?: string;
+      };
+      token_details?: {
+        token_name?: string;
+        symbol?: string;
+        /** Format: int64 */
+        decimals?: number;
+        /** Format: byte */
+        capacity?: string;
+      };
+      /** Format: byte */
+      token_daily_mint_limit?: string;
     };
     "scalar.protocol.v1beta1.ProtocolResponse": {
       protocol?: {
         /** Format: byte */
-        bitcoin_pubkey?: string;
-        /** Format: byte */
-        scalar_pubkey?: string;
-        /** Format: byte */
         scalar_address?: string;
+        /** Format: byte */
+        bitcoin_pubkey?: string;
         name?: string;
         /** Format: byte */
         tag?: string;
@@ -5241,10 +5271,6 @@ export interface components {
           | "STATUS_DEACTIVATED"
           | "STATUS_PENDING";
         custodian_group_uid?: string;
-        asset?: {
-          chain?: string;
-          name?: string;
-        };
         chains?: {
           chain?: string;
           name?: string;
@@ -5294,16 +5320,28 @@ export interface components {
             description?: string;
           }[];
         };
+        asset?: {
+          chain?: string;
+          symbol?: string;
+        };
+        token_details?: {
+          token_name?: string;
+          symbol?: string;
+          /** Format: int64 */
+          decimals?: number;
+          /** Format: byte */
+          capacity?: string;
+        };
+        /** Format: byte */
+        token_daily_mint_limit?: string;
       };
     };
     "scalar.protocol.v1beta1.ProtocolsResponse": {
       protocols?: {
         /** Format: byte */
-        bitcoin_pubkey?: string;
-        /** Format: byte */
-        scalar_pubkey?: string;
-        /** Format: byte */
         scalar_address?: string;
+        /** Format: byte */
+        bitcoin_pubkey?: string;
         name?: string;
         /** Format: byte */
         tag?: string;
@@ -5327,10 +5365,6 @@ export interface components {
           | "STATUS_DEACTIVATED"
           | "STATUS_PENDING";
         custodian_group_uid?: string;
-        asset?: {
-          chain?: string;
-          name?: string;
-        };
         chains?: {
           chain?: string;
           name?: string;
@@ -5380,6 +5414,20 @@ export interface components {
             description?: string;
           }[];
         };
+        asset?: {
+          chain?: string;
+          symbol?: string;
+        };
+        token_details?: {
+          token_name?: string;
+          symbol?: string;
+          /** Format: int64 */
+          decimals?: number;
+          /** Format: byte */
+          capacity?: string;
+        };
+        /** Format: byte */
+        token_daily_mint_limit?: string;
       }[];
       /** Format: uint64 */
       total?: string;
@@ -5421,10 +5469,6 @@ export interface components {
           | "STATUS_PENDING";
         /** scalar.covenant.v1beta1.CustodianGroup custodian_group = 8; */
         custodian_group_uid?: string;
-        asset?: {
-          chain?: string;
-          name?: string;
-        };
         chains?: {
           chain?: string;
           name?: string;
@@ -5432,6 +5476,20 @@ export interface components {
         }[];
         /** Format: byte */
         avatar?: string;
+        asset?: {
+          chain?: string;
+          symbol?: string;
+        };
+        token_details?: {
+          token_name?: string;
+          symbol?: string;
+          /** Format: int64 */
+          decimals?: number;
+          /** Format: byte */
+          capacity?: string;
+        };
+        /** Format: byte */
+        token_daily_mint_limit?: string;
       };
     };
     "scalar.protocol.v1beta1.UpdateSupportedChainRequest": {
@@ -5480,10 +5538,6 @@ export interface components {
           | "STATUS_PENDING";
         /** scalar.covenant.v1beta1.CustodianGroup custodian_group = 8; */
         custodian_group_uid?: string;
-        asset?: {
-          chain?: string;
-          name?: string;
-        };
         chains?: {
           chain?: string;
           name?: string;
@@ -5491,6 +5545,20 @@ export interface components {
         }[];
         /** Format: byte */
         avatar?: string;
+        asset?: {
+          chain?: string;
+          symbol?: string;
+        };
+        token_details?: {
+          token_name?: string;
+          symbol?: string;
+          /** Format: int64 */
+          decimals?: number;
+          /** Format: byte */
+          capacity?: string;
+        };
+        /** Format: byte */
+        token_daily_mint_limit?: string;
       };
     };
     "scalar.covenant.exported.v1beta1.TapScriptSig": {
@@ -6353,7 +6421,10 @@ export interface components {
       /** Format: uint64 */
       source_tx_index?: string;
       /**
-       * Additional data for the message, metadata is encoded in the payload, it can be fee information, etc. It will be used later when enqueuing the command and batch command. Currently, the main purpose is use to form the psbt for btc
+       * Additional data for the message, metadata is encoded in the payload, it can
+       *     be fee information, etc. It will be used later when enqueuing the command
+       *     and batch command. Currently, the main purpose is use to form the psbt for
+       *     btc
        * Format: byte
        */
       payload?: string;
@@ -6635,7 +6706,10 @@ export interface components {
         /** Format: uint64 */
         source_tx_index?: string;
         /**
-         * Additional data for the message, metadata is encoded in the payload, it can be fee information, etc. It will be used later when enqueuing the command and batch command. Currently, the main purpose is use to form the psbt for btc
+         * Additional data for the message, metadata is encoded in the payload, it can
+         *     be fee information, etc. It will be used later when enqueuing the command
+         *     and batch command. Currently, the main purpose is use to form the psbt for
+         *     btc
          * Format: byte
          */
         payload?: string;
@@ -23088,7 +23162,7 @@ export interface operations {
           tx_id?: string;
           asset?: {
             chain?: string;
-            name?: string;
+            symbol?: string;
           };
         };
       };
@@ -23318,21 +23392,10 @@ export interface operations {
           /** Format: byte */
           sender?: string;
           chain?: string;
-          asset?: {
-            chain?: string;
-            name?: string;
-          };
-          token_details?: {
-            token_name?: string;
-            symbol?: string;
-            /** Format: int64 */
-            decimals?: number;
-            /** Format: byte */
-            capacity?: string;
-          };
+          token_symbol?: string;
+          aliased_token_name?: string;
           /** Format: byte */
           address?: string;
-          daily_mint_limit?: string;
         };
       };
     };
@@ -24672,11 +24735,9 @@ export interface operations {
           "*/*": {
             protocols?: {
               /** Format: byte */
-              bitcoin_pubkey?: string;
-              /** Format: byte */
-              scalar_pubkey?: string;
-              /** Format: byte */
               scalar_address?: string;
+              /** Format: byte */
+              bitcoin_pubkey?: string;
               name?: string;
               /** Format: byte */
               tag?: string;
@@ -24700,10 +24761,6 @@ export interface operations {
                 | "STATUS_DEACTIVATED"
                 | "STATUS_PENDING";
               custodian_group_uid?: string;
-              asset?: {
-                chain?: string;
-                name?: string;
-              };
               chains?: {
                 chain?: string;
                 name?: string;
@@ -24753,6 +24810,20 @@ export interface operations {
                   description?: string;
                 }[];
               };
+              asset?: {
+                chain?: string;
+                symbol?: string;
+              };
+              token_details?: {
+                token_name?: string;
+                symbol?: string;
+                /** Format: int64 */
+                decimals?: number;
+                /** Format: byte */
+                capacity?: string;
+              };
+              /** Format: byte */
+              token_daily_mint_limit?: string;
             }[];
             /** Format: uint64 */
             total?: string;
@@ -24867,10 +24938,6 @@ export interface operations {
                 | "STATUS_PENDING";
               /** scalar.covenant.v1beta1.CustodianGroup custodian_group = 8; */
               custodian_group_uid?: string;
-              asset?: {
-                chain?: string;
-                name?: string;
-              };
               chains?: {
                 chain?: string;
                 name?: string;
@@ -24878,6 +24945,20 @@ export interface operations {
               }[];
               /** Format: byte */
               avatar?: string;
+              asset?: {
+                chain?: string;
+                symbol?: string;
+              };
+              token_details?: {
+                token_name?: string;
+                symbol?: string;
+                /** Format: int64 */
+                decimals?: number;
+                /** Format: byte */
+                capacity?: string;
+              };
+              /** Format: byte */
+              token_daily_mint_limit?: string;
             };
           };
         };
@@ -24960,12 +25041,17 @@ export interface operations {
               | "LIQUIDITY_MODEL_UPC";
           };
           custodian_group_uid?: string;
-          asset?: {
-            chain?: string;
-            name?: string;
-          };
           /** Format: byte */
           avatar?: string;
+          asset?: {
+            chain?: string;
+            symbol?: string;
+          };
+          token_name?: string;
+          /** Format: int64 */
+          token_decimals?: number;
+          token_capacity?: string;
+          token_daily_mint_limit?: string;
         };
       };
     };
@@ -25006,10 +25092,6 @@ export interface operations {
                 | "STATUS_PENDING";
               /** scalar.covenant.v1beta1.CustodianGroup custodian_group = 8; */
               custodian_group_uid?: string;
-              asset?: {
-                chain?: string;
-                name?: string;
-              };
               chains?: {
                 chain?: string;
                 name?: string;
@@ -25017,6 +25099,20 @@ export interface operations {
               }[];
               /** Format: byte */
               avatar?: string;
+              asset?: {
+                chain?: string;
+                symbol?: string;
+              };
+              token_details?: {
+                token_name?: string;
+                symbol?: string;
+                /** Format: int64 */
+                decimals?: number;
+                /** Format: byte */
+                capacity?: string;
+              };
+              /** Format: byte */
+              token_daily_mint_limit?: string;
             };
           };
         };
@@ -25079,6 +25175,7 @@ export interface operations {
         minor_chain?: string;
         symbol?: string;
         address?: string;
+        sender?: string;
       };
       header?: never;
       path?: never;
@@ -25095,11 +25192,9 @@ export interface operations {
           "*/*": {
             protocol?: {
               /** Format: byte */
-              bitcoin_pubkey?: string;
-              /** Format: byte */
-              scalar_pubkey?: string;
-              /** Format: byte */
               scalar_address?: string;
+              /** Format: byte */
+              bitcoin_pubkey?: string;
               name?: string;
               /** Format: byte */
               tag?: string;
@@ -25123,10 +25218,6 @@ export interface operations {
                 | "STATUS_DEACTIVATED"
                 | "STATUS_PENDING";
               custodian_group_uid?: string;
-              asset?: {
-                chain?: string;
-                name?: string;
-              };
               chains?: {
                 chain?: string;
                 name?: string;
@@ -25176,6 +25267,20 @@ export interface operations {
                   description?: string;
                 }[];
               };
+              asset?: {
+                chain?: string;
+                symbol?: string;
+              };
+              token_details?: {
+                token_name?: string;
+                symbol?: string;
+                /** Format: int64 */
+                decimals?: number;
+                /** Format: byte */
+                capacity?: string;
+              };
+              /** Format: byte */
+              token_daily_mint_limit?: string;
             };
           };
         };
@@ -25285,10 +25390,6 @@ export interface operations {
                 | "STATUS_PENDING";
               /** scalar.covenant.v1beta1.CustodianGroup custodian_group = 8; */
               custodian_group_uid?: string;
-              asset?: {
-                chain?: string;
-                name?: string;
-              };
               chains?: {
                 chain?: string;
                 name?: string;
@@ -25296,6 +25397,20 @@ export interface operations {
               }[];
               /** Format: byte */
               avatar?: string;
+              asset?: {
+                chain?: string;
+                symbol?: string;
+              };
+              token_details?: {
+                token_name?: string;
+                symbol?: string;
+                /** Format: int64 */
+                decimals?: number;
+                /** Format: byte */
+                capacity?: string;
+              };
+              /** Format: byte */
+              token_daily_mint_limit?: string;
             };
           };
         };
@@ -25415,10 +25530,6 @@ export interface operations {
                 | "STATUS_PENDING";
               /** scalar.covenant.v1beta1.CustodianGroup custodian_group = 8; */
               custodian_group_uid?: string;
-              asset?: {
-                chain?: string;
-                name?: string;
-              };
               chains?: {
                 chain?: string;
                 name?: string;
@@ -25426,6 +25537,20 @@ export interface operations {
               }[];
               /** Format: byte */
               avatar?: string;
+              asset?: {
+                chain?: string;
+                symbol?: string;
+              };
+              token_details?: {
+                token_name?: string;
+                symbol?: string;
+                /** Format: int64 */
+                decimals?: number;
+                /** Format: byte */
+                capacity?: string;
+              };
+              /** Format: byte */
+              token_daily_mint_limit?: string;
             };
           };
         };
@@ -28383,7 +28508,10 @@ export interface operations {
               /** Format: uint64 */
               source_tx_index?: string;
               /**
-               * Additional data for the message, metadata is encoded in the payload, it can be fee information, etc. It will be used later when enqueuing the command and batch command. Currently, the main purpose is use to form the psbt for btc
+               * Additional data for the message, metadata is encoded in the payload, it can
+               *     be fee information, etc. It will be used later when enqueuing the command
+               *     and batch command. Currently, the main purpose is use to form the psbt for
+               *     btc
                * Format: byte
                */
               payload?: string;

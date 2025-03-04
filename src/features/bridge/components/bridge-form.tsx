@@ -310,14 +310,14 @@ export const BridgeForm = () => {
                                 ({ scalar_address, asset, chains }) => (
                                   <SelectGroup key={scalar_address}>
                                     <SelectLabel className="text-lg">
-                                      {asset?.name}
+                                      {asset?.symbol}
                                     </SelectLabel>
                                     {chains
                                       ?.filter((c) => c.chain !== asset?.chain)
                                       .map(({ name, chain }) => (
                                         <SelectItem
-                                          key={`${asset?.name}-${chain}`}
-                                          value={`${asset?.name}-${chain}`}
+                                          key={`${asset?.symbol}-${chain}`}
+                                          value={`${asset?.symbol}-${chain}`}
                                           className="text-lg capitalize"
                                         >
                                           {name || chain}

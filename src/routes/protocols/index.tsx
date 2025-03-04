@@ -22,8 +22,10 @@ import { useScalarProtocols } from "@/hooks";
 import { addBase64Prefix, cn, fuzzyMatch } from "@/lib/utils";
 import { useAccount, useConnectKeplr } from "@/providers/keplr-provider";
 import { TProtocolDetails } from "@/types/protocol";
+import { fromBech32 } from "@cosmjs/encoding";
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { createColumnHelper } from "@tanstack/react-table";
+import { isEmpty } from "lodash";
 import { useMemo, useState } from "react";
 
 export const Route = createFileRoute("/protocols/")({
@@ -34,7 +36,7 @@ export const Route = createFileRoute("/protocols/")({
 const { display, accessor } = createColumnHelper<TProtocolDetails>();
 
 const columns = [
-  accessor("asset.name", {
+  accessor("name", {
     header: "Protocol",
     cell: ({ getValue }) => {
       const name = getValue();
@@ -130,7 +132,7 @@ const columns = [
 ];
 
 function Protocols() {
-  const { isConnected } = useAccount();
+  const { isConnected, account } = useAccount();
   const { connect } = useConnectKeplr();
   const [open, setOpen] = useState(false);
   const { q } = Route.useSearch();
@@ -140,10 +142,20 @@ function Protocols() {
   const filteredProtocols = useMemo(
     () =>
       data?.protocols?.filter((protocol) =>
-        fuzzyMatch(protocol.asset?.name || "", q || ""),
+        fuzzyMatch(protocol?.name || "", q || ""),
       ),
     [data?.protocols, q],
   );
+
+  const accountAddress = account?.address
+    ? Buffer.from(fromBech32(account?.address).data).toString("base64")
+    : "";
+
+  const isOwnCreated = useMemo(() => {
+    if (isEmpty(data?.protocols) || !accountAddress) return false;
+
+    return data?.protocols?.some((p) => p.scalar_address === accountAddress);
+  }, [data?.protocols, accountAddress]);
 
   return (
     <div className="flex flex-col gap-5 py-[60px]">
@@ -155,18 +167,28 @@ function Protocols() {
           </div>
           <p className="mr-auto text-lg">
             {isConnected
-              ? "Rigister your protocol."
+              ? isOwnCreated
+                ? "You have created a protocol."
+                : "Rigister your protocol."
               : "Connect your wallet to register protocol."}
           </p>
           <Dialog open={open} onOpenChange={setOpen}>
             {isConnected ? (
-              <DialogTrigger asChild>
-                <Button variant="black" className="px-5 text-lg">
-                  Register
-                </Button>
-              </DialogTrigger>
+              isOwnCreated ? (
+                <Link to="/protocols/me">
+                  <Button className="px-5 text-lg">View your protocol</Button>
+                </Link>
+              ) : (
+                <DialogTrigger asChild>
+                  <Button variant="black" className="px-5 text-lg">
+                    Register
+                  </Button>
+                </DialogTrigger>
+              )
             ) : (
-              <Button onClick={() => connect()}>Connect Scalar</Button>
+              <Button className="px-5 text-lg" onClick={() => connect()}>
+                Connect Scalar
+              </Button>
             )}
             <DialogContent
               closeClassName="[&_svg:not([class*='size-'])]:size-6"

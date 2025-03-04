@@ -103,7 +103,7 @@ export const RedeemForm = () => {
 
   const selectedProtocol = filterProtocols.find((p) =>
     p?.chains?.find(
-      (c) => `${p?.asset?.name}-${c?.chain}` === watchForm.sourceChain,
+      (c) => `${p?.asset?.symbol}-${c?.chain}` === watchForm.sourceChain,
     ),
   );
 
@@ -403,7 +403,7 @@ export const RedeemForm = () => {
         destinationChain: originalChain?.chain!,
         destinationContractAddress: EMPTY_ADDRESS,
         payload,
-        symbol: selectedProtocol?.asset?.name || "",
+        symbol: selectedProtocol?.asset?.symbol || "",
         amount: BigInt(newTransferAmount),
       });
 
@@ -444,11 +444,11 @@ export const RedeemForm = () => {
             {formatBTC(availableBalance)}{" "}
             <span className="text-muted-foreground text-sm">BTC</span>
           </span>
-          {selectedProtocol?.asset?.name && (
+          {selectedProtocol?.asset?.symbol && (
             <>
               <span className="mx-2">|</span>
               <span className="text-muted-foreground text-sm">
-                {selectedProtocol?.asset?.name}
+                {selectedProtocol?.asset?.symbol}
               </span>
             </>
           )}
@@ -484,13 +484,13 @@ export const RedeemForm = () => {
                               {filterProtocols?.map(
                                 ({ scalar_address, asset, chains }) => (
                                   <SelectGroup key={scalar_address}>
-                                    <SelectLabel>{asset?.name}</SelectLabel>
+                                    <SelectLabel>{asset?.symbol}</SelectLabel>
                                     {chains
                                       ?.filter((c) => c.chain !== asset?.chain)
                                       .map(({ name, chain }) => (
                                         <SelectItem
-                                          key={`${asset?.name}-${chain}`}
-                                          value={`${asset?.name}-${chain}`}
+                                          key={`${asset?.symbol}-${chain}`}
+                                          value={`${asset?.symbol}-${chain}`}
                                           className="text-lg capitalize"
                                         >
                                           {name || chain}
@@ -535,8 +535,8 @@ export const RedeemForm = () => {
                     ? formatUnits(sourceChainBalance, Number(decimals))
                     : 0}
                 </span>
-                {selectedProtocol?.asset?.name && (
-                  <span> {selectedProtocol?.asset?.name}</span>
+                {selectedProtocol?.asset?.symbol && (
+                  <span> {selectedProtocol?.asset?.symbol}</span>
                 )}
               </p>
             </div>

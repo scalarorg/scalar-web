@@ -11,7 +11,9 @@
     "format": "biome check --write --unsafe --no-errors-on-unmatched --files-ignore-unknown=true ./",
     "preview": "vite preview",
     "postinstall": "bunx simple-git-hooks",
-    "generate-api": "rimraf ./src/types/schema.ts && openapi-typescript ./src/assets/openapi.yaml -o ./src/types/schema.ts"
+    "generate-api": "rimraf ./src/types/schema.ts && openapi-typescript ./src/assets/openapi.yaml -o ./src/types/schema.ts",
+    "sync-api": "bash scripts/sync.sh",
+    "gen-api": "bun run sync-api && bun run generate-api"
   },
   "simple-git-hooks": {
     "pre-commit": "bunx lint-staged"
@@ -50,6 +52,7 @@
     "bitcoinjs-lib": "^7.0.0-rc.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "cmdk": "1.0.0",
     "cosmjs-types": "^0.9.0",
     "ethers": "^6.13.5",
     "lodash": "^4.17.21",

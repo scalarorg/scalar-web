@@ -2,10 +2,10 @@ import DEFAULT_ICON from "@/assets/images/default-icon.png";
 import { ImageCropper } from "@/components/common";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -24,10 +24,17 @@ import {
   CreateProtocolParams,
   LiquidityModelParams,
 } from "@/lib/scalar/interface";
-import { cn, extractBase64Data, isBtcChain } from "@/lib/utils";
+import {
+  cn,
+  extractBase64Data,
+  isBtcChain,
+  parseKeplrError,
+  shortenText,
+} from "@/lib/utils";
 import { convertToBytes } from "@/lib/wallet";
 import { useAccount, useKeplrClient } from "@/providers/keplr-provider";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useQueryClient } from "@tanstack/react-query";
 import { Dispatch, SetStateAction, useCallback, useState } from "react";
 import { FileWithPath, useDropzone } from "react-dropzone";
 import { useForm } from "react-hook-form";
@@ -51,6 +58,8 @@ export const ProtocolForm = ({ setOpen }: Props) => {
     useKeplrClient();
 
   const { account } = useAccount();
+
+  const queryClient = useQueryClient();
 
   const filterChains = chains?.filter((c) => isBtcChain(c));
 
@@ -94,19 +103,17 @@ export const ProtocolForm = ({ setOpen }: Props) => {
 
     setFormLoading(true);
     try {
+      const { model, chain_name, avatar, symbol, ...rest } = values;
       const newValues: CreateProtocolParams = {
-        bitcoin_pubkey: values.bitcoin_pubkey,
-        name: values.name,
-        tag: values.tag,
+        ...rest,
         attributes: {
-          model: values.model as LiquidityModelParams,
+          model: model as LiquidityModelParams,
         },
-        custodian_group_uid: values.custodian_group_uid,
         asset: {
-          chain: values.chain_name,
-          name: values.asset_name,
+          chain: chain_name,
+          symbol,
         },
-        avatar: extractBase64Data(values.avatar),
+        avatar: extractBase64Data(avatar),
       };
 
       const result = await scalarClient.raw.createProtocol(
@@ -118,6 +125,10 @@ export const ProtocolForm = ({ setOpen }: Props) => {
 
       const txHash = result.transactionHash;
 
+      queryClient.invalidateQueries({
+        queryKey: ["get", "/scalar/protocol/v1beta1"],
+      });
+
       toast.success(
         <p className="w-fit">
           Protocol created successfully!
@@ -128,13 +139,25 @@ export const ProtocolForm = ({ setOpen }: Props) => {
             rel="noopener noreferrer"
             className="text-primary underline"
           >
-            {txHash}
+            {shortenText(txHash, 8)}
           </a>
         </p>,
       );
 
       setOpen(false);
     } catch (error) {
+      const parsedError = parseKeplrError((error as Error).message || "");
+
+      if (parsedError) {
+        const { detail } = parsedError;
+        const desc = typeof detail === "string" ? detail : detail[0].desc;
+        const [needMessage] = desc.split(":");
+
+        if (needMessage) {
+          toast.error(needMessage);
+        }
+      }
+
       console.error(error);
     } finally {
       setFormLoading(false);
@@ -160,63 +183,29 @@ export const ProtocolForm = ({ setOpen }: Props) => {
           "[&_button[data-slot=form-control]]:h-[50px]",
         )}
       >
-        <FormField
-          control={control}
-          name="name"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Protocol name</FormLabel>
-              <FormControl>
-                <Input
-                  {...field}
-                  placeholder="Protocol name"
-                  className="!text-lg"
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={control}
-          name="asset_name"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Token name</FormLabel>
-              <FormControl>
-                <Input
-                  {...field}
-                  placeholder="Token name"
-                  className="!text-lg"
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={control}
-          name="bitcoin_pubkey"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Bitcoin pubkey</FormLabel>
-              <FormControl>
-                <Input
-                  {...field}
-                  placeholder="Bitcoin pubkey"
-                  className="!text-lg"
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={control}
-          name="avatar"
-          render={({ field: { value, onChange } }) => (
-            <FormItem>
-              <Card className="flex-row items-center gap-11 p-4">
+        <div className="flex items-center gap-5">
+          <FormField
+            control={control}
+            name="name"
+            render={({ field }) => (
+              <FormItem className="flex-1">
+                <FormLabel>Protocol name</FormLabel>
+                <FormControl>
+                  <Input
+                    {...field}
+                    placeholder="Protocol name"
+                    className="!text-lg"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={control}
+            name="avatar"
+            render={({ field: { value, onChange } }) => (
+              <FormItem className="p-4">
                 {value ? (
                   <ImageCropper
                     dialogOpen={openCropper}
@@ -235,13 +224,125 @@ export const ProtocolForm = ({ setOpen }: Props) => {
                     <AvatarFallback>Icon</AvatarFallback>
                   </Avatar>
                 )}
-                <div className="flex flex-col gap-2">
-                  <p className="font-semibold text-[22px]">Icon</p>
-                  <p className="text-[#C9C9C9] text-lg">
-                    File smaller than {MAX_FILE_SIZE}MB
-                  </p>
-                </div>
-              </Card>
+                <FormDescription>
+                  File smaller than {MAX_FILE_SIZE}MB
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
+        <FormItem>
+          <FormLabel>Token</FormLabel>
+          <div className="flex flex-col gap-5">
+            <div className="flex gap-5">
+              <FormField
+                control={control}
+                name="token_name"
+                render={({ field }) => (
+                  <FormItem className="flex-1">
+                    <FormControl>
+                      <Input
+                        {...field}
+                        placeholder="Name"
+                        className="!text-lg"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={control}
+                name="token_decimals"
+                render={({ field }) => (
+                  <FormItem className="flex-1">
+                    <FormControl>
+                      <Input
+                        {...field}
+                        type="number"
+                        placeholder="Decimals"
+                        className="!text-lg"
+                        onChange={(event) =>
+                          field.onChange(+event.target.value || undefined)
+                        }
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <div className="flex gap-5">
+              <FormField
+                control={control}
+                name="token_capacity"
+                render={({ field }) => (
+                  <FormItem className="flex-1">
+                    <FormControl>
+                      <Input
+                        {...field}
+                        type="number"
+                        placeholder="Capacity"
+                        className="!text-lg"
+                        onChange={(event) =>
+                          field.onChange(+event.target.value || undefined)
+                        }
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={control}
+                name="symbol"
+                render={({ field }) => (
+                  <FormItem className="flex-1">
+                    <FormControl>
+                      <Input
+                        {...field}
+                        placeholder="Symbol"
+                        className="!text-lg"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={control}
+                name="token_daily_mint_limit"
+                render={({ field }) => (
+                  <FormItem className="flex-1">
+                    <FormControl>
+                      <Input
+                        {...field}
+                        type="number"
+                        placeholder="Daily mint limit"
+                        className="!text-lg"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+          </div>
+        </FormItem>
+        <FormField
+          control={control}
+          name="bitcoin_pubkey"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Bitcoin pubkey</FormLabel>
+              <FormControl>
+                <Input
+                  {...field}
+                  placeholder="Bitcoin pubkey"
+                  className="!text-lg"
+                />
+              </FormControl>
               <FormMessage />
             </FormItem>
           )}
@@ -343,7 +444,7 @@ export const ProtocolForm = ({ setOpen }: Props) => {
             )}
           />
         </div>
-        <div className="sticky bottom-0">
+        <div className="sticky bottom-0 bg-white">
           <Button
             type="submit"
             className="h-[50px] w-full text-lg"

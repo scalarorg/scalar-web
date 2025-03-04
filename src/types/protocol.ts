@@ -7,3 +7,6 @@ export type TProtocolChain =
 export type TCustodian =
   components["schemas"]["scalar.covenant.v1beta1.Custodian"];
 export type TAsset = components["schemas"]["scalar.chains.v1beta1.Asset"];
+
+export type TProtocol =
+  components["schemas"]["scalar.protocol.v1beta1.Protocol"];

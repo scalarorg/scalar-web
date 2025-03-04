@@ -92,7 +92,7 @@ export const TransfersForm = () => {
   const { data: sourceChainBalance } = useQuery({
     queryKey: [
       "sourceChainBalance",
-      keyByFilterProtocols[watchForm.token]?.asset?.name,
+      keyByFilterProtocols[watchForm.token]?.asset?.symbol,
       watchForm.sourceChain,
       evmAddress ?? "",
     ],
@@ -203,7 +203,7 @@ export const TransfersForm = () => {
 
       if (balance < BigInt(newTransferAmount)) {
         throw new Error(
-          `Insufficient balance, your balance is ${balance} ${protocol?.asset?.name}. Please try a smaller amount.`,
+          `Insufficient balance, your balance is ${balance} ${protocol?.asset?.symbol}. Please try a smaller amount.`,
         );
       }
 
@@ -218,7 +218,7 @@ export const TransfersForm = () => {
         const transferTx = await sendToken({
           destinationChain: values.destinationChain,
           destinationAddress: values.destRecipientAddress,
-          symbol: protocol?.asset?.name || "",
+          symbol: protocol?.asset?.symbol || "",
           amount: BigInt(newTransferAmount),
         });
 
@@ -311,7 +311,7 @@ export const TransfersForm = () => {
                             value={scalar_address || ""}
                             className="text-lg"
                           >
-                            {asset?.name}
+                            {asset?.symbol}
                           </SelectItem>
                         ))}
                       </SelectContent>
@@ -343,7 +343,7 @@ export const TransfersForm = () => {
                   {!isNil(sourceChainBalance)
                     ? formatUnits(sourceChainBalance, Number(decimals))
                     : 0}{" "}
-                  {keyByFilterProtocols[watchForm.token]?.asset?.name}
+                  {keyByFilterProtocols[watchForm.token]?.asset?.symbol}
                 </span>
               </p>
             </div>

@@ -224,3 +224,64 @@ export const extractBase64Data = (base64String: string) => {
 export const addBase64Prefix = (base64Data: string, mimeType = "image/png") => {
   return `data:${mimeType};base64,${base64Data}`;
 };
+
+type KeplrError = {
+  code: string;
+  desc: string;
+  detail: string | KeplrError[];
+  gasWanted: number;
+  gasUsed: number;
+};
+
+const parseNestedErrors = (detailString: string): KeplrError[] | string => {
+  const nestedErrors: KeplrError[] = [];
+  const errorPattern = /rpc error: code = (\w+) desc = (.+?)(?=rpc error|$)/gs;
+
+  let match: RegExpExecArray | null = errorPattern.exec(detailString);
+  while (match !== null) {
+    nestedErrors.push({
+      code: match[1],
+      desc: match[2].trim(),
+      detail: "Parsed recursively",
+      gasWanted: 0,
+      gasUsed: 0,
+    });
+
+    match = errorPattern.exec(detailString);
+  }
+
+  return nestedErrors.length > 0 ? nestedErrors : detailString;
+};
+
+export const parseKeplrError = (errorString: string): KeplrError | null => {
+  const codeMatch = errorString.match(/code\s*=\s*(\w+)/);
+  const descMatch = errorString.match(/desc\s*=\s*([^:]+)/);
+  const detailedMatch = errorString.match(
+    /message index: \d+: (.+?) With gas wanted:/,
+  );
+  const gasWantedMatch = errorString.match(/gas wanted: '(\d+)'/);
+  const gasUsedMatch = errorString.match(/gas used: '(\d+)'/);
+
+  if (
+    !codeMatch ||
+    !descMatch ||
+    !detailedMatch ||
+    !gasWantedMatch ||
+    !gasUsedMatch
+  ) {
+    return null;
+  }
+
+  return {
+    code: codeMatch[1],
+    desc: descMatch[1].trim(),
+    detail: parseNestedErrors(detailedMatch[1].trim()),
+    gasWanted: Number.parseInt(gasWantedMatch[1], 10),
+    gasUsed: Number.parseInt(gasUsedMatch[1], 10),
+  };
+};
+
+export const shortenText = (input: string, visibleChars = 3): string => {
+  if (input.length <= visibleChars * 2) return input;
+  return `${input.slice(0, visibleChars)}...${input.slice(-visibleChars)}`;
+};

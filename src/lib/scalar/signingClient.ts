@@ -185,7 +185,7 @@ export class ScalarSigningStargateClient extends SigningStargateClient {
       throw "Empty avatar";
     }
 
-    if (!params.asset || !params.asset.chain || !params.asset.name) {
+    if (!params.asset || !params.asset.chain || !params.asset.symbol) {
       throw "Invalid asset";
     }
 
@@ -203,7 +203,7 @@ export class ScalarSigningStargateClient extends SigningStargateClient {
         },
         custodianGroupUid: params.custodian_group_uid,
         asset: {
-          name: params.asset.name,
+          name: params.asset.symbol,
           chain: params.asset.chain,
         },
         avatar: Uint8Array.from(Buffer.from(params.avatar, "base64")),
