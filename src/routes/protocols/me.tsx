@@ -1,5 +1,11 @@
 import DEFAULT_ICON from "@/assets/images/default-icon.png";
-import { Clipboard, DataTable, Heading } from "@/components/common";
+import {
+  Clipboard,
+  DataTable,
+  Heading,
+  confirmDialogConfig,
+  useConfirm,
+} from "@/components/common";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -7,9 +13,9 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
@@ -28,8 +34,12 @@ import { useAccount, useConnectKeplr } from "@/providers/keplr-provider";
 import { TProtocol } from "@/types/protocol";
 import { fromBech32 } from "@cosmjs/encoding";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { createFileRoute } from "@tanstack/react-router";
+import { useQueryClient } from "@tanstack/react-query";
+import { Link, createFileRoute } from "@tanstack/react-router";
 import { createColumnHelper } from "@tanstack/react-table";
+import { isEmpty } from "lodash";
+import { ArrowLeftIcon } from "lucide-react";
+import { useMemo } from "react";
 import { useForm } from "react-hook-form";
 
 export const Route = createFileRoute("/protocols/me")({
@@ -130,6 +140,12 @@ function OwnProtocol() {
     isRefetching,
   } = useScalarOwnProtocol(accountAddress);
 
+  const queryClient = useQueryClient();
+
+  const curentNetwork = useMemo(() => {
+    return protocol?.chains?.map(({ name, chain }) => name || chain);
+  }, [protocol]);
+
   const {
     data: { chains } = {},
   } = useScalarChains();
@@ -140,11 +156,52 @@ function OwnProtocol() {
     resolver: zodResolver(networkFormSchema),
   });
 
-  const { control } = form;
+  const { control, handleSubmit, reset } = form;
+
+  const confirm = useConfirm();
+
+  const onSubmit = handleSubmit((values: TNetworkForm) => {
+    // biome-ignore lint/suspicious/noConsoleLog: <explanation>
+    console.log(values);
+
+    // TODO: update network successfully
+    queryClient.invalidateQueries({
+      queryKey: ["get", "/scalar/protocol/v1beta1/protocol"],
+    });
+    reset();
+  });
+
+  const handleConfirm = async () => {
+    const isConfirmed = await confirm({
+      ...confirmDialogConfig.warning,
+      title: "Network Selection Confirmation",
+      description: (
+        <div className="flex flex-col gap-2">
+          <p className="text-center">
+            Once you choose a network for this protocol and save your selection,
+            it will be <span className="font-semibold">permanent</span>. You
+            won’t be able to remove or change it later.
+          </p>
+          <p className="text-center text-border">
+            Please double-check your choice before proceeding.
+          </p>
+        </div>
+      ),
+    });
+
+    if (isConfirmed) {
+      onSubmit();
+    }
+  };
 
   return (
     <div className="flex flex-col gap-5 py-[60px]">
-      <Heading>Your Protocol</Heading>
+      <div className="flex items-center gap-3">
+        <Link to="/protocols">
+          <ArrowLeftIcon size={30} />
+        </Link>
+        <Heading>Your Protocol</Heading>
+      </div>
       {isConnected ? (
         <DataTable
           columns={columns}
@@ -164,46 +221,87 @@ function OwnProtocol() {
           </CardContent>
         </Card>
       )}
-      <Card className="p-0">
-        <CardContent className="flex flex-col gap-4 p-4">
-          <Form {...form}>
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-              }}
-            >
-              <FormField
-                control={control}
-                name="chain"
-                render={({ field: { onChange, value } }) => (
-                  <FormItem className="flex-1">
-                    <FormLabel>Chain</FormLabel>
-                    <Select defaultValue={value} onValueChange={onChange}>
-                      <FormControl>
-                        <SelectTrigger className="!text-lg">
-                          <SelectValue placeholder="Select chain" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        {filterChains?.map((name) => (
-                          <SelectItem
-                            key={name}
-                            value={name || ""}
-                            className="text-lg"
-                          >
-                            {name}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </form>
-          </Form>
-        </CardContent>
-      </Card>
+      {isConnected && !isEmpty(protocol) && (
+        <Card className="p-0">
+          <CardContent className="flex flex-col gap-4 p-4">
+            <p className="text-lg">
+              Protocol{" "}
+              <span className="font-semibold text-primary">
+                {protocol?.name}
+              </span>{" "}
+              is currently on Network.
+              <span>{curentNetwork?.join(", ")}</span>
+            </p>
+            <div className="flex gap-5">
+              <p className="text-lg leading-[36px]">
+                Select a network to add for the selected protocol.
+              </p>
+              <Form {...form}>
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                  }}
+                  className="space-y-3"
+                >
+                  <FormField
+                    control={control}
+                    name="chain"
+                    render={({ field: { onChange, value } }) => (
+                      <FormItem className="flex-1">
+                        <Select defaultValue={value} onValueChange={onChange}>
+                          <FormControl>
+                            <SelectTrigger className="!text-lg min-w-[190px] rounded-full border-transparent bg-[#EDF1FF] px-5">
+                              <SelectValue placeholder="Select Network" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            {filterChains?.map((name) => (
+                              <SelectItem
+                                key={name}
+                                value={name || ""}
+                                className="text-lg"
+                                disabled={curentNetwork?.includes(name)}
+                              >
+                                {name}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={control}
+                    name="alias"
+                    render={({ field }) => (
+                      <FormItem className="flex-1">
+                        <FormControl>
+                          <Input
+                            {...field}
+                            placeholder="Please enter the alias"
+                            className="!text-lg"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <Button
+                    type="button"
+                    className="w-full text-lg"
+                    onClick={handleConfirm}
+                    // TODO: add loading state, using isPending from useMutation
+                    // isLoading={isPending}
+                  >
+                    Save
+                  </Button>
+                </form>
+              </Form>
+            </div>
+          </CardContent>
+        </Card>
+      )}
     </div>
   );
 }
