@@ -38,12 +38,21 @@ import { LiquidityModel } from "@scalar-lab/scalarjs-sdk/proto/scalar/protocol/e
 import type { TxRaw } from "cosmjs-types/cosmos/tx/v1beta1/tx";
 import { isSecp256k1Pubkey } from "../utils";
 import type {
+  CreateDeployTokenEncodeObject,
   CreateProtocolEncodeObject,
-  CreateProtocolParams,
-  LiquidityModelParams,
 } from "./interface";
 
-import { typeUrlCreateProtocolRequest } from "./interface";
+import { Asset } from "@scalar-lab/scalarjs-sdk/proto/scalar/chains/v1beta1/types";
+import { TokenDetails } from "@scalar-lab/scalarjs-sdk/proto/scalar/chains/v1beta1/types";
+import {
+  typeUrlCreateDeployTokenRequest,
+  typeUrlCreateProtocolRequest,
+} from "./interface";
+import {
+  CreateDeployTokenParams,
+  CreateProtocolParams,
+  LiquidityModelParams,
+} from "./params";
 
 export const scalarTypes: ReadonlyArray<[string, GeneratedType]> = [
   [typeUrlCreateProtocolRequest, CreateProtocolRequest],
@@ -189,6 +198,14 @@ export class ScalarSigningStargateClient extends SigningStargateClient {
       throw "Invalid asset";
     }
 
+    if (!params.token_decimals) {
+      throw "Empty token decimals";
+    }
+
+    if (!params.token_capacity) {
+      throw "Empty token capacity";
+    }
+
     const createMsg: CreateProtocolEncodeObject = {
       typeUrl: typeUrlCreateProtocolRequest,
       value: {
@@ -203,15 +220,61 @@ export class ScalarSigningStargateClient extends SigningStargateClient {
         },
         custodianGroupUid: params.custodian_group_uid,
         asset: {
-          name: params.asset.symbol,
+          symbol: params.asset.symbol,
           chain: params.asset.chain,
         },
         avatar: Uint8Array.from(Buffer.from(params.avatar, "base64")),
+        tokenName: params.token_name ?? "",
+        tokenDecimals: params.token_decimals,
+        tokenCapacity: params.token_capacity,
+        tokenDailyMintLimit: params.token_daily_mint_limit ?? "0",
       },
     };
 
     return this.signAndBroadcast(creator, [createMsg], fee, memo);
   }
+
+  // public createDeployToken(
+  //   creator: string,
+  //   params: CreateDeployTokenParams,
+  //   fee: StdFee | "auto" | number,
+  //   memo = "",
+  // ): Promise<DeliverTxResponse> {
+
+  //   if (!params.chain) {
+  //     throw "Empty chain";
+  //   }
+
+  //   if (!params.asset || !params.asset.chain || !params.asset.name) {
+  //     throw "Invalid asset";
+  //   }
+
+  //   if (!params.token_details) {
+  //     throw "Empty token details";
+  //   }
+
+  //   const createMsg: CreateDeployTokenEncodeObject = {
+  //     typeUrl: typeUrlCreateDeployTokenRequest,
+  //     value: {
+  //       sender: fromBech32(creator).data,
+  //       chain: params.chain,
+  //       asset: {
+  //         chain: params.asset.chain,
+  //         name: params.asset.name,
+  //       },
+  //       tokenDetails: {
+  //         tokenName: params.token_details.token_name,
+  //         symbol: params.token_details.symbol,
+  //         decimals: params.token_details.decimals,
+  //         capacity: params.token_details.capacity,
+  //       },
+  //       address: Buffer.from([]),
+  //       dailyMintLimit: params.daily_mint_limit,
+  //     },
+  //   };
+
+  //   return this.signAndBroadcast(creator, [createMsg], fee, memo);
+  // }
 }
 
 const mapLiquidityModel = (model: LiquidityModelParams): LiquidityModel => {

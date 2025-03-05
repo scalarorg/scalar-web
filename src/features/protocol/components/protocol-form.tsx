@@ -23,7 +23,7 @@ import { useScalarChains, useScalarCustodianGroups } from "@/hooks";
 import {
   CreateProtocolParams,
   LiquidityModelParams,
-} from "@/lib/scalar/interface";
+} from "@/lib/scalar/params";
 import {
   cn,
   extractBase64Data,
@@ -67,6 +67,9 @@ export const ProtocolForm = ({ setOpen }: Props) => {
     resolver: zodResolver(protocolFormSchema),
     defaultValues: {
       model: "LIQUIDITY_MODEL_POOL",
+      token_decimals: 8,
+      token_daily_mint_limit: "0",
+      token_capacity: "0",
     },
   });
 
@@ -139,6 +142,7 @@ export const ProtocolForm = ({ setOpen }: Props) => {
             rel="noopener noreferrer"
             className="text-primary underline"
           >
+            {" "}
             {shortenText(txHash, 8)}
           </a>
         </p>,
@@ -282,12 +286,8 @@ export const ProtocolForm = ({ setOpen }: Props) => {
                     <FormControl>
                       <Input
                         {...field}
-                        type="number"
                         placeholder="Capacity"
                         className="!text-lg"
-                        onChange={(event) =>
-                          field.onChange(+event.target.value || undefined)
-                        }
                       />
                     </FormControl>
                     <FormMessage />
@@ -318,7 +318,6 @@ export const ProtocolForm = ({ setOpen }: Props) => {
                     <FormControl>
                       <Input
                         {...field}
-                        type="number"
                         placeholder="Daily mint limit"
                         className="!text-lg"
                       />
