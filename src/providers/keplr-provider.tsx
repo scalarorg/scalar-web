@@ -112,10 +112,10 @@ export const useKeplr = () => {
 };
 
 export const useKeplrClient = () => {
-  const { config, keplr, isInstalled, isLoading } = useKeplr();
+  const { config, isInstalled, isLoading } = useKeplr();
 
   return useQuery({
-    queryKey: ["keplr-client", config.chainId, keplr],
+    queryKey: ["keplr-client", config.chainId],
     queryFn: () => _scalarClient,
     enabled: !!_scalarClient && isInstalled && !isLoading,
   });
