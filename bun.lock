@@ -21,7 +21,7 @@
         "@radix-ui/react-tabs": "^1.1.3",
         "@radix-ui/react-toast": "^1.2.6",
         "@rainbow-me/rainbowkit": "^2.2.3",
-        "@scalar-lab/bitcoin-vault": "^0.0.34",
+        "@scalar-lab/bitcoin-vault": "^0.0.35",
         "@scalar-lab/scalarjs-sdk": "0.0.2",
         "@tailwindcss/vite": "^4.0.6",
         "@tanstack/react-query": "^5.66.5",
@@ -470,9 +470,9 @@
 
     "@safe-global/safe-gateway-typescript-sdk": ["@safe-global/safe-gateway-typescript-sdk@3.22.9", "", {}, "sha512-7ojVK/crhOaGowEO8uYWaopZzcr5rR76emgllGIfjCLR70aY4PbASpi9Pbs+7jIRzPDBBkM0RBo+zYx5UduX8Q=="],
 
-    "@scalar-lab/bitcoin-vault": ["@scalar-lab/bitcoin-vault@0.0.34", "", { "dependencies": { "@mempool/mempool.js": "^2.3.0", "@scalar-lab/bitcoin-wasm": "^0.0.30", "bip174": "^3.0.0-rc.1", "bip32": "^5.0.0-rc.0", "bitcoin-core-ts": "^3.0.3", "bitcoinjs-lib": "^7.0.0-rc.0", "ecpair": "^3.0.0-rc.0", "tiny-secp256k1": "^2.2.3", "viem": "^2.21.55", "zod": "^3.23.8" } }, "sha512-NQucat5zRN3DoSNEMtxsrc9kyp0UwdS0gxqTcEaxc5KTx5+S/ngaranB/8IcjCWzNdU/HyMS6SqDFJXndxzcDg=="],
+    "@scalar-lab/bitcoin-vault": ["@scalar-lab/bitcoin-vault@0.0.35", "", { "dependencies": { "@mempool/mempool.js": "^2.3.0", "@scalar-lab/bitcoin-wasm": "^0.0.31", "bip174": "^3.0.0-rc.1", "bip32": "^5.0.0-rc.0", "bitcoin-core-ts": "^3.0.3", "bitcoinjs-lib": "^7.0.0-rc.0", "ecpair": "^3.0.0-rc.0", "tiny-secp256k1": "^2.2.3", "viem": "^2.21.55", "zod": "^3.23.8" } }, "sha512-RAKhzaWHRHx7LKXw1685rwGSJk0fFojeo26v2axhdOxRhY41HS6IDa1GbgNqk8IdwgzeeiXhFmxJUC6s/l7dlg=="],
 
-    "@scalar-lab/bitcoin-wasm": ["@scalar-lab/bitcoin-wasm@0.0.30", "", {}, "sha512-s/J/UXPXfuO37RKy5eQqkXhEAMY0wcvGqzZcHXdzxYidk75SuphvKbLtvt8HyYQ3s8C5AjhgfLxDftQ8XnYuQQ=="],
+    "@scalar-lab/bitcoin-wasm": ["@scalar-lab/bitcoin-wasm@0.0.31", "", {}, "sha512-Tj0smUkgvbR8mSkFDrEa3DLl8pSdLGf7FLvdeKYBW6tL/inUl0aK2AyGXi8BgSvE9NydW06gqviUeKUN7p2XkQ=="],
 
     "@scalar-lab/scalarjs-sdk": ["@scalar-lab/scalarjs-sdk@0.0.2", "", { "dependencies": { "@cosmjs/proto-signing": "^0.33.0", "@cosmjs/stargate": "^0.33.0", "@cosmjs/tendermint-rpc": "^0.33.0", "inflection": "^3.0.2", "long": "^5.3.1", "protobufjs": "^7.2.6" } }, "sha512-qGD/4Y2dkjDK8oOoqkUEXAmDmE03WxNiA+VnAhffMjF381274B3qNuUxSsC6eaK/VKc7CehNwBOZ1ntECb1BFg=="],
 
