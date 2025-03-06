@@ -30,8 +30,18 @@ import {
 } from "@/features/protocol";
 import { useScalarChains, useScalarOwnProtocol } from "@/hooks";
 import { CreateDeployTokenParams } from "@/lib/scalar/params";
-import { addBase64Prefix, cn, isBtcChain, parseKeplrError, shortenText } from "@/lib/utils";
-import { useAccount, useConnectKeplr, useKeplrClient } from "@/providers/keplr-provider";
+import {
+  addBase64Prefix,
+  cn,
+  isBtcChain,
+  parseKeplrError,
+  shortenText,
+} from "@/lib/utils";
+import {
+  useAccount,
+  useConnectKeplr,
+  useKeplrClient,
+} from "@/providers/keplr-provider";
 import { TProtocol } from "@/types/protocol";
 import { fromBech32 } from "@cosmjs/encoding";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -132,7 +142,7 @@ const columns = [
 function OwnProtocol() {
   const { isConnected, account } = useAccount();
   const { connect } = useConnectKeplr();
-  const [formLoading, setFormLoading] = useState(false)
+  const [formLoading, setFormLoading] = useState(false);
 
   const accountAddress = account?.address
     ? Buffer.from(fromBech32(account?.address).data).toString("base64")
@@ -172,7 +182,7 @@ function OwnProtocol() {
 
     setFormLoading(true);
     try {
-      const { chain, alias: aliased_token_name } = values
+      const { chain, alias: aliased_token_name } = values;
       const newValues: CreateDeployTokenParams = {
         chain,
         token_symbol: protocol?.asset?.symbol,
@@ -192,7 +202,7 @@ function OwnProtocol() {
         queryKey: ["get", "/scalar/protocol/v1beta1/protocol"],
       });
       reset();
-      
+
       toast.success(
         <p className="w-fit">
           Token created successfully!
@@ -208,7 +218,6 @@ function OwnProtocol() {
           </a>
         </p>,
       );
-
     } catch (error) {
       const parsedError = parseKeplrError((error as Error).message || "");
 
@@ -226,7 +235,6 @@ function OwnProtocol() {
     } finally {
       setFormLoading(false);
     }
-    
   });
 
   const handleConfirm = async () => {

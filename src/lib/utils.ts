@@ -2,6 +2,7 @@ import { TCustodian, TProtocolChain } from "@/types/protocol";
 import { type ClassValue, clsx } from "clsx";
 import { isHexString } from "ethers";
 import { keyBy } from "lodash";
+import numeral from "numeral";
 import { twMerge } from "tailwind-merge";
 import { formatUnits, parseUnits } from "viem";
 import { decodeScalarBytesToUint8Array } from "./scalar";
@@ -284,4 +285,8 @@ export const parseKeplrError = (errorString: string): KeplrError | null => {
 export const shortenText = (input: string, visibleChars = 3): string => {
   if (input.length <= visibleChars * 2) return input;
   return `${input.slice(0, visibleChars)}...${input.slice(-visibleChars)}`;
+};
+
+export const formatNumber = (number: number, formater = "0[.][00]a") => {
+  return numeral(number).format(formater);
 };

@@ -42,6 +42,7 @@ import type {
   CreateProtocolEncodeObject,
 } from "./interface";
 
+import { CreateDeployTokenRequest } from "@scalar-lab/scalarjs-sdk/proto/scalar/chains/v1beta1/tx";
 import { isHexString } from "ethers";
 import {
   typeUrlCreateDeployTokenRequest,
@@ -52,8 +53,10 @@ import {
   CreateProtocolParams,
   LiquidityModelParams,
 } from "./params";
-import { validateCreateDeployTokenParams, validateProtocolParams } from "./validation";
-import { CreateDeployTokenRequest } from "@scalar-lab/scalarjs-sdk/proto/scalar/chains/v1beta1/tx";
+import {
+  validateCreateDeployTokenParams,
+  validateProtocolParams,
+} from "./validation";
 
 export const scalarTypes: ReadonlyArray<[string, GeneratedType]> = [
   [typeUrlCreateProtocolRequest, CreateProtocolRequest],
@@ -172,13 +175,11 @@ export class ScalarSigningStargateClient extends SigningStargateClient {
     fee: StdFee | "auto" | number,
     memo = "",
   ): Promise<DeliverTxResponse> {
-
     validateProtocolParams(params);
 
     if (!isSecp256k1Pubkey(params.bitcoin_pubkey!)) {
       throw "Invalid bitcoin pubkey";
     }
-
 
     const createMsg: CreateProtocolEncodeObject = {
       typeUrl: typeUrlCreateProtocolRequest,
@@ -215,7 +216,9 @@ export class ScalarSigningStargateClient extends SigningStargateClient {
     memo = "",
   ): Promise<DeliverTxResponse> {
     validateCreateDeployTokenParams(params);
-    if (params.address && !isHexString(params.address)) { throw "Invalid params.address"; }
+    if (params.address && !isHexString(params.address)) {
+      throw "Invalid params.address";
+    }
 
     const createMsg: CreateDeployTokenEncodeObject = {
       typeUrl: typeUrlCreateDeployTokenRequest,

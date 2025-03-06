@@ -32,7 +32,7 @@ export const InputSearchBox = ({ keyword, className, ...props }: Props) => {
         to: pathname,
         search: (prev) => ({
           ...prev,
-          q: keyword ?? "",
+          q: keyword || undefined,
         }),
       }),
     300,
