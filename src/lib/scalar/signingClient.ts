@@ -42,8 +42,7 @@ import type {
   CreateProtocolEncodeObject,
 } from "./interface";
 
-import { Asset } from "@scalar-lab/scalarjs-sdk/proto/scalar/chains/v1beta1/types";
-import { TokenDetails } from "@scalar-lab/scalarjs-sdk/proto/scalar/chains/v1beta1/types";
+import { isHexString } from "ethers";
 import {
   typeUrlCreateDeployTokenRequest,
   typeUrlCreateProtocolRequest,
@@ -53,9 +52,12 @@ import {
   CreateProtocolParams,
   LiquidityModelParams,
 } from "./params";
+import { validateCreateDeployTokenParams, validateProtocolParams } from "./validation";
+import { CreateDeployTokenRequest } from "@scalar-lab/scalarjs-sdk/proto/scalar/chains/v1beta1/tx";
 
 export const scalarTypes: ReadonlyArray<[string, GeneratedType]> = [
   [typeUrlCreateProtocolRequest, CreateProtocolRequest],
+  [typeUrlCreateDeployTokenRequest, CreateDeployTokenRequest],
 ];
 
 export const scalarDefaultRegistryTypes: ReadonlyArray<
@@ -170,63 +172,35 @@ export class ScalarSigningStargateClient extends SigningStargateClient {
     fee: StdFee | "auto" | number,
     memo = "",
   ): Promise<DeliverTxResponse> {
-    if (!params.bitcoin_pubkey) {
-      throw "Empty bitcoin pubkey";
-    }
 
-    if (!isSecp256k1Pubkey(params.bitcoin_pubkey)) {
+    validateProtocolParams(params);
+
+    if (!isSecp256k1Pubkey(params.bitcoin_pubkey!)) {
       throw "Invalid bitcoin pubkey";
     }
 
-    if (!params.name) {
-      throw "Empty name";
-    }
-
-    if (!params.tag) {
-      throw "Empty tag";
-    }
-
-    if (!params.custodian_group_uid) {
-      throw "Empty custodian group uid";
-    }
-
-    if (!params.avatar) {
-      throw "Empty avatar";
-    }
-
-    if (!params.asset || !params.asset.chain || !params.asset.symbol) {
-      throw "Invalid asset";
-    }
-
-    if (!params.token_decimals) {
-      throw "Empty token decimals";
-    }
-
-    if (!params.token_capacity) {
-      throw "Empty token capacity";
-    }
 
     const createMsg: CreateProtocolEncodeObject = {
       typeUrl: typeUrlCreateProtocolRequest,
       value: {
         sender: fromBech32(creator).data,
         bitcoinPubkey: Uint8Array.from(
-          Buffer.from(params.bitcoin_pubkey.replace("0x", ""), "hex"),
+          Buffer.from(params.bitcoin_pubkey!.replace("0x", ""), "hex"),
         ),
-        name: params.name,
-        tag: params.tag,
+        name: params.name!,
+        tag: params.tag!,
         attributes: {
           model: mapLiquidityModel(params.attributes?.model),
         },
-        custodianGroupUid: params.custodian_group_uid,
+        custodianGroupUid: params.custodian_group_uid!,
         asset: {
-          symbol: params.asset.symbol,
-          chain: params.asset.chain,
+          symbol: params!.asset!.symbol!,
+          chain: params!.asset!.chain!,
         },
-        avatar: Uint8Array.from(Buffer.from(params.avatar, "base64")),
+        avatar: Uint8Array.from(Buffer.from(params.avatar!, "base64")),
         tokenName: params.token_name ?? "",
-        tokenDecimals: params.token_decimals,
-        tokenCapacity: params.token_capacity,
+        tokenDecimals: params.token_decimals!,
+        tokenCapacity: params.token_capacity!,
         tokenDailyMintLimit: params.token_daily_mint_limit ?? "0",
       },
     };
@@ -234,47 +208,28 @@ export class ScalarSigningStargateClient extends SigningStargateClient {
     return this.signAndBroadcast(creator, [createMsg], fee, memo);
   }
 
-  // public createDeployToken(
-  //   creator: string,
-  //   params: CreateDeployTokenParams,
-  //   fee: StdFee | "auto" | number,
-  //   memo = "",
-  // ): Promise<DeliverTxResponse> {
+  public createDeployToken(
+    creator: string,
+    params: CreateDeployTokenParams,
+    fee: StdFee | "auto" | number,
+    memo = "",
+  ): Promise<DeliverTxResponse> {
+    validateCreateDeployTokenParams(params);
+    if (params.address && !isHexString(params.address)) { throw "Invalid params.address"; }
 
-  //   if (!params.chain) {
-  //     throw "Empty chain";
-  //   }
+    const createMsg: CreateDeployTokenEncodeObject = {
+      typeUrl: typeUrlCreateDeployTokenRequest,
+      value: {
+        sender: fromBech32(creator).data,
+        chain: params!.chain!,
+        tokenSymbol: params!.token_symbol!,
+        aliasedTokenName: params.aliased_token_name ?? "",
+        address: Buffer.from([]),
+      },
+    };
 
-  //   if (!params.asset || !params.asset.chain || !params.asset.name) {
-  //     throw "Invalid asset";
-  //   }
-
-  //   if (!params.token_details) {
-  //     throw "Empty token details";
-  //   }
-
-  //   const createMsg: CreateDeployTokenEncodeObject = {
-  //     typeUrl: typeUrlCreateDeployTokenRequest,
-  //     value: {
-  //       sender: fromBech32(creator).data,
-  //       chain: params.chain,
-  //       asset: {
-  //         chain: params.asset.chain,
-  //         name: params.asset.name,
-  //       },
-  //       tokenDetails: {
-  //         tokenName: params.token_details.token_name,
-  //         symbol: params.token_details.symbol,
-  //         decimals: params.token_details.decimals,
-  //         capacity: params.token_details.capacity,
-  //       },
-  //       address: Buffer.from([]),
-  //       dailyMintLimit: params.daily_mint_limit,
-  //     },
-  //   };
-
-  //   return this.signAndBroadcast(creator, [createMsg], fee, memo);
-  // }
+    return this.signAndBroadcast(creator, [createMsg], fee, memo);
+  }
 }
 
 const mapLiquidityModel = (model: LiquidityModelParams): LiquidityModel => {

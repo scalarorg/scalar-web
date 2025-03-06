@@ -29,8 +29,9 @@ import {
   networkFormSchema,
 } from "@/features/protocol";
 import { useScalarChains, useScalarOwnProtocol } from "@/hooks";
-import { addBase64Prefix, cn, isBtcChain } from "@/lib/utils";
-import { useAccount, useConnectKeplr } from "@/providers/keplr-provider";
+import { CreateDeployTokenParams } from "@/lib/scalar/params";
+import { addBase64Prefix, cn, isBtcChain, parseKeplrError, shortenText } from "@/lib/utils";
+import { useAccount, useConnectKeplr, useKeplrClient } from "@/providers/keplr-provider";
 import { TProtocol } from "@/types/protocol";
 import { fromBech32 } from "@cosmjs/encoding";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -39,8 +40,9 @@ import { Link, createFileRoute } from "@tanstack/react-router";
 import { createColumnHelper } from "@tanstack/react-table";
 import { isEmpty } from "lodash";
 import { ArrowLeftIcon } from "lucide-react";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 
 export const Route = createFileRoute("/protocols/me")({
   component: OwnProtocol,
@@ -130,9 +132,14 @@ const columns = [
 function OwnProtocol() {
   const { isConnected, account } = useAccount();
   const { connect } = useConnectKeplr();
+  const [formLoading, setFormLoading] = useState(false)
+
   const accountAddress = account?.address
     ? Buffer.from(fromBech32(account?.address).data).toString("base64")
     : "";
+
+  const { data: scalarClient, isLoading: isScalarClientLoading } =
+    useKeplrClient();
 
   const {
     data: { protocol } = {},
@@ -156,19 +163,70 @@ function OwnProtocol() {
     resolver: zodResolver(networkFormSchema),
   });
 
-  const { control, handleSubmit, reset } = form;
+  const { control, handleSubmit, reset, watch } = form;
 
   const confirm = useConfirm();
 
-  const onSubmit = handleSubmit((values: TNetworkForm) => {
-    // biome-ignore lint/suspicious/noConsoleLog: <explanation>
-    console.log(values);
+  const onSubmit = handleSubmit(async (values: TNetworkForm) => {
+    if (isScalarClientLoading || !scalarClient || !account) return;
 
-    // TODO: update network successfully
-    queryClient.invalidateQueries({
-      queryKey: ["get", "/scalar/protocol/v1beta1/protocol"],
-    });
-    reset();
+    setFormLoading(true);
+    try {
+      const { chain, alias: aliased_token_name } = values
+      const newValues: CreateDeployTokenParams = {
+        chain,
+        token_symbol: protocol?.asset?.symbol,
+        aliased_token_name,
+      };
+
+      const result = await scalarClient.raw.createDeployToken(
+        account.address,
+        newValues,
+        "auto",
+        "",
+      );
+
+      const txHash = result.transactionHash;
+
+      queryClient.invalidateQueries({
+        queryKey: ["get", "/scalar/protocol/v1beta1/protocol"],
+      });
+      reset();
+      
+      toast.success(
+        <p className="w-fit">
+          Token created successfully!
+          <a
+            //TODO: replace with explorer url
+            href={`https://explorer.scalarorg.com/tx/${txHash}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-primary underline"
+          >
+            {" "}
+            {shortenText(txHash, 8)}
+          </a>
+        </p>,
+      );
+
+    } catch (error) {
+      const parsedError = parseKeplrError((error as Error).message || "");
+
+      if (parsedError) {
+        const { detail } = parsedError;
+        const desc = typeof detail === "string" ? detail : detail[0].desc;
+        const [needMessage] = desc.split(":");
+
+        if (needMessage) {
+          toast.error(needMessage);
+        }
+      }
+
+      console.error(error);
+    } finally {
+      setFormLoading(false);
+    }
+    
   });
 
   const handleConfirm = async () => {
@@ -291,8 +349,8 @@ function OwnProtocol() {
                     type="button"
                     className="w-full text-lg"
                     onClick={handleConfirm}
-                    // TODO: add loading state, using isPending from useMutation
-                    // isLoading={isPending}
+                    disabled={!(watch("chain") && watch("alias"))}
+                    isLoading={formLoading || isScalarClientLoading}
                   >
                     Save
                   </Button>
