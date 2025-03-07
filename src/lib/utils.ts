@@ -6,6 +6,8 @@ import numeral from "numeral";
 import { twMerge } from "tailwind-merge";
 import { formatUnits, parseUnits } from "viem";
 import { decodeScalarBytesToUint8Array } from "./scalar";
+import { ChainTypes } from "@/types/chains";
+
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
@@ -37,16 +39,16 @@ export const isBtcChain: (chain?: TProtocolChain | string) => boolean = (
   chain,
 ) => {
   if (!chain) return false;
-  if (typeof chain === "string") return !!chain.startsWith("bitcoin");
-  return !!chain.chain?.startsWith("bitcoin");
+  if (typeof chain === "string") return !!chain.startsWith(ChainTypes.Bitcoin);
+  return !!chain.chain?.startsWith(ChainTypes.Bitcoin);
 };
 
 export const isEvmChain: (chain?: TProtocolChain | string) => boolean = (
   chain,
 ) => {
   if (!chain) return false;
-  if (typeof chain === "string") return !!chain.startsWith("evm");
-  return !!chain.chain?.startsWith("evm");
+  if (typeof chain === "string") return !!chain.startsWith(ChainTypes.EVM);
+  return !!chain.chain?.startsWith(ChainTypes.EVM);
 };
 
 export const EMPTY_ADDRESS = "0x0000000000000000000000000000000000000000";
