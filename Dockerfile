@@ -2,7 +2,7 @@
 # FROM oven/bun:1 AS builder
 FROM node:22-slim AS builder
 # Set NODE_OPTIONS to increase memory limit
-ENV NODE_OPTIONS="--max-old-space-size=8192"
+ENV NODE_OPTIONS="--max-old-space-size=6144"
 # ENV VITE_SCALAR_REST_URL=https://testnet.nodeapi.scalar.org
 # ENV VITE_REOWN_CLOUD_PROJECT_ID=    
 # ENV VITE_MEMPOOL_API=https://mempool.space
