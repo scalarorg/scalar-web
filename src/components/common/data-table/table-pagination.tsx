@@ -1,12 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
 import { type Table as TableType } from "@tanstack/react-table";
@@ -18,17 +10,17 @@ type TablePaginationProps<TData> = {
   table: TableType<TData>;
   isLoading?: boolean;
   pageSizeOptions?: number[];
-  isSimple?: boolean;
+  // isSimple?: boolean;
 };
 
-const PAGE_SIZE_OPTIONS = [50, 75, 100];
+// const PAGE_SIZE_OPTIONS = [50, 75, 100];
 
 export function TablePagination<TData>({
   table,
   className,
   isLoading = false,
-  pageSizeOptions = PAGE_SIZE_OPTIONS,
-  isSimple = false,
+  // pageSizeOptions = PAGE_SIZE_OPTIONS,
+  // isSimple = false,
 }: TablePaginationProps<TData>) {
   const {
     getCanPreviousPage,
@@ -64,7 +56,7 @@ export function TablePagination<TData>({
         <PaginationSkeleton />
       ) : (
         <div className="flex w-full items-center gap-4">
-          {!isSimple && (
+          {/* {!isSimple && (
             <div
               className={cn(
                 // Positioning
@@ -81,21 +73,6 @@ export function TablePagination<TData>({
               )}
             >
               <span>Page</span>
-              {/* <NumericFormat
-                defaultValue={page}
-                customInput={Input}
-                allowNegative={false}
-                isAllowed={({ floatValue }) =>
-                  floatValue ? floatValue >= 1 && floatValue <= pageCount : true
-                }
-                onValueChange={({ floatValue }) => {
-                  if (floatValue && floatValue !== page) {
-                    setPageIndex(floatValue - 1);
-                  }
-                }}
-                disabled={pageCount === 1}
-                className="!h-9 !w-10 !text-sm md:!h-10 md:!w-[60px] md:!text-base"
-              /> */}
               <Input
                 type="number"
                 defaultValue={page}
@@ -109,7 +86,7 @@ export function TablePagination<TData>({
               />
               <span>of {pageCount}</span>
             </div>
-          )}
+          )} */}
           <div className="mx-auto flex items-center gap-2">
             <Button
               aria-label="First page"
@@ -179,7 +156,7 @@ export function TablePagination<TData>({
               <ChevronsRightIcon size={16} />
             </Button>
           </div>
-          {!isSimple && (
+          {/* {!isSimple && (
             <div className="flex items-center gap-1 text-sm md:text-base">
               <span>Show</span>
               <Select
@@ -203,7 +180,7 @@ export function TablePagination<TData>({
               </Select>
               <span>entries</span>
             </div>
-          )}
+          )} */}
         </div>
       )}
     </div>
@@ -248,22 +225,22 @@ const PageSkeleton = () => (
   <Skeleton className="size-9 rounded-full md:h-10 md:w-[200px]" />
 );
 
-const ButtonSkeleton = () => (
-  <Skeleton
-    className={cn(
-      // Sizing
-      "size-9 md:h-10 md:w-[100px]",
+// const ButtonSkeleton = () => (
+//   <Skeleton
+//     className={cn(
+//       // Sizing
+//       "size-9 md:h-10 md:w-[100px]",
 
-      // Shape
-      "rounded-lg md:rounded-full",
-    )}
-  />
-);
+//       // Shape
+//       "rounded-lg md:rounded-full",
+//     )}
+//   />
+// );
 
 const PaginationSkeleton = () => (
   <div className="flex w-full items-center justify-between">
-    <ButtonSkeleton />
+    {/* <ButtonSkeleton /> */}
     <PageSkeleton />
-    <ButtonSkeleton />
+    {/* <ButtonSkeleton /> */}
   </div>
 );

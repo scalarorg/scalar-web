@@ -1,1 +1,1 @@
-export * from "./use-explore-bridge-query";
+export * from "./use-explore-query";

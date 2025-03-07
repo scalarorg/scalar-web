@@ -73,7 +73,7 @@ type DataTableProps<TData> = Pick<
 };
 
 /**
- * DataTable component with pagination and sorting, managed by Zustand or URL parameters.
+ * DataTable component with pagination and sorting, managed by URL parameters.
  * @param props - The props to configure the DataTable.
  * @param ref - Forwarded ref for accessing the table instance.
  */
@@ -300,7 +300,7 @@ const DataTableInnerForwardRef = <TData,>(
           table={table}
           isLoading={isLoading}
           pageSizeOptions={pageSizeOptions}
-          isSimple={isSimple}
+          // isSimple={isSimple}
         />
       )}
     </div>

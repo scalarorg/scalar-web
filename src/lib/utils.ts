@@ -1,12 +1,13 @@
+import { ChainTypes } from "@/types/chains";
 import { TCustodian, TProtocolChain } from "@/types/protocol";
 import { type ClassValue, clsx } from "clsx";
+import dayjs from "dayjs";
 import { isHexString } from "ethers";
 import { keyBy } from "lodash";
 import numeral from "numeral";
 import { twMerge } from "tailwind-merge";
 import { formatUnits, parseUnits } from "viem";
 import { decodeScalarBytesToUint8Array } from "./scalar";
-import { ChainTypes } from "@/types/chains";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -292,3 +293,13 @@ export const shortenText = (input: string, visibleChars = 3): string => {
 export const formatNumber = (number: number, formater = "0[.][00]a") => {
   return numeral(number).format(formater);
 };
+
+export const formatDate = (date: number, formater = "DD/MM/YYYY") => {
+  const newDate = new Date(date * 1000);
+  return dayjs(newDate).format(formater);
+};
+
+export const handle0xString = (str: string) => ({
+  remove: str.replace("0x", ""),
+  add: str.startsWith("0x") ? str : `0x${str}`,
+});

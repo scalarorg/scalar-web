@@ -22,8 +22,8 @@ export function usePaginationTable({
             to: pathname,
             search: (prev) => ({
               ...prev,
-              page: pageIndex + 1,
-              take: pageSize,
+              offset: pageIndex,
+              size: pageSize,
             }),
           });
         });

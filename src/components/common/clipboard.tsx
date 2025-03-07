@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { CheckIcon, ClipboardIcon } from "lucide-react";
 import { useState } from "react";
@@ -8,9 +8,17 @@ interface ClipboardProps {
   text: string;
   label?: string;
   className?: string;
+  onClick?: () => void;
+  targetLink?: string;
 }
 
-export function Clipboard({ text, label = "Copy", className }: ClipboardProps) {
+export function Clipboard({
+  text,
+  label = "Copy",
+  className,
+  onClick,
+  targetLink,
+}: ClipboardProps) {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = async () => {
@@ -26,20 +34,46 @@ export function Clipboard({ text, label = "Copy", className }: ClipboardProps) {
 
   return (
     <div className={cn("relative inline-block", className)}>
-      <Button
-        variant="ghost"
-        size="sm"
-        className="gap-1 px-0 hover:bg-transparent"
-        onClick={handleCopy}
-        aria-label={`Copy ${label} to clipboard`}
-      >
-        <span className="w-[100px] truncate text-primary">{label}</span>
-        {copied ? (
-          <CheckIcon className="size-5" />
-        ) : (
-          <ClipboardIcon className="size-5" />
+      <div
+        className={cn(
+          buttonVariants({ variant: "ghost", size: "sm" }),
+          "cursor-auto gap-1 px-0 hover:bg-transparent",
         )}
-      </Button>
+      >
+        {targetLink ? (
+          <a
+            href={targetLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-[100px] truncate text-primary"
+          >
+            {label}
+          </a>
+        ) : (
+          <button
+            type="button"
+            onClick={onClick}
+            className={cn(
+              "w-[100px] truncate text-primary",
+              onClick && "cursor-pointer",
+            )}
+          >
+            {label}
+          </button>
+        )}
+        <button
+          type="button"
+          onClick={handleCopy}
+          aria-label={`Copy ${label} to clipboard`}
+          className="cursor-pointer"
+        >
+          {copied ? (
+            <CheckIcon className="size-5" />
+          ) : (
+            <ClipboardIcon className="size-5" />
+          )}
+        </button>
+      </div>
     </div>
   );
 }
