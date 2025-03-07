@@ -16,7 +16,10 @@ import { Route as ProtocolsIndexImport } from './routes/protocols/index'
 import { Route as ExploreIndexImport } from './routes/explore/index'
 import { Route as ProtocolsMeImport } from './routes/protocols/me'
 import { Route as ProtocolsSlugImport } from './routes/protocols/$slug'
+import { Route as ExploreTransferIndexImport } from './routes/explore/transfer/index'
 import { Route as ExploreStatisticIndexImport } from './routes/explore/statistic/index'
+import { Route as ExploreRedeemIndexImport } from './routes/explore/redeem/index'
+import { Route as ExploreBridgeIndexImport } from './routes/explore/bridge/index'
 
 // Create/Update Routes
 
@@ -50,9 +53,27 @@ const ProtocolsSlugRoute = ProtocolsSlugImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const ExploreTransferIndexRoute = ExploreTransferIndexImport.update({
+  id: '/explore/transfer/',
+  path: '/explore/transfer/',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const ExploreStatisticIndexRoute = ExploreStatisticIndexImport.update({
   id: '/explore/statistic/',
   path: '/explore/statistic/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ExploreRedeemIndexRoute = ExploreRedeemIndexImport.update({
+  id: '/explore/redeem/',
+  path: '/explore/redeem/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ExploreBridgeIndexRoute = ExploreBridgeIndexImport.update({
+  id: '/explore/bridge/',
+  path: '/explore/bridge/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -95,11 +116,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProtocolsIndexImport
       parentRoute: typeof rootRoute
     }
+    '/explore/bridge/': {
+      id: '/explore/bridge/'
+      path: '/explore/bridge'
+      fullPath: '/explore/bridge'
+      preLoaderRoute: typeof ExploreBridgeIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/explore/redeem/': {
+      id: '/explore/redeem/'
+      path: '/explore/redeem'
+      fullPath: '/explore/redeem'
+      preLoaderRoute: typeof ExploreRedeemIndexImport
+      parentRoute: typeof rootRoute
+    }
     '/explore/statistic/': {
       id: '/explore/statistic/'
       path: '/explore/statistic'
       fullPath: '/explore/statistic'
       preLoaderRoute: typeof ExploreStatisticIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/explore/transfer/': {
+      id: '/explore/transfer/'
+      path: '/explore/transfer'
+      fullPath: '/explore/transfer'
+      preLoaderRoute: typeof ExploreTransferIndexImport
       parentRoute: typeof rootRoute
     }
   }
@@ -113,7 +155,10 @@ export interface FileRoutesByFullPath {
   '/protocols/me': typeof ProtocolsMeRoute
   '/explore': typeof ExploreIndexRoute
   '/protocols': typeof ProtocolsIndexRoute
+  '/explore/bridge': typeof ExploreBridgeIndexRoute
+  '/explore/redeem': typeof ExploreRedeemIndexRoute
   '/explore/statistic': typeof ExploreStatisticIndexRoute
+  '/explore/transfer': typeof ExploreTransferIndexRoute
 }
 
 export interface FileRoutesByTo {
@@ -122,7 +167,10 @@ export interface FileRoutesByTo {
   '/protocols/me': typeof ProtocolsMeRoute
   '/explore': typeof ExploreIndexRoute
   '/protocols': typeof ProtocolsIndexRoute
+  '/explore/bridge': typeof ExploreBridgeIndexRoute
+  '/explore/redeem': typeof ExploreRedeemIndexRoute
   '/explore/statistic': typeof ExploreStatisticIndexRoute
+  '/explore/transfer': typeof ExploreTransferIndexRoute
 }
 
 export interface FileRoutesById {
@@ -132,7 +180,10 @@ export interface FileRoutesById {
   '/protocols/me': typeof ProtocolsMeRoute
   '/explore/': typeof ExploreIndexRoute
   '/protocols/': typeof ProtocolsIndexRoute
+  '/explore/bridge/': typeof ExploreBridgeIndexRoute
+  '/explore/redeem/': typeof ExploreRedeemIndexRoute
   '/explore/statistic/': typeof ExploreStatisticIndexRoute
+  '/explore/transfer/': typeof ExploreTransferIndexRoute
 }
 
 export interface FileRouteTypes {
@@ -143,7 +194,10 @@ export interface FileRouteTypes {
     | '/protocols/me'
     | '/explore'
     | '/protocols'
+    | '/explore/bridge'
+    | '/explore/redeem'
     | '/explore/statistic'
+    | '/explore/transfer'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -151,7 +205,10 @@ export interface FileRouteTypes {
     | '/protocols/me'
     | '/explore'
     | '/protocols'
+    | '/explore/bridge'
+    | '/explore/redeem'
     | '/explore/statistic'
+    | '/explore/transfer'
   id:
     | '__root__'
     | '/'
@@ -159,7 +216,10 @@ export interface FileRouteTypes {
     | '/protocols/me'
     | '/explore/'
     | '/protocols/'
+    | '/explore/bridge/'
+    | '/explore/redeem/'
     | '/explore/statistic/'
+    | '/explore/transfer/'
   fileRoutesById: FileRoutesById
 }
 
@@ -169,7 +229,10 @@ export interface RootRouteChildren {
   ProtocolsMeRoute: typeof ProtocolsMeRoute
   ExploreIndexRoute: typeof ExploreIndexRoute
   ProtocolsIndexRoute: typeof ProtocolsIndexRoute
+  ExploreBridgeIndexRoute: typeof ExploreBridgeIndexRoute
+  ExploreRedeemIndexRoute: typeof ExploreRedeemIndexRoute
   ExploreStatisticIndexRoute: typeof ExploreStatisticIndexRoute
+  ExploreTransferIndexRoute: typeof ExploreTransferIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -178,7 +241,10 @@ const rootRouteChildren: RootRouteChildren = {
   ProtocolsMeRoute: ProtocolsMeRoute,
   ExploreIndexRoute: ExploreIndexRoute,
   ProtocolsIndexRoute: ProtocolsIndexRoute,
+  ExploreBridgeIndexRoute: ExploreBridgeIndexRoute,
+  ExploreRedeemIndexRoute: ExploreRedeemIndexRoute,
   ExploreStatisticIndexRoute: ExploreStatisticIndexRoute,
+  ExploreTransferIndexRoute: ExploreTransferIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -196,7 +262,10 @@ export const routeTree = rootRoute
         "/protocols/me",
         "/explore/",
         "/protocols/",
-        "/explore/statistic/"
+        "/explore/bridge/",
+        "/explore/redeem/",
+        "/explore/statistic/",
+        "/explore/transfer/"
       ]
     },
     "/": {
@@ -214,8 +283,17 @@ export const routeTree = rootRoute
     "/protocols/": {
       "filePath": "protocols/index.tsx"
     },
+    "/explore/bridge/": {
+      "filePath": "explore/bridge/index.tsx"
+    },
+    "/explore/redeem/": {
+      "filePath": "explore/redeem/index.tsx"
+    },
     "/explore/statistic/": {
       "filePath": "explore/statistic/index.tsx"
+    },
+    "/explore/transfer/": {
+      "filePath": "explore/transfer/index.tsx"
     }
   }
 }

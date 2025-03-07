@@ -11,7 +11,7 @@
 	--card-foreground: hsl(227, 5%, 10%);
 	--popover: hsl(0, 0%, 100%);
 	--popover-foreground: hsl(227, 100%, 0%);
-	--primary: hsl(227, 86.8%, 58.4%);
+	--primary: hsl(227, 87%, 58%);
 	--primary-foreground: hsl(0, 0%, 100%);
 	--secondary: hsl(227, 30%, 70%);
 	--secondary-foreground: hsl(0, 0%, 0%);
@@ -22,14 +22,26 @@
 	--destructive: hsl(0 84.2% 60.2%);
 	--border: hsl(0, 0%, 79%);
 	--input: hsl(227, 30%, 18%);
-	--ring: hsl(227, 86.8%, 58.4%);
-	--ring: hsl(0 0% 3.9%);
+	--ring: hsl(227, 87%, 58%);
 	--chart-1: 221.2 83.2% 53.3%;
 	--chart-2: 212 95% 68%;
 	--chart-3: 216 92% 60%;
 	--chart-4: 210 98% 78%;
 	--chart-5: 212 97% 87%;
 	--radius: 0.6rem;
+	/* Scalar Colors */
+	--primary-100: hsl(227, 100%, 67%);
+	--primary-200: hsl(227, 77%, 50%);
+	--secondary-500: hsl(0, 0%, 79%);
+	--hovering: hsla(260, 100%, 78%, 0.2);
+	--text-link: hsl(207, 100%, 55%);
+	--text-primary-100: hsl(0, 0%, 26%);
+	--text-primary-500: hsl(0, 0%, 13%);
+	--text-grey-100: #e3e3e3;
+	--pending: hsl(46, 100%, 55%);
+	--success: hsl(142, 69%, 55%);
+	--fail: hsl(3, 100%, 71%);
+	--executing: hsl(88, 75%, 58%);
 }
 
 .dark {
@@ -57,6 +69,19 @@
 	--chart-3: 216 92% 60%;
 	--chart-4: 210 98% 78%;
 	--chart-5: 212 97% 87%;
+	/* Scalar Colors */
+	--primary-100: hsl(227, 100%, 67%);
+	--primary-200: hsl(227, 77%, 50%);
+	--secondary-500: hsl(0, 0%, 79%);
+	--hovering: hsla(260, 100%, 78%, 0.2);
+	--text-link: hsl(207, 100%, 55%);
+	--text-primary-100: hsl(0, 0%, 26%);
+	--text-primary-500: hsl(0, 0%, 13%);
+	--text-grey-100: #e3e3e3;
+	--pending: hsl(46, 100%, 55%);
+	--success: hsl(142, 69%, 55%);
+	--fail: hsl(3, 100%, 71%);
+	--executing: hsl(88, 75%, 58%);
 }
 
 @theme inline {
@@ -88,6 +113,18 @@
 	--radius-md: calc(var(--radius) - 2px);
 	--radius-lg: var(--radius);
 	--radius-xl: calc(var(--radius) + 4px);
+	/* Scalar Colors */
+	--color-primary-100: var(--primary-100);
+	--color-primary-200: var(--primary-200);
+	--color-secondary-500: var(--secondary-500);
+	--color-hovering: var(--hovering);
+	--color-text-link: var(--text-link);
+	--color-text-primary-100: var(--text-primary-100);
+	--color-text-primary-500: var(--text-primary-500);
+	--color-pending: var(--pending);
+	--color-success: var(--success);
+	--color-fail: var(--fail);
+	--color-executing: var(--executing);
 }
 
 @layer base {

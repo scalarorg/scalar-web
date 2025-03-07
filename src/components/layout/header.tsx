@@ -44,7 +44,9 @@ const links: (
     label: "EXPLORER",
     icon: <WrapIcon />,
     subLinks: [
-      { to: "/explore", label: "Explorer" },
+      { to: "/explore/bridge", label: "Bridge" },
+      { to: "/explore/transfer", label: "Transfer" },
+      { to: "/explore/redeem", label: "Redeem" },
       { to: "/explore/statistic", label: "Statistic" },
     ],
   },
@@ -87,7 +89,7 @@ export const Header = ({ extra }: Props) => {
               <DropdownMenuContent>
                 {link.subLinks.map((subLink) => (
                   <DropdownMenuItem key={subLink.to} asChild>
-                    <Link to={subLink.to} className="!text-lg">
+                    <Link to={subLink.to} className="!text-lg cursor-pointer">
                       {subLink.label}
                     </Link>
                   </DropdownMenuItem>
