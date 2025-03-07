@@ -15,11 +15,13 @@ import { networks } from "bitcoinjs-lib";
 import {
   createContext,
   memo,
+  ReactNode,
   useCallback,
   useContext,
   useEffect,
   useState,
 } from "react";
+import { toast } from "sonner";
 
 export const useWalletProvider = () => {
   const ctx = useContext(WalletProviderContext);
@@ -70,7 +72,7 @@ const WalletProviderContext = createContext<{
   mempoolClient?: BtcMempool | undefined;
 } | null>(null);
 
-const WalletProvider = ({ children }: { children: React.ReactNode }) => {
+const WalletProvider = ({ children }: { children: ReactNode }) => {
   const [walletInfo, setWalletInfo] = useState({
     balance: 0,
     address: "",
@@ -181,12 +183,28 @@ const WalletProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     const walletProvider = walletList.find((w) => w.name === "Unisat")?.wallet;
     if (!walletProvider) {
-      throw new Error("Wallet provider not found");
+      toast.error("Wallet provider not found");
+      return;
     }
-    // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-    const walletInstance = new (walletProvider as any)();
+    let timeId: NodeJS.Timeout | undefined;
+    try {
+      // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+      const walletInstance = new (walletProvider as any)();
 
-    setWalletProvider(walletInstance);
+      setWalletProvider(walletInstance);
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error ? error.message : "Unknown error";
+      timeId = setTimeout(() => {
+        toast.error(errorMessage);
+      }, 1000);
+    }
+
+    return () => {
+      if (timeId) {
+        clearTimeout(timeId);
+      }
+    };
   }, []);
 
   return (

@@ -4,6 +4,7 @@ import { WalletProvider, walletList } from "@/lib/wallet";
 import { useWalletInfo, useWalletProvider } from "@/providers/wallet-provider";
 import { Power } from "lucide-react";
 import { createElement, useEffect, useMemo, useState } from "react";
+import { toast } from "sonner";
 
 // And whether or not it should be injected
 const BROWSER = "btcwallet" as keyof typeof window;
@@ -11,7 +12,7 @@ const BROWSER = "btcwallet" as keyof typeof window;
 export const ConnectBtc = ({ hideTitle }: { hideTitle?: boolean }) => {
   const walletInfo = useWalletInfo();
 
-  const [selectedWallet, setSelectedWallet] = useState("Unisat");
+  const [selectedWallet, setSelectedWallet] = useState<string | undefined>();
 
   const { setWalletProvider, connectWallet, disconnectWallet, networkConfig } =
     useWalletProvider();
@@ -24,27 +25,33 @@ export const ConnectBtc = ({ hideTitle }: { hideTitle?: boolean }) => {
   }, []);
 
   useEffect(() => {
-    if (selectedWallet) {
-      let walletInstance: WalletProvider;
+    try {
+      if (selectedWallet) {
+        let walletInstance: WalletProvider;
 
-      if (selectedWallet === BROWSER) {
-        if (!isInjectable) {
-          throw new Error("Browser selected without an injectable interface");
+        if (selectedWallet === BROWSER) {
+          if (!isInjectable) {
+            throw new Error("Browser selected without an injectable interface");
+          }
+          // we are using the browser wallet
+          walletInstance = window[BROWSER];
+        } else {
+          // we are using a custom wallet
+          const walletProvider = walletList.find(
+            (w) => w.name === selectedWallet,
+          )?.wallet;
+          if (!walletProvider) {
+            throw new Error("Wallet provider not found");
+          }
+          // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+          walletInstance = new (walletProvider as any)();
         }
-        // we are using the browser wallet
-        walletInstance = window[BROWSER];
-      } else {
-        // we are using a custom wallet
-        const walletProvider = walletList.find(
-          (w) => w.name === selectedWallet,
-        )?.wallet;
-        if (!walletProvider) {
-          throw new Error("Wallet provider not found");
-        }
-        // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-        walletInstance = new (walletProvider as any)();
+        setWalletProvider(walletInstance);
       }
-      setWalletProvider(walletInstance);
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error ? error.message : "Unknown error";
+      toast.error(errorMessage);
     }
   }, [setWalletProvider, selectedWallet, isInjectable]);
 
