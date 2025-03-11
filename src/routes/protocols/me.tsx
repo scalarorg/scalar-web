@@ -94,7 +94,7 @@ const columns = [
           {chains?.map(({ address }) => (
             <Clipboard
               key={address}
-              className="[&_span]:w-[150px] [&_span]:text-lg"
+              className="[&_span]:w-[150px]"
               label={address}
               text={address!}
             />
@@ -124,7 +124,7 @@ const columns = [
         findStatus?.label && (
           <div
             className={cn(
-              "mx-auto flex w-fit items-center justify-center rounded-full px-4 py-1 text-lg text-white",
+              "mx-auto flex w-fit items-center justify-center rounded-full px-4 py-1 text-base text-white",
               findStatus.className,
             )}
           >
@@ -264,7 +264,7 @@ function OwnProtocol() {
     <div className="flex flex-col gap-5 py-[60px]">
       <div className="flex items-center gap-3">
         <Link to="/protocols">
-          <ArrowLeftIcon size={30} />
+          <ArrowLeftIcon size={24} />
         </Link>
         <Heading>Your Protocol</Heading>
       </div>
@@ -278,10 +278,12 @@ function OwnProtocol() {
           isRefetching={isRefetching}
         />
       ) : (
-        <Card className="p-0">
+        <Card className="rounded-lg p-0">
           <CardContent className="flex flex-col gap-4 p-4">
-            <p className="text-lg">Connect your wallet to view your protocol</p>
-            <Button className="px-5 text-lg" onClick={() => connect()}>
+            <p className="text-base text-text-primary-500">
+              Connect your wallet to view your protocol
+            </p>
+            <Button size="lg" onClick={() => connect()}>
               Connect Scalar
             </Button>
           </CardContent>
@@ -290,7 +292,7 @@ function OwnProtocol() {
       {isConnected && !isEmpty(protocol) && (
         <Card className="p-0">
           <CardContent className="flex flex-col gap-4 p-4">
-            <p className="text-lg">
+            <p className="text-base">
               Protocol{" "}
               <span className="font-semibold text-primary">
                 {protocol?.name}
@@ -299,7 +301,7 @@ function OwnProtocol() {
               <span>{curentNetwork?.join(", ")}</span>
             </p>
             <div className="flex gap-5">
-              <p className="text-lg leading-[36px]">
+              <p className="text-base leading-[36px]">
                 Select a network to add for the selected protocol.
               </p>
               <Form {...form}>
@@ -316,7 +318,7 @@ function OwnProtocol() {
                       <FormItem className="flex-1">
                         <Select defaultValue={value} onValueChange={onChange}>
                           <FormControl>
-                            <SelectTrigger className="!text-lg min-w-[190px] rounded-full border-transparent bg-[#EDF1FF] px-5">
+                            <SelectTrigger className="!text-base min-w-[190px] rounded-full border-transparent bg-[#EDF1FF] px-5">
                               <SelectValue placeholder="Select Network" />
                             </SelectTrigger>
                           </FormControl>
@@ -325,7 +327,7 @@ function OwnProtocol() {
                               <SelectItem
                                 key={name}
                                 value={name || ""}
-                                className="text-lg"
+                                className="text-base"
                                 disabled={curentNetwork?.includes(name)}
                               >
                                 {name}
@@ -346,7 +348,7 @@ function OwnProtocol() {
                           <Input
                             {...field}
                             placeholder="Please enter the alias"
-                            className="!text-lg"
+                            className="!text-base"
                           />
                         </FormControl>
                         <FormMessage />
@@ -355,7 +357,7 @@ function OwnProtocol() {
                   />
                   <Button
                     type="button"
-                    className="w-full text-lg"
+                    className="w-full text-base"
                     onClick={handleConfirm}
                     disabled={!(watch("chain") && watch("alias"))}
                     isLoading={formLoading || isScalarClientLoading}

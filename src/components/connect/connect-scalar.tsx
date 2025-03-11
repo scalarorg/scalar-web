@@ -22,7 +22,6 @@ export const ConnectScalar = () => {
       {isConnected ? (
         <>
           <Clipboard
-            className="[&_span]:text-[18px]"
             label={account?.address || ""}
             text={account?.address || ""}
           />
@@ -35,7 +34,9 @@ export const ConnectScalar = () => {
           </button>
         </>
       ) : (
-        <Button onClick={() => connect()}>Connect Scalar</Button>
+        <Button onClick={() => connect()} size="lg">
+          Connect Scalar
+        </Button>
       )}
     </div>
   );

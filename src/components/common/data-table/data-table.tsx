@@ -207,7 +207,7 @@ const DataTableInnerForwardRef = <TData,>(
                   <TableRow
                     key={headerGroup.id}
                     className={cn(
-                      "w-fit divide-x divide-neutral-50 text-lg",
+                      "w-fit divide-x divide-neutral-50 text-base",
                       classNames.headerRow,
                     )}
                   >
@@ -219,6 +219,7 @@ const DataTableInnerForwardRef = <TData,>(
                           key={header.id}
                           className={cn(
                             "w-fit whitespace-nowrap bg-neutral-gray px-5",
+                            "font-semibold text-text-primary-500",
                             classNames.headerCell,
                             meta?.className,
                             meta?.header?.className,
@@ -253,9 +254,10 @@ const DataTableInnerForwardRef = <TData,>(
                       key={row.id}
                       data-state={row.getIsSelected() && "selected"}
                       className={cn(
-                        "text-lg",
+                        "text-base",
                         index % 2 === 0 && "bg-white",
                         classNames.row,
+                        onRowClick && "cursor-pointer",
                       )}
                       onClick={() => onRowClick?.(row.original)}
                     >
@@ -284,7 +286,7 @@ const DataTableInnerForwardRef = <TData,>(
                   <TableRow className="h-full">
                     <TableCell colSpan={columns.length}>
                       <div className="flex items-center justify-center py-8">
-                        <p className="font-semibold text-lg">No data</p>
+                        <p className="font-semibold text-base">No data</p>
                       </div>
                     </TableCell>
                   </TableRow>

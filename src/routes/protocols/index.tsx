@@ -7,6 +7,7 @@ import {
   Heading,
   InputSearchBox,
 } from "@/components/common";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -38,23 +39,6 @@ const { display, accessor } = createColumnHelper<TProtocolDetails>();
 const columns = [
   accessor("name", {
     header: "Protocol",
-    cell: ({ getValue }) => {
-      const name = getValue();
-
-      return (
-        name && (
-          <Button asChild>
-            <Link
-              to="/protocols/$slug"
-              className="text-lg text-primary"
-              params={{ slug: name }}
-            >
-              {name}
-            </Link>
-          </Button>
-        )
-      );
-    },
   }),
   display({
     id: "token",
@@ -67,7 +51,7 @@ const columns = [
         <div className="flex items-center gap-2">
           <img
             src={avatar ? addBase64Prefix(avatar) : DEFAULT_ICON}
-            className="size-8 rounded-full"
+            className="size-5 rounded-full"
             alt="avatar"
           />
           <p>{chain}</p>
@@ -86,7 +70,7 @@ const columns = [
           {chains?.map(({ address }) => (
             <Clipboard
               key={address}
-              className="[&_span]:w-[150px] [&_span]:text-lg"
+              className="[&_span]:w-[150px]"
               label={address}
               text={address!}
             />
@@ -102,7 +86,9 @@ const columns = [
       const chains = getValue();
 
       return (
-        <p>{chains?.map(({ name, chain }) => name || chain).join(", ")}</p>
+        <p className="min-w-[250px]">
+          {chains?.map(({ name, chain }) => name || chain).join(", ")}
+        </p>
       );
     },
   }),
@@ -110,18 +96,16 @@ const columns = [
     header: "Status",
     cell: ({ getValue }) => {
       const status = getValue();
-      const findStatus = PROTOCOL_STATUS.OBJECT[status];
+      const { label, variant, className } = PROTOCOL_STATUS.OBJECT[status];
 
       return (
-        findStatus?.label && (
-          <div
-            className={cn(
-              "mx-auto flex w-fit items-center justify-center rounded-full px-4 py-1 text-lg text-white",
-              findStatus.className,
-            )}
+        label && (
+          <Badge
+            variant={variant}
+            className={cn("rounded-full px-4 text-base text-white", className)}
           >
-            <span>{findStatus.label}</span>
-          </div>
+            {label}
+          </Badge>
         )
       );
     },
@@ -136,6 +120,7 @@ function Protocols() {
   const { connect } = useConnectKeplr();
   const [open, setOpen] = useState(false);
   const { q } = Route.useSearch();
+  const navigate = Route.useNavigate();
 
   const { data, isLoading, isRefetching } = useScalarProtocols();
 
@@ -160,12 +145,26 @@ function Protocols() {
   return (
     <div className="flex flex-col gap-5 py-[60px]">
       <Heading>All Protocols</Heading>
-      <Card className="p-0">
+      <Card className="rounded-lg p-0">
         <CardContent className="flex items-center gap-6 p-4">
-          <div className="flex size-[70px] items-center justify-center rounded-lg bg-[#EDF1FF]">
+          <div
+            className={cn(
+              // Flexbox Container
+              "flex items-center justify-center",
+
+              // Size
+              "size-[70px]",
+
+              // Border Radius
+              "rounded-lg",
+
+              // Color
+              "bg-[#EDF1FF] text-text-primary-500",
+            )}
+          >
             {isConnected ? <NoteIcon /> : <WalletIcon />}
           </div>
-          <p className="mr-auto text-lg">
+          <p className="mr-auto text-text-primary-500">
             {isConnected
               ? isOwnCreated
                 ? "You have created a protocol."
@@ -176,17 +175,17 @@ function Protocols() {
             {isConnected ? (
               isOwnCreated ? (
                 <Link to="/protocols/me">
-                  <Button className="px-5 text-lg">View your protocol</Button>
+                  <Button size="lg">View your protocol</Button>
                 </Link>
               ) : (
                 <DialogTrigger asChild>
-                  <Button variant="black" className="px-5 text-lg">
+                  <Button variant="black" size="lg">
                     Register
                   </Button>
                 </DialogTrigger>
               )
             ) : (
-              <Button className="px-5 text-lg" onClick={() => connect()}>
+              <Button onClick={() => connect()} size="lg">
                 Connect Scalar
               </Button>
             )}
@@ -195,14 +194,14 @@ function Protocols() {
               className="min-w-[800px]"
             >
               <DialogHeader>
-                <DialogTitle className="text-[40px]">New Protocol</DialogTitle>
+                <DialogTitle className="text-2xl">New Protocol</DialogTitle>
                 <ProtocolForm setOpen={setOpen} />
               </DialogHeader>
             </DialogContent>
           </Dialog>
         </CardContent>
       </Card>
-      <Card className="p-0">
+      <Card className="rounded-lg p-0">
         <CardContent className="flex flex-col gap-4 p-4">
           <InputSearchBox />
           <DataTable
@@ -212,6 +211,16 @@ function Protocols() {
             showPagination={false}
             isLoading={isLoading}
             isRefetching={isRefetching}
+            onRowClick={(row) => {
+              const { name } = row;
+
+              if (name) {
+                navigate({
+                  to: "/protocols/$slug",
+                  params: { slug: name },
+                });
+              }
+            }}
           />
         </CardContent>
       </Card>

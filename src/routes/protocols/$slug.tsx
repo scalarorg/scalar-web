@@ -1,7 +1,9 @@
+import DEFAULT_ICON from "@/assets/images/default-icon.png";
 import { Clipboard, Heading } from "@/components/common";
 import { Card, CardContent } from "@/components/ui/card";
 import { PROTOCOL_STATUS } from "@/features/protocol";
 import { useScalarProtocols } from "@/hooks";
+import { addBase64Prefix } from "@/lib/utils";
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { isEmpty } from "lodash";
 import { ArrowLeftIcon } from "lucide-react";
@@ -18,9 +20,9 @@ type TItem = {
 
 const Item = ({ label, content }: TItem) => {
   return (
-    <div className="flex gap-1">
-      <span className="w-[180px] text-border text-lg">{label}</span>
-      <div className="flex-1 text-lg">{content}</div>
+    <div className="flex gap-1 py-3">
+      <span className="w-[180px] text-base text-secondary-500">{label}</span>
+      <div className="flex-1 text-base">{content}</div>
     </div>
   );
 };
@@ -30,9 +32,7 @@ function RouteComponent() {
 
   const { data } = useScalarProtocols();
 
-  const protocol = data?.protocols?.find(
-    (protocol) => protocol.asset?.symbol === slug,
-  );
+  const protocol = data?.protocols?.find((protocol) => protocol.name === slug);
 
   const items: TItem[] = [
     {
@@ -41,7 +41,26 @@ function RouteComponent() {
     },
     {
       label: "Token",
-      content: <p className="font-semibold">{protocol?.asset?.chain}</p>,
+      content: (
+        <div className="flex items-center gap-2">
+          <img
+            src={
+              protocol?.avatar
+                ? addBase64Prefix(protocol?.avatar)
+                : DEFAULT_ICON
+            }
+            className="size-5 rounded-full"
+            alt="avatar"
+          />
+          <p>{protocol?.asset?.chain}</p>
+        </div>
+      ),
+    },
+    {
+      label: "Network",
+      content: (
+        <p>{protocol?.chains?.map((c) => c.name || c.chain).join(", ")}</p>
+      ),
     },
     {
       label: "Address",
@@ -52,18 +71,12 @@ function RouteComponent() {
             ?.map(({ address }) => (
               <Clipboard
                 key={address}
-                className="[&_button]:px-0 [&_span]:w-[200px] [&_span]:text-lg"
+                className="[&_button]:px-0 [&_span]:w-[200px]"
                 label={address}
                 text={address!}
               />
             ))}
         </div>
-      ),
-    },
-    {
-      label: "Network",
-      content: (
-        <p>{protocol?.chains?.map((c) => c.name || c.chain).join(", ")}</p>
       ),
     },
     {
@@ -75,7 +88,7 @@ function RouteComponent() {
       label: "Bitcoin pubkey",
       content: protocol?.bitcoin_pubkey && (
         <Clipboard
-          className="[&_button]:px-0 [&_span]:w-[250px] [&_span]:text-lg"
+          className="[&_button]:px-0 [&_span]:w-[250px]"
           label={protocol.bitcoin_pubkey}
           text={protocol.bitcoin_pubkey}
         />
@@ -91,17 +104,17 @@ function RouteComponent() {
     <div className="flex flex-col gap-5 py-[60px]">
       <div className="flex items-center gap-3">
         <Link to="/protocols">
-          <ArrowLeftIcon size={30} />
+          <ArrowLeftIcon size={24} />
         </Link>
         <Heading>Protocol Detail</Heading>
       </div>
       {isEmpty(protocol) ? (
-        <p className="mt-5 text-center font-semibold text-5xl text-primary">
+        <p className="mt-5 text-center font-semibold text-3xl text-primary">
           Protocol not found
         </p>
       ) : (
-        <Card className="mx-auto p-0">
-          <CardContent className="flex w-max max-w-[800px] flex-col gap-1 p-4">
+        <Card className="rounded-lg p-0">
+          <CardContent className="flex flex-col divide-y p-4">
             {items.map((item) => (
               <Item key={item.label} {...item} />
             ))}

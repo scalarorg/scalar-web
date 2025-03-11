@@ -1,7 +1,7 @@
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { CheckIcon, ClipboardIcon } from "lucide-react";
-import { useState } from "react";
+import { MouseEvent, useState } from "react";
 import { toast } from "sonner";
 
 interface ClipboardProps {
@@ -21,7 +21,8 @@ export function Clipboard({
 }: ClipboardProps) {
   const [copied, setCopied] = useState(false);
 
-  const handleCopy = async () => {
+  const handleCopy = async (e: MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
     try {
       await navigator.clipboard.writeText(text);
       setCopied(true);
@@ -45,7 +46,7 @@ export function Clipboard({
             href={targetLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-[100px] truncate text-primary"
+            className="w-[100px] truncate text-base text-primary"
           >
             {label}
           </a>
@@ -54,7 +55,7 @@ export function Clipboard({
             type="button"
             onClick={onClick}
             className={cn(
-              "w-[100px] truncate text-primary",
+              "w-[100px] truncate text-base text-primary",
               onClick && "cursor-pointer",
             )}
           >

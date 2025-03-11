@@ -49,11 +49,11 @@ export const InputSearchBox = ({ keyword, className, ...props }: Props) => {
 
   return (
     <IconInput
-      startIcon={<SearchIcon />}
+      startIcon={<SearchIcon className="size-5" />}
       placeholder="Search"
       {...props}
-      className={cn("!text-lg h-12 pl-12", className)}
-      iconClassName="size-12"
+      className={cn("!text-base !rounded-lg h-10 pl-10", className)}
+      iconClassName="size-10"
       onChange={onSearch}
       value={debouncedValueSearch}
     />

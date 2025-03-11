@@ -75,11 +75,7 @@ export const ConnectBtc = ({ hideTitle }: { hideTitle?: boolean }) => {
         <div className="space-y-1 text-[18px]">
           <div className="flex items-center justify-between gap-1">
             <span>Wallet address</span>
-            <Clipboard
-              className="[&_span]:text-[18px]"
-              label={walletInfo.address}
-              text={walletInfo.address}
-            />
+            <Clipboard label={walletInfo.address} text={walletInfo.address} />
           </div>
           <div className="flex items-center justify-between gap-1">
             <span>Balance</span>

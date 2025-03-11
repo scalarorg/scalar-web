@@ -180,11 +180,11 @@ export const ProtocolForm = ({ setOpen }: Props) => {
           "relative mt-5",
 
           // Styling for label elements with data-slot="form-label"
-          "[&_label[data-slot=form-label]]:text-[22px]",
+          "[&_label[data-slot=form-label]]:text-base",
 
           // Styling for input elements with data-slot="form-control"
-          "[&_input[data-slot=form-control]]:h-[50px]",
-          "[&_button[data-slot=form-control]]:h-[50px]",
+          "[&_input[data-slot=form-control]]:h-10",
+          "[&_button[data-slot=form-control]]:h-10",
         )}
       >
         <div className="flex items-center gap-5">
@@ -198,7 +198,7 @@ export const ProtocolForm = ({ setOpen }: Props) => {
                   <Input
                     {...field}
                     placeholder="Protocol name"
-                    className="!text-lg"
+                    className="!text-base"
                   />
                 </FormControl>
                 <FormMessage />
@@ -221,14 +221,14 @@ export const ProtocolForm = ({ setOpen }: Props) => {
                 ) : (
                   <Avatar
                     {...getRootProps()}
-                    className="size-[100px] cursor-pointer ring-2 ring-slate-200 ring-offset-2"
+                    className="mx-auto size-[100px] cursor-pointer ring-2 ring-slate-200 ring-offset-2"
                   >
                     <input {...getInputProps()} />
                     <AvatarImage src={DEFAULT_ICON} alt="icon" />
                     <AvatarFallback>Icon</AvatarFallback>
                   </Avatar>
                 )}
-                <FormDescription>
+                <FormDescription className="text-base">
                   File smaller than {MAX_FILE_SIZE}MB
                 </FormDescription>
                 <FormMessage />
@@ -249,7 +249,7 @@ export const ProtocolForm = ({ setOpen }: Props) => {
                       <Input
                         {...field}
                         placeholder="Name"
-                        className="!text-lg"
+                        className="!text-base"
                       />
                     </FormControl>
                     <FormMessage />
@@ -266,7 +266,7 @@ export const ProtocolForm = ({ setOpen }: Props) => {
                         {...field}
                         type="number"
                         placeholder="Decimals"
-                        className="!text-lg"
+                        className="!text-base"
                         onChange={(event) =>
                           field.onChange(+event.target.value || undefined)
                         }
@@ -287,7 +287,7 @@ export const ProtocolForm = ({ setOpen }: Props) => {
                       <Input
                         {...field}
                         placeholder="Capacity"
-                        className="!text-lg"
+                        className="!text-base"
                       />
                     </FormControl>
                     <FormMessage />
@@ -303,7 +303,7 @@ export const ProtocolForm = ({ setOpen }: Props) => {
                       <Input
                         {...field}
                         placeholder="Symbol"
-                        className="!text-lg"
+                        className="!text-base"
                       />
                     </FormControl>
                     <FormMessage />
@@ -319,7 +319,7 @@ export const ProtocolForm = ({ setOpen }: Props) => {
                       <Input
                         {...field}
                         placeholder="Daily mint limit"
-                        className="!text-lg"
+                        className="!text-base"
                       />
                     </FormControl>
                     <FormMessage />
@@ -339,7 +339,7 @@ export const ProtocolForm = ({ setOpen }: Props) => {
                 <Input
                   {...field}
                   placeholder="Bitcoin pubkey"
-                  className="!text-lg"
+                  className="!text-base"
                 />
               </FormControl>
               <FormMessage />
@@ -355,13 +355,17 @@ export const ProtocolForm = ({ setOpen }: Props) => {
                 <FormLabel>Type</FormLabel>
                 <Select defaultValue={value} onValueChange={onChange}>
                   <FormControl>
-                    <SelectTrigger className="!text-lg w-[200px]">
+                    <SelectTrigger className="!text-base w-[200px]">
                       <SelectValue placeholder="Select type" />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
                     {LIQUIDITY_MODEL.LIST.map(({ label, value }) => (
-                      <SelectItem key={value} value={value} className="text-lg">
+                      <SelectItem
+                        key={value}
+                        value={value}
+                        className="text-base"
+                      >
                         {label}
                       </SelectItem>
                     ))}
@@ -379,7 +383,7 @@ export const ProtocolForm = ({ setOpen }: Props) => {
                 <FormLabel>Custodian group</FormLabel>
                 <Select defaultValue={value} onValueChange={onChange}>
                   <FormControl>
-                    <SelectTrigger className="!text-lg">
+                    <SelectTrigger className="!text-base">
                       <SelectValue placeholder="Select custodian group" />
                     </SelectTrigger>
                   </FormControl>
@@ -388,7 +392,7 @@ export const ProtocolForm = ({ setOpen }: Props) => {
                       <SelectItem
                         key={uid}
                         value={uid || ""}
-                        className="text-lg"
+                        className="text-base"
                       >
                         {name}
                       </SelectItem>
@@ -409,7 +413,7 @@ export const ProtocolForm = ({ setOpen }: Props) => {
                 <FormLabel>Chain name</FormLabel>
                 <Select defaultValue={value} onValueChange={onChange}>
                   <FormControl>
-                    <SelectTrigger className="!text-lg">
+                    <SelectTrigger className="!text-base">
                       <SelectValue placeholder="Select chain" />
                     </SelectTrigger>
                   </FormControl>
@@ -418,7 +422,7 @@ export const ProtocolForm = ({ setOpen }: Props) => {
                       <SelectItem
                         key={name}
                         value={name || ""}
-                        className="text-lg"
+                        className="text-base"
                       >
                         {name}
                       </SelectItem>
@@ -436,7 +440,7 @@ export const ProtocolForm = ({ setOpen }: Props) => {
               <FormItem className="flex-1">
                 <FormLabel>Tag</FormLabel>
                 <FormControl>
-                  <Input {...field} placeholder="Tag" className="!text-lg" />
+                  <Input {...field} placeholder="Tag" className="!text-base" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -446,8 +450,9 @@ export const ProtocolForm = ({ setOpen }: Props) => {
         <div className="sticky bottom-0 bg-white">
           <Button
             type="submit"
-            className="h-[50px] w-full text-lg"
+            className="w-full"
             isLoading={formLoading}
+            size="lg"
           >
             Submit
           </Button>

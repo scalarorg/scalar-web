@@ -19,7 +19,7 @@ type Props = {
 };
 
 const linkClassName =
-  "flex items-center gap-3 font-semibold [&.active]:text-primary hover:text-primary text-[#767676] transition-colors duration-300 cursor-pointer";
+  "flex items-center gap-3 font-semibold [&.active]:text-primary hover:text-text-primary-500 text-[#767676] transition-colors duration-300 cursor-pointer";
 
 const links: (
   | {
@@ -56,8 +56,8 @@ export const Header = ({ extra }: Props) => {
   const pathname = usePathname();
 
   return (
-    <header className="container flex items-center justify-between gap-2 py-6">
-      <div className="flex items-center gap-[60px]">
+    <header className="container flex items-center justify-between gap-5 py-6">
+      <div className="flex items-center gap-[30px]">
         <ScaleIcon />
         {links.map((link) => {
           if ("to" in link) {
@@ -89,7 +89,7 @@ export const Header = ({ extra }: Props) => {
               <DropdownMenuContent>
                 {link.subLinks.map((subLink) => (
                   <DropdownMenuItem key={subLink.to} asChild>
-                    <Link to={subLink.to} className="!text-lg cursor-pointer">
+                    <Link to={subLink.to} className="!text-base cursor-pointer">
                       {subLink.label}
                     </Link>
                   </DropdownMenuItem>

@@ -1,4 +1,6 @@
+import { TBadgeVariants } from "@/components/ui/badge";
 import { UtilityList } from "@/lib/utils";
+import { EProtocolStatus } from "./models";
 
 export const LIQUIDITY_MODEL = new UtilityList([
   { label: "Pool", value: "LIQUIDITY_MODEL_POOL" },
@@ -7,25 +9,30 @@ export const LIQUIDITY_MODEL = new UtilityList([
 
 export const MAX_FILE_SIZE = 1; // MB
 
-export const PROTOCOL_STATUS = new UtilityList([
+export const PROTOCOL_STATUS = new UtilityList<{
+  label: string;
+  value: EProtocolStatus;
+  className?: string;
+  variant?: TBadgeVariants["variant"];
+}>([
   {
     label: "Unspecified",
-    value: "STATUS_UNSPECIFIED",
-    className: "bg-blue-500",
+    value: EProtocolStatus.UNSPECIFIED,
+    variant: "default",
   },
   {
     label: "Activated",
-    value: "STATUS_ACTIVATED",
-    className: "bg-green-500",
+    value: EProtocolStatus.ACTIVATED,
+    variant: "success",
   },
   {
     label: "Deactivated",
-    value: "STATUS_DEACTIVATED",
-    className: "bg-red-500",
+    value: EProtocolStatus.DEACTIVATED,
+    variant: "fail",
   },
   {
     label: "Pending",
-    value: "STATUS_PENDING",
-    className: "bg-yellow-500",
+    value: EProtocolStatus.PENDING,
+    variant: "pending",
   },
 ]);
