@@ -129,6 +129,7 @@ export function TablePagination<TData>({
                       pageNumber === page && "bg-neutral-50",
                     )}
                     size="icon"
+                    disabled={pageNumber === "..."}
                   >
                     {pageNumber}
                   </Button>
