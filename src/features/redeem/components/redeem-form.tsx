@@ -113,10 +113,6 @@ export const RedeemForm = () => {
       : undefined,
   );
 
-  const originalChain = selectedProtocol?.chains?.find(
-    (c) => c?.chain === selectedProtocol?.asset?.chain,
-  );
-
   const sourceChainSelected = getChainSelected(watchForm.sourceChain);
 
   const upcLockingScript = useMemo(() => {
@@ -167,7 +163,7 @@ export const RedeemForm = () => {
         watchForm.transferAmount ? String(watchForm.transferAmount) : "",
       );
 
-      if (!isBtcChain(originalChain?.chain)) return [];
+      if (!isBtcChain(selectedProtocol?.asset?.chain)) return [];
 
       const addressUtxos = await mempoolClient!.addresses.getAddressTxsUtxo({
         address: upcLockingAddress!,
@@ -298,7 +294,10 @@ export const RedeemForm = () => {
 
       const sourceChain = getChainSelected(values.sourceChain);
 
-      if (!isEvmChain(sourceChain) || !isBtcChain(originalChain?.chain)) {
+      if (
+        !isEvmChain(sourceChain) ||
+        !isBtcChain(selectedProtocol?.asset?.chain)
+      ) {
         throw new Error("Invalid chain types");
       }
 
@@ -400,7 +399,7 @@ export const RedeemForm = () => {
       }
 
       const contractCallTx = await callContractWithToken({
-        destinationChain: originalChain?.chain!,
+        destinationChain: selectedProtocol?.asset?.chain!,
         destinationContractAddress: EMPTY_ADDRESS,
         payload,
         symbol: selectedProtocol?.asset?.symbol || "",
@@ -543,7 +542,7 @@ export const RedeemForm = () => {
 
             {/* To Section */}
             <p className="space-y-4 rounded-lg bg-[#F6F8FF] p-4 text-lg">
-              To {originalChain?.name || originalChain?.chain}
+              To {selectedProtocol?.asset?.chain}
             </p>
 
             {/* Destination Address */}
