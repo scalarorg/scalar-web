@@ -165,7 +165,7 @@ export const useAccount = () => {
   const { data: client } = useKeplrClient();
 
   const { data, ...result } = useQuery({
-    queryKey: ["keplr-account", config.chainId, client?.offlineSigner],
+    queryKey: ["keplr-account", config.chainId],
     queryFn: async () => {
       const accounts = await client?.offlineSigner.getAccounts();
       const account = accounts?.[0];
