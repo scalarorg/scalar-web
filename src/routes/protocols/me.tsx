@@ -46,10 +46,9 @@ import { TProtocol } from "@/types/protocol";
 import { fromBech32 } from "@cosmjs/encoding";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useQueryClient } from "@tanstack/react-query";
-import { Link, createFileRoute } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { createColumnHelper } from "@tanstack/react-table";
 import { isEmpty } from "lodash";
-import { ArrowLeftIcon } from "lucide-react";
 import { useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -262,12 +261,7 @@ function OwnProtocol() {
 
   return (
     <div className="flex flex-col gap-5 py-[60px]">
-      <div className="flex items-center gap-3">
-        <Link to="/protocols">
-          <ArrowLeftIcon size={24} />
-        </Link>
-        <Heading>Your Protocol</Heading>
-      </div>
+      <Heading to="/protocols">Your Protocol</Heading>
       {isConnected ? (
         <DataTable
           columns={columns}

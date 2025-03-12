@@ -4,9 +4,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { PROTOCOL_STATUS } from "@/features/protocol";
 import { useScalarProtocols } from "@/hooks";
 import { addBase64Prefix } from "@/lib/utils";
-import { Link, createFileRoute } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { isEmpty } from "lodash";
-import { ArrowLeftIcon } from "lucide-react";
 import { ReactNode } from "react";
 
 export const Route = createFileRoute("/protocols/$slug")({
@@ -20,8 +19,8 @@ type TItem = {
 
 const Item = ({ label, content }: TItem) => {
   return (
-    <div className="flex gap-1 py-3">
-      <span className="w-[180px] text-base text-secondary-500">{label}</span>
+    <div className="flex gap-1 py-3.5">
+      <span className="w-[180px] text-base text-text-primary-500">{label}</span>
       <div className="flex-1 text-base">{content}</div>
     </div>
   );
@@ -104,19 +103,14 @@ function RouteComponent() {
 
   return (
     <div className="flex flex-col gap-5 py-[60px]">
-      <div className="flex items-center gap-3">
-        <Link to="/protocols">
-          <ArrowLeftIcon size={24} />
-        </Link>
-        <Heading>Protocol Detail</Heading>
-      </div>
+      <Heading to="/protocols">Protocol Detail</Heading>
       {isEmpty(protocol) ? (
         <p className="mt-5 text-center font-semibold text-3xl text-primary">
           Protocol not found
         </p>
       ) : (
         <Card className="rounded-lg p-0">
-          <CardContent className="flex flex-col divide-y p-4">
+          <CardContent className="flex flex-col divide-y px-4 py-0">
             {items.map((item) => (
               <Item key={item.label} {...item} />
             ))}
