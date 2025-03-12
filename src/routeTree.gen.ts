@@ -20,6 +20,12 @@ import { Route as ExploreTransferIndexImport } from './routes/explore/transfer/i
 import { Route as ExploreStatisticIndexImport } from './routes/explore/statistic/index'
 import { Route as ExploreRedeemIndexImport } from './routes/explore/redeem/index'
 import { Route as ExploreBridgeIndexImport } from './routes/explore/bridge/index'
+import { Route as ExploreTransferSlugIndexImport } from './routes/explore/transfer/$slug/index'
+import { Route as ExploreRedeemSlugIndexImport } from './routes/explore/redeem/$slug/index'
+import { Route as ExploreBridgeSlugIndexImport } from './routes/explore/bridge/$slug/index'
+import { Route as ExploreTransferSlugStatusImport } from './routes/explore/transfer/$slug/$status'
+import { Route as ExploreRedeemSlugStatusImport } from './routes/explore/redeem/$slug/$status'
+import { Route as ExploreBridgeSlugStatusImport } from './routes/explore/bridge/$slug/$status'
 
 // Create/Update Routes
 
@@ -74,6 +80,42 @@ const ExploreRedeemIndexRoute = ExploreRedeemIndexImport.update({
 const ExploreBridgeIndexRoute = ExploreBridgeIndexImport.update({
   id: '/explore/bridge/',
   path: '/explore/bridge/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ExploreTransferSlugIndexRoute = ExploreTransferSlugIndexImport.update({
+  id: '/explore/transfer/$slug/',
+  path: '/explore/transfer/$slug/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ExploreRedeemSlugIndexRoute = ExploreRedeemSlugIndexImport.update({
+  id: '/explore/redeem/$slug/',
+  path: '/explore/redeem/$slug/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ExploreBridgeSlugIndexRoute = ExploreBridgeSlugIndexImport.update({
+  id: '/explore/bridge/$slug/',
+  path: '/explore/bridge/$slug/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ExploreTransferSlugStatusRoute = ExploreTransferSlugStatusImport.update({
+  id: '/explore/transfer/$slug/$status',
+  path: '/explore/transfer/$slug/$status',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ExploreRedeemSlugStatusRoute = ExploreRedeemSlugStatusImport.update({
+  id: '/explore/redeem/$slug/$status',
+  path: '/explore/redeem/$slug/$status',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ExploreBridgeSlugStatusRoute = ExploreBridgeSlugStatusImport.update({
+  id: '/explore/bridge/$slug/$status',
+  path: '/explore/bridge/$slug/$status',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -144,6 +186,48 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ExploreTransferIndexImport
       parentRoute: typeof rootRoute
     }
+    '/explore/bridge/$slug/$status': {
+      id: '/explore/bridge/$slug/$status'
+      path: '/explore/bridge/$slug/$status'
+      fullPath: '/explore/bridge/$slug/$status'
+      preLoaderRoute: typeof ExploreBridgeSlugStatusImport
+      parentRoute: typeof rootRoute
+    }
+    '/explore/redeem/$slug/$status': {
+      id: '/explore/redeem/$slug/$status'
+      path: '/explore/redeem/$slug/$status'
+      fullPath: '/explore/redeem/$slug/$status'
+      preLoaderRoute: typeof ExploreRedeemSlugStatusImport
+      parentRoute: typeof rootRoute
+    }
+    '/explore/transfer/$slug/$status': {
+      id: '/explore/transfer/$slug/$status'
+      path: '/explore/transfer/$slug/$status'
+      fullPath: '/explore/transfer/$slug/$status'
+      preLoaderRoute: typeof ExploreTransferSlugStatusImport
+      parentRoute: typeof rootRoute
+    }
+    '/explore/bridge/$slug/': {
+      id: '/explore/bridge/$slug/'
+      path: '/explore/bridge/$slug'
+      fullPath: '/explore/bridge/$slug'
+      preLoaderRoute: typeof ExploreBridgeSlugIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/explore/redeem/$slug/': {
+      id: '/explore/redeem/$slug/'
+      path: '/explore/redeem/$slug'
+      fullPath: '/explore/redeem/$slug'
+      preLoaderRoute: typeof ExploreRedeemSlugIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/explore/transfer/$slug/': {
+      id: '/explore/transfer/$slug/'
+      path: '/explore/transfer/$slug'
+      fullPath: '/explore/transfer/$slug'
+      preLoaderRoute: typeof ExploreTransferSlugIndexImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -159,6 +243,12 @@ export interface FileRoutesByFullPath {
   '/explore/redeem': typeof ExploreRedeemIndexRoute
   '/explore/statistic': typeof ExploreStatisticIndexRoute
   '/explore/transfer': typeof ExploreTransferIndexRoute
+  '/explore/bridge/$slug/$status': typeof ExploreBridgeSlugStatusRoute
+  '/explore/redeem/$slug/$status': typeof ExploreRedeemSlugStatusRoute
+  '/explore/transfer/$slug/$status': typeof ExploreTransferSlugStatusRoute
+  '/explore/bridge/$slug': typeof ExploreBridgeSlugIndexRoute
+  '/explore/redeem/$slug': typeof ExploreRedeemSlugIndexRoute
+  '/explore/transfer/$slug': typeof ExploreTransferSlugIndexRoute
 }
 
 export interface FileRoutesByTo {
@@ -171,6 +261,12 @@ export interface FileRoutesByTo {
   '/explore/redeem': typeof ExploreRedeemIndexRoute
   '/explore/statistic': typeof ExploreStatisticIndexRoute
   '/explore/transfer': typeof ExploreTransferIndexRoute
+  '/explore/bridge/$slug/$status': typeof ExploreBridgeSlugStatusRoute
+  '/explore/redeem/$slug/$status': typeof ExploreRedeemSlugStatusRoute
+  '/explore/transfer/$slug/$status': typeof ExploreTransferSlugStatusRoute
+  '/explore/bridge/$slug': typeof ExploreBridgeSlugIndexRoute
+  '/explore/redeem/$slug': typeof ExploreRedeemSlugIndexRoute
+  '/explore/transfer/$slug': typeof ExploreTransferSlugIndexRoute
 }
 
 export interface FileRoutesById {
@@ -184,6 +280,12 @@ export interface FileRoutesById {
   '/explore/redeem/': typeof ExploreRedeemIndexRoute
   '/explore/statistic/': typeof ExploreStatisticIndexRoute
   '/explore/transfer/': typeof ExploreTransferIndexRoute
+  '/explore/bridge/$slug/$status': typeof ExploreBridgeSlugStatusRoute
+  '/explore/redeem/$slug/$status': typeof ExploreRedeemSlugStatusRoute
+  '/explore/transfer/$slug/$status': typeof ExploreTransferSlugStatusRoute
+  '/explore/bridge/$slug/': typeof ExploreBridgeSlugIndexRoute
+  '/explore/redeem/$slug/': typeof ExploreRedeemSlugIndexRoute
+  '/explore/transfer/$slug/': typeof ExploreTransferSlugIndexRoute
 }
 
 export interface FileRouteTypes {
@@ -198,6 +300,12 @@ export interface FileRouteTypes {
     | '/explore/redeem'
     | '/explore/statistic'
     | '/explore/transfer'
+    | '/explore/bridge/$slug/$status'
+    | '/explore/redeem/$slug/$status'
+    | '/explore/transfer/$slug/$status'
+    | '/explore/bridge/$slug'
+    | '/explore/redeem/$slug'
+    | '/explore/transfer/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -209,6 +317,12 @@ export interface FileRouteTypes {
     | '/explore/redeem'
     | '/explore/statistic'
     | '/explore/transfer'
+    | '/explore/bridge/$slug/$status'
+    | '/explore/redeem/$slug/$status'
+    | '/explore/transfer/$slug/$status'
+    | '/explore/bridge/$slug'
+    | '/explore/redeem/$slug'
+    | '/explore/transfer/$slug'
   id:
     | '__root__'
     | '/'
@@ -220,6 +334,12 @@ export interface FileRouteTypes {
     | '/explore/redeem/'
     | '/explore/statistic/'
     | '/explore/transfer/'
+    | '/explore/bridge/$slug/$status'
+    | '/explore/redeem/$slug/$status'
+    | '/explore/transfer/$slug/$status'
+    | '/explore/bridge/$slug/'
+    | '/explore/redeem/$slug/'
+    | '/explore/transfer/$slug/'
   fileRoutesById: FileRoutesById
 }
 
@@ -233,6 +353,12 @@ export interface RootRouteChildren {
   ExploreRedeemIndexRoute: typeof ExploreRedeemIndexRoute
   ExploreStatisticIndexRoute: typeof ExploreStatisticIndexRoute
   ExploreTransferIndexRoute: typeof ExploreTransferIndexRoute
+  ExploreBridgeSlugStatusRoute: typeof ExploreBridgeSlugStatusRoute
+  ExploreRedeemSlugStatusRoute: typeof ExploreRedeemSlugStatusRoute
+  ExploreTransferSlugStatusRoute: typeof ExploreTransferSlugStatusRoute
+  ExploreBridgeSlugIndexRoute: typeof ExploreBridgeSlugIndexRoute
+  ExploreRedeemSlugIndexRoute: typeof ExploreRedeemSlugIndexRoute
+  ExploreTransferSlugIndexRoute: typeof ExploreTransferSlugIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -245,6 +371,12 @@ const rootRouteChildren: RootRouteChildren = {
   ExploreRedeemIndexRoute: ExploreRedeemIndexRoute,
   ExploreStatisticIndexRoute: ExploreStatisticIndexRoute,
   ExploreTransferIndexRoute: ExploreTransferIndexRoute,
+  ExploreBridgeSlugStatusRoute: ExploreBridgeSlugStatusRoute,
+  ExploreRedeemSlugStatusRoute: ExploreRedeemSlugStatusRoute,
+  ExploreTransferSlugStatusRoute: ExploreTransferSlugStatusRoute,
+  ExploreBridgeSlugIndexRoute: ExploreBridgeSlugIndexRoute,
+  ExploreRedeemSlugIndexRoute: ExploreRedeemSlugIndexRoute,
+  ExploreTransferSlugIndexRoute: ExploreTransferSlugIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -265,7 +397,13 @@ export const routeTree = rootRoute
         "/explore/bridge/",
         "/explore/redeem/",
         "/explore/statistic/",
-        "/explore/transfer/"
+        "/explore/transfer/",
+        "/explore/bridge/$slug/$status",
+        "/explore/redeem/$slug/$status",
+        "/explore/transfer/$slug/$status",
+        "/explore/bridge/$slug/",
+        "/explore/redeem/$slug/",
+        "/explore/transfer/$slug/"
       ]
     },
     "/": {
@@ -294,6 +432,24 @@ export const routeTree = rootRoute
     },
     "/explore/transfer/": {
       "filePath": "explore/transfer/index.tsx"
+    },
+    "/explore/bridge/$slug/$status": {
+      "filePath": "explore/bridge/$slug/$status.tsx"
+    },
+    "/explore/redeem/$slug/$status": {
+      "filePath": "explore/redeem/$slug/$status.tsx"
+    },
+    "/explore/transfer/$slug/$status": {
+      "filePath": "explore/transfer/$slug/$status.tsx"
+    },
+    "/explore/bridge/$slug/": {
+      "filePath": "explore/bridge/$slug/index.tsx"
+    },
+    "/explore/redeem/$slug/": {
+      "filePath": "explore/redeem/$slug/index.tsx"
+    },
+    "/explore/transfer/$slug/": {
+      "filePath": "explore/transfer/$slug/index.tsx"
     }
   }
 }

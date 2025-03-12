@@ -102,7 +102,7 @@ const columns = [
         label && (
           <Badge
             variant={variant}
-            className={cn("rounded-full px-4 text-base text-white", className)}
+            className={cn("px-4 text-base text-white", className)}
           >
             {label}
           </Badge>

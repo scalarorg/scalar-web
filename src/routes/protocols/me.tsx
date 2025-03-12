@@ -261,7 +261,7 @@ function OwnProtocol() {
 
   return (
     <div className="flex flex-col gap-5 py-[60px]">
-      <Heading to="/protocols">Your Protocol</Heading>
+      <Heading link={{ to: "/protocols" }}>Your Protocol</Heading>
       {isConnected ? (
         <DataTable
           columns={columns}
