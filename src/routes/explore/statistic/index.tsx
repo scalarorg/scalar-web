@@ -18,6 +18,7 @@ import {
 } from "@/features/protocol";
 import { cn, formatDate, formatNumber } from "@/lib/utils";
 import { createFileRoute } from "@tanstack/react-router";
+import { isEmpty } from "lodash";
 import { ReactNode, useMemo } from "react";
 import { z } from "zod";
 
@@ -141,8 +142,6 @@ const topCardData: TTopCardProps[] = [
     data: fakeDataTypeInfo(),
   },
 ];
-
-//
 
 const formatDateChart = (date: number) => formatDate(date, "DD-MM");
 
@@ -289,12 +288,18 @@ function Statistic() {
         </TabsList>
       </Tabs>
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
-        {isLoadingChart
-          ? Array.from({ length: 4 }).map((_, i) => (
-              // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-              <ChartCardSkeleton key={i} />
-            ))
-          : chartData.map((i) => <ChartCard key={i.title} {...i} />)}
+        {isLoadingChart ? (
+          Array.from({ length: 4 }).map((_, i) => (
+            // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+            <ChartCardSkeleton key={i} />
+          ))
+        ) : isEmpty(chartData) ? (
+          <p className="text-center font-semibold text-2xl">
+            No data available
+          </p>
+        ) : (
+          chartData.map((i) => <ChartCard key={i.title} {...i} />)
+        )}
       </div>
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
         {topCardData.map((item) => (

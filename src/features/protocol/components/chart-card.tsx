@@ -39,6 +39,7 @@ export const ChartCard = ({ title, data, chartLabel }: TChartCardProps) => {
               margin={{
                 left: 12,
                 right: 12,
+                bottom: 50,
               }}
             >
               <CartesianGrid vertical={false} />
@@ -48,6 +49,8 @@ export const ChartCard = ({ title, data, chartLabel }: TChartCardProps) => {
                 axisLine={false}
                 tickMargin={8}
                 fontSize={16}
+                angle={-90}
+                textAnchor="end"
               />
               <YAxis
                 tickLine={false}
@@ -73,11 +76,10 @@ export const ChartCard = ({ title, data, chartLabel }: TChartCardProps) => {
               </defs>
               <Area
                 dataKey="yAxis"
-                type="natural"
+                type="linear"
                 fill="url(#fillYAxis)"
                 fillOpacity={0.4}
                 stroke="var(--color-yAxis)"
-                stackId="a"
               />
             </AreaChart>
           </ChartContainer>
