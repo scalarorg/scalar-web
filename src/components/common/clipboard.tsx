@@ -10,6 +10,7 @@ interface ClipboardProps {
   className?: string;
   onClick?: () => void;
   targetLink?: string;
+  textClassName?: string;
 }
 
 export function Clipboard({
@@ -18,6 +19,7 @@ export function Clipboard({
   className,
   onClick,
   targetLink,
+  textClassName,
 }: ClipboardProps) {
   const [copied, setCopied] = useState(false);
 
@@ -46,7 +48,10 @@ export function Clipboard({
             href={targetLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-[100px] truncate text-base text-primary"
+            className={cn(
+              "w-[100px] truncate text-base text-primary",
+              textClassName,
+            )}
           >
             {label}
           </a>
@@ -57,6 +62,7 @@ export function Clipboard({
             className={cn(
               "w-[100px] truncate text-base text-primary",
               onClick && "cursor-pointer",
+              textClassName,
             )}
           >
             {label}

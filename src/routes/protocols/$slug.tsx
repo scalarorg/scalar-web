@@ -71,7 +71,8 @@ function RouteComponent() {
             ?.map(({ address }) => (
               <Clipboard
                 key={address}
-                className="[&_button]:px-0 [&_span]:w-[200px]"
+                className="[&_button]:px-0"
+                textClassName="w-[250px]"
                 label={address}
                 text={address!}
               />
@@ -88,7 +89,8 @@ function RouteComponent() {
       label: "Bitcoin pubkey",
       content: protocol?.bitcoin_pubkey && (
         <Clipboard
-          className="[&_button]:px-0 [&_span]:w-[250px]"
+          className="[&_button]:px-0"
+          textClassName="w-[250px]"
           label={protocol.bitcoin_pubkey}
           text={protocol.bitcoin_pubkey}
         />

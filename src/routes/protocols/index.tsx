@@ -70,7 +70,7 @@ const columns = [
           {chains?.map(({ address }) => (
             <Clipboard
               key={address}
-              className="[&_span]:w-[150px]"
+              textClassName="w-[150px]"
               label={address}
               text={address!}
             />
