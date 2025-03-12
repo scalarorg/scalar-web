@@ -4,11 +4,11 @@ import UserIcon from "@/assets/icons/user.svg";
 import { Heading, InputSearchBox } from "@/components/common";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { COMMON_VALIDATE_PAGE_SEARCH_PARAMS } from "@/constants";
+import { ETimeBucket, useExploreQuery } from "@/features/explore";
 import {
   ChartCard,
+  ChartCardSkeleton,
   RankCard,
-  type TChartCardData,
-  type TChartCardProps,
   type TCompareData,
   type TInfoData,
   type TRankCardProps,
@@ -16,7 +16,7 @@ import {
   type TTopCardProps,
   TopCard,
 } from "@/features/protocol";
-import { cn, formatNumber } from "@/lib/utils";
+import { cn, formatDate, formatNumber } from "@/lib/utils";
 import { createFileRoute } from "@tanstack/react-router";
 import { ReactNode, useMemo } from "react";
 import { z } from "zod";
@@ -24,7 +24,7 @@ import { z } from "zod";
 export const Route = createFileRoute("/explore/statistic/")({
   component: Statistic,
   validateSearch: COMMON_VALIDATE_PAGE_SEARCH_PARAMS.extend({
-    date: z.string().optional(),
+    time_bucket: z.nativeEnum(ETimeBucket).optional(),
   }),
 });
 
@@ -61,11 +61,11 @@ const statisticData: {
 
 const tabs: {
   name: string;
-  value: string;
+  value: ETimeBucket;
 }[] = [
-  { name: "7D", value: "7d" },
-  { name: "30D", value: "30d" },
-  { name: "ALL", value: "all" },
+  { name: "7D", value: ETimeBucket.WEEK },
+  { name: "30D", value: ETimeBucket.MONTH },
+  { name: "ALL", value: ETimeBucket.DAY },
 ];
 
 // Fake data for RankCard
@@ -85,36 +85,6 @@ const rankData: TRankCardProps[] = [
     title: "Top Holder",
     description: "Top users by BTC deposits through the bridge",
     data: fakeData(),
-  },
-];
-
-// Fake data for ChartCard
-const fakeChartData = (): TChartCardData[] =>
-  Array.from({ length: 10 }, (_, i) => ({
-    xAxis: `${i + 1}`,
-    yAxis: Math.floor(Math.random() * 100000),
-  }));
-
-const chartData: TChartCardProps[] = [
-  {
-    title: "Transaction",
-    data: fakeChartData(),
-    chartLabel: "Transaction",
-  },
-  {
-    title: "Volume",
-    data: fakeChartData(),
-    chartLabel: "Volume",
-  },
-  {
-    title: "Active users",
-    data: fakeChartData(),
-    chartLabel: "Users",
-  },
-  {
-    title: "New users",
-    data: fakeChartData(),
-    chartLabel: "Users",
   },
 ];
 
@@ -172,18 +142,66 @@ const topCardData: TTopCardProps[] = [
   },
 ];
 
+//
+
+const formatDateChart = (date: number) => formatDate(date, "DD-MM");
+
 function Statistic() {
   const { useSearch, useNavigate } = Route;
-  const { date } = useSearch();
+  const { time_bucket } = useSearch();
   const navigate = useNavigate();
 
+  const { data: chart, isLoading: isLoadingChart } =
+    useExploreQuery.useStatistic({
+      time_bucket: time_bucket ?? ETimeBucket.DAY,
+    });
+
+  const chartData = useMemo(() => {
+    if (!chart) return [];
+
+    return [
+      {
+        title: "Transaction",
+        data: chart.txs.map((i) => ({
+          xAxis: formatDateChart(i.time),
+          yAxis: i.data,
+        })),
+        chartLabel: "Transaction",
+      },
+      {
+        title: "Volume",
+        data: chart.volumes.map((i) => ({
+          xAxis: formatDateChart(i.time),
+          yAxis: i.data,
+        })),
+        chartLabel: "Volume",
+      },
+      {
+        title: "Active users",
+        data: chart.active_users.map((i) => ({
+          xAxis: formatDateChart(i.time),
+          yAxis: i.data,
+        })),
+        chartLabel: "Users",
+      },
+      {
+        title: "New users",
+        data: chart.new_users.map((i) => ({
+          xAxis: formatDateChart(i.time),
+          yAxis: i.data,
+        })),
+        chartLabel: "Users",
+      },
+    ];
+  }, [chart]);
+
   const tabValue = useMemo(() => {
-    if (date) {
-      return tabs.find((i) => i.value === date)?.value;
+    if (time_bucket) {
+      return tabs.find((i) => i.value === time_bucket)?.value;
     }
 
-    return tabs[tabs.length - 1].value;
-  }, [date]);
+    return ETimeBucket.DAY;
+  }, [time_bucket]);
 
   return (
     <div className="flex flex-col gap-8 py-[60px]">
@@ -247,14 +265,16 @@ function Statistic() {
       </div>
       <Tabs
         defaultValue={tabValue}
-        onValueChange={(value) =>
-          navigate({
+        onValueChange={(value) => {
+          const newValue = value as ETimeBucket;
+
+          return navigate({
             search: (prev) => ({
               ...prev,
-              date: value === "all" ? undefined : value,
+              time_bucket: newValue === ETimeBucket.DAY ? undefined : newValue,
             }),
-          })
-        }
+          });
+        }}
       >
         <TabsList className="h-[60px] w-full justify-end gap-2 bg-[#F6F8FF]">
           {tabs.map(({ name, value }) => (
@@ -269,9 +289,12 @@ function Statistic() {
         </TabsList>
       </Tabs>
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
-        {chartData.map((i) => (
-          <ChartCard key={i.title} {...i} />
-        ))}
+        {isLoadingChart
+          ? Array.from({ length: 4 }).map((_, i) => (
+              // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+              <ChartCardSkeleton key={i} />
+            ))
+          : chartData.map((i) => <ChartCard key={i.title} {...i} />)}
       </div>
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
         {topCardData.map((item) => (

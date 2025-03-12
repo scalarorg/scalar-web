@@ -1,6 +1,6 @@
 import { TPageSearchParams } from "@/constants";
 import { SupportedChains } from "@/types/chains";
-import { ECrossChainStatus } from "./enums";
+import { ECrossChainStatus, ETimeBucket } from "./enums";
 
 type TList<T> = {
   data: T[];
@@ -42,3 +42,19 @@ export type TExplore = {
 };
 
 export type TExploreList = TList<TExplore>;
+
+export type TExploreStatisticParams = {
+  time_bucket: ETimeBucket;
+} & TPageSearchParams;
+
+type TStatisticItem = {
+  data: number;
+  time: number;
+};
+
+export type TExploreStatisticData = {
+  txs: TStatisticItem[];
+  volumes: TStatisticItem[];
+  active_users: TStatisticItem[];
+  new_users: TStatisticItem[];
+};

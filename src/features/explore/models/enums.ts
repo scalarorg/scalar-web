@@ -9,3 +9,10 @@ export enum ECrossChainStatus {
   CANCELLED = "cancelled",
   DELETED = "deleted",
 }
+
+export enum ETimeBucket {
+  HOUR = "hour",
+  DAY = "day",
+  WEEK = "week",
+  MONTH = "month",
+}
