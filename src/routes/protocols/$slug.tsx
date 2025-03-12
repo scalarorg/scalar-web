@@ -3,7 +3,8 @@ import { Clipboard, Heading } from "@/components/common";
 import { Card, CardContent } from "@/components/ui/card";
 import { PROTOCOL_STATUS } from "@/features/protocol";
 import { useScalarProtocols } from "@/hooks";
-import { addBase64Prefix } from "@/lib/utils";
+import { decodeScalarBytesToHex } from "@/lib/scalar";
+import { addBase64Prefix, handle0xString } from "@/lib/utils";
 import { createFileRoute } from "@tanstack/react-router";
 import { isEmpty } from "lodash";
 import { ReactNode } from "react";
@@ -34,6 +35,25 @@ function RouteComponent() {
   const { data } = useScalarProtocols();
 
   const protocol = data?.protocols?.find((protocol) => protocol.name === slug);
+
+  // const newa = decodeScalarBytesToHex(protocol?.bitcoin_pubkey);
+
+  const renderBitcoinPubkey = () => {
+    if (!protocol?.bitcoin_pubkey) return null;
+
+    const { add } = handle0xString(
+      decodeScalarBytesToHex(protocol.bitcoin_pubkey),
+    );
+
+    return (
+      <Clipboard
+        className="[&_button]:px-0"
+        textClassName="w-[250px]"
+        label={add}
+        text={add}
+      />
+    );
+  };
 
   const items: TItem[] = [
     {
@@ -88,14 +108,7 @@ function RouteComponent() {
     },
     {
       label: "Bitcoin pubkey",
-      content: protocol?.bitcoin_pubkey && (
-        <Clipboard
-          className="[&_button]:px-0"
-          textClassName="w-[250px]"
-          label={protocol.bitcoin_pubkey}
-          text={protocol.bitcoin_pubkey}
-        />
-      ),
+      content: renderBitcoinPubkey(),
     },
     {
       label: "Custodian group",
