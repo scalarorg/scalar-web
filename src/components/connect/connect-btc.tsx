@@ -59,7 +59,7 @@ export const ConnectBtc = ({ hideTitle }: { hideTitle?: boolean }) => {
     <div className="flex w-full flex-col gap-2">
       {!hideTitle && (
         <div className="flex items-center justify-between gap-2">
-          <span className="font-semibold text-[22px]">BTC</span>
+          <span className="font-semibold text-lg">BTC</span>
           {walletInfo.isConnected && (
             <button
               type="button"
@@ -72,7 +72,7 @@ export const ConnectBtc = ({ hideTitle }: { hideTitle?: boolean }) => {
         </div>
       )}
       {walletInfo.isConnected ? (
-        <div className="space-y-1 text-[18px]">
+        <div className="space-y-1 text-base">
           <div className="flex items-center justify-between gap-1">
             <span>Wallet address</span>
             <Clipboard label={walletInfo.address} text={walletInfo.address} />
@@ -109,9 +109,9 @@ export const ConnectBtc = ({ hideTitle }: { hideTitle?: boolean }) => {
               >
                 {createElement(icon, {
                   className:
-                    "size-9 rounded-full object-cover bg-white p-1 shadow-md",
+                    "size-8 rounded-full object-cover bg-white p-1 shadow-md",
                 })}
-                <span className="text-lg">{name}</span>
+                <span className="text-base">{name}</span>
               </button>
             );
           })}

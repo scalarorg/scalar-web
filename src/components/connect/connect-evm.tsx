@@ -13,7 +13,7 @@ export const ConnectEvm = ({
     <div className="flex w-full flex-col gap-2">
       {!hideTitle && (
         <div className="flex items-center justify-between gap-2">
-          <span className="font-semibold text-[22px]">EVM</span>
+          <span className="font-semibold text-lg">EVM</span>
         </div>
       )}
       <ConnectButton.Custom>
@@ -53,6 +53,7 @@ export const ConnectEvm = ({
                       onClick={openConnectModal}
                       type="button"
                       className={cn("w-full", className)}
+                      size="lg"
                     >
                       Connect wallet
                     </Button>

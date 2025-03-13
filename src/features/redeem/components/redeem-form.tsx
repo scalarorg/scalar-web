@@ -437,7 +437,7 @@ export const RedeemForm = () => {
   return (
     <Card className="mx-auto w-full max-w-2xl border-none shadow-none">
       <CardHeader className="flex flex-row items-center justify-between px-0">
-        <CardTitle className="font-bold text-2xl">Redeem</CardTitle>
+        <CardTitle className="font-bold text-xl">Redeem</CardTitle>
         <div className="text-right">
           <span>
             {formatBTC(availableBalance)}{" "}
@@ -469,13 +469,13 @@ export const RedeemForm = () => {
                     <div className="flex items-center gap-2 rounded-lg">
                       <div className="flex flex-1 flex-col gap-2">
                         <div className="flex items-center gap-2">
-                          <FormLabel className="text-lg">From</FormLabel>
+                          <FormLabel className="text-base">From</FormLabel>
                           <Select
                             onValueChange={field.onChange}
                             defaultValue={field.value}
                           >
                             <FormControl>
-                              <SelectTrigger className="!text-lg w-fit min-w-[160px]">
+                              <SelectTrigger className="!text-base w-fit min-w-[160px]">
                                 <SelectValue placeholder="Select Token" />
                               </SelectTrigger>
                             </FormControl>
@@ -490,7 +490,7 @@ export const RedeemForm = () => {
                                         <SelectItem
                                           key={`${asset?.symbol}-${chain}`}
                                           value={`${asset?.symbol}-${chain}`}
-                                          className="text-lg capitalize"
+                                          className="text-base capitalize"
                                         >
                                           {name || chain}
                                         </SelectItem>
@@ -517,14 +517,14 @@ export const RedeemForm = () => {
                         {...field}
                         type="number"
                         placeholder="Please enter the amount"
-                        className="!text-lg rounded-none border-0 border-accent border-b-2 bg-transparent px-0 shadow-none ring-0 focus-visible:ring-0"
+                        className="!text-base rounded-none border-0 border-accent border-b-2 bg-transparent px-0 shadow-none ring-0 focus-visible:ring-0"
                       />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-              <p className="text-right text-lg">
+              <p className="text-right text-base">
                 <span className="text-border">Available wallet:</span>{" "}
                 <span className="mr-1 border-black border-r-2 pr-1">
                   {formatBTC(availableBalance)} BTC
@@ -541,7 +541,7 @@ export const RedeemForm = () => {
             </div>
 
             {/* To Section */}
-            <p className="space-y-4 rounded-lg bg-[#F6F8FF] p-4 text-lg">
+            <p className="space-y-4 rounded-lg bg-[#F6F8FF] p-4 text-base">
               To {selectedProtocol?.asset?.chain}
             </p>
 
@@ -555,7 +555,7 @@ export const RedeemForm = () => {
                     <Input
                       {...field}
                       placeholder="Destination address"
-                      className="!text-lg rounded-none border-0 border-accent border-b-2 bg-transparent px-0 shadow-none ring-0 focus-visible:ring-0"
+                      className="!text-base rounded-none border-0 border-accent border-b-2 bg-transparent px-0 shadow-none ring-0 focus-visible:ring-0"
                     />
                   </FormControl>
                   <FormMessage />
@@ -568,7 +568,7 @@ export const RedeemForm = () => {
               !isConnectedBtc ? (
                 <Popover>
                   <PopoverTrigger className="w-full" asChild>
-                    <Button type="button" className="h-12 w-full text-lg">
+                    <Button type="button" className="w-full" size="lg">
                       Connect wallet
                     </Button>
                   </PopoverTrigger>
@@ -579,15 +579,16 @@ export const RedeemForm = () => {
               ) : (
                 <Button
                   type="submit"
-                  className="h-12 w-full text-lg"
+                  className="w-full"
                   disabled={!sourceChainBalance}
                   isLoading={isLoading}
+                  size="lg"
                 >
                   Redeem
                 </Button>
               )
             ) : (
-              <ConnectEvm hideTitle className="h-12 text-lg" />
+              <ConnectEvm hideTitle />
             )}
           </form>
         </Form>

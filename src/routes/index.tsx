@@ -38,12 +38,12 @@ function Home() {
         defaultValue={tabs[0].value}
         className="min-w-[500px] max-w-[800px]"
       >
-        <TabsList className="h-[60px] w-full gap-2 bg-[#F6F8FF]">
+        <TabsList className="h-[50px] w-full gap-2 bg-[#F6F8FF]">
           {tabs.map(({ name, value }) => (
             <TabsTrigger
               value={value}
               key={value}
-              className="h-10 bg-white px-6 font-normal text-lg"
+              className="bg-white px-6 font-normal text-base"
             >
               {name}
             </TabsTrigger>
