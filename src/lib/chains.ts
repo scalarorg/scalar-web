@@ -16,6 +16,7 @@ export const Chains: Record<SupportedChains, Chain> = {
     blockExplorer: "https://mempool.space",
     icon: btcMainnet,
     blockExplorerIcon: mempool,
+    name: "Mainnet",
   },
   "bitcoin|4": {
     chain: "bitcoin|4",
@@ -24,6 +25,7 @@ export const Chains: Record<SupportedChains, Chain> = {
     blockExplorer: "https://mempool.space/testnet4",
     icon: btcTestnet4,
     blockExplorerIcon: mempool,
+    name: "Testnet 4",
   },
   "evm|1": {
     chain: "evm|1",
@@ -32,6 +34,7 @@ export const Chains: Record<SupportedChains, Chain> = {
     blockExplorer: "https://etherscan.io",
     icon: ethMainnet,
     blockExplorerIcon: etherscan,
+    name: "Mainnet",
   },
   "evm|11155111": {
     chain: "evm|11155111",
@@ -40,6 +43,7 @@ export const Chains: Record<SupportedChains, Chain> = {
     blockExplorer: "https://sepolia.etherscan.io",
     icon: ethSepolia,
     blockExplorerIcon: etherscan,
+    name: "Sepolia",
   },
   "evm|97": {
     chain: "evm|97",
@@ -48,5 +52,6 @@ export const Chains: Record<SupportedChains, Chain> = {
     blockExplorer: "https://bscscan.com",
     icon: bscTestnet,
     blockExplorerIcon: bscscan,
+    name: "BSC Testnet",
   },
 };

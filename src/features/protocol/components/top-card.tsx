@@ -6,6 +6,7 @@ import {
   TStatisticDestinationItem,
   TStatisticSourceItem,
 } from "@/features/explore/models/types";
+import { Chains } from "@/lib/chains";
 import { formatNumber } from "@/lib/utils";
 import { ChevronRight } from "lucide-react";
 
@@ -51,6 +52,7 @@ export const TopCard = ({
             <div key={index} className="flex items-start justify-between gap-2">
               <div className="flex items-center gap-2">
                 <ChainIcon chain={item.chain} />
+                <p>{Chains[item.chain]?.name}</p>
               </div>
               <p className="font-medium">{formatNumber(item.amount)}</p>
             </div>
@@ -64,6 +66,7 @@ export const TopCard = ({
             <div key={index} className="flex items-start justify-between gap-2">
               <div className="flex items-center gap-2">
                 <ChainIcon chain={item.chain} />
+                <p>{Chains[item.chain]?.name}</p>
               </div>
               <p className="font-medium">{formatNumber(item.amount)}</p>
             </div>

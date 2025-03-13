@@ -16,4 +16,5 @@ export interface Chain {
   blockExplorer: `https://${string}`;
   icon: string;
   blockExplorerIcon: string;
+  name: string;
 }
