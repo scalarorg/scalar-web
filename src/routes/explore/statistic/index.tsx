@@ -227,7 +227,7 @@ function Statistic() {
             >
               <div
                 className={cn(
-                  "flex flex-col gap-1 text-white uppercase",
+                  "flex h-full flex-col gap-1 text-white uppercase",
                   className?.contentWrapper,
                 )}
               >
