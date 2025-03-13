@@ -178,7 +178,11 @@ const columns = [
     cell: ({ getValue }) => {
       const created_at = getValue();
 
-      return formatDate(created_at);
+      return (
+        <p className="w-[130px]">
+          {formatDate(created_at, "DD/MM/YYYY HH:mm")}
+        </p>
+      );
     },
   }),
 ];
