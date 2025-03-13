@@ -114,7 +114,6 @@ function Statistic() {
         label: "Total transactions",
         value: data.total_txs,
         icon: <TransactionIcon />,
-        unit: "$",
       },
       {
         label: "Total value locked",
