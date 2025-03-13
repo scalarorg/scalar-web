@@ -21,7 +21,7 @@ const fakeData: Props = {
     <Clipboard
       label="jrEpaO63i40dbmBn5KYZKjA25oq1"
       text="jrEpaO63i40dbmBn5KYZKjA25oq1"
-      classNames={{ wrapper: "max-w-[100px]" }}
+      classNames={{ wrapper: "max-w-[150px]" }}
     />
   ),
   items: [

@@ -39,7 +39,7 @@ const columns = [
           <Clipboard
             label={label}
             text={label}
-            classNames={{ wrapper: "max-w-[150px]" }}
+            classNames={{ wrapper: "max-w-[200px]" }}
           />
           {newLink && blockExplorerIcon && (
             <a
@@ -78,7 +78,7 @@ const columns = [
             targetLink={link}
             label={sender}
             text={sender}
-            classNames={{ wrapper: "max-w-[150px]" }}
+            classNames={{ wrapper: "max-w-[200px]" }}
           />
         </div>
       );
@@ -101,7 +101,7 @@ const columns = [
             <Clipboard
               label={label}
               text={label}
-              classNames={{ wrapper: "max-w-[150px]" }}
+              classNames={{ wrapper: "max-w-[200px]" }}
             />
             {newLink && blockExplorerIcon && (
               <a
@@ -141,7 +141,7 @@ const columns = [
             targetLink={link}
             label={receiver}
             text={receiver}
-            classNames={{ wrapper: "max-w-[150px]" }}
+            classNames={{ wrapper: "max-w-[200px]" }}
           />
         </div>
       );

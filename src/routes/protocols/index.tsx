@@ -72,7 +72,7 @@ const columns = [
               key={address}
               label={address}
               text={address!}
-              classNames={{ wrapper: "max-w-[150px]" }}
+              classNames={{ wrapper: "max-w-[200px]" }}
             />
           ))}
         </div>
