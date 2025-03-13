@@ -145,3 +145,13 @@
 		margin: 0;
 	}
 }
+
+@layer components {
+	.table-left-shadow {
+		@apply before:pointer-events-none before:absolute before:bottom-0 before:top-0 before:z-30 before:w-12 before:content-[""] before:[box-shadow:inset_10px_0_8px_-8px_rgba(5,5,5,0.2)];
+	}
+
+	.table-right-shadow {
+		@apply after:pointer-events-none after:absolute after:bottom-0 after:right-0 after:top-0 after:z-30 after:w-12 after:content-[""] after:[box-shadow:inset_-10px_0_8px_-8px_rgba(5,5,5,0.2)];
+	}
+}

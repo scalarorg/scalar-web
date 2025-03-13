@@ -23,7 +23,7 @@ const buttonVariants = cva(
         black:
           "bg-text-primary-500 text-primary-foreground shadow-xs hover:bg-text-primary-500/90",
         pagination:
-          "rounded-full border border-secondary-500 bg-white text-black hover:bg-white hover:text-primary",
+          "border border-secondary-500 bg-white text-black hover:bg-white hover:text-primary",
         pagination_link: "text-black hover:text-primary",
       },
       size: {

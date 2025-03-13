@@ -9,7 +9,15 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { range, size } from "lodash";
-import { ReactNode, Ref, forwardRef, useImperativeHandle } from "react";
+import {
+  ReactNode,
+  Ref,
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from "react";
 
 import { Skeleton } from "@/components/ui/skeleton";
 import {
@@ -97,6 +105,10 @@ const DataTableInnerForwardRef = <TData,>(
     table: TableType<TData>;
   }>,
 ) => {
+  const tableWrapperRef = useRef<HTMLDivElement>(null);
+  const [showLeftShadow, setShowLeftShadow] = useState(true);
+  const [showRightShadow, setShowRightShadow] = useState(false);
+
   const pagination = {
     pageIndex: pageIndex - 1,
     pageSize: pageSize,
@@ -133,6 +145,32 @@ const DataTableInnerForwardRef = <TData,>(
     [table],
   );
 
+  useEffect(() => {
+    if (isLoading) return;
+
+    const tableWrapper = tableWrapperRef.current;
+    if (!tableWrapper) return;
+
+    const handleScroll = () => {
+      const { scrollLeft, scrollWidth, clientWidth } = tableWrapper;
+
+      setShowLeftShadow(scrollLeft > 0);
+      setShowRightShadow(
+        scrollWidth > clientWidth && scrollLeft < scrollWidth - clientWidth,
+      );
+    };
+
+    tableWrapper.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleScroll);
+
+    handleScroll();
+
+    return () => {
+      tableWrapper.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
+  }, [isLoading]);
+
   const numberOfColumns = table.getAllColumns().length;
 
   return (
@@ -166,9 +204,14 @@ const DataTableInnerForwardRef = <TData,>(
 
             // Styling
             "rounded-lg border",
+
+            // Shadow effects
+            showLeftShadow && "table-left-shadow",
+            showRightShadow && "table-right-shadow",
           )}
         >
           <div
+            ref={tableWrapperRef}
             className={cn(
               // Positioning
               "relative",
@@ -178,6 +221,7 @@ const DataTableInnerForwardRef = <TData,>(
 
               // Overflow
               "overflow-auto",
+
               classNames.tableWrapper,
             )}
           >

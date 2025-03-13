@@ -3,7 +3,12 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
 import { type Table as TableType } from "@tanstack/react-table";
 import { range } from "lodash";
-import { ChevronsLeftIcon, ChevronsRightIcon } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  ChevronsLeftIcon,
+  ChevronsRightIcon,
+} from "lucide-react";
 
 type TablePaginationProps<TData> = {
   className?: string;
@@ -14,6 +19,8 @@ type TablePaginationProps<TData> = {
 };
 
 // const PAGE_SIZE_OPTIONS = [50, 75, 100];
+
+const ELLIPSIS = "...";
 
 export function TablePagination<TData>({
   table,
@@ -99,7 +106,7 @@ export function TablePagination<TData>({
               className="p-0"
               size="icon"
             >
-              <ChevronsLeftIcon size={16} />
+              <ChevronsLeftIcon size={20} />
             </Button>
             <Button
               aria-label="Previous page"
@@ -107,34 +114,35 @@ export function TablePagination<TData>({
               onClick={previousPage}
               title="Previous page"
               variant="pagination"
+              className="p-0"
+              size="icon"
             >
-              Previous
+              <ChevronLeft size={20} />
             </Button>
-            <div className="flex items-center gap-2 whitespace-nowrap text-sm">
-              <div>
-                {items.map((pageNumber) => (
-                  <Button
-                    key={pageNumber}
-                    variant="pagination_link"
-                    onClick={() => {
-                      if (pageNumber !== "...") {
-                        setPagination((old) => ({
-                          ...old,
-                          pageIndex: (pageNumber as number) - 1,
-                        }));
-                      }
-                    }}
-                    className={cn(
-                      "rounded-full",
-                      pageNumber === page && "bg-neutral-50",
-                    )}
-                    size="icon"
-                    disabled={pageNumber === "..."}
-                  >
-                    {pageNumber}
-                  </Button>
-                ))}
-              </div>
+            <div className="flex items-center gap-1 whitespace-nowrap text-sm">
+              {items.map((pageNumber) => (
+                <Button
+                  key={pageNumber}
+                  variant="pagination_link"
+                  onClick={() => {
+                    if (pageNumber !== ELLIPSIS) {
+                      setPagination((old) => ({
+                        ...old,
+                        pageIndex: (pageNumber as number) - 1,
+                      }));
+                    }
+                  }}
+                  className={cn(
+                    "bg-hovering",
+                    pageNumber === page && "bg-primary text-white",
+                    pageNumber === ELLIPSIS && "bg-transparent",
+                  )}
+                  size="icon"
+                  disabled={pageNumber === ELLIPSIS}
+                >
+                  {pageNumber}
+                </Button>
+              ))}
             </div>
             <Button
               aria-label="Next page"
@@ -142,8 +150,10 @@ export function TablePagination<TData>({
               onClick={nextPage}
               title="Next page"
               variant="pagination"
+              className="p-0"
+              size="icon"
             >
-              Next
+              <ChevronRight size={20} />
             </Button>
             <Button
               aria-label="Last page"
@@ -154,7 +164,7 @@ export function TablePagination<TData>({
               className="p-0"
               size="icon"
             >
-              <ChevronsRightIcon size={16} />
+              <ChevronsRightIcon size={20} />
             </Button>
           </div>
           {/* {!isSimple && (
@@ -205,7 +215,7 @@ const generatePages = (current: number, total: number, siblings: number) => {
   const pages: (number | string)[] = [];
 
   if (hasLeftEllipsis) {
-    pages.push(1, "...");
+    pages.push(1, ELLIPSIS);
   } else {
     pages.push(...range(1, startPage));
   }
@@ -213,7 +223,7 @@ const generatePages = (current: number, total: number, siblings: number) => {
   pages.push(...range(startPage, endPage + 1));
 
   if (hasRightEllipsis) {
-    pages.push("...", total);
+    pages.push(ELLIPSIS, total);
   } else {
     pages.push(...range(endPage + 1, total + 1));
   }

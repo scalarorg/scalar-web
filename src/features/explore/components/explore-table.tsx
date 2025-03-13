@@ -86,19 +86,22 @@ const columns = [
       const newLink = blockExplorer && `${blockExplorer}/tx/${link}`;
 
       return (
-        <div className="flex items-center gap-2">
-          <Clipboard label={label} text={label} />
-          {newLink && blockExplorerIcon && (
-            <a
-              href={newLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="size-5 rounded-full"
-            >
-              <img src={blockExplorerIcon} alt="block explorer icon" />
-            </a>
-          )}
-        </div>
+        tx_hash &&
+        chain && (
+          <div className="flex items-center gap-2">
+            <Clipboard label={label} text={label} />
+            {newLink && blockExplorerIcon && (
+              <a
+                href={newLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="size-5 rounded-full"
+              >
+                <img src={blockExplorerIcon} alt="block explorer icon" />
+              </a>
+            )}
+          </div>
+        )
       );
     },
   }),
