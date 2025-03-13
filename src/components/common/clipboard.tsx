@@ -1,26 +1,27 @@
-import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { CheckIcon, ClipboardIcon } from "lucide-react";
 import { MouseEvent, useState } from "react";
 import { toast } from "sonner";
 
-interface ClipboardProps {
+type ClipboardProps = {
   text: string;
   label?: string;
-  className?: string;
   onClick?: () => void;
   targetLink?: string;
-  textClassName?: string;
-}
+  classNames?: Partial<{
+    wrapper: string;
+    text: string;
+    button: string;
+  }>;
+};
 
-export function Clipboard({
+export const Clipboard = ({
   text,
   label = "Copy",
-  className,
-  onClick,
   targetLink,
-  textClassName,
-}: ClipboardProps) {
+  onClick,
+  classNames,
+}: ClipboardProps) => {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = async (e: MouseEvent<HTMLButtonElement>) => {
@@ -35,52 +36,43 @@ export function Clipboard({
     }
   };
 
+  const commonTextClassNames = cn(
+    "truncate text-base text-primary",
+    classNames?.text,
+  );
+
   return (
-    <div className={cn("relative inline-block", className)}>
-      <div
-        className={cn(
-          buttonVariants({ variant: "ghost", size: "sm" }),
-          "cursor-auto gap-1 px-0 hover:bg-transparent",
-        )}
-      >
-        {targetLink ? (
-          <a
-            href={targetLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={cn(
-              "w-[100px] truncate text-base text-primary",
-              textClassName,
-            )}
-          >
-            {label}
-          </a>
-        ) : (
-          <button
-            type="button"
-            onClick={onClick}
-            className={cn(
-              "w-[100px] truncate text-base text-primary",
-              onClick && "cursor-pointer",
-              textClassName,
-            )}
-          >
-            {label}
-          </button>
-        )}
+    <div className={cn("flex grow gap-1", classNames?.wrapper)}>
+      {targetLink ? (
+        <a
+          href={targetLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={commonTextClassNames}
+        >
+          {label}
+        </a>
+      ) : (
         <button
           type="button"
-          onClick={handleCopy}
-          aria-label={`Copy ${label} to clipboard`}
-          className="cursor-pointer"
+          onClick={onClick}
+          className={cn(commonTextClassNames, onClick && "cursor-pointer")}
         >
-          {copied ? (
-            <CheckIcon className="size-5" />
-          ) : (
-            <ClipboardIcon className="size-5" />
-          )}
+          {label}
         </button>
-      </div>
+      )}
+      <button
+        type="button"
+        onClick={handleCopy}
+        aria-label={`Copy ${label} to clipboard`}
+        className={cn("cursor-pointer", classNames?.button)}
+      >
+        {copied ? (
+          <CheckIcon className="size-5" />
+        ) : (
+          <ClipboardIcon className="size-5" />
+        )}
+      </button>
     </div>
   );
-}
+};

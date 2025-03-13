@@ -24,6 +24,7 @@ export const ConnectScalar = () => {
           <Clipboard
             label={account?.address || ""}
             text={account?.address || ""}
+            classNames={{ wrapper: "max-w-[100px]" }}
           />
           <button
             type="button"

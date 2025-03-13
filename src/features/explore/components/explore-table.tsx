@@ -36,7 +36,11 @@ const columns = [
 
       return (
         <div className="flex items-center gap-2">
-          <Clipboard label={label} text={label} />
+          <Clipboard
+            label={label}
+            text={label}
+            classNames={{ wrapper: "max-w-[150px]" }}
+          />
           {newLink && blockExplorerIcon && (
             <a
               href={newLink}
@@ -70,7 +74,12 @@ const columns = [
             )}
             <p className="whitespace-nowrap">{chain_name}</p>
           </div>
-          <Clipboard targetLink={link} label={sender} text={sender} />
+          <Clipboard
+            targetLink={link}
+            label={sender}
+            text={sender}
+            classNames={{ wrapper: "max-w-[150px]" }}
+          />
         </div>
       );
     },
@@ -89,7 +98,11 @@ const columns = [
         tx_hash &&
         chain && (
           <div className="flex items-center gap-2">
-            <Clipboard label={label} text={label} />
+            <Clipboard
+              label={label}
+              text={label}
+              classNames={{ wrapper: "max-w-[150px]" }}
+            />
             {newLink && blockExplorerIcon && (
               <a
                 href={newLink}
@@ -124,7 +137,12 @@ const columns = [
             )}
             <p className="whitespace-nowrap">{chain_name}</p>
           </div>
-          <Clipboard targetLink={link} label={receiver} text={receiver} />
+          <Clipboard
+            targetLink={link}
+            label={receiver}
+            text={receiver}
+            classNames={{ wrapper: "max-w-[150px]" }}
+          />
         </div>
       );
     },

@@ -70,9 +70,9 @@ const columns = [
           {chains?.map(({ address }) => (
             <Clipboard
               key={address}
-              textClassName="w-[150px]"
               label={address}
               text={address!}
+              classNames={{ wrapper: "max-w-[150px]" }}
             />
           ))}
         </div>

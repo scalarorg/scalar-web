@@ -21,10 +21,10 @@ type TItem = {
 const Item = ({ label, content }: TItem) => {
   return (
     <div className="flex gap-1 py-3.5">
-      <span className="w-[180px] font-medium text-base text-text-primary-500">
+      <span className="w-[180px] shrink-0 font-medium text-base text-text-primary-500">
         {label}
       </span>
-      <div className="flex-1 text-base">{content}</div>
+      <div className="flex-1 overflow-hidden text-base">{content}</div>
     </div>
   );
 };
@@ -45,14 +45,7 @@ function RouteComponent() {
       decodeScalarBytesToHex(protocol.bitcoin_pubkey),
     );
 
-    return (
-      <Clipboard
-        className="[&_button]:px-0"
-        textClassName="w-[250px]"
-        label={add}
-        text={add}
-      />
-    );
+    return <Clipboard text={add} label={add} />;
   };
 
   const items: TItem[] = [
@@ -90,13 +83,7 @@ function RouteComponent() {
           {protocol?.chains
             ?.filter((c) => c.address)
             ?.map(({ address }) => (
-              <Clipboard
-                key={address}
-                className="[&_button]:px-0"
-                textClassName="w-[250px]"
-                label={address}
-                text={address!}
-              />
+              <Clipboard key={address} label={address} text={address!} />
             ))}
         </div>
       ),
