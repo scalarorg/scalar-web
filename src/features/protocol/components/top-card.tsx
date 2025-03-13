@@ -33,14 +33,25 @@ export const TopCard = ({
         <div className="flex-1 space-y-2">
           <p className="font-medium text-lg">Top Paths</p>
           {pathsData.map((item, index) => (
-            // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-            <div key={index} className="flex items-start justify-between gap-2">
-              <div className="flex items-center gap-2">
-                <ChainIcon chain={item.source_chain} />
+            <div
+              // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+              key={index}
+              className="flex items-start justify-between gap-2"
+            >
+              <div className="flex grow items-center gap-2">
+                <div className="flex flex-1 items-center gap-1">
+                  <ChainIcon chain={item.source_chain} />
+                  <p>{Chains[item.source_chain]?.name}</p>
+                </div>
                 <ChevronRight className="mx-1 size-5" />
-                <ChainIcon chain={item.destination_chain} />
+                <div className="flex flex-1 items-center gap-1">
+                  <ChainIcon chain={item.destination_chain} />
+                  <p>{Chains[item.destination_chain]?.name}</p>
+                </div>
               </div>
-              <p className="font-medium">{formatNumber(item.amount)}</p>
+              <p className="min-w-[70px] text-right font-medium">
+                {formatNumber(item.amount)}
+              </p>
             </div>
           ))}
         </div>
