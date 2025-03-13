@@ -1,3 +1,5 @@
+import bscTestnet from "@/assets/images/bsc-testnet.png";
+import bscscan from "@/assets/images/bscscan.png";
 import btcMainnet from "@/assets/images/btc-mainnet.png";
 import btcTestnet4 from "@/assets/images/btc-testnet4.png";
 import ethMainnet from "@/assets/images/eth-mainnet.png";
@@ -38,5 +40,13 @@ export const Chains: Record<SupportedChains, Chain> = {
     blockExplorer: "https://sepolia.etherscan.io",
     icon: ethSepolia,
     blockExplorerIcon: etherscan,
+  },
+  "evm|97": {
+    chain: "evm|97",
+    type: ChainTypes.EVM,
+    id: "97",
+    blockExplorer: "https://bscscan.com",
+    icon: bscTestnet,
+    blockExplorerIcon: bscscan,
   },
 };

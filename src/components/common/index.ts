@@ -6,3 +6,4 @@ export * from "./spin";
 export * from "./clipboard";
 export * from "./confirm-dialog";
 export * from "./multiselect";
+export * from "./chain-icon";

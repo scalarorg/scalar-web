@@ -1,7 +1,7 @@
 import BronzeRankIcon from "@/assets/icons/bronze-rank.svg";
 import GoldRankIcon from "@/assets/icons/gold-rank.svg";
 import SilverRankIcon from "@/assets/icons/silver-rank.svg";
-import { formatNumber } from "@/lib/utils";
+import { formatNumber, shortenText } from "@/lib/utils";
 import { ReactNode } from "react";
 
 export type TRankItem = {
@@ -26,7 +26,7 @@ export const RankItem = ({
       <div className="flex w-6 items-center justify-center">
         {RANK_ICON[rank]}
       </div>
-      <p className="flex-1 text-primary">{name}</p>
+      <p className="flex-1 text-primary">{shortenText(name, 6)}</p>
       <p className="font-semibold">{formatNumber(value)}</p>
     </div>
   );

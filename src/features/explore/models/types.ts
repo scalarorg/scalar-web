@@ -47,14 +47,46 @@ export type TExploreStatisticParams = {
   time_bucket: ETimeBucket;
 } & TPageSearchParams;
 
-type TStatisticItem = {
+export type TStatisticChartItem = {
   data: number;
   time: number;
 };
 
+export type TStatisticRankItem = {
+  address: string;
+  amount: number;
+};
+
+export type TStatisticPathItem = {
+  source_chain: SupportedChains;
+  destination_chain: SupportedChains;
+  amount: number;
+};
+
+export type TStatisticSourceItem = {
+  chain: SupportedChains;
+  amount: number;
+};
+
+export type TStatisticDestinationItem = {
+  chain: SupportedChains;
+  amount: number;
+};
+
 export type TExploreStatisticData = {
-  txs: TStatisticItem[];
-  volumes: TStatisticItem[];
-  active_users: TStatisticItem[];
-  new_users: TStatisticItem[];
+  txs: TStatisticChartItem[];
+  volumes: TStatisticChartItem[];
+  active_users: TStatisticChartItem[];
+  new_users: TStatisticChartItem[];
+  total_txs: number;
+  total_volumes: number;
+  total_users: number;
+  top_users: TStatisticRankItem[];
+  top_bridges: TStatisticRankItem[];
+  top_paths_by_tx: TStatisticPathItem[];
+  top_paths_by_volume: TStatisticPathItem[];
+  top_source_chains_by_tx: TStatisticSourceItem[];
+  top_source_chains_by_volume: TStatisticSourceItem[];
+  top_destination_chains_by_tx: TStatisticDestinationItem[];
+  top_destination_chains_by_volume: TStatisticDestinationItem[];
 };

@@ -2,6 +2,7 @@ import LockedIcon from "@/assets/icons/locked.svg";
 import TransactionIcon from "@/assets/icons/transaction.svg";
 import UserIcon from "@/assets/icons/user.svg";
 import { Heading, InputSearchBox } from "@/components/common";
+import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { COMMON_VALIDATE_PAGE_SEARCH_PARAMS } from "@/constants";
 import { ETimeBucket, useExploreQuery } from "@/features/explore";
@@ -9,12 +10,11 @@ import {
   ChartCard,
   ChartCardSkeleton,
   RankCard,
-  type TCompareData,
-  type TInfoData,
+  RankCardSkeleton,
   type TRankCardProps,
-  type TRankItem,
   type TTopCardProps,
   TopCard,
+  TopCardSkeleton,
 } from "@/features/protocol";
 import { cn, formatDate, formatNumber } from "@/lib/utils";
 import { createFileRoute } from "@tanstack/react-router";
@@ -29,7 +29,7 @@ export const Route = createFileRoute("/explore/statistic/")({
   }),
 });
 
-const statisticData: {
+type TStatisticTotalData = {
   label: string;
   value: number;
   icon: ReactNode;
@@ -40,25 +40,7 @@ const statisticData: {
     content: string;
     label: string;
   }>;
-}[] = [
-  {
-    label: "Total transactions",
-    value: 1000000,
-    icon: <TransactionIcon />,
-    unit: "$",
-  },
-  {
-    label: "Total value locked",
-    value: 1000000,
-    icon: <LockedIcon />,
-    unit: "$",
-  },
-  {
-    label: "Users",
-    value: 1000000,
-    icon: <UserIcon />,
-  },
-];
+};
 
 const tabs: {
   name: string;
@@ -69,99 +51,29 @@ const tabs: {
   { name: "ALL", value: ETimeBucket.DAY },
 ];
 
-// Fake data for RankCard
-const fakeData = (): TRankItem[] =>
-  Array.from({ length: 10 }, (_, i) => ({
-    name: `User ${i + 1}`,
-    value: Math.floor(Math.random() * 1000000),
-  }));
-
-const rankData: TRankCardProps[] = [
-  {
-    title: "Top Users",
-    description: "Top Users by token transfers transactions",
-    data: fakeData(),
-  },
-  {
-    title: "Top Holder",
-    description: "Top users by BTC deposits through the bridge",
-    data: fakeData(),
-  },
-];
-
-// Fake data for TopCard
-const fakeDataTypeCompare = (): TCompareData[] =>
-  Array.from({ length: Math.floor(Math.random() * 6) }, () => ({
-    largeAvatar: "",
-    smallAvatar: "",
-    value: Math.floor(Math.random() * 1000000),
-  }));
-
-const fakeDataTypeInfo = (): TInfoData[] =>
-  Array.from({ length: Math.floor(Math.random() * 6) }, (_, i) => ({
-    avatar: "",
-    name: `Avt ${i + 1}`,
-    value: Math.floor(Math.random() * 1000000),
-  }));
-
-const topCardData: TTopCardProps[] = [
-  {
-    title: "Top Paths",
-    description: "by transactions",
-    type: "compare",
-    data: fakeDataTypeCompare(),
-  },
-  {
-    title: "Top Sources",
-    description: "by transactions",
-    type: "info",
-    data: fakeDataTypeInfo(),
-  },
-  {
-    title: "Top Destinations",
-    description: "by transactions",
-    type: "info",
-    data: fakeDataTypeInfo(),
-  },
-  {
-    title: "Top Paths",
-    description: "by volume",
-    type: "compare",
-    data: fakeDataTypeCompare(),
-  },
-  {
-    title: "Top Sources",
-    description: "by volume",
-    type: "info",
-    data: fakeDataTypeInfo(),
-  },
-  {
-    title: "Top Destinations",
-    description: "by volume",
-    type: "info",
-    data: fakeDataTypeInfo(),
-  },
-];
-
 const formatDateChart = (date: number) => formatDate(date, "DD-MM");
+
+const NoData = () => (
+  <p className="text-center font-semibold text-2xl">No data available</p>
+);
 
 function Statistic() {
   const { useSearch, useNavigate } = Route;
   const { time_bucket } = useSearch();
   const navigate = useNavigate();
 
-  const { data: chart, isLoading: isLoadingChart } =
-    useExploreQuery.useStatistic({
-      time_bucket: time_bucket ?? ETimeBucket.DAY,
-    });
+  const { data, isLoading } = useExploreQuery.useStatistic({
+    time_bucket: time_bucket ?? ETimeBucket.DAY,
+  });
 
+  // Data
   const chartData = useMemo(() => {
-    if (!chart) return [];
+    if (!data) return [];
 
     return [
       {
         title: "Transaction",
-        data: chart.txs.map((i) => ({
+        data: data.txs.map((i) => ({
           xAxis: formatDateChart(i.time),
           yAxis: i.data,
         })),
@@ -169,7 +81,7 @@ function Statistic() {
       },
       {
         title: "Volume",
-        data: chart.volumes.map((i) => ({
+        data: data.volumes.map((i) => ({
           xAxis: formatDateChart(i.time),
           yAxis: i.data,
         })),
@@ -177,7 +89,7 @@ function Statistic() {
       },
       {
         title: "Active users",
-        data: chart.active_users.map((i) => ({
+        data: data.active_users.map((i) => ({
           xAxis: formatDateChart(i.time),
           yAxis: i.data,
         })),
@@ -185,14 +97,80 @@ function Statistic() {
       },
       {
         title: "New users",
-        data: chart.new_users.map((i) => ({
+        data: data.new_users.map((i) => ({
           xAxis: formatDateChart(i.time),
           yAxis: i.data,
         })),
         chartLabel: "Users",
       },
     ];
-  }, [chart]);
+  }, [data]);
+
+  const statisticData: TStatisticTotalData[] = useMemo(() => {
+    if (!data) return [];
+
+    return [
+      {
+        label: "Total transactions",
+        value: data.total_txs,
+        icon: <TransactionIcon />,
+        unit: "$",
+      },
+      {
+        label: "Total value locked",
+        value: data.total_volumes,
+        icon: <LockedIcon />,
+        unit: "$",
+      },
+      {
+        label: "Users",
+        value: data.total_users,
+        icon: <UserIcon />,
+      },
+    ];
+  }, [data]);
+
+  const rankData: TRankCardProps[] = useMemo(() => {
+    if (!data) return [];
+
+    return [
+      {
+        title: "Top Users",
+        description: "Top Users by token transfers transactions",
+        data: data.top_users.map(({ address: name, amount: value }) => ({
+          name,
+          value,
+        })),
+      },
+      {
+        title: "Top Holder",
+        description: "Top users by BTC deposits through the bridge",
+        data: data.top_bridges.map(({ address: name, amount: value }) => ({
+          name,
+          value,
+        })),
+      },
+    ];
+  }, [data]);
+
+  const topCardData: TTopCardProps[] = useMemo(() => {
+    if (!data) return [];
+
+    return [
+      {
+        title: "By transactions",
+        pathsData: data.top_paths_by_tx,
+        sourceData: data.top_source_chains_by_tx,
+        destinationData: data.top_destination_chains_by_tx,
+      },
+      {
+        title: "By volume",
+        pathsData: data.top_paths_by_volume,
+        sourceData: data.top_source_chains_by_volume,
+        destinationData: data.top_destination_chains_by_volume,
+      },
+    ];
+  }, [data]);
 
   const tabValue = useMemo(() => {
     if (time_bucket) {
@@ -221,46 +199,65 @@ function Statistic() {
         />
       </div>
       <div className="flex flex-col gap-8 md:flex-row">
-        {statisticData.map(({ label, value, icon, unit, className }) => (
-          <div
-            key={label}
-            className={cn(
-              // Padding
-              "p-6",
-
-              // Border Radius
-              "rounded-lg",
-
-              // Background Color
-              "bg-primary",
-
-              // Flexbox Container
-              "flex flex-1 items-center justify-between gap-2",
-              className?.container,
-            )}
-          >
+        {isLoading ? (
+          Array.from({ length: 3 }).map((_, i) => (
+            // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+            <Skeleton key={i} className="h-[150px] flex-1" />
+          ))
+        ) : isEmpty(statisticData) ? (
+          <NoData />
+        ) : (
+          statisticData.map(({ label, value, icon, unit, className }) => (
             <div
+              key={label}
               className={cn(
-                "flex flex-col gap-1 text-white uppercase",
-                className?.contentWrapper,
+                // Padding
+                "p-6",
+
+                // Border Radius
+                "rounded-lg",
+
+                // Background Color
+                "bg-primary",
+
+                // Flexbox Container
+                "flex flex-1 items-center justify-between gap-2",
+                className?.container,
               )}
             >
-              <p
-                className={cn("font-semibold text-[40px]", className?.content)}
+              <div
+                className={cn(
+                  "flex flex-col gap-1 text-white uppercase",
+                  className?.contentWrapper,
+                )}
               >
-                {unit}
-                {formatNumber(value)}
-              </p>
-              <p className={cn("text-lg", className?.label)}>{label}</p>
+                <p
+                  className={cn(
+                    "font-semibold text-[40px]",
+                    className?.content,
+                  )}
+                >
+                  {unit}
+                  {formatNumber(value)}
+                </p>
+                <p className={cn("text-lg", className?.label)}>{label}</p>
+              </div>
+              {icon}
             </div>
-            {icon}
-          </div>
-        ))}
+          ))
+        )}
       </div>
       <div className="flex flex-col gap-8 *:data-[slot=rank-card]:flex-1 md:flex-row">
-        {rankData.map((i) => (
-          <RankCard key={i.title} {...i} />
-        ))}
+        {isLoading ? (
+          Array.from({ length: 2 }).map((_, i) => (
+            // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+            <RankCardSkeleton key={i} />
+          ))
+        ) : isEmpty(chartData) ? (
+          <NoData />
+        ) : (
+          rankData.map((i) => <RankCard key={i.title} {...i} />)
+        )}
       </div>
       <Tabs
         defaultValue={tabValue}
@@ -288,23 +285,28 @@ function Statistic() {
         </TabsList>
       </Tabs>
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
-        {isLoadingChart ? (
+        {isLoading ? (
           Array.from({ length: 4 }).map((_, i) => (
             // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
             <ChartCardSkeleton key={i} />
           ))
         ) : isEmpty(chartData) ? (
-          <p className="text-center font-semibold text-2xl">
-            No data available
-          </p>
+          <NoData />
         ) : (
           chartData.map((i) => <ChartCard key={i.title} {...i} />)
         )}
       </div>
-      <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {topCardData.map((item) => (
-          <TopCard key={`${item.title}-${item.type}`} {...item} />
-        ))}
+      <div className="flex flex-col gap-8">
+        {isLoading ? (
+          Array.from({ length: 2 }).map((_, i) => (
+            // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+            <TopCardSkeleton key={i} />
+          ))
+        ) : isEmpty(topCardData) ? (
+          <NoData />
+        ) : (
+          topCardData.map((item) => <TopCard key={item.title} {...item} />)
+        )}
       </div>
     </div>
   );
