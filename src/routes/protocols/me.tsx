@@ -1,11 +1,13 @@
-import DEFAULT_ICON from "@/assets/images/default-icon.png";
 import {
+  Base64Icon,
+  ChainIcon,
   Clipboard,
-  DataTable,
   Heading,
+  SelectSearch,
   confirmDialogConfig,
   useConfirm,
 } from "@/components/common";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -16,13 +18,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Skeleton } from "@/components/ui/skeleton";
 import {
   PROTOCOL_STATUS,
   TNetworkForm,
@@ -30,26 +26,19 @@ import {
 } from "@/features/protocol";
 import { useScalarChains, useScalarOwnProtocol } from "@/hooks";
 import { CreateDeployTokenParams } from "@/lib/scalar/params";
-import {
-  addBase64Prefix,
-  cn,
-  isBtcChain,
-  parseKeplrError,
-  shortenText,
-} from "@/lib/utils";
+import { cn, isBtcChain, parseKeplrError, shortenText } from "@/lib/utils";
 import {
   useAccount,
   useConnectKeplr,
   useKeplrClient,
 } from "@/providers/keplr-provider";
-import { TProtocol } from "@/types/protocol";
+import { SupportedChains } from "@/types/chains";
 import { fromBech32 } from "@cosmjs/encoding";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useQueryClient } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
-import { createColumnHelper } from "@tanstack/react-table";
-import { isEmpty } from "lodash";
-import { useMemo, useState } from "react";
+import { isArray, isEmpty } from "lodash";
+import { Fragment, ReactNode, useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 
@@ -57,86 +46,37 @@ export const Route = createFileRoute("/protocols/me")({
   component: OwnProtocol,
 });
 
-const { display, accessor } = createColumnHelper<TProtocol>();
+type TColumItem = {
+  title: string;
+  items: ReactNode | ReactNode[];
+  classNames?: Partial<{
+    wrapper: string;
+    title: string;
+    item: string;
+  }>;
+};
+const ColumItem = ({ title, items, classNames }: TColumItem) => {
+  const newItems = isArray(items) ? items : [items];
 
-const columns = [
-  accessor("name", {
-    header: "Protocol",
-  }),
-  display({
-    id: "token",
-    header: "Token",
-    cell: ({ row }) => {
-      const { chain } = row.original?.asset || {};
-      const avatar = row.original?.avatar;
-
-      return (
-        <div className="flex items-center gap-2">
-          <img
-            src={avatar ? addBase64Prefix(avatar) : DEFAULT_ICON}
-            className="size-8 rounded-full"
-            alt="avatar"
-          />
-          <p>{chain}</p>
-        </div>
-      );
-    },
-  }),
-  accessor("chains", {
-    id: "address",
-    header: "Address",
-    cell: ({ getValue }) => {
-      const chains = getValue()?.filter((c) => c.address);
-
-      return (
-        <div className="flex flex-col gap-1">
-          {chains?.map(({ address }) => (
-            <Clipboard
-              key={address}
-              label={address}
-              text={address!}
-              classNames={{ wrapper: "max-w-[150px]" }}
-            />
-          ))}
-        </div>
-      );
-    },
-  }),
-  accessor("chains", {
-    id: "network",
-    header: "Network",
-    cell: ({ getValue }) => {
-      const chains = getValue();
-
-      return (
-        <p>{chains?.map(({ name, chain }) => name || chain).join(", ")}</p>
-      );
-    },
-  }),
-  accessor("status", {
-    header: "Status",
-    cell: ({ getValue }) => {
-      const status = getValue();
-      const findStatus = PROTOCOL_STATUS.OBJECT[status];
-
-      return (
-        findStatus?.label && (
-          <div
-            className={cn(
-              "mx-auto flex w-fit items-center justify-center rounded-full px-4 py-1 text-base text-white",
-              findStatus.className,
-            )}
-          >
-            <span>{findStatus.label}</span>
-          </div>
-        )
-      );
-    },
-    meta: {
-      className: "text-center",
-    },
-  }),
-];
+  return (
+    <div className={cn("flex flex-col gap-2", classNames?.wrapper)}>
+      <p
+        className={cn(
+          "font-semibold text-lg text-text-primary-500",
+          classNames?.title,
+        )}
+      >
+        {title}
+      </p>
+      <div className={cn("flex flex-col gap-3", classNames?.item)}>
+        {newItems.map((item, index) => (
+          // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+          <Fragment key={index}>{item}</Fragment>
+        ))}
+      </div>
+    </div>
+  );
+};
 
 function OwnProtocol() {
   const { isConnected, account } = useAccount();
@@ -153,8 +93,64 @@ function OwnProtocol() {
   const {
     data: { protocol } = {},
     isLoading,
-    isRefetching,
   } = useScalarOwnProtocol(accountAddress);
+
+  const protocolData: TColumItem[] = useMemo(() => {
+    return isEmpty(protocol)
+      ? []
+      : [
+          {
+            title: "Protocol",
+            items: (
+              <div className="flex items-center gap-2">
+                <Base64Icon url={protocol.avatar} className="size-6" />
+                <p>{protocol?.name}</p>
+              </div>
+            ),
+          },
+          {
+            title: "Token",
+            items: (
+              <ChainIcon
+                chain={protocol?.asset?.chain as SupportedChains}
+                showName
+              />
+            ),
+          },
+          {
+            title: "Address",
+            items: protocol?.chains
+              ?.filter((c) => c.address)
+              .map(({ address }) => (
+                <div key={address}>
+                  <Clipboard label={address} text={address!} />
+                </div>
+              )),
+          },
+          {
+            title: "Network",
+            items: protocol?.chains?.map((c) => (
+              <ChainIcon
+                key={c.chain}
+                chain={c.chain as SupportedChains}
+                showName
+                customName={c.name}
+              />
+            )),
+          },
+          {
+            title: "Status",
+            items: (
+              <Badge
+                variant={PROTOCOL_STATUS.OBJECT[protocol?.status].variant}
+                className="px-4"
+              >
+                {PROTOCOL_STATUS.OBJECT[protocol?.status].label}
+              </Badge>
+            ),
+          },
+        ];
+  }, [protocol]);
 
   const queryClient = useQueryClient();
 
@@ -263,14 +259,19 @@ function OwnProtocol() {
     <div className="flex flex-col gap-5 py-[60px]">
       <Heading link={{ to: "/protocols" }}>Your Protocol</Heading>
       {isConnected ? (
-        <DataTable
-          columns={columns}
-          data={protocol ? [protocol] : []}
-          pagination={{}}
-          showPagination={false}
-          isLoading={isLoading}
-          isRefetching={isRefetching}
-        />
+        isLoading ? (
+          <Skeleton className="h-[100px] w-full" />
+        ) : (
+          <div className="flex gap-5 rounded-lg bg-background-secondary p-5">
+            {protocolData.map((item) => (
+              <ColumItem
+                key={item.title}
+                {...item}
+                classNames={{ wrapper: "flex-1" }}
+              />
+            ))}
+          </div>
+        )
       ) : (
         <Card className="rounded-lg p-0">
           <CardContent className="flex flex-col gap-4 p-4">
@@ -310,25 +311,23 @@ function OwnProtocol() {
                     name="chain"
                     render={({ field: { onChange, value } }) => (
                       <FormItem className="flex-1">
-                        <Select defaultValue={value} onValueChange={onChange}>
-                          <FormControl>
-                            <SelectTrigger className="!text-base min-w-[190px] rounded-full border-transparent bg-[#EDF1FF] px-5">
-                              <SelectValue placeholder="Select Network" />
-                            </SelectTrigger>
-                          </FormControl>
-                          <SelectContent>
-                            {filterChains?.map((name) => (
-                              <SelectItem
-                                key={name}
-                                value={name || ""}
-                                className="text-base"
-                                disabled={curentNetwork?.includes(name)}
-                              >
-                                {name}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
+                        <SelectSearch
+                          value={value}
+                          onChange={onChange}
+                          placeholder="Select Network"
+                          options={
+                            filterChains?.map((name) => ({
+                              label: (
+                                <ChainIcon
+                                  chain={name as SupportedChains}
+                                  showName
+                                />
+                              ),
+                              value: name,
+                              disabled: curentNetwork?.includes(name),
+                            })) || []
+                          }
+                        />
                         <FormMessage />
                       </FormItem>
                     )}

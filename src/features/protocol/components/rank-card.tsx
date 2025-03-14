@@ -27,7 +27,7 @@ export const RankCard = ({
       <p className={cn("font-semibold text-2xl", className?.title)}>{title}</p>
       <p className={cn("text-lg", className?.description)}>{description}</p>
       <div className="mt-auto rounded-lg border py-6">
-        {data.map((item, index) => (
+        {data?.map((item, index) => (
           <RankItem key={item.value} {...item} rank={index + 1} />
         ))}
       </div>

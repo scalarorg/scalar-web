@@ -73,7 +73,7 @@ export const SelectSearch = ({
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
           <Button
-            variant="outline"
+            variant="ghost"
             aria-expanded={open}
             className={cn(
               // Cursor

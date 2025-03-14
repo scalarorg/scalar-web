@@ -1,5 +1,5 @@
 import DEFAULT_ICON from "@/assets/images/default-icon.png";
-import { ImageCropper } from "@/components/common";
+import { ChainIcon, ImageCropper, SelectSearch } from "@/components/common";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
@@ -12,13 +12,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { useScalarChains, useScalarCustodianGroups } from "@/hooks";
 import {
   CreateProtocolParams,
@@ -33,6 +26,7 @@ import {
 } from "@/lib/utils";
 import { convertToBytes } from "@/lib/wallet";
 import { useAccount, useKeplrClient } from "@/providers/keplr-provider";
+import { SupportedChains } from "@/types/chains";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useQueryClient } from "@tanstack/react-query";
 import { Dispatch, SetStateAction, useCallback, useState } from "react";
@@ -237,7 +231,6 @@ export const ProtocolForm = ({ setOpen }: Props) => {
           />
         </div>
         <FormItem>
-          <FormLabel>Token</FormLabel>
           <div className="flex flex-col gap-5">
             <div className="flex gap-5">
               <FormField
@@ -245,6 +238,7 @@ export const ProtocolForm = ({ setOpen }: Props) => {
                 name="token_name"
                 render={({ field }) => (
                   <FormItem className="flex-1">
+                    <FormLabel>Token</FormLabel>
                     <FormControl>
                       <Input
                         {...field}
@@ -261,6 +255,7 @@ export const ProtocolForm = ({ setOpen }: Props) => {
                 name="token_decimals"
                 render={({ field }) => (
                   <FormItem className="flex-1">
+                    <FormLabel>Decimals</FormLabel>
                     <FormControl>
                       <Input
                         {...field}
@@ -283,6 +278,7 @@ export const ProtocolForm = ({ setOpen }: Props) => {
                 name="token_capacity"
                 render={({ field }) => (
                   <FormItem className="flex-1">
+                    <FormLabel>Capacity</FormLabel>
                     <FormControl>
                       <Input
                         {...field}
@@ -299,6 +295,7 @@ export const ProtocolForm = ({ setOpen }: Props) => {
                 name="symbol"
                 render={({ field }) => (
                   <FormItem className="flex-1">
+                    <FormLabel>Symbol</FormLabel>
                     <FormControl>
                       <Input
                         {...field}
@@ -315,6 +312,7 @@ export const ProtocolForm = ({ setOpen }: Props) => {
                 name="token_daily_mint_limit"
                 render={({ field }) => (
                   <FormItem className="flex-1">
+                    <FormLabel>Daily mint limit</FormLabel>
                     <FormControl>
                       <Input
                         {...field}
@@ -353,24 +351,12 @@ export const ProtocolForm = ({ setOpen }: Props) => {
             render={({ field: { onChange, value } }) => (
               <FormItem>
                 <FormLabel>Type</FormLabel>
-                <Select defaultValue={value} onValueChange={onChange}>
-                  <FormControl>
-                    <SelectTrigger className="!text-base w-[200px]">
-                      <SelectValue placeholder="Select type" />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    {LIQUIDITY_MODEL.LIST.map(({ label, value }) => (
-                      <SelectItem
-                        key={value}
-                        value={value}
-                        className="text-base"
-                      >
-                        {label}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+                <SelectSearch
+                  value={value}
+                  onChange={onChange}
+                  options={LIQUIDITY_MODEL.LIST}
+                  classNames={{ wrapper: "w-[200px]" }}
+                />
                 <FormMessage />
               </FormItem>
             )}
@@ -381,24 +367,17 @@ export const ProtocolForm = ({ setOpen }: Props) => {
             render={({ field: { onChange, value } }) => (
               <FormItem className="grow">
                 <FormLabel>Custodian group</FormLabel>
-                <Select defaultValue={value} onValueChange={onChange}>
-                  <FormControl>
-                    <SelectTrigger className="!text-base">
-                      <SelectValue placeholder="Select custodian group" />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    {groups?.map(({ uid, name }) => (
-                      <SelectItem
-                        key={uid}
-                        value={uid || ""}
-                        className="text-base"
-                      >
-                        {name}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+                <SelectSearch
+                  value={value}
+                  onChange={onChange}
+                  placeholder="Select custodian group"
+                  options={
+                    groups?.map(({ uid, name }) => ({
+                      value: uid || "",
+                      label: name || "",
+                    })) || []
+                  }
+                />
                 <FormMessage />
               </FormItem>
             )}
@@ -411,24 +390,19 @@ export const ProtocolForm = ({ setOpen }: Props) => {
             render={({ field: { onChange, value } }) => (
               <FormItem className="flex-1">
                 <FormLabel>Chain name</FormLabel>
-                <Select defaultValue={value} onValueChange={onChange}>
-                  <FormControl>
-                    <SelectTrigger className="!text-base">
-                      <SelectValue placeholder="Select chain" />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    {filterChains?.map((name) => (
-                      <SelectItem
-                        key={name}
-                        value={name || ""}
-                        className="text-base"
-                      >
-                        {name}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+                <SelectSearch
+                  value={value}
+                  onChange={onChange}
+                  placeholder="Select chain"
+                  options={
+                    filterChains?.map((name) => ({
+                      value: name || "",
+                      label: (
+                        <ChainIcon chain={name as SupportedChains} showName />
+                      ),
+                    })) || []
+                  }
+                />
                 <FormMessage />
               </FormItem>
             )}

@@ -165,4 +165,8 @@
 	.main-shadow-inset {
 		@apply shadow-[0px_1px_2px_0px_#00000040_inset];
 	}
+
+	.main-card-shadow {
+		@apply shadow-[0px_1px_4px_0px_#00000040];
+	}
 }

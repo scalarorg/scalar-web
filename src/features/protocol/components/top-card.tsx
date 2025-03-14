@@ -31,7 +31,7 @@ export const TopCard = ({
       <div className="flex h-full gap-5">
         <div className="flex-1 space-y-2">
           <p className="font-medium text-lg">Top Paths</p>
-          {pathsData.map((item, index) => (
+          {pathsData?.map((item, index) => (
             <div
               // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
               key={index}
@@ -59,7 +59,7 @@ export const TopCard = ({
         <Separator orientation="vertical" />
         <div className="flex-1 space-y-2">
           <p className="font-medium text-lg">Top Sources</p>
-          {sourceData.map((item, index) => (
+          {sourceData?.map((item, index) => (
             // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
             <div key={index} className="flex items-start justify-between gap-2">
               <ChainIcon
@@ -74,7 +74,7 @@ export const TopCard = ({
         <Separator orientation="vertical" />
         <div className="flex-1 space-y-2">
           <p className="font-medium text-lg">Top Destinations</p>
-          {destinationData.map((item, index) => (
+          {destinationData?.map((item, index) => (
             // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
             <div key={index} className="flex items-start justify-between gap-2">
               <ChainIcon

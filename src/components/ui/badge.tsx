@@ -22,9 +22,50 @@ const badgeVariants = cva(
         pending: "border-transparent bg-pending [a&]:hover:bg-pending/90",
         executing: "border-transparent bg-executing [a&]:hover:bg-executing/90",
       },
+      ghost: {
+        true: "",
+      },
     },
+    compoundVariants: [
+      {
+        variant: "default",
+        ghost: true,
+        className: "border-transparent bg-primary/20 text-primary",
+      },
+      {
+        variant: "secondary",
+        ghost: true,
+        className: "border-transparent bg-secondary/20 text-secondary",
+      },
+      {
+        variant: "destructive",
+        ghost: true,
+        className: "border-transparent bg-destructive/20 text-destructive",
+      },
+      {
+        variant: "success",
+        ghost: true,
+        className: "border-transparent bg-success/20 text-success",
+      },
+      {
+        variant: "fail",
+        ghost: true,
+        className: "border-transparent bg-fail/20 text-fail",
+      },
+      {
+        variant: "pending",
+        ghost: true,
+        className: "border-transparent bg-pending/20 text-pending",
+      },
+      {
+        variant: "executing",
+        ghost: true,
+        className: "border-transparent bg-executing/20 text-executing",
+      },
+    ],
     defaultVariants: {
       variant: "default",
+      ghost: false,
     },
   },
 );
@@ -34,6 +75,7 @@ type TBadgeVariants = VariantProps<typeof badgeVariants>;
 function Badge({
   className,
   variant,
+  ghost,
   asChild = false,
   ...props
 }: React.ComponentProps<"span"> & TBadgeVariants & { asChild?: boolean }) {
@@ -42,7 +84,7 @@ function Badge({
   return (
     <Comp
       data-slot="badge"
-      className={cn(badgeVariants({ variant }), className)}
+      className={cn(badgeVariants({ variant, ghost }), className)}
       {...props}
     />
   );

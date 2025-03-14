@@ -73,7 +73,7 @@ function Statistic() {
     return [
       {
         title: "Transaction",
-        data: data.txs.map((i) => ({
+        data: data?.txs?.map((i) => ({
           xAxis: formatDateChart(i.time),
           yAxis: i.data,
         })),
@@ -81,7 +81,7 @@ function Statistic() {
       },
       {
         title: "Volume",
-        data: data.volumes.map((i) => ({
+        data: data?.volumes?.map((i) => ({
           xAxis: formatDateChart(i.time),
           yAxis: i.data,
         })),
@@ -89,7 +89,7 @@ function Statistic() {
       },
       {
         title: "Active users",
-        data: data.active_users.map((i) => ({
+        data: data?.active_users?.map((i) => ({
           xAxis: formatDateChart(i.time),
           yAxis: i.data,
         })),
@@ -97,7 +97,7 @@ function Statistic() {
       },
       {
         title: "New users",
-        data: data.new_users.map((i) => ({
+        data: data?.new_users?.map((i) => ({
           xAxis: formatDateChart(i.time),
           yAxis: i.data,
         })),
@@ -112,18 +112,18 @@ function Statistic() {
     return [
       {
         label: "Total transactions",
-        value: data.total_txs,
+        value: data?.total_txs,
         icon: <TransactionIcon />,
       },
       {
         label: "Total value locked",
-        value: data.total_volumes,
+        value: data?.total_volumes,
         icon: <LockedIcon />,
         unit: "$",
       },
       {
         label: "Users",
-        value: data.total_users,
+        value: data?.total_users,
         icon: <UserIcon />,
       },
     ];
@@ -136,7 +136,7 @@ function Statistic() {
       {
         title: "Top Users",
         description: "Top Users by token transfers transactions",
-        data: data.top_users.map(({ address: name, amount: value }) => ({
+        data: data?.top_users?.map(({ address: name, amount: value }) => ({
           name,
           value,
         })),
@@ -144,7 +144,7 @@ function Statistic() {
       {
         title: "Top Holder",
         description: "Top users by BTC deposits through the bridge",
-        data: data.top_bridges.map(({ address: name, amount: value }) => ({
+        data: data?.top_bridges?.map(({ address: name, amount: value }) => ({
           name,
           value,
         })),
@@ -158,15 +158,15 @@ function Statistic() {
     return [
       {
         title: "By transactions",
-        pathsData: data.top_paths_by_tx,
-        sourceData: data.top_source_chains_by_tx,
-        destinationData: data.top_destination_chains_by_tx,
+        pathsData: data?.top_paths_by_tx,
+        sourceData: data?.top_source_chains_by_tx,
+        destinationData: data?.top_destination_chains_by_tx,
       },
       {
         title: "By volume",
-        pathsData: data.top_paths_by_volume,
-        sourceData: data.top_source_chains_by_volume,
-        destinationData: data.top_destination_chains_by_volume,
+        pathsData: data?.top_paths_by_volume,
+        sourceData: data?.top_source_chains_by_volume,
+        destinationData: data?.top_destination_chains_by_volume,
       },
     ];
   }, [data]);

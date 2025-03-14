@@ -52,7 +52,8 @@ export const InputSearchBox = ({ keyword, className, ...props }: Props) => {
       startIcon={<SearchIcon className="size-5" />}
       placeholder="Search"
       {...props}
-      className={cn("!text-base !rounded-lg h-10 pl-10", className)}
+      className={cn("!text-base !rounded-lg h-10 border-none pl-10", className)}
+      wrapperClassName="main-card-shadow rounded-lg"
       iconClassName="size-10"
       onChange={onSearch}
       value={debouncedValueSearch}
