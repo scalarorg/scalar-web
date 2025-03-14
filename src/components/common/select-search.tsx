@@ -98,7 +98,7 @@ export const SelectSearch = ({
               "font-normal",
 
               // Box Shadow
-              "shadow-[0px_1px_2px_0px_#00000040]",
+              "main-shadow",
 
               // Outline
               "outline-none",
@@ -125,13 +125,13 @@ export const SelectSearch = ({
           </Button>
         </PopoverTrigger>
         <PopoverContent
-          className="w-full min-w-[var(--radix-popper-anchor-width)] border-none p-0 shadow-[0px_1px_2px_0px_#00000040]"
+          className="main-shadow w-full min-w-[var(--radix-popper-anchor-width)] border-none p-0"
           align="start"
         >
           <Command>
             <CommandInput
               placeholder={searchPlaceholder}
-              wrapperClassName="flex-row-reverse m-2 mb-0 py-1 border border-secondary-500 rounded-lg shadow-[0px_1px_2px_0px_#00000040_inset]"
+              wrapperClassName="flex-row-reverse m-2 mb-0 py-1 border border-secondary-500 rounded-lg main-shadow-inset"
               className="h-6 text-base"
             />
             <CommandList className={classNames?.command?.list}>
