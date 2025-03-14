@@ -489,7 +489,7 @@ export const RedeemForm = () => {
                 control={control}
                 name="sourceChain"
                 render={({ field: { value, onChange } }) => (
-                  <FormItem>
+                  <FormItem className="mb-3">
                     <div className="flex items-center gap-2 rounded-lg">
                       <div className="flex flex-1 flex-col gap-2">
                         <div className="flex items-center gap-2">
@@ -531,7 +531,9 @@ export const RedeemForm = () => {
                 )}
               />
               <p className="text-right text-base">
-                <span className="text-border">Available wallet:</span>{" "}
+                <span className="text-text-primary-500/50">
+                  Available wallet:
+                </span>{" "}
                 <span className="mr-1 border-black border-r-2 pr-1">
                   {formatBTC(availableBalance)} BTC
                 </span>

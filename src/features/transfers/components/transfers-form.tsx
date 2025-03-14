@@ -285,7 +285,7 @@ export const TransfersForm = () => {
                 control={control}
                 name="token"
                 render={({ field: { onChange, value } }) => (
-                  <FormItem>
+                  <FormItem className="mb-3">
                     <SelectSearch
                       value={value}
                       onChange={(newValue) => {
@@ -330,7 +330,9 @@ export const TransfersForm = () => {
                 )}
               />
               <p className="text-right text-base">
-                <span className="text-border">Available wallet:</span>{" "}
+                <span className="text-text-primary-500/50">
+                  Available wallet:
+                </span>{" "}
                 <span>
                   {!isNil(sourceChainBalance)
                     ? formatUnits(sourceChainBalance, Number(decimals))

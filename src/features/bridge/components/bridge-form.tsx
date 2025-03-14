@@ -316,7 +316,9 @@ export const BridgeForm = () => {
                     </div>
                   </div>
                   <p className="text-right text-base">
-                    <span className="text-border">Available wallet:</span>{" "}
+                    <span className="text-text-primary-500/50">
+                      Available wallet:
+                    </span>{" "}
                     <span>{formatBTC(walletInfo.balance)} BTC</span>
                   </p>
                   <FormMessage />
