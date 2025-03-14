@@ -6,7 +6,6 @@ import {
   TStatisticDestinationItem,
   TStatisticSourceItem,
 } from "@/features/explore/models/types";
-import { Chains } from "@/lib/chains";
 import { formatNumber } from "@/lib/utils";
 import { ChevronRight } from "lucide-react";
 
@@ -36,18 +35,20 @@ export const TopCard = ({
             <div
               // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
               key={index}
-              className="flex items-start justify-between gap-2"
+              className="flex items-start justify-between gap-1"
             >
               <div className="flex grow items-center gap-2">
-                <div className="flex flex-1 items-center gap-1">
-                  <ChainIcon chain={item.source_chain} />
-                  <p>{Chains[item.source_chain]?.name}</p>
-                </div>
+                <ChainIcon
+                  chain={item.source_chain}
+                  classNames={{ wrapper: "flex-1" }}
+                  showName
+                />
                 <ChevronRight className="mx-1 size-5" />
-                <div className="flex flex-1 items-center gap-1">
-                  <ChainIcon chain={item.destination_chain} />
-                  <p>{Chains[item.destination_chain]?.name}</p>
-                </div>
+                <ChainIcon
+                  chain={item.destination_chain}
+                  classNames={{ wrapper: "flex-1" }}
+                  showName
+                />
               </div>
               <p className="min-w-[70px] text-right font-medium">
                 {formatNumber(item.amount)}
@@ -61,10 +62,11 @@ export const TopCard = ({
           {sourceData.map((item, index) => (
             // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
             <div key={index} className="flex items-start justify-between gap-2">
-              <div className="flex items-center gap-2">
-                <ChainIcon chain={item.chain} />
-                <p>{Chains[item.chain]?.name}</p>
-              </div>
+              <ChainIcon
+                chain={item.chain}
+                classNames={{ wrapper: "flex-1" }}
+                showName
+              />
               <p className="font-medium">{formatNumber(item.amount)}</p>
             </div>
           ))}
@@ -75,10 +77,11 @@ export const TopCard = ({
           {destinationData.map((item, index) => (
             // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
             <div key={index} className="flex items-start justify-between gap-2">
-              <div className="flex items-center gap-2">
-                <ChainIcon chain={item.chain} />
-                <p>{Chains[item.chain]?.name}</p>
-              </div>
+              <ChainIcon
+                chain={item.chain}
+                classNames={{ wrapper: "flex-1" }}
+                showName
+              />
               <p className="font-medium">{formatNumber(item.amount)}</p>
             </div>
           ))}

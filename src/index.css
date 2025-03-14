@@ -37,11 +37,12 @@
 	--text-link: hsl(207, 100%, 55%);
 	--text-primary-100: hsl(0, 0%, 26%);
 	--text-primary-500: hsl(0, 0%, 13%);
-	--text-grey-100: #e3e3e3;
+	--text-grey-100: hsl(0, 0%, 89%);
 	--pending: hsl(46, 100%, 55%);
 	--success: hsl(142, 69%, 55%);
 	--fail: hsl(3, 100%, 71%);
 	--executing: hsl(88, 75%, 58%);
+	--background-secondary: hsl(227, 100%, 98%);
 }
 
 .dark {
@@ -77,11 +78,12 @@
 	--text-link: hsl(207, 100%, 55%);
 	--text-primary-100: hsl(0, 0%, 26%);
 	--text-primary-500: hsl(0, 0%, 13%);
-	--text-grey-100: #e3e3e3;
+	--text-grey-100: hsl(0, 0%, 89%);
 	--pending: hsl(46, 100%, 55%);
 	--success: hsl(142, 69%, 55%);
 	--fail: hsl(3, 100%, 71%);
 	--executing: hsl(88, 75%, 58%);
+	--background-secondary: hsl(227, 100%, 98%);
 }
 
 @theme inline {
@@ -125,6 +127,7 @@
 	--color-success: var(--success);
 	--color-fail: var(--fail);
 	--color-executing: var(--executing);
+	--color-background-secondary: var(--background-secondary);
 }
 
 @layer base {

@@ -460,7 +460,7 @@ export const RedeemForm = () => {
         <Form {...form}>
           <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
             {/* From Section */}
-            <div className="space-y-1 rounded-lg bg-[#F6F8FF] p-4">
+            <div className="space-y-1 rounded-lg bg-background-secondary p-4">
               <FormField
                 control={control}
                 name="sourceChain"
@@ -541,7 +541,7 @@ export const RedeemForm = () => {
             </div>
 
             {/* To Section */}
-            <p className="space-y-4 rounded-lg bg-[#F6F8FF] p-4 text-base">
+            <p className="space-y-4 rounded-lg bg-background-secondary p-4 text-base">
               To {selectedProtocol?.asset?.chain}
             </p>
 
@@ -550,7 +550,7 @@ export const RedeemForm = () => {
               control={control}
               name="destRecipientAddress"
               render={({ field }) => (
-                <FormItem className="space-y-4 rounded-lg bg-[#F6F8FF] p-4">
+                <FormItem className="space-y-4 rounded-lg bg-background-secondary p-4">
                   <FormControl>
                     <Input
                       {...field}

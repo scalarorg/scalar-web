@@ -38,7 +38,7 @@ function Home() {
         defaultValue={tabs[0].value}
         className="min-w-[500px] max-w-[800px]"
       >
-        <TabsList className="h-[50px] w-full gap-2 bg-[#F6F8FF]">
+        <TabsList className="h-[50px] w-full gap-2 bg-background-secondary">
           {tabs.map(({ name, value }) => (
             <TabsTrigger
               value={value}

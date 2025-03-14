@@ -271,7 +271,7 @@ function Statistic() {
           });
         }}
       >
-        <TabsList className="h-[60px] w-full justify-end gap-2 bg-[#F6F8FF]">
+        <TabsList className="h-[60px] w-full justify-end gap-2 bg-background-secondary">
           {tabs.map(({ name, value }) => (
             <TabsTrigger
               value={value}

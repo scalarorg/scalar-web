@@ -285,7 +285,7 @@ export const TransfersForm = () => {
         <Form {...form}>
           <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
             {/* Select Token */}
-            <div className="space-y-1 rounded-lg bg-[#F6F8FF] p-4">
+            <div className="space-y-1 rounded-lg bg-background-secondary p-4">
               <FormField
                 control={control}
                 name="token"
@@ -354,7 +354,7 @@ export const TransfersForm = () => {
                 control={control}
                 name="sourceChain"
                 render={({ field: { onChange, value } }) => (
-                  <FormItem className="flex flex-1 flex-col gap-2 rounded-lg bg-[#F6F8FF] p-4">
+                  <FormItem className="flex flex-1 flex-col gap-2 rounded-lg bg-background-secondary p-4">
                     <FormLabel className="text-base">From</FormLabel>
                     <Select
                       disabled={!watchForm.token}
@@ -401,7 +401,7 @@ export const TransfersForm = () => {
                 control={control}
                 name="destinationChain"
                 render={({ field: { onChange, value } }) => (
-                  <FormItem className="flex flex-1 flex-col gap-2 rounded-lg bg-[#F6F8FF] p-4">
+                  <FormItem className="flex flex-1 flex-col gap-2 rounded-lg bg-background-secondary p-4">
                     <FormLabel className="text-base">To</FormLabel>
                     <Select
                       disabled={!watchForm.token}
@@ -437,7 +437,7 @@ export const TransfersForm = () => {
               control={control}
               name="destRecipientAddress"
               render={({ field }) => (
-                <FormItem className="space-y-4 rounded-lg bg-[#F6F8FF] p-4">
+                <FormItem className="space-y-4 rounded-lg bg-background-secondary p-4">
                   <FormControl>
                     <Input
                       {...field}
@@ -451,7 +451,7 @@ export const TransfersForm = () => {
             />
 
             {/* Fee Information */}
-            {/* <div className="space-y-2 rounded-lg bg-[#F6F8FF] p-4">
+            {/* <div className="space-y-2 rounded-lg bg-background-secondary p-4">
               <div className="flex justify-between">
                 <span className="text-muted-foreground">Bridge Fee</span>
                 <span>0.00001 BTC</span>

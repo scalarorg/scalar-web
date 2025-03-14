@@ -57,7 +57,12 @@ export const TransactionInfoCard = ({
   isSecondary = false,
 }: Props) => {
   return (
-    <Card className={cn("gap-0 rounded-lg p-0", isSecondary && "bg-[#F6F8FF]")}>
+    <Card
+      className={cn(
+        "gap-0 rounded-lg p-0",
+        isSecondary && "bg-background-secondary",
+      )}
+    >
       <CardHeader className="border-b px-4 py-3.5">
         <CardTitle>{title}</CardTitle>
       </CardHeader>

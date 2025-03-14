@@ -251,7 +251,7 @@ export const BridgeForm = () => {
   return (
     <Card className="mx-auto w-full max-w-2xl border-none shadow-none">
       <CardHeader className="flex flex-row items-center justify-between px-0">
-        <CardTitle className="font-bold text-xl">Bridge</CardTitle>
+        <CardTitle className="font-medium text-xl">Bridge</CardTitle>
       </CardHeader>
       <CardContent className="px-0">
         <Form {...form}>
@@ -261,7 +261,7 @@ export const BridgeForm = () => {
               control={form.control}
               name="transferAmount"
               render={({ field }) => (
-                <FormItem className="space-y-1 rounded-lg bg-[#F6F8FF] p-4">
+                <FormItem className="space-y-1 rounded-lg bg-background-secondary p-4">
                   <FormLabel className="text-base">From</FormLabel>
                   <div className="flex items-center gap-2 rounded-lg">
                     <div className="flex flex-1 flex-col gap-2">
@@ -291,7 +291,7 @@ export const BridgeForm = () => {
                 control={form.control}
                 name="destinationChain"
                 render={({ field }) => (
-                  <FormItem className="space-y-4 rounded-lg bg-[#F6F8FF] p-4">
+                  <FormItem className="space-y-4 rounded-lg bg-background-secondary p-4">
                     <div className="flex items-center gap-2 rounded-lg">
                       <div className="flex flex-1 flex-col gap-2">
                         <div className="flex items-center gap-2">
@@ -345,7 +345,7 @@ export const BridgeForm = () => {
               control={form.control}
               name="destRecipientAddress"
               render={({ field }) => (
-                <FormItem className="space-y-4 rounded-lg bg-[#F6F8FF] p-4">
+                <FormItem className="space-y-4 rounded-lg bg-background-secondary p-4">
                   <FormControl>
                     <Input
                       {...field}
@@ -359,7 +359,7 @@ export const BridgeForm = () => {
             />
 
             {/* Fee Information */}
-            {/* <div className="space-y-2 rounded-lg bg-[#F6F8FF] p-4">
+            {/* <div className="space-y-2 rounded-lg bg-background-secondary p-4">
               <div className="flex justify-between">
                 <span className="text-muted-foreground">Bridge Fee</span>
                 <span>0.00001 BTC</span>
