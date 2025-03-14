@@ -1,4 +1,5 @@
 import { IGateway_ABI } from "@/abis/igateway";
+import { Base64Icon, ChainIcon, SelectSearch } from "@/components/common";
 import { ConnectEvm } from "@/components/connect";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -11,13 +12,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { toast } from "@/components/ui/use-toast";
 import {
   useERC20,
@@ -34,6 +28,7 @@ import {
 } from "@/lib/utils";
 import { getWagmiChain, isSupportedChain } from "@/lib/wagmi";
 import { useWalletProvider } from "@/providers/wallet-provider";
+import { SupportedChains } from "@/types/chains";
 import { TProtocolDetails } from "@/types/protocol";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useQuery } from "@tanstack/react-query";
@@ -291,31 +286,28 @@ export const TransfersForm = () => {
                 name="token"
                 render={({ field: { onChange, value } }) => (
                   <FormItem>
-                    <Select
-                      onValueChange={(value) => {
+                    <SelectSearch
+                      value={value}
+                      onChange={(newValue) => {
                         setValue("sourceChain", "");
                         setValue("destinationChain", "");
-                        onChange(value);
+                        onChange(newValue);
                       }}
-                      defaultValue={value}
-                    >
-                      <FormControl>
-                        <SelectTrigger className="!text-base w-fit min-w-[160px]">
-                          <SelectValue placeholder="Select Token" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        {filterProtocols.map(({ asset, scalar_address }) => (
-                          <SelectItem
-                            key={scalar_address}
-                            value={scalar_address || ""}
-                            className="text-base"
-                          >
-                            {asset?.symbol}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
+                      placeholder="Select Token"
+                      options={filterProtocols.map(
+                        ({ asset, scalar_address, avatar }) => ({
+                          value: scalar_address || "",
+                          label: (
+                            <div className="flex items-center gap-2">
+                              <Base64Icon url={avatar} className="size-6" />
+                              <span className="font-semibold text-base">
+                                {asset?.symbol}
+                              </span>
+                            </div>
+                          ),
+                        }),
+                      )}
+                    />
                     <FormMessage />
                   </FormItem>
                 )}
@@ -356,29 +348,24 @@ export const TransfersForm = () => {
                 render={({ field: { onChange, value } }) => (
                   <FormItem className="flex flex-1 flex-col gap-2 rounded-lg bg-background-secondary p-4">
                     <FormLabel className="text-base">From</FormLabel>
-                    <Select
+                    <SelectSearch
                       disabled={!watchForm.token}
-                      onValueChange={onChange}
                       value={value}
-                    >
-                      <FormControl>
-                        <SelectTrigger className="!text-base">
-                          <SelectValue placeholder="Select chain" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        {chainsFromToken.map(({ chain, name }) => (
-                          <SelectItem
-                            disabled={chain === watchForm.destinationChain}
-                            key={chain}
-                            value={chain || ""}
-                            className="text-base"
-                          >
-                            {name || chain}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
+                      onChange={onChange}
+                      placeholder="Select chain"
+                      options={chainsFromToken.map(({ chain, name }) => ({
+                        value: chain || "",
+                        label: (
+                          <ChainIcon
+                            chain={chain as SupportedChains}
+                            showName
+                            customName={name}
+                            classNames={{ icon: "size-5", name: "text-base" }}
+                          />
+                        ),
+                        disabled: chain === watchForm.destinationChain,
+                      }))}
+                    />
                     <FormMessage />
                   </FormItem>
                 )}
@@ -403,29 +390,24 @@ export const TransfersForm = () => {
                 render={({ field: { onChange, value } }) => (
                   <FormItem className="flex flex-1 flex-col gap-2 rounded-lg bg-background-secondary p-4">
                     <FormLabel className="text-base">To</FormLabel>
-                    <Select
+                    <SelectSearch
                       disabled={!watchForm.token}
-                      onValueChange={onChange}
+                      onChange={onChange}
                       value={value}
-                    >
-                      <FormControl>
-                        <SelectTrigger className="!text-base">
-                          <SelectValue placeholder="Select chain" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        {chainsFromToken.map(({ chain, name }) => (
-                          <SelectItem
-                            disabled={chain === watchForm.sourceChain}
-                            key={chain}
-                            value={chain || ""}
-                            className="text-base"
-                          >
-                            {name || chain}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
+                      placeholder="Select chain"
+                      options={chainsFromToken.map(({ chain, name }) => ({
+                        value: chain || "",
+                        label: (
+                          <ChainIcon
+                            chain={chain as SupportedChains}
+                            showName
+                            customName={name}
+                            classNames={{ icon: "size-5", name: "text-base" }}
+                          />
+                        ),
+                        disabled: chain === watchForm.sourceChain,
+                      }))}
+                    />
                     <FormMessage />
                   </FormItem>
                 )}

@@ -7,3 +7,5 @@ export * from "./clipboard";
 export * from "./confirm-dialog";
 export * from "./multiselect";
 export * from "./chain-icon";
+export * from "./select-search";
+export * from "./base64-icon";

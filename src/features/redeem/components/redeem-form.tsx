@@ -1,3 +1,9 @@
+import {
+  Base64Icon,
+  ChainIcon,
+  SelectSearch,
+  TSelectSearchGroup,
+} from "@/components/common";
 import { ConnectBtc, ConnectEvm } from "@/components/connect";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -15,15 +21,6 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { toast } from "@/components/ui/use-toast";
 import {
   useERC20,
@@ -51,6 +48,7 @@ import {
 } from "@/lib/utils";
 import { getWagmiChain, isSupportedChain } from "@/lib/wagmi";
 import { useWalletInfo, useWalletProvider } from "@/providers/wallet-provider";
+import { SupportedChains } from "@/types/chains";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   BTCFeeOpts,
@@ -100,6 +98,32 @@ export const RedeemForm = () => {
 
   const feeRates = useFeeRates(btcAddress, mempoolClient);
   const filterProtocols = protocols.filter((p) => isBtcChain(p?.asset?.chain));
+
+  const selectOptions: TSelectSearchGroup[] = useMemo(() => {
+    return filterProtocols.map(({ scalar_address, asset, chains, avatar }) => ({
+      groupLabel: (
+        <div className="flex items-center gap-2">
+          <Base64Icon url={avatar} className="size-6" />
+          <span className="font-semibold text-base">{asset?.symbol}</span>
+        </div>
+      ),
+      key: scalar_address || "",
+      items:
+        chains
+          ?.filter((c) => c.chain !== asset?.chain)
+          .map(({ name, chain }) => ({
+            value: `${asset?.symbol}-${chain}`,
+            label: (
+              <ChainIcon
+                chain={chain as SupportedChains}
+                showName
+                customName={name}
+                classNames={{ icon: "size-5", name: "text-base" }}
+              />
+            ),
+          })) || [],
+    }));
+  }, [filterProtocols]);
 
   const selectedProtocol = filterProtocols.find((p) =>
     p?.chains?.find(
@@ -441,7 +465,7 @@ export const RedeemForm = () => {
         <div className="text-right">
           <span>
             {formatBTC(availableBalance)}{" "}
-            <span className="text-muted-foreground text-sm">BTC</span>
+            <span className="text-base text-muted-foreground">BTC</span>
           </span>
           {selectedProtocol?.asset?.symbol && (
             <>
@@ -464,42 +488,24 @@ export const RedeemForm = () => {
               <FormField
                 control={control}
                 name="sourceChain"
-                render={({ field }) => (
+                render={({ field: { value, onChange } }) => (
                   <FormItem>
                     <div className="flex items-center gap-2 rounded-lg">
                       <div className="flex flex-1 flex-col gap-2">
                         <div className="flex items-center gap-2">
                           <FormLabel className="text-base">From</FormLabel>
-                          <Select
-                            onValueChange={field.onChange}
-                            defaultValue={field.value}
-                          >
-                            <FormControl>
-                              <SelectTrigger className="!text-base w-fit min-w-[160px]">
-                                <SelectValue placeholder="Select Token" />
-                              </SelectTrigger>
-                            </FormControl>
-                            <SelectContent>
-                              {filterProtocols?.map(
-                                ({ scalar_address, asset, chains }) => (
-                                  <SelectGroup key={scalar_address}>
-                                    <SelectLabel>{asset?.symbol}</SelectLabel>
-                                    {chains
-                                      ?.filter((c) => c.chain !== asset?.chain)
-                                      .map(({ name, chain }) => (
-                                        <SelectItem
-                                          key={`${asset?.symbol}-${chain}`}
-                                          value={`${asset?.symbol}-${chain}`}
-                                          className="text-base capitalize"
-                                        >
-                                          {name || chain}
-                                        </SelectItem>
-                                      ))}
-                                  </SelectGroup>
-                                ),
-                              )}
-                            </SelectContent>
-                          </Select>
+                          <SelectSearch
+                            value={value}
+                            onChange={onChange}
+                            placeholder="Select Token"
+                            options={selectOptions}
+                            classNames={{
+                              command: {
+                                group: "py-1",
+                                list: "max-h-50",
+                              },
+                            }}
+                          />
                         </div>
                       </div>
                     </div>
@@ -541,8 +547,15 @@ export const RedeemForm = () => {
             </div>
 
             {/* To Section */}
-            <p className="space-y-4 rounded-lg bg-background-secondary p-4 text-base">
-              To {selectedProtocol?.asset?.chain}
+            <p className="flex items-center gap-2 rounded-lg bg-background-secondary p-4 text-base">
+              To{" "}
+              {selectedProtocol?.asset?.chain && (
+                <ChainIcon
+                  chain={selectedProtocol?.asset?.chain as SupportedChains}
+                  showName
+                  classNames={{ wrapper: "gap-1" }}
+                />
+              )}
             </p>
 
             {/* Destination Address */}

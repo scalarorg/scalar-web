@@ -1,3 +1,9 @@
+import {
+  Base64Icon,
+  ChainIcon,
+  SelectSearch,
+  TSelectSearchGroup,
+} from "@/components/common";
 import { ConnectBtc } from "@/components/connect";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -15,17 +21,9 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { toast } from "@/components/ui/use-toast";
 import { useFeeRates, useScalarProtocols, useVault } from "@/hooks";
+import { Chains } from "@/lib/chains";
 import {
   BTC_DECIMALS,
   formatBTC,
@@ -38,6 +36,7 @@ import {
 } from "@/lib/utils";
 import { getWagmiChain, isSupportedChain } from "@/lib/wagmi";
 import { useWalletInfo, useWalletProvider } from "@/providers/wallet-provider";
+import { SupportedChains } from "@/types/chains";
 import { TProtocolDetails } from "@/types/protocol";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -47,11 +46,13 @@ import {
   hexToBytes,
 } from "@scalar-lab/bitcoin-vault";
 import * as bitcoin from "bitcoinjs-lib";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast as sonnerToast } from "sonner";
 import { Hex, hexToBytes as hexToBytesViem } from "viem";
 import { TBridgeForm, bridgeFormSchema } from "../schemas";
+
+const btcChain = Chains["bitcoin|4"];
 
 export const BridgeForm = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -248,10 +249,38 @@ export const BridgeForm = () => {
     }
   }, [transferAmountForm, walletInfo.balance, setError, clearErrors]);
 
+  const selectOptions: TSelectSearchGroup[] = useMemo(
+    () =>
+      data?.protocols
+        ? data.protocols.map(({ asset, avatar, scalar_address, chains }) => ({
+            groupLabel: (
+              <div className="flex items-center gap-2">
+                <Base64Icon url={avatar} className="size-6" />
+                <span className="font-semibold text-base">{asset?.symbol}</span>
+              </div>
+            ),
+            key: scalar_address || "",
+            items:
+              chains?.map(({ name, chain }) => ({
+                value: `${asset?.symbol}-${chain}`,
+                label: (
+                  <ChainIcon
+                    chain={chain as SupportedChains}
+                    showName
+                    customName={name}
+                    classNames={{ icon: "size-5", name: "text-base" }}
+                  />
+                ),
+              })) || [],
+          }))
+        : [],
+    [data?.protocols],
+  );
+
   return (
     <Card className="mx-auto w-full max-w-2xl border-none shadow-none">
       <CardHeader className="flex flex-row items-center justify-between px-0">
-        <CardTitle className="font-medium text-xl">Bridge</CardTitle>
+        <CardTitle className="font-medium text-2xl">Bridge</CardTitle>
       </CardHeader>
       <CardContent className="px-0">
         <Form {...form}>
@@ -262,7 +291,14 @@ export const BridgeForm = () => {
               name="transferAmount"
               render={({ field }) => (
                 <FormItem className="space-y-1 rounded-lg bg-background-secondary p-4">
-                  <FormLabel className="text-base">From</FormLabel>
+                  <div className="flex gap-2">
+                    <FormLabel className="text-base">From</FormLabel>
+                    <ChainIcon
+                      chain={btcChain.chain}
+                      showName
+                      classNames={{ wrapper: "gap-1" }}
+                    />
+                  </div>
                   <div className="flex items-center gap-2 rounded-lg">
                     <div className="flex flex-1 flex-col gap-2">
                       <FormControl>
@@ -274,7 +310,10 @@ export const BridgeForm = () => {
                         />
                       </FormControl>
                     </div>
-                    <div className="font-medium text-base">BTC</div>
+                    <div className="flex gap-1">
+                      <ChainIcon chain={btcChain.chain} />
+                      tBTC
+                    </div>
                   </div>
                   <p className="text-right text-base">
                     <span className="text-border">Available wallet:</span>{" "}
@@ -290,44 +329,24 @@ export const BridgeForm = () => {
               <FormField
                 control={form.control}
                 name="destinationChain"
-                render={({ field }) => (
+                render={({ field: { value, onChange } }) => (
                   <FormItem className="space-y-4 rounded-lg bg-background-secondary p-4">
                     <div className="flex items-center gap-2 rounded-lg">
                       <div className="flex flex-1 flex-col gap-2">
                         <div className="flex items-center gap-2">
                           <FormLabel className="text-base">To</FormLabel>
-                          <Select
-                            onValueChange={field.onChange}
-                            defaultValue={field.value}
-                          >
-                            <FormControl>
-                              <SelectTrigger className="!text-base w-fit min-w-[160px]">
-                                <SelectValue placeholder="Select Token" />
-                              </SelectTrigger>
-                            </FormControl>
-                            <SelectContent>
-                              {data?.protocols?.map(
-                                ({ scalar_address, asset, chains }) => (
-                                  <SelectGroup key={scalar_address}>
-                                    <SelectLabel className="text-base">
-                                      {asset?.symbol}
-                                    </SelectLabel>
-                                    {chains
-                                      ?.filter((c) => c.chain !== asset?.chain)
-                                      .map(({ name, chain }) => (
-                                        <SelectItem
-                                          key={`${asset?.symbol}-${chain}`}
-                                          value={`${asset?.symbol}-${chain}`}
-                                          className="text-base capitalize"
-                                        >
-                                          {name || chain}
-                                        </SelectItem>
-                                      ))}
-                                  </SelectGroup>
-                                ),
-                              )}
-                            </SelectContent>
-                          </Select>
+                          <SelectSearch
+                            value={value}
+                            onChange={onChange}
+                            placeholder="Select Token"
+                            options={selectOptions}
+                            classNames={{
+                              command: {
+                                group: "py-1",
+                                list: "max-h-50",
+                              },
+                            }}
+                          />
                         </div>
                         <span className="text-base">
                           {watch("transferAmount") || 0}
