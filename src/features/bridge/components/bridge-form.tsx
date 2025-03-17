@@ -281,7 +281,7 @@ export const BridgeForm = () => {
   return (
     <Card className="mx-auto w-full max-w-2xl border-none shadow-none">
       <CardHeader className="flex flex-row items-center justify-between px-0">
-        <CardTitle className="font-medium text-2xl">Bridge</CardTitle>
+        <CardTitle className="font-bold text-xl">Bridge</CardTitle>
       </CardHeader>
       <CardContent className="px-0">
         <Form {...form}>
