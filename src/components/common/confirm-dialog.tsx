@@ -366,8 +366,8 @@ const alertDialogTitle = {
 export const confirmDialogConfig: Record<ConfirmType, ConfirmOptions> = {
   delete: {
     icon: (
-      <IconWrapper className="bg-red-100">
-        <Trash2 className="size-5 text-red-500" />
+      <IconWrapper>
+        <Trash2 className="size-5 text-fail" />
       </IconWrapper>
     ),
     confirmButton: {
@@ -377,8 +377,8 @@ export const confirmDialogConfig: Record<ConfirmType, ConfirmOptions> = {
   },
   warning: {
     icon: (
-      <IconWrapper className="bg-primary-100">
-        <CircleAlert className="size-5 text-yellow-500" />
+      <IconWrapper>
+        <CircleAlert className="size-5 text-pending" />
       </IconWrapper>
     ),
     confirmButton: {
@@ -388,8 +388,8 @@ export const confirmDialogConfig: Record<ConfirmType, ConfirmOptions> = {
   },
   successs: {
     icon: (
-      <IconWrapper className="bg-green-100">
-        <CircleCheck className="size-5 text-green-500" />
+      <IconWrapper>
+        <CircleCheck className="size-5 text-success" />
       </IconWrapper>
     ),
     confirmButton: {

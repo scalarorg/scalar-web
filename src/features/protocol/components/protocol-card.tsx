@@ -30,11 +30,15 @@ export const ProtocolCard = ({ data }: ProtocolCardProps) => {
         <ChainIcon
           chain={asset?.chain as SupportedChains}
           showName
-          classNames={{ wrapper: "ml-auto w-fit shrink-0", icon: "size-5" }}
+          classNames={{
+            wrapper: "ml-auto w-fit shrink-0",
+            icon: "size-5",
+            name: "text-sm font-semibold",
+          }}
         />
         <Badge
           variant={variant}
-          className={cn("px-4 text-base", className)}
+          className={cn("px-4 text-sm", className)}
           ghost
         >
           {label}
@@ -47,14 +51,19 @@ export const ProtocolCard = ({ data }: ProtocolCardProps) => {
             className="flex w-full items-center gap-5 px-3 py-2"
           >
             <div className="flex-1 overflow-hidden">
-              <Clipboard label={chain.address} text={chain.address || ""} />
+              <Clipboard
+                label={chain.address}
+                text={chain.address || ""}
+                classNames={{ text: "text-text-link" }}
+              />
             </div>
             <ChainIcon
               chain={chain.chain as SupportedChains}
               showName
               classNames={{
-                name: "text-text-primary-500",
-                wrapper: "w-[130px]",
+                name: "text-text-primary-500 text-xs",
+                wrapper: "w-[110px]",
+                icon: "size-4",
               }}
             />
           </div>

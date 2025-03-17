@@ -126,12 +126,13 @@ export const useConnectKeplr = () => {
   const queryClient = useQueryClient();
 
   const { mutate, mutateAsync, ...result } = useMutation({
+    mutationKey: ["keplr-connect", config.chainId],
     mutationFn: async () => {
       await connectKeplr(keplr, config);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ["keplr-client", config.chainId, keplr],
+        queryKey: ["keplr-client", config.chainId],
       });
     },
   });
@@ -143,6 +144,7 @@ export const useDisconnectKeplr = () => {
   const { config, keplr } = useKeplr();
   const queryClient = useQueryClient();
   const { mutate, mutateAsync, ...result } = useMutation({
+    mutationKey: ["keplr-disconnect", config.chainId],
     mutationFn: async () => {
       if (keplr) {
         await keplr.disable(config.chainId);
@@ -152,7 +154,7 @@ export const useDisconnectKeplr = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ["keplr-client", config.chainId, keplr],
+        queryKey: ["keplr-client", config.chainId],
       });
     },
   });

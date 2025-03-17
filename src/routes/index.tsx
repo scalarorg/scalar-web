@@ -1,3 +1,6 @@
+import BridgeIcon from "@/assets/icons/bridge.svg";
+import RedeemIcon from "@/assets/icons/redeem.svg";
+import TransfersIcon from "@/assets/icons/transfers.svg";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { BridgeForm } from "@/features/bridge";
 import { RedeemForm } from "@/features/redeem";
@@ -13,21 +16,25 @@ const tabs: {
   name: string;
   value: string;
   content: ReactNode;
+  icon: ReactNode;
 }[] = [
   {
     name: "Bridge",
     value: "bridge",
     content: <BridgeForm />,
+    icon: <BridgeIcon className="!w-4.5" />,
   },
   {
     name: "Transfers",
     value: "transfers",
     content: <TransfersForm />,
+    icon: <TransfersIcon className="!w-3.5" />,
   },
   {
     name: "Redeem",
     value: "redeem",
     content: <RedeemForm />,
+    icon: <RedeemIcon className="!w-4.5" />,
   },
 ] as const;
 
@@ -38,13 +45,14 @@ function Home() {
         defaultValue={tabs[0].value}
         className="min-w-[500px] max-w-[800px]"
       >
-        <TabsList className="h-[50px] w-full gap-2 bg-background-secondary">
-          {tabs.map(({ name, value }) => (
+        <TabsList className="h-fit w-full gap-3 bg-background-secondary p-2.5">
+          {tabs.map(({ name, value, icon }) => (
             <TabsTrigger
               value={value}
               key={value}
-              className="bg-white px-6 font-normal text-base"
+              className="flex-1 bg-white px-6 font-normal text-base"
             >
+              {icon}
               {name}
             </TabsTrigger>
           ))}

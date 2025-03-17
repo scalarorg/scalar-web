@@ -19,6 +19,7 @@ import {
   useGatewayContract,
   useScalarProtocols,
 } from "@/hooks";
+import { Chains } from "@/lib/chains";
 import {
   getChainID,
   handleTokenApproval,
@@ -294,6 +295,7 @@ export const TransfersForm = () => {
                         onChange(newValue);
                       }}
                       placeholder="Select Token"
+                      searchByHideValue
                       options={filterProtocols.map(
                         ({ asset, scalar_address, avatar }) => ({
                           value: scalar_address || "",
@@ -305,6 +307,7 @@ export const TransfersForm = () => {
                               </span>
                             </div>
                           ),
+                          hideValue: asset?.symbol,
                         }),
                       )}
                     />
@@ -329,10 +332,8 @@ export const TransfersForm = () => {
                   </FormItem>
                 )}
               />
-              <p className="text-right text-base">
-                <span className="text-text-primary-500/50">
-                  Available wallet:
-                </span>{" "}
+              <p className="text-right text-base text-text-primary-500/50">
+                <span>Available wallet:</span>{" "}
                 <span>
                   {!isNil(sourceChainBalance)
                     ? formatUnits(sourceChainBalance, Number(decimals))
@@ -355,6 +356,7 @@ export const TransfersForm = () => {
                       value={value}
                       onChange={onChange}
                       placeholder="Select chain"
+                      searchByHideValue
                       options={chainsFromToken.map(({ chain, name }) => ({
                         value: chain || "",
                         label: (
@@ -366,6 +368,8 @@ export const TransfersForm = () => {
                           />
                         ),
                         disabled: chain === watchForm.destinationChain,
+                        hideValue:
+                          name || Chains[chain as SupportedChains]?.name,
                       }))}
                     />
                     <FormMessage />
@@ -397,6 +401,7 @@ export const TransfersForm = () => {
                       onChange={onChange}
                       value={value}
                       placeholder="Select chain"
+                      searchByHideValue
                       options={chainsFromToken.map(({ chain, name }) => ({
                         value: chain || "",
                         label: (
@@ -408,6 +413,8 @@ export const TransfersForm = () => {
                           />
                         ),
                         disabled: chain === watchForm.sourceChain,
+                        hideValue:
+                          name || Chains[chain as SupportedChains]?.name,
                       }))}
                     />
                     <FormMessage />

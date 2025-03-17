@@ -18,7 +18,11 @@ import {
 } from "@/features/protocol";
 import { useScalarProtocols } from "@/hooks";
 import { cn, fuzzyMatch } from "@/lib/utils";
-import { useAccount, useConnectKeplr } from "@/providers/keplr-provider";
+import {
+  useAccount,
+  useConnectKeplr,
+  useKeplrClient,
+} from "@/providers/keplr-provider";
 import { fromBech32 } from "@cosmjs/encoding";
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { isEmpty, range } from "lodash";
@@ -30,10 +34,13 @@ export const Route = createFileRoute("/protocols/")({
 });
 
 function Protocols() {
+  const { data: client } = useKeplrClient();
   const { isConnected, account } = useAccount();
   const { connect } = useConnectKeplr();
   const [open, setOpen] = useState(false);
   const { q } = Route.useSearch();
+
+  const isConnect = client && isConnected;
 
   const { data, isLoading } = useScalarProtocols();
 
@@ -75,17 +82,17 @@ function Protocols() {
               "bg-[#EDF1FF] text-text-primary-500",
             )}
           >
-            {isConnected ? <NoteIcon /> : <WalletIcon />}
+            {isConnect ? <NoteIcon /> : <WalletIcon />}
           </div>
           <p className="mr-auto text-text-primary-500">
-            {isConnected
+            {isConnect
               ? isOwnCreated
                 ? "You have created a protocol."
                 : "Rigister your protocol."
               : "Connect your wallet to register protocol."}
           </p>
           <Dialog open={open} onOpenChange={setOpen}>
-            {isConnected ? (
+            {isConnect ? (
               isOwnCreated ? (
                 <Link to="/protocols/me">
                   <Button size="lg">View your protocol</Button>

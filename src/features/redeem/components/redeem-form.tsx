@@ -30,6 +30,7 @@ import {
   useScalarProtocols,
   useVault,
 } from "@/hooks";
+import { Chains } from "@/lib/chains";
 import {
   decodeScalarBytesToString,
   decodeScalarBytesToUint8Array,
@@ -121,6 +122,7 @@ export const RedeemForm = () => {
                 classNames={{ icon: "size-5", name: "text-base" }}
               />
             ),
+            hideValue: name || Chains[chain as SupportedChains]?.name,
           })) || [],
     }));
   }, [filterProtocols]);
@@ -470,7 +472,7 @@ export const RedeemForm = () => {
           {selectedProtocol?.asset?.symbol && (
             <>
               <span className="mx-2">|</span>
-              <span className="text-muted-foreground text-sm">
+              <span className="text-base text-muted-foreground">
                 {selectedProtocol?.asset?.symbol}
               </span>
             </>
@@ -499,6 +501,7 @@ export const RedeemForm = () => {
                             onChange={onChange}
                             placeholder="Select Token"
                             options={selectOptions}
+                            searchByHideValue
                             classNames={{
                               command: {
                                 group: "py-1",
@@ -530,11 +533,9 @@ export const RedeemForm = () => {
                   </FormItem>
                 )}
               />
-              <p className="text-right text-base">
-                <span className="text-text-primary-500/50">
-                  Available wallet:
-                </span>{" "}
-                <span className="mr-1 border-black border-r-2 pr-1">
+              <p className="text-right text-base text-text-primary-500/50">
+                <span>Available wallet:</span>{" "}
+                <span className="mr-1 border-text-primary-500/50 border-r-2 pr-1">
                   {formatBTC(availableBalance)} BTC
                 </span>
                 <span>

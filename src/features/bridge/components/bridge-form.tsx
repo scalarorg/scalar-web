@@ -271,6 +271,7 @@ export const BridgeForm = () => {
                     classNames={{ icon: "size-5", name: "text-base" }}
                   />
                 ),
+                hideValue: name || Chains[chain as SupportedChains]?.name,
               })) || [],
           }))
         : [],
@@ -315,11 +316,8 @@ export const BridgeForm = () => {
                       tBTC
                     </div>
                   </div>
-                  <p className="text-right text-base">
-                    <span className="text-text-primary-500/50">
-                      Available wallet:
-                    </span>{" "}
-                    <span>{formatBTC(walletInfo.balance)} BTC</span>
+                  <p className="text-right text-base text-text-primary-500/50">
+                    Available wallet: {formatBTC(walletInfo.balance)} BTC
                   </p>
                   <FormMessage />
                 </FormItem>
@@ -348,6 +346,7 @@ export const BridgeForm = () => {
                                 list: "max-h-50",
                               },
                             }}
+                            searchByHideValue
                           />
                         </div>
                         <span className="text-base">

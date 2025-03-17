@@ -6,10 +6,12 @@ import {
   useAccount,
   useConnectKeplr,
   useDisconnectKeplr,
+  useKeplrClient,
 } from "@/providers/keplr-provider";
 import { Power } from "lucide-react";
 
 export const ConnectScalar = () => {
+  const { data: client } = useKeplrClient();
   const { account, isConnected } = useAccount();
   const { connect } = useConnectKeplr();
   const { disconnect } = useDisconnectKeplr();
@@ -19,7 +21,7 @@ export const ConnectScalar = () => {
 
   return (
     <div className={cn("flex items-center gap-1", !isProtocolPage && "hidden")}>
-      {isConnected ? (
+      {client && isConnected ? (
         <>
           <Clipboard
             label={account?.address || ""}

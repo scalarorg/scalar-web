@@ -25,6 +25,7 @@ import {
   networkFormSchema,
 } from "@/features/protocol";
 import { useScalarChains, useScalarOwnProtocol } from "@/hooks";
+import { Chains } from "@/lib/chains";
 import { CreateDeployTokenParams } from "@/lib/scalar/params";
 import { cn, isBtcChain, parseKeplrError, shortenText } from "@/lib/utils";
 import {
@@ -36,8 +37,9 @@ import { SupportedChains } from "@/types/chains";
 import { fromBech32 } from "@cosmjs/encoding";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useQueryClient } from "@tanstack/react-query";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { isArray, isEmpty } from "lodash";
+import { CircleAlert } from "lucide-react";
 import { Fragment, ReactNode, useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -82,6 +84,7 @@ function OwnProtocol() {
   const { isConnected, account } = useAccount();
   const { connect } = useConnectKeplr();
   const [formLoading, setFormLoading] = useState(false);
+  const navigate = useNavigate();
 
   const accountAddress = account?.address
     ? Buffer.from(fromBech32(account?.address).data).toString("base64")
@@ -96,6 +99,8 @@ function OwnProtocol() {
   } = useScalarOwnProtocol(accountAddress);
 
   const protocolData: TColumItem[] = useMemo(() => {
+    const address = protocol?.chains?.filter((c) => c.address);
+
     return isEmpty(protocol)
       ? []
       : [
@@ -119,31 +124,38 @@ function OwnProtocol() {
           },
           {
             title: "Address",
-            items: protocol?.chains
-              ?.filter((c) => c.address)
-              .map(({ address }) => (
-                <div key={address}>
-                  <Clipboard label={address} text={address!} />
+            items: isEmpty(address) ? (
+              <p>No data</p>
+            ) : (
+              address?.map(({ address }) => (
+                <div key={address} className="max-w-[140px]">
+                  <Clipboard label="Copyyyyyyyyyyyyyyyy" text={address!} />
                 </div>
-              )),
+              ))
+            ),
           },
           {
             title: "Network",
-            items: protocol?.chains?.map((c) => (
-              <ChainIcon
-                key={c.chain}
-                chain={c.chain as SupportedChains}
-                showName
-                customName={c.name}
-              />
-            )),
+            items: isEmpty(protocol?.chains) ? (
+              <p>No data</p>
+            ) : (
+              protocol?.chains?.map((c) => (
+                <ChainIcon
+                  key={c.chain}
+                  chain={c.chain as SupportedChains}
+                  showName
+                  customName={c.name}
+                />
+              ))
+            ),
           },
           {
             title: "Status",
             items: (
               <Badge
                 variant={PROTOCOL_STATUS.OBJECT[protocol?.status].variant}
-                className="px-4"
+                className="px-4 text-sm"
+                ghost
               >
                 {PROTOCOL_STATUS.OBJECT[protocol?.status].label}
               </Badge>
@@ -194,7 +206,7 @@ function OwnProtocol() {
       const txHash = result.transactionHash;
 
       queryClient.invalidateQueries({
-        queryKey: ["get", "/scalar/protocol/v1beta1/protocol"],
+        queryKey: ["get", "/scalar/protocol/v1beta1"],
       });
       reset();
 
@@ -213,6 +225,8 @@ function OwnProtocol() {
           </a>
         </p>,
       );
+
+      navigate({ to: "/protocols" });
     } catch (error) {
       const parsedError = parseKeplrError((error as Error).message || "");
 
@@ -235,15 +249,16 @@ function OwnProtocol() {
   const handleConfirm = async () => {
     const isConfirmed = await confirm({
       ...confirmDialogConfig.warning,
+      icon: <CircleAlert className="size-5 text-primary" />,
       title: "Network Selection Confirmation",
       description: (
         <div className="flex flex-col gap-2">
-          <p className="text-center">
+          <p>
             Once you choose a network for this protocol and save your selection,
             it will be <span className="font-semibold">permanent</span>. You
             won’t be able to remove or change it later.
           </p>
-          <p className="text-center text-border">
+          <p className="text-secondary-500">
             Please double-check your choice before proceeding.
           </p>
         </div>
@@ -261,6 +276,10 @@ function OwnProtocol() {
       {isConnected ? (
         isLoading ? (
           <Skeleton className="h-[100px] w-full" />
+        ) : isEmpty(protocol) ? (
+          <p className="mt-5 text-center font-semibold text-3xl text-primary">
+            You don't have any protocol yet.
+          </p>
         ) : (
           <div className="flex gap-5 rounded-lg bg-background-secondary p-5">
             {protocolData.map((item) => (
@@ -287,14 +306,6 @@ function OwnProtocol() {
       {isConnected && !isEmpty(protocol) && (
         <Card className="p-0">
           <CardContent className="flex flex-col gap-4 p-4">
-            <p className="text-base">
-              Protocol{" "}
-              <span className="font-semibold text-primary">
-                {protocol?.name}
-              </span>{" "}
-              is currently on Network.
-              <span>{curentNetwork?.join(", ")}</span>
-            </p>
             <div className="flex gap-5">
               <p className="text-base leading-[36px]">
                 Select a network to add for the selected protocol.
@@ -315,8 +326,9 @@ function OwnProtocol() {
                           value={value}
                           onChange={onChange}
                           placeholder="Select Network"
+                          searchByHideValue
                           options={
-                            filterChains?.map((name) => ({
+                            filterChains?.map((name = "") => ({
                               label: (
                                 <ChainIcon
                                   chain={name as SupportedChains}
@@ -325,6 +337,7 @@ function OwnProtocol() {
                               ),
                               value: name,
                               disabled: curentNetwork?.includes(name),
+                              hideValue: Chains[name as SupportedChains]?.name,
                             })) || []
                           }
                         />

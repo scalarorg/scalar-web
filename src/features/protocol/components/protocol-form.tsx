@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useScalarChains, useScalarCustodianGroups } from "@/hooks";
+import { Chains } from "@/lib/chains";
 import {
   CreateProtocolParams,
   LiquidityModelParams,
@@ -237,7 +238,7 @@ export const ProtocolForm = ({ setOpen }: Props) => {
                 control={control}
                 name="token_name"
                 render={({ field }) => (
-                  <FormItem className="flex-1">
+                  <FormItem className="h-fit flex-1">
                     <FormLabel>Token</FormLabel>
                     <FormControl>
                       <Input
@@ -254,7 +255,7 @@ export const ProtocolForm = ({ setOpen }: Props) => {
                 control={control}
                 name="token_decimals"
                 render={({ field }) => (
-                  <FormItem className="flex-1">
+                  <FormItem className="h-fit flex-1">
                     <FormLabel>Decimals</FormLabel>
                     <FormControl>
                       <Input
@@ -277,7 +278,7 @@ export const ProtocolForm = ({ setOpen }: Props) => {
                 control={control}
                 name="token_capacity"
                 render={({ field }) => (
-                  <FormItem className="flex-1">
+                  <FormItem className="h-fit flex-1">
                     <FormLabel>Capacity</FormLabel>
                     <FormControl>
                       <Input
@@ -294,7 +295,7 @@ export const ProtocolForm = ({ setOpen }: Props) => {
                 control={control}
                 name="symbol"
                 render={({ field }) => (
-                  <FormItem className="flex-1">
+                  <FormItem className="h-fit flex-1">
                     <FormLabel>Symbol</FormLabel>
                     <FormControl>
                       <Input
@@ -311,7 +312,7 @@ export const ProtocolForm = ({ setOpen }: Props) => {
                 control={control}
                 name="token_daily_mint_limit"
                 render={({ field }) => (
-                  <FormItem className="flex-1">
+                  <FormItem className="h-fit flex-1">
                     <FormLabel>Daily mint limit</FormLabel>
                     <FormControl>
                       <Input
@@ -371,10 +372,12 @@ export const ProtocolForm = ({ setOpen }: Props) => {
                   value={value}
                   onChange={onChange}
                   placeholder="Select custodian group"
+                  searchByHideValue
                   options={
-                    groups?.map(({ uid, name }) => ({
-                      value: uid || "",
-                      label: name || "",
+                    groups?.map(({ uid = "", name = "" }) => ({
+                      value: uid,
+                      label: name,
+                      hideValue: name,
                     })) || []
                   }
                 />
@@ -394,12 +397,14 @@ export const ProtocolForm = ({ setOpen }: Props) => {
                   value={value}
                   onChange={onChange}
                   placeholder="Select chain"
+                  searchByHideValue
                   options={
-                    filterChains?.map((name) => ({
-                      value: name || "",
+                    filterChains?.map((name = "") => ({
+                      value: name,
                       label: (
                         <ChainIcon chain={name as SupportedChains} showName />
                       ),
+                      hideValue: name || Chains[name as SupportedChains]?.name,
                     })) || []
                   }
                 />

@@ -134,7 +134,8 @@ export function TablePagination<TData>({
                   }}
                   className={cn(
                     "bg-hovering",
-                    pageNumber === page && "bg-primary text-white",
+                    pageNumber === page &&
+                      "bg-primary text-white hover:text-white",
                     pageNumber === ELLIPSIS && "bg-transparent",
                   )}
                   size="icon"

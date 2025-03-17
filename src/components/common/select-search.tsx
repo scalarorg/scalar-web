@@ -13,7 +13,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { cn } from "@/lib/utils";
+import { cn, fuzzyMatch } from "@/lib/utils";
 import { CheckIcon, ChevronDownIcon } from "lucide-react";
 import { ReactNode, useState } from "react";
 
@@ -21,6 +21,7 @@ export type TSelectSearchOptionItem = {
   value: string;
   label: ReactNode;
   disabled?: boolean;
+  hideValue?: string;
 };
 
 export type TSelectSearchGroup = {
@@ -47,12 +48,15 @@ export type TSelectSearchProps = {
       item: string;
     }>;
   }>;
+  searchByHideValue?: boolean;
 };
 
 // Type Guard
 const isGroup = (option: TSelectSearchOption): option is TSelectSearchGroup => {
   return (option as TSelectSearchGroup).items !== undefined;
 };
+
+const SPECIAL_CHARACTER = "--";
 
 export const SelectSearch = ({
   value,
@@ -63,10 +67,20 @@ export const SelectSearch = ({
   searchPlaceholder = "Search",
   options,
   classNames,
+  searchByHideValue = false,
 }: TSelectSearchProps) => {
   const [open, setOpen] = useState<boolean>(false);
 
   const hasGroupLabel = options.some((option) => isGroup(option));
+
+  const returnNewValue = (value: string, hideValue = "") =>
+    searchByHideValue ? `${value}${SPECIAL_CHARACTER}${hideValue}` : value;
+
+  const handleChange = (value: string) => {
+    const [newValue] = value.split(SPECIAL_CHARACTER);
+    onChange(newValue);
+    setOpen(false);
+  };
 
   return (
     <div className={cn("*:not-first:mt-2", classNames?.wrapper)}>
@@ -128,10 +142,32 @@ export const SelectSearch = ({
           className="main-shadow w-full min-w-[var(--radix-popper-anchor-width)] border-none p-0"
           align="start"
         >
-          <Command>
+          <Command
+            filter={(value, search) => {
+              const newValue = searchByHideValue
+                ? value.split(SPECIAL_CHARACTER)[1]
+                : value;
+              return fuzzyMatch(newValue || "", search) ? 1 : 0;
+            }}
+          >
             <CommandInput
               placeholder={searchPlaceholder}
-              wrapperClassName="flex-row-reverse m-2 mb-0 py-1 border border-secondary-500 rounded-lg main-shadow-inset"
+              wrapperClassName={cn(
+                // Flexbox
+                "flex flex-row-reverse",
+
+                // Margin
+                "m-2 mb-0",
+
+                // Padding
+                "py-1",
+
+                // Border
+                "rounded-lg border border-secondary-500",
+
+                // Box Shadow
+                "shadow-inner",
+              )}
               className="h-6 text-base"
             />
             <CommandList className={classNames?.command?.list}>
@@ -148,11 +184,8 @@ export const SelectSearch = ({
                         {option.items.map((item) => (
                           <CommandItem
                             key={item.value}
-                            value={item.value}
-                            onSelect={(currentValue) => {
-                              onChange(currentValue);
-                              setOpen(false);
-                            }}
+                            value={returnNewValue(item.value, item.hideValue)}
+                            onSelect={handleChange}
                             className={cn(
                               "ml-6 cursor-pointer",
                               classNames?.command?.item,
@@ -175,11 +208,8 @@ export const SelectSearch = ({
                       !isGroup(option) && (
                         <CommandItem
                           key={option.value}
-                          value={option.value}
-                          onSelect={(currentValue) => {
-                            onChange(currentValue);
-                            setOpen(false);
-                          }}
+                          value={returnNewValue(option.value, option.hideValue)}
+                          onSelect={handleChange}
                           className={cn(
                             "cursor-pointer",
                             classNames?.command?.item,
