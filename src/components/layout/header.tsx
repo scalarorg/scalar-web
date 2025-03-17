@@ -37,12 +37,20 @@ const links: (
       icon: ReactNode;
     }
 )[] = [
-  { to: "/", label: "BRIDGE", icon: <ThunderIcon /> },
-  { to: "/protocols", label: "PROTOCOL", icon: <ProtocolIcon /> },
+  {
+    to: "/",
+    label: "BRIDGE",
+    icon: <ThunderIcon className="h-[25px] w-auto" />,
+  },
+  {
+    to: "/protocols",
+    label: "PROTOCOL",
+    icon: <ProtocolIcon className="h-[25px] w-auto" />,
+  },
   {
     pathname: "/explore",
     label: "EXPLORER",
-    icon: <WrapIcon />,
+    icon: <WrapIcon className="h-[25px] w-auto" />,
     subLinks: [
       { to: "/explore/bridge", label: "Bridge" },
       { to: "/explore/transfer", label: "Transfer" },
@@ -57,8 +65,8 @@ export const Header = ({ extra }: Props) => {
 
   return (
     <header className="container flex items-center justify-between gap-5 py-6">
-      <div className="flex items-center gap-[30px]">
-        <ScaleIcon />
+      <div className="flex items-center gap-[20px] md:gap-[30px]">
+        <ScaleIcon className="mr-[40px] md:mr-[60px]" />
         {links.map((link) => {
           if ("to" in link) {
             return (
