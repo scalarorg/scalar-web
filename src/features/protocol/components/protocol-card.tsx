@@ -48,7 +48,7 @@ export const ProtocolCard = ({ data }: ProtocolCardProps) => {
         {chains?.map((chain) => (
           <div
             key={chain.address}
-            className="flex w-full items-center gap-5 px-3 py-2"
+            className="flex w-full items-center gap-5 py-2"
           >
             <div className="flex-1 overflow-hidden">
               <Clipboard
