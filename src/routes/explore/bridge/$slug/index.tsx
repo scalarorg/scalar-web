@@ -1,5 +1,9 @@
 import { Heading } from "@/components/common";
-import { TransactionInfoCard } from "@/features/explore/components";
+import {
+  TransactionInfoCard,
+  TransactionInfoCardSkeleton,
+} from "@/features/explore/components";
+import { useExploreQuery } from "@/features/explore/hooks/use-explore-query";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/explore/bridge/$slug/")({
@@ -7,11 +11,18 @@ export const Route = createFileRoute("/explore/bridge/$slug/")({
 });
 
 function RouteComponent() {
+  const { slug } = Route.useParams();
+  const { data, isLoading } = useExploreQuery.useDetail(slug, "bridge");
+
   return (
     <div className="flex flex-col gap-5 py-[60px]">
       <Heading link={{ to: "/explore/bridge" }}>Transaction detail</Heading>
       <div className="flex flex-col gap-5">
-        <TransactionInfoCard />
+        {isLoading ? (
+          <TransactionInfoCardSkeleton />
+        ) : (
+          <TransactionInfoCard data={data} />
+        )}
       </div>
     </div>
   );

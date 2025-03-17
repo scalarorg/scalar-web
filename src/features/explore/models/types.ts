@@ -90,3 +90,5 @@ export type TExploreStatisticData = {
   top_destination_chains_by_tx: TStatisticDestinationItem[];
   top_destination_chains_by_volume: TStatisticDestinationItem[];
 };
+
+export type TExploreDetail = { command_id: string } & TExplore;
