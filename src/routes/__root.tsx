@@ -7,10 +7,10 @@ export const Route = createRootRoute({
     <div className="flex h-screen flex-col">
       <Header
         extra={
-          <>
+          <div className="flex items-center gap-2">
             <ConnectDropdown />
             <ConnectScalar />
-          </>
+          </div>
         }
       />
       <hr className="shadow-md" />

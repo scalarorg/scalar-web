@@ -17,10 +17,10 @@ export const ConnectScalar = () => {
   const { disconnect } = useDisconnectKeplr();
   const pathname = usePathname();
 
-  const isProtocolPage = pathname.includes("/protocols");
+  const isHidden = pathname.includes("/explore");
 
   return (
-    <div className={cn("flex items-center gap-1", !isProtocolPage && "hidden")}>
+    <div className={cn("flex items-center gap-1", isHidden && "hidden")}>
       {client && isConnected ? (
         <>
           <Clipboard
