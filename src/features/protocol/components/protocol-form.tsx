@@ -113,6 +113,7 @@ export const ProtocolForm = ({ setOpen }: Props) => {
         },
         avatar: extractBase64Data(avatar),
       };
+      console.log("newValues", newValues);
 
       const result = await scalarClient.raw.createProtocol(
         account.address,
@@ -375,7 +376,7 @@ export const ProtocolForm = ({ setOpen }: Props) => {
                   searchByHideValue
                   options={
                     groups?.map(({ uid = "", name = "" }) => ({
-                      value: uid,
+                      value: Buffer.from(Uint8Array.from(uid)).toString("hex"),
                       label: name,
                       hideValue: name,
                     })) || []

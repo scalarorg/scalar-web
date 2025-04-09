@@ -23,12 +23,14 @@ export default defineConfig({
       // The function to generate import names of top-level await promise in each chunk module
       promiseImportName: i => `__tla_${i}`
     }),
+   
     nodePolyfills({
       globals: {
         Buffer: true,
         global: true,
         process: true,
       },
+      protocolImports: true,
     }),
     svgr({
       // svgr options: https://react-svgr.com/docs/options/
@@ -44,6 +46,9 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
+      buffer: 'vite-plugin-node-polyfills/polyfills/buffer',
+      process: 'vite-plugin-node-polyfills/polyfills/process',
+      util: 'vite-plugin-node-polyfills/polyfills/util',
     },
   },
   optimizeDeps: {
@@ -56,6 +61,9 @@ export default defineConfig({
     target: 'esnext',
     commonjsOptions: {
       transformMixedEsModules: true
+    },
+    rollupOptions: {
+      external: ['vite-plugin-node-polyfills/shims/buffer', 'vite-plugin-node-polyfills/shims/process']
     }
   }
 });

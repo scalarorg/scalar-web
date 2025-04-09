@@ -37,7 +37,7 @@ import {
 import { getWagmiChain, isSupportedChain } from "@/lib/wagmi";
 import { useWalletInfo, useWalletProvider } from "@/providers/wallet-provider";
 import { SupportedChains } from "@/types/chains";
-import { TProtocolDetails } from "@/types/protocol";
+import { TProtocolDetails } from "@/types/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   ChainType,
@@ -238,7 +238,7 @@ export const BridgeForm = () => {
     if (
       transferAmountForm &&
       parseSats(Number(transferAmountForm).toFixed(BTC_DECIMALS)) >
-        Number(walletInfo.balance)
+      Number(walletInfo.balance)
     ) {
       setError("transferAmount", {
         type: "manual",
@@ -253,27 +253,27 @@ export const BridgeForm = () => {
     () =>
       data?.protocols
         ? data.protocols.map(({ asset, avatar, scalar_address, chains }) => ({
-            groupLabel: (
-              <div className="flex items-center gap-2">
-                <Base64Icon url={avatar} className="size-6" />
-                <span className="font-semibold text-base">{asset?.symbol}</span>
-              </div>
-            ),
-            key: scalar_address || "",
-            items:
-              chains?.map(({ name, chain }) => ({
-                value: `${asset?.symbol}-${chain}`,
-                label: (
-                  <ChainIcon
-                    chain={chain as SupportedChains}
-                    showName
-                    customName={name}
-                    classNames={{ icon: "size-5", name: "text-base" }}
-                  />
-                ),
-                hideValue: name || Chains[chain as SupportedChains]?.name,
-              })) || [],
-          }))
+          groupLabel: (
+            <div className="flex items-center gap-2">
+              <Base64Icon url={avatar} className="size-6" />
+              <span className="font-semibold text-base">{asset?.symbol}</span>
+            </div>
+          ),
+          key: scalar_address || "",
+          items:
+            chains?.map(({ name, chain }) => ({
+              value: `${asset?.symbol}-${chain}`,
+              label: (
+                <ChainIcon
+                  chain={chain as SupportedChains}
+                  showName
+                  customName={name}
+                  classNames={{ icon: "size-5", name: "text-base" }}
+                />
+              ),
+              hideValue: name || Chains[chain as SupportedChains]?.name,
+            })) || [],
+        }))
         : [],
     [data?.protocols],
   );

@@ -9,3 +9,6 @@ export type LiquidityModelParams = NonNullable<
 
 export type CreateDeployTokenParams =
   operations["CreateDeployToken"]["requestBody"]["content"]["application/json"];
+
+export type ReserveRedeemUtxoParams =
+  operations["ReserveRedeemUtxo"]["requestBody"]["content"]["application/json"];

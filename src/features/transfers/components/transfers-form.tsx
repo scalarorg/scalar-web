@@ -30,7 +30,7 @@ import {
 import { getWagmiChain, isSupportedChain } from "@/lib/wagmi";
 import { useWalletProvider } from "@/providers/wallet-provider";
 import { SupportedChains } from "@/types/chains";
-import { TProtocolDetails } from "@/types/protocol";
+import { TProtocolDetails } from "@/types/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useQuery } from "@tanstack/react-query";
 import { isNil, keyBy } from "lodash";

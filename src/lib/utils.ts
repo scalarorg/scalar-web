@@ -1,12 +1,12 @@
 import { ChainTypes } from "@/types/chains";
-import { TCustodian, TProtocolChain } from "@/types/protocol";
+import { TCustodian, TProtocolChain } from "@/types/types";
 import { type ClassValue, clsx } from "clsx";
 import dayjs from "dayjs";
 import { isHexString } from "ethers";
 import { keyBy } from "lodash";
 import numeral from "numeral";
 import { twMerge } from "tailwind-merge";
-import { formatUnits, parseUnits } from "viem";
+import { formatUnits, maxUint256, parseUnits } from "viem";
 import { decodeScalarBytesToUint8Array } from "./scalar";
 
 export function cn(...inputs: ClassValue[]) {
@@ -81,7 +81,7 @@ export const handleTokenApproval = async (
     return;
   }
   try {
-    const approvalTx = await approveERC20(gatewayAddress, transferAmount);
+    const approvalTx = await approveERC20(gatewayAddress, maxUint256);
     if (!approvalTx) throw new Error("Failed to create approval transaction");
 
     const approvalConfirmed = await Promise.race([

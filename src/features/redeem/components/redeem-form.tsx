@@ -28,13 +28,18 @@ import {
   useGateway,
   useGatewayContract,
   useScalarProtocols,
+  useScalarStandaloneCommandResult,
+  useStandaloneCommand,
   useVault,
 } from "@/hooks";
 import { Chains } from "@/lib/chains";
+import { useEthersProvider, useEthersSigner } from "@/lib/ethers";
 import {
   decodeScalarBytesToString,
   decodeScalarBytesToUint8Array,
 } from "@/lib/scalar";
+import { EventType } from "@/lib/scalar/events";
+import { ReserveRedeemUtxoParams } from "@/lib/scalar/params";
 import {
   EMPTY_ADDRESS,
   VOUT_INDEX_OF_LOCKING_OUTPUT,
@@ -48,11 +53,11 @@ import {
   validateTransferConfig,
 } from "@/lib/utils";
 import { getWagmiChain, isSupportedChain } from "@/lib/wagmi";
+import { useKeplrClient, useAccount as useScalarAccount } from "@/providers/keplr-provider";
 import { useWalletInfo, useWalletProvider } from "@/providers/wallet-provider";
 import { SupportedChains } from "@/types/chains";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
-  BTCFeeOpts,
   TBuildUPCUnstakingPsbt,
   bytesToHex,
   calculateContractCallWithTokenPayload,
@@ -78,11 +83,16 @@ export const RedeemForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { switchChain } = useSwitchChain();
   const { address: evmAddress, isConnected: isConnectedEvm } = useAccount();
+  const { data: scalarClient, isLoading: isScalarClientLoading } =
+    useKeplrClient();
+  const { account: scalarAccount } = useScalarAccount();
+
   const chainId = useChainId();
 
   const form = useForm<TRedeemForm>({
     resolver: zodResolver(redeemFormSchema),
   });
+
   const { control, watch, setError, clearErrors, handleSubmit } = form;
   const watchForm = watch();
 
@@ -132,6 +142,7 @@ export const RedeemForm = () => {
       (c) => `${p?.asset?.symbol}-${c?.chain}` === watchForm.sourceChain,
     ),
   );
+
 
   const vault = useVault(
     selectedProtocol?.tag
@@ -313,9 +324,17 @@ export const RedeemForm = () => {
     [networkConfig?.mempoolApiUrl],
   );
 
+  const { startPolling } = useScalarStandaloneCommandResult()
+
+  const signer = useEthersSigner()
+
   const onSubmit = async (values: TRedeemForm) => {
     setIsLoading(true);
+    console.log({ to: gateway?.address })
     try {
+      if (isScalarClientLoading || !scalarAccount || !scalarClient) {
+        throw new Error("Please connect to Scalar");
+      }
       validateTransferConfig(tokenAddress, gateway);
 
       const sourceChain = getChainSelected(values.sourceChain);
@@ -355,16 +374,78 @@ export const RedeemForm = () => {
       let payload = "";
 
       if (selectedProtocol?.attributes?.model === "LIQUIDITY_MODEL_POOL") {
-        const reciepientChainIdentifier =
+        const lockingScript =
           Buffer.from(redeemLockingScript).toString("hex");
-        payload = calculateContractCallWithTokenPayload({
-          type: "custodianOnly",
-          custodianOnly: {
-            feeOpts: BTCFeeOpts.MinimumFee,
-            rbf: true,
-            recipientChainIdentifier: `0x${reciepientChainIdentifier}`,
-          },
-        });
+
+        const params: ReserveRedeemUtxoParams = {
+          sender: scalarAccount.address,
+          address: EMPTY_ADDRESS,
+          source_chain: sourceChain,
+          dest_chain: selectedProtocol.asset?.chain!,
+          symbol: selectedProtocol.asset?.symbol,
+          amount: parseSats(values.transferAmount.toString()).toString(),
+          locking_script: lockingScript,
+        }
+
+        const result = await scalarClient.raw.reserveRedeemUtxo(
+          scalarAccount.address,
+          params,
+          "auto",
+          "",
+        );
+
+        const event = result.events.find((e) => e.type === EventType.ReserveRedeemUtxo);
+        if (!event) {
+          throw new Error("Failed to redeem UPC");
+        }
+
+        const command = event.attributes.find((a) => a.key === Buffer.from("commandId", "ascii").toString("base64"));
+
+        if (!command) {
+          throw new Error("Failed to redeem UPC");
+        }
+
+        const commandId = Buffer.from(command.value, "base64").toString("ascii");
+
+        console.log({ commandId })
+
+        const commandRs = await startPolling({ hex: commandId, validator: (data) => data.status === "STANDALONE_COMMAND_STATUS_SIGNED" });
+        if (!command) {
+          throw new Error("Failed to redeem UPC");
+        }
+
+        console.log({ commandRs })
+
+        if (!commandRs.execute_data) {
+          throw new Error("Execute data not found");
+        }
+
+        console.log({ commandRs })
+
+        // const gasLimit = await provider?.estimateGas({
+        //   to: gateway?.address as `0x${string}`,
+        //   data: commandRs.execute_data.startsWith("0x") ? commandRs.execute_data : `0x${commandRs.execute_data}`,
+        //   value: 0
+        // })
+
+        console.log({ result })
+
+        console.log({ commandId })
+
+        const payload = commandRs.execute_data;
+
+
+        const response = await signer?.sendTransaction({
+          to: gateway?.address as `0x${string}`,
+          data: payload.startsWith("0x") ? payload : `0x${payload}`,
+          value: 0,
+        })
+
+        // wait for tx to be mined
+        await response?.wait();
+        showSuccessTx(response?.hash as string, selectedProtocol?.asset?.chain!);
+        return;
+
       } else {
         if (!availableUnstakedUtxos || !availableUnstakedUtxos.length) {
           throw new Error("Not enough balances");
@@ -377,9 +458,11 @@ export const RedeemForm = () => {
         const protocolPubkey = decodeScalarBytesToUint8Array(
           selectedProtocol!.bitcoin_pubkey!,
         );
+
         const custodianPubkeys = prepareCustodianPubkeysArray(
           selectedProtocol!.custodian_group!.custodians!,
         );
+
         const custodianQuorum = selectedProtocol!.custodian_group!.quorum!;
         const stakerPubkey = hexToBytes(btcPubkey.replace("0x", ""));
 
@@ -422,33 +505,34 @@ export const RedeemForm = () => {
             psbt: `0x${signedPsbt}`,
           },
         });
-      }
+        const contractCallTx = await callContractWithToken({
+          destinationChain: selectedProtocol?.asset?.chain!,
+          destinationContractAddress: EMPTY_ADDRESS,
+          payload,
+          symbol: selectedProtocol?.asset?.symbol || "",
+          amount: BigInt(newTransferAmount),
+        });
 
-      const contractCallTx = await callContractWithToken({
-        destinationChain: selectedProtocol?.asset?.chain!,
-        destinationContractAddress: EMPTY_ADDRESS,
-        payload,
-        symbol: selectedProtocol?.asset?.symbol || "",
-        amount: BigInt(newTransferAmount),
-      });
+        const contractCallConfirmed = await Promise.race([
+          new Promise((_, reject) =>
+            setTimeout(() => reject(new Error("Transfer timeout")), 60000),
+          ),
+          contractCallTx.wait(),
+        ]);
 
-      const contractCallConfirmed = await Promise.race([
-        new Promise((_, reject) =>
-          setTimeout(() => reject(new Error("Transfer timeout")), 60000),
-        ),
-        contractCallTx.wait(),
-      ]);
-
-      if (contractCallConfirmed) {
-        showSuccessTx(contractCallTx.hash, sourceChain);
-      } else {
-        throw new Error("Transfer failed");
+        if (contractCallConfirmed) {
+          showSuccessTx(contractCallTx.hash, sourceChain);
+        } else {
+          throw new Error("Transfer failed");
+        }
       }
     } catch (error) {
+      console.log({ error })
       sonnerToast.error((error as Error).message || "Something went wrong");
     } finally {
       setIsLoading(false);
     }
+
   };
 
   const availableBalance = useMemo(() => {
@@ -581,7 +665,7 @@ export const RedeemForm = () => {
 
             {isConnectedEvm ? (
               selectedProtocol?.attributes?.model === "LIQUIDITY_MODEL_UPC" &&
-              !isConnectedBtc ? (
+                !isConnectedBtc ? (
                 <Popover>
                   <PopoverTrigger className="w-full" asChild>
                     <Button type="button" className="w-full" size="lg">

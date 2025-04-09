@@ -1,4 +1,4 @@
-import { CreateDeployTokenParams, CreateProtocolParams } from "./params";
+import { CreateDeployTokenParams, CreateProtocolParams, ReserveRedeemUtxoParams } from "./params";
 
 export class ValidationError extends Error {
   constructor(message: string) {
@@ -56,3 +56,22 @@ export const validateCreateDeployTokenParams = (
     throw "Invalid parameters";
   }
 };
+
+
+export const validateReserveRedeemUtxoParams = (
+  params: ReserveRedeemUtxoParams,
+): void => {
+  try {
+    validateRequired(params.address, "address");
+    validateRequired(params.source_chain, "source_chain");
+    validateRequired(params.dest_chain, "dest_chain");
+    validateRequired(params.symbol, "symbol");
+    validateRequired(params.amount, "amount");
+    validateRequired(params.locking_script, "locking_script");
+  } catch (error) {
+    if (error instanceof ValidationError) {
+      throw error.message;
+    }
+    throw "Invalid parameters";
+  }
+}
