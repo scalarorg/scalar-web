@@ -1,29 +1,35 @@
 import { Slot } from "@radix-ui/react-slot";
 import { type VariantProps, cva } from "class-variance-authority";
-import type * as React from "react";
+import * as React from "react";
 
 import { cn } from "@/lib/utils";
+import { Loader2 } from "lucide-react";
 
 const buttonVariants = cva(
-  "dark:ring-ring/20'size-'])]:size-4 inline-flex cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded-md font-medium text-sm outline-ring/50 ring-ring/10 transition-[color,box-shadow] [&_svg:not([class*= focus-visible:outline-1 focus-visible:ring-4 disabled:pointer-events-none disabled:opacity-50 aria-invalid:focus-visible:ring-0 dark:outline-ring/40 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+  "inline-flex cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded-md font-medium text-sm outline-none transition-[color,box-shadow] focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
   {
     variants: {
       variant: {
         default:
-          "bg-primary text-primary-foreground shadow-sm hover:bg-primary/90",
+          "bg-primary text-primary-foreground shadow-xs hover:bg-primary/90",
         destructive:
-          "bg-destructive text-destructive-foreground shadow-xs hover:bg-destructive/90",
+          "bg-destructive text-white shadow-xs hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40",
         outline:
           "border border-input bg-background shadow-xs hover:bg-accent hover:text-accent-foreground",
         secondary:
           "bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+        black:
+          "bg-text-primary-500 text-primary-foreground shadow-xs hover:bg-text-primary-500/90",
+        pagination:
+          "border border-secondary-500 bg-white text-black hover:bg-white hover:text-primary",
+        pagination_link: "text-black hover:text-primary",
       },
       size: {
         default: "h-9 px-4 py-2 has-[>svg]:px-3",
         sm: "h-8 rounded-md px-3 has-[>svg]:px-2.5",
-        lg: "h-10 rounded-md px-6 has-[>svg]:px-4",
+        lg: "h-10 rounded-lg px-6 font-normal text-base has-[>svg]:px-4",
         icon: "size-9",
       },
     },
@@ -39,10 +45,15 @@ function Button({
   variant,
   size,
   asChild = false,
+  children,
+  isLoading = false,
+  disabled = false,
   ...props
 }: React.ComponentProps<"button"> &
   VariantProps<typeof buttonVariants> & {
     asChild?: boolean;
+  } & {
+    isLoading?: boolean;
   }) {
   const Comp = asChild ? Slot : "button";
 
@@ -50,8 +61,14 @@ function Button({
     <Comp
       data-slot="button"
       className={cn(buttonVariants({ variant, size, className }))}
+      disabled={isLoading || disabled}
       {...props}
-    />
+    >
+      <>
+        {isLoading && <Loader2 className="animate-spin" />}
+        {children}
+      </>
+    </Comp>
   );
 }
 
