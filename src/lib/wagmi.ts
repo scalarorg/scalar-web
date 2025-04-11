@@ -4,8 +4,8 @@ import { bscTestnet, sepolia } from "wagmi/chains";
 
 const chains = [sepolia, bscTestnet] as const;
 const transports = {
-  [sepolia.id]: http("https://api.zan.top/eth-sepolia"),
-  [bscTestnet.id]: http("https://bsc-testnet-rpc.publicnode.com"),
+  [sepolia.id]: http(),
+  [bscTestnet.id]: http(),
 };
 
 export const wagmiConfig = getDefaultConfig({

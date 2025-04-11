@@ -2,7 +2,7 @@ import { ChainTypes } from "@/types/chains";
 import { TCustodian, TProtocolChain } from "@/types/types";
 import { type ClassValue, clsx } from "clsx";
 import dayjs from "dayjs";
-import { isHexString } from "ethers";
+import { isHexString, MaxUint256 } from "ethers";
 import { keyBy } from "lodash";
 import numeral from "numeral";
 import { twMerge } from "tailwind-merge";
@@ -77,21 +77,40 @@ export const handleTokenApproval = async (
     gatewayAddress,
   );
 
+  console.log({
+    currentAllowance,
+    transferAmount,
+  });
+
   if (currentAllowance >= transferAmount) {
     return;
   }
   try {
-    const approvalTx = await approveERC20(gatewayAddress, maxUint256);
+    console.log({
+      gatewayAddress,
+      maxUint256,
+    })
+    const approvalTx = await approveERC20(gatewayAddress, MaxUint256);
+    console.log({ approvalTx })
     if (!approvalTx) throw new Error("Failed to create approval transaction");
 
     const approvalConfirmed = await Promise.race([
       new Promise((_, reject) =>
-        setTimeout(() => reject(new Error("Approval timeout")), 60000),
+        setTimeout(() => reject(new Error("Approval timeout")), 100000),
       ),
       approvalTx.wait(),
     ]);
 
     if (!approvalConfirmed) {
+      throw new Error("Approval failed");
+    }
+
+    const currentAllowance = await checkAllowance(
+      sourceChainAddress,
+      gatewayAddress,
+    );
+
+    if (currentAllowance < transferAmount) {
       throw new Error("Approval failed");
     }
   } catch (error: unknown) {

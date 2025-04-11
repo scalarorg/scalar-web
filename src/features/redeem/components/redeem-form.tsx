@@ -29,11 +29,10 @@ import {
   useGatewayContract,
   useScalarProtocols,
   useScalarStandaloneCommandResult,
-  useStandaloneCommand,
-  useVault,
+  useVault
 } from "@/hooks";
 import { Chains } from "@/lib/chains";
-import { useEthersProvider, useEthersSigner } from "@/lib/ethers";
+import { useEthersSigner } from "@/lib/ethers";
 import {
   decodeScalarBytesToString,
   decodeScalarBytesToUint8Array,
@@ -422,18 +421,11 @@ export const RedeemForm = () => {
 
         console.log({ commandRs })
 
-        // const gasLimit = await provider?.estimateGas({
-        //   to: gateway?.address as `0x${string}`,
-        //   data: commandRs.execute_data.startsWith("0x") ? commandRs.execute_data : `0x${commandRs.execute_data}`,
-        //   value: 0
-        // })
-
         console.log({ result })
 
         console.log({ commandId })
 
         const payload = commandRs.execute_data;
-
 
         const response = await signer?.sendTransaction({
           to: gateway?.address as `0x${string}`,
@@ -443,9 +435,8 @@ export const RedeemForm = () => {
 
         // wait for tx to be mined
         await response?.wait();
-        showSuccessTx(response?.hash as string, selectedProtocol?.asset?.chain!);
+        showSuccessTx(response?.hash as string, sourceChain);
         return;
-
       } else {
         if (!availableUnstakedUtxos || !availableUnstakedUtxos.length) {
           throw new Error("Not enough balances");
