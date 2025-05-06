@@ -1,5 +1,6 @@
 import {
   formatDate,
+  friendlyFormatDate,
   handle0xString,
   isBtcChain,
   isEvmChain,
@@ -111,40 +112,40 @@ export const ExploreTable = ({
           );
         },
       }),
-      display({
-        id: "destination-tx-hash",
-        header: "Destination Tx Hash",
-        cell: ({ row }) => {
-          const { tx_hash, chain } = row.original.destination;
-          const { blockExplorerIcon, blockExplorer } = Chains[chain] || {};
+      // display({
+      //   id: "destination-tx-hash",
+      //   header: "Destination Tx Hash",
+      //   cell: ({ row }) => {
+      //     const { tx_hash, chain } = row.original.destination;
+      //     const { blockExplorerIcon, blockExplorer } = Chains[chain] || {};
 
-          const { label, link } = handleChain(chain, tx_hash);
-          const newLink = blockExplorer && `${blockExplorer}/tx/${link}`;
+      //     const { label, link } = handleChain(chain, tx_hash);
+      //     const newLink = blockExplorer && `${blockExplorer}/tx/${link}`;
 
-          return (
-            tx_hash &&
-            chain && (
-              <div className="flex items-center gap-2">
-                <Clipboard
-                  label={label}
-                  text={label}
-                  classNames={{ wrapper: "max-w-[200px]" }}
-                />
-                {newLink && blockExplorerIcon && (
-                  <a
-                    href={newLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="size-5 rounded-full"
-                  >
-                    <img src={blockExplorerIcon} alt="block explorer icon" />
-                  </a>
-                )}
-              </div>
-            )
-          );
-        },
-      }),
+      //     return (
+      //       tx_hash &&
+      //       chain && (
+      //         <div className="flex items-center gap-2">
+      //           <Clipboard
+      //             label={label}
+      //             text={label}
+      //             classNames={{ wrapper: "max-w-[200px]" }}
+      //           />
+      //           {newLink && blockExplorerIcon && (
+      //             <a
+      //               href={newLink}
+      //               target="_blank"
+      //               rel="noopener noreferrer"
+      //               className="size-5 rounded-full"
+      //             >
+      //               <img src={blockExplorerIcon} alt="block explorer icon" />
+      //             </a>
+      //           )}
+      //         </div>
+      //       )
+      //     );
+      //   },
+      // }),
       accessor("destination", {
         header: "Destination",
         cell: ({ getValue }) => {
@@ -174,14 +175,14 @@ export const ExploreTable = ({
           );
         },
       }),
-      accessor("type", {
-        header: "Method",
-        cell: ({ getValue }) => {
-          const type = getValue();
+      // accessor("type", {
+      //   header: "Method",
+      //   cell: ({ getValue }) => {
+      //     const type = getValue();
 
-          return <p className="capitalize">{type}</p>;
-        },
-      }),
+      //     return <p className="capitalize">{type}</p>;
+      //   },
+      // }),
       accessor("status", {
         header: "Status",
         cell: ({ getValue }) => {
@@ -210,7 +211,7 @@ export const ExploreTable = ({
 
           return (
             <p className="w-[130px]">
-              {formatDate(created_at, "DD/MM/YYYY HH:mm")}
+              {friendlyFormatDate(created_at)}
             </p>
           );
         },
