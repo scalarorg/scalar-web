@@ -1,5 +1,4 @@
 import {
-  formatDate,
   friendlyFormatDate,
   handle0xString,
   isBtcChain,

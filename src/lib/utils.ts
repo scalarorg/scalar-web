@@ -6,7 +6,7 @@ import { MaxUint256, isHexString } from "ethers";
 import { keyBy } from "lodash";
 import numeral from "numeral";
 import { twMerge } from "tailwind-merge";
-import { formatUnits, maxUint256, parseUnits } from "viem";
+import { formatUnits, parseUnits } from "viem";
 import { decodeScalarBytesToUint8Array } from "./scalar";
 
 export function cn(...inputs: ClassValue[]) {

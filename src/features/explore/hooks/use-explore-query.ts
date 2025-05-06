@@ -1,5 +1,7 @@
+import { COMMON_DEFAULT_PAGE_SIZE } from "@/constants";
 import { useQuery } from "@tanstack/react-query";
 import {
+  ETimeBucket,
   TExploreDetail,
   TExploreList,
   TExploreParams,
@@ -14,7 +16,7 @@ const useList = (params: TExploreParams) =>
     queryFn: () => getByPostMethod<TExploreParams, TExploreList>("x", params),
   });
 
-const useStatistic = (params: TExploreStatisticParams) =>
+const useStatistic = (params: TExploreStatisticParams = { size: COMMON_DEFAULT_PAGE_SIZE, time_bucket: ETimeBucket.DAY }) =>
   useQuery({
     queryKey: ["explore", "stats", params],
     queryFn: () =>

@@ -46,10 +46,10 @@ const tabs: {
   name: string;
   value: ETimeBucket;
 }[] = [
-  { name: "7D", value: ETimeBucket.WEEK },
-  { name: "30D", value: ETimeBucket.MONTH },
-  { name: "ALL", value: ETimeBucket.DAY },
-];
+    { name: "7D", value: ETimeBucket.WEEK },
+    { name: "30D", value: ETimeBucket.MONTH },
+    { name: "ALL", value: ETimeBucket.DAY },
+  ];
 
 const formatDateChart = (date: number) => formatDate(date, "DD-MM");
 
@@ -64,6 +64,7 @@ function Statistic() {
 
   const { data, isLoading } = useExploreQuery.useStatistic({
     time_bucket: time_bucket ?? ETimeBucket.DAY,
+    size: 20,
   });
 
   // Data
