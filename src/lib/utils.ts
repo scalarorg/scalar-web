@@ -96,7 +96,7 @@ export const handleTokenApproval = async (
 
     const approvalConfirmed = await Promise.race([
       new Promise((_, reject) =>
-        setTimeout(() => reject(new Error("Approval timeout")), 100000),
+        setTimeout(() => reject(new Error("Approval timeout")), 200000),
       ),
       approvalTx.wait(),
     ]);
