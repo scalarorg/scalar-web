@@ -1,3 +1,4 @@
+import { COMMON_DEFAULT_PAGE_SIZE } from "@/constants";
 import {
   ColumnDef,
   PaginationState,
@@ -90,7 +91,7 @@ const DataTableInnerForwardRef = <TData,>(
     data = [],
     columns,
     classNames = {},
-    pagination: { pageIndex = 1, pageSize = 10 },
+    pagination: { pageIndex = 1, pageSize = COMMON_DEFAULT_PAGE_SIZE },
     isLoading = false,
     isRefetching = false,
     extraTableToolbar,
@@ -272,9 +273,9 @@ const DataTableInnerForwardRef = <TData,>(
                           {header.isPlaceholder
                             ? null
                             : flexRender(
-                                header.column.columnDef.header,
-                                header.getContext(),
-                              )}
+                              header.column.columnDef.header,
+                              header.getContext(),
+                            )}
                         </TableHead>
                       );
                     })}
@@ -346,7 +347,7 @@ const DataTableInnerForwardRef = <TData,>(
           table={table}
           isLoading={isLoading}
           pageSizeOptions={pageSizeOptions}
-          // isSimple={isSimple}
+        // isSimple={isSimple}
         />
       )}
     </div>

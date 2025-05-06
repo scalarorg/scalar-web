@@ -16,7 +16,12 @@ const useList = (params: TExploreParams) =>
     queryFn: () => getByPostMethod<TExploreParams, TExploreList>("x", params),
   });
 
-const useStatistic = (params: TExploreStatisticParams = { size: COMMON_DEFAULT_PAGE_SIZE, time_bucket: ETimeBucket.DAY }) =>
+const useStatistic = (
+  params: TExploreStatisticParams = {
+    size: COMMON_DEFAULT_PAGE_SIZE,
+    time_bucket: ETimeBucket.DAY,
+  },
+) =>
   useQuery({
     queryKey: ["explore", "stats", params],
     queryFn: () =>
