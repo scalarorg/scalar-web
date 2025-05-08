@@ -83,7 +83,7 @@ export const ExploreTable = ({
         },
       }),
       accessor("source", {
-        header: "Source",
+        header: "Source Address",
         cell: ({ getValue }) => {
           const { chain_name, sender, chain } = getValue();
           const { icon, blockExplorer } = Chains[chain] || {};
@@ -146,7 +146,7 @@ export const ExploreTable = ({
         },
       }),
       accessor("destination", {
-        header: "Destination",
+        header: "Destination Address",
         cell: ({ getValue }) => {
           const { chain_name, receiver, chain } = getValue();
           const { icon, blockExplorer } = Chains[chain] || {};
