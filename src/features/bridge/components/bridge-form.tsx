@@ -6,7 +6,7 @@ import {
 } from "@/components/common";
 import { ConnectBtc } from "@/components/connect";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   Form,
   FormControl,
@@ -280,9 +280,9 @@ export const BridgeForm = () => {
 
   return (
     <Card className="mx-auto w-full max-w-2xl border-none shadow-none">
-      <CardHeader className="flex flex-row items-center justify-between px-0">
+      {/* <CardHeader className="flex flex-row items-center justify-between px-0">
         <CardTitle className="font-bold text-xl">Bridge</CardTitle>
-      </CardHeader>
+      </CardHeader> */}
       <CardContent className="px-0">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -292,7 +292,7 @@ export const BridgeForm = () => {
               name="transferAmount"
               render={({ field }) => (
                 <FormItem className="space-y-1 rounded-lg bg-background-secondary p-4">
-                  <div className="flex gap-2">
+                  <div className="flex justify-between items-center gap-2">
                     <FormLabel className="text-base">From</FormLabel>
                     <ChainIcon
                       chain={btcChain.chain}
@@ -311,10 +311,10 @@ export const BridgeForm = () => {
                         />
                       </FormControl>
                     </div>
-                    <div className="flex gap-1">
+                    {/* <div className="flex gap-1">
                       <ChainIcon chain={btcChain.chain} />
                       tBTC
-                    </div>
+                    </div> */}
                   </div>
                   <p className="text-right text-base text-text-primary-500/50">
                     Available wallet: {formatBTC(walletInfo.balance)} BTC
@@ -333,7 +333,7 @@ export const BridgeForm = () => {
                   <FormItem className="space-y-4 rounded-lg bg-background-secondary p-4">
                     <div className="flex items-center gap-2 rounded-lg">
                       <div className="flex flex-1 flex-col gap-2">
-                        <div className="flex items-center gap-2">
+                        <div className="flex justify-between items-center gap-2">
                           <FormLabel className="text-base">To</FormLabel>
                           <SelectSearch
                             value={value}
@@ -343,7 +343,7 @@ export const BridgeForm = () => {
                             classNames={{
                               command: {
                                 group: "py-1",
-                                list: "max-h-50",
+                                list: "max-h-60",
                               },
                             }}
                             searchByHideValue

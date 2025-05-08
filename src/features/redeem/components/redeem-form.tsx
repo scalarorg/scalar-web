@@ -6,7 +6,7 @@ import {
 } from "@/components/common";
 import { ConnectBtc, ConnectEvm } from "@/components/connect";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   Form,
   FormControl,
@@ -537,17 +537,17 @@ export const RedeemForm = () => {
 
   return (
     <Card className="mx-auto w-full max-w-2xl border-none shadow-none">
-      <CardHeader className="flex flex-row items-center justify-between px-0">
+      {/* <CardHeader className="flex flex-row items-center justify-between px-0">
         <CardTitle className="font-bold text-xl">Redeem</CardTitle>
         <div className="text-right">
           <span>
             {formatBTC(availableBalance)}{" "}
-            <span className="text-base text-muted-foreground">BTC</span>
+            <span className="text-base text-muted-foreground font-medium">BTC</span>
           </span>
           {selectedProtocol?.asset?.symbol && (
             <>
               <span className="mx-2">|</span>
-              <span className="text-base text-muted-foreground">
+              <span className="text-base text-muted-foreground font-medium">
                 {selectedProtocol?.asset?.symbol}
               </span>
             </>
@@ -556,7 +556,7 @@ export const RedeemForm = () => {
             <span>: {formatUnits(sourceChainBalance, Number(decimals))}</span>
           )}
         </div>
-      </CardHeader>
+      </CardHeader> */}
       <CardContent className="px-0">
         <Form {...form}>
           <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
@@ -569,7 +569,7 @@ export const RedeemForm = () => {
                   <FormItem className="mb-3">
                     <div className="flex items-center gap-2 rounded-lg">
                       <div className="flex flex-1 flex-col gap-2">
-                        <div className="flex items-center gap-2">
+                        <div className="flex justify-between items-center gap-2">
                           <FormLabel className="text-base">From</FormLabel>
                           <SelectSearch
                             value={value}
@@ -580,7 +580,7 @@ export const RedeemForm = () => {
                             classNames={{
                               command: {
                                 group: "py-1",
-                                list: "max-h-50",
+                                list: "max-h-60",
                               },
                             }}
                           />
@@ -625,7 +625,7 @@ export const RedeemForm = () => {
             </div>
 
             {/* To Section */}
-            <p className="flex items-center gap-2 rounded-lg bg-background-secondary p-4 text-base">
+            <p className="flex justify-between items-center gap-2 rounded-lg bg-background-secondary p-4 text-base">
               To{" "}
               {selectedProtocol?.asset?.chain && (
                 <ChainIcon
@@ -684,6 +684,6 @@ export const RedeemForm = () => {
           </form>
         </Form>
       </CardContent>
-    </Card>
+    </Card >
   );
 };
