@@ -90,8 +90,8 @@ export const ExploreTable = ({
           const link = blockExplorer && `${blockExplorer}/address/${sender}`;
 
           return (
-            <div className="flex flex-col gap-1">
-              <div className="flex items-center gap-2">
+            <div className="flex flex-col gap-2">
+              <div className="flex items-center gap-2 font-medium">
                 {icon && (
                   <img
                     src={icon}
@@ -153,8 +153,8 @@ export const ExploreTable = ({
           const link = blockExplorer && `${blockExplorer}/address/${receiver}`;
 
           return (
-            <div className="flex flex-col gap-1">
-              <div className="flex items-center gap-2">
+            <div className="flex flex-col gap-2">
+              <div className="flex items-center gap-2 font-medium">
                 {icon && (
                   <img
                     src={icon}
@@ -191,7 +191,7 @@ export const ExploreTable = ({
           return (
             <div
               className={cn(
-                "rounded-full px-3 py-1 text-sm text-white",
+                "rounded-full px-3 py-1 text-white",
                 className,
               )}
             >
@@ -223,6 +223,9 @@ export const ExploreTable = ({
     <DataTable
       columns={columns}
       data={data?.data || []}
+      classNames={{
+        table: "text-sm",
+      }}
       isLoading={isLoading}
       isRefetching={isRefetching}
       pageCount={Math.ceil((data?.total ?? 0) / size)}

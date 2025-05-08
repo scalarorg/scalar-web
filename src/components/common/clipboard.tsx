@@ -37,7 +37,7 @@ export const Clipboard = ({
   };
 
   const commonTextClassNames = cn(
-    "truncate text-base text-primary",
+    "truncate text-primary",
     classNames?.text,
   );
 

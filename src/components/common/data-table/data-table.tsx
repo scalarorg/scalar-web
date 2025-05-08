@@ -204,7 +204,7 @@ const DataTableInnerForwardRef = <TData,>(
             "overflow-hidden",
 
             // Styling
-            "rounded-lg border",
+            "rounded-lg border border-gray-200",
 
             // Shadow effects
             showLeftShadow && "table-left-shadow",
@@ -252,7 +252,7 @@ const DataTableInnerForwardRef = <TData,>(
                   <TableRow
                     key={headerGroup.id}
                     className={cn(
-                      "w-fit divide-x divide-neutral-50 text-base",
+                      "w-fit divide-x divide-neutral-50",
                       classNames.headerRow,
                     )}
                   >
@@ -299,7 +299,6 @@ const DataTableInnerForwardRef = <TData,>(
                       key={row.id}
                       data-state={row.getIsSelected() && "selected"}
                       className={cn(
-                        "text-base",
                         index % 2 === 0 && "bg-white",
                         classNames.row,
                         onRowClick && "cursor-pointer",
@@ -331,7 +330,7 @@ const DataTableInnerForwardRef = <TData,>(
                   <TableRow className="h-full">
                     <TableCell colSpan={columns.length}>
                       <div className="flex items-center justify-center py-8">
-                        <p className="font-semibold text-base">No data</p>
+                        <p className="font-semibold">No data</p>
                       </div>
                     </TableCell>
                   </TableRow>
