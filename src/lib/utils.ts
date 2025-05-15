@@ -2,6 +2,7 @@ import { ChainTypes } from "@/types/chains";
 import { TCustodian, TProtocolChain } from "@/types/types";
 import { type ClassValue, clsx } from "clsx";
 import dayjs from "dayjs";
+import utc from 'dayjs/plugin/utc';
 import { MaxUint256, isHexString } from "ethers";
 import { keyBy } from "lodash";
 import numeral from "numeral";
@@ -9,6 +10,7 @@ import { twMerge } from "tailwind-merge";
 import { formatUnits, parseUnits } from "viem";
 import { decodeScalarBytesToUint8Array } from "./scalar";
 
+dayjs.extend(utc);
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
@@ -318,7 +320,8 @@ export const formatDate = (date: number, formater = "DD/MM/YYYY") => {
 };
 export const friendlyFormatDate = (date: number) => {
   const inputDate = dayjs(date * 1000);
-  const currentDate = dayjs();
+  const currentDate = dayjs().utc();
+  //const currentDate = dayjs();
   const diffInMonths = currentDate.diff(inputDate, "month");
   if (diffInMonths > 1) {
     return `${diffInMonths} months ago`;
