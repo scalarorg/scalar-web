@@ -31,7 +31,7 @@ type Props = {
   isLoading: boolean;
   isRefetching: boolean;
   size: number;
-  offset: number;
+  page: number;
 };
 
 export const ExploreTable = ({
@@ -39,7 +39,7 @@ export const ExploreTable = ({
   isLoading,
   isRefetching,
   size,
-  offset,
+  page,
 }: Props) => {
   const pathname = usePathname();
   const navigate = useNavigate();
@@ -203,14 +203,14 @@ export const ExploreTable = ({
           className: "text-center",
         },
       }),
-      accessor("source.created_at", {
+      accessor((row) => row.source.block_time, {
+        id: "source.block_time",
         header: "Created at",
         cell: ({ getValue }) => {
-          const created_at = getValue();
-
+          const block_time = getValue();
           return (
             <p className="w-[130px]">
-              {friendlyFormatDate(created_at)}
+              {friendlyFormatDate(block_time)}
             </p>
           );
         },
@@ -230,7 +230,7 @@ export const ExploreTable = ({
       isRefetching={isRefetching}
       pageCount={Math.ceil((data?.total ?? 0) / size)}
       pagination={{
-        pageIndex: offset + 1,
+        pageIndex: page + 1,
         pageSize: size,
       }}
     />

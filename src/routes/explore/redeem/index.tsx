@@ -8,11 +8,11 @@ export const Route = createFileRoute("/explore/redeem/")({
 });
 
 function Redeem() {
-  const { size = COMMON_DEFAULT_PAGE_SIZE, offset = 0 } = Route.useSearch();
+  const { size = COMMON_DEFAULT_PAGE_SIZE, page = 0 } = Route.useSearch();
 
   const { data, isLoading, isRefetching } = useExploreQuery.useList({
     size,
-    offset,
+    page,
     type: "redeem",
   });
 
@@ -24,7 +24,7 @@ function Redeem() {
         isLoading={isLoading}
         isRefetching={isRefetching}
         size={size}
-        offset={offset}
+        page={page}
       />
     </div>
   );
