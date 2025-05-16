@@ -104,64 +104,64 @@ function OwnProtocol() {
     return isEmpty(protocol)
       ? []
       : [
-        {
-          title: "Protocol",
-          items: (
-            <div className="flex items-center gap-2">
-              <Base64Icon url={protocol.avatar} className="size-6" />
-              <p>{protocol?.name}</p>
-            </div>
-          ),
-        },
-        {
-          title: "Token",
-          items: (
-            <ChainIcon
-              chain={protocol?.asset?.chain as SupportedChains}
-              showName
-            />
-          ),
-        },
-        {
-          title: "Address",
-          items: isEmpty(address) ? (
-            <p>No data</p>
-          ) : (
-            address?.map(({ address }) => (
-              <div key={address} className="max-w-[140px]">
-                <Clipboard label="Copyyyyyyyyyyyyyyyy" text={address!} />
+          {
+            title: "Protocol",
+            items: (
+              <div className="flex items-center gap-2">
+                <Base64Icon url={protocol.avatar} className="size-6" />
+                <p>{protocol?.name}</p>
               </div>
-            ))
-          ),
-        },
-        {
-          title: "Network",
-          items: isEmpty(protocol?.chains) ? (
-            <p>No data</p>
-          ) : (
-            protocol?.chains?.map((c) => (
+            ),
+          },
+          {
+            title: "Token",
+            items: (
               <ChainIcon
-                key={c.chain}
-                chain={c.chain as SupportedChains}
+                chain={protocol?.asset?.chain as SupportedChains}
                 showName
-                customName={c.name}
               />
-            ))
-          ),
-        },
-        {
-          title: "Status",
-          items: (
-            <Badge
-              variant={PROTOCOL_STATUS.OBJECT[protocol?.status].variant}
-              className="px-4 text-sm"
-              ghost
-            >
-              {PROTOCOL_STATUS.OBJECT[protocol?.status].label}
-            </Badge>
-          ),
-        },
-      ];
+            ),
+          },
+          {
+            title: "Address",
+            items: isEmpty(address) ? (
+              <p>No data</p>
+            ) : (
+              address?.map(({ address }) => (
+                <div key={address} className="max-w-[140px]">
+                  <Clipboard label="Copyyyyyyyyyyyyyyyy" text={address!} />
+                </div>
+              ))
+            ),
+          },
+          {
+            title: "Network",
+            items: isEmpty(protocol?.chains) ? (
+              <p>No data</p>
+            ) : (
+              protocol?.chains?.map((c) => (
+                <ChainIcon
+                  key={c.chain}
+                  chain={c.chain as SupportedChains}
+                  showName
+                  customName={c.name}
+                />
+              ))
+            ),
+          },
+          {
+            title: "Status",
+            items: (
+              <Badge
+                variant={PROTOCOL_STATUS.OBJECT[protocol?.status].variant}
+                className="px-4 text-sm"
+                ghost
+              >
+                {PROTOCOL_STATUS.OBJECT[protocol?.status].label}
+              </Badge>
+            ),
+          },
+        ];
   }, [protocol]);
 
   const queryClient = useQueryClient();

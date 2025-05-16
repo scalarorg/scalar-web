@@ -273,9 +273,9 @@ const DataTableInnerForwardRef = <TData,>(
                           {header.isPlaceholder
                             ? null
                             : flexRender(
-                              header.column.columnDef.header,
-                              header.getContext(),
-                            )}
+                                header.column.columnDef.header,
+                                header.getContext(),
+                              )}
                         </TableHead>
                       );
                     })}
@@ -346,7 +346,7 @@ const DataTableInnerForwardRef = <TData,>(
           table={table}
           isLoading={isLoading}
           pageSizeOptions={pageSizeOptions}
-        // isSimple={isSimple}
+          // isSimple={isSimple}
         />
       )}
     </div>

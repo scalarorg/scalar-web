@@ -19,6 +19,8 @@ import {
 // window object for Unisat Wallet extension
 export const unisatProvider = "unisat";
 
+const ErrorWalletNotConnected = new Error("Unisat Wallet not connected");
+
 export class UnisatWallet extends WalletProvider {
   private unisatWalletInfo: WalletInfo | undefined;
   // biome-ignore lint/suspicious/noExplicitAny: <explanation>
@@ -126,7 +128,7 @@ export class UnisatWallet extends WalletProvider {
   // biome-ignore lint/suspicious/useAwait: <explanation>
   getAddress = async (): Promise<string> => {
     if (!this.unisatWalletInfo) {
-      throw new Error("Unisat Wallet not connected");
+      throw ErrorWalletNotConnected;
     }
     return this.unisatWalletInfo.address;
   };
@@ -134,7 +136,7 @@ export class UnisatWallet extends WalletProvider {
   // biome-ignore lint/suspicious/useAwait: <explanation>
   getPublicKeyHex = async (): Promise<string> => {
     if (!this.unisatWalletInfo) {
-      throw new Error("Unisat Wallet not connected");
+      throw ErrorWalletNotConnected;
     }
     return this.unisatWalletInfo.publicKeyHex;
   };
@@ -144,7 +146,7 @@ export class UnisatWallet extends WalletProvider {
     options?: UnisatOptions,
   ): Promise<string> => {
     if (!this.unisatWalletInfo) {
-      throw new Error("unisat Wallet not connected");
+      throw ErrorWalletNotConnected;
     }
     // Use signPsbt since it shows the fees
     return await this.bitcoinNetworkProvider.signPsbt(psbtHex, options);
@@ -152,7 +154,7 @@ export class UnisatWallet extends WalletProvider {
 
   signPsbts = async (psbtsHexes: string[]): Promise<string[]> => {
     if (!this.unisatWalletInfo) {
-      throw new Error("Unisat Wallet not connected");
+      throw ErrorWalletNotConnected;
     }
     // sign the PSBTs
     return await this.bitcoinNetworkProvider.signPsbts(psbtsHexes);
@@ -160,7 +162,7 @@ export class UnisatWallet extends WalletProvider {
 
   signMessageBIP322 = async (message: string): Promise<string> => {
     if (!this.unisatWalletInfo) {
-      throw new Error("Unisat Wallet not connected");
+      throw ErrorWalletNotConnected;
     }
     return await this.bitcoinNetworkProvider.signMessage(
       message,
@@ -180,7 +182,7 @@ export class UnisatWallet extends WalletProvider {
 
   on = (eventName: string, callBack: () => void) => {
     if (!this.unisatWalletInfo) {
-      throw new Error("Unisat Wallet not connected");
+      throw ErrorWalletNotConnected;
     }
     // subscribe to account change event
     if (eventName === "accountChanged") {

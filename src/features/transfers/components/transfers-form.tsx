@@ -38,7 +38,7 @@ import { ArrowRightLeft } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast as sonnerToast } from "sonner";
-import { decodeErrorResult, formatUnits, parseUnits } from "viem";
+import { Hex, decodeErrorResult, formatUnits, parseUnits } from "viem";
 import { useAccount, useChainId, useSwitchChain } from "wagmi";
 import { TTransfersForm, transfersFormSchema } from "../schemas";
 
@@ -74,7 +74,7 @@ export const TransfersForm = () => {
 
   const chainsFromToken =
     filterEvmChains(keyByFilterProtocols[watchForm.token]?.chains) || [];
-  const sourceChainAddress = chainsFromToken.find(
+  const sourceTokenAddress = chainsFromToken.find(
     (c) => c.chain === watchForm.sourceChain,
   )?.address;
 
@@ -83,7 +83,7 @@ export const TransfersForm = () => {
     checkAllowance,
     approve: approveERC20,
     decimals,
-  } = useERC20(sourceChainAddress as `0x${string}`);
+  } = useERC20(sourceTokenAddress as `0x${string}`);
 
   const { data: sourceChainBalance } = useQuery({
     queryKey: [
@@ -177,7 +177,7 @@ export const TransfersForm = () => {
     setIsLoading(true);
 
     try {
-      validateTransferConfig(sourceChainAddress, gateway);
+      validateTransferConfig(sourceTokenAddress, gateway);
 
       if (
         !isEvmChain(values.destinationChain) ||
@@ -203,12 +203,13 @@ export const TransfersForm = () => {
         );
       }
 
-      await handleTokenApproval(
-        sourceChainAddress || "",
-        gateway?.address as `0x${string}`,
-        BigInt(newTransferAmount),
-        { checkAllowance, approveERC20 },
-      );
+      await handleTokenApproval({
+        owner: evmAddress,
+        gatewayAddress: gateway?.address as Hex,
+        transferAmount: BigInt(newTransferAmount),
+        checkAllowance,
+        approveERC20,
+      });
 
       try {
         const transferTx = await sendToken({

@@ -34,14 +34,12 @@ export const useStandaloneCommand = (hex: string) =>
       params: {
         query: {
           id: Buffer.from(hex, "hex").toString("base64"),
-        }
+        },
       },
     },
     { enabled: !!hex },
-  )
-export const useScalarPollingResult = () => {
-}
-
+  );
+export const useScalarPollingResult = () => {};
 
 interface TimeoutError extends Error {
   name: "TimeoutError";
@@ -54,7 +52,7 @@ class TimeoutError extends Error {
   }
 }
 
-const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 interface PollingOptions {
   hex: string;
@@ -69,7 +67,7 @@ export const useScalarStandaloneCommandResult = () => {
       hex,
       timeoutMs = 60000,
       pollIntervalMs = 3000,
-      validator
+      validator,
     } = options;
 
     let timedOut = false;
@@ -80,12 +78,14 @@ export const useScalarStandaloneCommandResult = () => {
     const poll = async (): Promise<TStandaloneCommnand> => {
       if (timedOut) {
         throw new TimeoutError(
-          `Polling timed out after ${timeoutMs / 1000} seconds`
+          `Polling timed out after ${timeoutMs / 1000} seconds`,
         );
       }
 
       const base64Id = Buffer.from(hex, "hex").toString("base64");
-      const response = await fetch(`${import.meta.env.VITE_SCALAR_REST_URL}/scalar/covenant/v1beta1/standalone_command?id=${encodeURIComponent(base64Id)}`);
+      const response = await fetch(
+        `${import.meta.env.VITE_SCALAR_REST_URL}/scalar/covenant/v1beta1/standalone_command?id=${encodeURIComponent(base64Id)}`,
+      );
 
       if (!response.ok) {
         await sleep(pollIntervalMs);
@@ -119,4 +119,4 @@ export const useScalarStandaloneCommandResult = () => {
   };
 
   return { startPolling };
-}
+};

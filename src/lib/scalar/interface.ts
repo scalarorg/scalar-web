@@ -1,7 +1,7 @@
 import type { EncodeObject } from "@cosmjs/proto-signing";
 import { CreateDeployTokenRequest } from "@scalar-lab/scalarjs-sdk/proto/scalar/chains/v1beta1/tx";
-import type { CreateProtocolRequest } from "@scalar-lab/scalarjs-sdk/proto/scalar/protocol/v1beta1/tx";
 import type { ReserveRedeemUtxoRequest } from "@scalar-lab/scalarjs-sdk/proto/scalar/covenant/v1beta1/tx";
+import type { CreateProtocolRequest } from "@scalar-lab/scalarjs-sdk/proto/scalar/protocol/v1beta1/tx";
 
 export const typeUrlCreateProtocolRequest =
   "/scalar.protocol.v1beta1.CreateProtocolRequest";

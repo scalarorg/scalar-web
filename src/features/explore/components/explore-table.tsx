@@ -189,12 +189,7 @@ export const ExploreTable = ({
           const { label, className } = CROSS_CHAIN_STATUS.OBJECT[status];
 
           return (
-            <div
-              className={cn(
-                "rounded-full px-3 py-1 text-white",
-                className,
-              )}
-            >
+            <div className={cn("rounded-full px-3 py-1 text-white", className)}>
               {label}
             </div>
           );
@@ -208,11 +203,7 @@ export const ExploreTable = ({
         header: "Created at",
         cell: ({ getValue }) => {
           const block_time = getValue();
-          return (
-            <p className="w-[130px]">
-              {friendlyFormatDate(block_time)}
-            </p>
-          );
+          return <p className="w-[130px]">{friendlyFormatDate(block_time)}</p>;
         },
       }),
     ],

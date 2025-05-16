@@ -23,12 +23,12 @@ export default defineConfig({
       // The function to generate import names of top-level await promise in each chunk module
       promiseImportName: i => `__tla_${i}`
     }),
-   
+
     nodePolyfills({
       globals: {
         Buffer: true,
         global: true,
-        process: true,
+        process: true
       },
       protocolImports: true,
     }),

@@ -6,7 +6,7 @@ import {
 
 import { fromBech32 } from "@cosmjs/encoding";
 
-import Long from "long"
+import Long from "long";
 
 import {
   type DeliverTxResponse,
@@ -46,6 +46,7 @@ import type {
 } from "./interface";
 
 import { CreateDeployTokenRequest } from "@scalar-lab/scalarjs-sdk/proto/scalar/chains/v1beta1/tx";
+import { ReserveRedeemUtxoRequest } from "@scalar-lab/scalarjs-sdk/proto/scalar/covenant/v1beta1/tx";
 import { isHexString } from "ethers";
 import {
   typeUrlCreateDeployTokenRequest,
@@ -63,7 +64,6 @@ import {
   validateProtocolParams,
   validateReserveRedeemUtxoParams,
 } from "./validation";
-import { ReserveRedeemUtxoRequest } from "@scalar-lab/scalarjs-sdk/proto/scalar/covenant/v1beta1/tx";
 
 export const scalarTypes: ReadonlyArray<[string, GeneratedType]> = [
   [typeUrlCreateProtocolRequest, CreateProtocolRequest],
@@ -102,12 +102,11 @@ export class ScalarSigningStargateClient extends SigningStargateClient {
     this.tx = createMsgClient(this);
     this.messages = this.tx;
 
-      if (tmClient) {
-        this.query = createQueryClient(tmClient as any) as any;
-      } else {
-        this.query = undefined;
-      }
-      
+    if (tmClient) {
+      this.query = createQueryClient(tmClient as any) as any;
+    } else {
+      this.query = undefined;
+    }
   }
 
   static override async connect(

@@ -238,7 +238,7 @@ export const BridgeForm = () => {
     if (
       transferAmountForm &&
       parseSats(Number(transferAmountForm).toFixed(BTC_DECIMALS)) >
-      Number(walletInfo.balance)
+        Number(walletInfo.balance)
     ) {
       setError("transferAmount", {
         type: "manual",
@@ -253,27 +253,27 @@ export const BridgeForm = () => {
     () =>
       data?.protocols
         ? data.protocols.map(({ asset, avatar, scalar_address, chains }) => ({
-          groupLabel: (
-            <div className="flex items-center gap-2">
-              <Base64Icon url={avatar} className="size-6" />
-              <span className="font-semibold text-base">{asset?.symbol}</span>
-            </div>
-          ),
-          key: scalar_address || "",
-          items:
-            chains?.map(({ name, chain }) => ({
-              value: `${asset?.symbol}-${chain}`,
-              label: (
-                <ChainIcon
-                  chain={chain as SupportedChains}
-                  showName
-                  customName={name}
-                  classNames={{ icon: "size-5", name: "text-base" }}
-                />
-              ),
-              hideValue: name || Chains[chain as SupportedChains]?.name,
-            })) || [],
-        }))
+            groupLabel: (
+              <div className="flex items-center gap-2">
+                <Base64Icon url={avatar} className="size-6" />
+                <span className="font-semibold text-base">{asset?.symbol}</span>
+              </div>
+            ),
+            key: scalar_address || "",
+            items:
+              chains?.map(({ name, chain }) => ({
+                value: `${asset?.symbol}-${chain}`,
+                label: (
+                  <ChainIcon
+                    chain={chain as SupportedChains}
+                    showName
+                    customName={name}
+                    classNames={{ icon: "size-5", name: "text-base" }}
+                  />
+                ),
+                hideValue: name || Chains[chain as SupportedChains]?.name,
+              })) || [],
+          }))
         : [],
     [data?.protocols],
   );
@@ -292,7 +292,7 @@ export const BridgeForm = () => {
               name="transferAmount"
               render={({ field }) => (
                 <FormItem className="space-y-1 rounded-lg bg-background-secondary p-4">
-                  <div className="flex justify-between items-center gap-2">
+                  <div className="flex items-center justify-between gap-2">
                     <FormLabel className="text-base">From</FormLabel>
                     <ChainIcon
                       chain={btcChain.chain}
@@ -333,7 +333,7 @@ export const BridgeForm = () => {
                   <FormItem className="space-y-4 rounded-lg bg-background-secondary p-4">
                     <div className="flex items-center gap-2 rounded-lg">
                       <div className="flex flex-1 flex-col gap-2">
-                        <div className="flex justify-between items-center gap-2">
+                        <div className="flex items-center justify-between gap-2">
                           <FormLabel className="text-base">To</FormLabel>
                           <SelectSearch
                             value={value}
