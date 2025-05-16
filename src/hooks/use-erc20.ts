@@ -32,8 +32,6 @@ export const useERC20 = (tokenAddress?: `0x${string}`) => {
   const balanceOf = useCallback(
     async (ownerAddress: string) => {
       if (!contract) return;
-      console.log("balanceOf", ownerAddress);
-      console.log("contract", await contract.getAddress());
       return contract.balanceOf?.(ownerAddress);
     },
     [contract],

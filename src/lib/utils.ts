@@ -2,7 +2,7 @@ import { ChainTypes } from "@/types/chains";
 import { TCustodian, TProtocolChain } from "@/types/types";
 import { type ClassValue, clsx } from "clsx";
 import dayjs from "dayjs";
-import utc from 'dayjs/plugin/utc';
+import utc from "dayjs/plugin/utc";
 import { MaxUint256, isHexString } from "ethers";
 import { keyBy } from "lodash";
 import numeral from "numeral";
@@ -68,36 +68,48 @@ export const handleError = (error: unknown) => {
 };
 
 export const handleTokenApproval = async (
-  sourceChainAddress: string,
-  gatewayAddress: `0x${string}`,
-  transferAmount: bigint,
   // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-  { checkAllowance, approveERC20 }: any,
+  args: {
+    owner: string;
+    gatewayAddress: `0x${string}`;
+    transferAmount: bigint;
+    checkAllowance: (
+      ownerAddress: string,
+      spenderAddress: string,
+    ) => Promise<any> | undefined;
+    approveERC20: (
+      spenderAddress: string,
+      burnAmount: bigint,
+    ) => Promise<any> | undefined;
+  },
 ) => {
-  const currentAllowance = await checkAllowance(
-    sourceChainAddress,
+  const {
+    owner,
     gatewayAddress,
-  );
+    transferAmount,
+    checkAllowance,
+    approveERC20,
+  } = args;
+
+  const currentAllowance = await checkAllowance(owner, gatewayAddress);
 
   // console.log({
   //   currentAllowance,
   //   transferAmount,
+  //   owner,
+  //   gatewayAddress,
   // });
 
   if (currentAllowance >= transferAmount) {
     return;
   }
   try {
-    // console.log({
-    //   gatewayAddress,
-    //   maxUint256,
-    // })
     const approvalTx = await approveERC20(gatewayAddress, MaxUint256);
     if (!approvalTx) throw new Error("Failed to create approval transaction");
 
     const approvalConfirmed = await Promise.race([
       new Promise((_, reject) =>
-        setTimeout(() => reject(new Error("Approval timeout")), 200000),
+        setTimeout(() => reject(new Error("Approval timeout")), 500_000),
       ),
       approvalTx.wait(),
     ]);
@@ -106,10 +118,7 @@ export const handleTokenApproval = async (
       throw new Error("Approval failed");
     }
 
-    const currentAllowance = await checkAllowance(
-      sourceChainAddress,
-      gatewayAddress,
-    );
+    const currentAllowance = await checkAllowance(owner, gatewayAddress);
 
     if (currentAllowance < transferAmount) {
       throw new Error("Approval failed");

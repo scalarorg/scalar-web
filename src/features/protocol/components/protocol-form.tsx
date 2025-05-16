@@ -113,7 +113,6 @@ export const ProtocolForm = ({ setOpen }: Props) => {
         },
         avatar: extractBase64Data(avatar),
       };
-      console.log("newValues", newValues);
 
       const result = await scalarClient.raw.createProtocol(
         account.address,

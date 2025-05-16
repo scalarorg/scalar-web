@@ -1,5 +1,5 @@
 import { getDefaultConfig } from "@rainbow-me/rainbowkit";
-import { cookieStorage, createStorage, http } from "wagmi";
+import { http, cookieStorage, createStorage } from "wagmi";
 import { bscTestnet, sepolia } from "wagmi/chains";
 
 const chains = [sepolia, bscTestnet] as const;

@@ -1,4 +1,3 @@
-
 import { wagmiConfig } from "@/lib/wagmi";
 import { ReactNode } from "react";
 import { WagmiProvider as BaseWagmiProvider } from "wagmi";

@@ -36,10 +36,7 @@ export const Clipboard = ({
     }
   };
 
-  const commonTextClassNames = cn(
-    "truncate text-primary",
-    classNames?.text,
-  );
+  const commonTextClassNames = cn("truncate text-primary", classNames?.text);
 
   return (
     <div className={cn("flex grow gap-1", classNames?.wrapper)}>
