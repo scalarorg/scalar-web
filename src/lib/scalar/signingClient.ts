@@ -6,6 +6,8 @@ import {
 
 import { fromBech32 } from "@cosmjs/encoding";
 
+import Long from "long"
+
 import {
   type DeliverTxResponse,
   type SignerData,
@@ -40,6 +42,7 @@ import { isSecp256k1Pubkey } from "../utils";
 import type {
   CreateDeployTokenEncodeObject,
   CreateProtocolEncodeObject,
+  ReserveRedeemUtxoEncodeObject,
 } from "./interface";
 
 import { CreateDeployTokenRequest } from "@scalar-lab/scalarjs-sdk/proto/scalar/chains/v1beta1/tx";
@@ -47,20 +50,25 @@ import { isHexString } from "ethers";
 import {
   typeUrlCreateDeployTokenRequest,
   typeUrlCreateProtocolRequest,
+  typeUrlReserveRedeemUtxoRequest,
 } from "./interface";
 import {
   CreateDeployTokenParams,
   CreateProtocolParams,
   LiquidityModelParams,
+  ReserveRedeemUtxoParams,
 } from "./params";
 import {
   validateCreateDeployTokenParams,
   validateProtocolParams,
+  validateReserveRedeemUtxoParams,
 } from "./validation";
+import { ReserveRedeemUtxoRequest } from "@scalar-lab/scalarjs-sdk/proto/scalar/covenant/v1beta1/tx";
 
 export const scalarTypes: ReadonlyArray<[string, GeneratedType]> = [
   [typeUrlCreateProtocolRequest, CreateProtocolRequest],
   [typeUrlCreateDeployTokenRequest, CreateDeployTokenRequest],
+  [typeUrlReserveRedeemUtxoRequest, ReserveRedeemUtxoRequest],
 ];
 
 export const scalarDefaultRegistryTypes: ReadonlyArray<
@@ -94,8 +102,12 @@ export class ScalarSigningStargateClient extends SigningStargateClient {
     this.tx = createMsgClient(this);
     this.messages = this.tx;
 
-    this.query =
-      tmClient !== undefined ? createQueryClient(tmClient) : undefined;
+      if (tmClient) {
+        this.query = createQueryClient(tmClient as any) as any;
+      } else {
+        this.query = undefined;
+      }
+      
   }
 
   static override async connect(
@@ -193,7 +205,7 @@ export class ScalarSigningStargateClient extends SigningStargateClient {
         attributes: {
           model: mapLiquidityModel(params.attributes?.model),
         },
-        custodianGroupUid: params.custodian_group_uid!,
+        custodianGroupUid: Buffer.from(params.custodian_group_uid!, "hex"),
         asset: {
           symbol: params!.asset!.symbol!,
           chain: params!.asset!.chain!,
@@ -232,6 +244,32 @@ export class ScalarSigningStargateClient extends SigningStargateClient {
     };
 
     return this.signAndBroadcast(creator, [createMsg], fee, memo);
+  }
+
+  public async reserveRedeemUtxo(
+    creator: string,
+    params: ReserveRedeemUtxoParams,
+    fee: StdFee | "auto" | number,
+    memo = "",
+  ): Promise<DeliverTxResponse> {
+    validateReserveRedeemUtxoParams(params);
+    if (!isHexString(params.address)) {
+      throw "Invalid params.address";
+    }
+    const msg: ReserveRedeemUtxoEncodeObject = {
+      typeUrl: typeUrlReserveRedeemUtxoRequest,
+      value: {
+        sender: fromBech32(creator).data,
+        address: params.address,
+        sourceChain: params.source_chain!,
+        destChain: params.dest_chain!,
+        symbol: params.symbol!,
+        amount: Long.fromString(params.amount!),
+        lockingScript: Buffer.from(params.locking_script!, "hex"),
+      },
+    };
+
+    return this.signAndBroadcast(creator, [msg], fee, memo);
   }
 }
 

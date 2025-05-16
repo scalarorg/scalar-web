@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
 import { SupportedChains } from "@/types/chains";
-import { TProtocolDetails } from "@/types/protocol";
+import { TProtocolDetails } from "@/types/types";
 import { Link } from "@tanstack/react-router";
 import { PROTOCOL_STATUS } from "../constans";
 

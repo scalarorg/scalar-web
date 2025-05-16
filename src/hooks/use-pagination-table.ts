@@ -22,7 +22,7 @@ export function usePaginationTable({
             to: pathname,
             search: (prev) => ({
               ...prev,
-              offset: pageIndex,
+              page: pageIndex,
               size: pageSize,
             }),
           });

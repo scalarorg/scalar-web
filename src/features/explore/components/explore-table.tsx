@@ -1,5 +1,5 @@
 import {
-  formatDate,
+  friendlyFormatDate,
   handle0xString,
   isBtcChain,
   isEvmChain,
@@ -31,7 +31,7 @@ type Props = {
   isLoading: boolean;
   isRefetching: boolean;
   size: number;
-  offset: number;
+  page: number;
 };
 
 export const ExploreTable = ({
@@ -39,7 +39,7 @@ export const ExploreTable = ({
   isLoading,
   isRefetching,
   size,
-  offset,
+  page,
 }: Props) => {
   const pathname = usePathname();
   const navigate = useNavigate();
@@ -83,15 +83,15 @@ export const ExploreTable = ({
         },
       }),
       accessor("source", {
-        header: "Source",
+        header: "Source Address",
         cell: ({ getValue }) => {
           const { chain_name, sender, chain } = getValue();
           const { icon, blockExplorer } = Chains[chain] || {};
           const link = blockExplorer && `${blockExplorer}/address/${sender}`;
 
           return (
-            <div className="flex flex-col gap-1">
-              <div className="flex items-center gap-2">
+            <div className="flex flex-col gap-2">
+              <div className="flex items-center gap-2 font-medium">
                 {icon && (
                   <img
                     src={icon}
@@ -146,15 +146,15 @@ export const ExploreTable = ({
         },
       }),
       accessor("destination", {
-        header: "Destination",
+        header: "Destination Address",
         cell: ({ getValue }) => {
           const { chain_name, receiver, chain } = getValue();
           const { icon, blockExplorer } = Chains[chain] || {};
           const link = blockExplorer && `${blockExplorer}/address/${receiver}`;
 
           return (
-            <div className="flex flex-col gap-1">
-              <div className="flex items-center gap-2">
+            <div className="flex flex-col gap-2">
+              <div className="flex items-center gap-2 font-medium">
                 {icon && (
                   <img
                     src={icon}
@@ -174,14 +174,14 @@ export const ExploreTable = ({
           );
         },
       }),
-      accessor("type", {
-        header: "Method",
-        cell: ({ getValue }) => {
-          const type = getValue();
+      // accessor("type", {
+      //   header: "Method",
+      //   cell: ({ getValue }) => {
+      //     const type = getValue();
 
-          return <p className="capitalize">{type}</p>;
-        },
-      }),
+      //     return <p className="capitalize">{type}</p>;
+      //   },
+      // }),
       accessor("status", {
         header: "Status",
         cell: ({ getValue }) => {
@@ -191,7 +191,7 @@ export const ExploreTable = ({
           return (
             <div
               className={cn(
-                "rounded-full px-3 py-1 text-sm text-white",
+                "rounded-full px-3 py-1 text-white",
                 className,
               )}
             >
@@ -203,14 +203,14 @@ export const ExploreTable = ({
           className: "text-center",
         },
       }),
-      accessor("source.created_at", {
+      accessor((row) => row.source.block_time, {
+        id: "source.block_time",
         header: "Created at",
         cell: ({ getValue }) => {
-          const created_at = getValue();
-
+          const block_time = getValue();
           return (
             <p className="w-[130px]">
-              {formatDate(created_at, "DD/MM/YYYY HH:mm")}
+              {friendlyFormatDate(block_time)}
             </p>
           );
         },
@@ -223,11 +223,14 @@ export const ExploreTable = ({
     <DataTable
       columns={columns}
       data={data?.data || []}
+      classNames={{
+        table: "text-sm",
+      }}
       isLoading={isLoading}
       isRefetching={isRefetching}
       pageCount={Math.ceil((data?.total ?? 0) / size)}
       pagination={{
-        pageIndex: offset + 1,
+        pageIndex: page + 1,
         pageSize: size,
       }}
     />

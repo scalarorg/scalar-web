@@ -12,6 +12,7 @@ type TCommon = {
   chain_name: string;
   tx_hash: string;
   block_height: number;
+  block_time: number;
   status: string;
   value: string;
   fee: string;

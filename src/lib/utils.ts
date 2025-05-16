@@ -1,14 +1,16 @@
 import { ChainTypes } from "@/types/chains";
-import { TCustodian, TProtocolChain } from "@/types/protocol";
+import { TCustodian, TProtocolChain } from "@/types/types";
 import { type ClassValue, clsx } from "clsx";
 import dayjs from "dayjs";
-import { isHexString } from "ethers";
+import utc from 'dayjs/plugin/utc';
+import { MaxUint256, isHexString } from "ethers";
 import { keyBy } from "lodash";
 import numeral from "numeral";
 import { twMerge } from "tailwind-merge";
 import { formatUnits, parseUnits } from "viem";
 import { decodeScalarBytesToUint8Array } from "./scalar";
 
+dayjs.extend(utc);
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
@@ -77,21 +79,39 @@ export const handleTokenApproval = async (
     gatewayAddress,
   );
 
+  // console.log({
+  //   currentAllowance,
+  //   transferAmount,
+  // });
+
   if (currentAllowance >= transferAmount) {
     return;
   }
   try {
-    const approvalTx = await approveERC20(gatewayAddress, transferAmount);
+    // console.log({
+    //   gatewayAddress,
+    //   maxUint256,
+    // })
+    const approvalTx = await approveERC20(gatewayAddress, MaxUint256);
     if (!approvalTx) throw new Error("Failed to create approval transaction");
 
     const approvalConfirmed = await Promise.race([
       new Promise((_, reject) =>
-        setTimeout(() => reject(new Error("Approval timeout")), 60000),
+        setTimeout(() => reject(new Error("Approval timeout")), 200000),
       ),
       approvalTx.wait(),
     ]);
 
     if (!approvalConfirmed) {
+      throw new Error("Approval failed");
+    }
+
+    const currentAllowance = await checkAllowance(
+      sourceChainAddress,
+      gatewayAddress,
+    );
+
+    if (currentAllowance < transferAmount) {
       throw new Error("Approval failed");
     }
   } catch (error: unknown) {
@@ -298,7 +318,47 @@ export const formatDate = (date: number, formater = "DD/MM/YYYY") => {
   const newDate = new Date(date * 1000);
   return dayjs(newDate).format(formater);
 };
-
+export const friendlyFormatDate = (date: number) => {
+  const inputDate = dayjs(date * 1000);
+  const currentDate = dayjs().utc();
+  //const currentDate = dayjs();
+  const diffInMonths = currentDate.diff(inputDate, "month");
+  if (diffInMonths > 1) {
+    return `${diffInMonths} months ago`;
+  }
+  if (diffInMonths === 1) {
+    return "a month ago";
+  }
+  const diffInDays = currentDate.diff(inputDate, "day");
+  if (diffInDays > 1) {
+    return `${diffInDays} days ago`;
+  }
+  if (diffInDays === 1) {
+    return "a day ago";
+  }
+  const diffInHours = currentDate.diff(inputDate, "hour");
+  if (diffInHours > 1) {
+    return `${diffInHours} hours ago`;
+  }
+  if (diffInHours === 1) {
+    return "an hour ago";
+  }
+  const diffInMinutes = currentDate.diff(inputDate, "minute");
+  if (diffInMinutes > 1) {
+    return `${diffInMinutes} minutes ago`;
+  }
+  if (diffInMinutes === 1) {
+    return "a minute ago";
+  }
+  const diffInSeconds = currentDate.diff(inputDate, "second");
+  if (diffInSeconds > 1) {
+    return `${diffInSeconds} seconds ago`;
+  }
+  if (diffInSeconds === 1) {
+    return "a second ago";
+  }
+  return "just now";
+};
 export const handle0xString = (str: string) => ({
   remove: str.replace("0x", ""),
   add: str.startsWith("0x") ? str : `0x${str}`,

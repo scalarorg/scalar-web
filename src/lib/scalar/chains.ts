@@ -1,4 +1,4 @@
-import { TProtocolChain } from "@/types/protocol";
+import { TProtocolChain } from "@/types/types";
 
 export const getChainName = (chain: TProtocolChain) => {
   return chain.chain;

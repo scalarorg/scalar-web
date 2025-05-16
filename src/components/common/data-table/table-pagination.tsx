@@ -43,7 +43,7 @@ export function TablePagination<TData>({
   const page = getState().pagination.pageIndex + 1;
   const pageCount = getPageCount();
 
-  const items = generatePages(page, pageCount, 1);
+  const items = generatePages(page, pageCount, 2);
 
   return (
     <div
@@ -122,7 +122,7 @@ export function TablePagination<TData>({
             <div className="flex items-center gap-1 whitespace-nowrap text-sm">
               {items.map((pageNumber) => (
                 <Button
-                  key={pageNumber}
+                  key={crypto.randomUUID()}
                   variant="pagination_link"
                   onClick={() => {
                     if (pageNumber !== ELLIPSIS) {
@@ -210,8 +210,8 @@ const generatePages = (current: number, total: number, siblings: number) => {
   const startPage = Math.max(current - siblings, 1);
   const endPage = Math.min(current + siblings, total);
 
-  const hasLeftEllipsis = startPage > 2;
-  const hasRightEllipsis = endPage < total - 1;
+  const hasLeftEllipsis = startPage > 3;
+  const hasRightEllipsis = endPage < total - 2;
 
   const pages: (number | string)[] = [];
 

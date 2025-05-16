@@ -1,5 +1,5 @@
 import { Heading } from "@/components/common";
-import { COMMON_VALIDATE_PAGE_SEARCH_PARAMS } from "@/constants";
+import { COMMON_DEFAULT_PAGE_SIZE, COMMON_VALIDATE_PAGE_SEARCH_PARAMS } from "@/constants";
 import { ExploreTable, useExploreQuery } from "@/features/explore";
 import { createFileRoute } from "@tanstack/react-router";
 
@@ -9,11 +9,11 @@ export const Route = createFileRoute("/explore/transfer/")({
 });
 
 function Transfer() {
-  const { size = 10, offset = 0 } = Route.useSearch();
+  const { size = COMMON_DEFAULT_PAGE_SIZE, page = 0 } = Route.useSearch();
 
   const { data, isLoading, isRefetching } = useExploreQuery.useList({
     size,
-    offset,
+    page,
     type: "transfer",
   });
 
@@ -25,7 +25,7 @@ function Transfer() {
         isLoading={isLoading}
         isRefetching={isRefetching}
         size={size}
-        offset={offset}
+        page={page}
       />
     </div>
   );

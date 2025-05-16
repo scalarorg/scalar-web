@@ -2,7 +2,7 @@ import { IGateway_ABI } from "@/abis/igateway";
 import { Base64Icon, ChainIcon, SelectSearch } from "@/components/common";
 import { ConnectEvm } from "@/components/connect";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   Form,
   FormControl,
@@ -30,7 +30,7 @@ import {
 import { getWagmiChain, isSupportedChain } from "@/lib/wagmi";
 import { useWalletProvider } from "@/providers/wallet-provider";
 import { SupportedChains } from "@/types/chains";
-import { TProtocolDetails } from "@/types/protocol";
+import { TProtocolDetails } from "@/types/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useQuery } from "@tanstack/react-query";
 import { isNil, keyBy } from "lodash";
@@ -274,9 +274,9 @@ export const TransfersForm = () => {
 
   return (
     <Card className="mx-auto w-full max-w-2xl border-none shadow-none">
-      <CardHeader className="flex flex-row items-center justify-between px-0">
+      {/* <CardHeader className="flex flex-row items-center justify-between px-0">
         <CardTitle className="font-bold text-xl">Transfers</CardTitle>
-      </CardHeader>
+      </CardHeader> */}
       <CardContent className="px-0">
         <Form {...form}>
           <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>

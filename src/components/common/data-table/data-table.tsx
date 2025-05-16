@@ -1,3 +1,4 @@
+import { COMMON_DEFAULT_PAGE_SIZE } from "@/constants";
 import {
   ColumnDef,
   PaginationState,
@@ -90,7 +91,7 @@ const DataTableInnerForwardRef = <TData,>(
     data = [],
     columns,
     classNames = {},
-    pagination: { pageIndex = 1, pageSize = 10 },
+    pagination: { pageIndex = 1, pageSize = COMMON_DEFAULT_PAGE_SIZE },
     isLoading = false,
     isRefetching = false,
     extraTableToolbar,
@@ -203,7 +204,7 @@ const DataTableInnerForwardRef = <TData,>(
             "overflow-hidden",
 
             // Styling
-            "rounded-lg border",
+            "rounded-lg border border-gray-200",
 
             // Shadow effects
             showLeftShadow && "table-left-shadow",
@@ -251,7 +252,7 @@ const DataTableInnerForwardRef = <TData,>(
                   <TableRow
                     key={headerGroup.id}
                     className={cn(
-                      "w-fit divide-x divide-neutral-50 text-base",
+                      "w-fit divide-x divide-neutral-50",
                       classNames.headerRow,
                     )}
                   >
@@ -272,9 +273,9 @@ const DataTableInnerForwardRef = <TData,>(
                           {header.isPlaceholder
                             ? null
                             : flexRender(
-                                header.column.columnDef.header,
-                                header.getContext(),
-                              )}
+                              header.column.columnDef.header,
+                              header.getContext(),
+                            )}
                         </TableHead>
                       );
                     })}
@@ -298,7 +299,6 @@ const DataTableInnerForwardRef = <TData,>(
                       key={row.id}
                       data-state={row.getIsSelected() && "selected"}
                       className={cn(
-                        "text-base",
                         index % 2 === 0 && "bg-white",
                         classNames.row,
                         onRowClick && "cursor-pointer",
@@ -330,7 +330,7 @@ const DataTableInnerForwardRef = <TData,>(
                   <TableRow className="h-full">
                     <TableCell colSpan={columns.length}>
                       <div className="flex items-center justify-center py-8">
-                        <p className="font-semibold text-base">No data</p>
+                        <p className="font-semibold">No data</p>
                       </div>
                     </TableCell>
                   </TableRow>
@@ -346,7 +346,7 @@ const DataTableInnerForwardRef = <TData,>(
           table={table}
           isLoading={isLoading}
           pageSizeOptions={pageSizeOptions}
-          // isSimple={isSimple}
+        // isSimple={isSimple}
         />
       )}
     </div>
