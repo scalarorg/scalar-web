@@ -202,6 +202,9 @@ export const BridgeForm = () => {
       const { psbt: unsignedVaultPsbt } =
         vault!.buildCustodianOnlyStakingPsbt(psbtFormData);
 
+      console.log("Before signing PSBT")
+      console.log(unsignedVaultPsbt.toHex())
+
       const signedPsbt = await walletProvider?.signPsbt(
         unsignedVaultPsbt.toHex(),
         {
