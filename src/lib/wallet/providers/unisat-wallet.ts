@@ -19,8 +19,6 @@ import {
 // window object for Unisat Wallet extension
 export const unisatProvider = "unisat";
 
-const ErrorWalletNotConnected = new Error("Unisat Wallet not connected");
-
 export class UnisatWallet extends WalletProvider {
   private unisatWalletInfo: WalletInfo | undefined;
   // biome-ignore lint/suspicious/noExplicitAny: <explanation>
@@ -114,6 +112,8 @@ export class UnisatWallet extends WalletProvider {
         balance: balance?.total || 0,
       };
 
+      console.log("Unisat Wallet connected in constructor", this.unisatWalletInfo);
+
       return this;
     } catch (_error) {
       throw new Error("Could not connect to Unisat Wallet");
@@ -127,43 +127,32 @@ export class UnisatWallet extends WalletProvider {
 
   // biome-ignore lint/suspicious/useAwait: <explanation>
   getAddress = async (): Promise<string> => {
-    if (!this.unisatWalletInfo) {
-      throw ErrorWalletNotConnected;
-    }
-    return this.unisatWalletInfo.address;
+    this.checkWalletProvider();
+    return this.getWalletInfo().address;
   };
 
   // biome-ignore lint/suspicious/useAwait: <explanation>
   getPublicKeyHex = async (): Promise<string> => {
-    if (!this.unisatWalletInfo) {
-      throw ErrorWalletNotConnected;
-    }
-    return this.unisatWalletInfo.publicKeyHex;
+    return this.getWalletInfo().publicKeyHex;
   };
 
   signPsbt = async (
     psbtHex: string,
     options?: UnisatOptions,
   ): Promise<string> => {
-    if (!this.unisatWalletInfo) {
-      throw ErrorWalletNotConnected;
-    }
+    this.checkWalletProvider();
     // Use signPsbt since it shows the fees
     return await this.bitcoinNetworkProvider.signPsbt(psbtHex, options);
   };
 
   signPsbts = async (psbtsHexes: string[]): Promise<string[]> => {
-    if (!this.unisatWalletInfo) {
-      throw ErrorWalletNotConnected;
-    }
+    this.checkWalletProvider()
     // sign the PSBTs
     return await this.bitcoinNetworkProvider.signPsbts(psbtsHexes);
   };
 
   signMessageBIP322 = async (message: string): Promise<string> => {
-    if (!this.unisatWalletInfo) {
-      throw ErrorWalletNotConnected;
-    }
+    this.checkWalletProvider();
     return await this.bitcoinNetworkProvider.signMessage(
       message,
       "bip322-simple",
@@ -181,9 +170,7 @@ export class UnisatWallet extends WalletProvider {
   };
 
   on = (eventName: string, callBack: () => void) => {
-    if (!this.unisatWalletInfo) {
-      throw ErrorWalletNotConnected;
-    }
+    this.checkWalletProvider();
     // subscribe to account change event
     if (eventName === "accountChanged") {
       return this.unisatWallet.on(eventName, callBack);
@@ -217,7 +204,6 @@ export class UnisatWallet extends WalletProvider {
     await this.unisatWallet.disconnect();
   };
 
-  getWalletInfo = (): WalletInfo | undefined => this.unisatWalletInfo;
 
   init = async (): Promise<{
     balance: number;
@@ -227,8 +213,7 @@ export class UnisatWallet extends WalletProvider {
     const accounts = await this.bitcoinNetworkProvider.getAccounts();
 
     if (accounts.length === 0) {
-      this.unisatWalletInfo = undefined;
-      return { balance: 0, address: "", pubkey: "" };
+      throw new Error("No accounts found");
     }
 
     const address = accounts[0];
@@ -247,6 +232,19 @@ export class UnisatWallet extends WalletProvider {
       balance: balance?.total || 0,
       pubkey: compressedPublicKey,
     };
+  };
+
+  getWalletInfo = (): WalletInfo => {
+    if (!this.unisatWalletInfo) {
+      this.init();
+    }
+    return this.unisatWalletInfo!;
+  };
+
+  checkWalletProvider = async (): Promise<void> => {
+    if (!this.unisatWallet || !window[unisatProvider as keyof typeof window]) {
+      throw new Error("Unisat Wallet extension not found");
+    }
   };
 }
 
