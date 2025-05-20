@@ -25,6 +25,8 @@ const buttonVariants = cva(
         pagination:
           "border border-secondary-500 bg-white text-black hover:bg-white hover:text-primary",
         pagination_link: "text-black hover:text-primary",
+        tab_link:
+          "border border-transparent bg-background-secondary text-primary shadow-xs hover:border-primary",
       },
       size: {
         default: "h-9 px-4 py-2 has-[>svg]:px-3",

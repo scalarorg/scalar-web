@@ -3,7 +3,12 @@ import {
   COMMON_DEFAULT_PAGE_SIZE,
   COMMON_VALIDATE_PAGE_SEARCH_PARAMS,
 } from "@/constants";
-import { ExploreTable, useExploreQuery } from "@/features/explore";
+import {
+  EExploreType,
+  ExploreLinks,
+  ExploreTable,
+  useExploreQuery,
+} from "@/features/explore";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/explore/transfer/")({
@@ -17,12 +22,13 @@ function Transfer() {
   const { data, isLoading, isRefetching } = useExploreQuery.useList({
     size,
     page,
-    type: "transfer",
+    type: EExploreType.TRANSFER,
   });
 
   return (
     <div className="flex flex-col gap-5 py-[60px]">
       <Heading>Transfer</Heading>
+      <ExploreLinks type={EExploreType.TRANSFER} />
       <ExploreTable
         data={data ?? { data: [], total: 0 }}
         isLoading={isLoading}

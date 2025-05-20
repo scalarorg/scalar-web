@@ -1,5 +1,5 @@
 import { UtilityList } from "@/lib/utils";
-import { ECrossChainStatus } from "./models";
+import { ECrossChainStatus, EExploreType } from "./models";
 
 export const CROSS_CHAIN_STATUS = new UtilityList<{
   label: string;
@@ -47,4 +47,18 @@ export const CROSS_CHAIN_STATUS = new UtilityList<{
     label: "Deleted",
     value: ECrossChainStatus.DELETED,
   },
+]);
+
+export const EXPLORE_TYPE = new UtilityList<{
+  label: string;
+  value: EExploreType;
+  path: string;
+}>([
+  { label: "Bridge", value: EExploreType.BRIDGE, path: "/explore/bridge" },
+  {
+    label: "Transfer",
+    value: EExploreType.TRANSFER,
+    path: "/explore/transfer",
+  },
+  { label: "Redeem", value: EExploreType.REDEEM, path: "/explore/redeem" },
 ]);
