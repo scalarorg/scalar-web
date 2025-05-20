@@ -16,3 +16,9 @@ export enum ETimeBucket {
   WEEK = 'week',
   MONTH = 'month'
 }
+
+export enum EExploreType {
+  BRIDGE = "bridge",
+  TRANSFER = "transfer",
+  REDEEM = "redeem",
+}
