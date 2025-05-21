@@ -4,24 +4,25 @@ import {
   NetworkProvider,
   QueryProvider,
   WagmiProvider,
-  WalletProvider
-} from '@/providers';
-import * as ec from '@bitcoin-js/tiny-secp256k1-asmjs';
-import { RainbowKitProvider } from '@rainbow-me/rainbowkit';
-import * as bitcoin from 'bitcoinjs-lib';
-import { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
-import '@rainbow-me/rainbowkit/styles.css';
-import { Toaster as Sonner } from '@/components/ui/sonner';
-import { Toaster } from '@/components/ui/toaster';
-import { RouterProvider, createRouter } from '@tanstack/react-router';
-import { scalarConfig } from './lib/scalar';
-import { routeTree } from './routeTree.gen';
-import './index.css';
-import { ConfirmDialogProvider } from './components/common';
+  WalletProvider,
+  buildProvidersTree
+} from "@/providers";
+import * as ec from "@bitcoin-js/tiny-secp256k1-asmjs";
+import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
+import * as bitcoin from "bitcoinjs-lib";
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "@rainbow-me/rainbowkit/styles.css";
+import { Toaster as Sonner } from "@/components/ui/sonner";
+import { Toaster } from "@/components/ui/toaster";
+import { RouterProvider, createRouter } from "@tanstack/react-router";
+import { scalarConfig } from "./lib/scalar";
+import { routeTree } from "./routeTree.gen";
+import "./index.css";
+import { ConfirmDialogProvider } from "./components/common";
 
 const router = createRouter({ routeTree });
-declare module '@tanstack/react-router' {
+declare module "@tanstack/react-router" {
   interface Register {
     router: typeof router;
   }
@@ -29,25 +30,22 @@ declare module '@tanstack/react-router' {
 
 bitcoin.initEccLib(ec);
 
-createRoot(document.getElementById('root')!).render(
+const ProvidersTree = buildProvidersTree([
+  [WagmiProvider],
+  [QueryProvider],
+  [ErrorProvider],
+  [RainbowKitProvider],
+  [NetworkProvider],
+  [WalletProvider],
+  [KeplrProvider, { config: scalarConfig() }],
+  [ConfirmDialogProvider]
+]);
+
+createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <WagmiProvider>
-      <QueryProvider>
-        <ErrorProvider>
-          <RainbowKitProvider>
-            <NetworkProvider>
-              <WalletProvider>
-                <KeplrProvider config={scalarConfig()}>
-                  <ConfirmDialogProvider>
-                    <RouterProvider router={router} />
-                  </ConfirmDialogProvider>
-                </KeplrProvider>
-              </WalletProvider>
-            </NetworkProvider>
-          </RainbowKitProvider>
-        </ErrorProvider>
-      </QueryProvider>
-    </WagmiProvider>
+    <ProvidersTree>
+      <RouterProvider router={router} />
+    </ProvidersTree>
     <Toaster />
     <Sonner richColors />
   </StrictMode>
