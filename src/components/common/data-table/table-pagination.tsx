@@ -1,29 +1,21 @@
-import { Button } from '@/components/ui/button';
-import { Skeleton } from '@/components/ui/skeleton';
-import { cn } from '@/lib/utils';
-import { type Table as TableType } from '@tanstack/react-table';
-import { range } from 'lodash';
-import { ChevronLeft, ChevronRight, ChevronsLeftIcon, ChevronsRightIcon } from 'lucide-react';
+import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
+import { cn } from "@/lib/utils";
+import { type Table as TableType } from "@tanstack/react-table";
+import { range } from "lodash";
+import { ChevronLeft, ChevronRight, ChevronsLeftIcon, ChevronsRightIcon } from "lucide-react";
+import { If } from "../if";
 
 type TablePaginationProps<TData> = {
   className?: string;
   table: TableType<TData>;
   isLoading?: boolean;
   pageSizeOptions?: number[];
-  // isSimple?: boolean;
 };
 
-// const PAGE_SIZE_OPTIONS = [50, 75, 100];
+const ELLIPSIS = "...";
 
-const ELLIPSIS = '...';
-
-export function TablePagination<TData>({
-  table,
-  className,
-  isLoading = false
-  // pageSizeOptions = PAGE_SIZE_OPTIONS,
-  // isSimple = false,
-}: TablePaginationProps<TData>) {
+export function TablePagination<TData>({ table, className, isLoading = false }: TablePaginationProps<TData>) {
   const {
     getCanPreviousPage,
     setPageIndex,
@@ -44,51 +36,18 @@ export function TablePagination<TData>({
     <div
       className={cn(
         // Background
-        'bg-white',
+        "bg-white",
 
         // Layout
-        'flex flex-wrap items-center',
+        "flex flex-wrap items-center",
 
         // Spacing
-        'gap-4 py-4 md:px-2',
+        "gap-4 py-4 md:px-2",
         className
       )}
     >
-      {isLoading ? (
-        <PaginationSkeleton />
-      ) : (
+      <If condition={!isLoading} fallback={<PaginationSkeleton />}>
         <div className='flex w-full items-center gap-4'>
-          {/* {!isSimple && (
-            <div
-              className={cn(
-                // Positioning
-                "mx-auto md:mx-0",
-
-                // Layout
-                "flex items-center",
-
-                // Spacing
-                "gap-1",
-
-                // Text
-                "text-sm md:text-base",
-              )}
-            >
-              <span>Page</span>
-              <Input
-                type="number"
-                defaultValue={page}
-                onChange={(e) => {
-                  const value = e.target.value;
-                  if (value) {
-                    setPageIndex(Number(value) - 1);
-                  }
-                }}
-                disabled={pageCount === 1}
-              />
-              <span>of {pageCount}</span>
-            </div>
-          )} */}
           <div className='mx-auto flex items-center gap-2'>
             <Button
               aria-label='First page'
@@ -128,9 +87,9 @@ export function TablePagination<TData>({
                     }
                   }}
                   className={cn(
-                    'bg-hovering',
-                    pageNumber === page && 'bg-primary text-white hover:text-white',
-                    pageNumber === ELLIPSIS && 'bg-transparent'
+                    "bg-hovering",
+                    pageNumber === page && "bg-primary text-white hover:text-white",
+                    pageNumber === ELLIPSIS && "bg-transparent"
                   )}
                   size='icon'
                   disabled={pageNumber === ELLIPSIS}
@@ -162,36 +121,13 @@ export function TablePagination<TData>({
               <ChevronsRightIcon size={20} />
             </Button>
           </div>
-          {/* {!isSimple && (
-            <div className="flex items-center gap-1 text-sm md:text-base">
-              <span>Show</span>
-              <Select
-                value={`${getState().pagination.pageSize}`}
-                onValueChange={(value) => {
-                  table.setPageSize(Number(value));
-                }}
-              >
-                <SelectTrigger className="h-10 w-[72px] text-sm md:text-base">
-                  <SelectValue
-                    placeholder={table.getState().pagination.pageSize}
-                  />
-                </SelectTrigger>
-                <SelectContent side="top">
-                  {pageSizeOptions.map((pageSize) => (
-                    <SelectItem key={pageSize} value={`${pageSize}`}>
-                      {pageSize}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              <span>entries</span>
-            </div>
-          )} */}
         </div>
-      )}
+      </If>
     </div>
   );
 }
+
+const ELLIPSES = "...";
 
 const generatePages = (current: number, total: number, siblings: number) => {
   const totalNumbers = siblings * 2 + 3;
@@ -207,44 +143,22 @@ const generatePages = (current: number, total: number, siblings: number) => {
   const hasLeftEllipsis = startPage > 3;
   const hasRightEllipsis = endPage < total - 2;
 
-  const pages: (number | string)[] = [];
+  // Use concatenation and spread operator instead of push
+  const leftPages = hasLeftEllipsis ? [1, ELLIPSES] : range(1, startPage);
 
-  if (hasLeftEllipsis) {
-    pages.push(1, ELLIPSIS);
-  } else {
-    pages.push(...range(1, startPage));
-  }
+  const middlePages = range(startPage, endPage + 1);
 
-  pages.push(...range(startPage, endPage + 1));
+  const rightPages = hasRightEllipsis ? [ELLIPSES, total] : range(endPage + 1, total + 1);
 
-  if (hasRightEllipsis) {
-    pages.push(ELLIPSIS, total);
-  } else {
-    pages.push(...range(endPage + 1, total + 1));
-  }
-
-  return pages;
+  // Combine all sections
+  return [...leftPages, ...middlePages, ...rightPages];
 };
 
 // Skeleton Components
 const PageSkeleton = () => <Skeleton className='size-9 rounded-full md:h-10 md:w-[200px]' />;
 
-// const ButtonSkeleton = () => (
-//   <Skeleton
-//     className={cn(
-//       // Sizing
-//       "size-9 md:h-10 md:w-[100px]",
-
-//       // Shape
-//       "rounded-lg md:rounded-full",
-//     )}
-//   />
-// );
-
 const PaginationSkeleton = () => (
   <div className='flex w-full items-center justify-between'>
-    {/* <ButtonSkeleton /> */}
     <PageSkeleton />
-    {/* <ButtonSkeleton /> */}
   </div>
 );

@@ -8,9 +8,9 @@ import {
   useCallback,
   useMemo,
   useState
-} from 'react';
+} from "react";
 
-import { CircleAlert, CircleCheck, Trash2 } from 'lucide-react';
+import { CircleAlert, CircleCheck, Trash2 } from "lucide-react";
 
 import {
   AlertDialog,
@@ -23,9 +23,10 @@ import {
   AlertDialogOverlay,
   AlertDialogPortal,
   AlertDialogTitle
-} from '@/components/ui/alert-dialog';
-import { buttonVariants } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
+} from "@/components/ui/alert-dialog";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { If } from "./if";
 
 export interface CustomActionsProps {
   confirm: () => void;
@@ -77,10 +78,10 @@ export interface ConfirmFunction {
 export const ConfirmContext = createContext<ConfirmContextValue | undefined>(undefined);
 
 const baseDefaultOptions: ConfirmOptions = {
-  title: '',
-  description: '',
-  confirmText: 'Confirm',
-  cancelText: 'Cancel',
+  title: "",
+  description: "",
+  confirmText: "Confirm",
+  cancelText: "Cancel",
   confirmButton: {},
   cancelButton: {},
   alertDialogContent: {},
@@ -122,11 +123,11 @@ const ConfirmDialogContent: FC<{
     if (!customActions) {
       return (
         <>
-          {cancelButton !== null && (
+          <If condition={cancelButton !== null}>
             <AlertDialogCancel onClick={onCancel} {...cancelButton}>
               {cancelText}
             </AlertDialogCancel>
-          )}
+          </If>
           <AlertDialogAction onClick={onConfirm} {...confirmButton}>
             {confirmText}
           </AlertDialogAction>
@@ -165,9 +166,11 @@ const ConfirmDialogContent: FC<{
       <AlertDialogContent {...alertDialogContent}>
         <AlertDialogHeader {...alertDialogHeader}>
           {renderTitle()}
-          {description && (
-            <AlertDialogDescription {...alertDialogDescription}>{description}</AlertDialogDescription>
-          )}
+          <If condition={description}>
+            {(description) => (
+              <AlertDialogDescription {...alertDialogDescription}>{description}</AlertDialogDescription>
+            )}
+          </If>
           {contentSlot}
         </AlertDialogHeader>
         <AlertDialogFooter {...alertDialogFooter}>{renderActions()}</AlertDialogFooter>
@@ -176,7 +179,7 @@ const ConfirmDialogContent: FC<{
   );
 });
 
-ConfirmDialogContent.displayName = 'ConfirmDialogContent';
+ConfirmDialogContent.displayName = "ConfirmDialogContent";
 
 const ConfirmDialog: FC<{
   isOpen: boolean;
@@ -191,7 +194,7 @@ const ConfirmDialog: FC<{
   </AlertDialog>
 ));
 
-ConfirmDialog.displayName = 'ConfirmDialog';
+ConfirmDialog.displayName = "ConfirmDialog";
 
 export const ConfirmDialogProvider: FC<{
   defaultOptions?: ConfirmOptions;
@@ -215,7 +218,7 @@ export const ConfirmDialogProvider: FC<{
     (newConfig: ConfirmOptions | ((prev: ConfirmOptions) => ConfirmOptions)) => {
       setDialogState((prev) => ({
         ...prev,
-        config: typeof newConfig === 'function' ? newConfig(prev.config) : { ...prev.config, ...newConfig }
+        config: typeof newConfig === "function" ? newConfig(prev.config) : { ...prev.config, ...newConfig }
       }));
     },
     []
@@ -299,7 +302,7 @@ export const ConfirmDialogProvider: FC<{
 export const useConfirm = () => {
   const context = use(ConfirmContext);
   if (!context) {
-    throw new Error('useConfirm must be used within a ConfirmDialogProvider');
+    throw new Error("useConfirm must be used within a ConfirmDialogProvider");
   }
 
   const { confirm, updateConfig } = context;
@@ -308,11 +311,11 @@ export const useConfirm = () => {
   enhancedConfirm.updateConfig = updateConfig;
 
   return enhancedConfirm as ConfirmFunction & {
-    updateConfig: ConfirmContextValue['updateConfig'];
+    updateConfig: ConfirmContextValue["updateConfig"];
   };
 };
 
-type ConfirmType = 'delete' | 'warning' | 'successs';
+type ConfirmType = "delete" | "warning" | "successs";
 
 const IconWrapper = ({
   children,
@@ -321,11 +324,11 @@ const IconWrapper = ({
   children: ReactNode;
   className?: string;
 }) => (
-  <div className={cn('flex size-10 items-center justify-center rounded-full', className)}>{children}</div>
+  <div className={cn("flex size-10 items-center justify-center rounded-full", className)}>{children}</div>
 );
 
 const alertDialogTitle = {
-  className: 'flex items-center gap-2'
+  className: "flex items-center gap-2"
 };
 export const confirmDialogConfig: Record<ConfirmType, ConfirmOptions> = {
   delete: {
@@ -335,7 +338,7 @@ export const confirmDialogConfig: Record<ConfirmType, ConfirmOptions> = {
       </IconWrapper>
     ),
     confirmButton: {
-      className: buttonVariants({ variant: 'destructive' })
+      className: buttonVariants({ variant: "destructive" })
     },
     alertDialogTitle
   },
@@ -346,7 +349,7 @@ export const confirmDialogConfig: Record<ConfirmType, ConfirmOptions> = {
       </IconWrapper>
     ),
     confirmButton: {
-      className: buttonVariants({ variant: 'default' })
+      className: buttonVariants({ variant: "default" })
     },
     alertDialogTitle
   },
@@ -357,7 +360,7 @@ export const confirmDialogConfig: Record<ConfirmType, ConfirmOptions> = {
       </IconWrapper>
     ),
     confirmButton: {
-      className: buttonVariants({ variant: 'default' })
+      className: buttonVariants({ variant: "default" })
     },
     cancelButton: null,
     alertDialogTitle
