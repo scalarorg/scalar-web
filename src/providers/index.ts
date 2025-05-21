@@ -1,3 +1,4 @@
+import { buildProvidersTree } from "./build-providers-tree";
 import { ErrorProvider } from "./error-provider";
 import { KeplrProvider } from "./keplr-provider";
 import NetworkProvider from "./network-provider";
@@ -12,4 +13,5 @@ export {
   ErrorProvider,
   WalletProvider,
   KeplrProvider,
+  buildProvidersTree,
 };

@@ -5,6 +5,7 @@ import {
   QueryProvider,
   WagmiProvider,
   WalletProvider,
+  buildProvidersTree,
 } from "@/providers";
 import * as ec from "@bitcoin-js/tiny-secp256k1-asmjs";
 import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
@@ -29,25 +30,22 @@ declare module "@tanstack/react-router" {
 
 bitcoin.initEccLib(ec);
 
+const ProvidersTree = buildProvidersTree([
+  [WagmiProvider],
+  [QueryProvider],
+  [ErrorProvider],
+  [RainbowKitProvider],
+  [NetworkProvider],
+  [WalletProvider],
+  [KeplrProvider, { config: scalarConfig() }],
+  [ConfirmDialogProvider],
+]);
+
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <WagmiProvider>
-      <QueryProvider>
-        <ErrorProvider>
-          <RainbowKitProvider>
-            <NetworkProvider>
-              <WalletProvider>
-                <KeplrProvider config={scalarConfig()}>
-                  <ConfirmDialogProvider>
-                    <RouterProvider router={router} />
-                  </ConfirmDialogProvider>
-                </KeplrProvider>
-              </WalletProvider>
-            </NetworkProvider>
-          </RainbowKitProvider>
-        </ErrorProvider>
-      </QueryProvider>
-    </WagmiProvider>
+    <ProvidersTree>
+      <RouterProvider router={router} />
+    </ProvidersTree>
     <Toaster />
     <Sonner richColors />
   </StrictMode>,
