@@ -4,6 +4,7 @@ import * as React from "react";
 
 import { cn } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
+import { If } from "../common/if";
 
 const buttonVariants = cva(
   "inline-flex cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded-md font-medium text-sm outline-none transition-[color,box-shadow] focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
@@ -62,7 +63,9 @@ function Button({
       {...props}
     >
       <>
-        {isLoading && <Loader2 className='animate-spin' />}
+        <If condition={isLoading}>
+          <Loader2 className='animate-spin' />{" "}
+        </If>
         {children}
       </>
     </Comp>

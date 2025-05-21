@@ -1,4 +1,4 @@
-import { COMMON_DEFAULT_PAGE_SIZE } from '@/constants';
+import { COMMON_DEFAULT_PAGE_SIZE } from "@/constants";
 import {
   ColumnDef,
   PaginationState,
@@ -8,16 +8,17 @@ import {
   getCoreRowModel,
   getPaginationRowModel,
   useReactTable
-} from '@tanstack/react-table';
-import { range, size } from 'lodash';
-import { ReactNode, Ref, forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
+} from "@tanstack/react-table";
+import { range, size } from "lodash";
+import { ReactNode, Ref, forwardRef, useEffect, useImperativeHandle, useRef, useState } from "react";
 
-import { Skeleton } from '@/components/ui/skeleton';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { usePaginationTable, useSortingTable } from '@/hooks';
-import { cn } from '@/lib/utils';
-import { Spin } from '../spin';
-import { TablePagination } from './table-pagination';
+import { Skeleton } from "@/components/ui/skeleton";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { usePaginationTable, useSortingTable } from "@/hooks";
+import { cn } from "@/lib/utils";
+import { If } from "../if";
+import { Spin } from "../spin";
+import { TablePagination } from "./table-pagination";
 type TableClassNames = Partial<{
   body: string;
   cell: string;
@@ -43,7 +44,7 @@ type TableClassNames = Partial<{
 
 type DataTableProps<TData> = Pick<
   TableOptions<TData>,
-  'pageCount' | 'enableRowSelection' | 'onRowSelectionChange' | 'state' | 'getRowId'
+  "pageCount" | "enableRowSelection" | "onRowSelectionChange" | "state" | "getRowId"
 > & {
   data: TData[] | undefined;
   columns: ColumnDef<TData, any>[];
@@ -139,80 +140,82 @@ const DataTableInnerForwardRef = <TData,>(
       setShowRightShadow(scrollWidth > clientWidth && scrollLeft < scrollWidth - clientWidth);
     };
 
-    tableWrapper.addEventListener('scroll', handleScroll);
-    window.addEventListener('resize', handleScroll);
+    tableWrapper.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleScroll);
 
     handleScroll();
 
     return () => {
-      tableWrapper.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleScroll);
+      tableWrapper.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
     };
   }, [isLoading]);
 
   const numberOfColumns = table.getAllColumns().length;
 
   return (
-    <div className={cn('flex h-full grow flex-col overflow-hidden', classNames.root)}>
-      {extraTableToolbar && (
-        <div className={cn('flex items-center justify-between', classNames.toolbar?.wrapper)}>
-          {extraTableToolbar}
-        </div>
-      )}
-      <div className={cn('flex grow flex-col overflow-auto', classNames.container)}>
+    <div className={cn("flex h-full grow flex-col overflow-hidden", classNames.root)}>
+      <If condition={extraTableToolbar}>
+        {(toolbar) => (
+          <div className={cn("flex items-center justify-between", classNames.toolbar?.wrapper)}>
+            {toolbar}
+          </div>
+        )}
+      </If>
+      <div className={cn("flex grow flex-col overflow-auto", classNames.container)}>
         <Spin
           loading={isRefetching}
           className={cn(
             // Layout
-            '!flex relative grow flex-col',
+            "!flex relative grow flex-col",
 
             // Overflow
-            'overflow-hidden',
+            "overflow-hidden",
 
             // Styling
-            'rounded-lg border border-gray-200',
+            "rounded-lg border border-gray-200",
 
             // Shadow effects
-            showLeftShadow && 'table-left-shadow',
-            showRightShadow && 'table-right-shadow'
+            showLeftShadow && "table-left-shadow",
+            showRightShadow && "table-right-shadow"
           )}
         >
           <div
             ref={tableWrapperRef}
             className={cn(
               // Positioning
-              'relative',
+              "relative",
 
               // Sizing
-              'size-full',
+              "size-full",
 
               // Overflow
-              'overflow-auto',
+              "overflow-auto",
 
               classNames.tableWrapper
             )}
           >
-            <Table className={cn(classNames.table, table.getRowModel().rows?.length === 0 && 'h-full')}>
+            <Table className={cn(classNames.table, table.getRowModel().rows?.length === 0 && "h-full")}>
               <TableHeader
                 className={cn(
                   // Positioning
-                  'sticky top-0 z-20',
+                  "sticky top-0 z-20",
 
                   // Layout
-                  'whitespace-nowrap',
+                  "whitespace-nowrap",
 
                   // Background
-                  'bg-white [&_tr]:bg-white',
+                  "bg-white [&_tr]:bg-white",
 
                   // Effects
-                  'shadow-sm',
+                  "shadow-sm",
                   classNames.header
                 )}
               >
                 {table.getHeaderGroups().map((headerGroup) => (
                   <TableRow
                     key={headerGroup.id}
-                    className={cn('w-fit divide-x divide-neutral-50', classNames.headerRow)}
+                    className={cn("w-fit divide-x divide-neutral-50", classNames.headerRow)}
                   >
                     {headerGroup.headers.map((header) => {
                       const { meta } = header.column.columnDef;
@@ -221,8 +224,8 @@ const DataTableInnerForwardRef = <TData,>(
                         <TableHead
                           key={header.id}
                           className={cn(
-                            'w-fit whitespace-nowrap bg-neutral-gray px-5',
-                            'font-semibold text-text-primary-500',
+                            "w-fit whitespace-nowrap bg-neutral-gray px-5",
+                            "font-semibold text-text-primary-500",
                             classNames.headerCell,
                             meta?.className,
                             meta?.header?.className
@@ -237,9 +240,51 @@ const DataTableInnerForwardRef = <TData,>(
                   </TableRow>
                 ))}
               </TableHeader>
-              <TableBody className={cn('overflow-auto', classNames.body)}>
-                {isLoading ? (
-                  range(table.getState().pagination.pageSize).map((i) => (
+              <TableBody className={cn("overflow-auto", classNames.body)}>
+                <If
+                  condition={isLoading}
+                  fallback={
+                    <If
+                      condition={table.getRowModel().rows?.length}
+                      fallback={
+                        <TableRow className='h-full'>
+                          <TableCell colSpan={columns.length}>
+                            <div className='flex items-center justify-center py-8'>
+                              <p className='font-semibold'>No data</p>
+                            </div>
+                          </TableCell>
+                        </TableRow>
+                      }
+                    >
+                      {table.getRowModel().rows.map((row, index) => (
+                        <TableRow
+                          key={row.id}
+                          data-state={row.getIsSelected() && "selected"}
+                          className={cn(
+                            index % 2 === 0 && "bg-white",
+                            classNames.row,
+                            onRowClick && "cursor-pointer"
+                          )}
+                          onClick={() => onRowClick?.(row.original)}
+                        >
+                          {row.getVisibleCells().map((cell) => {
+                            const { meta } = cell.column.columnDef;
+
+                            return (
+                              <TableCell
+                                key={cell.id}
+                                className={cn("px-5", meta?.className, meta?.cell?.className)}
+                              >
+                                {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                              </TableCell>
+                            );
+                          })}
+                        </TableRow>
+                      ))}
+                    </If>
+                  }
+                >
+                  {range(table.getState().pagination.pageSize).map((i) => (
                     <TableRow key={i} className='divide-x divide-neutral-50'>
                       {range(numberOfColumns).map((i) => (
                         <TableCell key={i} className='h-12'>
@@ -247,56 +292,21 @@ const DataTableInnerForwardRef = <TData,>(
                         </TableCell>
                       ))}
                     </TableRow>
-                  ))
-                ) : table.getRowModel().rows?.length ? (
-                  table.getRowModel().rows.map((row, index) => (
-                    <TableRow
-                      key={row.id}
-                      data-state={row.getIsSelected() && 'selected'}
-                      className={cn(
-                        index % 2 === 0 && 'bg-white',
-                        classNames.row,
-                        onRowClick && 'cursor-pointer'
-                      )}
-                      onClick={() => onRowClick?.(row.original)}
-                    >
-                      {row.getVisibleCells().map((cell) => {
-                        const { meta } = cell.column.columnDef;
-
-                        return (
-                          <TableCell
-                            key={cell.id}
-                            className={cn('px-5', meta?.className, meta?.cell?.className)}
-                          >
-                            {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                          </TableCell>
-                        );
-                      })}
-                    </TableRow>
-                  ))
-                ) : (
-                  <TableRow className='h-full'>
-                    <TableCell colSpan={columns.length}>
-                      <div className='flex items-center justify-center py-8'>
-                        <p className='font-semibold'>No data</p>
-                      </div>
-                    </TableCell>
-                  </TableRow>
-                )}
+                  ))}
+                </If>
               </TableBody>
             </Table>
           </div>
         </Spin>
       </div>
-      {showPagination && (
+      <If condition={showPagination}>
         <TablePagination
-          className={cn(classNames.pagination, size(data) === 0 && 'invisible')}
+          className={cn(classNames.pagination, size(data) === 0 && "invisible")}
           table={table}
           isLoading={isLoading}
           pageSizeOptions={pageSizeOptions}
-          // isSimple={isSimple}
         />
-      )}
+      </If>
     </div>
   );
 };

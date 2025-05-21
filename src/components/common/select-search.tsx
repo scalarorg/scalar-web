@@ -1,4 +1,4 @@
-import { Button } from '@/components/ui/button';
+import { Button } from "@/components/ui/button";
 import {
   Command,
   CommandEmpty,
@@ -6,12 +6,13 @@ import {
   CommandInput,
   CommandItem,
   CommandList
-} from '@/components/ui/command';
+} from "@/components/ui/command";
 
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-import { cn, fuzzyMatch } from '@/lib/utils';
-import { CheckIcon, ChevronDownIcon } from 'lucide-react';
-import { ReactNode, useState } from 'react';
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { cn, fuzzyMatch } from "@/lib/utils";
+import { CheckIcon, ChevronDownIcon } from "lucide-react";
+import { ReactNode, useState } from "react";
+import { If } from "./if";
 
 export type TSelectSearchOptionItem = {
   value: string;
@@ -52,15 +53,15 @@ const isGroup = (option: TSelectSearchOption): option is TSelectSearchGroup => {
   return (option as TSelectSearchGroup).items !== undefined;
 };
 
-const SPECIAL_CHARACTER = '--';
+const SPECIAL_CHARACTER = "--";
 
 export const SelectSearch = ({
   value,
   onChange,
-  emptyFoundDataText = 'No data found',
-  placeholder = 'Select',
+  emptyFoundDataText = "No data found",
+  placeholder = "Select",
   disabled = false,
-  searchPlaceholder = 'Search',
+  searchPlaceholder = "Search",
   options,
   classNames,
   searchByHideValue = false
@@ -69,7 +70,7 @@ export const SelectSearch = ({
 
   const hasGroupLabel = options.some((option) => isGroup(option));
 
-  const returnNewValue = (value: string, hideValue = '') =>
+  const returnNewValue = (value: string, hideValue = "") =>
     searchByHideValue ? `${value}${SPECIAL_CHARACTER}${hideValue}` : value;
 
   const handleChange = (value: string) => {
@@ -79,7 +80,7 @@ export const SelectSearch = ({
   };
 
   return (
-    <div className={cn('*:not-first:mt-2', classNames?.wrapper)}>
+    <div className={cn("*:not-first:mt-2", classNames?.wrapper)}>
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
           <Button
@@ -87,37 +88,37 @@ export const SelectSearch = ({
             aria-expanded={open}
             className={cn(
               // Cursor
-              'cursor-pointer',
+              "cursor-pointer",
 
               // Width
-              'w-full',
+              "w-full",
 
               // Flexbox Alignment
-              'flex justify-between',
+              "flex justify-between",
 
               // Borders
-              'border-none',
+              "border-none",
 
               // Background Color
-              'bg-white hover:bg-white',
+              "bg-white hover:bg-white",
 
               // Padding
-              'px-3',
+              "px-3",
 
               // Font Weight
-              'font-normal',
+              "font-normal",
 
               // Box Shadow
-              'main-shadow',
+              "main-shadow",
 
               // Outline
-              'outline-none',
+              "outline-none",
 
               classNames?.button
             )}
             disabled={disabled}
           >
-            <span className={cn('truncate text-base', !value && 'text-muted-foreground')}>
+            <span className={cn("truncate text-base", !value && "text-muted-foreground")}>
               {options
                 .flatMap((option) => (isGroup(option) ? option.items : option))
                 .find((item) => item.value === value)?.label || placeholder}
@@ -132,33 +133,56 @@ export const SelectSearch = ({
           <Command
             filter={(value, search) => {
               const newValue = searchByHideValue ? value.split(SPECIAL_CHARACTER)[1] : value;
-              return fuzzyMatch(newValue || '', search) ? 1 : 0;
+              return fuzzyMatch(newValue || "", search) ? 1 : 0;
             }}
           >
             <CommandInput
               placeholder={searchPlaceholder}
               wrapperClassName={cn(
                 // Flexbox
-                'flex flex-row-reverse',
+                "flex flex-row-reverse",
 
                 // Margin
-                'm-2 mb-0',
+                "m-2 mb-0",
 
                 // Padding
-                'py-1',
+                "py-1",
 
                 // Border
-                'rounded-lg border border-secondary-500',
+                "rounded-lg border border-secondary-500",
 
                 // Box Shadow
-                'shadow-inner'
+                "shadow-inner"
               )}
               className='h-6 text-base'
             />
             <CommandList className={classNames?.command?.list}>
               <CommandEmpty>{emptyFoundDataText}</CommandEmpty>
-              {hasGroupLabel ? (
-                options.map(
+              <If
+                condition={hasGroupLabel}
+                fallback={
+                  <CommandGroup className={classNames?.command?.group}>
+                    {options.map(
+                      (option) =>
+                        !isGroup(option) && (
+                          <CommandItem
+                            key={option.value}
+                            value={returnNewValue(option.value, option.hideValue)}
+                            onSelect={handleChange}
+                            className={cn("cursor-pointer", classNames?.command?.item)}
+                            disabled={option.disabled}
+                          >
+                            {option.label}
+                            <If condition={value === option.value}>
+                              <CheckIcon size={16} className='ml-auto' />
+                            </If>
+                          </CommandItem>
+                        )
+                    )}
+                  </CommandGroup>
+                }
+              >
+                {options.map(
                   (option) =>
                     isGroup(option) && (
                       <CommandGroup
@@ -171,35 +195,19 @@ export const SelectSearch = ({
                             key={item.value}
                             value={returnNewValue(item.value, item.hideValue)}
                             onSelect={handleChange}
-                            className={cn('ml-6 cursor-pointer', classNames?.command?.item)}
+                            className={cn("ml-6 cursor-pointer", classNames?.command?.item)}
                             disabled={item.disabled}
                           >
                             {item.label}
-                            {value === item.value && <CheckIcon size={16} className='ml-auto' />}
+                            <If condition={value === item.value}>
+                              <CheckIcon size={16} className='ml-auto' />
+                            </If>
                           </CommandItem>
                         ))}
                       </CommandGroup>
                     )
-                )
-              ) : (
-                <CommandGroup className={classNames?.command?.group}>
-                  {options.map(
-                    (option) =>
-                      !isGroup(option) && (
-                        <CommandItem
-                          key={option.value}
-                          value={returnNewValue(option.value, option.hideValue)}
-                          onSelect={handleChange}
-                          className={cn('cursor-pointer', classNames?.command?.item)}
-                          disabled={option.disabled}
-                        >
-                          {option.label}
-                          {value === option.value && <CheckIcon size={16} className='ml-auto' />}
-                        </CommandItem>
-                      )
-                  )}
-                </CommandGroup>
-              )}
+                )}
+              </If>
             </CommandList>
           </Command>
         </PopoverContent>
