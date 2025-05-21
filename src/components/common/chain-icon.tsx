@@ -2,6 +2,7 @@ import DEFAULT_ICON from "@/assets/images/default-icon.png";
 import { Chains } from "@/lib/chains";
 import { cn } from "@/lib/utils";
 import { SupportedChains } from "@/types/chains";
+import { If } from "./if";
 
 export const ChainIcon = ({
   chain,
@@ -27,9 +28,9 @@ export const ChainIcon = ({
         alt={chain}
         className={cn("size-6 shrink-0 rounded-full", classNames?.icon)}
       />
-      {showName && (customName || chainInfo?.name) && (
+      <If condition={showName && (customName || chainInfo?.name)}>
         <p className={cn(classNames?.name)}>{customName || chainInfo?.name}</p>
-      )}
+      </If>
     </div>
   );
 };

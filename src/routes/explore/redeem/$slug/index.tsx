@@ -1,4 +1,4 @@
-import { Heading } from "@/components/common";
+import { Heading, If } from "@/components/common";
 import {
   TransactionInfoCard,
   TransactionInfoCardSkeleton,
@@ -18,11 +18,12 @@ function RouteComponent() {
     <div className="flex flex-col gap-5 py-[60px]">
       <Heading link={{ to: "/explore/redeem" }}>Transaction detail</Heading>
       <div className="flex flex-col gap-5">
-        {isLoading ? (
+        <If
+          condition={isLoading}
+          fallback={<TransactionInfoCard data={data} />}
+        >
           <TransactionInfoCardSkeleton />
-        ) : (
-          <TransactionInfoCard data={data} />
-        )}
+        </If>
       </div>
     </div>
   );

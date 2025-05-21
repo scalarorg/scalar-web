@@ -1,5 +1,5 @@
 import { IGateway_ABI } from "@/abis/igateway";
-import { Base64Icon, ChainIcon, SelectSearch } from "@/components/common";
+import { Base64Icon, ChainIcon, If, SelectSearch } from "@/components/common";
 import { ConnectEvm } from "@/components/connect";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -456,7 +456,7 @@ export const TransfersForm = () => {
               </div>
             </div> */}
 
-            {isConnected ? (
+            <If condition={isConnected} fallback={<ConnectEvm hideTitle />}>
               <Button
                 type="submit"
                 size="lg"
@@ -466,9 +466,7 @@ export const TransfersForm = () => {
               >
                 Transfer
               </Button>
-            ) : (
-              <ConnectEvm hideTitle />
-            )}
+            </If>
           </form>
         </Form>
       </CardContent>

@@ -1,4 +1,4 @@
-import { Clipboard } from "@/components/common";
+import { Clipboard, If } from "@/components/common";
 import { Button } from "@/components/ui/button";
 import { usePathname } from "@/hooks";
 import { cn } from "@/lib/utils";
@@ -21,26 +21,27 @@ export const ConnectScalar = () => {
 
   return (
     <div className={cn("flex items-center gap-1", isHidden && "hidden")}>
-      {client && isConnected ? (
-        <>
-          <Clipboard
-            label={account?.address || ""}
-            text={account?.address || ""}
-            classNames={{ wrapper: "max-w-[100px]" }}
-          />
-          <button
-            type="button"
-            onClick={() => disconnect()}
-            className="cursor-pointer"
-          >
-            <Power className="size-5" />
-          </button>
-        </>
-      ) : (
-        <Button onClick={() => connect()} size="lg">
-          Connect Scalar
-        </Button>
-      )}
+      <If
+        condition={client && isConnected}
+        fallback={
+          <Button onClick={() => connect()} size="lg">
+            Connect Scalar
+          </Button>
+        }
+      >
+        <Clipboard
+          label={account?.address || ""}
+          text={account?.address || ""}
+          classNames={{ wrapper: "max-w-[100px]" }}
+        />
+        <button
+          type="button"
+          onClick={() => disconnect()}
+          className="cursor-pointer"
+        >
+          <Power className="size-5" />
+        </button>
+      </If>
     </div>
   );
 };

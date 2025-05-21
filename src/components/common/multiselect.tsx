@@ -11,6 +11,7 @@ import {
   CommandList,
 } from "@/components/ui/command";
 import { cn } from "@/lib/utils";
+import { If } from "./if";
 
 export const multiSelectOptionSchema = z.object({
   label: z.string(),
@@ -561,7 +562,7 @@ export const MultipleSelector = ({
           )}
           data-state={open ? "open" : "closed"}
         >
-          {open && (
+          <If condition={open}>
             <CommandList
               className="bg-popover text-popover-foreground shadow-lg outline-hidden"
               onMouseLeave={() => {
@@ -574,57 +575,53 @@ export const MultipleSelector = ({
                 inputRef?.current?.focus();
               }}
             >
-              {isLoading ? (
-                <>{loadingIndicator}</>
-              ) : (
-                <>
-                  {EmptyItem()}
-                  {CreatableItem()}
-                  {!selectFirstItem && (
-                    <CommandItem value="-" className="hidden" />
-                  )}
-                  {Object.entries(selectables).map(([key, dropdowns]) => (
-                    <CommandGroup
-                      key={key}
-                      heading={key}
-                      className="h-full overflow-auto"
-                    >
-                      {dropdowns.map((option) => {
-                        return (
-                          <CommandItem
-                            key={option.value}
-                            value={option.value}
-                            disabled={option.disable}
-                            onMouseDown={(e) => {
-                              e.preventDefault();
-                              e.stopPropagation();
-                            }}
-                            onSelect={() => {
-                              if (selected.length >= maxSelected) {
-                                onMaxSelected?.(selected.length);
-                                return;
-                              }
-                              setInputValue("");
-                              const newOptions = [...selected, option];
-                              setSelected(newOptions);
-                              onChange?.(newOptions);
-                            }}
-                            className={cn(
-                              "cursor-pointer",
-                              option.disable &&
-                                "pointer-events-none cursor-not-allowed opacity-50",
-                            )}
-                          >
-                            {option.label}
-                          </CommandItem>
-                        );
-                      })}
-                    </CommandGroup>
-                  ))}
-                </>
-              )}
+              <If condition={!isLoading} fallback={loadingIndicator}>
+                {EmptyItem()}
+                {CreatableItem()}
+                <If condition={!selectFirstItem}>
+                  <CommandItem value="-" className="hidden" />
+                </If>
+                {Object.entries(selectables).map(([key, dropdowns]) => (
+                  <CommandGroup
+                    key={key}
+                    heading={key}
+                    className="h-full overflow-auto"
+                  >
+                    {dropdowns.map((option) => {
+                      return (
+                        <CommandItem
+                          key={option.value}
+                          value={option.value}
+                          disabled={option.disable}
+                          onMouseDown={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                          }}
+                          onSelect={() => {
+                            if (selected.length >= maxSelected) {
+                              onMaxSelected?.(selected.length);
+                              return;
+                            }
+                            setInputValue("");
+                            const newOptions = [...selected, option];
+                            setSelected(newOptions);
+                            onChange?.(newOptions);
+                          }}
+                          className={cn(
+                            "cursor-pointer",
+                            option.disable &&
+                              "pointer-events-none cursor-not-allowed opacity-50",
+                          )}
+                        >
+                          {option.label}
+                        </CommandItem>
+                      );
+                    })}
+                  </CommandGroup>
+                ))}
+              </If>
             </CommandList>
-          )}
+          </If>
         </div>
       </div>
     </Command>

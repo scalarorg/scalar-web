@@ -1,4 +1,4 @@
-import { ChainIcon, Clipboard } from "@/components/common";
+import { ChainIcon, Clipboard, If } from "@/components/common";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -134,31 +134,34 @@ export const TransactionInfoCard = ({
         isSecondary && "bg-background-secondary",
       )}
     >
-      {isEmpty(data) ? (
+      <If
+        condition={isEmpty(data)}
+        fallback={
+          <>
+            <CardHeader className="border-b px-4 py-3.5">
+              <CardTitle>
+                {title ||
+                  (sourceLabel && (
+                    <Clipboard
+                      label={sourceLabel}
+                      text={sourceLabel}
+                      classNames={{ wrapper: "max-w-[250px]" }}
+                    />
+                  ))}
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="flex flex-col divide-y px-4 py-0">
+              {items.map((item) => (
+                <Item key={item.label} {...item} />
+              ))}
+            </CardContent>
+          </>
+        }
+      >
         <p className="my-3 text-center font-semibold text-lg text-primary">
           No data
         </p>
-      ) : (
-        <>
-          <CardHeader className="border-b px-4 py-3.5">
-            <CardTitle>
-              {title ||
-                (sourceLabel && (
-                  <Clipboard
-                    label={sourceLabel}
-                    text={sourceLabel}
-                    classNames={{ wrapper: "max-w-[250px]" }}
-                  />
-                ))}
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="flex flex-col divide-y px-4 py-0">
-            {items.map((item) => (
-              <Item key={item.label} {...item} />
-            ))}
-          </CardContent>
-        </>
-      )}
+      </If>
     </Card>
   );
 };

@@ -1,5 +1,5 @@
 import DEFAULT_ICON from "@/assets/images/default-icon.png";
-import { Clipboard, Heading } from "@/components/common";
+import { Clipboard, Heading, If } from "@/components/common";
 import { Card, CardContent } from "@/components/ui/card";
 import { PROTOCOL_STATUS } from "@/features/protocol";
 import { useScalarProtocols } from "@/hooks";
@@ -106,19 +106,22 @@ function RouteComponent() {
   return (
     <div className="flex flex-col gap-5 py-[60px]">
       <Heading link={{ to: "/protocols" }}>Protocol Detail</Heading>
-      {isEmpty(protocol) ? (
+      <If
+        condition={isEmpty(protocol)}
+        fallback={
+          <Card className="rounded-lg p-0">
+            <CardContent className="flex flex-col divide-y px-4 py-0">
+              {items.map((item) => (
+                <Item key={item.label} {...item} />
+              ))}
+            </CardContent>
+          </Card>
+        }
+      >
         <p className="mt-5 text-center font-semibold text-3xl text-primary">
           Protocol not found
         </p>
-      ) : (
-        <Card className="rounded-lg p-0">
-          <CardContent className="flex flex-col divide-y px-4 py-0">
-            {items.map((item) => (
-              <Item key={item.label} {...item} />
-            ))}
-          </CardContent>
-        </Card>
-      )}
+      </If>
     </div>
   );
 }

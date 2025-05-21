@@ -1,4 +1,4 @@
-import { Clipboard } from "@/components/common";
+import { Clipboard, If } from "@/components/common";
 import { formatBTC } from "@/lib/utils";
 import { WalletProvider, walletList } from "@/lib/wallet";
 import { useWalletInfo, useWalletProvider } from "@/providers/wallet-provider";
@@ -57,10 +57,10 @@ export const ConnectBtc = ({ hideTitle }: { hideTitle?: boolean }) => {
 
   return (
     <div className="flex w-full flex-col gap-2">
-      {!hideTitle && (
+      <If condition={!hideTitle}>
         <div className="flex items-center justify-between gap-2">
           <span className="font-semibold text-lg">BTC</span>
-          {walletInfo.isConnected && (
+          <If condition={walletInfo.isConnected}>
             <button
               type="button"
               onClick={disconnectWallet}
@@ -68,10 +68,39 @@ export const ConnectBtc = ({ hideTitle }: { hideTitle?: boolean }) => {
             >
               <Power className="size-5" />
             </button>
-          )}
-        </div>
-      )}
-      {walletInfo.isConnected ? (
+          </If>
+        </div>{" "}
+      </If>
+      <If
+        condition={walletInfo.isConnected}
+        fallback={
+          <div className="space-y-2">
+            {walletList.map(({ provider, name, icon }) => {
+              if (!provider) {
+                return null;
+              }
+
+              return (
+                <button
+                  key={name}
+                  className="flex w-full cursor-pointer items-center gap-2 bg-[#E3E3E3] p-2"
+                  type="button"
+                  onClick={() => {
+                    setSelectedWallet(name);
+                    connectWallet();
+                  }}
+                >
+                  {createElement(icon, {
+                    className:
+                      "size-8 rounded-full object-cover bg-white p-1 shadow-md",
+                  })}
+                  <span className="text-base">{name}</span>
+                </button>
+              );
+            })}
+          </div>
+        }
+      >
         <div className="space-y-1 text-base">
           <div className="flex items-center justify-between gap-1">
             <span>Wallet address</span>
@@ -87,40 +116,16 @@ export const ConnectBtc = ({ hideTitle }: { hideTitle?: boolean }) => {
               {formatBTC(walletInfo.balance)} BTC
             </span>
           </div>
-          {networkConfig?.network && (
-            <div className="flex items-center justify-between gap-1">
-              <span>Network</span>
-              <span className="font-semibold">{networkConfig.network}</span>
-            </div>
-          )}
+          <If condition={networkConfig?.network}>
+            {(network) => (
+              <div className="flex items-center justify-between gap-1">
+                <span>Network</span>
+                <span className="font-semibold">{network}</span>
+              </div>
+            )}
+          </If>
         </div>
-      ) : (
-        <div className="space-y-2">
-          {walletList.map(({ provider, name, icon }) => {
-            if (!provider) {
-              return null;
-            }
-
-            return (
-              <button
-                key={name}
-                className="flex w-full cursor-pointer items-center gap-2 bg-[#E3E3E3] p-2"
-                type="button"
-                onClick={() => {
-                  setSelectedWallet(name);
-                  connectWallet();
-                }}
-              >
-                {createElement(icon, {
-                  className:
-                    "size-8 rounded-full object-cover bg-white p-1 shadow-md",
-                })}
-                <span className="text-base">{name}</span>
-              </button>
-            );
-          })}
-        </div>
-      )}
+      </If>
     </div>
   );
 };

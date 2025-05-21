@@ -2,6 +2,7 @@ import { cn } from "@/lib/utils";
 import { CheckIcon, ClipboardIcon } from "lucide-react";
 import { MouseEvent, useState } from "react";
 import { toast } from "sonner";
+import { If } from "./if";
 
 type ClipboardProps = {
   text: string;
@@ -40,35 +41,38 @@ export const Clipboard = ({
 
   return (
     <div className={cn("flex grow gap-1", classNames?.wrapper)}>
-      {targetLink ? (
-        <a
-          href={targetLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={commonTextClassNames}
-        >
-          {label}
-        </a>
-      ) : (
-        <button
-          type="button"
-          onClick={onClick}
-          className={cn(commonTextClassNames, onClick && "cursor-pointer")}
-        >
-          {label}
-        </button>
-      )}
+      <If
+        condition={targetLink}
+        fallback={
+          <button
+            type="button"
+            onClick={onClick}
+            className={cn(commonTextClassNames, onClick && "cursor-pointer")}
+          >
+            {label}
+          </button>
+        }
+      >
+        {(targetLink) => (
+          <a
+            href={targetLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={commonTextClassNames}
+          >
+            {label}
+          </a>
+        )}
+      </If>
       <button
         type="button"
         onClick={handleCopy}
         aria-label={`Copy ${label} to clipboard`}
         className={cn("cursor-pointer", classNames?.button)}
       >
-        {copied ? (
+        <If condition={copied} fallback={<ClipboardIcon className="size-5" />}>
           <CheckIcon className="size-5" />
-        ) : (
-          <ClipboardIcon className="size-5" />
-        )}
+        </If>
       </button>
     </div>
   );

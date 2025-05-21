@@ -1,5 +1,5 @@
 import DEFAULT_ICON from "@/assets/images/default-icon.png";
-import { ChainIcon, ImageCropper, SelectSearch } from "@/components/common";
+import { ChainIcon, If, ImageCropper, SelectSearch } from "@/components/common";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
@@ -205,24 +205,29 @@ export const ProtocolForm = ({ setOpen }: Props) => {
             name="avatar"
             render={({ field: { value, onChange } }) => (
               <FormItem className="p-4">
-                {value ? (
-                  <ImageCropper
-                    dialogOpen={openCropper}
-                    setDialogOpen={setOpenCropper}
-                    imageUrl={value}
-                    onCropComplete={onChange}
-                    onCancel={() => onChange("")}
-                  />
-                ) : (
-                  <Avatar
-                    {...getRootProps()}
-                    className="mx-auto size-[100px] cursor-pointer ring-2 ring-slate-200 ring-offset-2"
-                  >
-                    <input {...getInputProps()} />
-                    <AvatarImage src={DEFAULT_ICON} alt="icon" />
-                    <AvatarFallback>Icon</AvatarFallback>
-                  </Avatar>
-                )}
+                <If
+                  condition={value}
+                  fallback={
+                    <Avatar
+                      {...getRootProps()}
+                      className="mx-auto size-[100px] cursor-pointer ring-2 ring-slate-200 ring-offset-2"
+                    >
+                      <input {...getInputProps()} />
+                      <AvatarImage src={DEFAULT_ICON} alt="icon" />
+                      <AvatarFallback>Icon</AvatarFallback>
+                    </Avatar>
+                  }
+                >
+                  {(imageUrl) => (
+                    <ImageCropper
+                      dialogOpen={openCropper}
+                      setDialogOpen={setOpenCropper}
+                      imageUrl={imageUrl}
+                      onCropComplete={onChange}
+                      onCancel={() => onChange("")}
+                    />
+                  )}
+                </If>
                 <FormDescription className="text-base">
                   File smaller than {MAX_FILE_SIZE}MB
                 </FormDescription>

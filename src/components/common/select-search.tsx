@@ -16,6 +16,7 @@ import {
 import { cn, fuzzyMatch } from "@/lib/utils";
 import { CheckIcon, ChevronDownIcon } from "lucide-react";
 import { ReactNode, useState } from "react";
+import { If } from "./if";
 
 export type TSelectSearchOptionItem = {
   value: string;
@@ -172,8 +173,37 @@ export const SelectSearch = ({
             />
             <CommandList className={classNames?.command?.list}>
               <CommandEmpty>{emptyFoundDataText}</CommandEmpty>
-              {hasGroupLabel ? (
-                options.map(
+              <If
+                condition={hasGroupLabel}
+                fallback={
+                  <CommandGroup className={classNames?.command?.group}>
+                    {options.map(
+                      (option) =>
+                        !isGroup(option) && (
+                          <CommandItem
+                            key={option.value}
+                            value={returnNewValue(
+                              option.value,
+                              option.hideValue,
+                            )}
+                            onSelect={handleChange}
+                            className={cn(
+                              "cursor-pointer",
+                              classNames?.command?.item,
+                            )}
+                            disabled={option.disabled}
+                          >
+                            {option.label}
+                            <If condition={value === option.value}>
+                              <CheckIcon size={16} className="ml-auto" />
+                            </If>
+                          </CommandItem>
+                        ),
+                    )}
+                  </CommandGroup>
+                }
+              >
+                {options.map(
                   (option) =>
                     isGroup(option) && (
                       <CommandGroup
@@ -193,38 +223,15 @@ export const SelectSearch = ({
                             disabled={item.disabled}
                           >
                             {item.label}
-                            {value === item.value && (
+                            <If condition={value === item.value}>
                               <CheckIcon size={16} className="ml-auto" />
-                            )}
+                            </If>
                           </CommandItem>
                         ))}
                       </CommandGroup>
                     ),
-                )
-              ) : (
-                <CommandGroup className={classNames?.command?.group}>
-                  {options.map(
-                    (option) =>
-                      !isGroup(option) && (
-                        <CommandItem
-                          key={option.value}
-                          value={returnNewValue(option.value, option.hideValue)}
-                          onSelect={handleChange}
-                          className={cn(
-                            "cursor-pointer",
-                            classNames?.command?.item,
-                          )}
-                          disabled={option.disabled}
-                        >
-                          {option.label}
-                          {value === option.value && (
-                            <CheckIcon size={16} className="ml-auto" />
-                          )}
-                        </CommandItem>
-                      ),
-                  )}
-                </CommandGroup>
-              )}
+                )}
+              </If>
             </CommandList>
           </Command>
         </PopoverContent>

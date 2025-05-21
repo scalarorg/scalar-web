@@ -1,7 +1,7 @@
 import LockedIcon from "@/assets/icons/locked.svg";
 import TransactionIcon from "@/assets/icons/transaction.svg";
 import UserIcon from "@/assets/icons/user.svg";
-import { Heading, InputSearchBox } from "@/components/common";
+import { Heading, If, InputSearchBox } from "@/components/common";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { COMMON_VALIDATE_PAGE_SEARCH_PARAMS } from "@/constants";
@@ -199,65 +199,79 @@ function Statistic() {
         />
       </div>
       <div className="flex flex-col gap-8 md:flex-row">
-        {isLoading ? (
-          Array.from({ length: 3 }).map((_, i) => (
-            // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-            <Skeleton key={i} className="h-[150px] flex-1" />
-          ))
-        ) : isEmpty(statisticData) ? (
-          <NoData />
-        ) : (
-          statisticData.map(({ label, value, icon, unit, className }) => (
-            <div
-              key={label}
-              className={cn(
-                // Padding
-                "p-6",
+        <If
+          condition={isLoading}
+          fallback={
+            <If
+              condition={isEmpty(statisticData)}
+              fallback={statisticData.map(
+                ({ label, value, icon, unit, className }) => (
+                  <div
+                    key={label}
+                    className={cn(
+                      // Padding
+                      "p-6",
 
-                // Border Radius
-                "rounded-lg",
+                      // Border Radius
+                      "rounded-lg",
 
-                // Background Color
-                "bg-primary",
+                      // Background Color
+                      "bg-primary",
 
-                // Flexbox Container
-                "flex flex-1 items-center justify-between gap-2",
-                className?.container,
+                      // Flexbox Container
+                      "flex flex-1 items-center justify-between gap-2",
+                      className?.container,
+                    )}
+                  >
+                    <div
+                      className={cn(
+                        "flex h-full flex-col gap-1 text-white uppercase",
+                        className?.contentWrapper,
+                      )}
+                    >
+                      <p
+                        className={cn(
+                          "font-semibold text-[40px]",
+                          className?.content,
+                        )}
+                      >
+                        {unit}
+                        {formatNumber(value)}
+                      </p>
+                      <p className={cn("text-lg", className?.label)}>{label}</p>
+                    </div>
+                    {icon}
+                  </div>
+                ),
               )}
             >
-              <div
-                className={cn(
-                  "flex h-full flex-col gap-1 text-white uppercase",
-                  className?.contentWrapper,
-                )}
-              >
-                <p
-                  className={cn(
-                    "font-semibold text-[40px]",
-                    className?.content,
-                  )}
-                >
-                  {unit}
-                  {formatNumber(value)}
-                </p>
-                <p className={cn("text-lg", className?.label)}>{label}</p>
-              </div>
-              {icon}
-            </div>
-          ))
-        )}
+              <NoData />
+            </If>
+          }
+        >
+          {Array.from({ length: 3 }).map((_, i) => (
+            // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+            <Skeleton key={i} className="h-[150px] flex-1" />
+          ))}
+        </If>
       </div>
       <div className="flex flex-col gap-8 *:data-[slot=rank-card]:flex-1 md:flex-row">
-        {isLoading ? (
-          Array.from({ length: 2 }).map((_, i) => (
+        <If
+          condition={isLoading}
+          fallback={
+            <If
+              condition={isEmpty(rankData)}
+              fallback={rankData.map((i) => <RankCard key={i.title} {...i} />)}
+            >
+              <NoData />
+            </If>
+          }
+        >
+          {Array.from({ length: 2 }).map((_, i) => (
             // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
             <RankCardSkeleton key={i} />
-          ))
-        ) : isEmpty(chartData) ? (
-          <NoData />
-        ) : (
-          rankData.map((i) => <RankCard key={i.title} {...i} />)
-        )}
+          ))}
+        </If>
       </div>
       <Tabs
         defaultValue={tabValue}
@@ -285,28 +299,44 @@ function Statistic() {
         </TabsList>
       </Tabs>
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
-        {isLoading ? (
-          Array.from({ length: 4 }).map((_, i) => (
+        <If
+          condition={isLoading}
+          fallback={
+            <If
+              condition={isEmpty(chartData)}
+              fallback={chartData.map((i) => (
+                <ChartCard key={i.title} {...i} />
+              ))}
+            >
+              <NoData />
+            </If>
+          }
+        >
+          {Array.from({ length: 4 }).map((_, i) => (
             // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
             <ChartCardSkeleton key={i} />
-          ))
-        ) : isEmpty(chartData) ? (
-          <NoData />
-        ) : (
-          chartData.map((i) => <ChartCard key={i.title} {...i} />)
-        )}
+          ))}
+        </If>
       </div>
       <div className="flex flex-col gap-8">
-        {isLoading ? (
-          Array.from({ length: 2 }).map((_, i) => (
+        <If
+          condition={isLoading}
+          fallback={
+            <If
+              condition={isEmpty(topCardData)}
+              fallback={topCardData.map((item) => (
+                <TopCard key={item.title} {...item} />
+              ))}
+            >
+              <NoData />
+            </If>
+          }
+        >
+          {Array.from({ length: 2 }).map((_, i) => (
             // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
             <TopCardSkeleton key={i} />
-          ))
-        ) : isEmpty(topCardData) ? (
-          <NoData />
-        ) : (
-          topCardData.map((item) => <TopCard key={item.title} {...item} />)
-        )}
+          ))}
+        </If>
       </div>
     </div>
   );

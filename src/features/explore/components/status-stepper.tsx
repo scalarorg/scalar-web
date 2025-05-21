@@ -1,3 +1,4 @@
+import { If } from "@/components/common";
 import {
   Stepper,
   StepperIndicator,
@@ -46,9 +47,9 @@ export const StatusStepper = () => {
                 </div>
               </>
             </StepperTrigger>
-            {step < steps.length && (
+            <If condition={step < steps.length}>
               <StepperSeparator className="-order-1 -translate-y-1/2 absolute inset-x-0 top-4 left-[calc(50%+0.75rem+0.125rem)] m-0 group-data-[orientation=horizontal]/stepper:w-[calc(100%-1.5rem-0.25rem)] group-data-[orientation=horizontal]/stepper:flex-none" />
-            )}
+            </If>
           </StepperItem>
         ))}
       </Stepper>

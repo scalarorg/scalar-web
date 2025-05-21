@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import { cn } from "@/lib/utils";
+import { If } from "../common";
 
 type TInput = React.ComponentProps<"input">;
 
@@ -42,36 +43,40 @@ const IconInput = ({
 }: TIconInput) => {
   return (
     <div className={cn("relative", wrapperClassName)}>
-      {startIcon && (
-        <div
-          className={cn(
-            "absolute top-0 left-0 flex size-9 items-center justify-center",
-            iconClassName,
-            startIconClassName,
-          )}
-          aria-hidden="true"
-        >
-          {startIcon}
-        </div>
-      )}
+      <If condition={startIcon}>
+        {(icon) => (
+          <div
+            className={cn(
+              "absolute top-0 left-0 flex size-9 items-center justify-center",
+              iconClassName,
+              startIconClassName,
+            )}
+            aria-hidden="true"
+          >
+            {icon}
+          </div>
+        )}
+      </If>
       <Input
         type={type}
         data-slot="icon-input"
         className={cn(startIcon && "pl-9", endIcon && "pr-9", className)}
         {...props}
       />
-      {endIcon && (
-        <div
-          className={cn(
-            "absolute top-0 right-0 flex size-9 items-center justify-center",
-            iconClassName,
-            endIconClassName,
-          )}
-          aria-hidden="true"
-        >
-          {endIcon}
-        </div>
-      )}
+      <If condition={endIcon}>
+        {(icon) => (
+          <div
+            className={cn(
+              "absolute top-0 right-0 flex size-9 items-center justify-center",
+              iconClassName,
+              endIconClassName,
+            )}
+            aria-hidden="true"
+          >
+            {icon}
+          </div>
+        )}
+      </If>
     </div>
   );
 };

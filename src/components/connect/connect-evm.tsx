@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { If } from "../common";
 
 export const ConnectEvm = ({
   hideTitle,
@@ -11,11 +12,11 @@ export const ConnectEvm = ({
 }) => {
   return (
     <div className="flex w-full flex-col gap-2">
-      {!hideTitle && (
+      <If condition={!hideTitle}>
         <div className="flex items-center justify-between gap-2">
           <span className="font-semibold text-lg">EVM</span>
         </div>
-      )}
+      </If>
       <ConnectButton.Custom>
         {({
           account,
@@ -80,17 +81,17 @@ export const ConnectEvm = ({
                       type="button"
                       variant="outline"
                     >
-                      {chain.hasIcon && (
+                      <If condition={chain.hasIcon}>
                         <div className="mr-1 size-3 overflow-hidden rounded-full">
-                          {chain.iconUrl && (
+                          <If condition={chain.iconUrl}>
                             <img
                               alt={chain.name ?? "Chain icon"}
                               src={chain.iconUrl}
                               className="size-3"
                             />
-                          )}
+                          </If>
                         </div>
-                      )}
+                      </If>
                       {chain.name}
                     </Button>
 

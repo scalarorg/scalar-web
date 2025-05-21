@@ -1,6 +1,7 @@
 import {
   Base64Icon,
   ChainIcon,
+  If,
   SelectSearch,
   TSelectSearchGroup,
 } from "@/components/common";
@@ -392,7 +393,21 @@ export const BridgeForm = () => {
               </div>
             </div> */}
 
-            {walletInfo.isConnected ? (
+            <If
+              condition={walletInfo.isConnected}
+              fallback={
+                <Popover>
+                  <PopoverTrigger className="w-full" asChild>
+                    <Button type="button" size="lg">
+                      Connect wallet
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent side="top" className="rounded-lg p-2">
+                    <ConnectBtc hideTitle />
+                  </PopoverContent>
+                </Popover>
+              }
+            >
               <Button
                 type="submit"
                 size="lg"
@@ -402,18 +417,7 @@ export const BridgeForm = () => {
               >
                 Submit
               </Button>
-            ) : (
-              <Popover>
-                <PopoverTrigger className="w-full" asChild>
-                  <Button type="button" size="lg">
-                    Connect wallet
-                  </Button>
-                </PopoverTrigger>
-                <PopoverContent side="top" className="rounded-lg p-2">
-                  <ConnectBtc hideTitle />
-                </PopoverContent>
-              </Popover>
-            )}
+            </If>
           </form>
         </Form>
       </CardContent>

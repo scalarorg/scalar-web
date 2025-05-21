@@ -3,6 +3,7 @@ import {
   ChainIcon,
   Clipboard,
   Heading,
+  If,
   SelectSearch,
   confirmDialogConfig,
   useConfirm,
@@ -124,29 +125,35 @@ function OwnProtocol() {
           },
           {
             title: "Address",
-            items: isEmpty(address) ? (
-              <p>No data</p>
-            ) : (
-              address?.map(({ address }) => (
-                <div key={address} className="max-w-[140px]">
-                  <Clipboard label="Copyyyyyyyyyyyyyyyy" text={address!} />
-                </div>
-              ))
+            items: (
+              <If
+                condition={isEmpty(address)}
+                fallback={address?.map(({ address }) => (
+                  <div key={address} className="max-w-[140px]">
+                    <Clipboard label="Copyyyyyyyyyyyyyyyy" text={address!} />
+                  </div>
+                ))}
+              >
+                <p>No data</p>
+              </If>
             ),
           },
           {
             title: "Network",
-            items: isEmpty(protocol?.chains) ? (
-              <p>No data</p>
-            ) : (
-              protocol?.chains?.map((c) => (
-                <ChainIcon
-                  key={c.chain}
-                  chain={c.chain as SupportedChains}
-                  showName
-                  customName={c.name}
-                />
-              ))
+            items: (
+              <If
+                condition={isEmpty(protocol?.chains)}
+                fallback={protocol?.chains?.map((c) => (
+                  <ChainIcon
+                    key={c.chain}
+                    chain={c.chain as SupportedChains}
+                    showName
+                    customName={c.name}
+                  />
+                ))}
+              >
+                <p>No data</p>
+              </If>
             ),
           },
           {
@@ -273,37 +280,46 @@ function OwnProtocol() {
   return (
     <div className="flex flex-col gap-5 py-[60px]">
       <Heading link={{ to: "/protocols" }}>Your Protocol</Heading>
-      {isConnected ? (
-        isLoading ? (
-          <Skeleton className="h-[100px] w-full" />
-        ) : isEmpty(protocol) ? (
-          <p className="mt-5 text-center font-semibold text-3xl text-primary">
-            You don't have any protocol yet.
-          </p>
-        ) : (
-          <div className="flex gap-5 rounded-lg bg-background-secondary p-5">
-            {protocolData.map((item) => (
-              <ColumItem
-                key={item.title}
-                {...item}
-                classNames={{ wrapper: "flex-1" }}
-              />
-            ))}
-          </div>
-        )
-      ) : (
-        <Card className="rounded-lg p-0">
-          <CardContent className="flex flex-col gap-4 p-4">
-            <p className="text-base text-text-primary-500">
-              Connect your wallet to view your protocol
+      <If
+        condition={isConnected}
+        fallback={
+          <Card className="rounded-lg p-0">
+            <CardContent className="flex flex-col gap-4 p-4">
+              <p className="text-base text-text-primary-500">
+                Connect your wallet to view your protocol
+              </p>
+              <Button size="lg" onClick={() => connect()}>
+                Connect Scalar
+              </Button>
+            </CardContent>
+          </Card>
+        }
+      >
+        <If
+          condition={!isLoading}
+          fallback={<Skeleton className="h-[100px] w-full" />}
+        >
+          <If
+            condition={isEmpty(protocol)}
+            fallback={
+              <div className="flex gap-5 rounded-lg bg-background-secondary p-5">
+                {protocolData.map((item) => (
+                  <ColumItem
+                    key={item.title}
+                    {...item}
+                    classNames={{ wrapper: "flex-1" }}
+                  />
+                ))}
+              </div>
+            }
+          >
+            <p className="mt-5 text-center font-semibold text-3xl text-primary">
+              You don't have any protocol yet.
             </p>
-            <Button size="lg" onClick={() => connect()}>
-              Connect Scalar
-            </Button>
-          </CardContent>
-        </Card>
-      )}
-      {isConnected && !isEmpty(protocol) && (
+          </If>
+        </If>
+      </If>
+      <If condition={isConnected && !isEmpty(protocol)}>
         <Card className="p-0">
           <CardContent className="flex flex-col gap-4 p-4">
             <div className="flex gap-5">
@@ -375,7 +391,7 @@ function OwnProtocol() {
             </div>
           </CardContent>
         </Card>
-      )}
+      </If>
     </div>
   );
 }

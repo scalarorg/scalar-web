@@ -1,6 +1,6 @@
 import NoteIcon from "@/assets/icons/note.svg";
 import WalletIcon from "@/assets/icons/wallet.svg";
-import { Heading, InputSearchBox } from "@/components/common";
+import { Heading, If, InputSearchBox } from "@/components/common";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -82,7 +82,9 @@ function Protocols() {
               "bg-[#EDF1FF] text-text-primary-500",
             )}
           >
-            {isConnect ? <NoteIcon /> : <WalletIcon />}
+            <If condition={isConnect} fallback={<WalletIcon />}>
+              <NoteIcon />
+            </If>
           </div>
           <p className="mr-auto text-text-primary-500">
             {isConnect
@@ -92,23 +94,29 @@ function Protocols() {
               : "Connect your wallet to register protocol."}
           </p>
           <Dialog open={open} onOpenChange={setOpen}>
-            {isConnect ? (
-              isOwnCreated ? (
+            <If
+              condition={isConnect}
+              fallback={
+                <Button onClick={() => connect()} size="lg">
+                  Connect Scalar
+                </Button>
+              }
+            >
+              <If
+                condition={isOwnCreated}
+                fallback={
+                  <DialogTrigger asChild>
+                    <Button variant="black" size="lg">
+                      Register
+                    </Button>
+                  </DialogTrigger>
+                }
+              >
                 <Link to="/protocols/me">
                   <Button size="lg">View your protocol</Button>
                 </Link>
-              ) : (
-                <DialogTrigger asChild>
-                  <Button variant="black" size="lg">
-                    Register
-                  </Button>
-                </DialogTrigger>
-              )
-            ) : (
-              <Button onClick={() => connect()} size="lg">
-                Connect Scalar
-              </Button>
-            )}
+              </If>
+            </If>
             <DialogContent
               closeClassName="[&_svg:not([class*='size-'])]:size-6"
               className="min-w-[800px]"
@@ -123,17 +131,25 @@ function Protocols() {
       </Card>
       <InputSearchBox />
       <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
-        {isLoading ? (
-          range(0, 6).map((i) => <ProtocolCardSkeleton key={i} />)
-        ) : isEmpty(filteredProtocols) ? (
-          <p className="col-span-full text-center font-semibold text-2xl text-text-primary-500">
-            No data
-          </p>
-        ) : (
-          filteredProtocols?.map((protocol) => (
-            <ProtocolCard key={protocol.scalar_address} data={protocol} />
-          ))
-        )}
+        <If
+          condition={isLoading}
+          fallback={
+            <If
+              condition={isEmpty(filteredProtocols)}
+              fallback={filteredProtocols?.map((protocol) => (
+                <ProtocolCard key={protocol.scalar_address} data={protocol} />
+              ))}
+            >
+              <p className="col-span-full text-center font-semibold text-2xl text-text-primary-500">
+                No data
+              </p>
+            </If>
+          }
+        >
+          {range(0, 6).map((i) => (
+            <ProtocolCardSkeleton key={i} />
+          ))}
+        </If>
       </div>
     </div>
   );

@@ -26,6 +26,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { If } from "./if";
 
 export interface CustomActionsProps {
   confirm: () => void;
@@ -133,11 +134,11 @@ const ConfirmDialogContent: FC<{
     if (!customActions) {
       return (
         <>
-          {cancelButton !== null && (
+          <If condition={cancelButton !== null}>
             <AlertDialogCancel onClick={onCancel} {...cancelButton}>
               {cancelText}
             </AlertDialogCancel>
-          )}
+          </If>
           <AlertDialogAction onClick={onConfirm} {...confirmButton}>
             {confirmText}
           </AlertDialogAction>
@@ -176,11 +177,13 @@ const ConfirmDialogContent: FC<{
       <AlertDialogContent {...alertDialogContent}>
         <AlertDialogHeader {...alertDialogHeader}>
           {renderTitle()}
-          {description && (
-            <AlertDialogDescription {...alertDialogDescription}>
-              {description}
-            </AlertDialogDescription>
-          )}
+          <If condition={description}>
+            {(description) => (
+              <AlertDialogDescription {...alertDialogDescription}>
+                {description}
+              </AlertDialogDescription>
+            )}
+          </If>
           {contentSlot}
         </AlertDialogHeader>
         <AlertDialogFooter {...alertDialogFooter}>

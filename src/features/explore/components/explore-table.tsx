@@ -5,7 +5,7 @@ import {
   isEvmChain,
 } from "@/lib/utils";
 
-import { Clipboard, DataTable } from "@/components/common";
+import { Clipboard, DataTable, If } from "@/components/common";
 import { usePathname } from "@/hooks";
 import { Chains } from "@/lib/chains";
 import { cn } from "@/lib/utils";
@@ -68,7 +68,7 @@ export const ExploreTable = ({
                   })
                 }
               />
-              {newLink && blockExplorerIcon && (
+              <If condition={newLink && blockExplorer}>
                 <a
                   href={newLink}
                   target="_blank"
@@ -77,7 +77,7 @@ export const ExploreTable = ({
                 >
                   <img src={blockExplorerIcon} alt="block explorer icon" />
                 </a>
-              )}
+              </If>
             </div>
           );
         },
@@ -92,13 +92,15 @@ export const ExploreTable = ({
           return (
             <div className="flex flex-col gap-2">
               <div className="flex items-center gap-2 font-medium">
-                {icon && (
-                  <img
-                    src={icon}
-                    alt={chain_name}
-                    className="size-5 rounded-full"
-                  />
-                )}
+                <If condition={icon}>
+                  {(icon) => (
+                    <img
+                      src={icon}
+                      alt={chain_name}
+                      className="size-5 rounded-full"
+                    />
+                  )}
+                </If>
                 <p className="whitespace-nowrap">{chain_name}</p>
               </div>
               <Clipboard
@@ -122,15 +124,14 @@ export const ExploreTable = ({
           const newLink = blockExplorer && `${blockExplorer}/tx/${link}`;
 
           return (
-            tx_hash &&
-            chain && (
+            <If condition={tx_hash && chain}>
               <div className="flex items-center gap-2">
                 <Clipboard
                   label={label}
                   text={label}
                   classNames={{ wrapper: "max-w-[200px]" }}
                 />
-                {newLink && blockExplorerIcon && (
+                <If condition={newLink && blockExplorerIcon}>
                   <a
                     href={newLink}
                     target="_blank"
@@ -139,9 +140,9 @@ export const ExploreTable = ({
                   >
                     <img src={blockExplorerIcon} alt="block explorer icon" />
                   </a>
-                )}
+                </If>
               </div>
-            )
+            </If>
           );
         },
       }),
@@ -155,13 +156,15 @@ export const ExploreTable = ({
           return (
             <div className="flex flex-col gap-2">
               <div className="flex items-center gap-2 font-medium">
-                {icon && (
-                  <img
-                    src={icon}
-                    alt={chain_name}
-                    className="size-5 rounded-full"
-                  />
-                )}
+                <If condition={icon}>
+                  {(icon) => (
+                    <img
+                      src={icon}
+                      alt={chain_name}
+                      className="size-5 rounded-full"
+                    />
+                  )}
+                </If>
                 <p className="whitespace-nowrap">{chain_name}</p>
               </div>
               <Clipboard

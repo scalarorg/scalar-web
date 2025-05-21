@@ -1,6 +1,7 @@
 import {
   Base64Icon,
   ChainIcon,
+  If,
   SelectSearch,
   TSelectSearchGroup,
 } from "@/components/common";
@@ -616,22 +617,24 @@ export const RedeemForm = () => {
                     ? formatUnits(sourceChainBalance, Number(decimals))
                     : 0}
                 </span>
-                {selectedProtocol?.asset?.symbol && (
-                  <span> {selectedProtocol?.asset?.symbol}</span>
-                )}
+                <If condition={selectedProtocol?.asset?.symbol}>
+                  {(symbol) => <span> {symbol}</span>}
+                </If>
               </p>
             </div>
 
             {/* To Section */}
             <p className="flex items-center justify-between gap-2 rounded-lg bg-background-secondary p-4 text-base">
               To{" "}
-              {selectedProtocol?.asset?.chain && (
-                <ChainIcon
-                  chain={selectedProtocol?.asset?.chain as SupportedChains}
-                  showName
-                  classNames={{ wrapper: "gap-1" }}
-                />
-              )}
+              <If condition={selectedProtocol?.asset?.chain}>
+                {(chain) => (
+                  <ChainIcon
+                    chain={chain as SupportedChains}
+                    showName
+                    classNames={{ wrapper: "gap-1" }}
+                  />
+                )}
+              </If>
             </p>
 
             {/* Destination Address */}
@@ -652,9 +655,24 @@ export const RedeemForm = () => {
               )}
             />
 
-            {isConnectedEvm ? (
-              selectedProtocol?.attributes?.model === "LIQUIDITY_MODEL_UPC" &&
-              !isConnectedBtc ? (
+            <If condition={isConnectedEvm} fallback={<ConnectEvm hideTitle />}>
+              <If
+                condition={
+                  selectedProtocol?.attributes?.model ===
+                    "LIQUIDITY_MODEL_UPC" && !isConnectedBtc
+                }
+                fallback={
+                  <Button
+                    type="submit"
+                    className="w-full"
+                    disabled={!sourceChainBalance}
+                    isLoading={isLoading}
+                    size="lg"
+                  >
+                    Redeem
+                  </Button>
+                }
+              >
                 <Popover>
                   <PopoverTrigger className="w-full" asChild>
                     <Button type="button" className="w-full" size="lg">
@@ -665,20 +683,8 @@ export const RedeemForm = () => {
                     <ConnectBtc hideTitle />
                   </PopoverContent>
                 </Popover>
-              ) : (
-                <Button
-                  type="submit"
-                  className="w-full"
-                  disabled={!sourceChainBalance}
-                  isLoading={isLoading}
-                  size="lg"
-                >
-                  Redeem
-                </Button>
-              )
-            ) : (
-              <ConnectEvm hideTitle />
-            )}
+              </If>
+            </If>
           </form>
         </Form>
       </CardContent>

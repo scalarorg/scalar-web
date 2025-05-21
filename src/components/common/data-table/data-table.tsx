@@ -31,6 +31,7 @@ import {
 } from "@/components/ui/table";
 import { usePaginationTable, useSortingTable } from "@/hooks";
 import { cn } from "@/lib/utils";
+import { If } from "../if";
 import { Spin } from "../spin";
 import { TablePagination } from "./table-pagination";
 type TableClassNames = Partial<{
@@ -181,16 +182,18 @@ const DataTableInnerForwardRef = <TData,>(
         classNames.root,
       )}
     >
-      {extraTableToolbar && (
-        <div
-          className={cn(
-            "flex items-center justify-between",
-            classNames.toolbar?.wrapper,
-          )}
-        >
-          {extraTableToolbar}
-        </div>
-      )}
+      <If condition={extraTableToolbar}>
+        {(toolbar) => (
+          <div
+            className={cn(
+              "flex items-center justify-between",
+              classNames.toolbar?.wrapper,
+            )}
+          >
+            {toolbar}
+          </div>
+        )}
+      </If>
       <div
         className={cn("flex grow flex-col overflow-auto", classNames.container)}
       >
@@ -283,8 +286,57 @@ const DataTableInnerForwardRef = <TData,>(
                 ))}
               </TableHeader>
               <TableBody className={cn("overflow-auto", classNames.body)}>
-                {isLoading ? (
-                  range(table.getState().pagination.pageSize).map((i) => (
+                <If
+                  condition={isLoading}
+                  fallback={
+                    <If
+                      condition={table.getRowModel().rows?.length}
+                      fallback={
+                        <TableRow className="h-full">
+                          <TableCell colSpan={columns.length}>
+                            <div className="flex items-center justify-center py-8">
+                              <p className="font-semibold">No data</p>
+                            </div>
+                          </TableCell>
+                        </TableRow>
+                      }
+                    >
+                      {table.getRowModel().rows.map((row, index) => (
+                        <TableRow
+                          key={row.id}
+                          data-state={row.getIsSelected() && "selected"}
+                          className={cn(
+                            index % 2 === 0 && "bg-white",
+                            classNames.row,
+                            onRowClick && "cursor-pointer",
+                          )}
+                          onClick={() => onRowClick?.(row.original)}
+                        >
+                          {row.getVisibleCells().map((cell) => {
+                            const { meta } = cell.column.columnDef;
+
+                            return (
+                              <TableCell
+                                key={cell.id}
+                                className={cn(
+                                  "px-5",
+                                  meta?.className,
+                                  meta?.cell?.className,
+                                )}
+                              >
+                                {flexRender(
+                                  cell.column.columnDef.cell,
+                                  cell.getContext(),
+                                )}
+                              </TableCell>
+                            );
+                          })}
+                        </TableRow>
+                      ))}
+                    </If>
+                  }
+                >
+                  {range(table.getState().pagination.pageSize).map((i) => (
                     <TableRow key={i} className="divide-x divide-neutral-50">
                       {range(numberOfColumns).map((i) => (
                         <TableCell key={i} className="h-12">
@@ -292,63 +344,21 @@ const DataTableInnerForwardRef = <TData,>(
                         </TableCell>
                       ))}
                     </TableRow>
-                  ))
-                ) : table.getRowModel().rows?.length ? (
-                  table.getRowModel().rows.map((row, index) => (
-                    <TableRow
-                      key={row.id}
-                      data-state={row.getIsSelected() && "selected"}
-                      className={cn(
-                        index % 2 === 0 && "bg-white",
-                        classNames.row,
-                        onRowClick && "cursor-pointer",
-                      )}
-                      onClick={() => onRowClick?.(row.original)}
-                    >
-                      {row.getVisibleCells().map((cell) => {
-                        const { meta } = cell.column.columnDef;
-
-                        return (
-                          <TableCell
-                            key={cell.id}
-                            className={cn(
-                              "px-5",
-                              meta?.className,
-                              meta?.cell?.className,
-                            )}
-                          >
-                            {flexRender(
-                              cell.column.columnDef.cell,
-                              cell.getContext(),
-                            )}
-                          </TableCell>
-                        );
-                      })}
-                    </TableRow>
-                  ))
-                ) : (
-                  <TableRow className="h-full">
-                    <TableCell colSpan={columns.length}>
-                      <div className="flex items-center justify-center py-8">
-                        <p className="font-semibold">No data</p>
-                      </div>
-                    </TableCell>
-                  </TableRow>
-                )}
+                  ))}
+                </If>
               </TableBody>
             </Table>
           </div>
         </Spin>
       </div>
-      {showPagination && (
+      <If condition={showPagination}>
         <TablePagination
           className={cn(classNames.pagination, size(data) === 0 && "invisible")}
           table={table}
           isLoading={isLoading}
           pageSizeOptions={pageSizeOptions}
-          // isSimple={isSimple}
         />
-      )}
+      </If>
     </div>
   );
 };
