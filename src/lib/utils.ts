@@ -92,13 +92,6 @@ export const handleTokenApproval = async (args: {
 
   const currentAllowance = await checkAllowance(owner, gatewayAddress);
 
-  // console.log({
-  //   currentAllowance,
-  //   transferAmount,
-  //   owner,
-  //   gatewayAddress,
-  // });
-
   if (currentAllowance >= transferAmount) {
     return;
   }
