@@ -9,3 +9,4 @@ export * from "./multiselect";
 export * from "./chain-icon";
 export * from "./select-search";
 export * from "./base64-icon";
+export * from "./if";
