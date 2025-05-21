@@ -4,7 +4,7 @@
  */
 
 export interface paths {
-  '/scalar/scalarnet/add_cosmos_based_chain': {
+  "/scalar/scalarnet/add_cosmos_based_chain": {
     parameters: {
       query?: never;
       header?: never;
@@ -13,14 +13,14 @@ export interface paths {
     };
     get?: never;
     put?: never;
-    post: operations['AddCosmosBasedChain'];
+    post: operations["AddCosmosBasedChain"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/scalar/scalarnet/call_contract': {
+  "/scalar/scalarnet/call_contract": {
     parameters: {
       query?: never;
       header?: never;
@@ -29,14 +29,14 @@ export interface paths {
     };
     get?: never;
     put?: never;
-    post: operations['CallContract'];
+    post: operations["CallContract"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/scalar/scalarnet/confirm_deposit': {
+  "/scalar/scalarnet/confirm_deposit": {
     parameters: {
       query?: never;
       header?: never;
@@ -45,14 +45,14 @@ export interface paths {
     };
     get?: never;
     put?: never;
-    post: operations['ScalarConfirmDeposit'];
+    post: operations["ScalarConfirmDeposit"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/scalar/scalarnet/execute_pending_transfers': {
+  "/scalar/scalarnet/execute_pending_transfers": {
     parameters: {
       query?: never;
       header?: never;
@@ -61,14 +61,14 @@ export interface paths {
     };
     get?: never;
     put?: never;
-    post: operations['ExecutePendingTransfers'];
+    post: operations["ExecutePendingTransfers"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/scalar/scalarnet/link': {
+  "/scalar/scalarnet/link": {
     parameters: {
       query?: never;
       header?: never;
@@ -77,14 +77,14 @@ export interface paths {
     };
     get?: never;
     put?: never;
-    post: operations['ScalarLink'];
+    post: operations["ScalarLink"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/scalar/scalarnet/register_asset': {
+  "/scalar/scalarnet/register_asset": {
     parameters: {
       query?: never;
       header?: never;
@@ -93,14 +93,14 @@ export interface paths {
     };
     get?: never;
     put?: never;
-    post: operations['RegisterAsset'];
+    post: operations["RegisterAsset"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/scalar/scalarnet/register_fee_collector': {
+  "/scalar/scalarnet/register_fee_collector": {
     parameters: {
       query?: never;
       header?: never;
@@ -109,14 +109,14 @@ export interface paths {
     };
     get?: never;
     put?: never;
-    post: operations['RegisterFeeCollector'];
+    post: operations["RegisterFeeCollector"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/scalar/scalarnet/retry_ibc_transfer': {
+  "/scalar/scalarnet/retry_ibc_transfer": {
     parameters: {
       query?: never;
       header?: never;
@@ -125,14 +125,14 @@ export interface paths {
     };
     get?: never;
     put?: never;
-    post: operations['RetryIBCTransfer'];
+    post: operations["RetryIBCTransfer"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/scalar/scalarnet/route_ibc_transfers': {
+  "/scalar/scalarnet/route_ibc_transfers": {
     parameters: {
       query?: never;
       header?: never;
@@ -141,14 +141,14 @@ export interface paths {
     };
     get?: never;
     put?: never;
-    post: operations['RouteIBCTransfers'];
+    post: operations["RouteIBCTransfers"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/scalar/scalarnet/route_message': {
+  "/scalar/scalarnet/route_message": {
     parameters: {
       query?: never;
       header?: never;
@@ -157,21 +157,21 @@ export interface paths {
     };
     get?: never;
     put?: never;
-    post: operations['RouteMessage'];
+    post: operations["RouteMessage"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/scalar/scalarnet/v1beta1/chain_by_ibc_path/{ibc_path}': {
+  "/scalar/scalarnet/v1beta1/chain_by_ibc_path/{ibc_path}": {
     parameters: {
       query?: never;
       header?: never;
       path?: never;
       cookie?: never;
     };
-    get: operations['ChainByIBCPath'];
+    get: operations["ChainByIBCPath"];
     put?: never;
     post?: never;
     delete?: never;
@@ -180,14 +180,14 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/scalar/scalarnet/v1beta1/ibc_path/{chain}': {
+  "/scalar/scalarnet/v1beta1/ibc_path/{chain}": {
     parameters: {
       query?: never;
       header?: never;
       path?: never;
       cookie?: never;
     };
-    get: operations['IBCPath'];
+    get: operations["IBCPath"];
     put?: never;
     post?: never;
     delete?: never;
@@ -196,7 +196,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/scalar/scalarnet/v1beta1/ibc_transfer_count': {
+  "/scalar/scalarnet/v1beta1/ibc_transfer_count": {
     parameters: {
       query?: never;
       header?: never;
@@ -204,7 +204,7 @@ export interface paths {
       cookie?: never;
     };
     /** PendingIBCTransferCount queries the pending ibc transfers for all chains */
-    get: operations['PendingIBCTransferCount'];
+    get: operations["PendingIBCTransferCount"];
     put?: never;
     post?: never;
     delete?: never;
@@ -213,14 +213,14 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/scalar/scalarnet/v1beta1/params': {
+  "/scalar/scalarnet/v1beta1/params": {
     parameters: {
       query?: never;
       header?: never;
       path?: never;
       cookie?: never;
     };
-    get: operations['ScalarParams'];
+    get: operations["ScalarParams"];
     put?: never;
     post?: never;
     delete?: never;
@@ -229,7 +229,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/scalar/chains/confirm_transfer_key': {
+  "/scalar/chains/confirm_transfer_key": {
     parameters: {
       query?: never;
       header?: never;
@@ -238,14 +238,14 @@ export interface paths {
     };
     get?: never;
     put?: never;
-    post: operations['ConfirmTransferKey'];
+    post: operations["ConfirmTransferKey"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/scalar/chains/v1beta1/add_chain': {
+  "/scalar/chains/v1beta1/add_chain": {
     parameters: {
       query?: never;
       header?: never;
@@ -254,14 +254,14 @@ export interface paths {
     };
     get?: never;
     put?: never;
-    post: operations['AddChain'];
+    post: operations["AddChain"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/scalar/chains/v1beta1/batched_commands/{chain}/{id}': {
+  "/scalar/chains/v1beta1/batched_commands/{chain}/{id}": {
     parameters: {
       query?: never;
       header?: never;
@@ -271,7 +271,7 @@ export interface paths {
     /** BatchedCommands queries the batched commands for a specified chain and
      *     BatchedCommandsID if no BatchedCommandsID is specified, then it returns the
      *     latest batched commands */
-    get: operations['BatchedCommands'];
+    get: operations["BatchedCommands"];
     put?: never;
     post?: never;
     delete?: never;
@@ -280,14 +280,14 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/scalar/chains/v1beta1/burner_info': {
+  "/scalar/chains/v1beta1/burner_info": {
     parameters: {
       query?: never;
       header?: never;
       path?: never;
       cookie?: never;
     };
-    get: operations['BurnerInfo'];
+    get: operations["BurnerInfo"];
     put?: never;
     post?: never;
     delete?: never;
@@ -296,7 +296,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/scalar/chains/v1beta1/bytecode/{chain}/{contract}': {
+  "/scalar/chains/v1beta1/bytecode/{chain}/{contract}": {
     parameters: {
       query?: never;
       header?: never;
@@ -305,7 +305,7 @@ export interface paths {
     };
     /** Bytecode queries the bytecode of a specified gateway at the specified
      *     chain */
-    get: operations['Bytecode'];
+    get: operations["Bytecode"];
     put?: never;
     post?: never;
     delete?: never;
@@ -314,7 +314,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/scalar/chains/v1beta1/chains': {
+  "/scalar/chains/v1beta1/chains": {
     parameters: {
       query?: never;
       header?: never;
@@ -322,7 +322,7 @@ export interface paths {
       cookie?: never;
     };
     /** Chains queries the available chains */
-    get: operations['ScalarChains'];
+    get: operations["ScalarChains"];
     put?: never;
     post?: never;
     delete?: never;
@@ -331,7 +331,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/scalar/chains/v1beta1/command_request': {
+  "/scalar/chains/v1beta1/command_request": {
     parameters: {
       query?: never;
       header?: never;
@@ -339,7 +339,7 @@ export interface paths {
       cookie?: never;
     };
     /** Command queries the command of a chain provided the command id */
-    get: operations['Command'];
+    get: operations["Command"];
     put?: never;
     post?: never;
     delete?: never;
@@ -348,7 +348,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/scalar/chains/v1beta1/confirm_deposit': {
+  "/scalar/chains/v1beta1/confirm_deposit": {
     parameters: {
       query?: never;
       header?: never;
@@ -357,14 +357,14 @@ export interface paths {
     };
     get?: never;
     put?: never;
-    post: operations['ChainsConfirmDeposit'];
+    post: operations["ChainsConfirmDeposit"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/scalar/chains/v1beta1/confirm_source_txs': {
+  "/scalar/chains/v1beta1/confirm_source_txs": {
     parameters: {
       query?: never;
       header?: never;
@@ -373,14 +373,14 @@ export interface paths {
     };
     get?: never;
     put?: never;
-    post: operations['ConfirmSourceTxs'];
+    post: operations["ConfirmSourceTxs"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/scalar/chains/v1beta1/confirm_token': {
+  "/scalar/chains/v1beta1/confirm_token": {
     parameters: {
       query?: never;
       header?: never;
@@ -389,14 +389,14 @@ export interface paths {
     };
     get?: never;
     put?: never;
-    post: operations['ConfirmToken'];
+    post: operations["ConfirmToken"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/scalar/chains/v1beta1/confirmation_height/{chain}': {
+  "/scalar/chains/v1beta1/confirmation_height/{chain}": {
     parameters: {
       query?: never;
       header?: never;
@@ -404,7 +404,7 @@ export interface paths {
       cookie?: never;
     };
     /** ConfirmationHeight queries the confirmation height for the specified chain */
-    get: operations['ConfirmationHeight'];
+    get: operations["ConfirmationHeight"];
     put?: never;
     post?: never;
     delete?: never;
@@ -413,7 +413,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/scalar/chains/v1beta1/create_burn_tokens': {
+  "/scalar/chains/v1beta1/create_burn_tokens": {
     parameters: {
       query?: never;
       header?: never;
@@ -422,14 +422,14 @@ export interface paths {
     };
     get?: never;
     put?: never;
-    post: operations['CreateBurnTokens'];
+    post: operations["CreateBurnTokens"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/scalar/chains/v1beta1/create_deploy_token': {
+  "/scalar/chains/v1beta1/create_deploy_token": {
     parameters: {
       query?: never;
       header?: never;
@@ -438,14 +438,14 @@ export interface paths {
     };
     get?: never;
     put?: never;
-    post: operations['CreateDeployToken'];
+    post: operations["CreateDeployToken"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/scalar/chains/v1beta1/create_pending_transfers': {
+  "/scalar/chains/v1beta1/create_pending_transfers": {
     parameters: {
       query?: never;
       header?: never;
@@ -454,14 +454,14 @@ export interface paths {
     };
     get?: never;
     put?: never;
-    post: operations['CreatePendingTransfers'];
+    post: operations["CreatePendingTransfers"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/scalar/chains/v1beta1/create_transfer_operatorship': {
+  "/scalar/chains/v1beta1/create_transfer_operatorship": {
     parameters: {
       query?: never;
       header?: never;
@@ -470,14 +470,14 @@ export interface paths {
     };
     get?: never;
     put?: never;
-    post: operations['CreateTransferOperatorship'];
+    post: operations["CreateTransferOperatorship"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/scalar/chains/v1beta1/erc20_tokens/{chain}': {
+  "/scalar/chains/v1beta1/erc20_tokens/{chain}": {
     parameters: {
       query?: never;
       header?: never;
@@ -485,7 +485,7 @@ export interface paths {
       cookie?: never;
     };
     /** ERC20Tokens queries the ERC20 tokens registered for a chain */
-    get: operations['ERC20Tokens'];
+    get: operations["ERC20Tokens"];
     put?: never;
     post?: never;
     delete?: never;
@@ -494,7 +494,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/scalar/chains/v1beta1/event/{chain}/{event_id}': {
+  "/scalar/chains/v1beta1/event/{chain}/{event_id}": {
     parameters: {
       query?: never;
       header?: never;
@@ -502,7 +502,7 @@ export interface paths {
       cookie?: never;
     };
     /** Event queries an event at the specified chain */
-    get: operations['Event'];
+    get: operations["Event"];
     put?: never;
     post?: never;
     delete?: never;
@@ -511,7 +511,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/scalar/chains/v1beta1/gateway_address/{chain}': {
+  "/scalar/chains/v1beta1/gateway_address/{chain}": {
     parameters: {
       query?: never;
       header?: never;
@@ -520,7 +520,7 @@ export interface paths {
     };
     /** GatewayAddress queries the address of scalar gateway at the specified
      *     chain */
-    get: operations['GatewayAddress'];
+    get: operations["GatewayAddress"];
     put?: never;
     post?: never;
     delete?: never;
@@ -529,7 +529,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/scalar/chains/v1beta1/key_address/{chain}': {
+  "/scalar/chains/v1beta1/key_address/{chain}": {
     parameters: {
       query?: never;
       header?: never;
@@ -537,7 +537,7 @@ export interface paths {
       cookie?: never;
     };
     /** KeyAddress queries the address of key of a chain */
-    get: operations['KeyAddress'];
+    get: operations["KeyAddress"];
     put?: never;
     post?: never;
     delete?: never;
@@ -546,7 +546,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/scalar/chains/v1beta1/link': {
+  "/scalar/chains/v1beta1/link": {
     parameters: {
       query?: never;
       header?: never;
@@ -555,21 +555,21 @@ export interface paths {
     };
     get?: never;
     put?: never;
-    post: operations['ChainsLink'];
+    post: operations["ChainsLink"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/scalar/chains/v1beta1/params/{chain}': {
+  "/scalar/chains/v1beta1/params/{chain}": {
     parameters: {
       query?: never;
       header?: never;
       path?: never;
       cookie?: never;
     };
-    get: operations['ChainsParams'];
+    get: operations["ChainsParams"];
     put?: never;
     post?: never;
     delete?: never;
@@ -578,7 +578,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/scalar/chains/v1beta1/pending_commands/{chain}': {
+  "/scalar/chains/v1beta1/pending_commands/{chain}": {
     parameters: {
       query?: never;
       header?: never;
@@ -586,7 +586,7 @@ export interface paths {
       cookie?: never;
     };
     /** PendingCommands queries the pending commands for the specified chain */
-    get: operations['PendingCommands'];
+    get: operations["PendingCommands"];
     put?: never;
     post?: never;
     delete?: never;
@@ -595,14 +595,14 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/scalar/chains/v1beta1/redeem_session/{chain}': {
+  "/scalar/chains/v1beta1/redeem_session/{chain}": {
     parameters: {
       query?: never;
       header?: never;
       path?: never;
       cookie?: never;
     };
-    get: operations['RedeemSession'];
+    get: operations["RedeemSession"];
     put?: never;
     post?: never;
     delete?: never;
@@ -611,7 +611,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/scalar/chains/v1beta1/retry-failed-event': {
+  "/scalar/chains/v1beta1/retry-failed-event": {
     parameters: {
       query?: never;
       header?: never;
@@ -620,14 +620,14 @@ export interface paths {
     };
     get?: never;
     put?: never;
-    post: operations['RetryFailedEvent'];
+    post: operations["RetryFailedEvent"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/scalar/chains/v1beta1/set_gateway': {
+  "/scalar/chains/v1beta1/set_gateway": {
     parameters: {
       query?: never;
       header?: never;
@@ -636,14 +636,14 @@ export interface paths {
     };
     get?: never;
     put?: never;
-    post: operations['SetGateway'];
+    post: operations["SetGateway"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/scalar/chains/v1beta1/sign_btc_commands': {
+  "/scalar/chains/v1beta1/sign_btc_commands": {
     parameters: {
       query?: never;
       header?: never;
@@ -652,14 +652,14 @@ export interface paths {
     };
     get?: never;
     put?: never;
-    post: operations['SignBtcCommand'];
+    post: operations["SignBtcCommand"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/scalar/chains/v1beta1/sign_commands': {
+  "/scalar/chains/v1beta1/sign_commands": {
     parameters: {
       query?: never;
       header?: never;
@@ -668,14 +668,14 @@ export interface paths {
     };
     get?: never;
     put?: never;
-    post: operations['SignCommands'];
+    post: operations["SignCommands"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/scalar/chains/v1beta1/token_info/{chain}': {
+  "/scalar/chains/v1beta1/token_info/{chain}": {
     parameters: {
       query?: never;
       header?: never;
@@ -683,7 +683,7 @@ export interface paths {
       cookie?: never;
     };
     /** TokenInfo queries the token info for a registered ERC20 Token */
-    get: operations['TokenInfo'];
+    get: operations["TokenInfo"];
     put?: never;
     post?: never;
     delete?: never;
@@ -692,7 +692,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/scalar/covenant/v1beta1/register_custodian_group': {
+  "/scalar/covenant/v1beta1/register_custodian_group": {
     parameters: {
       query?: never;
       header?: never;
@@ -701,14 +701,14 @@ export interface paths {
     };
     get?: never;
     put?: never;
-    post: operations['RegisterCustodianGroup'];
+    post: operations["RegisterCustodianGroup"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/scalar/protocol/v1beta1': {
+  "/scalar/protocol/v1beta1": {
     parameters: {
       query?: never;
       header?: never;
@@ -716,7 +716,7 @@ export interface paths {
       cookie?: never;
     };
     /** GetProtocols returns all Protocol */
-    get: operations['Protocols'];
+    get: operations["Protocols"];
     put?: never;
     post?: never;
     delete?: never;
@@ -725,7 +725,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/scalar/protocol/v1beta1/add_supported_chain': {
+  "/scalar/protocol/v1beta1/add_supported_chain": {
     parameters: {
       query?: never;
       header?: never;
@@ -735,14 +735,14 @@ export interface paths {
     get?: never;
     put?: never;
     /** Add DestinationChain into protocol */
-    post: operations['AddSupportedChain'];
+    post: operations["AddSupportedChain"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/scalar/protocol/v1beta1/create_protocol': {
+  "/scalar/protocol/v1beta1/create_protocol": {
     parameters: {
       query?: never;
       header?: never;
@@ -752,21 +752,21 @@ export interface paths {
     get?: never;
     put?: never;
     /** Create protocol */
-    post: operations['CreateProtocol'];
+    post: operations["CreateProtocol"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/scalar/protocol/v1beta1/protocol': {
+  "/scalar/protocol/v1beta1/protocol": {
     parameters: {
       query?: never;
       header?: never;
       path?: never;
       cookie?: never;
     };
-    get: operations['Protocol'];
+    get: operations["Protocol"];
     put?: never;
     post?: never;
     delete?: never;
@@ -775,7 +775,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/scalar/protocol/v1beta1/update_protocol': {
+  "/scalar/protocol/v1beta1/update_protocol": {
     parameters: {
       query?: never;
       header?: never;
@@ -784,14 +784,14 @@ export interface paths {
     };
     get?: never;
     put?: never;
-    post: operations['UpdateProtocol'];
+    post: operations["UpdateProtocol"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/scalar/protocol/v1beta1/update_supported_chain': {
+  "/scalar/protocol/v1beta1/update_supported_chain": {
     parameters: {
       query?: never;
       header?: never;
@@ -801,14 +801,14 @@ export interface paths {
     get?: never;
     put?: never;
     /** Delete DestinationChain from protocol */
-    post: operations['UpdateSupportedChain'];
+    post: operations["UpdateSupportedChain"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/scalar/chains/v1beta1/reserve_redeem_utxo': {
+  "/scalar/chains/v1beta1/reserve_redeem_utxo": {
     parameters: {
       query?: never;
       header?: never;
@@ -817,14 +817,14 @@ export interface paths {
     };
     get?: never;
     put?: never;
-    post: operations['ReserveRedeemUtxo'];
+    post: operations["ReserveRedeemUtxo"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/scalar/convenant/v1beta1/custodians': {
+  "/scalar/convenant/v1beta1/custodians": {
     parameters: {
       query?: never;
       header?: never;
@@ -832,7 +832,7 @@ export interface paths {
       cookie?: never;
     };
     /** Get custodians */
-    get: operations['Custodians'];
+    get: operations["Custodians"];
     put?: never;
     post?: never;
     delete?: never;
@@ -841,7 +841,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/scalar/covenant/v1beta1/add_custodian_to_group': {
+  "/scalar/covenant/v1beta1/add_custodian_to_group": {
     parameters: {
       query?: never;
       header?: never;
@@ -852,14 +852,14 @@ export interface paths {
     put?: never;
     /** Add Custodian to custodian group
      *     recalculate taproot pubkey when adding custodian to custodian group */
-    post: operations['AddCustodianToGroup'];
+    post: operations["AddCustodianToGroup"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/scalar/covenant/v1beta1/confirm_redeem_txs': {
+  "/scalar/covenant/v1beta1/confirm_redeem_txs": {
     parameters: {
       query?: never;
       header?: never;
@@ -868,14 +868,14 @@ export interface paths {
     };
     get?: never;
     put?: never;
-    post: operations['ConfirmRedeemTxs'];
+    post: operations["ConfirmRedeemTxs"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/scalar/covenant/v1beta1/confirm_switched_phase': {
+  "/scalar/covenant/v1beta1/confirm_switched_phase": {
     parameters: {
       query?: never;
       header?: never;
@@ -884,14 +884,14 @@ export interface paths {
     };
     get?: never;
     put?: never;
-    post: operations['ConfirmSwitchedPhase'];
+    post: operations["ConfirmSwitchedPhase"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/scalar/covenant/v1beta1/create_custodian': {
+  "/scalar/covenant/v1beta1/create_custodian": {
     parameters: {
       query?: never;
       header?: never;
@@ -901,14 +901,14 @@ export interface paths {
     get?: never;
     put?: never;
     /** Create custodian */
-    post: operations['CreateCustodian'];
+    post: operations["CreateCustodian"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/scalar/covenant/v1beta1/create_custodian_group': {
+  "/scalar/covenant/v1beta1/create_custodian_group": {
     parameters: {
       query?: never;
       header?: never;
@@ -918,14 +918,14 @@ export interface paths {
     get?: never;
     put?: never;
     /** Create custodian group */
-    post: operations['CreateCustodianGroup'];
+    post: operations["CreateCustodianGroup"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/scalar/covenant/v1beta1/custodian_groups': {
+  "/scalar/covenant/v1beta1/custodian_groups": {
     parameters: {
       query?: never;
       header?: never;
@@ -933,7 +933,7 @@ export interface paths {
       cookie?: never;
     };
     /** Get custodian groups */
-    get: operations['Groups'];
+    get: operations["Groups"];
     put?: never;
     post?: never;
     delete?: never;
@@ -942,7 +942,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/scalar/covenant/v1beta1/initialize_utxo': {
+  "/scalar/covenant/v1beta1/initialize_utxo": {
     parameters: {
       query?: never;
       header?: never;
@@ -951,21 +951,21 @@ export interface paths {
     };
     get?: never;
     put?: never;
-    post: operations['InitializeUtxo'];
+    post: operations["InitializeUtxo"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/scalar/covenant/v1beta1/params': {
+  "/scalar/covenant/v1beta1/params": {
     parameters: {
       query?: never;
       header?: never;
       path?: never;
       cookie?: never;
     };
-    get: operations['CovenantParams'];
+    get: operations["CovenantParams"];
     put?: never;
     post?: never;
     delete?: never;
@@ -974,14 +974,14 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/scalar/covenant/v1beta1/redeem_session': {
+  "/scalar/covenant/v1beta1/redeem_session": {
     parameters: {
       query?: never;
       header?: never;
       path?: never;
       cookie?: never;
     };
-    get: operations['CovenantRedeemSession'];
+    get: operations["CovenantRedeemSession"];
     put?: never;
     post?: never;
     delete?: never;
@@ -990,7 +990,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/scalar/covenant/v1beta1/remove_custodian_from_group': {
+  "/scalar/covenant/v1beta1/remove_custodian_from_group": {
     parameters: {
       query?: never;
       header?: never;
@@ -1001,14 +1001,14 @@ export interface paths {
     put?: never;
     /** Remove Custodian from custodian group
      *     recalculate taproot address when deleting custodian from custodian group */
-    post: operations['RemoveCustodianFromGroup'];
+    post: operations["RemoveCustodianFromGroup"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/scalar/covenant/v1beta1/rotate_key': {
+  "/scalar/covenant/v1beta1/rotate_key": {
     parameters: {
       query?: never;
       header?: never;
@@ -1017,21 +1017,21 @@ export interface paths {
     };
     get?: never;
     put?: never;
-    post: operations['CovenantRotateKey'];
+    post: operations["CovenantRotateKey"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/scalar/covenant/v1beta1/standalone_command': {
+  "/scalar/covenant/v1beta1/standalone_command": {
     parameters: {
       query?: never;
       header?: never;
       path?: never;
       cookie?: never;
     };
-    get: operations['StandaloneCommand'];
+    get: operations["StandaloneCommand"];
     put?: never;
     post?: never;
     delete?: never;
@@ -1040,7 +1040,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/scalar/covenant/v1beta1/submit_tap_script_sigs': {
+  "/scalar/covenant/v1beta1/submit_tap_script_sigs": {
     parameters: {
       query?: never;
       header?: never;
@@ -1049,14 +1049,14 @@ export interface paths {
     };
     get?: never;
     put?: never;
-    post: operations['SubmitTapScriptSigs'];
+    post: operations["SubmitTapScriptSigs"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/scalar/covenant/v1beta1/update_custodian': {
+  "/scalar/covenant/v1beta1/update_custodian": {
     parameters: {
       query?: never;
       header?: never;
@@ -1066,14 +1066,14 @@ export interface paths {
     get?: never;
     put?: never;
     /** Update custodian */
-    post: operations['UpdateCustodian'];
+    post: operations["UpdateCustodian"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/scalar/covenant/v1beta1/update_custodian_group': {
+  "/scalar/covenant/v1beta1/update_custodian_group": {
     parameters: {
       query?: never;
       header?: never;
@@ -1083,21 +1083,21 @@ export interface paths {
     get?: never;
     put?: never;
     /** Update Custodian group */
-    post: operations['UpdateCustodianGroup'];
+    post: operations["UpdateCustodianGroup"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/scalar/covenant/v1beta1/utxo_snapshot': {
+  "/scalar/covenant/v1beta1/utxo_snapshot": {
     parameters: {
       query?: never;
       header?: never;
       path?: never;
       cookie?: never;
     };
-    get: operations['UTXOSnapshot'];
+    get: operations["UTXOSnapshot"];
     put?: never;
     post?: never;
     delete?: never;
@@ -1106,7 +1106,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/scalar/multisig/rotate_key': {
+  "/scalar/multisig/rotate_key": {
     parameters: {
       query?: never;
       header?: never;
@@ -1115,14 +1115,14 @@ export interface paths {
     };
     get?: never;
     put?: never;
-    post: operations['RotateKey'];
+    post: operations["RotateKey"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/scalar/multisig/start_keygen': {
+  "/scalar/multisig/start_keygen": {
     parameters: {
       query?: never;
       header?: never;
@@ -1131,14 +1131,14 @@ export interface paths {
     };
     get?: never;
     put?: never;
-    post: operations['StartKeygen'];
+    post: operations["StartKeygen"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/scalar/multisig/submit_pub_key': {
+  "/scalar/multisig/submit_pub_key": {
     parameters: {
       query?: never;
       header?: never;
@@ -1147,14 +1147,14 @@ export interface paths {
     };
     get?: never;
     put?: never;
-    post: operations['SubmitPubKey'];
+    post: operations["SubmitPubKey"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/scalar/multisig/submit_signature': {
+  "/scalar/multisig/submit_signature": {
     parameters: {
       query?: never;
       header?: never;
@@ -1163,14 +1163,14 @@ export interface paths {
     };
     get?: never;
     put?: never;
-    post: operations['SubmitSignature'];
+    post: operations["SubmitSignature"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/scalar/multisig/v1beta1/key': {
+  "/scalar/multisig/v1beta1/key": {
     parameters: {
       query?: never;
       header?: never;
@@ -1179,7 +1179,7 @@ export interface paths {
     };
     /** Key returns the key corresponding to a given key ID.
      *     If no key is found, it returns the grpc NOT_FOUND error. */
-    get: operations['Key'];
+    get: operations["Key"];
     put?: never;
     post?: never;
     delete?: never;
@@ -1188,7 +1188,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/scalar/multisig/v1beta1/key_id/{chain}': {
+  "/scalar/multisig/v1beta1/key_id/{chain}": {
     parameters: {
       query?: never;
       header?: never;
@@ -1197,7 +1197,7 @@ export interface paths {
     };
     /** KeyID returns the key ID of a key assigned to a given chain.
      *     If no key is assigned, it returns the grpc NOT_FOUND error. */
-    get: operations['KeyID'];
+    get: operations["KeyID"];
     put?: never;
     post?: never;
     delete?: never;
@@ -1206,7 +1206,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/scalar/multisig/v1beta1/keygen_opt_in': {
+  "/scalar/multisig/v1beta1/keygen_opt_in": {
     parameters: {
       query?: never;
       header?: never;
@@ -1215,14 +1215,14 @@ export interface paths {
     };
     get?: never;
     put?: never;
-    post: operations['KeygenOptIn'];
+    post: operations["KeygenOptIn"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/scalar/multisig/v1beta1/keygen_opt_out': {
+  "/scalar/multisig/v1beta1/keygen_opt_out": {
     parameters: {
       query?: never;
       header?: never;
@@ -1231,14 +1231,14 @@ export interface paths {
     };
     get?: never;
     put?: never;
-    post: operations['KeygenOptOut'];
+    post: operations["KeygenOptOut"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/scalar/multisig/v1beta1/keygen_session': {
+  "/scalar/multisig/v1beta1/keygen_session": {
     parameters: {
       query?: never;
       header?: never;
@@ -1247,7 +1247,7 @@ export interface paths {
     };
     /** KeygenSession returns the keygen session info for a given key ID.
      *     If no key is found, it returns the grpc NOT_FOUND error. */
-    get: operations['KeygenSession'];
+    get: operations["KeygenSession"];
     put?: never;
     post?: never;
     delete?: never;
@@ -1256,7 +1256,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/scalar/multisig/v1beta1/next_key_id/{chain}': {
+  "/scalar/multisig/v1beta1/next_key_id/{chain}": {
     parameters: {
       query?: never;
       header?: never;
@@ -1266,7 +1266,7 @@ export interface paths {
     /** NextKeyID returns the key ID assigned for the next rotation on a given
      *     chain. If no key rotation is in progress, it returns the grpc NOT_FOUND
      *     error. */
-    get: operations['NextKeyID'];
+    get: operations["NextKeyID"];
     put?: never;
     post?: never;
     delete?: never;
@@ -1275,14 +1275,14 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/scalar/multisig/v1beta1/params': {
+  "/scalar/multisig/v1beta1/params": {
     parameters: {
       query?: never;
       header?: never;
       path?: never;
       cookie?: never;
     };
-    get: operations['MultisigParams'];
+    get: operations["MultisigParams"];
     put?: never;
     post?: never;
     delete?: never;
@@ -1291,7 +1291,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/scalar/nexus/activate_chain': {
+  "/scalar/nexus/activate_chain": {
     parameters: {
       query?: never;
       header?: never;
@@ -1300,14 +1300,14 @@ export interface paths {
     };
     get?: never;
     put?: never;
-    post: operations['ActivateChain'];
+    post: operations["ActivateChain"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/scalar/nexus/deactivate_chain': {
+  "/scalar/nexus/deactivate_chain": {
     parameters: {
       query?: never;
       header?: never;
@@ -1316,14 +1316,14 @@ export interface paths {
     };
     get?: never;
     put?: never;
-    post: operations['DeactivateChain'];
+    post: operations["DeactivateChain"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/scalar/nexus/deregister_chain_maintainer': {
+  "/scalar/nexus/deregister_chain_maintainer": {
     parameters: {
       query?: never;
       header?: never;
@@ -1332,14 +1332,14 @@ export interface paths {
     };
     get?: never;
     put?: never;
-    post: operations['DeregisterChainMaintainer'];
+    post: operations["DeregisterChainMaintainer"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/scalar/nexus/register_asset_fee': {
+  "/scalar/nexus/register_asset_fee": {
     parameters: {
       query?: never;
       header?: never;
@@ -1348,14 +1348,14 @@ export interface paths {
     };
     get?: never;
     put?: never;
-    post: operations['RegisterAssetFee'];
+    post: operations["RegisterAssetFee"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/scalar/nexus/register_chain_maintainer': {
+  "/scalar/nexus/register_chain_maintainer": {
     parameters: {
       query?: never;
       header?: never;
@@ -1364,14 +1364,14 @@ export interface paths {
     };
     get?: never;
     put?: never;
-    post: operations['RegisterChainMaintainer'];
+    post: operations["RegisterChainMaintainer"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/scalar/nexus/set_transfer_rate_limit': {
+  "/scalar/nexus/set_transfer_rate_limit": {
     parameters: {
       query?: never;
       header?: never;
@@ -1380,14 +1380,14 @@ export interface paths {
     };
     get?: never;
     put?: never;
-    post: operations['SetTransferRateLimit'];
+    post: operations["SetTransferRateLimit"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/scalar/nexus/v1beta1/assets/{chain}': {
+  "/scalar/nexus/v1beta1/assets/{chain}": {
     parameters: {
       query?: never;
       header?: never;
@@ -1395,7 +1395,7 @@ export interface paths {
       cookie?: never;
     };
     /** Assets queries the assets registered for a chain */
-    get: operations['Assets'];
+    get: operations["Assets"];
     put?: never;
     post?: never;
     delete?: never;
@@ -1404,7 +1404,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/scalar/nexus/v1beta1/chain_maintainers/{chain}': {
+  "/scalar/nexus/v1beta1/chain_maintainers/{chain}": {
     parameters: {
       query?: never;
       header?: never;
@@ -1412,7 +1412,7 @@ export interface paths {
       cookie?: never;
     };
     /** ChainMaintainers queries the chain maintainers for a given chain */
-    get: operations['ChainMaintainers'];
+    get: operations["ChainMaintainers"];
     put?: never;
     post?: never;
     delete?: never;
@@ -1421,7 +1421,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/scalar/nexus/v1beta1/chain_state/{chain}': {
+  "/scalar/nexus/v1beta1/chain_state/{chain}": {
     parameters: {
       query?: never;
       header?: never;
@@ -1429,7 +1429,7 @@ export interface paths {
       cookie?: never;
     };
     /** ChainState queries the state of a registered chain on the network */
-    get: operations['ChainState'];
+    get: operations["ChainState"];
     put?: never;
     post?: never;
     delete?: never;
@@ -1438,7 +1438,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/scalar/nexus/v1beta1/chains': {
+  "/scalar/nexus/v1beta1/chains": {
     parameters: {
       query?: never;
       header?: never;
@@ -1446,7 +1446,7 @@ export interface paths {
       cookie?: never;
     };
     /** Chains queries the chains registered on the network */
-    get: operations['Chains'];
+    get: operations["Chains"];
     put?: never;
     post?: never;
     delete?: never;
@@ -1455,7 +1455,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/scalar/nexus/v1beta1/chains_by_asset/{asset}': {
+  "/scalar/nexus/v1beta1/chains_by_asset/{asset}": {
     parameters: {
       query?: never;
       header?: never;
@@ -1463,7 +1463,7 @@ export interface paths {
       cookie?: never;
     };
     /** ChainsByAsset queries the chains that support an asset on the network */
-    get: operations['ChainsByAsset'];
+    get: operations["ChainsByAsset"];
     put?: never;
     post?: never;
     delete?: never;
@@ -1472,7 +1472,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/scalar/nexus/v1beta1/fee': {
+  "/scalar/nexus/v1beta1/fee": {
     parameters: {
       query?: never;
       header?: never;
@@ -1480,7 +1480,7 @@ export interface paths {
       cookie?: never;
     };
     /** FeeInfo queries the fee info by chain and asset */
-    get: operations['FeeInfo2'];
+    get: operations["FeeInfo2"];
     put?: never;
     post?: never;
     delete?: never;
@@ -1489,7 +1489,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/scalar/nexus/v1beta1/fee_info/{chain}/{asset}': {
+  "/scalar/nexus/v1beta1/fee_info/{chain}/{asset}": {
     parameters: {
       query?: never;
       header?: never;
@@ -1497,7 +1497,7 @@ export interface paths {
       cookie?: never;
     };
     /** FeeInfo queries the fee info by chain and asset */
-    get: operations['FeeInfo'];
+    get: operations["FeeInfo"];
     put?: never;
     post?: never;
     delete?: never;
@@ -1506,7 +1506,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/scalar/nexus/v1beta1/latest_deposit_address/{recipient_addr}/{recipient_chain}/{deposit_chain}': {
+  "/scalar/nexus/v1beta1/latest_deposit_address/{recipient_addr}/{recipient_chain}/{deposit_chain}": {
     parameters: {
       query?: never;
       header?: never;
@@ -1514,7 +1514,7 @@ export interface paths {
       cookie?: never;
     };
     /** LatestDepositAddress queries the a deposit address by recipient */
-    get: operations['LatestDepositAddress'];
+    get: operations["LatestDepositAddress"];
     put?: never;
     post?: never;
     delete?: never;
@@ -1523,14 +1523,14 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/scalar/nexus/v1beta1/message': {
+  "/scalar/nexus/v1beta1/message": {
     parameters: {
       query?: never;
       header?: never;
       path?: never;
       cookie?: never;
     };
-    get: operations['Message'];
+    get: operations["Message"];
     put?: never;
     post?: never;
     delete?: never;
@@ -1539,14 +1539,14 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/scalar/nexus/v1beta1/params': {
+  "/scalar/nexus/v1beta1/params": {
     parameters: {
       query?: never;
       header?: never;
       path?: never;
       cookie?: never;
     };
-    get: operations['NexusParams'];
+    get: operations["NexusParams"];
     put?: never;
     post?: never;
     delete?: never;
@@ -1555,7 +1555,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/scalar/nexus/v1beta1/recipient_address/{deposit_chain}/{deposit_addr}': {
+  "/scalar/nexus/v1beta1/recipient_address/{deposit_chain}/{deposit_addr}": {
     parameters: {
       query?: never;
       header?: never;
@@ -1563,7 +1563,7 @@ export interface paths {
       cookie?: never;
     };
     /** RecipientAddress queries the recipient address for a given deposit address */
-    get: operations['RecipientAddress'];
+    get: operations["RecipientAddress"];
     put?: never;
     post?: never;
     delete?: never;
@@ -1572,7 +1572,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/scalar/nexus/v1beta1/transfer_fee': {
+  "/scalar/nexus/v1beta1/transfer_fee": {
     parameters: {
       query?: never;
       header?: never;
@@ -1581,7 +1581,7 @@ export interface paths {
     };
     /** TransferFee queries the transfer fee by the source, destination chain,
      *     and amount. If amount is 0, the min fee is returned */
-    get: operations['TransferFee2'];
+    get: operations["TransferFee2"];
     put?: never;
     post?: never;
     delete?: never;
@@ -1590,7 +1590,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/scalar/nexus/v1beta1/transfer_fee/{source_chain}/{destination_chain}/{amount}': {
+  "/scalar/nexus/v1beta1/transfer_fee/{source_chain}/{destination_chain}/{amount}": {
     parameters: {
       query?: never;
       header?: never;
@@ -1599,7 +1599,7 @@ export interface paths {
     };
     /** TransferFee queries the transfer fee by the source, destination chain,
      *     and amount. If amount is 0, the min fee is returned */
-    get: operations['TransferFee'];
+    get: operations["TransferFee"];
     put?: never;
     post?: never;
     delete?: never;
@@ -1608,7 +1608,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/scalar/nexus/v1beta1/transfer_rate_limit/{chain}/{asset}': {
+  "/scalar/nexus/v1beta1/transfer_rate_limit/{chain}/{asset}": {
     parameters: {
       query?: never;
       header?: never;
@@ -1617,7 +1617,7 @@ export interface paths {
     };
     /** TransferRateLimit queries the transfer rate limit for a given chain and
      *     asset. If a rate limit is not set, nil is returned. */
-    get: operations['TransferRateLimit'];
+    get: operations["TransferRateLimit"];
     put?: never;
     post?: never;
     delete?: never;
@@ -1626,7 +1626,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/scalar/nexus/v1beta1/transfers_for_chain/{chain}/{state}': {
+  "/scalar/nexus/v1beta1/transfers_for_chain/{chain}/{state}": {
     parameters: {
       query?: never;
       header?: never;
@@ -1634,7 +1634,7 @@ export interface paths {
       cookie?: never;
     };
     /** TransfersForChain queries transfers by chain */
-    get: operations['TransfersForChain'];
+    get: operations["TransfersForChain"];
     put?: never;
     post?: never;
     delete?: never;
@@ -1643,7 +1643,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/scalar/reward/refund_message': {
+  "/scalar/reward/refund_message": {
     parameters: {
       query?: never;
       header?: never;
@@ -1652,21 +1652,21 @@ export interface paths {
     };
     get?: never;
     put?: never;
-    post: operations['RefundMsg'];
+    post: operations["RefundMsg"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/scalar/reward/v1beta1/inflation_rate': {
+  "/scalar/reward/v1beta1/inflation_rate": {
     parameters: {
       query?: never;
       header?: never;
       path?: never;
       cookie?: never;
     };
-    get: operations['InflationRate2'];
+    get: operations["InflationRate2"];
     put?: never;
     post?: never;
     delete?: never;
@@ -1675,14 +1675,14 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/scalar/reward/v1beta1/inflation_rate/{validator}': {
+  "/scalar/reward/v1beta1/inflation_rate/{validator}": {
     parameters: {
       query?: never;
       header?: never;
       path?: never;
       cookie?: never;
     };
-    get: operations['InflationRate'];
+    get: operations["InflationRate"];
     put?: never;
     post?: never;
     delete?: never;
@@ -1691,14 +1691,14 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/scalar/reward/v1beta1/params': {
+  "/scalar/reward/v1beta1/params": {
     parameters: {
       query?: never;
       header?: never;
       path?: never;
       cookie?: never;
     };
-    get: operations['RewardParams'];
+    get: operations["RewardParams"];
     put?: never;
     post?: never;
     delete?: never;
@@ -1707,7 +1707,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/scalar/snapshot/deactivate_proxy': {
+  "/scalar/snapshot/deactivate_proxy": {
     parameters: {
       query?: never;
       header?: never;
@@ -1717,14 +1717,14 @@ export interface paths {
     get?: never;
     put?: never;
     /** DeactivateProxy defines a method for deregistering a proxy account. */
-    post: operations['DeactivateProxy'];
+    post: operations["DeactivateProxy"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/scalar/snapshot/register_proxy': {
+  "/scalar/snapshot/register_proxy": {
     parameters: {
       query?: never;
       header?: never;
@@ -1735,21 +1735,21 @@ export interface paths {
     put?: never;
     /** RegisterProxy defines a method for registering a proxy account that can act
      *     in a validator account's stead. */
-    post: operations['RegisterProxy'];
+    post: operations["RegisterProxy"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/scalar/snapshot/v1beta1/params': {
+  "/scalar/snapshot/v1beta1/params": {
     parameters: {
       query?: never;
       header?: never;
       path?: never;
       cookie?: never;
     };
-    get: operations['SnapshotParams'];
+    get: operations["SnapshotParams"];
     put?: never;
     post?: never;
     delete?: never;
@@ -1758,7 +1758,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/scalar/tss/heartbeat': {
+  "/scalar/tss/heartbeat": {
     parameters: {
       query?: never;
       header?: never;
@@ -1767,21 +1767,21 @@ export interface paths {
     };
     get?: never;
     put?: never;
-    post: operations['HeartBeat'];
+    post: operations["HeartBeat"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/scalar/tss/v1beta1/params': {
+  "/scalar/tss/v1beta1/params": {
     parameters: {
       query?: never;
       header?: never;
       path?: never;
       cookie?: never;
     };
-    get: operations['TSSParams'];
+    get: operations["TSSParams"];
     put?: never;
     post?: never;
     delete?: never;
@@ -1790,7 +1790,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/scalar/permission/deregister_controller': {
+  "/scalar/permission/deregister_controller": {
     parameters: {
       query?: never;
       header?: never;
@@ -1799,14 +1799,14 @@ export interface paths {
     };
     get?: never;
     put?: never;
-    post: operations['DeregisterController'];
+    post: operations["DeregisterController"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/scalar/permission/register_controller': {
+  "/scalar/permission/register_controller": {
     parameters: {
       query?: never;
       header?: never;
@@ -1815,14 +1815,14 @@ export interface paths {
     };
     get?: never;
     put?: never;
-    post: operations['RegisterController'];
+    post: operations["RegisterController"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/scalar/permission/update_governance_key': {
+  "/scalar/permission/update_governance_key": {
     parameters: {
       query?: never;
       header?: never;
@@ -1831,14 +1831,14 @@ export interface paths {
     };
     get?: never;
     put?: never;
-    post: operations['UpdateGovernanceKey'];
+    post: operations["UpdateGovernanceKey"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/scalar/permission/v1beta1/governance_key': {
+  "/scalar/permission/v1beta1/governance_key": {
     parameters: {
       query?: never;
       header?: never;
@@ -1846,7 +1846,7 @@ export interface paths {
       cookie?: never;
     };
     /** GovernanceKey returns the multisig governance key */
-    get: operations['GovernanceKey'];
+    get: operations["GovernanceKey"];
     put?: never;
     post?: never;
     delete?: never;
@@ -1855,14 +1855,14 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/scalar/permission/v1beta1/params': {
+  "/scalar/permission/v1beta1/params": {
     parameters: {
       query?: never;
       header?: never;
       path?: never;
       cookie?: never;
     };
-    get: operations['PermissionParams'];
+    get: operations["PermissionParams"];
     put?: never;
     post?: never;
     delete?: never;
@@ -1871,14 +1871,14 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/scalar/vote/v1beta1/params': {
+  "/scalar/vote/v1beta1/params": {
     parameters: {
       query?: never;
       header?: never;
       path?: never;
       cookie?: never;
     };
-    get: operations['VoteParams'];
+    get: operations["VoteParams"];
     put?: never;
     post?: never;
     delete?: never;
@@ -1887,7 +1887,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/scalar/vote/vote': {
+  "/scalar/vote/vote": {
     parameters: {
       query?: never;
       header?: never;
@@ -1896,14 +1896,14 @@ export interface paths {
     };
     get?: never;
     put?: never;
-    post: operations['ScalarVote'];
+    post: operations["ScalarVote"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/cosmos/auth/v1beta1/accounts': {
+  "/cosmos/auth/v1beta1/accounts": {
     parameters: {
       query?: never;
       header?: never;
@@ -1914,7 +1914,7 @@ export interface paths {
      * Accounts returns all the existing accounts
      * @description Since: cosmos-sdk 0.43
      */
-    get: operations['Accounts'];
+    get: operations["Accounts"];
     put?: never;
     post?: never;
     delete?: never;
@@ -1923,7 +1923,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/auth/v1beta1/accounts/{address}': {
+  "/cosmos/auth/v1beta1/accounts/{address}": {
     parameters: {
       query?: never;
       header?: never;
@@ -1931,7 +1931,7 @@ export interface paths {
       cookie?: never;
     };
     /** Account returns account details based on address. */
-    get: operations['Account'];
+    get: operations["Account"];
     put?: never;
     post?: never;
     delete?: never;
@@ -1940,7 +1940,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/auth/v1beta1/module_accounts/{name}': {
+  "/cosmos/auth/v1beta1/module_accounts/{name}": {
     parameters: {
       query?: never;
       header?: never;
@@ -1948,7 +1948,7 @@ export interface paths {
       cookie?: never;
     };
     /** ModuleAccountByName returns the module account info by module name */
-    get: operations['ModuleAccountByName'];
+    get: operations["ModuleAccountByName"];
     put?: never;
     post?: never;
     delete?: never;
@@ -1957,7 +1957,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/auth/v1beta1/params': {
+  "/cosmos/auth/v1beta1/params": {
     parameters: {
       query?: never;
       header?: never;
@@ -1965,7 +1965,7 @@ export interface paths {
       cookie?: never;
     };
     /** Params queries all parameters. */
-    get: operations['AuthParams'];
+    get: operations["AuthParams"];
     put?: never;
     post?: never;
     delete?: never;
@@ -1974,7 +1974,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/bank/v1beta1/balances/{address}': {
+  "/cosmos/bank/v1beta1/balances/{address}": {
     parameters: {
       query?: never;
       header?: never;
@@ -1982,7 +1982,7 @@ export interface paths {
       cookie?: never;
     };
     /** AllBalances queries the balance of all coins for a single account. */
-    get: operations['AllBalances'];
+    get: operations["AllBalances"];
     put?: never;
     post?: never;
     delete?: never;
@@ -1991,7 +1991,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/bank/v1beta1/balances/{address}/by_denom': {
+  "/cosmos/bank/v1beta1/balances/{address}/by_denom": {
     parameters: {
       query?: never;
       header?: never;
@@ -1999,7 +1999,7 @@ export interface paths {
       cookie?: never;
     };
     /** Balance queries the balance of a single coin for a single account. */
-    get: operations['Balance'];
+    get: operations["Balance"];
     put?: never;
     post?: never;
     delete?: never;
@@ -2008,7 +2008,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/bank/v1beta1/denoms_metadata': {
+  "/cosmos/bank/v1beta1/denoms_metadata": {
     parameters: {
       query?: never;
       header?: never;
@@ -2016,7 +2016,7 @@ export interface paths {
       cookie?: never;
     };
     /** DenomsMetadata queries the client metadata for all registered coin denominations. */
-    get: operations['DenomsMetadata'];
+    get: operations["DenomsMetadata"];
     put?: never;
     post?: never;
     delete?: never;
@@ -2025,7 +2025,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/bank/v1beta1/denoms_metadata/{denom}': {
+  "/cosmos/bank/v1beta1/denoms_metadata/{denom}": {
     parameters: {
       query?: never;
       header?: never;
@@ -2033,7 +2033,7 @@ export interface paths {
       cookie?: never;
     };
     /** DenomsMetadata queries the client metadata of a given coin denomination. */
-    get: operations['DenomMetadata'];
+    get: operations["DenomMetadata"];
     put?: never;
     post?: never;
     delete?: never;
@@ -2042,7 +2042,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/bank/v1beta1/params': {
+  "/cosmos/bank/v1beta1/params": {
     parameters: {
       query?: never;
       header?: never;
@@ -2050,7 +2050,7 @@ export interface paths {
       cookie?: never;
     };
     /** Params queries the parameters of x/bank module. */
-    get: operations['BankParams'];
+    get: operations["BankParams"];
     put?: never;
     post?: never;
     delete?: never;
@@ -2059,7 +2059,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/bank/v1beta1/spendable_balances/{address}': {
+  "/cosmos/bank/v1beta1/spendable_balances/{address}": {
     parameters: {
       query?: never;
       header?: never;
@@ -2068,7 +2068,7 @@ export interface paths {
     };
     /** SpendableBalances queries the spenable balance of all coins for a single
      *     account. */
-    get: operations['SpendableBalances'];
+    get: operations["SpendableBalances"];
     put?: never;
     post?: never;
     delete?: never;
@@ -2077,7 +2077,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/bank/v1beta1/supply': {
+  "/cosmos/bank/v1beta1/supply": {
     parameters: {
       query?: never;
       header?: never;
@@ -2085,7 +2085,7 @@ export interface paths {
       cookie?: never;
     };
     /** TotalSupply queries the total supply of all coins. */
-    get: operations['TotalSupply'];
+    get: operations["TotalSupply"];
     put?: never;
     post?: never;
     delete?: never;
@@ -2094,7 +2094,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/bank/v1beta1/supply/{denom}': {
+  "/cosmos/bank/v1beta1/supply/{denom}": {
     parameters: {
       query?: never;
       header?: never;
@@ -2102,7 +2102,7 @@ export interface paths {
       cookie?: never;
     };
     /** SupplyOf queries the supply of a single coin. */
-    get: operations['SupplyOf'];
+    get: operations["SupplyOf"];
     put?: never;
     post?: never;
     delete?: never;
@@ -2111,7 +2111,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/base/tendermint/v1beta1/blocks/latest': {
+  "/cosmos/base/tendermint/v1beta1/blocks/latest": {
     parameters: {
       query?: never;
       header?: never;
@@ -2119,7 +2119,7 @@ export interface paths {
       cookie?: never;
     };
     /** GetLatestBlock returns the latest block. */
-    get: operations['GetLatestBlock'];
+    get: operations["GetLatestBlock"];
     put?: never;
     post?: never;
     delete?: never;
@@ -2128,7 +2128,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/base/tendermint/v1beta1/blocks/{height}': {
+  "/cosmos/base/tendermint/v1beta1/blocks/{height}": {
     parameters: {
       query?: never;
       header?: never;
@@ -2136,7 +2136,7 @@ export interface paths {
       cookie?: never;
     };
     /** GetBlockByHeight queries block for given height. */
-    get: operations['GetBlockByHeight'];
+    get: operations["GetBlockByHeight"];
     put?: never;
     post?: never;
     delete?: never;
@@ -2145,7 +2145,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/base/tendermint/v1beta1/node_info': {
+  "/cosmos/base/tendermint/v1beta1/node_info": {
     parameters: {
       query?: never;
       header?: never;
@@ -2153,7 +2153,7 @@ export interface paths {
       cookie?: never;
     };
     /** GetNodeInfo queries the current node info. */
-    get: operations['GetNodeInfo'];
+    get: operations["GetNodeInfo"];
     put?: never;
     post?: never;
     delete?: never;
@@ -2162,7 +2162,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/base/tendermint/v1beta1/syncing': {
+  "/cosmos/base/tendermint/v1beta1/syncing": {
     parameters: {
       query?: never;
       header?: never;
@@ -2170,7 +2170,7 @@ export interface paths {
       cookie?: never;
     };
     /** GetSyncing queries node syncing. */
-    get: operations['GetSyncing'];
+    get: operations["GetSyncing"];
     put?: never;
     post?: never;
     delete?: never;
@@ -2179,7 +2179,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/base/tendermint/v1beta1/validatorsets/latest': {
+  "/cosmos/base/tendermint/v1beta1/validatorsets/latest": {
     parameters: {
       query?: never;
       header?: never;
@@ -2187,7 +2187,7 @@ export interface paths {
       cookie?: never;
     };
     /** GetLatestValidatorSet queries latest validator-set. */
-    get: operations['GetLatestValidatorSet'];
+    get: operations["GetLatestValidatorSet"];
     put?: never;
     post?: never;
     delete?: never;
@@ -2196,7 +2196,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/base/tendermint/v1beta1/validatorsets/{height}': {
+  "/cosmos/base/tendermint/v1beta1/validatorsets/{height}": {
     parameters: {
       query?: never;
       header?: never;
@@ -2204,7 +2204,7 @@ export interface paths {
       cookie?: never;
     };
     /** GetValidatorSetByHeight queries validator-set at a given height. */
-    get: operations['GetValidatorSetByHeight'];
+    get: operations["GetValidatorSetByHeight"];
     put?: never;
     post?: never;
     delete?: never;
@@ -2213,7 +2213,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/distribution/v1beta1/community_pool': {
+  "/cosmos/distribution/v1beta1/community_pool": {
     parameters: {
       query?: never;
       header?: never;
@@ -2221,7 +2221,7 @@ export interface paths {
       cookie?: never;
     };
     /** CommunityPool queries the community pool coins. */
-    get: operations['CommunityPool'];
+    get: operations["CommunityPool"];
     put?: never;
     post?: never;
     delete?: never;
@@ -2230,7 +2230,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/distribution/v1beta1/delegators/{delegator_address}/rewards': {
+  "/cosmos/distribution/v1beta1/delegators/{delegator_address}/rewards": {
     parameters: {
       query?: never;
       header?: never;
@@ -2239,7 +2239,7 @@ export interface paths {
     };
     /** DelegationTotalRewards queries the total rewards accrued by a each
      *     validator. */
-    get: operations['DelegationTotalRewards'];
+    get: operations["DelegationTotalRewards"];
     put?: never;
     post?: never;
     delete?: never;
@@ -2248,7 +2248,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/distribution/v1beta1/delegators/{delegator_address}/rewards/{validator_address}': {
+  "/cosmos/distribution/v1beta1/delegators/{delegator_address}/rewards/{validator_address}": {
     parameters: {
       query?: never;
       header?: never;
@@ -2256,7 +2256,7 @@ export interface paths {
       cookie?: never;
     };
     /** DelegationRewards queries the total rewards accrued by a delegation. */
-    get: operations['DelegationRewards'];
+    get: operations["DelegationRewards"];
     put?: never;
     post?: never;
     delete?: never;
@@ -2265,7 +2265,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/distribution/v1beta1/delegators/{delegator_address}/validators': {
+  "/cosmos/distribution/v1beta1/delegators/{delegator_address}/validators": {
     parameters: {
       query?: never;
       header?: never;
@@ -2273,7 +2273,7 @@ export interface paths {
       cookie?: never;
     };
     /** DelegatorValidators queries the validators of a delegator. */
-    get: operations['DelegatorValidators'];
+    get: operations["DelegatorValidators"];
     put?: never;
     post?: never;
     delete?: never;
@@ -2282,7 +2282,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/distribution/v1beta1/delegators/{delegator_address}/withdraw_address': {
+  "/cosmos/distribution/v1beta1/delegators/{delegator_address}/withdraw_address": {
     parameters: {
       query?: never;
       header?: never;
@@ -2290,7 +2290,7 @@ export interface paths {
       cookie?: never;
     };
     /** DelegatorWithdrawAddress queries withdraw address of a delegator. */
-    get: operations['DelegatorWithdrawAddress'];
+    get: operations["DelegatorWithdrawAddress"];
     put?: never;
     post?: never;
     delete?: never;
@@ -2299,7 +2299,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/distribution/v1beta1/params': {
+  "/cosmos/distribution/v1beta1/params": {
     parameters: {
       query?: never;
       header?: never;
@@ -2307,7 +2307,7 @@ export interface paths {
       cookie?: never;
     };
     /** Params queries params of the distribution module. */
-    get: operations['DistributionParams'];
+    get: operations["DistributionParams"];
     put?: never;
     post?: never;
     delete?: never;
@@ -2316,7 +2316,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/distribution/v1beta1/validators/{validator_address}/commission': {
+  "/cosmos/distribution/v1beta1/validators/{validator_address}/commission": {
     parameters: {
       query?: never;
       header?: never;
@@ -2324,7 +2324,7 @@ export interface paths {
       cookie?: never;
     };
     /** ValidatorCommission queries accumulated commission for a validator. */
-    get: operations['ValidatorCommission'];
+    get: operations["ValidatorCommission"];
     put?: never;
     post?: never;
     delete?: never;
@@ -2333,7 +2333,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/distribution/v1beta1/validators/{validator_address}/outstanding_rewards': {
+  "/cosmos/distribution/v1beta1/validators/{validator_address}/outstanding_rewards": {
     parameters: {
       query?: never;
       header?: never;
@@ -2341,7 +2341,7 @@ export interface paths {
       cookie?: never;
     };
     /** ValidatorOutstandingRewards queries rewards of a validator address. */
-    get: operations['ValidatorOutstandingRewards'];
+    get: operations["ValidatorOutstandingRewards"];
     put?: never;
     post?: never;
     delete?: never;
@@ -2350,7 +2350,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/distribution/v1beta1/validators/{validator_address}/slashes': {
+  "/cosmos/distribution/v1beta1/validators/{validator_address}/slashes": {
     parameters: {
       query?: never;
       header?: never;
@@ -2358,7 +2358,7 @@ export interface paths {
       cookie?: never;
     };
     /** ValidatorSlashes queries slash events of a validator. */
-    get: operations['ValidatorSlashes'];
+    get: operations["ValidatorSlashes"];
     put?: never;
     post?: never;
     delete?: never;
@@ -2367,7 +2367,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/feegrant/v1beta1/allowance/{granter}/{grantee}': {
+  "/cosmos/feegrant/v1beta1/allowance/{granter}/{grantee}": {
     parameters: {
       query?: never;
       header?: never;
@@ -2375,7 +2375,7 @@ export interface paths {
       cookie?: never;
     };
     /** Allowance returns fee granted to the grantee by the granter. */
-    get: operations['Allowance'];
+    get: operations["Allowance"];
     put?: never;
     post?: never;
     delete?: never;
@@ -2384,7 +2384,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/feegrant/v1beta1/allowances/{grantee}': {
+  "/cosmos/feegrant/v1beta1/allowances/{grantee}": {
     parameters: {
       query?: never;
       header?: never;
@@ -2392,7 +2392,7 @@ export interface paths {
       cookie?: never;
     };
     /** Allowances returns all the grants for address. */
-    get: operations['Allowances'];
+    get: operations["Allowances"];
     put?: never;
     post?: never;
     delete?: never;
@@ -2401,7 +2401,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/feegrant/v1beta1/issued/{granter}': {
+  "/cosmos/feegrant/v1beta1/issued/{granter}": {
     parameters: {
       query?: never;
       header?: never;
@@ -2410,7 +2410,7 @@ export interface paths {
     };
     /** AllowancesByGranter returns all the grants given by an address
      *     Since v0.46 */
-    get: operations['AllowancesByGranter'];
+    get: operations["AllowancesByGranter"];
     put?: never;
     post?: never;
     delete?: never;
@@ -2419,7 +2419,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/evidence/v1beta1/evidence': {
+  "/cosmos/evidence/v1beta1/evidence": {
     parameters: {
       query?: never;
       header?: never;
@@ -2427,7 +2427,7 @@ export interface paths {
       cookie?: never;
     };
     /** AllEvidence queries all evidence. */
-    get: operations['AllEvidence'];
+    get: operations["AllEvidence"];
     put?: never;
     post?: never;
     delete?: never;
@@ -2436,7 +2436,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/evidence/v1beta1/evidence/{evidence_hash}': {
+  "/cosmos/evidence/v1beta1/evidence/{evidence_hash}": {
     parameters: {
       query?: never;
       header?: never;
@@ -2444,7 +2444,7 @@ export interface paths {
       cookie?: never;
     };
     /** Evidence queries evidence based on evidence hash. */
-    get: operations['Evidence'];
+    get: operations["Evidence"];
     put?: never;
     post?: never;
     delete?: never;
@@ -2453,7 +2453,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/gov/v1beta1/params/{params_type}': {
+  "/cosmos/gov/v1beta1/params/{params_type}": {
     parameters: {
       query?: never;
       header?: never;
@@ -2461,7 +2461,7 @@ export interface paths {
       cookie?: never;
     };
     /** Params queries all parameters of the gov module. */
-    get: operations['GovParams'];
+    get: operations["GovParams"];
     put?: never;
     post?: never;
     delete?: never;
@@ -2470,7 +2470,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/gov/v1beta1/proposals': {
+  "/cosmos/gov/v1beta1/proposals": {
     parameters: {
       query?: never;
       header?: never;
@@ -2478,7 +2478,7 @@ export interface paths {
       cookie?: never;
     };
     /** Proposals queries all proposals based on given status. */
-    get: operations['Proposals'];
+    get: operations["Proposals"];
     put?: never;
     post?: never;
     delete?: never;
@@ -2487,7 +2487,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/gov/v1beta1/proposals/{proposal_id}': {
+  "/cosmos/gov/v1beta1/proposals/{proposal_id}": {
     parameters: {
       query?: never;
       header?: never;
@@ -2495,7 +2495,7 @@ export interface paths {
       cookie?: never;
     };
     /** Proposal queries proposal details based on ProposalID. */
-    get: operations['Proposal'];
+    get: operations["Proposal"];
     put?: never;
     post?: never;
     delete?: never;
@@ -2504,7 +2504,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/gov/v1beta1/proposals/{proposal_id}/deposits': {
+  "/cosmos/gov/v1beta1/proposals/{proposal_id}/deposits": {
     parameters: {
       query?: never;
       header?: never;
@@ -2512,7 +2512,7 @@ export interface paths {
       cookie?: never;
     };
     /** Deposits queries all deposits of a single proposal. */
-    get: operations['Deposits'];
+    get: operations["Deposits"];
     put?: never;
     post?: never;
     delete?: never;
@@ -2521,7 +2521,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/gov/v1beta1/proposals/{proposal_id}/deposits/{depositor}': {
+  "/cosmos/gov/v1beta1/proposals/{proposal_id}/deposits/{depositor}": {
     parameters: {
       query?: never;
       header?: never;
@@ -2529,7 +2529,7 @@ export interface paths {
       cookie?: never;
     };
     /** Deposit queries single deposit information based proposalID, depositAddr. */
-    get: operations['Deposit'];
+    get: operations["Deposit"];
     put?: never;
     post?: never;
     delete?: never;
@@ -2538,7 +2538,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/gov/v1beta1/proposals/{proposal_id}/tally': {
+  "/cosmos/gov/v1beta1/proposals/{proposal_id}/tally": {
     parameters: {
       query?: never;
       header?: never;
@@ -2546,7 +2546,7 @@ export interface paths {
       cookie?: never;
     };
     /** TallyResult queries the tally of a proposal vote. */
-    get: operations['TallyResult'];
+    get: operations["TallyResult"];
     put?: never;
     post?: never;
     delete?: never;
@@ -2555,7 +2555,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/gov/v1beta1/proposals/{proposal_id}/votes': {
+  "/cosmos/gov/v1beta1/proposals/{proposal_id}/votes": {
     parameters: {
       query?: never;
       header?: never;
@@ -2563,7 +2563,7 @@ export interface paths {
       cookie?: never;
     };
     /** Votes queries votes of a given proposal. */
-    get: operations['Votes'];
+    get: operations["Votes"];
     put?: never;
     post?: never;
     delete?: never;
@@ -2572,7 +2572,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/gov/v1beta1/proposals/{proposal_id}/votes/{voter}': {
+  "/cosmos/gov/v1beta1/proposals/{proposal_id}/votes/{voter}": {
     parameters: {
       query?: never;
       header?: never;
@@ -2580,7 +2580,7 @@ export interface paths {
       cookie?: never;
     };
     /** Vote queries voted information based on proposalID, voterAddr. */
-    get: operations['Vote'];
+    get: operations["Vote"];
     put?: never;
     post?: never;
     delete?: never;
@@ -2589,7 +2589,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/mint/v1beta1/annual_provisions': {
+  "/cosmos/mint/v1beta1/annual_provisions": {
     parameters: {
       query?: never;
       header?: never;
@@ -2597,7 +2597,7 @@ export interface paths {
       cookie?: never;
     };
     /** AnnualProvisions current minting annual provisions value. */
-    get: operations['AnnualProvisions'];
+    get: operations["AnnualProvisions"];
     put?: never;
     post?: never;
     delete?: never;
@@ -2606,7 +2606,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/mint/v1beta1/inflation': {
+  "/cosmos/mint/v1beta1/inflation": {
     parameters: {
       query?: never;
       header?: never;
@@ -2614,7 +2614,7 @@ export interface paths {
       cookie?: never;
     };
     /** Inflation returns the current minting inflation value. */
-    get: operations['Inflation'];
+    get: operations["Inflation"];
     put?: never;
     post?: never;
     delete?: never;
@@ -2623,7 +2623,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/mint/v1beta1/params': {
+  "/cosmos/mint/v1beta1/params": {
     parameters: {
       query?: never;
       header?: never;
@@ -2631,7 +2631,7 @@ export interface paths {
       cookie?: never;
     };
     /** Params returns the total set of minting parameters. */
-    get: operations['MintParams'];
+    get: operations["MintParams"];
     put?: never;
     post?: never;
     delete?: never;
@@ -2640,7 +2640,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/params/v1beta1/params': {
+  "/cosmos/params/v1beta1/params": {
     parameters: {
       query?: never;
       header?: never;
@@ -2649,7 +2649,7 @@ export interface paths {
     };
     /** Params queries a specific parameter of a module, given its subspace and
      *     key. */
-    get: operations['Params'];
+    get: operations["Params"];
     put?: never;
     post?: never;
     delete?: never;
@@ -2658,7 +2658,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/slashing/v1beta1/params': {
+  "/cosmos/slashing/v1beta1/params": {
     parameters: {
       query?: never;
       header?: never;
@@ -2666,7 +2666,7 @@ export interface paths {
       cookie?: never;
     };
     /** Params queries the parameters of slashing module */
-    get: operations['SlashingParams'];
+    get: operations["SlashingParams"];
     put?: never;
     post?: never;
     delete?: never;
@@ -2675,7 +2675,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/slashing/v1beta1/signing_infos': {
+  "/cosmos/slashing/v1beta1/signing_infos": {
     parameters: {
       query?: never;
       header?: never;
@@ -2683,7 +2683,7 @@ export interface paths {
       cookie?: never;
     };
     /** SigningInfos queries signing info of all validators */
-    get: operations['SigningInfos'];
+    get: operations["SigningInfos"];
     put?: never;
     post?: never;
     delete?: never;
@@ -2692,7 +2692,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/slashing/v1beta1/signing_infos/{cons_address}': {
+  "/cosmos/slashing/v1beta1/signing_infos/{cons_address}": {
     parameters: {
       query?: never;
       header?: never;
@@ -2700,7 +2700,7 @@ export interface paths {
       cookie?: never;
     };
     /** SigningInfo queries the signing info of given cons address */
-    get: operations['SigningInfo'];
+    get: operations["SigningInfo"];
     put?: never;
     post?: never;
     delete?: never;
@@ -2709,7 +2709,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/staking/v1beta1/delegations/{delegator_addr}': {
+  "/cosmos/staking/v1beta1/delegations/{delegator_addr}": {
     parameters: {
       query?: never;
       header?: never;
@@ -2717,7 +2717,7 @@ export interface paths {
       cookie?: never;
     };
     /** DelegatorDelegations queries all delegations of a given delegator address. */
-    get: operations['DelegatorDelegations'];
+    get: operations["DelegatorDelegations"];
     put?: never;
     post?: never;
     delete?: never;
@@ -2726,7 +2726,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/staking/v1beta1/delegators/{delegator_addr}/redelegations': {
+  "/cosmos/staking/v1beta1/delegators/{delegator_addr}/redelegations": {
     parameters: {
       query?: never;
       header?: never;
@@ -2734,7 +2734,7 @@ export interface paths {
       cookie?: never;
     };
     /** Redelegations queries redelegations of given address. */
-    get: operations['Redelegations'];
+    get: operations["Redelegations"];
     put?: never;
     post?: never;
     delete?: never;
@@ -2743,7 +2743,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/staking/v1beta1/delegators/{delegator_addr}/unbonding_delegations': {
+  "/cosmos/staking/v1beta1/delegators/{delegator_addr}/unbonding_delegations": {
     parameters: {
       query?: never;
       header?: never;
@@ -2752,7 +2752,7 @@ export interface paths {
     };
     /** DelegatorUnbondingDelegations queries all unbonding delegations of a given
      *     delegator address. */
-    get: operations['DelegatorUnbondingDelegations'];
+    get: operations["DelegatorUnbondingDelegations"];
     put?: never;
     post?: never;
     delete?: never;
@@ -2761,7 +2761,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/staking/v1beta1/delegators/{delegator_addr}/validators': {
+  "/cosmos/staking/v1beta1/delegators/{delegator_addr}/validators": {
     parameters: {
       query?: never;
       header?: never;
@@ -2770,7 +2770,7 @@ export interface paths {
     };
     /** DelegatorValidators queries all validators info for given delegator
      *     address. */
-    get: operations['StakingDelegatorValidators'];
+    get: operations["StakingDelegatorValidators"];
     put?: never;
     post?: never;
     delete?: never;
@@ -2779,7 +2779,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/staking/v1beta1/delegators/{delegator_addr}/validators/{validator_addr}': {
+  "/cosmos/staking/v1beta1/delegators/{delegator_addr}/validators/{validator_addr}": {
     parameters: {
       query?: never;
       header?: never;
@@ -2788,7 +2788,7 @@ export interface paths {
     };
     /** DelegatorValidator queries validator info for given delegator validator
      *     pair. */
-    get: operations['DelegatorValidator'];
+    get: operations["DelegatorValidator"];
     put?: never;
     post?: never;
     delete?: never;
@@ -2797,7 +2797,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/staking/v1beta1/historical_info/{height}': {
+  "/cosmos/staking/v1beta1/historical_info/{height}": {
     parameters: {
       query?: never;
       header?: never;
@@ -2805,7 +2805,7 @@ export interface paths {
       cookie?: never;
     };
     /** HistoricalInfo queries the historical info for given height. */
-    get: operations['HistoricalInfo'];
+    get: operations["HistoricalInfo"];
     put?: never;
     post?: never;
     delete?: never;
@@ -2814,7 +2814,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/staking/v1beta1/params': {
+  "/cosmos/staking/v1beta1/params": {
     parameters: {
       query?: never;
       header?: never;
@@ -2822,7 +2822,7 @@ export interface paths {
       cookie?: never;
     };
     /** Parameters queries the staking parameters. */
-    get: operations['StakingParams'];
+    get: operations["StakingParams"];
     put?: never;
     post?: never;
     delete?: never;
@@ -2831,7 +2831,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/staking/v1beta1/pool': {
+  "/cosmos/staking/v1beta1/pool": {
     parameters: {
       query?: never;
       header?: never;
@@ -2839,7 +2839,7 @@ export interface paths {
       cookie?: never;
     };
     /** Pool queries the pool info. */
-    get: operations['StakingPool'];
+    get: operations["StakingPool"];
     put?: never;
     post?: never;
     delete?: never;
@@ -2848,7 +2848,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/staking/v1beta1/validators': {
+  "/cosmos/staking/v1beta1/validators": {
     parameters: {
       query?: never;
       header?: never;
@@ -2856,7 +2856,7 @@ export interface paths {
       cookie?: never;
     };
     /** Validators queries all validators that match the given status. */
-    get: operations['Validators'];
+    get: operations["Validators"];
     put?: never;
     post?: never;
     delete?: never;
@@ -2865,7 +2865,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/staking/v1beta1/validators/{validator_addr}': {
+  "/cosmos/staking/v1beta1/validators/{validator_addr}": {
     parameters: {
       query?: never;
       header?: never;
@@ -2873,7 +2873,7 @@ export interface paths {
       cookie?: never;
     };
     /** Validator queries validator info for given validator address. */
-    get: operations['Validator'];
+    get: operations["Validator"];
     put?: never;
     post?: never;
     delete?: never;
@@ -2882,7 +2882,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/staking/v1beta1/validators/{validator_addr}/delegations': {
+  "/cosmos/staking/v1beta1/validators/{validator_addr}/delegations": {
     parameters: {
       query?: never;
       header?: never;
@@ -2890,7 +2890,7 @@ export interface paths {
       cookie?: never;
     };
     /** ValidatorDelegations queries delegate info for given validator. */
-    get: operations['ValidatorDelegations'];
+    get: operations["ValidatorDelegations"];
     put?: never;
     post?: never;
     delete?: never;
@@ -2899,7 +2899,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/staking/v1beta1/validators/{validator_addr}/delegations/{delegator_addr}': {
+  "/cosmos/staking/v1beta1/validators/{validator_addr}/delegations/{delegator_addr}": {
     parameters: {
       query?: never;
       header?: never;
@@ -2907,7 +2907,7 @@ export interface paths {
       cookie?: never;
     };
     /** Delegation queries delegate info for given validator delegator pair. */
-    get: operations['Delegation'];
+    get: operations["Delegation"];
     put?: never;
     post?: never;
     delete?: never;
@@ -2916,7 +2916,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/staking/v1beta1/validators/{validator_addr}/delegations/{delegator_addr}/unbonding_delegation': {
+  "/cosmos/staking/v1beta1/validators/{validator_addr}/delegations/{delegator_addr}/unbonding_delegation": {
     parameters: {
       query?: never;
       header?: never;
@@ -2925,7 +2925,7 @@ export interface paths {
     };
     /** UnbondingDelegation queries unbonding info for given validator delegator
      *     pair. */
-    get: operations['UnbondingDelegation'];
+    get: operations["UnbondingDelegation"];
     put?: never;
     post?: never;
     delete?: never;
@@ -2934,7 +2934,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/staking/v1beta1/validators/{validator_addr}/unbonding_delegations': {
+  "/cosmos/staking/v1beta1/validators/{validator_addr}/unbonding_delegations": {
     parameters: {
       query?: never;
       header?: never;
@@ -2942,7 +2942,7 @@ export interface paths {
       cookie?: never;
     };
     /** ValidatorUnbondingDelegations queries unbonding delegations of a validator. */
-    get: operations['ValidatorUnbondingDelegations'];
+    get: operations["ValidatorUnbondingDelegations"];
     put?: never;
     post?: never;
     delete?: never;
@@ -2951,7 +2951,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/tx/v1beta1/simulate': {
+  "/cosmos/tx/v1beta1/simulate": {
     parameters: {
       query?: never;
       header?: never;
@@ -2961,14 +2961,14 @@ export interface paths {
     get?: never;
     put?: never;
     /** Simulate simulates executing a transaction for estimating gas usage. */
-    post: operations['Simulate'];
+    post: operations["Simulate"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/cosmos/tx/v1beta1/txs': {
+  "/cosmos/tx/v1beta1/txs": {
     parameters: {
       query?: never;
       header?: never;
@@ -2976,17 +2976,17 @@ export interface paths {
       cookie?: never;
     };
     /** GetTxsEvent fetches txs by event. */
-    get: operations['GetTxsEvent'];
+    get: operations["GetTxsEvent"];
     put?: never;
     /** BroadcastTx broadcast transaction. */
-    post: operations['BroadcastTx'];
+    post: operations["BroadcastTx"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  '/cosmos/tx/v1beta1/txs/block/{height}': {
+  "/cosmos/tx/v1beta1/txs/block/{height}": {
     parameters: {
       query?: never;
       header?: never;
@@ -2997,7 +2997,7 @@ export interface paths {
      * GetBlockWithTxs fetches a block with decoded txs.
      * @description Since: cosmos-sdk 0.45.2
      */
-    get: operations['GetBlockWithTxs'];
+    get: operations["GetBlockWithTxs"];
     put?: never;
     post?: never;
     delete?: never;
@@ -3006,7 +3006,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/tx/v1beta1/txs/{hash}': {
+  "/cosmos/tx/v1beta1/txs/{hash}": {
     parameters: {
       query?: never;
       header?: never;
@@ -3014,7 +3014,7 @@ export interface paths {
       cookie?: never;
     };
     /** GetTx fetches a tx by hash. */
-    get: operations['GetTx'];
+    get: operations["GetTx"];
     put?: never;
     post?: never;
     delete?: never;
@@ -3023,7 +3023,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/upgrade/v1beta1/applied_plan/{name}': {
+  "/cosmos/upgrade/v1beta1/applied_plan/{name}": {
     parameters: {
       query?: never;
       header?: never;
@@ -3031,7 +3031,7 @@ export interface paths {
       cookie?: never;
     };
     /** AppliedPlan queries a previously applied upgrade plan by its name. */
-    get: operations['AppliedPlan'];
+    get: operations["AppliedPlan"];
     put?: never;
     post?: never;
     delete?: never;
@@ -3040,7 +3040,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/upgrade/v1beta1/current_plan': {
+  "/cosmos/upgrade/v1beta1/current_plan": {
     parameters: {
       query?: never;
       header?: never;
@@ -3048,7 +3048,7 @@ export interface paths {
       cookie?: never;
     };
     /** CurrentPlan queries the current upgrade plan. */
-    get: operations['CurrentPlan'];
+    get: operations["CurrentPlan"];
     put?: never;
     post?: never;
     delete?: never;
@@ -3057,7 +3057,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/upgrade/v1beta1/module_versions': {
+  "/cosmos/upgrade/v1beta1/module_versions": {
     parameters: {
       query?: never;
       header?: never;
@@ -3068,7 +3068,7 @@ export interface paths {
      * ModuleVersions queries the list of module versions from state.
      * @description Since: cosmos-sdk 0.43
      */
-    get: operations['ModuleVersions'];
+    get: operations["ModuleVersions"];
     put?: never;
     post?: never;
     delete?: never;
@@ -3077,7 +3077,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmos/upgrade/v1beta1/upgraded_consensus_state/{last_height}': {
+  "/cosmos/upgrade/v1beta1/upgraded_consensus_state/{last_height}": {
     parameters: {
       query?: never;
       header?: never;
@@ -3090,7 +3090,7 @@ export interface paths {
      *     UpgradedConsensusState RPC not supported with legacy querier
      *     This rpc is deprecated now that IBC has its own replacement
      *     (https://github.com/cosmos/ibc-go/blob/2c880a22e9f9cc75f62b527ca94aa75ce1106001/proto/ibc/core/client/v1/query.proto#L54) */
-    get: operations['DeprecatedUpgradedConsensusState'];
+    get: operations["DeprecatedUpgradedConsensusState"];
     put?: never;
     post?: never;
     delete?: never;
@@ -3099,7 +3099,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/ibc/core/channel/v1/channels': {
+  "/ibc/core/channel/v1/channels": {
     parameters: {
       query?: never;
       header?: never;
@@ -3107,7 +3107,7 @@ export interface paths {
       cookie?: never;
     };
     /** Channels queries all the IBC channels of a chain. */
-    get: operations['Channels'];
+    get: operations["Channels"];
     put?: never;
     post?: never;
     delete?: never;
@@ -3116,7 +3116,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/ibc/core/channel/v1/channels/{channel_id}/ports/{port_id}': {
+  "/ibc/core/channel/v1/channels/{channel_id}/ports/{port_id}": {
     parameters: {
       query?: never;
       header?: never;
@@ -3124,7 +3124,7 @@ export interface paths {
       cookie?: never;
     };
     /** Channel queries an IBC Channel. */
-    get: operations['Channel'];
+    get: operations["Channel"];
     put?: never;
     post?: never;
     delete?: never;
@@ -3133,7 +3133,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/ibc/core/channel/v1/channels/{channel_id}/ports/{port_id}/client_state': {
+  "/ibc/core/channel/v1/channels/{channel_id}/ports/{port_id}/client_state": {
     parameters: {
       query?: never;
       header?: never;
@@ -3142,7 +3142,7 @@ export interface paths {
     };
     /** ChannelClientState queries for the client state for the channel associated
      *     with the provided channel identifiers. */
-    get: operations['ChannelClientState'];
+    get: operations["ChannelClientState"];
     put?: never;
     post?: never;
     delete?: never;
@@ -3151,7 +3151,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/ibc/core/channel/v1/channels/{channel_id}/ports/{port_id}/consensus_state/revision/{revision_number}/height/{revision_height}': {
+  "/ibc/core/channel/v1/channels/{channel_id}/ports/{port_id}/consensus_state/revision/{revision_number}/height/{revision_height}": {
     parameters: {
       query?: never;
       header?: never;
@@ -3160,7 +3160,7 @@ export interface paths {
     };
     /** ChannelConsensusState queries for the consensus state for the channel
      *     associated with the provided channel identifiers. */
-    get: operations['ChannelConsensusState'];
+    get: operations["ChannelConsensusState"];
     put?: never;
     post?: never;
     delete?: never;
@@ -3169,7 +3169,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/ibc/core/channel/v1/channels/{channel_id}/ports/{port_id}/next_sequence': {
+  "/ibc/core/channel/v1/channels/{channel_id}/ports/{port_id}/next_sequence": {
     parameters: {
       query?: never;
       header?: never;
@@ -3177,7 +3177,7 @@ export interface paths {
       cookie?: never;
     };
     /** NextSequenceReceive returns the next receive sequence for a given channel. */
-    get: operations['NextSequenceReceive'];
+    get: operations["NextSequenceReceive"];
     put?: never;
     post?: never;
     delete?: never;
@@ -3186,7 +3186,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/ibc/core/channel/v1/channels/{channel_id}/ports/{port_id}/packet_acknowledgements': {
+  "/ibc/core/channel/v1/channels/{channel_id}/ports/{port_id}/packet_acknowledgements": {
     parameters: {
       query?: never;
       header?: never;
@@ -3195,7 +3195,7 @@ export interface paths {
     };
     /** PacketAcknowledgements returns all the packet acknowledgements associated
      *     with a channel. */
-    get: operations['PacketAcknowledgements'];
+    get: operations["PacketAcknowledgements"];
     put?: never;
     post?: never;
     delete?: never;
@@ -3204,7 +3204,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/ibc/core/channel/v1/channels/{channel_id}/ports/{port_id}/packet_acks/{sequence}': {
+  "/ibc/core/channel/v1/channels/{channel_id}/ports/{port_id}/packet_acks/{sequence}": {
     parameters: {
       query?: never;
       header?: never;
@@ -3212,7 +3212,7 @@ export interface paths {
       cookie?: never;
     };
     /** PacketAcknowledgement queries a stored packet acknowledgement hash. */
-    get: operations['PacketAcknowledgement'];
+    get: operations["PacketAcknowledgement"];
     put?: never;
     post?: never;
     delete?: never;
@@ -3221,7 +3221,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/ibc/core/channel/v1/channels/{channel_id}/ports/{port_id}/packet_commitments': {
+  "/ibc/core/channel/v1/channels/{channel_id}/ports/{port_id}/packet_commitments": {
     parameters: {
       query?: never;
       header?: never;
@@ -3230,7 +3230,7 @@ export interface paths {
     };
     /** PacketCommitments returns all the packet commitments hashes associated
      *     with a channel. */
-    get: operations['PacketCommitments'];
+    get: operations["PacketCommitments"];
     put?: never;
     post?: never;
     delete?: never;
@@ -3239,7 +3239,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/ibc/core/channel/v1/channels/{channel_id}/ports/{port_id}/packet_commitments/{packet_ack_sequences}/unreceived_acks': {
+  "/ibc/core/channel/v1/channels/{channel_id}/ports/{port_id}/packet_commitments/{packet_ack_sequences}/unreceived_acks": {
     parameters: {
       query?: never;
       header?: never;
@@ -3248,7 +3248,7 @@ export interface paths {
     };
     /** UnreceivedAcks returns all the unreceived IBC acknowledgements associated
      *     with a channel and sequences. */
-    get: operations['UnreceivedAcks'];
+    get: operations["UnreceivedAcks"];
     put?: never;
     post?: never;
     delete?: never;
@@ -3257,7 +3257,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/ibc/core/channel/v1/channels/{channel_id}/ports/{port_id}/packet_commitments/{packet_commitment_sequences}/unreceived_packets': {
+  "/ibc/core/channel/v1/channels/{channel_id}/ports/{port_id}/packet_commitments/{packet_commitment_sequences}/unreceived_packets": {
     parameters: {
       query?: never;
       header?: never;
@@ -3266,7 +3266,7 @@ export interface paths {
     };
     /** UnreceivedPackets returns all the unreceived IBC packets associated with a
      *     channel and sequences. */
-    get: operations['UnreceivedPackets'];
+    get: operations["UnreceivedPackets"];
     put?: never;
     post?: never;
     delete?: never;
@@ -3275,7 +3275,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/ibc/core/channel/v1/channels/{channel_id}/ports/{port_id}/packet_commitments/{sequence}': {
+  "/ibc/core/channel/v1/channels/{channel_id}/ports/{port_id}/packet_commitments/{sequence}": {
     parameters: {
       query?: never;
       header?: never;
@@ -3283,7 +3283,7 @@ export interface paths {
       cookie?: never;
     };
     /** PacketCommitment queries a stored packet commitment hash. */
-    get: operations['PacketCommitment'];
+    get: operations["PacketCommitment"];
     put?: never;
     post?: never;
     delete?: never;
@@ -3292,7 +3292,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/ibc/core/channel/v1/channels/{channel_id}/ports/{port_id}/packet_receipts/{sequence}': {
+  "/ibc/core/channel/v1/channels/{channel_id}/ports/{port_id}/packet_receipts/{sequence}": {
     parameters: {
       query?: never;
       header?: never;
@@ -3301,7 +3301,7 @@ export interface paths {
     };
     /** PacketReceipt queries if a given packet sequence has been received on the
      *     queried chain */
-    get: operations['PacketReceipt'];
+    get: operations["PacketReceipt"];
     put?: never;
     post?: never;
     delete?: never;
@@ -3310,7 +3310,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/ibc/core/channel/v1/connections/{connection}/channels': {
+  "/ibc/core/channel/v1/connections/{connection}/channels": {
     parameters: {
       query?: never;
       header?: never;
@@ -3319,7 +3319,7 @@ export interface paths {
     };
     /** ConnectionChannels queries all the channels associated with a connection
      *     end. */
-    get: operations['ConnectionChannels'];
+    get: operations["ConnectionChannels"];
     put?: never;
     post?: never;
     delete?: never;
@@ -3328,7 +3328,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/ibc/client/v1/params': {
+  "/ibc/client/v1/params": {
     parameters: {
       query?: never;
       header?: never;
@@ -3336,7 +3336,7 @@ export interface paths {
       cookie?: never;
     };
     /** ClientParams queries all parameters of the ibc client. */
-    get: operations['ClientParams'];
+    get: operations["ClientParams"];
     put?: never;
     post?: never;
     delete?: never;
@@ -3345,7 +3345,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/ibc/core/client/v1/client_states': {
+  "/ibc/core/client/v1/client_states": {
     parameters: {
       query?: never;
       header?: never;
@@ -3353,7 +3353,7 @@ export interface paths {
       cookie?: never;
     };
     /** ClientStates queries all the IBC light clients of a chain. */
-    get: operations['ClientStates'];
+    get: operations["ClientStates"];
     put?: never;
     post?: never;
     delete?: never;
@@ -3362,7 +3362,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/ibc/core/client/v1/client_states/{client_id}': {
+  "/ibc/core/client/v1/client_states/{client_id}": {
     parameters: {
       query?: never;
       header?: never;
@@ -3370,7 +3370,7 @@ export interface paths {
       cookie?: never;
     };
     /** ClientState queries an IBC light client. */
-    get: operations['ClientState'];
+    get: operations["ClientState"];
     put?: never;
     post?: never;
     delete?: never;
@@ -3379,7 +3379,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/ibc/core/client/v1/client_status/{client_id}': {
+  "/ibc/core/client/v1/client_status/{client_id}": {
     parameters: {
       query?: never;
       header?: never;
@@ -3387,7 +3387,7 @@ export interface paths {
       cookie?: never;
     };
     /** Status queries the status of an IBC client. */
-    get: operations['ClientStatus'];
+    get: operations["ClientStatus"];
     put?: never;
     post?: never;
     delete?: never;
@@ -3396,7 +3396,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/ibc/core/client/v1/consensus_states/{client_id}': {
+  "/ibc/core/client/v1/consensus_states/{client_id}": {
     parameters: {
       query?: never;
       header?: never;
@@ -3405,7 +3405,7 @@ export interface paths {
     };
     /** ConsensusStates queries all the consensus state associated with a given
      *     client. */
-    get: operations['ConsensusStates'];
+    get: operations["ConsensusStates"];
     put?: never;
     post?: never;
     delete?: never;
@@ -3414,7 +3414,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/ibc/core/client/v1/consensus_states/{client_id}/heights': {
+  "/ibc/core/client/v1/consensus_states/{client_id}/heights": {
     parameters: {
       query?: never;
       header?: never;
@@ -3422,7 +3422,7 @@ export interface paths {
       cookie?: never;
     };
     /** ConsensusStateHeights queries the height of every consensus states associated with a given client. */
-    get: operations['ConsensusStateHeights'];
+    get: operations["ConsensusStateHeights"];
     put?: never;
     post?: never;
     delete?: never;
@@ -3431,7 +3431,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/ibc/core/client/v1/consensus_states/{client_id}/revision/{revision_number}/height/{revision_height}': {
+  "/ibc/core/client/v1/consensus_states/{client_id}/revision/{revision_number}/height/{revision_height}": {
     parameters: {
       query?: never;
       header?: never;
@@ -3440,7 +3440,7 @@ export interface paths {
     };
     /** ConsensusState queries a consensus state associated with a client state at
      *     a given height. */
-    get: operations['ConsensusState'];
+    get: operations["ConsensusState"];
     put?: never;
     post?: never;
     delete?: never;
@@ -3449,7 +3449,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/ibc/core/client/v1/upgraded_client_states': {
+  "/ibc/core/client/v1/upgraded_client_states": {
     parameters: {
       query?: never;
       header?: never;
@@ -3457,7 +3457,7 @@ export interface paths {
       cookie?: never;
     };
     /** UpgradedClientState queries an Upgraded IBC light client. */
-    get: operations['UpgradedClientState'];
+    get: operations["UpgradedClientState"];
     put?: never;
     post?: never;
     delete?: never;
@@ -3466,7 +3466,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/ibc/core/client/v1/upgraded_consensus_states': {
+  "/ibc/core/client/v1/upgraded_consensus_states": {
     parameters: {
       query?: never;
       header?: never;
@@ -3474,7 +3474,7 @@ export interface paths {
       cookie?: never;
     };
     /** UpgradedConsensusState queries an Upgraded IBC consensus state. */
-    get: operations['UpgradedConsensusState'];
+    get: operations["UpgradedConsensusState"];
     put?: never;
     post?: never;
     delete?: never;
@@ -3483,7 +3483,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/ibc/core/connection/v1/client_connections/{client_id}': {
+  "/ibc/core/connection/v1/client_connections/{client_id}": {
     parameters: {
       query?: never;
       header?: never;
@@ -3492,7 +3492,7 @@ export interface paths {
     };
     /** ClientConnections queries the connection paths associated with a client
      *     state. */
-    get: operations['ClientConnections'];
+    get: operations["ClientConnections"];
     put?: never;
     post?: never;
     delete?: never;
@@ -3501,7 +3501,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/ibc/core/connection/v1/connections': {
+  "/ibc/core/connection/v1/connections": {
     parameters: {
       query?: never;
       header?: never;
@@ -3509,7 +3509,7 @@ export interface paths {
       cookie?: never;
     };
     /** Connections queries all the IBC connections of a chain. */
-    get: operations['Connections'];
+    get: operations["Connections"];
     put?: never;
     post?: never;
     delete?: never;
@@ -3518,7 +3518,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/ibc/core/connection/v1/connections/{connection_id}': {
+  "/ibc/core/connection/v1/connections/{connection_id}": {
     parameters: {
       query?: never;
       header?: never;
@@ -3526,7 +3526,7 @@ export interface paths {
       cookie?: never;
     };
     /** Connection queries an IBC connection end. */
-    get: operations['Connection'];
+    get: operations["Connection"];
     put?: never;
     post?: never;
     delete?: never;
@@ -3535,7 +3535,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/ibc/core/connection/v1/connections/{connection_id}/client_state': {
+  "/ibc/core/connection/v1/connections/{connection_id}/client_state": {
     parameters: {
       query?: never;
       header?: never;
@@ -3544,7 +3544,7 @@ export interface paths {
     };
     /** ConnectionClientState queries the client state associated with the
      *     connection. */
-    get: operations['ConnectionClientState'];
+    get: operations["ConnectionClientState"];
     put?: never;
     post?: never;
     delete?: never;
@@ -3553,7 +3553,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/ibc/core/connection/v1/connections/{connection_id}/consensus_state/revision/{revision_number}/height/{revision_height}': {
+  "/ibc/core/connection/v1/connections/{connection_id}/consensus_state/revision/{revision_number}/height/{revision_height}": {
     parameters: {
       query?: never;
       header?: never;
@@ -3562,7 +3562,7 @@ export interface paths {
     };
     /** ConnectionConsensusState queries the consensus state associated with the
      *     connection. */
-    get: operations['ConnectionConsensusState'];
+    get: operations["ConnectionConsensusState"];
     put?: never;
     post?: never;
     delete?: never;
@@ -3571,7 +3571,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/ibc/apps/transfer/v1/channels/{channel_id}/ports/{port_id}/escrow_address': {
+  "/ibc/apps/transfer/v1/channels/{channel_id}/ports/{port_id}/escrow_address": {
     parameters: {
       query?: never;
       header?: never;
@@ -3579,7 +3579,7 @@ export interface paths {
       cookie?: never;
     };
     /** EscrowAddress returns the escrow address for a particular port and channel id. */
-    get: operations['EscrowAddress'];
+    get: operations["EscrowAddress"];
     put?: never;
     post?: never;
     delete?: never;
@@ -3588,7 +3588,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/ibc/apps/transfer/v1/denom_hashes/{trace}': {
+  "/ibc/apps/transfer/v1/denom_hashes/{trace}": {
     parameters: {
       query?: never;
       header?: never;
@@ -3596,7 +3596,7 @@ export interface paths {
       cookie?: never;
     };
     /** DenomHash queries a denomination hash information. */
-    get: operations['DenomHash'];
+    get: operations["DenomHash"];
     put?: never;
     post?: never;
     delete?: never;
@@ -3605,7 +3605,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/ibc/apps/transfer/v1/denom_traces': {
+  "/ibc/apps/transfer/v1/denom_traces": {
     parameters: {
       query?: never;
       header?: never;
@@ -3613,7 +3613,7 @@ export interface paths {
       cookie?: never;
     };
     /** DenomTraces queries all denomination traces. */
-    get: operations['DenomTraces'];
+    get: operations["DenomTraces"];
     put?: never;
     post?: never;
     delete?: never;
@@ -3622,7 +3622,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/ibc/apps/transfer/v1/denom_traces/{hash}': {
+  "/ibc/apps/transfer/v1/denom_traces/{hash}": {
     parameters: {
       query?: never;
       header?: never;
@@ -3630,7 +3630,7 @@ export interface paths {
       cookie?: never;
     };
     /** DenomTrace queries a denomination trace information. */
-    get: operations['DenomTrace'];
+    get: operations["DenomTrace"];
     put?: never;
     post?: never;
     delete?: never;
@@ -3639,7 +3639,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/ibc/apps/transfer/v1/params': {
+  "/ibc/apps/transfer/v1/params": {
     parameters: {
       query?: never;
       header?: never;
@@ -3647,7 +3647,7 @@ export interface paths {
       cookie?: never;
     };
     /** Params queries all parameters of the ibc-transfer module. */
-    get: operations['IBCTransferParams'];
+    get: operations["IBCTransferParams"];
     put?: never;
     post?: never;
     delete?: never;
@@ -3656,7 +3656,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmwasm/wasm/v1/code': {
+  "/cosmwasm/wasm/v1/code": {
     parameters: {
       query?: never;
       header?: never;
@@ -3664,7 +3664,7 @@ export interface paths {
       cookie?: never;
     };
     /** Codes gets the metadata for all stored wasm codes */
-    get: operations['Codes'];
+    get: operations["Codes"];
     put?: never;
     post?: never;
     delete?: never;
@@ -3673,7 +3673,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmwasm/wasm/v1/code/{code_id}': {
+  "/cosmwasm/wasm/v1/code/{code_id}": {
     parameters: {
       query?: never;
       header?: never;
@@ -3681,7 +3681,7 @@ export interface paths {
       cookie?: never;
     };
     /** Code gets the binary code and metadata for a singe wasm code */
-    get: operations['Code'];
+    get: operations["Code"];
     put?: never;
     post?: never;
     delete?: never;
@@ -3690,7 +3690,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmwasm/wasm/v1/code/{code_id}/contracts': {
+  "/cosmwasm/wasm/v1/code/{code_id}/contracts": {
     parameters: {
       query?: never;
       header?: never;
@@ -3698,7 +3698,7 @@ export interface paths {
       cookie?: never;
     };
     /** ContractsByCode lists all smart contracts for a code id */
-    get: operations['ContractsByCode'];
+    get: operations["ContractsByCode"];
     put?: never;
     post?: never;
     delete?: never;
@@ -3707,7 +3707,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmwasm/wasm/v1/codes/params': {
+  "/cosmwasm/wasm/v1/codes/params": {
     parameters: {
       query?: never;
       header?: never;
@@ -3715,7 +3715,7 @@ export interface paths {
       cookie?: never;
     };
     /** Params gets the module params */
-    get: operations['WasmParams'];
+    get: operations["WasmParams"];
     put?: never;
     post?: never;
     delete?: never;
@@ -3724,7 +3724,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmwasm/wasm/v1/codes/pinned': {
+  "/cosmwasm/wasm/v1/codes/pinned": {
     parameters: {
       query?: never;
       header?: never;
@@ -3732,7 +3732,7 @@ export interface paths {
       cookie?: never;
     };
     /** PinnedCodes gets the pinned code ids */
-    get: operations['PinnedCodes'];
+    get: operations["PinnedCodes"];
     put?: never;
     post?: never;
     delete?: never;
@@ -3741,7 +3741,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmwasm/wasm/v1/contract/{address}': {
+  "/cosmwasm/wasm/v1/contract/{address}": {
     parameters: {
       query?: never;
       header?: never;
@@ -3749,7 +3749,7 @@ export interface paths {
       cookie?: never;
     };
     /** ContractInfo gets the contract meta data */
-    get: operations['ContractInfo'];
+    get: operations["ContractInfo"];
     put?: never;
     post?: never;
     delete?: never;
@@ -3758,7 +3758,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmwasm/wasm/v1/contract/{address}/history': {
+  "/cosmwasm/wasm/v1/contract/{address}/history": {
     parameters: {
       query?: never;
       header?: never;
@@ -3766,7 +3766,7 @@ export interface paths {
       cookie?: never;
     };
     /** ContractHistory gets the contract code history */
-    get: operations['ContractHistory'];
+    get: operations["ContractHistory"];
     put?: never;
     post?: never;
     delete?: never;
@@ -3775,7 +3775,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmwasm/wasm/v1/contract/{address}/raw/{query_data}': {
+  "/cosmwasm/wasm/v1/contract/{address}/raw/{query_data}": {
     parameters: {
       query?: never;
       header?: never;
@@ -3783,7 +3783,7 @@ export interface paths {
       cookie?: never;
     };
     /** RawContractState gets single key from the raw store data of a contract */
-    get: operations['RawContractState'];
+    get: operations["RawContractState"];
     put?: never;
     post?: never;
     delete?: never;
@@ -3792,7 +3792,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmwasm/wasm/v1/contract/{address}/smart/{query_data}': {
+  "/cosmwasm/wasm/v1/contract/{address}/smart/{query_data}": {
     parameters: {
       query?: never;
       header?: never;
@@ -3800,7 +3800,7 @@ export interface paths {
       cookie?: never;
     };
     /** SmartContractState get smart query result from the contract */
-    get: operations['SmartContractState'];
+    get: operations["SmartContractState"];
     put?: never;
     post?: never;
     delete?: never;
@@ -3809,7 +3809,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmwasm/wasm/v1/contract/{address}/state': {
+  "/cosmwasm/wasm/v1/contract/{address}/state": {
     parameters: {
       query?: never;
       header?: never;
@@ -3817,7 +3817,7 @@ export interface paths {
       cookie?: never;
     };
     /** AllContractState gets all raw store data for a single contract */
-    get: operations['AllContractState'];
+    get: operations["AllContractState"];
     put?: never;
     post?: never;
     delete?: never;
@@ -3826,7 +3826,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/cosmwasm/wasm/v1/contracts/creator/{creator_address}': {
+  "/cosmwasm/wasm/v1/contracts/creator/{creator_address}": {
     parameters: {
       query?: never;
       header?: never;
@@ -3834,7 +3834,7 @@ export interface paths {
       cookie?: never;
     };
     /** ContractsByCreator gets the contracts by creator */
-    get: operations['ContractsByCreator'];
+    get: operations["ContractsByCreator"];
     put?: never;
     post?: never;
     delete?: never;
@@ -3929,7 +3929,7 @@ export interface components {
      *           "@type": "type.googleapis.com/google.protobuf.Duration",
      *           "value": "1.212s"
      *         } */
-    'google.protobuf.Any': {
+    "google.protobuf.Any": {
       /** @description A URL/resource name that uniquely identifies the type of the serialized
        *     protocol buffer message. This string must contain at least
        *     one "/" character. The last segment of the URL's path must represent
@@ -3964,7 +3964,7 @@ export interface components {
        */
       value?: string;
     };
-    'grpc.gateway.runtime.Error': {
+    "grpc.gateway.runtime.Error": {
       error?: string;
       /** Format: int32 */
       code?: number;
@@ -4009,17 +4009,17 @@ export interface components {
      *
      *     NOTE: The amount field is an Int which implements the custom method
      *     signatures required by gogoproto. */
-    'cosmos.base.v1beta1.Coin': {
+    "cosmos.base.v1beta1.Coin": {
       denom?: string;
       amount?: string;
     };
-    'scalar.nexus.exported.v1beta1.Asset': {
+    "scalar.nexus.exported.v1beta1.Asset": {
       denom?: string;
       /** Format: boolean */
       is_native_asset?: boolean;
     };
     /** Chain represents the properties of a registered blockchain */
-    'scalar.nexus.exported.v1beta1.Chain': {
+    "scalar.nexus.exported.v1beta1.Chain": {
       /** The descriptor of the chain, e.g. "evm|11155111" */
       name?: string;
       /** Format: boolean */
@@ -4028,13 +4028,13 @@ export interface components {
        * @default KEY_TYPE_UNSPECIFIED
        * @enum {string}
        */
-      key_type: 'KEY_TYPE_UNSPECIFIED' | 'KEY_TYPE_NONE' | 'KEY_TYPE_THRESHOLD' | 'KEY_TYPE_MULTISIG';
+      key_type: "KEY_TYPE_UNSPECIFIED" | "KEY_TYPE_NONE" | "KEY_TYPE_THRESHOLD" | "KEY_TYPE_MULTISIG";
       /** the module has two types: chains and scalarnet */
       module?: string;
     };
     /** MsgAddCosmosBasedChain represents a message to register a cosmos based chain
      *     to nexus */
-    'scalar.scalarnet.v1beta1.AddCosmosBasedChainRequest': {
+    "scalar.scalarnet.v1beta1.AddCosmosBasedChainRequest": {
       /** Format: byte */
       sender?: string;
       /** Chain represents the properties of a registered blockchain */
@@ -4047,7 +4047,7 @@ export interface components {
          * @default KEY_TYPE_UNSPECIFIED
          * @enum {string}
          */
-        key_type: 'KEY_TYPE_UNSPECIFIED' | 'KEY_TYPE_NONE' | 'KEY_TYPE_THRESHOLD' | 'KEY_TYPE_MULTISIG';
+        key_type: "KEY_TYPE_UNSPECIFIED" | "KEY_TYPE_NONE" | "KEY_TYPE_THRESHOLD" | "KEY_TYPE_MULTISIG";
         /** the module has two types: chains and scalarnet */
         module?: string;
       };
@@ -4061,8 +4061,8 @@ export interface components {
       cosmos_chain?: string;
       ibc_path?: string;
     };
-    'scalar.scalarnet.v1beta1.AddCosmosBasedChainResponse': Record<string, never>;
-    'scalar.scalarnet.v1beta1.CallContractProposalMinDeposit': {
+    "scalar.scalarnet.v1beta1.AddCosmosBasedChainResponse": Record<string, never>;
+    "scalar.scalarnet.v1beta1.CallContractProposalMinDeposit": {
       chain?: string;
       contract_address?: string;
       min_deposits?: {
@@ -4070,7 +4070,7 @@ export interface components {
         amount?: string;
       }[];
     };
-    'scalar.scalarnet.v1beta1.CallContractRequest': {
+    "scalar.scalarnet.v1beta1.CallContractRequest": {
       /** Format: byte */
       sender?: string;
       chain?: string;
@@ -4092,27 +4092,27 @@ export interface components {
         refund_recipient?: string;
       };
     };
-    'scalar.scalarnet.v1beta1.CallContractResponse': Record<string, never>;
-    'scalar.scalarnet.v1beta1.ChainByIBCPathResponse': {
+    "scalar.scalarnet.v1beta1.CallContractResponse": Record<string, never>;
+    "scalar.scalarnet.v1beta1.ChainByIBCPathResponse": {
       chain?: string;
     };
     /** MsgConfirmDeposit represents a deposit confirmation message */
-    'scalar.scalarnet.v1beta1.ConfirmDepositRequest': {
+    "scalar.scalarnet.v1beta1.ConfirmDepositRequest": {
       /** Format: byte */
       sender?: string;
       /** Format: byte */
       deposit_address?: string;
       denom?: string;
     };
-    'scalar.scalarnet.v1beta1.ConfirmDepositResponse': Record<string, never>;
+    "scalar.scalarnet.v1beta1.ConfirmDepositResponse": Record<string, never>;
     /** MsgExecutePendingTransfers represents a message to trigger transfer all
      *     pending transfers */
-    'scalar.scalarnet.v1beta1.ExecutePendingTransfersRequest': {
+    "scalar.scalarnet.v1beta1.ExecutePendingTransfersRequest": {
       /** Format: byte */
       sender?: string;
     };
-    'scalar.scalarnet.v1beta1.ExecutePendingTransfersResponse': Record<string, never>;
-    'scalar.scalarnet.v1beta1.Fee': {
+    "scalar.scalarnet.v1beta1.ExecutePendingTransfersResponse": Record<string, never>;
+    "scalar.scalarnet.v1beta1.Fee": {
       /** @description Coin defines a token with a denomination and an amount.
        *
        *     NOTE: The amount field is an Int which implements the custom method
@@ -4126,23 +4126,23 @@ export interface components {
       /** Format: byte */
       refund_recipient?: string;
     };
-    'scalar.scalarnet.v1beta1.IBCPathResponse': {
+    "scalar.scalarnet.v1beta1.IBCPathResponse": {
       ibc_path?: string;
     };
     /** MsgLink represents a message to link a cross-chain address to an Scalar
      *     address */
-    'scalar.scalarnet.v1beta1.LinkRequest': {
+    "scalar.scalarnet.v1beta1.LinkRequest": {
       /** Format: byte */
       sender?: string;
       recipient_addr?: string;
       recipient_chain?: string;
       asset?: string;
     };
-    'scalar.scalarnet.v1beta1.LinkResponse': {
+    "scalar.scalarnet.v1beta1.LinkResponse": {
       deposit_addr?: string;
     };
     /** Params represent the genesis parameters for the module */
-    'scalar.scalarnet.v1beta1.Params': {
+    "scalar.scalarnet.v1beta1.Params": {
       /**
        * IBC packet route timeout window
        * Format: uint64
@@ -4165,7 +4165,7 @@ export interface components {
         }[];
       }[];
     };
-    'scalar.scalarnet.v1beta1.ParamsResponse': {
+    "scalar.scalarnet.v1beta1.ParamsResponse": {
       /** Params represent the genesis parameters for the module */
       params?: {
         /**
@@ -4191,14 +4191,14 @@ export interface components {
         }[];
       };
     };
-    'scalar.scalarnet.v1beta1.PendingIBCTransferCountResponse': {
+    "scalar.scalarnet.v1beta1.PendingIBCTransferCountResponse": {
       transfers_by_chain?: {
         [key: string]: number;
       };
     };
     /** RegisterAssetRequest represents a message to register an asset to a cosmos
      *     based chain */
-    'scalar.scalarnet.v1beta1.RegisterAssetRequest': {
+    "scalar.scalarnet.v1beta1.RegisterAssetRequest": {
       /** Format: byte */
       sender?: string;
       chain?: string;
@@ -4211,32 +4211,32 @@ export interface components {
       limit?: string;
       window?: string;
     };
-    'scalar.scalarnet.v1beta1.RegisterAssetResponse': Record<string, never>;
+    "scalar.scalarnet.v1beta1.RegisterAssetResponse": Record<string, never>;
     /** RegisterFeeCollectorRequest represents a message to register scalarnet fee
      *     collector account */
-    'scalar.scalarnet.v1beta1.RegisterFeeCollectorRequest': {
+    "scalar.scalarnet.v1beta1.RegisterFeeCollectorRequest": {
       /** Format: byte */
       sender?: string;
       /** Format: byte */
       fee_collector?: string;
     };
-    'scalar.scalarnet.v1beta1.RegisterFeeCollectorResponse': Record<string, never>;
-    'scalar.scalarnet.v1beta1.RetryIBCTransferRequest': {
+    "scalar.scalarnet.v1beta1.RegisterFeeCollectorResponse": Record<string, never>;
+    "scalar.scalarnet.v1beta1.RetryIBCTransferRequest": {
       /** Format: byte */
       sender?: string;
       chain?: string;
       /** Format: uint64 */
       id?: string;
     };
-    'scalar.scalarnet.v1beta1.RetryIBCTransferResponse': Record<string, never>;
+    "scalar.scalarnet.v1beta1.RetryIBCTransferResponse": Record<string, never>;
     /** RouteIBCTransfersRequest represents a message to route pending transfers to
      *     cosmos based chains */
-    'scalar.scalarnet.v1beta1.RouteIBCTransfersRequest': {
+    "scalar.scalarnet.v1beta1.RouteIBCTransfersRequest": {
       /** Format: byte */
       sender?: string;
     };
-    'scalar.scalarnet.v1beta1.RouteIBCTransfersResponse': Record<string, never>;
-    'scalar.scalarnet.v1beta1.RouteMessageRequest': {
+    "scalar.scalarnet.v1beta1.RouteIBCTransfersResponse": Record<string, never>;
+    "scalar.scalarnet.v1beta1.RouteMessageRequest": {
       /** Format: byte */
       sender?: string;
       id?: string;
@@ -4245,29 +4245,29 @@ export interface components {
       /** Format: byte */
       feegranter?: string;
     };
-    'scalar.scalarnet.v1beta1.RouteMessageResponse': Record<string, never>;
+    "scalar.scalarnet.v1beta1.RouteMessageResponse": Record<string, never>;
     /**
      * @default KEY_TYPE_UNSPECIFIED
      * @enum {string}
      */
-    'scalar.tss.exported.v1beta1.KeyType':
-      | 'KEY_TYPE_UNSPECIFIED'
-      | 'KEY_TYPE_NONE'
-      | 'KEY_TYPE_THRESHOLD'
-      | 'KEY_TYPE_MULTISIG';
-    'scalar.chains.v1beta1.AddChainRequest': {
+    "scalar.tss.exported.v1beta1.KeyType":
+      | "KEY_TYPE_UNSPECIFIED"
+      | "KEY_TYPE_NONE"
+      | "KEY_TYPE_THRESHOLD"
+      | "KEY_TYPE_MULTISIG";
+    "scalar.chains.v1beta1.AddChainRequest": {
       /** Format: byte */
       sender?: string;
       name?: string;
       /** Format: byte */
       params?: string;
     };
-    'scalar.chains.v1beta1.AddChainResponse': Record<string, never>;
-    'scalar.chains.v1beta1.Asset': {
+    "scalar.chains.v1beta1.AddChainResponse": Record<string, never>;
+    "scalar.chains.v1beta1.Asset": {
       chain?: string;
       symbol?: string;
     };
-    'scalar.chains.v1beta1.BatchedCommandsResponse': {
+    "scalar.chains.v1beta1.BatchedCommandsResponse": {
       id?: string;
       data?: string;
       /**
@@ -4275,10 +4275,10 @@ export interface components {
        * @enum {string}
        */
       status:
-        | 'BATCHED_COMMANDS_STATUS_UNSPECIFIED'
-        | 'BATCHED_COMMANDS_STATUS_SIGNING'
-        | 'BATCHED_COMMANDS_STATUS_ABORTED'
-        | 'BATCHED_COMMANDS_STATUS_SIGNED';
+        | "BATCHED_COMMANDS_STATUS_UNSPECIFIED"
+        | "BATCHED_COMMANDS_STATUS_SIGNING"
+        | "BATCHED_COMMANDS_STATUS_ABORTED"
+        | "BATCHED_COMMANDS_STATUS_SIGNED";
       key_id?: string;
       execute_data?: string;
       prev_batched_commands_id?: string;
@@ -4294,12 +4294,12 @@ export interface components {
      * @default BATCHED_COMMANDS_STATUS_UNSPECIFIED
      * @enum {string}
      */
-    'scalar.chains.v1beta1.BatchedCommandsStatus':
-      | 'BATCHED_COMMANDS_STATUS_UNSPECIFIED'
-      | 'BATCHED_COMMANDS_STATUS_SIGNING'
-      | 'BATCHED_COMMANDS_STATUS_ABORTED'
-      | 'BATCHED_COMMANDS_STATUS_SIGNED';
-    'scalar.chains.v1beta1.BurnerInfo': {
+    "scalar.chains.v1beta1.BatchedCommandsStatus":
+      | "BATCHED_COMMANDS_STATUS_UNSPECIFIED"
+      | "BATCHED_COMMANDS_STATUS_SIGNING"
+      | "BATCHED_COMMANDS_STATUS_ABORTED"
+      | "BATCHED_COMMANDS_STATUS_SIGNED";
+    "scalar.chains.v1beta1.BurnerInfo": {
       /** Format: byte */
       burner_address?: string;
       /** Format: byte */
@@ -4310,7 +4310,7 @@ export interface components {
       /** Format: byte */
       salt?: string;
     };
-    'scalar.chains.v1beta1.BurnerInfoResponse': {
+    "scalar.chains.v1beta1.BurnerInfoResponse": {
       chain?: string;
       burner_info?: {
         /** Format: byte */
@@ -4324,21 +4324,21 @@ export interface components {
         salt?: string;
       };
     };
-    'scalar.chains.v1beta1.BytecodeResponse': {
+    "scalar.chains.v1beta1.BytecodeResponse": {
       bytecode?: string;
     };
     /**
      * @default CHAIN_STATUS_UNSPECIFIED
      * @enum {string}
      */
-    'scalar.chains.v1beta1.ChainStatus':
-      | 'CHAIN_STATUS_UNSPECIFIED'
-      | 'CHAIN_STATUS_ACTIVATED'
-      | 'CHAIN_STATUS_DEACTIVATED';
-    'scalar.chains.v1beta1.ChainsResponse': {
+    "scalar.chains.v1beta1.ChainStatus":
+      | "CHAIN_STATUS_UNSPECIFIED"
+      | "CHAIN_STATUS_ACTIVATED"
+      | "CHAIN_STATUS_DEACTIVATED";
+    "scalar.chains.v1beta1.ChainsResponse": {
       chains?: string[];
     };
-    'scalar.chains.v1beta1.CommandResponse': {
+    "scalar.chains.v1beta1.CommandResponse": {
       id?: string;
       type?: string;
       params?: {
@@ -4349,7 +4349,7 @@ export interface components {
       max_gas_cost?: number;
     };
     /** MsgConfirmDeposit represents an erc20 deposit confirmation message */
-    'scalar.chains.v1beta1.ConfirmDepositRequest': {
+    "scalar.chains.v1beta1.ConfirmDepositRequest": {
       /** Format: byte */
       sender?: string;
       chain?: string;
@@ -4360,16 +4360,16 @@ export interface components {
       /** Format: byte */
       burner_address?: string;
     };
-    'scalar.chains.v1beta1.ConfirmDepositResponse': Record<string, never>;
-    'scalar.chains.v1beta1.ConfirmSourceTxsRequest': {
+    "scalar.chains.v1beta1.ConfirmDepositResponse": Record<string, never>;
+    "scalar.chains.v1beta1.ConfirmSourceTxsRequest": {
       /** Format: byte */
       sender?: string;
       chain?: string;
       tx_ids?: string[];
     };
-    'scalar.chains.v1beta1.ConfirmSourceTxsResponse': Record<string, never>;
+    "scalar.chains.v1beta1.ConfirmSourceTxsResponse": Record<string, never>;
     /** MsgConfirmToken represents a token deploy confirmation message */
-    'scalar.chains.v1beta1.ConfirmTokenRequest': {
+    "scalar.chains.v1beta1.ConfirmTokenRequest": {
       /** Format: byte */
       sender?: string;
       chain?: string;
@@ -4380,30 +4380,30 @@ export interface components {
         symbol?: string;
       };
     };
-    'scalar.chains.v1beta1.ConfirmTokenResponse': Record<string, never>;
-    'scalar.chains.v1beta1.ConfirmTransferKeyRequest': {
+    "scalar.chains.v1beta1.ConfirmTokenResponse": Record<string, never>;
+    "scalar.chains.v1beta1.ConfirmTransferKeyRequest": {
       /** Format: byte */
       sender?: string;
       chain?: string;
       /** Format: byte */
       tx_id?: string;
     };
-    'scalar.chains.v1beta1.ConfirmTransferKeyResponse': Record<string, never>;
-    'scalar.chains.v1beta1.ConfirmationHeightResponse': {
+    "scalar.chains.v1beta1.ConfirmTransferKeyResponse": Record<string, never>;
+    "scalar.chains.v1beta1.ConfirmationHeightResponse": {
       /** Format: uint64 */
       height?: string;
     };
     /** CreateBurnTokensRequest represents the message to create commands to burn
      *     tokens with scalarGateway */
-    'scalar.chains.v1beta1.CreateBurnTokensRequest': {
+    "scalar.chains.v1beta1.CreateBurnTokensRequest": {
       /** Format: byte */
       sender?: string;
       chain?: string;
     };
-    'scalar.chains.v1beta1.CreateBurnTokensResponse': Record<string, never>;
+    "scalar.chains.v1beta1.CreateBurnTokensResponse": Record<string, never>;
     /** CreateDeployTokenRequest represents the message to create a deploy token
      *     command for scalarGateway */
-    'scalar.chains.v1beta1.CreateDeployTokenRequest': {
+    "scalar.chains.v1beta1.CreateDeployTokenRequest": {
       /** Format: byte */
       sender?: string;
       chain?: string;
@@ -4412,35 +4412,35 @@ export interface components {
       /** Format: byte */
       address?: string;
     };
-    'scalar.chains.v1beta1.CreateDeployTokenResponse': Record<string, never>;
+    "scalar.chains.v1beta1.CreateDeployTokenResponse": Record<string, never>;
     /** CreatePendingTransfersRequest represents a message to trigger the creation of
      *     commands handling all pending transfers */
-    'scalar.chains.v1beta1.CreatePendingTransfersRequest': {
+    "scalar.chains.v1beta1.CreatePendingTransfersRequest": {
       /** Format: byte */
       sender?: string;
       chain?: string;
     };
-    'scalar.chains.v1beta1.CreatePendingTransfersResponse': Record<string, never>;
-    'scalar.chains.v1beta1.CreateTransferOperatorshipRequest': {
+    "scalar.chains.v1beta1.CreatePendingTransfersResponse": Record<string, never>;
+    "scalar.chains.v1beta1.CreateTransferOperatorshipRequest": {
       /** Format: byte */
       sender?: string;
       chain?: string;
       key_id?: string;
     };
-    'scalar.chains.v1beta1.CreateTransferOperatorshipResponse': Record<string, never>;
+    "scalar.chains.v1beta1.CreateTransferOperatorshipResponse": Record<string, never>;
     /** ERC20TokensResponse describes the asset and symbol for all
      *     ERC20 tokens requested for a chain */
-    'scalar.chains.v1beta1.ERC20TokensResponse': {
+    "scalar.chains.v1beta1.ERC20TokensResponse": {
       tokens?: {
         asset?: string;
         symbol?: string;
       }[];
     };
-    'scalar.chains.v1beta1.ERC20TokensResponse.Token': {
+    "scalar.chains.v1beta1.ERC20TokensResponse.Token": {
       asset?: string;
       symbol?: string;
     };
-    'scalar.chains.v1beta1.Event': {
+    "scalar.chains.v1beta1.Event": {
       chain?: string;
       /** Format: byte */
       tx_id?: string;
@@ -4448,7 +4448,7 @@ export interface components {
        * @default STATUS_UNSPECIFIED
        * @enum {string}
        */
-      status: 'STATUS_UNSPECIFIED' | 'STATUS_CONFIRMED' | 'STATUS_COMPLETED' | 'STATUS_FAILED';
+      status: "STATUS_UNSPECIFIED" | "STATUS_CONFIRMED" | "STATUS_COMPLETED" | "STATUS_FAILED";
       /** Format: uint64 */
       index?: string;
       token_sent?: {
@@ -4475,6 +4475,8 @@ export interface components {
         script_pubkey?: string;
         /** Format: int64 */
         vout?: number;
+        /** Format: uint64 */
+        block_height?: string;
       };
       contract_call?: {
         /** Format: byte */
@@ -4547,17 +4549,35 @@ export interface components {
         destination_contract_address?: string;
         destination_recipient_address?: string;
       };
+      /** for btc */
+      redeem_token?: {
+        /** Format: byte */
+        sender?: string;
+        /** Format: uint64 */
+        sequence?: string;
+        /** Format: byte */
+        custodian_group_id?: string;
+        destination_chain?: string;
+        destination_contract_address?: string;
+        /** Format: byte */
+        payload_hash?: string;
+        /** Format: byte */
+        payload?: string;
+        symbol?: string;
+        /** Format: byte */
+        amount?: string;
+      };
     };
     /**
      * @default STATUS_UNSPECIFIED
      * @enum {string}
      */
-    'scalar.chains.v1beta1.Event.Status':
-      | 'STATUS_UNSPECIFIED'
-      | 'STATUS_CONFIRMED'
-      | 'STATUS_COMPLETED'
-      | 'STATUS_FAILED';
-    'scalar.chains.v1beta1.EventContractCall': {
+    "scalar.chains.v1beta1.Event.Status":
+      | "STATUS_UNSPECIFIED"
+      | "STATUS_CONFIRMED"
+      | "STATUS_COMPLETED"
+      | "STATUS_FAILED";
+    "scalar.chains.v1beta1.EventContractCall": {
       /** Format: byte */
       sender?: string;
       destination_chain?: string;
@@ -4565,7 +4585,7 @@ export interface components {
       /** Format: byte */
       payload_hash?: string;
     };
-    'scalar.chains.v1beta1.EventContractCallWithMintApproved': {
+    "scalar.chains.v1beta1.EventContractCallWithMintApproved": {
       chain?: string;
       event_id?: string;
       /** Format: byte */
@@ -4584,7 +4604,7 @@ export interface components {
         amount?: string;
       };
     };
-    'scalar.chains.v1beta1.EventContractCallWithToken': {
+    "scalar.chains.v1beta1.EventContractCallWithToken": {
       /** Format: byte */
       sender?: string;
       destination_chain?: string;
@@ -4597,13 +4617,30 @@ export interface components {
       /** Format: byte */
       payload?: string;
     };
-    'scalar.chains.v1beta1.EventMultisigOperatorshipTransferred': {
+    "scalar.chains.v1beta1.EventMultisigOperatorshipTransferred": {
       new_operators?: string[];
       /** Format: byte */
       new_threshold?: string;
       new_weights?: string[];
     };
-    'scalar.chains.v1beta1.EventResponse': {
+    "scalar.chains.v1beta1.EventRedeemToken": {
+      /** Format: byte */
+      sender?: string;
+      /** Format: uint64 */
+      sequence?: string;
+      /** Format: byte */
+      custodian_group_id?: string;
+      destination_chain?: string;
+      destination_contract_address?: string;
+      /** Format: byte */
+      payload_hash?: string;
+      /** Format: byte */
+      payload?: string;
+      symbol?: string;
+      /** Format: byte */
+      amount?: string;
+    };
+    "scalar.chains.v1beta1.EventResponse": {
       event?: {
         chain?: string;
         /** Format: byte */
@@ -4612,7 +4649,7 @@ export interface components {
          * @default STATUS_UNSPECIFIED
          * @enum {string}
          */
-        status: 'STATUS_UNSPECIFIED' | 'STATUS_CONFIRMED' | 'STATUS_COMPLETED' | 'STATUS_FAILED';
+        status: "STATUS_UNSPECIFIED" | "STATUS_CONFIRMED" | "STATUS_COMPLETED" | "STATUS_FAILED";
         /** Format: uint64 */
         index?: string;
         token_sent?: {
@@ -4639,6 +4676,8 @@ export interface components {
           script_pubkey?: string;
           /** Format: int64 */
           vout?: number;
+          /** Format: uint64 */
+          block_height?: string;
         };
         contract_call?: {
           /** Format: byte */
@@ -4711,14 +4750,32 @@ export interface components {
           destination_contract_address?: string;
           destination_recipient_address?: string;
         };
+        /** for btc */
+        redeem_token?: {
+          /** Format: byte */
+          sender?: string;
+          /** Format: uint64 */
+          sequence?: string;
+          /** Format: byte */
+          custodian_group_id?: string;
+          destination_chain?: string;
+          destination_contract_address?: string;
+          /** Format: byte */
+          payload_hash?: string;
+          /** Format: byte */
+          payload?: string;
+          symbol?: string;
+          /** Format: byte */
+          amount?: string;
+        };
       };
     };
-    'scalar.chains.v1beta1.EventTokenDeployed': {
+    "scalar.chains.v1beta1.EventTokenDeployed": {
       symbol?: string;
       /** Format: byte */
       token_address?: string;
     };
-    'scalar.chains.v1beta1.EventTokenSent': {
+    "scalar.chains.v1beta1.EventTokenSent": {
       chain?: string;
       event_id?: string;
       /** Format: uint64 */
@@ -4742,17 +4799,19 @@ export interface components {
       script_pubkey?: string;
       /** Format: int64 */
       vout?: number;
+      /** Format: uint64 */
+      block_height?: string;
     };
-    'scalar.chains.v1beta1.EventTransfer': {
+    "scalar.chains.v1beta1.EventTransfer": {
       /** Format: byte */
       to?: string;
       /** Format: byte */
       amount?: string;
     };
-    'scalar.chains.v1beta1.GatewayAddressResponse': {
+    "scalar.chains.v1beta1.GatewayAddressResponse": {
       address?: string;
     };
-    'scalar.chains.v1beta1.KeyAddressResponse': {
+    "scalar.chains.v1beta1.KeyAddressResponse": {
       key_id?: string;
       addresses?: {
         address?: string;
@@ -4760,13 +4819,13 @@ export interface components {
       }[];
       threshold?: string;
     };
-    'scalar.chains.v1beta1.KeyAddressResponse.WeightedAddress': {
+    "scalar.chains.v1beta1.KeyAddressResponse.WeightedAddress": {
       address?: string;
       weight?: string;
     };
     /** MsgLink represents the message that links a cross chain address to a burner
      *     address */
-    'scalar.chains.v1beta1.LinkRequest': {
+    "scalar.chains.v1beta1.LinkRequest": {
       /** Format: byte */
       sender?: string;
       chain?: string;
@@ -4774,10 +4833,10 @@ export interface components {
       asset?: string;
       recipient_chain?: string;
     };
-    'scalar.chains.v1beta1.LinkResponse': {
+    "scalar.chains.v1beta1.LinkResponse": {
       deposit_addr?: string;
     };
-    'scalar.chains.v1beta1.Params': {
+    "scalar.chains.v1beta1.Params": {
       chain?: string;
       /** Format: uint64 */
       confirmation_height?: string;
@@ -4814,8 +4873,15 @@ export interface components {
       metadata?: {
         [key: string]: string;
       };
+      /**
+       * limite redeem
+       * Format: uint64
+       */
+      redeem_session_amount_limit?: string;
+      /** Format: uint64 */
+      redeem_txs_vsize_limit?: string;
     };
-    'scalar.chains.v1beta1.ParamsResponse': {
+    "scalar.chains.v1beta1.ParamsResponse": {
       params?: {
         chain?: string;
         /** Format: uint64 */
@@ -4853,9 +4919,16 @@ export interface components {
         metadata?: {
           [key: string]: string;
         };
+        /**
+         * limite redeem
+         * Format: uint64
+         */
+        redeem_session_amount_limit?: string;
+        /** Format: uint64 */
+        redeem_txs_vsize_limit?: string;
       };
     };
-    'scalar.chains.v1beta1.PendingCommandsResponse': {
+    "scalar.chains.v1beta1.PendingCommandsResponse": {
       commands?: {
         id?: string;
         type?: string;
@@ -4869,13 +4942,13 @@ export interface components {
         payload?: string;
       }[];
     };
-    'scalar.chains.v1beta1.Proof': {
+    "scalar.chains.v1beta1.Proof": {
       addresses?: string[];
       weights?: string[];
       threshold?: string;
       signatures?: string[];
     };
-    'scalar.chains.v1beta1.QueryCommandResponse': {
+    "scalar.chains.v1beta1.QueryCommandResponse": {
       id?: string;
       type?: string;
       params?: {
@@ -4887,7 +4960,7 @@ export interface components {
       /** Format: byte */
       payload?: string;
     };
-    'scalar.chains.v1beta1.RedeemSession': {
+    "scalar.chains.v1beta1.RedeemSession": {
       /** Format: byte */
       custodian_group_uid?: string;
       /** Format: uint64 */
@@ -4896,9 +4969,9 @@ export interface components {
        * @default PHASE_PREPARING
        * @enum {string}
        */
-      current_phase: 'PHASE_PREPARING' | 'PHASE_EXECUTING';
+      current_phase: "PHASE_PREPARING" | "PHASE_EXECUTING";
     };
-    'scalar.chains.v1beta1.RedeemSessionResponse': {
+    "scalar.chains.v1beta1.RedeemSessionResponse": {
       redeem_session?: {
         /** Format: byte */
         custodian_group_uid?: string;
@@ -4908,49 +4981,49 @@ export interface components {
          * @default PHASE_PREPARING
          * @enum {string}
          */
-        current_phase: 'PHASE_PREPARING' | 'PHASE_EXECUTING';
+        current_phase: "PHASE_PREPARING" | "PHASE_EXECUTING";
       }[];
     };
-    'scalar.chains.v1beta1.RegisterCustodianGroupRequest': {
+    "scalar.chains.v1beta1.RegisterCustodianGroupRequest": {
       /** Format: byte */
       sender?: string;
       chain?: string;
       /** Format: byte */
       custodian_group_uid?: string;
     };
-    'scalar.chains.v1beta1.RegisterCustodianGroupResponse': Record<string, never>;
-    'scalar.chains.v1beta1.RetryFailedEventRequest': {
+    "scalar.chains.v1beta1.RegisterCustodianGroupResponse": Record<string, never>;
+    "scalar.chains.v1beta1.RetryFailedEventRequest": {
       /** Format: byte */
       sender?: string;
       chain?: string;
       event_id?: string;
     };
-    'scalar.chains.v1beta1.RetryFailedEventResponse': Record<string, never>;
-    'scalar.chains.v1beta1.SetGatewayRequest': {
+    "scalar.chains.v1beta1.RetryFailedEventResponse": Record<string, never>;
+    "scalar.chains.v1beta1.SetGatewayRequest": {
       /** Format: byte */
       sender?: string;
       chain?: string;
       /** Format: byte */
       address?: string;
     };
-    'scalar.chains.v1beta1.SetGatewayResponse': Record<string, never>;
-    'scalar.chains.v1beta1.SignBtcCommandsRequest': {
+    "scalar.chains.v1beta1.SetGatewayResponse": Record<string, never>;
+    "scalar.chains.v1beta1.SignBtcCommandsRequest": {
       /** Format: byte */
       sender?: string;
       chain?: string;
     };
-    'scalar.chains.v1beta1.SignCommandsRequest': {
+    "scalar.chains.v1beta1.SignCommandsRequest": {
       /** Format: byte */
       sender?: string;
       chain?: string;
     };
-    'scalar.chains.v1beta1.SignCommandsResponse': {
+    "scalar.chains.v1beta1.SignCommandsResponse": {
       /** Format: byte */
       batched_commands_id?: string;
       /** Format: int64 */
       command_count?: number;
     };
-    'scalar.chains.v1beta1.SourceTxConfirmationEvent': {
+    "scalar.chains.v1beta1.SourceTxConfirmationEvent": {
       sender?: string;
       destination_chain?: string;
       /** Format: uint64 */
@@ -4963,7 +5036,7 @@ export interface components {
       destination_contract_address?: string;
       destination_recipient_address?: string;
     };
-    'scalar.chains.v1beta1.TokenInfoResponse': {
+    "scalar.chains.v1beta1.TokenInfoResponse": {
       asset?: string;
       details?: {
         token_name?: string;
@@ -4984,16 +5057,16 @@ export interface components {
      * @default TOKEN_TYPE_UNSPECIFIED
      * @enum {string}
      */
-    'scalar.chains.v1beta1.TokenType':
-      | 'TOKEN_TYPE_UNSPECIFIED'
-      | 'TOKEN_TYPE_INTERNAL'
-      | 'TOKEN_TYPE_EXTERNAL';
+    "scalar.chains.v1beta1.TokenType":
+      | "TOKEN_TYPE_UNSPECIFIED"
+      | "TOKEN_TYPE_INTERNAL"
+      | "TOKEN_TYPE_EXTERNAL";
     /**
      * @default PHASE_PREPARING
      * @enum {string}
      */
-    'scalar.covenant.exported.v1beta1.Phase': 'PHASE_PREPARING' | 'PHASE_EXECUTING';
-    'scalar.nexus.exported.v1beta1.TokenDetails': {
+    "scalar.covenant.exported.v1beta1.Phase": "PHASE_PREPARING" | "PHASE_EXECUTING";
+    "scalar.nexus.exported.v1beta1.TokenDetails": {
       token_name?: string;
       symbol?: string;
       /** Format: int64 */
@@ -5001,7 +5074,7 @@ export interface components {
       /** Format: byte */
       capacity?: string;
     };
-    'scalar.utils.v1beta1.Threshold': {
+    "scalar.utils.v1beta1.Threshold": {
       /**
        * split threshold into Numerator and denominator to avoid floating point
        *     errors down the line
@@ -5012,7 +5085,7 @@ export interface components {
       denominator?: string;
     };
     /** Custodian represents an individual custodian configuration */
-    'scalar.covenant.exported.v1beta1.Custodian': {
+    "scalar.covenant.exported.v1beta1.Custodian": {
       name?: string;
       val_address?: string;
       /** Format: byte */
@@ -5022,13 +5095,13 @@ export interface components {
        * @default STATUS_UNSPECIFIED
        * @enum {string}
        */
-      status: 'STATUS_UNSPECIFIED' | 'STATUS_ACTIVATED' | 'STATUS_DEACTIVATED' | 'STATUS_PENDING';
+      status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED" | "STATUS_PENDING";
       description?: string;
     };
     /** CustodianGroup represents a group of custodians with their configuration
      *     uid is used as identity of the group, btc_pubkey is change by list of
      *     custodians */
-    'scalar.covenant.exported.v1beta1.CustodianGroup': {
+    "scalar.covenant.exported.v1beta1.CustodianGroup": {
       /**
        * the UID is unique, to distinguish between custodian groups
        * Format: byte
@@ -5046,7 +5119,7 @@ export interface components {
        * @default STATUS_UNSPECIFIED
        * @enum {string}
        */
-      status: 'STATUS_UNSPECIFIED' | 'STATUS_ACTIVATED' | 'STATUS_DEACTIVATED' | 'STATUS_PENDING';
+      status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED" | "STATUS_PENDING";
       description?: string;
       custodians?: {
         name?: string;
@@ -5058,7 +5131,7 @@ export interface components {
          * @default STATUS_UNSPECIFIED
          * @enum {string}
          */
-        status: 'STATUS_UNSPECIFIED' | 'STATUS_ACTIVATED' | 'STATUS_DEACTIVATED' | 'STATUS_PENDING';
+        status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED" | "STATUS_PENDING";
         description?: string;
       }[];
     };
@@ -5066,41 +5139,41 @@ export interface components {
      * @default STATUS_UNSPECIFIED
      * @enum {string}
      */
-    'scalar.covenant.exported.v1beta1.Status':
-      | 'STATUS_UNSPECIFIED'
-      | 'STATUS_ACTIVATED'
-      | 'STATUS_DEACTIVATED'
-      | 'STATUS_PENDING';
+    "scalar.covenant.exported.v1beta1.Status":
+      | "STATUS_UNSPECIFIED"
+      | "STATUS_ACTIVATED"
+      | "STATUS_DEACTIVATED"
+      | "STATUS_PENDING";
     /**
      * @default LIQUIDITY_MODEL_UNSPECIFIED
      * @enum {string}
      */
-    'scalar.protocol.exported.v1beta1.LiquidityModel':
-      | 'LIQUIDITY_MODEL_UNSPECIFIED'
-      | 'LIQUIDITY_MODEL_POOL'
-      | 'LIQUIDITY_MODEL_UPC';
-    'scalar.protocol.exported.v1beta1.ProtocolAttributes': {
+    "scalar.protocol.exported.v1beta1.LiquidityModel":
+      | "LIQUIDITY_MODEL_UNSPECIFIED"
+      | "LIQUIDITY_MODEL_POOL"
+      | "LIQUIDITY_MODEL_UPC";
+    "scalar.protocol.exported.v1beta1.ProtocolAttributes": {
       /**
        * @default LIQUIDITY_MODEL_UNSPECIFIED
        * @enum {string}
        */
-      model: 'LIQUIDITY_MODEL_UNSPECIFIED' | 'LIQUIDITY_MODEL_POOL' | 'LIQUIDITY_MODEL_UPC';
+      model: "LIQUIDITY_MODEL_UNSPECIFIED" | "LIQUIDITY_MODEL_POOL" | "LIQUIDITY_MODEL_UPC";
     };
     /**
      * @default STATUS_UNSPECIFIED
      * @enum {string}
      */
-    'scalar.protocol.exported.v1beta1.Status':
-      | 'STATUS_UNSPECIFIED'
-      | 'STATUS_ACTIVATED'
-      | 'STATUS_DEACTIVATED'
-      | 'STATUS_PENDING';
-    'scalar.protocol.exported.v1beta1.SupportedChain': {
+    "scalar.protocol.exported.v1beta1.Status":
+      | "STATUS_UNSPECIFIED"
+      | "STATUS_ACTIVATED"
+      | "STATUS_DEACTIVATED"
+      | "STATUS_PENDING";
+    "scalar.protocol.exported.v1beta1.SupportedChain": {
       chain?: string;
       name?: string;
       address?: string;
     };
-    'scalar.protocol.v1beta1.AddSupportedChainRequest': {
+    "scalar.protocol.v1beta1.AddSupportedChainRequest": {
       /** Format: byte */
       sender?: string;
       chain?: {
@@ -5109,7 +5182,7 @@ export interface components {
         address?: string;
       };
     };
-    'scalar.protocol.v1beta1.AddSupportedChainResponse': {
+    "scalar.protocol.v1beta1.AddSupportedChainResponse": {
       protocol?: {
         /** Format: byte */
         bitcoin_pubkey?: string;
@@ -5123,13 +5196,13 @@ export interface components {
            * @default LIQUIDITY_MODEL_UNSPECIFIED
            * @enum {string}
            */
-          model: 'LIQUIDITY_MODEL_UNSPECIFIED' | 'LIQUIDITY_MODEL_POOL' | 'LIQUIDITY_MODEL_UPC';
+          model: "LIQUIDITY_MODEL_UNSPECIFIED" | "LIQUIDITY_MODEL_POOL" | "LIQUIDITY_MODEL_UPC";
         };
         /**
          * @default STATUS_UNSPECIFIED
          * @enum {string}
          */
-        status: 'STATUS_UNSPECIFIED' | 'STATUS_ACTIVATED' | 'STATUS_DEACTIVATED' | 'STATUS_PENDING';
+        status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED" | "STATUS_PENDING";
         /** Format: byte */
         custodian_group_uid?: string;
         chains?: {
@@ -5155,7 +5228,7 @@ export interface components {
         token_daily_mint_limit?: string;
       };
     };
-    'scalar.protocol.v1beta1.CreateProtocolRequest': {
+    "scalar.protocol.v1beta1.CreateProtocolRequest": {
       /**
        * // TODO: Consider to add rbac for this message
        *     option (permission.exported.v1beta1.permission_role) =
@@ -5172,7 +5245,7 @@ export interface components {
          * @default LIQUIDITY_MODEL_UNSPECIFIED
          * @enum {string}
          */
-        model: 'LIQUIDITY_MODEL_UNSPECIFIED' | 'LIQUIDITY_MODEL_POOL' | 'LIQUIDITY_MODEL_UPC';
+        model: "LIQUIDITY_MODEL_UNSPECIFIED" | "LIQUIDITY_MODEL_POOL" | "LIQUIDITY_MODEL_UPC";
       };
       /** Format: byte */
       custodian_group_uid?: string;
@@ -5188,7 +5261,7 @@ export interface components {
       token_capacity?: string;
       token_daily_mint_limit?: string;
     };
-    'scalar.protocol.v1beta1.CreateProtocolResponse': {
+    "scalar.protocol.v1beta1.CreateProtocolResponse": {
       protocol?: {
         /** Format: byte */
         bitcoin_pubkey?: string;
@@ -5202,13 +5275,13 @@ export interface components {
            * @default LIQUIDITY_MODEL_UNSPECIFIED
            * @enum {string}
            */
-          model: 'LIQUIDITY_MODEL_UNSPECIFIED' | 'LIQUIDITY_MODEL_POOL' | 'LIQUIDITY_MODEL_UPC';
+          model: "LIQUIDITY_MODEL_UNSPECIFIED" | "LIQUIDITY_MODEL_POOL" | "LIQUIDITY_MODEL_UPC";
         };
         /**
          * @default STATUS_UNSPECIFIED
          * @enum {string}
          */
-        status: 'STATUS_UNSPECIFIED' | 'STATUS_ACTIVATED' | 'STATUS_DEACTIVATED' | 'STATUS_PENDING';
+        status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED" | "STATUS_PENDING";
         /** Format: byte */
         custodian_group_uid?: string;
         chains?: {
@@ -5234,7 +5307,7 @@ export interface components {
         token_daily_mint_limit?: string;
       };
     };
-    'scalar.protocol.v1beta1.Protocol': {
+    "scalar.protocol.v1beta1.Protocol": {
       /** Format: byte */
       bitcoin_pubkey?: string;
       /** Format: byte */
@@ -5247,13 +5320,13 @@ export interface components {
          * @default LIQUIDITY_MODEL_UNSPECIFIED
          * @enum {string}
          */
-        model: 'LIQUIDITY_MODEL_UNSPECIFIED' | 'LIQUIDITY_MODEL_POOL' | 'LIQUIDITY_MODEL_UPC';
+        model: "LIQUIDITY_MODEL_UNSPECIFIED" | "LIQUIDITY_MODEL_POOL" | "LIQUIDITY_MODEL_UPC";
       };
       /**
        * @default STATUS_UNSPECIFIED
        * @enum {string}
        */
-      status: 'STATUS_UNSPECIFIED' | 'STATUS_ACTIVATED' | 'STATUS_DEACTIVATED' | 'STATUS_PENDING';
+      status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED" | "STATUS_PENDING";
       /** Format: byte */
       custodian_group_uid?: string;
       chains?: {
@@ -5278,7 +5351,7 @@ export interface components {
       /** Format: byte */
       token_daily_mint_limit?: string;
     };
-    'scalar.protocol.v1beta1.ProtocolDetails': {
+    "scalar.protocol.v1beta1.ProtocolDetails": {
       /** Format: byte */
       scalar_address?: string;
       /** Format: byte */
@@ -5291,13 +5364,13 @@ export interface components {
          * @default LIQUIDITY_MODEL_UNSPECIFIED
          * @enum {string}
          */
-        model: 'LIQUIDITY_MODEL_UNSPECIFIED' | 'LIQUIDITY_MODEL_POOL' | 'LIQUIDITY_MODEL_UPC';
+        model: "LIQUIDITY_MODEL_UNSPECIFIED" | "LIQUIDITY_MODEL_POOL" | "LIQUIDITY_MODEL_UPC";
       };
       /**
        * @default STATUS_UNSPECIFIED
        * @enum {string}
        */
-      status: 'STATUS_UNSPECIFIED' | 'STATUS_ACTIVATED' | 'STATUS_DEACTIVATED' | 'STATUS_PENDING';
+      status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED" | "STATUS_PENDING";
       /** Format: byte */
       custodian_group_uid?: string;
       chains?: {
@@ -5328,7 +5401,7 @@ export interface components {
          * @default STATUS_UNSPECIFIED
          * @enum {string}
          */
-        status: 'STATUS_UNSPECIFIED' | 'STATUS_ACTIVATED' | 'STATUS_DEACTIVATED' | 'STATUS_PENDING';
+        status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED" | "STATUS_PENDING";
         description?: string;
         custodians?: {
           name?: string;
@@ -5340,7 +5413,7 @@ export interface components {
            * @default STATUS_UNSPECIFIED
            * @enum {string}
            */
-          status: 'STATUS_UNSPECIFIED' | 'STATUS_ACTIVATED' | 'STATUS_DEACTIVATED' | 'STATUS_PENDING';
+          status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED" | "STATUS_PENDING";
           description?: string;
         }[];
       };
@@ -5359,7 +5432,7 @@ export interface components {
       /** Format: byte */
       token_daily_mint_limit?: string;
     };
-    'scalar.protocol.v1beta1.ProtocolResponse': {
+    "scalar.protocol.v1beta1.ProtocolResponse": {
       protocol?: {
         /** Format: byte */
         scalar_address?: string;
@@ -5373,13 +5446,13 @@ export interface components {
            * @default LIQUIDITY_MODEL_UNSPECIFIED
            * @enum {string}
            */
-          model: 'LIQUIDITY_MODEL_UNSPECIFIED' | 'LIQUIDITY_MODEL_POOL' | 'LIQUIDITY_MODEL_UPC';
+          model: "LIQUIDITY_MODEL_UNSPECIFIED" | "LIQUIDITY_MODEL_POOL" | "LIQUIDITY_MODEL_UPC";
         };
         /**
          * @default STATUS_UNSPECIFIED
          * @enum {string}
          */
-        status: 'STATUS_UNSPECIFIED' | 'STATUS_ACTIVATED' | 'STATUS_DEACTIVATED' | 'STATUS_PENDING';
+        status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED" | "STATUS_PENDING";
         /** Format: byte */
         custodian_group_uid?: string;
         chains?: {
@@ -5410,7 +5483,7 @@ export interface components {
            * @default STATUS_UNSPECIFIED
            * @enum {string}
            */
-          status: 'STATUS_UNSPECIFIED' | 'STATUS_ACTIVATED' | 'STATUS_DEACTIVATED' | 'STATUS_PENDING';
+          status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED" | "STATUS_PENDING";
           description?: string;
           custodians?: {
             name?: string;
@@ -5422,7 +5495,7 @@ export interface components {
              * @default STATUS_UNSPECIFIED
              * @enum {string}
              */
-            status: 'STATUS_UNSPECIFIED' | 'STATUS_ACTIVATED' | 'STATUS_DEACTIVATED' | 'STATUS_PENDING';
+            status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED" | "STATUS_PENDING";
             description?: string;
           }[];
         };
@@ -5442,7 +5515,7 @@ export interface components {
         token_daily_mint_limit?: string;
       };
     };
-    'scalar.protocol.v1beta1.ProtocolsResponse': {
+    "scalar.protocol.v1beta1.ProtocolsResponse": {
       protocols?: {
         /** Format: byte */
         scalar_address?: string;
@@ -5456,13 +5529,13 @@ export interface components {
            * @default LIQUIDITY_MODEL_UNSPECIFIED
            * @enum {string}
            */
-          model: 'LIQUIDITY_MODEL_UNSPECIFIED' | 'LIQUIDITY_MODEL_POOL' | 'LIQUIDITY_MODEL_UPC';
+          model: "LIQUIDITY_MODEL_UNSPECIFIED" | "LIQUIDITY_MODEL_POOL" | "LIQUIDITY_MODEL_UPC";
         };
         /**
          * @default STATUS_UNSPECIFIED
          * @enum {string}
          */
-        status: 'STATUS_UNSPECIFIED' | 'STATUS_ACTIVATED' | 'STATUS_DEACTIVATED' | 'STATUS_PENDING';
+        status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED" | "STATUS_PENDING";
         /** Format: byte */
         custodian_group_uid?: string;
         chains?: {
@@ -5493,7 +5566,7 @@ export interface components {
            * @default STATUS_UNSPECIFIED
            * @enum {string}
            */
-          status: 'STATUS_UNSPECIFIED' | 'STATUS_ACTIVATED' | 'STATUS_DEACTIVATED' | 'STATUS_PENDING';
+          status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED" | "STATUS_PENDING";
           description?: string;
           custodians?: {
             name?: string;
@@ -5505,7 +5578,7 @@ export interface components {
              * @default STATUS_UNSPECIFIED
              * @enum {string}
              */
-            status: 'STATUS_UNSPECIFIED' | 'STATUS_ACTIVATED' | 'STATUS_DEACTIVATED' | 'STATUS_PENDING';
+            status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED" | "STATUS_PENDING";
             description?: string;
           }[];
         };
@@ -5528,13 +5601,13 @@ export interface components {
       total?: string;
     };
     /** pubkey used as protocol unique id */
-    'scalar.protocol.v1beta1.UpdateProtocolRequest': {
+    "scalar.protocol.v1beta1.UpdateProtocolRequest": {
       /** Format: byte */
       sender?: string;
       name?: string;
       tag?: string;
     };
-    'scalar.protocol.v1beta1.UpdateProtocolResponse': {
+    "scalar.protocol.v1beta1.UpdateProtocolResponse": {
       protocol?: {
         /** Format: byte */
         bitcoin_pubkey?: string;
@@ -5548,13 +5621,13 @@ export interface components {
            * @default LIQUIDITY_MODEL_UNSPECIFIED
            * @enum {string}
            */
-          model: 'LIQUIDITY_MODEL_UNSPECIFIED' | 'LIQUIDITY_MODEL_POOL' | 'LIQUIDITY_MODEL_UPC';
+          model: "LIQUIDITY_MODEL_UNSPECIFIED" | "LIQUIDITY_MODEL_POOL" | "LIQUIDITY_MODEL_UPC";
         };
         /**
          * @default STATUS_UNSPECIFIED
          * @enum {string}
          */
-        status: 'STATUS_UNSPECIFIED' | 'STATUS_ACTIVATED' | 'STATUS_DEACTIVATED' | 'STATUS_PENDING';
+        status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED" | "STATUS_PENDING";
         /** Format: byte */
         custodian_group_uid?: string;
         chains?: {
@@ -5580,7 +5653,7 @@ export interface components {
         token_daily_mint_limit?: string;
       };
     };
-    'scalar.protocol.v1beta1.UpdateSupportedChainRequest': {
+    "scalar.protocol.v1beta1.UpdateSupportedChainRequest": {
       /** Format: byte */
       sender?: string;
       chain_family?: string;
@@ -5590,9 +5663,9 @@ export interface components {
        * @default STATUS_UNSPECIFIED
        * @enum {string}
        */
-      status: 'STATUS_UNSPECIFIED' | 'STATUS_ACTIVATED' | 'STATUS_DEACTIVATED' | 'STATUS_PENDING';
+      status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED" | "STATUS_PENDING";
     };
-    'scalar.protocol.v1beta1.UpdateSupportedChainResponse': {
+    "scalar.protocol.v1beta1.UpdateSupportedChainResponse": {
       protocol?: {
         /** Format: byte */
         bitcoin_pubkey?: string;
@@ -5606,13 +5679,13 @@ export interface components {
            * @default LIQUIDITY_MODEL_UNSPECIFIED
            * @enum {string}
            */
-          model: 'LIQUIDITY_MODEL_UNSPECIFIED' | 'LIQUIDITY_MODEL_POOL' | 'LIQUIDITY_MODEL_UPC';
+          model: "LIQUIDITY_MODEL_UNSPECIFIED" | "LIQUIDITY_MODEL_POOL" | "LIQUIDITY_MODEL_UPC";
         };
         /**
          * @default STATUS_UNSPECIFIED
          * @enum {string}
          */
-        status: 'STATUS_UNSPECIFIED' | 'STATUS_ACTIVATED' | 'STATUS_DEACTIVATED' | 'STATUS_PENDING';
+        status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED" | "STATUS_PENDING";
         /** Format: byte */
         custodian_group_uid?: string;
         chains?: {
@@ -5638,7 +5711,7 @@ export interface components {
         token_daily_mint_limit?: string;
       };
     };
-    'scalar.covenant.exported.v1beta1.TapScriptSig': {
+    "scalar.covenant.exported.v1beta1.TapScriptSig": {
       /** Format: byte */
       key_x_only?: string;
       /** Format: byte */
@@ -5646,7 +5719,7 @@ export interface components {
       /** Format: byte */
       signature?: string;
     };
-    'scalar.covenant.exported.v1beta1.TapScriptSigsEntry': {
+    "scalar.covenant.exported.v1beta1.TapScriptSigsEntry": {
       /** Format: uint64 */
       index?: string;
       sigs?: {
@@ -5660,7 +5733,7 @@ export interface components {
         }[];
       };
     };
-    'scalar.covenant.exported.v1beta1.TapScriptSigsList': {
+    "scalar.covenant.exported.v1beta1.TapScriptSigsList": {
       list?: {
         /** Format: byte */
         key_x_only?: string;
@@ -5672,7 +5745,7 @@ export interface components {
     };
     /** The reason we use a list instead of a map is because the map is not ensured
      *     the deterministic order of the entries */
-    'scalar.covenant.exported.v1beta1.TapScriptSigsMap': {
+    "scalar.covenant.exported.v1beta1.TapScriptSigsMap": {
       inner?: {
         /** Format: uint64 */
         index?: string;
@@ -5688,7 +5761,7 @@ export interface components {
         };
       }[];
     };
-    'scalar.covenant.v1beta1.AddCustodianToGroupRequest': {
+    "scalar.covenant.v1beta1.AddCustodianToGroupRequest": {
       /** Format: byte */
       sender?: string;
       guid?: string;
@@ -5697,7 +5770,7 @@ export interface components {
       description?: string;
     };
     /** Confirm exectuted transaction on bitcoin */
-    'scalar.covenant.v1beta1.ConfirmRedeemTxsRequest': {
+    "scalar.covenant.v1beta1.ConfirmRedeemTxsRequest": {
       /** Format: byte */
       sender?: string;
       chain?: string;
@@ -5705,8 +5778,8 @@ export interface components {
       /** Format: byte */
       custodian_group_uid?: string;
     };
-    'scalar.covenant.v1beta1.ConfirmRedeemTxsResponse': Record<string, never>;
-    'scalar.covenant.v1beta1.ConfirmSwitchedPhaseRequest': {
+    "scalar.covenant.v1beta1.ConfirmRedeemTxsResponse": Record<string, never>;
+    "scalar.covenant.v1beta1.ConfirmSwitchedPhaseRequest": {
       /** Format: byte */
       sender?: string;
       chain?: string;
@@ -5715,8 +5788,8 @@ export interface components {
       /** Format: byte */
       tx_id?: string;
     };
-    'scalar.covenant.v1beta1.ConfirmSwitchedPhaseResponse': Record<string, never>;
-    'scalar.covenant.v1beta1.CreateCustodianGroupRequest': {
+    "scalar.covenant.v1beta1.ConfirmSwitchedPhaseResponse": Record<string, never>;
+    "scalar.covenant.v1beta1.CreateCustodianGroupRequest": {
       /** Format: byte */
       sender?: string;
       uid?: string;
@@ -5727,11 +5800,11 @@ export interface components {
        * @default STATUS_UNSPECIFIED
        * @enum {string}
        */
-      status: 'STATUS_UNSPECIFIED' | 'STATUS_ACTIVATED' | 'STATUS_DEACTIVATED' | 'STATUS_PENDING';
+      status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED" | "STATUS_PENDING";
       description?: string;
       custodian?: string[];
     };
-    'scalar.covenant.v1beta1.CreateCustodianGroupResponse': {
+    "scalar.covenant.v1beta1.CreateCustodianGroupResponse": {
       /** CustodianGroup represents a group of custodians with their configuration
        *     uid is used as identity of the group, btc_pubkey is change by list of
        *     custodians */
@@ -5753,7 +5826,7 @@ export interface components {
          * @default STATUS_UNSPECIFIED
          * @enum {string}
          */
-        status: 'STATUS_UNSPECIFIED' | 'STATUS_ACTIVATED' | 'STATUS_DEACTIVATED' | 'STATUS_PENDING';
+        status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED" | "STATUS_PENDING";
         description?: string;
         custodians?: {
           name?: string;
@@ -5765,12 +5838,12 @@ export interface components {
            * @default STATUS_UNSPECIFIED
            * @enum {string}
            */
-          status: 'STATUS_UNSPECIFIED' | 'STATUS_ACTIVATED' | 'STATUS_DEACTIVATED' | 'STATUS_PENDING';
+          status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED" | "STATUS_PENDING";
           description?: string;
         }[];
       };
     };
-    'scalar.covenant.v1beta1.CreateCustodianRequest': {
+    "scalar.covenant.v1beta1.CreateCustodianRequest": {
       /** Format: byte */
       sender?: string;
       name?: string;
@@ -5780,10 +5853,10 @@ export interface components {
        * @default STATUS_UNSPECIFIED
        * @enum {string}
        */
-      status: 'STATUS_UNSPECIFIED' | 'STATUS_ACTIVATED' | 'STATUS_DEACTIVATED' | 'STATUS_PENDING';
+      status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED" | "STATUS_PENDING";
       description?: string;
     };
-    'scalar.covenant.v1beta1.CreateCustodianResponse': {
+    "scalar.covenant.v1beta1.CreateCustodianResponse": {
       /** Custodian represents an individual custodian configuration */
       custodian?: {
         name?: string;
@@ -5795,11 +5868,11 @@ export interface components {
          * @default STATUS_UNSPECIFIED
          * @enum {string}
          */
-        status: 'STATUS_UNSPECIFIED' | 'STATUS_ACTIVATED' | 'STATUS_DEACTIVATED' | 'STATUS_PENDING';
+        status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED" | "STATUS_PENDING";
         description?: string;
       };
     };
-    'scalar.covenant.v1beta1.CustodianToGroupResponse': {
+    "scalar.covenant.v1beta1.CustodianToGroupResponse": {
       /** CustodianGroup represents a group of custodians with their configuration
        *     uid is used as identity of the group, btc_pubkey is change by list of
        *     custodians */
@@ -5821,7 +5894,7 @@ export interface components {
          * @default STATUS_UNSPECIFIED
          * @enum {string}
          */
-        status: 'STATUS_UNSPECIFIED' | 'STATUS_ACTIVATED' | 'STATUS_DEACTIVATED' | 'STATUS_PENDING';
+        status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED" | "STATUS_PENDING";
         description?: string;
         custodians?: {
           name?: string;
@@ -5833,12 +5906,12 @@ export interface components {
            * @default STATUS_UNSPECIFIED
            * @enum {string}
            */
-          status: 'STATUS_UNSPECIFIED' | 'STATUS_ACTIVATED' | 'STATUS_DEACTIVATED' | 'STATUS_PENDING';
+          status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED" | "STATUS_PENDING";
           description?: string;
         }[];
       };
     };
-    'scalar.covenant.v1beta1.CustodiansResponse': {
+    "scalar.covenant.v1beta1.CustodiansResponse": {
       custodians?: {
         name?: string;
         val_address?: string;
@@ -5849,11 +5922,11 @@ export interface components {
          * @default STATUS_UNSPECIFIED
          * @enum {string}
          */
-        status: 'STATUS_UNSPECIFIED' | 'STATUS_ACTIVATED' | 'STATUS_DEACTIVATED' | 'STATUS_PENDING';
+        status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED" | "STATUS_PENDING";
         description?: string;
       }[];
     };
-    'scalar.covenant.v1beta1.GroupsResponse': {
+    "scalar.covenant.v1beta1.GroupsResponse": {
       groups?: {
         /**
          * the UID is unique, to distinguish between custodian groups
@@ -5872,7 +5945,7 @@ export interface components {
          * @default STATUS_UNSPECIFIED
          * @enum {string}
          */
-        status: 'STATUS_UNSPECIFIED' | 'STATUS_ACTIVATED' | 'STATUS_DEACTIVATED' | 'STATUS_PENDING';
+        status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED" | "STATUS_PENDING";
         description?: string;
         custodians?: {
           name?: string;
@@ -5884,21 +5957,21 @@ export interface components {
            * @default STATUS_UNSPECIFIED
            * @enum {string}
            */
-          status: 'STATUS_UNSPECIFIED' | 'STATUS_ACTIVATED' | 'STATUS_DEACTIVATED' | 'STATUS_PENDING';
+          status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED" | "STATUS_PENDING";
           description?: string;
         }[];
       }[];
     };
-    'scalar.covenant.v1beta1.InitializeUtxoRequest': {
+    "scalar.covenant.v1beta1.InitializeUtxoRequest": {
       /** Format: byte */
       sender?: string;
       chain?: string;
       /** Format: uint64 */
       block_checkpoint?: string;
     };
-    'scalar.covenant.v1beta1.InitializeUtxoResponse': Record<string, never>;
+    "scalar.covenant.v1beta1.InitializeUtxoResponse": Record<string, never>;
     /** Params represent the genesis parameters for the module */
-    'scalar.covenant.v1beta1.Params': {
+    "scalar.covenant.v1beta1.Params": {
       signing_threshold?: {
         /**
          * split threshold into Numerator and denominator to avoid floating point
@@ -5918,7 +5991,7 @@ export interface components {
       /** Format: uint64 */
       block_limit_per_session?: string;
     };
-    'scalar.covenant.v1beta1.ParamsResponse': {
+    "scalar.covenant.v1beta1.ParamsResponse": {
       /** Params represent the genesis parameters for the module */
       params?: {
         signing_threshold?: {
@@ -5941,7 +6014,7 @@ export interface components {
         block_limit_per_session?: string;
       };
     };
-    'scalar.covenant.v1beta1.RedeemSession': {
+    "scalar.covenant.v1beta1.RedeemSession": {
       /** Format: byte */
       custodian_group_uid?: string;
       /** Format: uint64 */
@@ -5950,7 +6023,7 @@ export interface components {
        * @default PHASE_PREPARING
        * @enum {string}
        */
-      current_phase: 'PHASE_PREPARING' | 'PHASE_EXECUTING';
+      current_phase: "PHASE_PREPARING" | "PHASE_EXECUTING";
       /** Format: byte */
       last_redeem_tx?: string;
       /** Format: boolean */
@@ -5958,7 +6031,7 @@ export interface components {
       /** Format: uint64 */
       phase_expired_at?: string;
     };
-    'scalar.covenant.v1beta1.RedeemSessionResponse': {
+    "scalar.covenant.v1beta1.RedeemSessionResponse": {
       session?: {
         /** Format: byte */
         custodian_group_uid?: string;
@@ -5968,7 +6041,7 @@ export interface components {
          * @default PHASE_PREPARING
          * @enum {string}
          */
-        current_phase: 'PHASE_PREPARING' | 'PHASE_EXECUTING';
+        current_phase: "PHASE_PREPARING" | "PHASE_EXECUTING";
         /** Format: byte */
         last_redeem_tx?: string;
         /** Format: boolean */
@@ -5977,7 +6050,7 @@ export interface components {
         phase_expired_at?: string;
       };
     };
-    'scalar.covenant.v1beta1.RemoveCustodianFromGroupRequest': {
+    "scalar.covenant.v1beta1.RemoveCustodianFromGroupRequest": {
       /** Format: byte */
       sender?: string;
       guid?: string;
@@ -5985,7 +6058,12 @@ export interface components {
       custodian_pubkey?: string;
       description?: string;
     };
-    'scalar.covenant.v1beta1.ReserveRedeemUtxoRequest': {
+    "scalar.covenant.v1beta1.Reservation": {
+      request?: string;
+      /** Format: uint64 */
+      amount?: string;
+    };
+    "scalar.covenant.v1beta1.ReserveRedeemUtxoRequest": {
       /** Format: byte */
       sender?: string;
       address?: string;
@@ -5997,15 +6075,15 @@ export interface components {
       /** Format: byte */
       locking_script?: string;
     };
-    'scalar.covenant.v1beta1.ReserveRedeemUtxoResponse': Record<string, never>;
+    "scalar.covenant.v1beta1.ReserveRedeemUtxoResponse": Record<string, never>;
     /** Rotate key for custodian group */
-    'scalar.covenant.v1beta1.RotateKeyRequest': {
+    "scalar.covenant.v1beta1.RotateKeyRequest": {
       /** Format: byte */
       sender?: string;
       chain?: string;
     };
-    'scalar.covenant.v1beta1.RotateKeyResponse': Record<string, never>;
-    'scalar.covenant.v1beta1.StandaloneCommandResponse': {
+    "scalar.covenant.v1beta1.RotateKeyResponse": Record<string, never>;
+    "scalar.covenant.v1beta1.StandaloneCommandResponse": {
       /** Format: byte */
       id?: string;
       data?: string;
@@ -6014,10 +6092,10 @@ export interface components {
        * @enum {string}
        */
       status:
-        | 'STANDALONE_COMMAND_STATUS_UNSPECIFIED'
-        | 'STANDALONE_COMMAND_STATUS_SIGNING'
-        | 'STANDALONE_COMMAND_STATUS_ABORTED'
-        | 'STANDALONE_COMMAND_STATUS_SIGNED';
+        | "STANDALONE_COMMAND_STATUS_UNSPECIFIED"
+        | "STANDALONE_COMMAND_STATUS_SIGNING"
+        | "STANDALONE_COMMAND_STATUS_ABORTED"
+        | "STANDALONE_COMMAND_STATUS_SIGNED";
       key_id?: string;
       execute_data?: string;
     };
@@ -6025,12 +6103,12 @@ export interface components {
      * @default STANDALONE_COMMAND_STATUS_UNSPECIFIED
      * @enum {string}
      */
-    'scalar.covenant.v1beta1.StandaloneCommandStatus':
-      | 'STANDALONE_COMMAND_STATUS_UNSPECIFIED'
-      | 'STANDALONE_COMMAND_STATUS_SIGNING'
-      | 'STANDALONE_COMMAND_STATUS_ABORTED'
-      | 'STANDALONE_COMMAND_STATUS_SIGNED';
-    'scalar.covenant.v1beta1.SubmitTapScriptSigsRequest': {
+    "scalar.covenant.v1beta1.StandaloneCommandStatus":
+      | "STANDALONE_COMMAND_STATUS_UNSPECIFIED"
+      | "STANDALONE_COMMAND_STATUS_SIGNING"
+      | "STANDALONE_COMMAND_STATUS_ABORTED"
+      | "STANDALONE_COMMAND_STATUS_SIGNED";
+    "scalar.covenant.v1beta1.SubmitTapScriptSigsRequest": {
       /** Format: byte */
       sender?: string;
       /** Format: uint64 */
@@ -6052,8 +6130,8 @@ export interface components {
         }[];
       }[];
     };
-    'scalar.covenant.v1beta1.SubmitTapScriptSigsResponse': Record<string, never>;
-    'scalar.covenant.v1beta1.UTXO': {
+    "scalar.covenant.v1beta1.SubmitTapScriptSigsResponse": Record<string, never>;
+    "scalar.covenant.v1beta1.UTXO": {
       /** Format: byte */
       txid?: string;
       /** Format: int64 */
@@ -6063,11 +6141,13 @@ export interface components {
       /** Format: uint64 */
       amount_in_sats?: string;
       /** Reserved amount for each request id */
-      reserved?: {
-        [key: string]: string;
-      };
+      reservations?: {
+        request?: string;
+        /** Format: uint64 */
+        amount?: string;
+      }[];
     };
-    'scalar.covenant.v1beta1.UTXOSnapshot': {
+    "scalar.covenant.v1beta1.UTXOSnapshot": {
       /** Format: byte */
       custodian_group_uid?: string;
       /** Format: uint64 */
@@ -6082,12 +6162,14 @@ export interface components {
         /** Format: uint64 */
         amount_in_sats?: string;
         /** Reserved amount for each request id */
-        reserved?: {
-          [key: string]: string;
-        };
+        reservations?: {
+          request?: string;
+          /** Format: uint64 */
+          amount?: string;
+        }[];
       }[];
     };
-    'scalar.covenant.v1beta1.UTXOSnapshotResponse': {
+    "scalar.covenant.v1beta1.UTXOSnapshotResponse": {
       utxo_snapshot?: {
         /** Format: byte */
         custodian_group_uid?: string;
@@ -6103,13 +6185,15 @@ export interface components {
           /** Format: uint64 */
           amount_in_sats?: string;
           /** Reserved amount for each request id */
-          reserved?: {
-            [key: string]: string;
-          };
+          reservations?: {
+            request?: string;
+            /** Format: uint64 */
+            amount?: string;
+          }[];
         }[];
       };
     };
-    'scalar.covenant.v1beta1.UpdateCustodianGroupRequest': {
+    "scalar.covenant.v1beta1.UpdateCustodianGroupRequest": {
       /** Format: byte */
       sender?: string;
       uid?: string;
@@ -6120,11 +6204,11 @@ export interface components {
        * @default STATUS_UNSPECIFIED
        * @enum {string}
        */
-      status: 'STATUS_UNSPECIFIED' | 'STATUS_ACTIVATED' | 'STATUS_DEACTIVATED' | 'STATUS_PENDING';
+      status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED" | "STATUS_PENDING";
       description?: string;
       custodian?: string[];
     };
-    'scalar.covenant.v1beta1.UpdateCustodianGroupResponse': {
+    "scalar.covenant.v1beta1.UpdateCustodianGroupResponse": {
       /** CustodianGroup represents a group of custodians with their configuration
        *     uid is used as identity of the group, btc_pubkey is change by list of
        *     custodians */
@@ -6146,7 +6230,7 @@ export interface components {
          * @default STATUS_UNSPECIFIED
          * @enum {string}
          */
-        status: 'STATUS_UNSPECIFIED' | 'STATUS_ACTIVATED' | 'STATUS_DEACTIVATED' | 'STATUS_PENDING';
+        status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED" | "STATUS_PENDING";
         description?: string;
         custodians?: {
           name?: string;
@@ -6158,13 +6242,13 @@ export interface components {
            * @default STATUS_UNSPECIFIED
            * @enum {string}
            */
-          status: 'STATUS_UNSPECIFIED' | 'STATUS_ACTIVATED' | 'STATUS_DEACTIVATED' | 'STATUS_PENDING';
+          status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED" | "STATUS_PENDING";
           description?: string;
         }[];
       };
     };
     /** Pubkey used as key for lookup custodian to update other values */
-    'scalar.covenant.v1beta1.UpdateCustodianRequest': {
+    "scalar.covenant.v1beta1.UpdateCustodianRequest": {
       /** Format: byte */
       sender?: string;
       /** Format: byte */
@@ -6174,10 +6258,10 @@ export interface components {
        * @default STATUS_UNSPECIFIED
        * @enum {string}
        */
-      status: 'STATUS_UNSPECIFIED' | 'STATUS_ACTIVATED' | 'STATUS_DEACTIVATED' | 'STATUS_PENDING';
+      status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED" | "STATUS_PENDING";
       description?: string;
     };
-    'scalar.covenant.v1beta1.UpdateCustodianResponse': {
+    "scalar.covenant.v1beta1.UpdateCustodianResponse": {
       /** Custodian represents an individual custodian configuration */
       custodian?: {
         name?: string;
@@ -6189,7 +6273,7 @@ export interface components {
          * @default STATUS_UNSPECIFIED
          * @enum {string}
          */
-        status: 'STATUS_UNSPECIFIED' | 'STATUS_ACTIVATED' | 'STATUS_DEACTIVATED' | 'STATUS_PENDING';
+        status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED" | "STATUS_PENDING";
         description?: string;
       };
     };
@@ -6197,30 +6281,30 @@ export interface components {
      * @default KEY_STATE_UNSPECIFIED
      * @enum {string}
      */
-    'scalar.multisig.exported.v1beta1.KeyState':
-      | 'KEY_STATE_UNSPECIFIED'
-      | 'KEY_STATE_ASSIGNED'
-      | 'KEY_STATE_ACTIVE';
+    "scalar.multisig.exported.v1beta1.KeyState":
+      | "KEY_STATE_UNSPECIFIED"
+      | "KEY_STATE_ASSIGNED"
+      | "KEY_STATE_ACTIVE";
     /**
      * @default MULTISIG_STATE_UNSPECIFIED
      * @enum {string}
      */
-    'scalar.multisig.exported.v1beta1.MultisigState':
-      | 'MULTISIG_STATE_UNSPECIFIED'
-      | 'MULTISIG_STATE_PENDING'
-      | 'MULTISIG_STATE_COMPLETED';
+    "scalar.multisig.exported.v1beta1.MultisigState":
+      | "MULTISIG_STATE_UNSPECIFIED"
+      | "MULTISIG_STATE_PENDING"
+      | "MULTISIG_STATE_COMPLETED";
     /** @description KeyIDResponse contains the key ID of the key assigned to a given chain. */
-    'scalar.multisig.v1beta1.KeyIDResponse': {
+    "scalar.multisig.v1beta1.KeyIDResponse": {
       key_id?: string;
     };
     /** @description KeyResponse contains the key corresponding to a given key id. */
-    'scalar.multisig.v1beta1.KeyResponse': {
+    "scalar.multisig.v1beta1.KeyResponse": {
       key_id?: string;
       /**
        * @default KEY_STATE_UNSPECIFIED
        * @enum {string}
        */
-      state: 'KEY_STATE_UNSPECIFIED' | 'KEY_STATE_ASSIGNED' | 'KEY_STATE_ACTIVE';
+      state: "KEY_STATE_UNSPECIFIED" | "KEY_STATE_ASSIGNED" | "KEY_STATE_ACTIVE";
       /** Format: int64 */
       started_at?: string;
       /** Format: date-time */
@@ -6237,24 +6321,24 @@ export interface components {
         pub_key?: string;
       }[];
     };
-    'scalar.multisig.v1beta1.KeygenOptInRequest': {
+    "scalar.multisig.v1beta1.KeygenOptInRequest": {
       /** Format: byte */
       sender?: string;
     };
-    'scalar.multisig.v1beta1.KeygenOptInResponse': Record<string, never>;
-    'scalar.multisig.v1beta1.KeygenOptOutRequest': {
+    "scalar.multisig.v1beta1.KeygenOptInResponse": Record<string, never>;
+    "scalar.multisig.v1beta1.KeygenOptOutRequest": {
       /** Format: byte */
       sender?: string;
     };
-    'scalar.multisig.v1beta1.KeygenOptOutResponse': Record<string, never>;
-    'scalar.multisig.v1beta1.KeygenParticipant': {
+    "scalar.multisig.v1beta1.KeygenOptOutResponse": Record<string, never>;
+    "scalar.multisig.v1beta1.KeygenParticipant": {
       address?: string;
       /** Format: byte */
       weight?: string;
       pub_key?: string;
     };
     /** @description KeygenSessionResponse contains the keygen session info for a given key ID. */
-    'scalar.multisig.v1beta1.KeygenSessionResponse': {
+    "scalar.multisig.v1beta1.KeygenSessionResponse": {
       /** Format: int64 */
       started_at?: string;
       /** Format: date-time */
@@ -6269,7 +6353,7 @@ export interface components {
        * @default MULTISIG_STATE_UNSPECIFIED
        * @enum {string}
        */
-      state: 'MULTISIG_STATE_UNSPECIFIED' | 'MULTISIG_STATE_PENDING' | 'MULTISIG_STATE_COMPLETED';
+      state: "MULTISIG_STATE_UNSPECIFIED" | "MULTISIG_STATE_PENDING" | "MULTISIG_STATE_COMPLETED";
       /** Format: byte */
       keygen_threshold_weight?: string;
       /** Format: byte */
@@ -6286,11 +6370,11 @@ export interface components {
     };
     /** NextKeyIDResponse contains the key ID for the next rotation on the given
      *     chain */
-    'scalar.multisig.v1beta1.NextKeyIDResponse': {
+    "scalar.multisig.v1beta1.NextKeyIDResponse": {
       key_id?: string;
     };
     /** Params represent the genesis parameters for the module */
-    'scalar.multisig.v1beta1.Params': {
+    "scalar.multisig.v1beta1.Params": {
       keygen_threshold?: {
         /**
          * split threshold into Numerator and denominator to avoid floating point
@@ -6322,7 +6406,7 @@ export interface components {
       /** Format: uint64 */
       active_epoch_count?: string;
     };
-    'scalar.multisig.v1beta1.ParamsResponse': {
+    "scalar.multisig.v1beta1.ParamsResponse": {
       /** Params represent the genesis parameters for the module */
       params?: {
         keygen_threshold?: {
@@ -6357,19 +6441,19 @@ export interface components {
         active_epoch_count?: string;
       };
     };
-    'scalar.multisig.v1beta1.RotateKeyRequest': {
+    "scalar.multisig.v1beta1.RotateKeyRequest": {
       /** Format: byte */
       sender?: string;
       chain?: string;
       key_id?: string;
     };
-    'scalar.multisig.v1beta1.RotateKeyResponse': Record<string, never>;
-    'scalar.multisig.v1beta1.StartKeygenRequest': {
+    "scalar.multisig.v1beta1.RotateKeyResponse": Record<string, never>;
+    "scalar.multisig.v1beta1.StartKeygenRequest": {
       sender?: string;
       key_id?: string;
     };
-    'scalar.multisig.v1beta1.StartKeygenResponse': Record<string, never>;
-    'scalar.multisig.v1beta1.SubmitPubKeyRequest': {
+    "scalar.multisig.v1beta1.StartKeygenResponse": Record<string, never>;
+    "scalar.multisig.v1beta1.SubmitPubKeyRequest": {
       sender?: string;
       key_id?: string;
       /** Format: byte */
@@ -6377,15 +6461,15 @@ export interface components {
       /** Format: byte */
       signature?: string;
     };
-    'scalar.multisig.v1beta1.SubmitPubKeyResponse': Record<string, never>;
-    'scalar.multisig.v1beta1.SubmitSignatureRequest': {
+    "scalar.multisig.v1beta1.SubmitPubKeyResponse": Record<string, never>;
+    "scalar.multisig.v1beta1.SubmitSignatureRequest": {
       sender?: string;
       /** Format: uint64 */
       sig_id?: string;
       /** Format: byte */
       signature?: string;
     };
-    'scalar.multisig.v1beta1.SubmitSignatureResponse': Record<string, never>;
+    "scalar.multisig.v1beta1.SubmitSignatureResponse": Record<string, never>;
     /**
      * PageRequest is to be embedded in gRPC request messages for efficient
      *     pagination. Ex:
@@ -6394,7 +6478,7 @@ export interface components {
      *              PageRequest pagination = 2;
      *      }
      */
-    'cosmos.base.query.v1beta1.PageRequest': {
+    "cosmos.base.query.v1beta1.PageRequest": {
       /**
        * Format: byte
        * @description key is a value returned in PageResponse.next_key to begin
@@ -6438,7 +6522,7 @@ export interface components {
      *              repeated Bar results = 1;
      *              PageResponse page = 2;
      *      } */
-    'cosmos.base.query.v1beta1.PageResponse': {
+    "cosmos.base.query.v1beta1.PageResponse": {
       /**
        * next_key is the key to be passed to PageRequest.key to
        *     query the next page most efficiently
@@ -6453,7 +6537,7 @@ export interface components {
       total?: string;
     };
     /** CrossChainAddress represents a generalized address on any registered chain */
-    'scalar.nexus.exported.v1beta1.CrossChainAddress': {
+    "scalar.nexus.exported.v1beta1.CrossChainAddress": {
       /** Chain represents the properties of a registered blockchain */
       chain?: {
         /** The descriptor of the chain, e.g. "evm|11155111" */
@@ -6464,7 +6548,7 @@ export interface components {
          * @default KEY_TYPE_UNSPECIFIED
          * @enum {string}
          */
-        key_type: 'KEY_TYPE_UNSPECIFIED' | 'KEY_TYPE_NONE' | 'KEY_TYPE_THRESHOLD' | 'KEY_TYPE_MULTISIG';
+        key_type: "KEY_TYPE_UNSPECIFIED" | "KEY_TYPE_NONE" | "KEY_TYPE_THRESHOLD" | "KEY_TYPE_MULTISIG";
         /** the module has two types: chains and scalarnet */
         module?: string;
       };
@@ -6472,7 +6556,7 @@ export interface components {
     };
     /** CrossChainTransfer represents a generalized transfer of some asset to a
      *     registered blockchain */
-    'scalar.nexus.exported.v1beta1.CrossChainTransfer': {
+    "scalar.nexus.exported.v1beta1.CrossChainTransfer": {
       /** CrossChainAddress represents a generalized address on any registered chain */
       recipient?: {
         /** Chain represents the properties of a registered blockchain */
@@ -6485,7 +6569,7 @@ export interface components {
            * @default KEY_TYPE_UNSPECIFIED
            * @enum {string}
            */
-          key_type: 'KEY_TYPE_UNSPECIFIED' | 'KEY_TYPE_NONE' | 'KEY_TYPE_THRESHOLD' | 'KEY_TYPE_MULTISIG';
+          key_type: "KEY_TYPE_UNSPECIFIED" | "KEY_TYPE_NONE" | "KEY_TYPE_THRESHOLD" | "KEY_TYPE_MULTISIG";
           /** the module has two types: chains and scalarnet */
           module?: string;
         };
@@ -6506,15 +6590,15 @@ export interface components {
        * @enum {string}
        */
       state:
-        | 'TRANSFER_STATE_UNSPECIFIED'
-        | 'TRANSFER_STATE_PENDING'
-        | 'TRANSFER_STATE_ARCHIVED'
-        | 'TRANSFER_STATE_INSUFFICIENT_AMOUNT'
-        | 'TRANSFER_STATE_FAILED';
+        | "TRANSFER_STATE_UNSPECIFIED"
+        | "TRANSFER_STATE_PENDING"
+        | "TRANSFER_STATE_ARCHIVED"
+        | "TRANSFER_STATE_INSUFFICIENT_AMOUNT"
+        | "TRANSFER_STATE_FAILED";
       /** Format: byte */
       source_tx_hash?: string;
     };
-    'scalar.nexus.exported.v1beta1.FeeInfo': {
+    "scalar.nexus.exported.v1beta1.FeeInfo": {
       chain?: string;
       asset?: string;
       /** Format: byte */
@@ -6524,7 +6608,7 @@ export interface components {
       /** Format: byte */
       max_fee?: string;
     };
-    'scalar.nexus.exported.v1beta1.GeneralMessage': {
+    "scalar.nexus.exported.v1beta1.GeneralMessage": {
       id?: string;
       /** CrossChainAddress represents a generalized address on any registered chain */
       sender?: {
@@ -6538,7 +6622,7 @@ export interface components {
            * @default KEY_TYPE_UNSPECIFIED
            * @enum {string}
            */
-          key_type: 'KEY_TYPE_UNSPECIFIED' | 'KEY_TYPE_NONE' | 'KEY_TYPE_THRESHOLD' | 'KEY_TYPE_MULTISIG';
+          key_type: "KEY_TYPE_UNSPECIFIED" | "KEY_TYPE_NONE" | "KEY_TYPE_THRESHOLD" | "KEY_TYPE_MULTISIG";
           /** the module has two types: chains and scalarnet */
           module?: string;
         };
@@ -6556,7 +6640,7 @@ export interface components {
            * @default KEY_TYPE_UNSPECIFIED
            * @enum {string}
            */
-          key_type: 'KEY_TYPE_UNSPECIFIED' | 'KEY_TYPE_NONE' | 'KEY_TYPE_THRESHOLD' | 'KEY_TYPE_MULTISIG';
+          key_type: "KEY_TYPE_UNSPECIFIED" | "KEY_TYPE_NONE" | "KEY_TYPE_THRESHOLD" | "KEY_TYPE_MULTISIG";
           /** the module has two types: chains and scalarnet */
           module?: string;
         };
@@ -6569,11 +6653,11 @@ export interface components {
        * @enum {string}
        */
       status:
-        | 'STATUS_UNSPECIFIED'
-        | 'STATUS_APPROVED'
-        | 'STATUS_PROCESSING'
-        | 'STATUS_EXECUTED'
-        | 'STATUS_FAILED';
+        | "STATUS_UNSPECIFIED"
+        | "STATUS_APPROVED"
+        | "STATUS_PROCESSING"
+        | "STATUS_EXECUTED"
+        | "STATUS_FAILED";
       /** @description Coin defines a token with a denomination and an amount.
        *
        *     NOTE: The amount field is an Int which implements the custom method
@@ -6599,37 +6683,37 @@ export interface components {
      * @default STATUS_UNSPECIFIED
      * @enum {string}
      */
-    'scalar.nexus.exported.v1beta1.GeneralMessage.Status':
-      | 'STATUS_UNSPECIFIED'
-      | 'STATUS_APPROVED'
-      | 'STATUS_PROCESSING'
-      | 'STATUS_EXECUTED'
-      | 'STATUS_FAILED';
+    "scalar.nexus.exported.v1beta1.GeneralMessage.Status":
+      | "STATUS_UNSPECIFIED"
+      | "STATUS_APPROVED"
+      | "STATUS_PROCESSING"
+      | "STATUS_EXECUTED"
+      | "STATUS_FAILED";
     /**
      * @default TRANSFER_STATE_UNSPECIFIED
      * @enum {string}
      */
-    'scalar.nexus.exported.v1beta1.TransferState':
-      | 'TRANSFER_STATE_UNSPECIFIED'
-      | 'TRANSFER_STATE_PENDING'
-      | 'TRANSFER_STATE_ARCHIVED'
-      | 'TRANSFER_STATE_INSUFFICIENT_AMOUNT'
-      | 'TRANSFER_STATE_FAILED';
+    "scalar.nexus.exported.v1beta1.TransferState":
+      | "TRANSFER_STATE_UNSPECIFIED"
+      | "TRANSFER_STATE_PENDING"
+      | "TRANSFER_STATE_ARCHIVED"
+      | "TRANSFER_STATE_INSUFFICIENT_AMOUNT"
+      | "TRANSFER_STATE_FAILED";
     /** ActivateChainRequest represents a message to activate chains */
-    'scalar.nexus.v1beta1.ActivateChainRequest': {
+    "scalar.nexus.v1beta1.ActivateChainRequest": {
       /** Format: byte */
       sender?: string;
       chains?: string[];
     };
-    'scalar.nexus.v1beta1.ActivateChainResponse': Record<string, never>;
-    'scalar.nexus.v1beta1.AssetsResponse': {
+    "scalar.nexus.v1beta1.ActivateChainResponse": Record<string, never>;
+    "scalar.nexus.v1beta1.AssetsResponse": {
       assets?: string[];
     };
-    'scalar.nexus.v1beta1.ChainMaintainersResponse': {
+    "scalar.nexus.v1beta1.ChainMaintainersResponse": {
       maintainers?: string[];
     };
     /** ChainState represents the state of a registered blockchain */
-    'scalar.nexus.v1beta1.ChainState': {
+    "scalar.nexus.v1beta1.ChainState": {
       /** Chain represents the properties of a registered blockchain */
       chain?: {
         /** The descriptor of the chain, e.g. "evm|11155111" */
@@ -6640,7 +6724,7 @@ export interface components {
          * @default KEY_TYPE_UNSPECIFIED
          * @enum {string}
          */
-        key_type: 'KEY_TYPE_UNSPECIFIED' | 'KEY_TYPE_NONE' | 'KEY_TYPE_THRESHOLD' | 'KEY_TYPE_MULTISIG';
+        key_type: "KEY_TYPE_UNSPECIFIED" | "KEY_TYPE_NONE" | "KEY_TYPE_THRESHOLD" | "KEY_TYPE_MULTISIG";
         /** the module has two types: chains and scalarnet */
         module?: string;
       };
@@ -6675,7 +6759,7 @@ export interface components {
         chain?: string;
       }[];
     };
-    'scalar.nexus.v1beta1.ChainStateResponse': {
+    "scalar.nexus.v1beta1.ChainStateResponse": {
       /** ChainState represents the state of a registered blockchain */
       state?: {
         /** Chain represents the properties of a registered blockchain */
@@ -6688,7 +6772,7 @@ export interface components {
            * @default KEY_TYPE_UNSPECIFIED
            * @enum {string}
            */
-          key_type: 'KEY_TYPE_UNSPECIFIED' | 'KEY_TYPE_NONE' | 'KEY_TYPE_THRESHOLD' | 'KEY_TYPE_MULTISIG';
+          key_type: "KEY_TYPE_UNSPECIFIED" | "KEY_TYPE_NONE" | "KEY_TYPE_THRESHOLD" | "KEY_TYPE_MULTISIG";
           /** the module has two types: chains and scalarnet */
           module?: string;
         };
@@ -6728,30 +6812,30 @@ export interface components {
      * @default CHAIN_STATUS_UNSPECIFIED
      * @enum {string}
      */
-    'scalar.nexus.v1beta1.ChainStatus':
-      | 'CHAIN_STATUS_UNSPECIFIED'
-      | 'CHAIN_STATUS_ACTIVATED'
-      | 'CHAIN_STATUS_DEACTIVATED';
-    'scalar.nexus.v1beta1.ChainsByAssetResponse': {
+    "scalar.nexus.v1beta1.ChainStatus":
+      | "CHAIN_STATUS_UNSPECIFIED"
+      | "CHAIN_STATUS_ACTIVATED"
+      | "CHAIN_STATUS_DEACTIVATED";
+    "scalar.nexus.v1beta1.ChainsByAssetResponse": {
       chains?: string[];
     };
-    'scalar.nexus.v1beta1.ChainsResponse': {
+    "scalar.nexus.v1beta1.ChainsResponse": {
       chains?: string[];
     };
     /** DeactivateChainRequest represents a message to deactivate chains */
-    'scalar.nexus.v1beta1.DeactivateChainRequest': {
+    "scalar.nexus.v1beta1.DeactivateChainRequest": {
       /** Format: byte */
       sender?: string;
       chains?: string[];
     };
-    'scalar.nexus.v1beta1.DeactivateChainResponse': Record<string, never>;
-    'scalar.nexus.v1beta1.DeregisterChainMaintainerRequest': {
+    "scalar.nexus.v1beta1.DeactivateChainResponse": Record<string, never>;
+    "scalar.nexus.v1beta1.DeregisterChainMaintainerRequest": {
       /** Format: byte */
       sender?: string;
       chains?: string[];
     };
-    'scalar.nexus.v1beta1.DeregisterChainMaintainerResponse': Record<string, never>;
-    'scalar.nexus.v1beta1.FeeInfoResponse': {
+    "scalar.nexus.v1beta1.DeregisterChainMaintainerResponse": Record<string, never>;
+    "scalar.nexus.v1beta1.FeeInfoResponse": {
       fee_info?: {
         chain?: string;
         asset?: string;
@@ -6763,10 +6847,10 @@ export interface components {
         max_fee?: string;
       };
     };
-    'scalar.nexus.v1beta1.LatestDepositAddressResponse': {
+    "scalar.nexus.v1beta1.LatestDepositAddressResponse": {
       deposit_addr?: string;
     };
-    'scalar.nexus.v1beta1.MaintainerState': {
+    "scalar.nexus.v1beta1.MaintainerState": {
       /** Format: byte */
       address?: string;
       missing_votes?: {
@@ -6789,7 +6873,7 @@ export interface components {
       };
       chain?: string;
     };
-    'scalar.nexus.v1beta1.MessageResponse': {
+    "scalar.nexus.v1beta1.MessageResponse": {
       message?: {
         id?: string;
         /** CrossChainAddress represents a generalized address on any registered chain */
@@ -6804,7 +6888,7 @@ export interface components {
              * @default KEY_TYPE_UNSPECIFIED
              * @enum {string}
              */
-            key_type: 'KEY_TYPE_UNSPECIFIED' | 'KEY_TYPE_NONE' | 'KEY_TYPE_THRESHOLD' | 'KEY_TYPE_MULTISIG';
+            key_type: "KEY_TYPE_UNSPECIFIED" | "KEY_TYPE_NONE" | "KEY_TYPE_THRESHOLD" | "KEY_TYPE_MULTISIG";
             /** the module has two types: chains and scalarnet */
             module?: string;
           };
@@ -6822,7 +6906,7 @@ export interface components {
              * @default KEY_TYPE_UNSPECIFIED
              * @enum {string}
              */
-            key_type: 'KEY_TYPE_UNSPECIFIED' | 'KEY_TYPE_NONE' | 'KEY_TYPE_THRESHOLD' | 'KEY_TYPE_MULTISIG';
+            key_type: "KEY_TYPE_UNSPECIFIED" | "KEY_TYPE_NONE" | "KEY_TYPE_THRESHOLD" | "KEY_TYPE_MULTISIG";
             /** the module has two types: chains and scalarnet */
             module?: string;
           };
@@ -6835,11 +6919,11 @@ export interface components {
          * @enum {string}
          */
         status:
-          | 'STATUS_UNSPECIFIED'
-          | 'STATUS_APPROVED'
-          | 'STATUS_PROCESSING'
-          | 'STATUS_EXECUTED'
-          | 'STATUS_FAILED';
+          | "STATUS_UNSPECIFIED"
+          | "STATUS_APPROVED"
+          | "STATUS_PROCESSING"
+          | "STATUS_EXECUTED"
+          | "STATUS_FAILED";
         /** @description Coin defines a token with a denomination and an amount.
          *
          *     NOTE: The amount field is an Int which implements the custom method
@@ -6863,7 +6947,7 @@ export interface components {
       };
     };
     /** Params represent the genesis parameters for the module */
-    'scalar.nexus.v1beta1.Params': {
+    "scalar.nexus.v1beta1.Params": {
       chain_activation_threshold?: {
         /**
          * split threshold into Numerator and denominator to avoid floating point
@@ -6901,7 +6985,7 @@ export interface components {
       /** Format: uint64 */
       end_blocker_limit?: string;
     };
-    'scalar.nexus.v1beta1.ParamsResponse': {
+    "scalar.nexus.v1beta1.ParamsResponse": {
       /** Params represent the genesis parameters for the module */
       params?: {
         chain_activation_threshold?: {
@@ -6942,13 +7026,13 @@ export interface components {
         end_blocker_limit?: string;
       };
     };
-    'scalar.nexus.v1beta1.RecipientAddressResponse': {
+    "scalar.nexus.v1beta1.RecipientAddressResponse": {
       recipient_addr?: string;
       recipient_chain?: string;
     };
     /** RegisterAssetFeeRequest represents a message to register the transfer fee
      *     info associated to an asset on a chain */
-    'scalar.nexus.v1beta1.RegisterAssetFeeRequest': {
+    "scalar.nexus.v1beta1.RegisterAssetFeeRequest": {
       /** Format: byte */
       sender?: string;
       fee_info?: {
@@ -6962,16 +7046,16 @@ export interface components {
         max_fee?: string;
       };
     };
-    'scalar.nexus.v1beta1.RegisterAssetFeeResponse': Record<string, never>;
-    'scalar.nexus.v1beta1.RegisterChainMaintainerRequest': {
+    "scalar.nexus.v1beta1.RegisterAssetFeeResponse": Record<string, never>;
+    "scalar.nexus.v1beta1.RegisterChainMaintainerRequest": {
       /** Format: byte */
       sender?: string;
       chains?: string[];
     };
-    'scalar.nexus.v1beta1.RegisterChainMaintainerResponse': Record<string, never>;
+    "scalar.nexus.v1beta1.RegisterChainMaintainerResponse": Record<string, never>;
     /** SetTransferRateLimitRequest represents a message to set rate limits on
      *     transfers */
-    'scalar.nexus.v1beta1.SetTransferRateLimitRequest': {
+    "scalar.nexus.v1beta1.SetTransferRateLimitRequest": {
       /** Format: byte */
       sender?: string;
       chain?: string;
@@ -6985,8 +7069,8 @@ export interface components {
       };
       window?: string;
     };
-    'scalar.nexus.v1beta1.SetTransferRateLimitResponse': Record<string, never>;
-    'scalar.nexus.v1beta1.TransferFeeResponse': {
+    "scalar.nexus.v1beta1.SetTransferRateLimitResponse": Record<string, never>;
+    "scalar.nexus.v1beta1.TransferFeeResponse": {
       /** @description Coin defines a token with a denomination and an amount.
        *
        *     NOTE: The amount field is an Int which implements the custom method
@@ -6996,7 +7080,7 @@ export interface components {
         amount?: string;
       };
     };
-    'scalar.nexus.v1beta1.TransferRateLimit': {
+    "scalar.nexus.v1beta1.TransferRateLimit": {
       /** Format: byte */
       limit?: string;
       window?: string;
@@ -7011,7 +7095,7 @@ export interface components {
       /** Format: byte */
       to?: string;
     };
-    'scalar.nexus.v1beta1.TransferRateLimitResponse': {
+    "scalar.nexus.v1beta1.TransferRateLimitResponse": {
       transfer_rate_limit?: {
         /** Format: byte */
         limit?: string;
@@ -7028,7 +7112,7 @@ export interface components {
         to?: string;
       };
     };
-    'scalar.nexus.v1beta1.TransfersForChainResponse': {
+    "scalar.nexus.v1beta1.TransfersForChainResponse": {
       transfers?: {
         /** CrossChainAddress represents a generalized address on any registered chain */
         recipient?: {
@@ -7042,7 +7126,7 @@ export interface components {
              * @default KEY_TYPE_UNSPECIFIED
              * @enum {string}
              */
-            key_type: 'KEY_TYPE_UNSPECIFIED' | 'KEY_TYPE_NONE' | 'KEY_TYPE_THRESHOLD' | 'KEY_TYPE_MULTISIG';
+            key_type: "KEY_TYPE_UNSPECIFIED" | "KEY_TYPE_NONE" | "KEY_TYPE_THRESHOLD" | "KEY_TYPE_MULTISIG";
             /** the module has two types: chains and scalarnet */
             module?: string;
           };
@@ -7063,11 +7147,11 @@ export interface components {
          * @enum {string}
          */
         state:
-          | 'TRANSFER_STATE_UNSPECIFIED'
-          | 'TRANSFER_STATE_PENDING'
-          | 'TRANSFER_STATE_ARCHIVED'
-          | 'TRANSFER_STATE_INSUFFICIENT_AMOUNT'
-          | 'TRANSFER_STATE_FAILED';
+          | "TRANSFER_STATE_UNSPECIFIED"
+          | "TRANSFER_STATE_PENDING"
+          | "TRANSFER_STATE_ARCHIVED"
+          | "TRANSFER_STATE_INSUFFICIENT_AMOUNT"
+          | "TRANSFER_STATE_FAILED";
         /** Format: byte */
         source_tx_hash?: string;
       }[];
@@ -7093,7 +7177,7 @@ export interface components {
         total?: string;
       };
     };
-    'scalar.utils.v1beta1.Bitmap': {
+    "scalar.utils.v1beta1.Bitmap": {
       true_count_cache?: {
         cumulative_value?: string[];
         /** Format: int32 */
@@ -7102,25 +7186,25 @@ export interface components {
         max_size?: number;
       };
     };
-    'scalar.utils.v1beta1.CircularBuffer': {
+    "scalar.utils.v1beta1.CircularBuffer": {
       cumulative_value?: string[];
       /** Format: int32 */
       index?: number;
       /** Format: int32 */
       max_size?: number;
     };
-    'scalar.reward.v1beta1.InflationRateResponse': {
+    "scalar.reward.v1beta1.InflationRateResponse": {
       /** Format: byte */
       inflation_rate?: string;
     };
     /** Params represent the genesis parameters for the module */
-    'scalar.reward.v1beta1.Params': {
+    "scalar.reward.v1beta1.Params": {
       /** Format: byte */
       external_chain_voting_inflation_rate?: string;
       /** Format: byte */
       key_mgmt_relative_inflation_rate?: string;
     };
-    'scalar.reward.v1beta1.ParamsResponse': {
+    "scalar.reward.v1beta1.ParamsResponse": {
       /** Params represent the genesis parameters for the module */
       params?: {
         /** Format: byte */
@@ -7129,7 +7213,7 @@ export interface components {
         key_mgmt_relative_inflation_rate?: string;
       };
     };
-    'scalar.reward.v1beta1.RefundMsgRequest': {
+    "scalar.reward.v1beta1.RefundMsgRequest": {
       /** Format: byte */
       sender?: string;
       /** @description `Any` contains an arbitrary serialized protocol buffer message along with a
@@ -7250,51 +7334,51 @@ export interface components {
         value?: string;
       };
     };
-    'scalar.reward.v1beta1.RefundMsgResponse': {
+    "scalar.reward.v1beta1.RefundMsgResponse": {
       /** Format: byte */
       data?: string;
       log?: string;
     };
-    'scalar.snapshot.v1beta1.DeactivateProxyRequest': {
+    "scalar.snapshot.v1beta1.DeactivateProxyRequest": {
       /** Format: byte */
       sender?: string;
     };
-    'scalar.snapshot.v1beta1.DeactivateProxyResponse': Record<string, never>;
+    "scalar.snapshot.v1beta1.DeactivateProxyResponse": Record<string, never>;
     /** Params represent the genesis parameters for the module */
-    'scalar.snapshot.v1beta1.Params': {
+    "scalar.snapshot.v1beta1.Params": {
       /** Format: int64 */
       min_proxy_balance?: string;
     };
-    'scalar.snapshot.v1beta1.ParamsResponse': {
+    "scalar.snapshot.v1beta1.ParamsResponse": {
       /** Params represent the genesis parameters for the module */
       params?: {
         /** Format: int64 */
         min_proxy_balance?: string;
       };
     };
-    'scalar.snapshot.v1beta1.RegisterProxyRequest': {
+    "scalar.snapshot.v1beta1.RegisterProxyRequest": {
       /** Format: byte */
       sender?: string;
       /** Format: byte */
       proxy_addr?: string;
     };
-    'scalar.snapshot.v1beta1.RegisterProxyResponse': Record<string, never>;
+    "scalar.snapshot.v1beta1.RegisterProxyResponse": Record<string, never>;
     /** KeyRequirement defines requirements for keys */
-    'scalar.tss.exported.v1beta1.KeyRequirement': {
+    "scalar.tss.exported.v1beta1.KeyRequirement": {
       /**
        * @default KEY_ROLE_UNSPECIFIED
        * @enum {string}
        */
       key_role:
-        | 'KEY_ROLE_UNSPECIFIED'
-        | 'KEY_ROLE_MASTER_KEY'
-        | 'KEY_ROLE_SECONDARY_KEY'
-        | 'KEY_ROLE_EXTERNAL_KEY';
+        | "KEY_ROLE_UNSPECIFIED"
+        | "KEY_ROLE_MASTER_KEY"
+        | "KEY_ROLE_SECONDARY_KEY"
+        | "KEY_ROLE_EXTERNAL_KEY";
       /**
        * @default KEY_TYPE_UNSPECIFIED
        * @enum {string}
        */
-      key_type: 'KEY_TYPE_UNSPECIFIED' | 'KEY_TYPE_NONE' | 'KEY_TYPE_THRESHOLD' | 'KEY_TYPE_MULTISIG';
+      key_type: "KEY_TYPE_UNSPECIFIED" | "KEY_TYPE_NONE" | "KEY_TYPE_THRESHOLD" | "KEY_TYPE_MULTISIG";
       min_keygen_threshold?: {
         /**
          * split threshold into Numerator and denominator to avoid floating point
@@ -7320,9 +7404,9 @@ export interface components {
        * @enum {string}
        */
       key_share_distribution_policy:
-        | 'KEY_SHARE_DISTRIBUTION_POLICY_UNSPECIFIED'
-        | 'KEY_SHARE_DISTRIBUTION_POLICY_WEIGHTED_BY_STAKE'
-        | 'KEY_SHARE_DISTRIBUTION_POLICY_ONE_PER_VALIDATOR';
+        | "KEY_SHARE_DISTRIBUTION_POLICY_UNSPECIFIED"
+        | "KEY_SHARE_DISTRIBUTION_POLICY_WEIGHTED_BY_STAKE"
+        | "KEY_SHARE_DISTRIBUTION_POLICY_ONE_PER_VALIDATOR";
       /** Format: int64 */
       max_total_share_count?: string;
       /** Format: int64 */
@@ -7356,28 +7440,28 @@ export interface components {
      * @default KEY_ROLE_UNSPECIFIED
      * @enum {string}
      */
-    'scalar.tss.exported.v1beta1.KeyRole':
-      | 'KEY_ROLE_UNSPECIFIED'
-      | 'KEY_ROLE_MASTER_KEY'
-      | 'KEY_ROLE_SECONDARY_KEY'
-      | 'KEY_ROLE_EXTERNAL_KEY';
+    "scalar.tss.exported.v1beta1.KeyRole":
+      | "KEY_ROLE_UNSPECIFIED"
+      | "KEY_ROLE_MASTER_KEY"
+      | "KEY_ROLE_SECONDARY_KEY"
+      | "KEY_ROLE_EXTERNAL_KEY";
     /**
      * @default KEY_SHARE_DISTRIBUTION_POLICY_UNSPECIFIED
      * @enum {string}
      */
-    'scalar.tss.exported.v1beta1.KeyShareDistributionPolicy':
-      | 'KEY_SHARE_DISTRIBUTION_POLICY_UNSPECIFIED'
-      | 'KEY_SHARE_DISTRIBUTION_POLICY_WEIGHTED_BY_STAKE'
-      | 'KEY_SHARE_DISTRIBUTION_POLICY_ONE_PER_VALIDATOR';
-    'scalar.tss.v1beta1.HeartBeatRequest': {
+    "scalar.tss.exported.v1beta1.KeyShareDistributionPolicy":
+      | "KEY_SHARE_DISTRIBUTION_POLICY_UNSPECIFIED"
+      | "KEY_SHARE_DISTRIBUTION_POLICY_WEIGHTED_BY_STAKE"
+      | "KEY_SHARE_DISTRIBUTION_POLICY_ONE_PER_VALIDATOR";
+    "scalar.tss.v1beta1.HeartBeatRequest": {
       /** Format: byte */
       sender?: string;
       /** Deprecated: this field will be removed in the next release */
       key_ids?: string[];
     };
-    'scalar.tss.v1beta1.HeartBeatResponse': Record<string, never>;
+    "scalar.tss.v1beta1.HeartBeatResponse": Record<string, never>;
     /** Params is the parameter set for this module */
-    'scalar.tss.v1beta1.Params': {
+    "scalar.tss.v1beta1.Params": {
       /** KeyRequirements defines the requirement for each key role */
       key_requirements?: {
         /**
@@ -7385,15 +7469,15 @@ export interface components {
          * @enum {string}
          */
         key_role:
-          | 'KEY_ROLE_UNSPECIFIED'
-          | 'KEY_ROLE_MASTER_KEY'
-          | 'KEY_ROLE_SECONDARY_KEY'
-          | 'KEY_ROLE_EXTERNAL_KEY';
+          | "KEY_ROLE_UNSPECIFIED"
+          | "KEY_ROLE_MASTER_KEY"
+          | "KEY_ROLE_SECONDARY_KEY"
+          | "KEY_ROLE_EXTERNAL_KEY";
         /**
          * @default KEY_TYPE_UNSPECIFIED
          * @enum {string}
          */
-        key_type: 'KEY_TYPE_UNSPECIFIED' | 'KEY_TYPE_NONE' | 'KEY_TYPE_THRESHOLD' | 'KEY_TYPE_MULTISIG';
+        key_type: "KEY_TYPE_UNSPECIFIED" | "KEY_TYPE_NONE" | "KEY_TYPE_THRESHOLD" | "KEY_TYPE_MULTISIG";
         min_keygen_threshold?: {
           /**
            * split threshold into Numerator and denominator to avoid floating point
@@ -7419,9 +7503,9 @@ export interface components {
          * @enum {string}
          */
         key_share_distribution_policy:
-          | 'KEY_SHARE_DISTRIBUTION_POLICY_UNSPECIFIED'
-          | 'KEY_SHARE_DISTRIBUTION_POLICY_WEIGHTED_BY_STAKE'
-          | 'KEY_SHARE_DISTRIBUTION_POLICY_ONE_PER_VALIDATOR';
+          | "KEY_SHARE_DISTRIBUTION_POLICY_UNSPECIFIED"
+          | "KEY_SHARE_DISTRIBUTION_POLICY_WEIGHTED_BY_STAKE"
+          | "KEY_SHARE_DISTRIBUTION_POLICY_ONE_PER_VALIDATOR";
         /** Format: int64 */
         max_total_share_count?: string;
         /** Format: int64 */
@@ -7493,7 +7577,7 @@ export interface components {
       /** Format: int64 */
       tss_signed_blocks_window?: string;
     };
-    'scalar.tss.v1beta1.ParamsResponse': {
+    "scalar.tss.v1beta1.ParamsResponse": {
       /** Params is the parameter set for this module */
       params?: {
         /** KeyRequirements defines the requirement for each key role */
@@ -7503,15 +7587,15 @@ export interface components {
            * @enum {string}
            */
           key_role:
-            | 'KEY_ROLE_UNSPECIFIED'
-            | 'KEY_ROLE_MASTER_KEY'
-            | 'KEY_ROLE_SECONDARY_KEY'
-            | 'KEY_ROLE_EXTERNAL_KEY';
+            | "KEY_ROLE_UNSPECIFIED"
+            | "KEY_ROLE_MASTER_KEY"
+            | "KEY_ROLE_SECONDARY_KEY"
+            | "KEY_ROLE_EXTERNAL_KEY";
           /**
            * @default KEY_TYPE_UNSPECIFIED
            * @enum {string}
            */
-          key_type: 'KEY_TYPE_UNSPECIFIED' | 'KEY_TYPE_NONE' | 'KEY_TYPE_THRESHOLD' | 'KEY_TYPE_MULTISIG';
+          key_type: "KEY_TYPE_UNSPECIFIED" | "KEY_TYPE_NONE" | "KEY_TYPE_THRESHOLD" | "KEY_TYPE_MULTISIG";
           min_keygen_threshold?: {
             /**
              * split threshold into Numerator and denominator to avoid floating point
@@ -7537,9 +7621,9 @@ export interface components {
            * @enum {string}
            */
           key_share_distribution_policy:
-            | 'KEY_SHARE_DISTRIBUTION_POLICY_UNSPECIFIED'
-            | 'KEY_SHARE_DISTRIBUTION_POLICY_WEIGHTED_BY_STAKE'
-            | 'KEY_SHARE_DISTRIBUTION_POLICY_ONE_PER_VALIDATOR';
+            | "KEY_SHARE_DISTRIBUTION_POLICY_UNSPECIFIED"
+            | "KEY_SHARE_DISTRIBUTION_POLICY_WEIGHTED_BY_STAKE"
+            | "KEY_SHARE_DISTRIBUTION_POLICY_ONE_PER_VALIDATOR";
           /** Format: int64 */
           max_total_share_count?: string;
           /** Format: int64 */
@@ -7615,7 +7699,7 @@ export interface components {
     /** @description LegacyAminoPubKey specifies a public key type
      *     which nests multiple public keys and a threshold,
      *     it uses legacy amino address rules. */
-    'cosmos.crypto.multisig.LegacyAminoPubKey': {
+    "cosmos.crypto.multisig.LegacyAminoPubKey": {
       /** Format: int64 */
       threshold?: number;
       public_keys?: {
@@ -7655,22 +7739,22 @@ export interface components {
       }[];
     };
     /** DeregisterController represents a message to deregister a controller account */
-    'scalar.permission.v1beta1.DeregisterControllerRequest': {
+    "scalar.permission.v1beta1.DeregisterControllerRequest": {
       /** Format: byte */
       sender?: string;
       /** Format: byte */
       controller?: string;
     };
-    'scalar.permission.v1beta1.DeregisterControllerResponse': Record<string, never>;
+    "scalar.permission.v1beta1.DeregisterControllerResponse": Record<string, never>;
     /** Params represent the genesis parameters for the module */
-    'scalar.permission.v1beta1.Params': Record<string, never>;
-    'scalar.permission.v1beta1.ParamsResponse': {
+    "scalar.permission.v1beta1.Params": Record<string, never>;
+    "scalar.permission.v1beta1.ParamsResponse": {
       /** Params represent the genesis parameters for the module */
       params?: Record<string, never>;
     };
     /** QueryGovernanceKeyResponse is the response type for the
      *     Query/GovernanceKey RPC method */
-    'scalar.permission.v1beta1.QueryGovernanceKeyResponse': {
+    "scalar.permission.v1beta1.QueryGovernanceKeyResponse": {
       /** @description LegacyAminoPubKey specifies a public key type
        *     which nests multiple public keys and a threshold,
        *     it uses legacy amino address rules. */
@@ -7715,14 +7799,14 @@ export interface components {
       };
     };
     /** MsgRegisterController represents a message to register a controller account */
-    'scalar.permission.v1beta1.RegisterControllerRequest': {
+    "scalar.permission.v1beta1.RegisterControllerRequest": {
       /** Format: byte */
       sender?: string;
       /** Format: byte */
       controller?: string;
     };
-    'scalar.permission.v1beta1.RegisterControllerResponse': Record<string, never>;
-    'scalar.permission.v1beta1.UpdateGovernanceKeyRequest': {
+    "scalar.permission.v1beta1.RegisterControllerResponse": Record<string, never>;
+    "scalar.permission.v1beta1.UpdateGovernanceKeyRequest": {
       /** Format: byte */
       sender?: string;
       /** @description LegacyAminoPubKey specifies a public key type
@@ -7768,9 +7852,9 @@ export interface components {
         }[];
       };
     };
-    'scalar.permission.v1beta1.UpdateGovernanceKeyResponse': Record<string, never>;
+    "scalar.permission.v1beta1.UpdateGovernanceKeyResponse": Record<string, never>;
     /** Params represent the genesis parameters for the module */
-    'scalar.vote.v1beta1.Params': {
+    "scalar.vote.v1beta1.Params": {
       default_voting_threshold?: {
         /**
          * split threshold into Numerator and denominator to avoid floating point
@@ -7784,7 +7868,7 @@ export interface components {
       /** Format: int64 */
       end_blocker_limit?: string;
     };
-    'scalar.vote.v1beta1.ParamsResponse': {
+    "scalar.vote.v1beta1.ParamsResponse": {
       /** Params represent the genesis parameters for the module */
       params?: {
         default_voting_threshold?: {
@@ -7801,10 +7885,9 @@ export interface components {
         end_blocker_limit?: string;
       };
     };
-    'scalar.vote.v1beta1.VoteRequest': {
+    "scalar.vote.v1beta1.VoteRequest": {
       /** Format: byte */
       sender?: string;
-      /** Format: uint64 */
       poll_id?: string;
       /** @description `Any` contains an arbitrary serialized protocol buffer message along with a
        *     URL that describes the type of the serialized message.
@@ -7924,11 +8007,11 @@ export interface components {
         value?: string;
       };
     };
-    'scalar.vote.v1beta1.VoteResponse': {
+    "scalar.vote.v1beta1.VoteResponse": {
       log?: string;
     };
     /** @description Params defines the parameters for the auth module. */
-    'cosmos.auth.v1beta1.Params': {
+    "cosmos.auth.v1beta1.Params": {
       /** Format: uint64 */
       max_memo_characters?: string;
       /** Format: uint64 */
@@ -7941,7 +8024,7 @@ export interface components {
       sig_verify_cost_secp256k1?: string;
     };
     /** @description QueryAccountResponse is the response type for the Query/Account RPC method. */
-    'cosmos.auth.v1beta1.QueryAccountResponse': {
+    "cosmos.auth.v1beta1.QueryAccountResponse": {
       /** @description `Any` contains an arbitrary serialized protocol buffer message along with a
        *     URL that describes the type of the serialized message.
        *
@@ -8063,7 +8146,7 @@ export interface components {
     /** @description QueryAccountsResponse is the response type for the Query/Accounts RPC method.
      *
      *     Since: cosmos-sdk 0.43 */
-    'cosmos.auth.v1beta1.QueryAccountsResponse': {
+    "cosmos.auth.v1beta1.QueryAccountsResponse": {
       /** accounts are the existing accounts */
       accounts?: {
         /** @description A URL/resource name that uniquely identifies the type of the serialized
@@ -8117,7 +8200,7 @@ export interface components {
       };
     };
     /** @description QueryModuleAccountByNameResponse is the response type for the Query/ModuleAccountByName RPC method. */
-    'cosmos.auth.v1beta1.QueryModuleAccountByNameResponse': {
+    "cosmos.auth.v1beta1.QueryModuleAccountByNameResponse": {
       /** @description `Any` contains an arbitrary serialized protocol buffer message along with a
        *     URL that describes the type of the serialized message.
        *
@@ -8237,7 +8320,7 @@ export interface components {
       };
     };
     /** @description QueryParamsResponse is the response type for the Query/Params RPC method. */
-    'cosmos.auth.v1beta1.QueryParamsResponse': {
+    "cosmos.auth.v1beta1.QueryParamsResponse": {
       /** @description params defines the parameters of the module. */
       params?: {
         /** Format: uint64 */
@@ -8254,7 +8337,7 @@ export interface components {
     };
     /** @description DenomUnit represents a struct that describes a given
      *     denomination unit of the basic token. */
-    'cosmos.bank.v1beta1.DenomUnit': {
+    "cosmos.bank.v1beta1.DenomUnit": {
       /** @description denom represents the string name of the given denom unit (e.g uatom). */
       denom?: string;
       /**
@@ -8271,7 +8354,7 @@ export interface components {
     };
     /** @description Metadata represents a struct that describes
      *     a basic token. */
-    'cosmos.bank.v1beta1.Metadata': {
+    "cosmos.bank.v1beta1.Metadata": {
       description?: string;
       /** denom_units represents the list of DenomUnit's for a given coin */
       denom_units?: {
@@ -8306,7 +8389,7 @@ export interface components {
       symbol?: string;
     };
     /** @description Params defines the parameters for the bank module. */
-    'cosmos.bank.v1beta1.Params': {
+    "cosmos.bank.v1beta1.Params": {
       send_enabled?: {
         denom?: string;
         /** Format: boolean */
@@ -8317,7 +8400,7 @@ export interface components {
     };
     /** @description QueryAllBalancesResponse is the response type for the Query/AllBalances RPC
      *     method. */
-    'cosmos.bank.v1beta1.QueryAllBalancesResponse': {
+    "cosmos.bank.v1beta1.QueryAllBalancesResponse": {
       /** @description balances is the balances of all the coins. */
       balances?: {
         denom?: string;
@@ -8340,7 +8423,7 @@ export interface components {
       };
     };
     /** @description QueryBalanceResponse is the response type for the Query/Balance RPC method. */
-    'cosmos.bank.v1beta1.QueryBalanceResponse': {
+    "cosmos.bank.v1beta1.QueryBalanceResponse": {
       /** @description Coin defines a token with a denomination and an amount.
        *
        *     NOTE: The amount field is an Int which implements the custom method
@@ -8352,7 +8435,7 @@ export interface components {
     };
     /** @description QueryDenomMetadataResponse is the response type for the Query/DenomMetadata RPC
      *     method. */
-    'cosmos.bank.v1beta1.QueryDenomMetadataResponse': {
+    "cosmos.bank.v1beta1.QueryDenomMetadataResponse": {
       /** @description Metadata represents a struct that describes
        *     a basic token. */
       metadata?: {
@@ -8392,7 +8475,7 @@ export interface components {
     };
     /** @description QueryDenomsMetadataResponse is the response type for the Query/DenomsMetadata RPC
      *     method. */
-    'cosmos.bank.v1beta1.QueryDenomsMetadataResponse': {
+    "cosmos.bank.v1beta1.QueryDenomsMetadataResponse": {
       /** @description metadata provides the client information for all the registered tokens. */
       metadatas?: {
         description?: string;
@@ -8445,7 +8528,7 @@ export interface components {
       };
     };
     /** @description QueryParamsResponse defines the response type for querying x/bank parameters. */
-    'cosmos.bank.v1beta1.QueryParamsResponse': {
+    "cosmos.bank.v1beta1.QueryParamsResponse": {
       /** @description Params defines the parameters for the bank module. */
       params?: {
         send_enabled?: {
@@ -8459,7 +8542,7 @@ export interface components {
     };
     /** @description QuerySpendableBalancesResponse defines the gRPC response structure for querying
      *     an account's spendable balances. */
-    'cosmos.bank.v1beta1.QuerySpendableBalancesResponse': {
+    "cosmos.bank.v1beta1.QuerySpendableBalancesResponse": {
       /** @description balances is the spendable balances of all the coins. */
       balances?: {
         denom?: string;
@@ -8482,7 +8565,7 @@ export interface components {
       };
     };
     /** @description QuerySupplyOfResponse is the response type for the Query/SupplyOf RPC method. */
-    'cosmos.bank.v1beta1.QuerySupplyOfResponse': {
+    "cosmos.bank.v1beta1.QuerySupplyOfResponse": {
       /** @description Coin defines a token with a denomination and an amount.
        *
        *     NOTE: The amount field is an Int which implements the custom method
@@ -8494,7 +8577,7 @@ export interface components {
     };
     /** QueryTotalSupplyResponse is the response type for the Query/TotalSupply RPC
      *     method */
-    'cosmos.bank.v1beta1.QueryTotalSupplyResponse': {
+    "cosmos.bank.v1beta1.QueryTotalSupplyResponse": {
       /** supply is the supply of the coins */
       supply?: {
         denom?: string;
@@ -8520,13 +8603,13 @@ export interface components {
     };
     /** @description SendEnabled maps coin denom to a send_enabled status (whether a denom is
      *     sendable). */
-    'cosmos.bank.v1beta1.SendEnabled': {
+    "cosmos.bank.v1beta1.SendEnabled": {
       denom?: string;
       /** Format: boolean */
       enabled?: boolean;
     };
     /** @description GetBlockByHeightResponse is the response type for the Query/GetBlockByHeight RPC method. */
-    'cosmos.base.tendermint.v1beta1.GetBlockByHeightResponse': {
+    "cosmos.base.tendermint.v1beta1.GetBlockByHeightResponse": {
       /** BlockID */
       block_id?: {
         /** Format: byte */
@@ -8622,10 +8705,10 @@ export interface components {
                  * @enum {string}
                  */
                 type:
-                  | 'SIGNED_MSG_TYPE_UNKNOWN'
-                  | 'SIGNED_MSG_TYPE_PREVOTE'
-                  | 'SIGNED_MSG_TYPE_PRECOMMIT'
-                  | 'SIGNED_MSG_TYPE_PROPOSAL';
+                  | "SIGNED_MSG_TYPE_UNKNOWN"
+                  | "SIGNED_MSG_TYPE_PREVOTE"
+                  | "SIGNED_MSG_TYPE_PRECOMMIT"
+                  | "SIGNED_MSG_TYPE_PROPOSAL";
                 /** Format: int64 */
                 height?: string;
                 /** Format: int32 */
@@ -8663,10 +8746,10 @@ export interface components {
                  * @enum {string}
                  */
                 type:
-                  | 'SIGNED_MSG_TYPE_UNKNOWN'
-                  | 'SIGNED_MSG_TYPE_PREVOTE'
-                  | 'SIGNED_MSG_TYPE_PRECOMMIT'
-                  | 'SIGNED_MSG_TYPE_PROPOSAL';
+                  | "SIGNED_MSG_TYPE_UNKNOWN"
+                  | "SIGNED_MSG_TYPE_PREVOTE"
+                  | "SIGNED_MSG_TYPE_PRECOMMIT"
+                  | "SIGNED_MSG_TYPE_PROPOSAL";
                 /** Format: int64 */
                 height?: string;
                 /** Format: int32 */
@@ -8787,10 +8870,10 @@ export interface components {
                        * @enum {string}
                        */
                       block_id_flag:
-                        | 'BLOCK_ID_FLAG_UNKNOWN'
-                        | 'BLOCK_ID_FLAG_ABSENT'
-                        | 'BLOCK_ID_FLAG_COMMIT'
-                        | 'BLOCK_ID_FLAG_NIL';
+                        | "BLOCK_ID_FLAG_UNKNOWN"
+                        | "BLOCK_ID_FLAG_ABSENT"
+                        | "BLOCK_ID_FLAG_COMMIT"
+                        | "BLOCK_ID_FLAG_NIL";
                       /** Format: byte */
                       validator_address?: string;
                       /** Format: date-time */
@@ -8884,10 +8967,10 @@ export interface components {
              * @enum {string}
              */
             block_id_flag:
-              | 'BLOCK_ID_FLAG_UNKNOWN'
-              | 'BLOCK_ID_FLAG_ABSENT'
-              | 'BLOCK_ID_FLAG_COMMIT'
-              | 'BLOCK_ID_FLAG_NIL';
+              | "BLOCK_ID_FLAG_UNKNOWN"
+              | "BLOCK_ID_FLAG_ABSENT"
+              | "BLOCK_ID_FLAG_COMMIT"
+              | "BLOCK_ID_FLAG_NIL";
             /** Format: byte */
             validator_address?: string;
             /** Format: date-time */
@@ -8899,7 +8982,7 @@ export interface components {
       };
     };
     /** @description GetLatestBlockResponse is the response type for the Query/GetLatestBlock RPC method. */
-    'cosmos.base.tendermint.v1beta1.GetLatestBlockResponse': {
+    "cosmos.base.tendermint.v1beta1.GetLatestBlockResponse": {
       /** BlockID */
       block_id?: {
         /** Format: byte */
@@ -8995,10 +9078,10 @@ export interface components {
                  * @enum {string}
                  */
                 type:
-                  | 'SIGNED_MSG_TYPE_UNKNOWN'
-                  | 'SIGNED_MSG_TYPE_PREVOTE'
-                  | 'SIGNED_MSG_TYPE_PRECOMMIT'
-                  | 'SIGNED_MSG_TYPE_PROPOSAL';
+                  | "SIGNED_MSG_TYPE_UNKNOWN"
+                  | "SIGNED_MSG_TYPE_PREVOTE"
+                  | "SIGNED_MSG_TYPE_PRECOMMIT"
+                  | "SIGNED_MSG_TYPE_PROPOSAL";
                 /** Format: int64 */
                 height?: string;
                 /** Format: int32 */
@@ -9036,10 +9119,10 @@ export interface components {
                  * @enum {string}
                  */
                 type:
-                  | 'SIGNED_MSG_TYPE_UNKNOWN'
-                  | 'SIGNED_MSG_TYPE_PREVOTE'
-                  | 'SIGNED_MSG_TYPE_PRECOMMIT'
-                  | 'SIGNED_MSG_TYPE_PROPOSAL';
+                  | "SIGNED_MSG_TYPE_UNKNOWN"
+                  | "SIGNED_MSG_TYPE_PREVOTE"
+                  | "SIGNED_MSG_TYPE_PRECOMMIT"
+                  | "SIGNED_MSG_TYPE_PROPOSAL";
                 /** Format: int64 */
                 height?: string;
                 /** Format: int32 */
@@ -9160,10 +9243,10 @@ export interface components {
                        * @enum {string}
                        */
                       block_id_flag:
-                        | 'BLOCK_ID_FLAG_UNKNOWN'
-                        | 'BLOCK_ID_FLAG_ABSENT'
-                        | 'BLOCK_ID_FLAG_COMMIT'
-                        | 'BLOCK_ID_FLAG_NIL';
+                        | "BLOCK_ID_FLAG_UNKNOWN"
+                        | "BLOCK_ID_FLAG_ABSENT"
+                        | "BLOCK_ID_FLAG_COMMIT"
+                        | "BLOCK_ID_FLAG_NIL";
                       /** Format: byte */
                       validator_address?: string;
                       /** Format: date-time */
@@ -9257,10 +9340,10 @@ export interface components {
              * @enum {string}
              */
             block_id_flag:
-              | 'BLOCK_ID_FLAG_UNKNOWN'
-              | 'BLOCK_ID_FLAG_ABSENT'
-              | 'BLOCK_ID_FLAG_COMMIT'
-              | 'BLOCK_ID_FLAG_NIL';
+              | "BLOCK_ID_FLAG_UNKNOWN"
+              | "BLOCK_ID_FLAG_ABSENT"
+              | "BLOCK_ID_FLAG_COMMIT"
+              | "BLOCK_ID_FLAG_NIL";
             /** Format: byte */
             validator_address?: string;
             /** Format: date-time */
@@ -9272,7 +9355,7 @@ export interface components {
       };
     };
     /** @description GetLatestValidatorSetResponse is the response type for the Query/GetValidatorSetByHeight RPC method. */
-    'cosmos.base.tendermint.v1beta1.GetLatestValidatorSetResponse': {
+    "cosmos.base.tendermint.v1beta1.GetLatestValidatorSetResponse": {
       /** Format: int64 */
       block_height?: string;
       validators?: {
@@ -9416,7 +9499,7 @@ export interface components {
       };
     };
     /** @description GetNodeInfoResponse is the request type for the Query/GetNodeInfo RPC method. */
-    'cosmos.base.tendermint.v1beta1.GetNodeInfoResponse': {
+    "cosmos.base.tendermint.v1beta1.GetNodeInfoResponse": {
       default_node_info?: {
         protocol_version?: {
           /** Format: uint64 */
@@ -9459,12 +9542,12 @@ export interface components {
       };
     };
     /** @description GetSyncingResponse is the response type for the Query/GetSyncing RPC method. */
-    'cosmos.base.tendermint.v1beta1.GetSyncingResponse': {
+    "cosmos.base.tendermint.v1beta1.GetSyncingResponse": {
       /** Format: boolean */
       syncing?: boolean;
     };
     /** @description GetValidatorSetByHeightResponse is the response type for the Query/GetValidatorSetByHeight RPC method. */
-    'cosmos.base.tendermint.v1beta1.GetValidatorSetByHeightResponse': {
+    "cosmos.base.tendermint.v1beta1.GetValidatorSetByHeightResponse": {
       /** Format: int64 */
       block_height?: string;
       validators?: {
@@ -9608,7 +9691,7 @@ export interface components {
       };
     };
     /** Module is the type for VersionInfo */
-    'cosmos.base.tendermint.v1beta1.Module': {
+    "cosmos.base.tendermint.v1beta1.Module": {
       /** module path */
       path?: string;
       /** module version */
@@ -9617,7 +9700,7 @@ export interface components {
       sum?: string;
     };
     /** @description Validator is the type for the validator-set. */
-    'cosmos.base.tendermint.v1beta1.Validator': {
+    "cosmos.base.tendermint.v1beta1.Validator": {
       address?: string;
       /** @description `Any` contains an arbitrary serialized protocol buffer message along with a
        *     URL that describes the type of the serialized message.
@@ -9742,7 +9825,7 @@ export interface components {
       proposer_priority?: string;
     };
     /** @description VersionInfo is the type for the GetNodeInfoResponse message. */
-    'cosmos.base.tendermint.v1beta1.VersionInfo': {
+    "cosmos.base.tendermint.v1beta1.VersionInfo": {
       name?: string;
       app_name?: string;
       version?: string;
@@ -9761,13 +9844,13 @@ export interface components {
       cosmos_sdk_version?: string;
     };
     /** PublicKey defines the keys available for use with Validators */
-    'tendermint.crypto.PublicKey': {
+    "tendermint.crypto.PublicKey": {
       /** Format: byte */
       ed25519?: string;
       /** Format: byte */
       secp256k1?: string;
     };
-    'tendermint.p2p.DefaultNodeInfo': {
+    "tendermint.p2p.DefaultNodeInfo": {
       protocol_version?: {
         /** Format: uint64 */
         p2p?: string;
@@ -9788,11 +9871,11 @@ export interface components {
         rpc_address?: string;
       };
     };
-    'tendermint.p2p.DefaultNodeInfoOther': {
+    "tendermint.p2p.DefaultNodeInfoOther": {
       tx_index?: string;
       rpc_address?: string;
     };
-    'tendermint.p2p.ProtocolVersion': {
+    "tendermint.p2p.ProtocolVersion": {
       /** Format: uint64 */
       p2p?: string;
       /** Format: uint64 */
@@ -9800,7 +9883,7 @@ export interface components {
       /** Format: uint64 */
       app?: string;
     };
-    'tendermint.types.Block': {
+    "tendermint.types.Block": {
       /** @description Header defines the structure of a block header. */
       header?: {
         /**
@@ -9883,10 +9966,10 @@ export interface components {
                * @enum {string}
                */
               type:
-                | 'SIGNED_MSG_TYPE_UNKNOWN'
-                | 'SIGNED_MSG_TYPE_PREVOTE'
-                | 'SIGNED_MSG_TYPE_PRECOMMIT'
-                | 'SIGNED_MSG_TYPE_PROPOSAL';
+                | "SIGNED_MSG_TYPE_UNKNOWN"
+                | "SIGNED_MSG_TYPE_PREVOTE"
+                | "SIGNED_MSG_TYPE_PRECOMMIT"
+                | "SIGNED_MSG_TYPE_PROPOSAL";
               /** Format: int64 */
               height?: string;
               /** Format: int32 */
@@ -9924,10 +10007,10 @@ export interface components {
                * @enum {string}
                */
               type:
-                | 'SIGNED_MSG_TYPE_UNKNOWN'
-                | 'SIGNED_MSG_TYPE_PREVOTE'
-                | 'SIGNED_MSG_TYPE_PRECOMMIT'
-                | 'SIGNED_MSG_TYPE_PROPOSAL';
+                | "SIGNED_MSG_TYPE_UNKNOWN"
+                | "SIGNED_MSG_TYPE_PREVOTE"
+                | "SIGNED_MSG_TYPE_PRECOMMIT"
+                | "SIGNED_MSG_TYPE_PROPOSAL";
               /** Format: int64 */
               height?: string;
               /** Format: int32 */
@@ -10048,10 +10131,10 @@ export interface components {
                      * @enum {string}
                      */
                     block_id_flag:
-                      | 'BLOCK_ID_FLAG_UNKNOWN'
-                      | 'BLOCK_ID_FLAG_ABSENT'
-                      | 'BLOCK_ID_FLAG_COMMIT'
-                      | 'BLOCK_ID_FLAG_NIL';
+                      | "BLOCK_ID_FLAG_UNKNOWN"
+                      | "BLOCK_ID_FLAG_ABSENT"
+                      | "BLOCK_ID_FLAG_COMMIT"
+                      | "BLOCK_ID_FLAG_NIL";
                     /** Format: byte */
                     validator_address?: string;
                     /** Format: date-time */
@@ -10145,10 +10228,10 @@ export interface components {
            * @enum {string}
            */
           block_id_flag:
-            | 'BLOCK_ID_FLAG_UNKNOWN'
-            | 'BLOCK_ID_FLAG_ABSENT'
-            | 'BLOCK_ID_FLAG_COMMIT'
-            | 'BLOCK_ID_FLAG_NIL';
+            | "BLOCK_ID_FLAG_UNKNOWN"
+            | "BLOCK_ID_FLAG_ABSENT"
+            | "BLOCK_ID_FLAG_COMMIT"
+            | "BLOCK_ID_FLAG_NIL";
           /** Format: byte */
           validator_address?: string;
           /** Format: date-time */
@@ -10159,7 +10242,7 @@ export interface components {
       };
     };
     /** BlockID */
-    'tendermint.types.BlockID': {
+    "tendermint.types.BlockID": {
       /** Format: byte */
       hash?: string;
       /** PartsetHeader */
@@ -10175,13 +10258,13 @@ export interface components {
      * @default BLOCK_ID_FLAG_UNKNOWN
      * @enum {string}
      */
-    'tendermint.types.BlockIDFlag':
-      | 'BLOCK_ID_FLAG_UNKNOWN'
-      | 'BLOCK_ID_FLAG_ABSENT'
-      | 'BLOCK_ID_FLAG_COMMIT'
-      | 'BLOCK_ID_FLAG_NIL';
+    "tendermint.types.BlockIDFlag":
+      | "BLOCK_ID_FLAG_UNKNOWN"
+      | "BLOCK_ID_FLAG_ABSENT"
+      | "BLOCK_ID_FLAG_COMMIT"
+      | "BLOCK_ID_FLAG_NIL";
     /** @description Commit contains the evidence that a block was committed by a set of validators. */
-    'tendermint.types.Commit': {
+    "tendermint.types.Commit": {
       /** Format: int64 */
       height?: string;
       /** Format: int32 */
@@ -10205,10 +10288,10 @@ export interface components {
          * @enum {string}
          */
         block_id_flag:
-          | 'BLOCK_ID_FLAG_UNKNOWN'
-          | 'BLOCK_ID_FLAG_ABSENT'
-          | 'BLOCK_ID_FLAG_COMMIT'
-          | 'BLOCK_ID_FLAG_NIL';
+          | "BLOCK_ID_FLAG_UNKNOWN"
+          | "BLOCK_ID_FLAG_ABSENT"
+          | "BLOCK_ID_FLAG_COMMIT"
+          | "BLOCK_ID_FLAG_NIL";
         /** Format: byte */
         validator_address?: string;
         /** Format: date-time */
@@ -10218,17 +10301,17 @@ export interface components {
       }[];
     };
     /** @description CommitSig is a part of the Vote included in a Commit. */
-    'tendermint.types.CommitSig': {
+    "tendermint.types.CommitSig": {
       /**
        * BlockIdFlag indicates which BlcokID the signature is for
        * @default BLOCK_ID_FLAG_UNKNOWN
        * @enum {string}
        */
       block_id_flag:
-        | 'BLOCK_ID_FLAG_UNKNOWN'
-        | 'BLOCK_ID_FLAG_ABSENT'
-        | 'BLOCK_ID_FLAG_COMMIT'
-        | 'BLOCK_ID_FLAG_NIL';
+        | "BLOCK_ID_FLAG_UNKNOWN"
+        | "BLOCK_ID_FLAG_ABSENT"
+        | "BLOCK_ID_FLAG_COMMIT"
+        | "BLOCK_ID_FLAG_NIL";
       /** Format: byte */
       validator_address?: string;
       /** Format: date-time */
@@ -10237,14 +10320,14 @@ export interface components {
       signature?: string;
     };
     /** Data contains the set of transactions included in the block */
-    'tendermint.types.Data': {
+    "tendermint.types.Data": {
       /** @description Txs that will be applied by state @ block.Height+1.
        *     NOTE: not all txs here are valid.  We're just agreeing on the order first.
        *     This means that block.AppHash does not include these txs. */
       txs?: string[];
     };
     /** @description DuplicateVoteEvidence contains evidence of a validator signed two conflicting votes. */
-    'tendermint.types.DuplicateVoteEvidence': {
+    "tendermint.types.DuplicateVoteEvidence": {
       /** @description Vote represents a prevote, precommit, or commit vote from validators for
        *     consensus. */
       vote_a?: {
@@ -10257,10 +10340,10 @@ export interface components {
          * @enum {string}
          */
         type:
-          | 'SIGNED_MSG_TYPE_UNKNOWN'
-          | 'SIGNED_MSG_TYPE_PREVOTE'
-          | 'SIGNED_MSG_TYPE_PRECOMMIT'
-          | 'SIGNED_MSG_TYPE_PROPOSAL';
+          | "SIGNED_MSG_TYPE_UNKNOWN"
+          | "SIGNED_MSG_TYPE_PREVOTE"
+          | "SIGNED_MSG_TYPE_PRECOMMIT"
+          | "SIGNED_MSG_TYPE_PROPOSAL";
         /** Format: int64 */
         height?: string;
         /** Format: int32 */
@@ -10298,10 +10381,10 @@ export interface components {
          * @enum {string}
          */
         type:
-          | 'SIGNED_MSG_TYPE_UNKNOWN'
-          | 'SIGNED_MSG_TYPE_PREVOTE'
-          | 'SIGNED_MSG_TYPE_PRECOMMIT'
-          | 'SIGNED_MSG_TYPE_PROPOSAL';
+          | "SIGNED_MSG_TYPE_UNKNOWN"
+          | "SIGNED_MSG_TYPE_PREVOTE"
+          | "SIGNED_MSG_TYPE_PRECOMMIT"
+          | "SIGNED_MSG_TYPE_PROPOSAL";
         /** Format: int64 */
         height?: string;
         /** Format: int32 */
@@ -10334,7 +10417,7 @@ export interface components {
       /** Format: date-time */
       timestamp?: string;
     };
-    'tendermint.types.Evidence': {
+    "tendermint.types.Evidence": {
       /** @description DuplicateVoteEvidence contains evidence of a validator signed two conflicting votes. */
       duplicate_vote_evidence?: {
         /** @description Vote represents a prevote, precommit, or commit vote from validators for
@@ -10349,10 +10432,10 @@ export interface components {
            * @enum {string}
            */
           type:
-            | 'SIGNED_MSG_TYPE_UNKNOWN'
-            | 'SIGNED_MSG_TYPE_PREVOTE'
-            | 'SIGNED_MSG_TYPE_PRECOMMIT'
-            | 'SIGNED_MSG_TYPE_PROPOSAL';
+            | "SIGNED_MSG_TYPE_UNKNOWN"
+            | "SIGNED_MSG_TYPE_PREVOTE"
+            | "SIGNED_MSG_TYPE_PRECOMMIT"
+            | "SIGNED_MSG_TYPE_PROPOSAL";
           /** Format: int64 */
           height?: string;
           /** Format: int32 */
@@ -10390,10 +10473,10 @@ export interface components {
            * @enum {string}
            */
           type:
-            | 'SIGNED_MSG_TYPE_UNKNOWN'
-            | 'SIGNED_MSG_TYPE_PREVOTE'
-            | 'SIGNED_MSG_TYPE_PRECOMMIT'
-            | 'SIGNED_MSG_TYPE_PROPOSAL';
+            | "SIGNED_MSG_TYPE_UNKNOWN"
+            | "SIGNED_MSG_TYPE_PREVOTE"
+            | "SIGNED_MSG_TYPE_PRECOMMIT"
+            | "SIGNED_MSG_TYPE_PROPOSAL";
           /** Format: int64 */
           height?: string;
           /** Format: int32 */
@@ -10514,10 +10597,10 @@ export interface components {
                  * @enum {string}
                  */
                 block_id_flag:
-                  | 'BLOCK_ID_FLAG_UNKNOWN'
-                  | 'BLOCK_ID_FLAG_ABSENT'
-                  | 'BLOCK_ID_FLAG_COMMIT'
-                  | 'BLOCK_ID_FLAG_NIL';
+                  | "BLOCK_ID_FLAG_UNKNOWN"
+                  | "BLOCK_ID_FLAG_ABSENT"
+                  | "BLOCK_ID_FLAG_COMMIT"
+                  | "BLOCK_ID_FLAG_NIL";
                 /** Format: byte */
                 validator_address?: string;
                 /** Format: date-time */
@@ -10585,7 +10668,7 @@ export interface components {
         timestamp?: string;
       };
     };
-    'tendermint.types.EvidenceList': {
+    "tendermint.types.EvidenceList": {
       evidence?: {
         /** @description DuplicateVoteEvidence contains evidence of a validator signed two conflicting votes. */
         duplicate_vote_evidence?: {
@@ -10601,10 +10684,10 @@ export interface components {
              * @enum {string}
              */
             type:
-              | 'SIGNED_MSG_TYPE_UNKNOWN'
-              | 'SIGNED_MSG_TYPE_PREVOTE'
-              | 'SIGNED_MSG_TYPE_PRECOMMIT'
-              | 'SIGNED_MSG_TYPE_PROPOSAL';
+              | "SIGNED_MSG_TYPE_UNKNOWN"
+              | "SIGNED_MSG_TYPE_PREVOTE"
+              | "SIGNED_MSG_TYPE_PRECOMMIT"
+              | "SIGNED_MSG_TYPE_PROPOSAL";
             /** Format: int64 */
             height?: string;
             /** Format: int32 */
@@ -10642,10 +10725,10 @@ export interface components {
              * @enum {string}
              */
             type:
-              | 'SIGNED_MSG_TYPE_UNKNOWN'
-              | 'SIGNED_MSG_TYPE_PREVOTE'
-              | 'SIGNED_MSG_TYPE_PRECOMMIT'
-              | 'SIGNED_MSG_TYPE_PROPOSAL';
+              | "SIGNED_MSG_TYPE_UNKNOWN"
+              | "SIGNED_MSG_TYPE_PREVOTE"
+              | "SIGNED_MSG_TYPE_PRECOMMIT"
+              | "SIGNED_MSG_TYPE_PROPOSAL";
             /** Format: int64 */
             height?: string;
             /** Format: int32 */
@@ -10766,10 +10849,10 @@ export interface components {
                    * @enum {string}
                    */
                   block_id_flag:
-                    | 'BLOCK_ID_FLAG_UNKNOWN'
-                    | 'BLOCK_ID_FLAG_ABSENT'
-                    | 'BLOCK_ID_FLAG_COMMIT'
-                    | 'BLOCK_ID_FLAG_NIL';
+                    | "BLOCK_ID_FLAG_UNKNOWN"
+                    | "BLOCK_ID_FLAG_ABSENT"
+                    | "BLOCK_ID_FLAG_COMMIT"
+                    | "BLOCK_ID_FLAG_NIL";
                   /** Format: byte */
                   validator_address?: string;
                   /** Format: date-time */
@@ -10839,7 +10922,7 @@ export interface components {
       }[];
     };
     /** @description Header defines the structure of a block header. */
-    'tendermint.types.Header': {
+    "tendermint.types.Header": {
       /**
        * basic block info
        * @description Consensus captures the consensus rules for processing a block in the blockchain,
@@ -10897,7 +10980,7 @@ export interface components {
       /** Format: byte */
       proposer_address?: string;
     };
-    'tendermint.types.LightBlock': {
+    "tendermint.types.LightBlock": {
       signed_header?: {
         /** @description Header defines the structure of a block header. */
         header?: {
@@ -10983,10 +11066,10 @@ export interface components {
              * @enum {string}
              */
             block_id_flag:
-              | 'BLOCK_ID_FLAG_UNKNOWN'
-              | 'BLOCK_ID_FLAG_ABSENT'
-              | 'BLOCK_ID_FLAG_COMMIT'
-              | 'BLOCK_ID_FLAG_NIL';
+              | "BLOCK_ID_FLAG_UNKNOWN"
+              | "BLOCK_ID_FLAG_ABSENT"
+              | "BLOCK_ID_FLAG_COMMIT"
+              | "BLOCK_ID_FLAG_NIL";
             /** Format: byte */
             validator_address?: string;
             /** Format: date-time */
@@ -11032,7 +11115,7 @@ export interface components {
       };
     };
     /** @description LightClientAttackEvidence contains evidence of a set of validators attempting to mislead a light client. */
-    'tendermint.types.LightClientAttackEvidence': {
+    "tendermint.types.LightClientAttackEvidence": {
       conflicting_block?: {
         signed_header?: {
           /** @description Header defines the structure of a block header. */
@@ -11119,10 +11202,10 @@ export interface components {
                * @enum {string}
                */
               block_id_flag:
-                | 'BLOCK_ID_FLAG_UNKNOWN'
-                | 'BLOCK_ID_FLAG_ABSENT'
-                | 'BLOCK_ID_FLAG_COMMIT'
-                | 'BLOCK_ID_FLAG_NIL';
+                | "BLOCK_ID_FLAG_UNKNOWN"
+                | "BLOCK_ID_FLAG_ABSENT"
+                | "BLOCK_ID_FLAG_COMMIT"
+                | "BLOCK_ID_FLAG_NIL";
               /** Format: byte */
               validator_address?: string;
               /** Format: date-time */
@@ -11190,13 +11273,13 @@ export interface components {
       timestamp?: string;
     };
     /** PartsetHeader */
-    'tendermint.types.PartSetHeader': {
+    "tendermint.types.PartSetHeader": {
       /** Format: int64 */
       total?: number;
       /** Format: byte */
       hash?: string;
     };
-    'tendermint.types.SignedHeader': {
+    "tendermint.types.SignedHeader": {
       /** @description Header defines the structure of a block header. */
       header?: {
         /**
@@ -11281,10 +11364,10 @@ export interface components {
            * @enum {string}
            */
           block_id_flag:
-            | 'BLOCK_ID_FLAG_UNKNOWN'
-            | 'BLOCK_ID_FLAG_ABSENT'
-            | 'BLOCK_ID_FLAG_COMMIT'
-            | 'BLOCK_ID_FLAG_NIL';
+            | "BLOCK_ID_FLAG_UNKNOWN"
+            | "BLOCK_ID_FLAG_ABSENT"
+            | "BLOCK_ID_FLAG_COMMIT"
+            | "BLOCK_ID_FLAG_NIL";
           /** Format: byte */
           validator_address?: string;
           /** Format: date-time */
@@ -11302,12 +11385,12 @@ export interface components {
      * @default SIGNED_MSG_TYPE_UNKNOWN
      * @enum {string}
      */
-    'tendermint.types.SignedMsgType':
-      | 'SIGNED_MSG_TYPE_UNKNOWN'
-      | 'SIGNED_MSG_TYPE_PREVOTE'
-      | 'SIGNED_MSG_TYPE_PRECOMMIT'
-      | 'SIGNED_MSG_TYPE_PROPOSAL';
-    'tendermint.types.Validator': {
+    "tendermint.types.SignedMsgType":
+      | "SIGNED_MSG_TYPE_UNKNOWN"
+      | "SIGNED_MSG_TYPE_PREVOTE"
+      | "SIGNED_MSG_TYPE_PRECOMMIT"
+      | "SIGNED_MSG_TYPE_PROPOSAL";
+    "tendermint.types.Validator": {
       /** Format: byte */
       address?: string;
       /** PublicKey defines the keys available for use with Validators */
@@ -11322,7 +11405,7 @@ export interface components {
       /** Format: int64 */
       proposer_priority?: string;
     };
-    'tendermint.types.ValidatorSet': {
+    "tendermint.types.ValidatorSet": {
       validators?: {
         /** Format: byte */
         address?: string;
@@ -11358,7 +11441,7 @@ export interface components {
     };
     /** @description Vote represents a prevote, precommit, or commit vote from validators for
      *     consensus. */
-    'tendermint.types.Vote': {
+    "tendermint.types.Vote": {
       /**
        * @description SignedMsgType is a type of signed message in the consensus.
        *
@@ -11368,10 +11451,10 @@ export interface components {
        * @enum {string}
        */
       type:
-        | 'SIGNED_MSG_TYPE_UNKNOWN'
-        | 'SIGNED_MSG_TYPE_PREVOTE'
-        | 'SIGNED_MSG_TYPE_PRECOMMIT'
-        | 'SIGNED_MSG_TYPE_PROPOSAL';
+        | "SIGNED_MSG_TYPE_UNKNOWN"
+        | "SIGNED_MSG_TYPE_PREVOTE"
+        | "SIGNED_MSG_TYPE_PRECOMMIT"
+        | "SIGNED_MSG_TYPE_PROPOSAL";
       /** Format: int64 */
       height?: string;
       /** Format: int32 */
@@ -11400,7 +11483,7 @@ export interface components {
     /** @description Consensus captures the consensus rules for processing a block in the blockchain,
      *     including all blockchain data structures and the rules of the application's
      *     state transition machine. */
-    'tendermint.version.Consensus': {
+    "tendermint.version.Consensus": {
       /** Format: uint64 */
       block?: string;
       /** Format: uint64 */
@@ -11410,13 +11493,13 @@ export interface components {
      *
      *     NOTE: The amount field is an Dec which implements the custom method
      *     signatures required by gogoproto. */
-    'cosmos.base.v1beta1.DecCoin': {
+    "cosmos.base.v1beta1.DecCoin": {
       denom?: string;
       amount?: string;
     };
     /** @description DelegationDelegatorReward represents the properties
      *     of a delegator's delegation reward. */
-    'cosmos.distribution.v1beta1.DelegationDelegatorReward': {
+    "cosmos.distribution.v1beta1.DelegationDelegatorReward": {
       validator_address?: string;
       reward?: {
         denom?: string;
@@ -11424,7 +11507,7 @@ export interface components {
       }[];
     };
     /** @description Params defines the set of params for the distribution module. */
-    'cosmos.distribution.v1beta1.Params': {
+    "cosmos.distribution.v1beta1.Params": {
       community_tax?: string;
       base_proposer_reward?: string;
       bonus_proposer_reward?: string;
@@ -11433,7 +11516,7 @@ export interface components {
     };
     /** @description QueryCommunityPoolResponse is the response type for the Query/CommunityPool
      *     RPC method. */
-    'cosmos.distribution.v1beta1.QueryCommunityPoolResponse': {
+    "cosmos.distribution.v1beta1.QueryCommunityPoolResponse": {
       /** @description pool defines community pool's coins. */
       pool?: {
         denom?: string;
@@ -11442,7 +11525,7 @@ export interface components {
     };
     /** @description QueryDelegationRewardsResponse is the response type for the
      *     Query/DelegationRewards RPC method. */
-    'cosmos.distribution.v1beta1.QueryDelegationRewardsResponse': {
+    "cosmos.distribution.v1beta1.QueryDelegationRewardsResponse": {
       /** @description rewards defines the rewards accrued by a delegation. */
       rewards?: {
         denom?: string;
@@ -11451,7 +11534,7 @@ export interface components {
     };
     /** @description QueryDelegationTotalRewardsResponse is the response type for the
      *     Query/DelegationTotalRewards RPC method. */
-    'cosmos.distribution.v1beta1.QueryDelegationTotalRewardsResponse': {
+    "cosmos.distribution.v1beta1.QueryDelegationTotalRewardsResponse": {
       /** @description rewards defines all the rewards accrued by a delegator. */
       rewards?: {
         validator_address?: string;
@@ -11468,18 +11551,18 @@ export interface components {
     };
     /** @description QueryDelegatorValidatorsResponse is the response type for the
      *     Query/DelegatorValidators RPC method. */
-    'cosmos.distribution.v1beta1.QueryDelegatorValidatorsResponse': {
+    "cosmos.distribution.v1beta1.QueryDelegatorValidatorsResponse": {
       /** @description validators defines the validators a delegator is delegating for. */
       validators?: string[];
     };
     /** @description QueryDelegatorWithdrawAddressResponse is the response type for the
      *     Query/DelegatorWithdrawAddress RPC method. */
-    'cosmos.distribution.v1beta1.QueryDelegatorWithdrawAddressResponse': {
+    "cosmos.distribution.v1beta1.QueryDelegatorWithdrawAddressResponse": {
       /** @description withdraw_address defines the delegator address to query for. */
       withdraw_address?: string;
     };
     /** @description QueryParamsResponse is the response type for the Query/Params RPC method. */
-    'cosmos.distribution.v1beta1.QueryParamsResponse': {
+    "cosmos.distribution.v1beta1.QueryParamsResponse": {
       /** @description params defines the parameters of the module. */
       params?: {
         community_tax?: string;
@@ -11491,7 +11574,7 @@ export interface components {
     };
     /** QueryValidatorCommissionResponse is the response type for the
      *     Query/ValidatorCommission RPC method */
-    'cosmos.distribution.v1beta1.QueryValidatorCommissionResponse': {
+    "cosmos.distribution.v1beta1.QueryValidatorCommissionResponse": {
       /** @description commission defines the commision the validator received. */
       commission?: {
         commission?: {
@@ -11502,7 +11585,7 @@ export interface components {
     };
     /** @description QueryValidatorOutstandingRewardsResponse is the response type for the
      *     Query/ValidatorOutstandingRewards RPC method. */
-    'cosmos.distribution.v1beta1.QueryValidatorOutstandingRewardsResponse': {
+    "cosmos.distribution.v1beta1.QueryValidatorOutstandingRewardsResponse": {
       /** @description ValidatorOutstandingRewards represents outstanding (un-withdrawn) rewards
        *     for a validator inexpensive to track, allows simple sanity checks. */
       rewards?: {
@@ -11514,7 +11597,7 @@ export interface components {
     };
     /** @description QueryValidatorSlashesResponse is the response type for the
      *     Query/ValidatorSlashes RPC method. */
-    'cosmos.distribution.v1beta1.QueryValidatorSlashesResponse': {
+    "cosmos.distribution.v1beta1.QueryValidatorSlashesResponse": {
       /** @description slashes defines the slashes the validator received. */
       slashes?: {
         /** Format: uint64 */
@@ -11539,7 +11622,7 @@ export interface components {
     };
     /** @description ValidatorAccumulatedCommission represents accumulated commission
      *     for a validator kept as a running counter, can be withdrawn at any time. */
-    'cosmos.distribution.v1beta1.ValidatorAccumulatedCommission': {
+    "cosmos.distribution.v1beta1.ValidatorAccumulatedCommission": {
       commission?: {
         denom?: string;
         amount?: string;
@@ -11547,7 +11630,7 @@ export interface components {
     };
     /** @description ValidatorOutstandingRewards represents outstanding (un-withdrawn) rewards
      *     for a validator inexpensive to track, allows simple sanity checks. */
-    'cosmos.distribution.v1beta1.ValidatorOutstandingRewards': {
+    "cosmos.distribution.v1beta1.ValidatorOutstandingRewards": {
       rewards?: {
         denom?: string;
         amount?: string;
@@ -11557,13 +11640,13 @@ export interface components {
      *     Height is implicit within the store key.
      *     This is needed to calculate appropriate amount of staking tokens
      *     for delegations which are withdrawn after a slash has occurred. */
-    'cosmos.distribution.v1beta1.ValidatorSlashEvent': {
+    "cosmos.distribution.v1beta1.ValidatorSlashEvent": {
       /** Format: uint64 */
       validator_period?: string;
       fraction?: string;
     };
     /** Grant is stored in the KVStore to record a grant with full context */
-    'cosmos.feegrant.v1beta1.Grant': {
+    "cosmos.feegrant.v1beta1.Grant": {
       /** @description granter is the address of the user granting an allowance of their funds. */
       granter?: string;
       /** @description grantee is the address of the user being granted an allowance of another user's funds. */
@@ -11606,7 +11689,7 @@ export interface components {
       };
     };
     /** @description QueryAllowanceResponse is the response type for the Query/Allowance RPC method. */
-    'cosmos.feegrant.v1beta1.QueryAllowanceResponse': {
+    "cosmos.feegrant.v1beta1.QueryAllowanceResponse": {
       /**
        * Grant is stored in the KVStore to record a grant with full context
        * @description allowance is a allowance granted for grantee by granter.
@@ -11655,7 +11738,7 @@ export interface components {
       };
     };
     /** @description QueryAllowancesByGranterResponse is the response type for the Query/AllowancesByGranter RPC method. */
-    'cosmos.feegrant.v1beta1.QueryAllowancesByGranterResponse': {
+    "cosmos.feegrant.v1beta1.QueryAllowancesByGranterResponse": {
       /** @description allowances that have been issued by the granter. */
       allowances?: {
         /** @description granter is the address of the user granting an allowance of their funds. */
@@ -11716,7 +11799,7 @@ export interface components {
       };
     };
     /** @description QueryAllowancesResponse is the response type for the Query/Allowances RPC method. */
-    'cosmos.feegrant.v1beta1.QueryAllowancesResponse': {
+    "cosmos.feegrant.v1beta1.QueryAllowancesResponse": {
       /** @description allowances are allowance's granted for grantee by granter. */
       allowances?: {
         /** @description granter is the address of the user granting an allowance of their funds. */
@@ -11778,7 +11861,7 @@ export interface components {
     };
     /** @description QueryAllEvidenceResponse is the response type for the Query/AllEvidence RPC
      *     method. */
-    'cosmos.evidence.v1beta1.QueryAllEvidenceResponse': {
+    "cosmos.evidence.v1beta1.QueryAllEvidenceResponse": {
       /** @description evidence returns all evidences. */
       evidence?: {
         /** @description A URL/resource name that uniquely identifies the type of the serialized
@@ -11832,7 +11915,7 @@ export interface components {
       };
     };
     /** @description QueryEvidenceResponse is the response type for the Query/Evidence RPC method. */
-    'cosmos.evidence.v1beta1.QueryEvidenceResponse': {
+    "cosmos.evidence.v1beta1.QueryEvidenceResponse": {
       /** @description `Any` contains an arbitrary serialized protocol buffer message along with a
        *     URL that describes the type of the serialized message.
        *
@@ -11953,7 +12036,7 @@ export interface components {
     };
     /** @description Deposit defines an amount deposited by an account address to an active
      *     proposal. */
-    'cosmos.gov.v1beta1.Deposit': {
+    "cosmos.gov.v1beta1.Deposit": {
       /** Format: uint64 */
       proposal_id?: string;
       depositor?: string;
@@ -11963,7 +12046,7 @@ export interface components {
       }[];
     };
     /** @description DepositParams defines the params for deposits on governance proposals. */
-    'cosmos.gov.v1beta1.DepositParams': {
+    "cosmos.gov.v1beta1.DepositParams": {
       /** @description Minimum deposit for a proposal to enter voting period. */
       min_deposit?: {
         denom?: string;
@@ -11974,7 +12057,7 @@ export interface components {
       max_deposit_period?: string;
     };
     /** @description Proposal defines the core field members of a governance proposal. */
-    'cosmos.gov.v1beta1.Proposal': {
+    "cosmos.gov.v1beta1.Proposal": {
       /** Format: uint64 */
       proposal_id?: string;
       /** @description `Any` contains an arbitrary serialized protocol buffer message along with a
@@ -12112,12 +12195,12 @@ export interface components {
        * @enum {string}
        */
       status:
-        | 'PROPOSAL_STATUS_UNSPECIFIED'
-        | 'PROPOSAL_STATUS_DEPOSIT_PERIOD'
-        | 'PROPOSAL_STATUS_VOTING_PERIOD'
-        | 'PROPOSAL_STATUS_PASSED'
-        | 'PROPOSAL_STATUS_REJECTED'
-        | 'PROPOSAL_STATUS_FAILED';
+        | "PROPOSAL_STATUS_UNSPECIFIED"
+        | "PROPOSAL_STATUS_DEPOSIT_PERIOD"
+        | "PROPOSAL_STATUS_VOTING_PERIOD"
+        | "PROPOSAL_STATUS_PASSED"
+        | "PROPOSAL_STATUS_REJECTED"
+        | "PROPOSAL_STATUS_FAILED";
       /** @description TallyResult defines a standard tally for a governance proposal. */
       final_tally_result?: {
         yes?: string;
@@ -12155,15 +12238,15 @@ export interface components {
      * @default PROPOSAL_STATUS_UNSPECIFIED
      * @enum {string}
      */
-    'cosmos.gov.v1beta1.ProposalStatus':
-      | 'PROPOSAL_STATUS_UNSPECIFIED'
-      | 'PROPOSAL_STATUS_DEPOSIT_PERIOD'
-      | 'PROPOSAL_STATUS_VOTING_PERIOD'
-      | 'PROPOSAL_STATUS_PASSED'
-      | 'PROPOSAL_STATUS_REJECTED'
-      | 'PROPOSAL_STATUS_FAILED';
+    "cosmos.gov.v1beta1.ProposalStatus":
+      | "PROPOSAL_STATUS_UNSPECIFIED"
+      | "PROPOSAL_STATUS_DEPOSIT_PERIOD"
+      | "PROPOSAL_STATUS_VOTING_PERIOD"
+      | "PROPOSAL_STATUS_PASSED"
+      | "PROPOSAL_STATUS_REJECTED"
+      | "PROPOSAL_STATUS_FAILED";
     /** @description QueryDepositResponse is the response type for the Query/Deposit RPC method. */
-    'cosmos.gov.v1beta1.QueryDepositResponse': {
+    "cosmos.gov.v1beta1.QueryDepositResponse": {
       /** @description Deposit defines an amount deposited by an account address to an active
        *     proposal. */
       deposit?: {
@@ -12177,7 +12260,7 @@ export interface components {
       };
     };
     /** @description QueryDepositsResponse is the response type for the Query/Deposits RPC method. */
-    'cosmos.gov.v1beta1.QueryDepositsResponse': {
+    "cosmos.gov.v1beta1.QueryDepositsResponse": {
       deposits?: {
         /** Format: uint64 */
         proposal_id?: string;
@@ -12204,7 +12287,7 @@ export interface components {
       };
     };
     /** @description QueryParamsResponse is the response type for the Query/Params RPC method. */
-    'cosmos.gov.v1beta1.QueryParamsResponse': {
+    "cosmos.gov.v1beta1.QueryParamsResponse": {
       /** @description voting_params defines the parameters related to voting. */
       voting_params?: {
         /** @description Length of the voting period. */
@@ -12243,7 +12326,7 @@ export interface components {
       };
     };
     /** @description QueryProposalResponse is the response type for the Query/Proposal RPC method. */
-    'cosmos.gov.v1beta1.QueryProposalResponse': {
+    "cosmos.gov.v1beta1.QueryProposalResponse": {
       /** @description Proposal defines the core field members of a governance proposal. */
       proposal?: {
         /** Format: uint64 */
@@ -12383,12 +12466,12 @@ export interface components {
          * @enum {string}
          */
         status:
-          | 'PROPOSAL_STATUS_UNSPECIFIED'
-          | 'PROPOSAL_STATUS_DEPOSIT_PERIOD'
-          | 'PROPOSAL_STATUS_VOTING_PERIOD'
-          | 'PROPOSAL_STATUS_PASSED'
-          | 'PROPOSAL_STATUS_REJECTED'
-          | 'PROPOSAL_STATUS_FAILED';
+          | "PROPOSAL_STATUS_UNSPECIFIED"
+          | "PROPOSAL_STATUS_DEPOSIT_PERIOD"
+          | "PROPOSAL_STATUS_VOTING_PERIOD"
+          | "PROPOSAL_STATUS_PASSED"
+          | "PROPOSAL_STATUS_REJECTED"
+          | "PROPOSAL_STATUS_FAILED";
         /** @description TallyResult defines a standard tally for a governance proposal. */
         final_tally_result?: {
           yes?: string;
@@ -12412,7 +12495,7 @@ export interface components {
     };
     /** @description QueryProposalsResponse is the response type for the Query/Proposals RPC
      *     method. */
-    'cosmos.gov.v1beta1.QueryProposalsResponse': {
+    "cosmos.gov.v1beta1.QueryProposalsResponse": {
       proposals?: {
         /** Format: uint64 */
         proposal_id?: string;
@@ -12551,12 +12634,12 @@ export interface components {
          * @enum {string}
          */
         status:
-          | 'PROPOSAL_STATUS_UNSPECIFIED'
-          | 'PROPOSAL_STATUS_DEPOSIT_PERIOD'
-          | 'PROPOSAL_STATUS_VOTING_PERIOD'
-          | 'PROPOSAL_STATUS_PASSED'
-          | 'PROPOSAL_STATUS_REJECTED'
-          | 'PROPOSAL_STATUS_FAILED';
+          | "PROPOSAL_STATUS_UNSPECIFIED"
+          | "PROPOSAL_STATUS_DEPOSIT_PERIOD"
+          | "PROPOSAL_STATUS_VOTING_PERIOD"
+          | "PROPOSAL_STATUS_PASSED"
+          | "PROPOSAL_STATUS_REJECTED"
+          | "PROPOSAL_STATUS_FAILED";
         /** @description TallyResult defines a standard tally for a governance proposal. */
         final_tally_result?: {
           yes?: string;
@@ -12594,7 +12677,7 @@ export interface components {
       };
     };
     /** @description QueryTallyResultResponse is the response type for the Query/Tally RPC method. */
-    'cosmos.gov.v1beta1.QueryTallyResultResponse': {
+    "cosmos.gov.v1beta1.QueryTallyResultResponse": {
       /** @description TallyResult defines a standard tally for a governance proposal. */
       tally?: {
         yes?: string;
@@ -12604,7 +12687,7 @@ export interface components {
       };
     };
     /** @description QueryVoteResponse is the response type for the Query/Vote RPC method. */
-    'cosmos.gov.v1beta1.QueryVoteResponse': {
+    "cosmos.gov.v1beta1.QueryVoteResponse": {
       /** @description Vote defines a vote on a governance proposal.
        *     A Vote consists of a proposal ID, the voter, and the vote option. */
       vote?: {
@@ -12619,11 +12702,11 @@ export interface components {
          * @enum {string}
          */
         option:
-          | 'VOTE_OPTION_UNSPECIFIED'
-          | 'VOTE_OPTION_YES'
-          | 'VOTE_OPTION_ABSTAIN'
-          | 'VOTE_OPTION_NO'
-          | 'VOTE_OPTION_NO_WITH_VETO';
+          | "VOTE_OPTION_UNSPECIFIED"
+          | "VOTE_OPTION_YES"
+          | "VOTE_OPTION_ABSTAIN"
+          | "VOTE_OPTION_NO"
+          | "VOTE_OPTION_NO_WITH_VETO";
         /** Since: cosmos-sdk 0.43 */
         options?: {
           /**
@@ -12638,17 +12721,17 @@ export interface components {
            * @enum {string}
            */
           option:
-            | 'VOTE_OPTION_UNSPECIFIED'
-            | 'VOTE_OPTION_YES'
-            | 'VOTE_OPTION_ABSTAIN'
-            | 'VOTE_OPTION_NO'
-            | 'VOTE_OPTION_NO_WITH_VETO';
+            | "VOTE_OPTION_UNSPECIFIED"
+            | "VOTE_OPTION_YES"
+            | "VOTE_OPTION_ABSTAIN"
+            | "VOTE_OPTION_NO"
+            | "VOTE_OPTION_NO_WITH_VETO";
           weight?: string;
         }[];
       };
     };
     /** @description QueryVotesResponse is the response type for the Query/Votes RPC method. */
-    'cosmos.gov.v1beta1.QueryVotesResponse': {
+    "cosmos.gov.v1beta1.QueryVotesResponse": {
       /** @description votes defined the queried votes. */
       votes?: {
         /** Format: uint64 */
@@ -12662,11 +12745,11 @@ export interface components {
          * @enum {string}
          */
         option:
-          | 'VOTE_OPTION_UNSPECIFIED'
-          | 'VOTE_OPTION_YES'
-          | 'VOTE_OPTION_ABSTAIN'
-          | 'VOTE_OPTION_NO'
-          | 'VOTE_OPTION_NO_WITH_VETO';
+          | "VOTE_OPTION_UNSPECIFIED"
+          | "VOTE_OPTION_YES"
+          | "VOTE_OPTION_ABSTAIN"
+          | "VOTE_OPTION_NO"
+          | "VOTE_OPTION_NO_WITH_VETO";
         /** Since: cosmos-sdk 0.43 */
         options?: {
           /**
@@ -12681,11 +12764,11 @@ export interface components {
            * @enum {string}
            */
           option:
-            | 'VOTE_OPTION_UNSPECIFIED'
-            | 'VOTE_OPTION_YES'
-            | 'VOTE_OPTION_ABSTAIN'
-            | 'VOTE_OPTION_NO'
-            | 'VOTE_OPTION_NO_WITH_VETO';
+            | "VOTE_OPTION_UNSPECIFIED"
+            | "VOTE_OPTION_YES"
+            | "VOTE_OPTION_ABSTAIN"
+            | "VOTE_OPTION_NO"
+            | "VOTE_OPTION_NO_WITH_VETO";
           weight?: string;
         }[];
       }[];
@@ -12706,7 +12789,7 @@ export interface components {
       };
     };
     /** @description TallyParams defines the params for tallying votes on governance proposals. */
-    'cosmos.gov.v1beta1.TallyParams': {
+    "cosmos.gov.v1beta1.TallyParams": {
       /**
        * Format: byte
        * @description Minimum percentage of total stake needed to vote for a result to be
@@ -12726,7 +12809,7 @@ export interface components {
       veto_threshold?: string;
     };
     /** @description TallyResult defines a standard tally for a governance proposal. */
-    'cosmos.gov.v1beta1.TallyResult': {
+    "cosmos.gov.v1beta1.TallyResult": {
       yes?: string;
       abstain?: string;
       no?: string;
@@ -12734,7 +12817,7 @@ export interface components {
     };
     /** @description Vote defines a vote on a governance proposal.
      *     A Vote consists of a proposal ID, the voter, and the vote option. */
-    'cosmos.gov.v1beta1.Vote': {
+    "cosmos.gov.v1beta1.Vote": {
       /** Format: uint64 */
       proposal_id?: string;
       voter?: string;
@@ -12746,11 +12829,11 @@ export interface components {
        * @enum {string}
        */
       option:
-        | 'VOTE_OPTION_UNSPECIFIED'
-        | 'VOTE_OPTION_YES'
-        | 'VOTE_OPTION_ABSTAIN'
-        | 'VOTE_OPTION_NO'
-        | 'VOTE_OPTION_NO_WITH_VETO';
+        | "VOTE_OPTION_UNSPECIFIED"
+        | "VOTE_OPTION_YES"
+        | "VOTE_OPTION_ABSTAIN"
+        | "VOTE_OPTION_NO"
+        | "VOTE_OPTION_NO_WITH_VETO";
       /** Since: cosmos-sdk 0.43 */
       options?: {
         /**
@@ -12765,11 +12848,11 @@ export interface components {
          * @enum {string}
          */
         option:
-          | 'VOTE_OPTION_UNSPECIFIED'
-          | 'VOTE_OPTION_YES'
-          | 'VOTE_OPTION_ABSTAIN'
-          | 'VOTE_OPTION_NO'
-          | 'VOTE_OPTION_NO_WITH_VETO';
+          | "VOTE_OPTION_UNSPECIFIED"
+          | "VOTE_OPTION_YES"
+          | "VOTE_OPTION_ABSTAIN"
+          | "VOTE_OPTION_NO"
+          | "VOTE_OPTION_NO_WITH_VETO";
         weight?: string;
       }[];
     };
@@ -12784,21 +12867,21 @@ export interface components {
      * @default VOTE_OPTION_UNSPECIFIED
      * @enum {string}
      */
-    'cosmos.gov.v1beta1.VoteOption':
-      | 'VOTE_OPTION_UNSPECIFIED'
-      | 'VOTE_OPTION_YES'
-      | 'VOTE_OPTION_ABSTAIN'
-      | 'VOTE_OPTION_NO'
-      | 'VOTE_OPTION_NO_WITH_VETO';
+    "cosmos.gov.v1beta1.VoteOption":
+      | "VOTE_OPTION_UNSPECIFIED"
+      | "VOTE_OPTION_YES"
+      | "VOTE_OPTION_ABSTAIN"
+      | "VOTE_OPTION_NO"
+      | "VOTE_OPTION_NO_WITH_VETO";
     /** @description VotingParams defines the params for voting on governance proposals. */
-    'cosmos.gov.v1beta1.VotingParams': {
+    "cosmos.gov.v1beta1.VotingParams": {
       /** @description Length of the voting period. */
       voting_period?: string;
     };
     /** @description WeightedVoteOption defines a unit of vote for vote split.
      *
      *     Since: cosmos-sdk 0.43 */
-    'cosmos.gov.v1beta1.WeightedVoteOption': {
+    "cosmos.gov.v1beta1.WeightedVoteOption": {
       /**
        * @description VoteOption enumerates the valid vote options for a given governance proposal.
        *
@@ -12811,15 +12894,15 @@ export interface components {
        * @enum {string}
        */
       option:
-        | 'VOTE_OPTION_UNSPECIFIED'
-        | 'VOTE_OPTION_YES'
-        | 'VOTE_OPTION_ABSTAIN'
-        | 'VOTE_OPTION_NO'
-        | 'VOTE_OPTION_NO_WITH_VETO';
+        | "VOTE_OPTION_UNSPECIFIED"
+        | "VOTE_OPTION_YES"
+        | "VOTE_OPTION_ABSTAIN"
+        | "VOTE_OPTION_NO"
+        | "VOTE_OPTION_NO_WITH_VETO";
       weight?: string;
     };
     /** @description Params holds parameters for the mint module. */
-    'cosmos.mint.v1beta1.Params': {
+    "cosmos.mint.v1beta1.Params": {
       /** type of coin to mint */
       mint_denom?: string;
       /** maximum annual change in inflation rate */
@@ -12838,7 +12921,7 @@ export interface components {
     };
     /** @description QueryAnnualProvisionsResponse is the response type for the
      *     Query/AnnualProvisions RPC method. */
-    'cosmos.mint.v1beta1.QueryAnnualProvisionsResponse': {
+    "cosmos.mint.v1beta1.QueryAnnualProvisionsResponse": {
       /**
        * Format: byte
        * @description annual_provisions is the current minting annual provisions value.
@@ -12847,7 +12930,7 @@ export interface components {
     };
     /** @description QueryInflationResponse is the response type for the Query/Inflation RPC
      *     method. */
-    'cosmos.mint.v1beta1.QueryInflationResponse': {
+    "cosmos.mint.v1beta1.QueryInflationResponse": {
       /**
        * Format: byte
        * @description inflation is the current minting inflation value.
@@ -12855,7 +12938,7 @@ export interface components {
       inflation?: string;
     };
     /** @description QueryParamsResponse is the response type for the Query/Params RPC method. */
-    'cosmos.mint.v1beta1.QueryParamsResponse': {
+    "cosmos.mint.v1beta1.QueryParamsResponse": {
       /** @description params defines the parameters of the module. */
       params?: {
         /** type of coin to mint */
@@ -12877,13 +12960,13 @@ export interface components {
     };
     /** @description ParamChange defines an individual parameter change, for use in
      *     ParameterChangeProposal. */
-    'cosmos.params.v1beta1.ParamChange': {
+    "cosmos.params.v1beta1.ParamChange": {
       subspace?: string;
       key?: string;
       value?: string;
     };
     /** @description QueryParamsResponse is response type for the Query/Params RPC method. */
-    'cosmos.params.v1beta1.QueryParamsResponse': {
+    "cosmos.params.v1beta1.QueryParamsResponse": {
       /** @description param defines the queried parameter. */
       param?: {
         subspace?: string;
@@ -12892,7 +12975,7 @@ export interface components {
       };
     };
     /** @description Params represents the parameters used for by the slashing module. */
-    'cosmos.slashing.v1beta1.Params': {
+    "cosmos.slashing.v1beta1.Params": {
       /** Format: int64 */
       signed_blocks_window?: string;
       /** Format: byte */
@@ -12904,7 +12987,7 @@ export interface components {
       slash_fraction_downtime?: string;
     };
     /** QueryParamsResponse is the response type for the Query/Params RPC method */
-    'cosmos.slashing.v1beta1.QueryParamsResponse': {
+    "cosmos.slashing.v1beta1.QueryParamsResponse": {
       /** @description Params represents the parameters used for by the slashing module. */
       params?: {
         /** Format: int64 */
@@ -12920,7 +13003,7 @@ export interface components {
     };
     /** QuerySigningInfoResponse is the response type for the Query/SigningInfo RPC
      *     method */
-    'cosmos.slashing.v1beta1.QuerySigningInfoResponse': {
+    "cosmos.slashing.v1beta1.QuerySigningInfoResponse": {
       /**
        * val_signing_info is the signing info of requested val cons address
        * @description ValidatorSigningInfo defines a validator's signing info for monitoring their
@@ -12961,7 +13044,7 @@ export interface components {
     };
     /** QuerySigningInfosResponse is the response type for the Query/SigningInfos RPC
      *     method */
-    'cosmos.slashing.v1beta1.QuerySigningInfosResponse': {
+    "cosmos.slashing.v1beta1.QuerySigningInfosResponse": {
       /** info is the signing info of all validators */
       info?: {
         address?: string;
@@ -13019,7 +13102,7 @@ export interface components {
     };
     /** @description ValidatorSigningInfo defines a validator's signing info for monitoring their
      *     liveness activity. */
-    'cosmos.slashing.v1beta1.ValidatorSigningInfo': {
+    "cosmos.slashing.v1beta1.ValidatorSigningInfo": {
       address?: string;
       /**
        * Height at which validator was first a candidate OR was unjailed
@@ -13061,13 +13144,13 @@ export interface components {
      * @default BOND_STATUS_UNSPECIFIED
      * @enum {string}
      */
-    'cosmos.staking.v1beta1.BondStatus':
-      | 'BOND_STATUS_UNSPECIFIED'
-      | 'BOND_STATUS_UNBONDED'
-      | 'BOND_STATUS_UNBONDING'
-      | 'BOND_STATUS_BONDED';
+    "cosmos.staking.v1beta1.BondStatus":
+      | "BOND_STATUS_UNSPECIFIED"
+      | "BOND_STATUS_UNBONDED"
+      | "BOND_STATUS_UNBONDING"
+      | "BOND_STATUS_BONDED";
     /** @description Commission defines commission parameters for a given validator. */
-    'cosmos.staking.v1beta1.Commission': {
+    "cosmos.staking.v1beta1.Commission": {
       /** @description commission_rates defines the initial commission rates to be used for creating a validator. */
       commission_rates?: {
         /** @description rate is the commission rate charged to delegators, as a fraction. */
@@ -13085,7 +13168,7 @@ export interface components {
     };
     /** @description CommissionRates defines the initial commission rates to be used for creating
      *     a validator. */
-    'cosmos.staking.v1beta1.CommissionRates': {
+    "cosmos.staking.v1beta1.CommissionRates": {
       /** @description rate is the commission rate charged to delegators, as a fraction. */
       rate?: string;
       /** @description max_rate defines the maximum commission rate which validator can ever charge, as a fraction. */
@@ -13096,7 +13179,7 @@ export interface components {
     /** @description Delegation represents the bond with tokens held by an account. It is
      *     owned by one delegator, and is associated with the voting power of one
      *     validator. */
-    'cosmos.staking.v1beta1.Delegation': {
+    "cosmos.staking.v1beta1.Delegation": {
       /** @description delegator_address is the bech32-encoded address of the delegator. */
       delegator_address?: string;
       /** @description validator_address is the bech32-encoded address of the validator. */
@@ -13106,7 +13189,7 @@ export interface components {
     };
     /** @description DelegationResponse is equivalent to Delegation except that it contains a
      *     balance in addition to shares which is more suitable for client responses. */
-    'cosmos.staking.v1beta1.DelegationResponse': {
+    "cosmos.staking.v1beta1.DelegationResponse": {
       /** @description Delegation represents the bond with tokens held by an account. It is
        *     owned by one delegator, and is associated with the voting power of one
        *     validator. */
@@ -13128,7 +13211,7 @@ export interface components {
       };
     };
     /** @description Description defines a validator description. */
-    'cosmos.staking.v1beta1.Description': {
+    "cosmos.staking.v1beta1.Description": {
       /** @description moniker defines a human-readable name for the validator. */
       moniker?: string;
       /** @description identity defines an optional identity signature (ex. UPort or Keybase). */
@@ -13144,7 +13227,7 @@ export interface components {
      *     It is stored as part of staking module's state, which persists the `n` most
      *     recent HistoricalInfo
      *     (`n` is set by the staking module's `historical_entries` parameter). */
-    'cosmos.staking.v1beta1.HistoricalInfo': {
+    "cosmos.staking.v1beta1.HistoricalInfo": {
       /** @description Header defines the structure of a block header. */
       header?: {
         /**
@@ -13335,10 +13418,10 @@ export interface components {
          * @enum {string}
          */
         status:
-          | 'BOND_STATUS_UNSPECIFIED'
-          | 'BOND_STATUS_UNBONDED'
-          | 'BOND_STATUS_UNBONDING'
-          | 'BOND_STATUS_BONDED';
+          | "BOND_STATUS_UNSPECIFIED"
+          | "BOND_STATUS_UNBONDED"
+          | "BOND_STATUS_UNBONDING"
+          | "BOND_STATUS_BONDED";
         /** @description tokens define the delegated tokens (incl. self-delegation). */
         tokens?: string;
         /** @description delegator_shares defines total shares issued to a validator's delegators. */
@@ -13388,7 +13471,7 @@ export interface components {
       }[];
     };
     /** @description Params defines the parameters for the staking module. */
-    'cosmos.staking.v1beta1.Params': {
+    "cosmos.staking.v1beta1.Params": {
       /** @description unbonding_time is the time duration of unbonding. */
       unbonding_time?: string;
       /**
@@ -13411,12 +13494,12 @@ export interface components {
     };
     /** @description Pool is used for tracking bonded and not-bonded token supply of the bond
      *     denomination. */
-    'cosmos.staking.v1beta1.Pool': {
+    "cosmos.staking.v1beta1.Pool": {
       not_bonded_tokens?: string;
       bonded_tokens?: string;
     };
     /** @description QueryDelegationResponse is response type for the Query/Delegation RPC method. */
-    'cosmos.staking.v1beta1.QueryDelegationResponse': {
+    "cosmos.staking.v1beta1.QueryDelegationResponse": {
       /** @description DelegationResponse is equivalent to Delegation except that it contains a
        *     balance in addition to shares which is more suitable for client responses. */
       delegation_response?: {
@@ -13443,7 +13526,7 @@ export interface components {
     };
     /** @description QueryDelegatorDelegationsResponse is response type for the
      *     Query/DelegatorDelegations RPC method. */
-    'cosmos.staking.v1beta1.QueryDelegatorDelegationsResponse': {
+    "cosmos.staking.v1beta1.QueryDelegatorDelegationsResponse": {
       /** @description delegation_responses defines all the delegations' info of a delegator. */
       delegation_responses?: {
         /** @description Delegation represents the bond with tokens held by an account. It is
@@ -13484,7 +13567,7 @@ export interface components {
     };
     /** @description QueryUnbondingDelegatorDelegationsResponse is response type for the
      *     Query/UnbondingDelegatorDelegations RPC method. */
-    'cosmos.staking.v1beta1.QueryDelegatorUnbondingDelegationsResponse': {
+    "cosmos.staking.v1beta1.QueryDelegatorUnbondingDelegationsResponse": {
       unbonding_responses?: {
         /** @description delegator_address is the bech32-encoded address of the delegator. */
         delegator_address?: string;
@@ -13526,7 +13609,7 @@ export interface components {
     };
     /** @description QueryDelegatorValidatorResponse response type for the
      *     Query/DelegatorValidator RPC method. */
-    'cosmos.staking.v1beta1.QueryDelegatorValidatorResponse': {
+    "cosmos.staking.v1beta1.QueryDelegatorValidatorResponse": {
       /** @description Validator defines a validator, together with the total amount of the
        *     Validator's bond shares and their exchange rate to coins. Slashing results in
        *     a decrease in the exchange rate, allowing correct calculation of future
@@ -13666,10 +13749,10 @@ export interface components {
          * @enum {string}
          */
         status:
-          | 'BOND_STATUS_UNSPECIFIED'
-          | 'BOND_STATUS_UNBONDED'
-          | 'BOND_STATUS_UNBONDING'
-          | 'BOND_STATUS_BONDED';
+          | "BOND_STATUS_UNSPECIFIED"
+          | "BOND_STATUS_UNBONDED"
+          | "BOND_STATUS_UNBONDING"
+          | "BOND_STATUS_BONDED";
         /** @description tokens define the delegated tokens (incl. self-delegation). */
         tokens?: string;
         /** @description delegator_shares defines total shares issued to a validator's delegators. */
@@ -13720,7 +13803,7 @@ export interface components {
     };
     /** @description QueryDelegatorValidatorsResponse is response type for the
      *     Query/DelegatorValidators RPC method. */
-    'cosmos.staking.v1beta1.QueryDelegatorValidatorsResponse': {
+    "cosmos.staking.v1beta1.QueryDelegatorValidatorsResponse": {
       /** @description validators defines the the validators' info of a delegator. */
       validators?: {
         /** @description operator_address defines the address of the validator's operator; bech encoded in JSON. */
@@ -13853,10 +13936,10 @@ export interface components {
          * @enum {string}
          */
         status:
-          | 'BOND_STATUS_UNSPECIFIED'
-          | 'BOND_STATUS_UNBONDED'
-          | 'BOND_STATUS_UNBONDING'
-          | 'BOND_STATUS_BONDED';
+          | "BOND_STATUS_UNSPECIFIED"
+          | "BOND_STATUS_UNBONDED"
+          | "BOND_STATUS_UNBONDING"
+          | "BOND_STATUS_BONDED";
         /** @description tokens define the delegated tokens (incl. self-delegation). */
         tokens?: string;
         /** @description delegator_shares defines total shares issued to a validator's delegators. */
@@ -13922,7 +14005,7 @@ export interface components {
     };
     /** @description QueryHistoricalInfoResponse is response type for the Query/HistoricalInfo RPC
      *     method. */
-    'cosmos.staking.v1beta1.QueryHistoricalInfoResponse': {
+    "cosmos.staking.v1beta1.QueryHistoricalInfoResponse": {
       /** @description hist defines the historical info at the given height. */
       hist?: {
         /** @description Header defines the structure of a block header. */
@@ -14115,10 +14198,10 @@ export interface components {
            * @enum {string}
            */
           status:
-            | 'BOND_STATUS_UNSPECIFIED'
-            | 'BOND_STATUS_UNBONDED'
-            | 'BOND_STATUS_UNBONDING'
-            | 'BOND_STATUS_BONDED';
+            | "BOND_STATUS_UNSPECIFIED"
+            | "BOND_STATUS_UNBONDED"
+            | "BOND_STATUS_UNBONDING"
+            | "BOND_STATUS_BONDED";
           /** @description tokens define the delegated tokens (incl. self-delegation). */
           tokens?: string;
           /** @description delegator_shares defines total shares issued to a validator's delegators. */
@@ -14169,7 +14252,7 @@ export interface components {
       };
     };
     /** @description QueryParamsResponse is response type for the Query/Params RPC method. */
-    'cosmos.staking.v1beta1.QueryParamsResponse': {
+    "cosmos.staking.v1beta1.QueryParamsResponse": {
       /** @description params holds all the parameters of this module. */
       params?: {
         /** @description unbonding_time is the time duration of unbonding. */
@@ -14194,7 +14277,7 @@ export interface components {
       };
     };
     /** @description QueryPoolResponse is response type for the Query/Pool RPC method. */
-    'cosmos.staking.v1beta1.QueryPoolResponse': {
+    "cosmos.staking.v1beta1.QueryPoolResponse": {
       /** @description pool defines the pool info. */
       pool?: {
         not_bonded_tokens?: string;
@@ -14203,7 +14286,7 @@ export interface components {
     };
     /** @description QueryRedelegationsResponse is response type for the Query/Redelegations RPC
      *     method. */
-    'cosmos.staking.v1beta1.QueryRedelegationsResponse': {
+    "cosmos.staking.v1beta1.QueryRedelegationsResponse": {
       redelegation_responses?: {
         /** @description Redelegation contains the list of a particular delegator's redelegating bonds
          *     from a particular source validator to a particular destination validator. */
@@ -14271,7 +14354,7 @@ export interface components {
     };
     /** @description QueryDelegationResponse is response type for the Query/UnbondingDelegation
      *     RPC method. */
-    'cosmos.staking.v1beta1.QueryUnbondingDelegationResponse': {
+    "cosmos.staking.v1beta1.QueryUnbondingDelegationResponse": {
       /** @description UnbondingDelegation stores all of a single delegator's unbonding bonds
        *     for a single validator in an time-ordered list. */
       unbond?: {
@@ -14300,7 +14383,7 @@ export interface components {
     };
     /** QueryValidatorDelegationsResponse is response type for the
      *     Query/ValidatorDelegations RPC method */
-    'cosmos.staking.v1beta1.QueryValidatorDelegationsResponse': {
+    "cosmos.staking.v1beta1.QueryValidatorDelegationsResponse": {
       delegation_responses?: {
         /** @description Delegation represents the bond with tokens held by an account. It is
          *     owned by one delegator, and is associated with the voting power of one
@@ -14339,7 +14422,7 @@ export interface components {
       };
     };
     /** QueryValidatorResponse is response type for the Query/Validator RPC method */
-    'cosmos.staking.v1beta1.QueryValidatorResponse': {
+    "cosmos.staking.v1beta1.QueryValidatorResponse": {
       /** @description Validator defines a validator, together with the total amount of the
        *     Validator's bond shares and their exchange rate to coins. Slashing results in
        *     a decrease in the exchange rate, allowing correct calculation of future
@@ -14479,10 +14562,10 @@ export interface components {
          * @enum {string}
          */
         status:
-          | 'BOND_STATUS_UNSPECIFIED'
-          | 'BOND_STATUS_UNBONDED'
-          | 'BOND_STATUS_UNBONDING'
-          | 'BOND_STATUS_BONDED';
+          | "BOND_STATUS_UNSPECIFIED"
+          | "BOND_STATUS_UNBONDED"
+          | "BOND_STATUS_UNBONDING"
+          | "BOND_STATUS_BONDED";
         /** @description tokens define the delegated tokens (incl. self-delegation). */
         tokens?: string;
         /** @description delegator_shares defines total shares issued to a validator's delegators. */
@@ -14533,7 +14616,7 @@ export interface components {
     };
     /** @description QueryValidatorUnbondingDelegationsResponse is response type for the
      *     Query/ValidatorUnbondingDelegations RPC method. */
-    'cosmos.staking.v1beta1.QueryValidatorUnbondingDelegationsResponse': {
+    "cosmos.staking.v1beta1.QueryValidatorUnbondingDelegationsResponse": {
       unbonding_responses?: {
         /** @description delegator_address is the bech32-encoded address of the delegator. */
         delegator_address?: string;
@@ -14574,7 +14657,7 @@ export interface components {
       };
     };
     /** QueryValidatorsResponse is response type for the Query/Validators RPC method */
-    'cosmos.staking.v1beta1.QueryValidatorsResponse': {
+    "cosmos.staking.v1beta1.QueryValidatorsResponse": {
       /** @description validators contains all the queried validators. */
       validators?: {
         /** @description operator_address defines the address of the validator's operator; bech encoded in JSON. */
@@ -14707,10 +14790,10 @@ export interface components {
          * @enum {string}
          */
         status:
-          | 'BOND_STATUS_UNSPECIFIED'
-          | 'BOND_STATUS_UNBONDED'
-          | 'BOND_STATUS_UNBONDING'
-          | 'BOND_STATUS_BONDED';
+          | "BOND_STATUS_UNSPECIFIED"
+          | "BOND_STATUS_UNBONDED"
+          | "BOND_STATUS_UNBONDING"
+          | "BOND_STATUS_BONDED";
         /** @description tokens define the delegated tokens (incl. self-delegation). */
         tokens?: string;
         /** @description delegator_shares defines total shares issued to a validator's delegators. */
@@ -14776,7 +14859,7 @@ export interface components {
     };
     /** @description Redelegation contains the list of a particular delegator's redelegating bonds
      *     from a particular source validator to a particular destination validator. */
-    'cosmos.staking.v1beta1.Redelegation': {
+    "cosmos.staking.v1beta1.Redelegation": {
       /** @description delegator_address is the bech32-encoded address of the delegator. */
       delegator_address?: string;
       /** @description validator_src_address is the validator redelegation source operator address. */
@@ -14802,7 +14885,7 @@ export interface components {
       }[];
     };
     /** @description RedelegationEntry defines a redelegation object with relevant metadata. */
-    'cosmos.staking.v1beta1.RedelegationEntry': {
+    "cosmos.staking.v1beta1.RedelegationEntry": {
       /**
        * Format: int64
        * @description creation_height  defines the height which the redelegation took place.
@@ -14821,7 +14904,7 @@ export interface components {
     /** @description RedelegationEntryResponse is equivalent to a RedelegationEntry except that it
      *     contains a balance in addition to shares which is more suitable for client
      *     responses. */
-    'cosmos.staking.v1beta1.RedelegationEntryResponse': {
+    "cosmos.staking.v1beta1.RedelegationEntryResponse": {
       /** @description RedelegationEntry defines a redelegation object with relevant metadata. */
       redelegation_entry?: {
         /**
@@ -14844,7 +14927,7 @@ export interface components {
     /** @description RedelegationResponse is equivalent to a Redelegation except that its entries
      *     contain a balance in addition to shares which is more suitable for client
      *     responses. */
-    'cosmos.staking.v1beta1.RedelegationResponse': {
+    "cosmos.staking.v1beta1.RedelegationResponse": {
       /** @description Redelegation contains the list of a particular delegator's redelegating bonds
        *     from a particular source validator to a particular destination validator. */
       redelegation?: {
@@ -14895,7 +14978,7 @@ export interface components {
     };
     /** @description UnbondingDelegation stores all of a single delegator's unbonding bonds
      *     for a single validator in an time-ordered list. */
-    'cosmos.staking.v1beta1.UnbondingDelegation': {
+    "cosmos.staking.v1beta1.UnbondingDelegation": {
       /** @description delegator_address is the bech32-encoded address of the delegator. */
       delegator_address?: string;
       /** @description validator_address is the bech32-encoded address of the validator. */
@@ -14919,7 +15002,7 @@ export interface components {
       }[];
     };
     /** @description UnbondingDelegationEntry defines an unbonding object with relevant metadata. */
-    'cosmos.staking.v1beta1.UnbondingDelegationEntry': {
+    "cosmos.staking.v1beta1.UnbondingDelegationEntry": {
       /**
        * Format: int64
        * @description creation_height is the height which the unbonding took place.
@@ -14943,7 +15026,7 @@ export interface components {
      *     bond shares is based on the amount of coins delegated divided by the current
      *     exchange rate. Voting power can be calculated as total bonded shares
      *     multiplied by exchange rate. */
-    'cosmos.staking.v1beta1.Validator': {
+    "cosmos.staking.v1beta1.Validator": {
       /** @description operator_address defines the address of the validator's operator; bech encoded in JSON. */
       operator_address?: string;
       /** @description `Any` contains an arbitrary serialized protocol buffer message along with a
@@ -15074,10 +15157,10 @@ export interface components {
        * @enum {string}
        */
       status:
-        | 'BOND_STATUS_UNSPECIFIED'
-        | 'BOND_STATUS_UNBONDED'
-        | 'BOND_STATUS_UNBONDING'
-        | 'BOND_STATUS_BONDED';
+        | "BOND_STATUS_UNSPECIFIED"
+        | "BOND_STATUS_UNBONDED"
+        | "BOND_STATUS_UNBONDING"
+        | "BOND_STATUS_BONDED";
       /** @description tokens define the delegated tokens (incl. self-delegation). */
       tokens?: string;
       /** @description delegator_shares defines total shares issued to a validator's delegators. */
@@ -15126,7 +15209,7 @@ export interface components {
       min_self_delegation?: string;
     };
     /** @description ABCIMessageLog defines a structure containing an indexed tx ABCI message log. */
-    'cosmos.base.abci.v1beta1.ABCIMessageLog': {
+    "cosmos.base.abci.v1beta1.ABCIMessageLog": {
       /** Format: int64 */
       msg_index?: number;
       log?: string;
@@ -15142,12 +15225,12 @@ export interface components {
     };
     /** @description Attribute defines an attribute wrapper where the key and value are
      *     strings instead of raw bytes. */
-    'cosmos.base.abci.v1beta1.Attribute': {
+    "cosmos.base.abci.v1beta1.Attribute": {
       key?: string;
       value?: string;
     };
     /** @description GasInfo defines tx execution gas context. */
-    'cosmos.base.abci.v1beta1.GasInfo': {
+    "cosmos.base.abci.v1beta1.GasInfo": {
       /**
        * Format: uint64
        * @description GasWanted is the maximum units of work we allow this tx to perform.
@@ -15160,7 +15243,7 @@ export interface components {
       gas_used?: string;
     };
     /** @description Result is the union of ResponseFormat and ResponseCheckTx. */
-    'cosmos.base.abci.v1beta1.Result': {
+    "cosmos.base.abci.v1beta1.Result": {
       /**
        * Format: byte
        * @description Data is any data returned from message or handler execution. It MUST be
@@ -15185,7 +15268,7 @@ export interface components {
     };
     /** @description StringEvent defines en Event object wrapper where all the attributes
      *     contain key/value pairs that are strings instead of raw bytes. */
-    'cosmos.base.abci.v1beta1.StringEvent': {
+    "cosmos.base.abci.v1beta1.StringEvent": {
       type?: string;
       attributes?: {
         key?: string;
@@ -15194,7 +15277,7 @@ export interface components {
     };
     /** @description TxResponse defines a structure containing relevant tx data and metadata. The
      *     tags are stringified and the log is JSON decoded. */
-    'cosmos.base.abci.v1beta1.TxResponse': {
+    "cosmos.base.abci.v1beta1.TxResponse": {
       /**
        * The block height
        * Format: int64
@@ -15384,7 +15467,7 @@ export interface components {
      *     This is used to ensure that the encoded data takes up a minimal amount of
      *     space after proto encoding.
      *     This is not thread safe, and is not intended for concurrent usage. */
-    'cosmos.crypto.multisig.v1beta1.CompactBitArray': {
+    "cosmos.crypto.multisig.v1beta1.CompactBitArray": {
       /** Format: int64 */
       extra_bits_stored?: number;
       /** Format: byte */
@@ -15415,20 +15498,20 @@ export interface components {
      * @default SIGN_MODE_UNSPECIFIED
      * @enum {string}
      */
-    'cosmos.tx.signing.v1beta1.SignMode':
-      | 'SIGN_MODE_UNSPECIFIED'
-      | 'SIGN_MODE_DIRECT'
-      | 'SIGN_MODE_TEXTUAL'
-      | 'SIGN_MODE_LEGACY_AMINO_JSON'
-      | 'SIGN_MODE_EIP_191';
+    "cosmos.tx.signing.v1beta1.SignMode":
+      | "SIGN_MODE_UNSPECIFIED"
+      | "SIGN_MODE_DIRECT"
+      | "SIGN_MODE_TEXTUAL"
+      | "SIGN_MODE_LEGACY_AMINO_JSON"
+      | "SIGN_MODE_EIP_191";
     /** @description AuthInfo describes the fee and signer modes that are used to sign a
      *     transaction. */
-    'cosmos.tx.v1beta1.AuthInfo': {
+    "cosmos.tx.v1beta1.AuthInfo": {
       /** @description signer_infos defines the signing modes for the required signers. The number
        *     and order of elements must match the required signers from TxBody's
        *     messages. The first element is the primary signer and the one which pays
        *     the fee. */
-      signer_infos?: components['schemas']['cosmos.tx.v1beta1.SignerInfo'][];
+      signer_infos?: components["schemas"]["cosmos.tx.v1beta1.SignerInfo"][];
       /** @description Fee is the fee and gas limit for the transaction. The first signer is the
        *     primary signer and the one which pays the fee. The fee can be calculated
        *     based on the cost of evaluating the body and doing signature verification
@@ -15468,14 +15551,14 @@ export interface components {
      * @default BROADCAST_MODE_UNSPECIFIED
      * @enum {string}
      */
-    'cosmos.tx.v1beta1.BroadcastMode':
-      | 'BROADCAST_MODE_UNSPECIFIED'
-      | 'BROADCAST_MODE_BLOCK'
-      | 'BROADCAST_MODE_SYNC'
-      | 'BROADCAST_MODE_ASYNC';
+    "cosmos.tx.v1beta1.BroadcastMode":
+      | "BROADCAST_MODE_UNSPECIFIED"
+      | "BROADCAST_MODE_BLOCK"
+      | "BROADCAST_MODE_SYNC"
+      | "BROADCAST_MODE_ASYNC";
     /** @description BroadcastTxRequest is the request type for the Service.BroadcastTxRequest
      *     RPC method. */
-    'cosmos.tx.v1beta1.BroadcastTxRequest': {
+    "cosmos.tx.v1beta1.BroadcastTxRequest": {
       /**
        * Format: byte
        * @description tx_bytes is the raw transaction.
@@ -15495,14 +15578,14 @@ export interface components {
        * @enum {string}
        */
       mode:
-        | 'BROADCAST_MODE_UNSPECIFIED'
-        | 'BROADCAST_MODE_BLOCK'
-        | 'BROADCAST_MODE_SYNC'
-        | 'BROADCAST_MODE_ASYNC';
+        | "BROADCAST_MODE_UNSPECIFIED"
+        | "BROADCAST_MODE_BLOCK"
+        | "BROADCAST_MODE_SYNC"
+        | "BROADCAST_MODE_ASYNC";
     };
     /** @description BroadcastTxResponse is the response type for the
      *     Service.BroadcastTx method. */
-    'cosmos.tx.v1beta1.BroadcastTxResponse': {
+    "cosmos.tx.v1beta1.BroadcastTxResponse": {
       /** @description TxResponse defines a structure containing relevant tx data and metadata. The
        *     tags are stringified and the log is JSON decoded. */
       tx_response?: {
@@ -15695,7 +15778,7 @@ export interface components {
     /** @description Fee includes the amount of coins paid in fees and the maximum
      *     gas to be used by the transaction. The ratio yields an effective "gasprice",
      *     which must be above some miminum to be accepted into the mempool. */
-    'cosmos.tx.v1beta1.Fee': {
+    "cosmos.tx.v1beta1.Fee": {
       /** amount is the amount of coins to be paid as a fee */
       amount?: {
         denom?: string;
@@ -15719,9 +15802,9 @@ export interface components {
     /** @description GetBlockWithTxsResponse is the response type for the Service.GetBlockWithTxs method.
      *
      *     Since: cosmos-sdk 0.45.2 */
-    'cosmos.tx.v1beta1.GetBlockWithTxsResponse': {
+    "cosmos.tx.v1beta1.GetBlockWithTxsResponse": {
       /** @description txs are the transactions in the block. */
-      txs?: components['schemas']['cosmos.tx.v1beta1.Tx'][];
+      txs?: components["schemas"]["cosmos.tx.v1beta1.Tx"][];
       /** BlockID */
       block_id?: {
         /** Format: byte */
@@ -15817,10 +15900,10 @@ export interface components {
                  * @enum {string}
                  */
                 type:
-                  | 'SIGNED_MSG_TYPE_UNKNOWN'
-                  | 'SIGNED_MSG_TYPE_PREVOTE'
-                  | 'SIGNED_MSG_TYPE_PRECOMMIT'
-                  | 'SIGNED_MSG_TYPE_PROPOSAL';
+                  | "SIGNED_MSG_TYPE_UNKNOWN"
+                  | "SIGNED_MSG_TYPE_PREVOTE"
+                  | "SIGNED_MSG_TYPE_PRECOMMIT"
+                  | "SIGNED_MSG_TYPE_PROPOSAL";
                 /** Format: int64 */
                 height?: string;
                 /** Format: int32 */
@@ -15858,10 +15941,10 @@ export interface components {
                  * @enum {string}
                  */
                 type:
-                  | 'SIGNED_MSG_TYPE_UNKNOWN'
-                  | 'SIGNED_MSG_TYPE_PREVOTE'
-                  | 'SIGNED_MSG_TYPE_PRECOMMIT'
-                  | 'SIGNED_MSG_TYPE_PROPOSAL';
+                  | "SIGNED_MSG_TYPE_UNKNOWN"
+                  | "SIGNED_MSG_TYPE_PREVOTE"
+                  | "SIGNED_MSG_TYPE_PRECOMMIT"
+                  | "SIGNED_MSG_TYPE_PROPOSAL";
                 /** Format: int64 */
                 height?: string;
                 /** Format: int32 */
@@ -15982,10 +16065,10 @@ export interface components {
                        * @enum {string}
                        */
                       block_id_flag:
-                        | 'BLOCK_ID_FLAG_UNKNOWN'
-                        | 'BLOCK_ID_FLAG_ABSENT'
-                        | 'BLOCK_ID_FLAG_COMMIT'
-                        | 'BLOCK_ID_FLAG_NIL';
+                        | "BLOCK_ID_FLAG_UNKNOWN"
+                        | "BLOCK_ID_FLAG_ABSENT"
+                        | "BLOCK_ID_FLAG_COMMIT"
+                        | "BLOCK_ID_FLAG_NIL";
                       /** Format: byte */
                       validator_address?: string;
                       /** Format: date-time */
@@ -16079,10 +16162,10 @@ export interface components {
              * @enum {string}
              */
             block_id_flag:
-              | 'BLOCK_ID_FLAG_UNKNOWN'
-              | 'BLOCK_ID_FLAG_ABSENT'
-              | 'BLOCK_ID_FLAG_COMMIT'
-              | 'BLOCK_ID_FLAG_NIL';
+              | "BLOCK_ID_FLAG_UNKNOWN"
+              | "BLOCK_ID_FLAG_ABSENT"
+              | "BLOCK_ID_FLAG_COMMIT"
+              | "BLOCK_ID_FLAG_NIL";
             /** Format: byte */
             validator_address?: string;
             /** Format: date-time */
@@ -16109,8 +16192,8 @@ export interface components {
       };
     };
     /** @description GetTxResponse is the response type for the Service.GetTx method. */
-    'cosmos.tx.v1beta1.GetTxResponse': {
-      tx?: components['schemas']['cosmos.tx.v1beta1.Tx'];
+    "cosmos.tx.v1beta1.GetTxResponse": {
+      tx?: components["schemas"]["cosmos.tx.v1beta1.Tx"];
       /** @description TxResponse defines a structure containing relevant tx data and metadata. The
        *     tags are stringified and the log is JSON decoded. */
       tx_response?: {
@@ -16302,9 +16385,9 @@ export interface components {
     };
     /** @description GetTxsEventResponse is the response type for the Service.TxsByEvents
      *     RPC method. */
-    'cosmos.tx.v1beta1.GetTxsEventResponse': {
+    "cosmos.tx.v1beta1.GetTxsEventResponse": {
       /** @description txs is the list of queried transactions. */
-      txs?: components['schemas']['cosmos.tx.v1beta1.Tx'][];
+      txs?: components["schemas"]["cosmos.tx.v1beta1.Tx"][];
       /** @description tx_responses is the list of queried TxResponses. */
       tx_responses?: {
         /**
@@ -16509,7 +16592,7 @@ export interface components {
       };
     };
     /** @description ModeInfo describes the signing mode of a single or nested multisig signer. */
-    'cosmos.tx.v1beta1.ModeInfo': {
+    "cosmos.tx.v1beta1.ModeInfo": {
       /** single represents a single signer */
       single?: {
         /**
@@ -16539,16 +16622,16 @@ export interface components {
          * @enum {string}
          */
         mode:
-          | 'SIGN_MODE_UNSPECIFIED'
-          | 'SIGN_MODE_DIRECT'
-          | 'SIGN_MODE_TEXTUAL'
-          | 'SIGN_MODE_LEGACY_AMINO_JSON'
-          | 'SIGN_MODE_EIP_191';
+          | "SIGN_MODE_UNSPECIFIED"
+          | "SIGN_MODE_DIRECT"
+          | "SIGN_MODE_TEXTUAL"
+          | "SIGN_MODE_LEGACY_AMINO_JSON"
+          | "SIGN_MODE_EIP_191";
       };
-      multi?: components['schemas']['cosmos.tx.v1beta1.ModeInfo.Multi'];
+      multi?: components["schemas"]["cosmos.tx.v1beta1.ModeInfo.Multi"];
     };
     /** Multi is the mode info for a multisig public key */
-    'cosmos.tx.v1beta1.ModeInfo.Multi': {
+    "cosmos.tx.v1beta1.ModeInfo.Multi": {
       /**
        * bitarray specifies which keys within the multisig are signing
        * @description CompactBitArray is an implementation of a space efficient bit array.
@@ -16564,12 +16647,12 @@ export interface components {
       };
       /** mode_infos is the corresponding modes of the signers of the multisig
        *     which could include nested multisig public keys */
-      mode_infos?: components['schemas']['cosmos.tx.v1beta1.ModeInfo'][];
+      mode_infos?: components["schemas"]["cosmos.tx.v1beta1.ModeInfo"][];
     };
     /** Single is the mode info for a single signer. It is structured as a message
      *     to allow for additional fields such as locale for SIGN_MODE_TEXTUAL in the
      *     future */
-    'cosmos.tx.v1beta1.ModeInfo.Single': {
+    "cosmos.tx.v1beta1.ModeInfo.Single": {
       /**
        * mode is the signing mode of the single signer
        * @description SignMode represents a signing mode with its own security guarantees.
@@ -16597,11 +16680,11 @@ export interface components {
        * @enum {string}
        */
       mode:
-        | 'SIGN_MODE_UNSPECIFIED'
-        | 'SIGN_MODE_DIRECT'
-        | 'SIGN_MODE_TEXTUAL'
-        | 'SIGN_MODE_LEGACY_AMINO_JSON'
-        | 'SIGN_MODE_EIP_191';
+        | "SIGN_MODE_UNSPECIFIED"
+        | "SIGN_MODE_DIRECT"
+        | "SIGN_MODE_TEXTUAL"
+        | "SIGN_MODE_LEGACY_AMINO_JSON"
+        | "SIGN_MODE_EIP_191";
     };
     /**
      * OrderBy defines the sorting order
@@ -16611,10 +16694,10 @@ export interface components {
      * @default ORDER_BY_UNSPECIFIED
      * @enum {string}
      */
-    'cosmos.tx.v1beta1.OrderBy': 'ORDER_BY_UNSPECIFIED' | 'ORDER_BY_ASC' | 'ORDER_BY_DESC';
+    "cosmos.tx.v1beta1.OrderBy": "ORDER_BY_UNSPECIFIED" | "ORDER_BY_ASC" | "ORDER_BY_DESC";
     /** @description SignerInfo describes the public key and signing mode of a single top-level
      *     signer. */
-    'cosmos.tx.v1beta1.SignerInfo': {
+    "cosmos.tx.v1beta1.SignerInfo": {
       /** @description `Any` contains an arbitrary serialized protocol buffer message along with a
        *     URL that describes the type of the serialized message.
        *
@@ -16732,7 +16815,7 @@ export interface components {
          */
         value?: string;
       };
-      mode_info?: components['schemas']['cosmos.tx.v1beta1.ModeInfo'];
+      mode_info?: components["schemas"]["cosmos.tx.v1beta1.ModeInfo"];
       /**
        * Format: uint64
        * @description sequence is the sequence of the account, which describes the
@@ -16743,8 +16826,8 @@ export interface components {
     };
     /** @description SimulateRequest is the request type for the Service.Simulate
      *     RPC method. */
-    'cosmos.tx.v1beta1.SimulateRequest': {
-      tx?: components['schemas']['cosmos.tx.v1beta1.Tx'];
+    "cosmos.tx.v1beta1.SimulateRequest": {
+      tx?: components["schemas"]["cosmos.tx.v1beta1.Tx"];
       /**
        * Format: byte
        * @description tx_bytes is the raw transaction.
@@ -16755,7 +16838,7 @@ export interface components {
     };
     /** @description SimulateResponse is the response type for the
      *     Service.SimulateRPC method. */
-    'cosmos.tx.v1beta1.SimulateResponse': {
+    "cosmos.tx.v1beta1.SimulateResponse": {
       /** @description gas_info is the information about gas used in the simulation. */
       gas_info?: {
         /**
@@ -16795,7 +16878,7 @@ export interface components {
       };
     };
     /** @description Tx is the standard type used for broadcasting transactions. */
-    'cosmos.tx.v1beta1.Tx': {
+    "cosmos.tx.v1beta1.Tx": {
       /**
        * body is the processable content of the transaction
        * @description TxBody is the body of a transaction that all signers sign over.
@@ -16930,14 +17013,14 @@ export interface components {
           value?: string;
         }[];
       };
-      auth_info?: components['schemas']['cosmos.tx.v1beta1.AuthInfo'];
+      auth_info?: components["schemas"]["cosmos.tx.v1beta1.AuthInfo"];
       /** @description signatures is a list of signatures that matches the length and order of
        *     AuthInfo's signer_infos to allow connecting signature meta information like
        *     public key and signing mode by position. */
       signatures?: string[];
     };
     /** @description TxBody is the body of a transaction that all signers sign over. */
-    'cosmos.tx.v1beta1.TxBody': {
+    "cosmos.tx.v1beta1.TxBody": {
       /** @description messages is a list of messages to be executed. The required signers of
        *     those messages define the number and order of elements in AuthInfo's
        *     signer_infos and Tx's signatures. Each required signer address is added to
@@ -17070,7 +17153,7 @@ export interface components {
     /** @description Event allows application developers to attach additional information to
      *     ResponseBeginBlock, ResponseEndBlock, ResponseCheckTx and ResponseDeliverTx.
      *     Later, transactions may be queried using these events. */
-    'tendermint.abci.Event': {
+    "tendermint.abci.Event": {
       type?: string;
       attributes?: {
         /** Format: byte */
@@ -17082,7 +17165,7 @@ export interface components {
       }[];
     };
     /** @description EventAttribute is a single key-value pair, associated with an event. */
-    'tendermint.abci.EventAttribute': {
+    "tendermint.abci.EventAttribute": {
       /** Format: byte */
       key?: string;
       /** Format: byte */
@@ -17093,7 +17176,7 @@ export interface components {
     /** @description ModuleVersion specifies a module and its consensus version.
      *
      *     Since: cosmos-sdk 0.43 */
-    'cosmos.upgrade.v1beta1.ModuleVersion': {
+    "cosmos.upgrade.v1beta1.ModuleVersion": {
       /** name of the app module */
       name?: string;
       /**
@@ -17103,7 +17186,7 @@ export interface components {
       version?: string;
     };
     /** @description Plan specifies information about a planned upgrade and when it should occur. */
-    'cosmos.upgrade.v1beta1.Plan': {
+    "cosmos.upgrade.v1beta1.Plan": {
       /** @description Sets the name for the upgrade. This name will be used by the upgraded
        *     version of the software to apply any special "on-upgrade" commands during
        *     the first BeginBlock method after the upgrade is applied. It is also used
@@ -17248,7 +17331,7 @@ export interface components {
     };
     /** @description QueryAppliedPlanResponse is the response type for the Query/AppliedPlan RPC
      *     method. */
-    'cosmos.upgrade.v1beta1.QueryAppliedPlanResponse': {
+    "cosmos.upgrade.v1beta1.QueryAppliedPlanResponse": {
       /**
        * Format: int64
        * @description height is the block height at which the plan was applied.
@@ -17257,7 +17340,7 @@ export interface components {
     };
     /** @description QueryCurrentPlanResponse is the response type for the Query/CurrentPlan RPC
      *     method. */
-    'cosmos.upgrade.v1beta1.QueryCurrentPlanResponse': {
+    "cosmos.upgrade.v1beta1.QueryCurrentPlanResponse": {
       /** @description plan is the current upgrade plan. */
       plan?: {
         /** @description Sets the name for the upgrade. This name will be used by the upgraded
@@ -17407,7 +17490,7 @@ export interface components {
      *     RPC method.
      *
      *     Since: cosmos-sdk 0.43 */
-    'cosmos.upgrade.v1beta1.QueryModuleVersionsResponse': {
+    "cosmos.upgrade.v1beta1.QueryModuleVersionsResponse": {
       /** @description module_versions is a list of module names with their consensus versions. */
       module_versions?: {
         /** name of the app module */
@@ -17421,7 +17504,7 @@ export interface components {
     };
     /** @description QueryUpgradedConsensusStateResponse is the response type for the Query/UpgradedConsensusState
      *     RPC method. */
-    'cosmos.upgrade.v1beta1.QueryUpgradedConsensusStateResponse': {
+    "cosmos.upgrade.v1beta1.QueryUpgradedConsensusStateResponse": {
       /**
        * Since: cosmos-sdk 0.43
        * Format: byte
@@ -17431,7 +17514,7 @@ export interface components {
     /** @description Channel defines pipeline for exactly-once packet delivery between specific
      *     modules on separate blockchains, which has at least one end capable of
      *     sending packets and one end capable of receiving packets. */
-    'ibc.core.channel.v1.Channel': {
+    "ibc.core.channel.v1.Channel": {
       /**
        * current state of the channel end
        * @description State defines if a channel is in one of the following states:
@@ -17448,11 +17531,11 @@ export interface components {
        * @enum {string}
        */
       state:
-        | 'STATE_UNINITIALIZED_UNSPECIFIED'
-        | 'STATE_INIT'
-        | 'STATE_TRYOPEN'
-        | 'STATE_OPEN'
-        | 'STATE_CLOSED';
+        | "STATE_UNINITIALIZED_UNSPECIFIED"
+        | "STATE_INIT"
+        | "STATE_TRYOPEN"
+        | "STATE_OPEN"
+        | "STATE_CLOSED";
       /**
        * whether the channel is ordered or unordered
        * @description - ORDER_NONE_UNSPECIFIED: zero-value for channel ordering
@@ -17462,7 +17545,7 @@ export interface components {
        * @default ORDER_NONE_UNSPECIFIED
        * @enum {string}
        */
-      ordering: 'ORDER_NONE_UNSPECIFIED' | 'ORDER_UNORDERED' | 'ORDER_ORDERED';
+      ordering: "ORDER_NONE_UNSPECIFIED" | "ORDER_UNORDERED" | "ORDER_ORDERED";
       /** counterparty channel end */
       counterparty?: {
         /** @description port on the counterparty chain which owns the other end of the channel. */
@@ -17477,7 +17560,7 @@ export interface components {
       version?: string;
     };
     /** Counterparty defines a channel end counterparty */
-    'ibc.core.channel.v1.Counterparty': {
+    "ibc.core.channel.v1.Counterparty": {
       /** @description port on the counterparty chain which owns the other end of the channel. */
       port_id?: string;
       /** channel end on the counterparty chain */
@@ -17485,7 +17568,7 @@ export interface components {
     };
     /** @description IdentifiedChannel defines a channel with additional port and channel
      *     identifier fields. */
-    'ibc.core.channel.v1.IdentifiedChannel': {
+    "ibc.core.channel.v1.IdentifiedChannel": {
       /**
        * current state of the channel end
        * @description State defines if a channel is in one of the following states:
@@ -17502,11 +17585,11 @@ export interface components {
        * @enum {string}
        */
       state:
-        | 'STATE_UNINITIALIZED_UNSPECIFIED'
-        | 'STATE_INIT'
-        | 'STATE_TRYOPEN'
-        | 'STATE_OPEN'
-        | 'STATE_CLOSED';
+        | "STATE_UNINITIALIZED_UNSPECIFIED"
+        | "STATE_INIT"
+        | "STATE_TRYOPEN"
+        | "STATE_OPEN"
+        | "STATE_CLOSED";
       /**
        * whether the channel is ordered or unordered
        * @description - ORDER_NONE_UNSPECIFIED: zero-value for channel ordering
@@ -17516,7 +17599,7 @@ export interface components {
        * @default ORDER_NONE_UNSPECIFIED
        * @enum {string}
        */
-      ordering: 'ORDER_NONE_UNSPECIFIED' | 'ORDER_UNORDERED' | 'ORDER_ORDERED';
+      ordering: "ORDER_NONE_UNSPECIFIED" | "ORDER_UNORDERED" | "ORDER_ORDERED";
       /** counterparty channel end */
       counterparty?: {
         /** @description port on the counterparty chain which owns the other end of the channel. */
@@ -17543,12 +17626,12 @@ export interface components {
      * @default ORDER_NONE_UNSPECIFIED
      * @enum {string}
      */
-    'ibc.core.channel.v1.Order': 'ORDER_NONE_UNSPECIFIED' | 'ORDER_UNORDERED' | 'ORDER_ORDERED';
+    "ibc.core.channel.v1.Order": "ORDER_NONE_UNSPECIFIED" | "ORDER_UNORDERED" | "ORDER_ORDERED";
     /** @description PacketState defines the generic type necessary to retrieve and store
      *     packet commitments, acknowledgements, and receipts.
      *     Caller is responsible for knowing the context necessary to interpret this
      *     state as a commitment, acknowledgement, or a receipt. */
-    'ibc.core.channel.v1.PacketState': {
+    "ibc.core.channel.v1.PacketState": {
       /** @description channel port identifier. */
       port_id?: string;
       /** @description channel unique identifier. */
@@ -17566,7 +17649,7 @@ export interface components {
     };
     /** QueryChannelClientStateResponse is the Response type for the
      *     Query/QueryChannelClientState RPC method */
-    'ibc.core.channel.v1.QueryChannelClientStateResponse': {
+    "ibc.core.channel.v1.QueryChannelClientStateResponse": {
       /**
        * client state associated with the channel
        * @description IdentifiedClientState defines a client state with an additional client
@@ -17725,7 +17808,7 @@ export interface components {
     };
     /** QueryChannelClientStateResponse is the Response type for the
      *     Query/QueryChannelClientState RPC method */
-    'ibc.core.channel.v1.QueryChannelConsensusStateResponse': {
+    "ibc.core.channel.v1.QueryChannelConsensusStateResponse": {
       /**
        * consensus state associated with the channel
        * @description `Any` contains an arbitrary serialized protocol buffer message along with a
@@ -17878,7 +17961,7 @@ export interface components {
     /** @description QueryChannelResponse is the response type for the Query/Channel RPC method.
      *     Besides the Channel end, it includes a proof and the height from which the
      *     proof was retrieved. */
-    'ibc.core.channel.v1.QueryChannelResponse': {
+    "ibc.core.channel.v1.QueryChannelResponse": {
       /**
        * channel associated with the request identifiers
        * @description Channel defines pipeline for exactly-once packet delivery between specific
@@ -17902,11 +17985,11 @@ export interface components {
          * @enum {string}
          */
         state:
-          | 'STATE_UNINITIALIZED_UNSPECIFIED'
-          | 'STATE_INIT'
-          | 'STATE_TRYOPEN'
-          | 'STATE_OPEN'
-          | 'STATE_CLOSED';
+          | "STATE_UNINITIALIZED_UNSPECIFIED"
+          | "STATE_INIT"
+          | "STATE_TRYOPEN"
+          | "STATE_OPEN"
+          | "STATE_CLOSED";
         /**
          * whether the channel is ordered or unordered
          * @description - ORDER_NONE_UNSPECIFIED: zero-value for channel ordering
@@ -17916,7 +17999,7 @@ export interface components {
          * @default ORDER_NONE_UNSPECIFIED
          * @enum {string}
          */
-        ordering: 'ORDER_NONE_UNSPECIFIED' | 'ORDER_UNORDERED' | 'ORDER_ORDERED';
+        ordering: "ORDER_NONE_UNSPECIFIED" | "ORDER_UNORDERED" | "ORDER_ORDERED";
         /** counterparty channel end */
         counterparty?: {
           /** @description port on the counterparty chain which owns the other end of the channel. */
@@ -17958,7 +18041,7 @@ export interface components {
       };
     };
     /** @description QueryChannelsResponse is the response type for the Query/Channels RPC method. */
-    'ibc.core.channel.v1.QueryChannelsResponse': {
+    "ibc.core.channel.v1.QueryChannelsResponse": {
       /** @description list of stored channels of the chain. */
       channels?: {
         /**
@@ -17977,11 +18060,11 @@ export interface components {
          * @enum {string}
          */
         state:
-          | 'STATE_UNINITIALIZED_UNSPECIFIED'
-          | 'STATE_INIT'
-          | 'STATE_TRYOPEN'
-          | 'STATE_OPEN'
-          | 'STATE_CLOSED';
+          | "STATE_UNINITIALIZED_UNSPECIFIED"
+          | "STATE_INIT"
+          | "STATE_TRYOPEN"
+          | "STATE_OPEN"
+          | "STATE_CLOSED";
         /**
          * whether the channel is ordered or unordered
          * @description - ORDER_NONE_UNSPECIFIED: zero-value for channel ordering
@@ -17991,7 +18074,7 @@ export interface components {
          * @default ORDER_NONE_UNSPECIFIED
          * @enum {string}
          */
-        ordering: 'ORDER_NONE_UNSPECIFIED' | 'ORDER_UNORDERED' | 'ORDER_ORDERED';
+        ordering: "ORDER_NONE_UNSPECIFIED" | "ORDER_UNORDERED" | "ORDER_ORDERED";
         /** counterparty channel end */
         counterparty?: {
           /** @description port on the counterparty chain which owns the other end of the channel. */
@@ -18057,7 +18140,7 @@ export interface components {
     };
     /** QueryConnectionChannelsResponse is the Response type for the
      *     Query/QueryConnectionChannels RPC method */
-    'ibc.core.channel.v1.QueryConnectionChannelsResponse': {
+    "ibc.core.channel.v1.QueryConnectionChannelsResponse": {
       /** @description list of channels associated with a connection. */
       channels?: {
         /**
@@ -18076,11 +18159,11 @@ export interface components {
          * @enum {string}
          */
         state:
-          | 'STATE_UNINITIALIZED_UNSPECIFIED'
-          | 'STATE_INIT'
-          | 'STATE_TRYOPEN'
-          | 'STATE_OPEN'
-          | 'STATE_CLOSED';
+          | "STATE_UNINITIALIZED_UNSPECIFIED"
+          | "STATE_INIT"
+          | "STATE_TRYOPEN"
+          | "STATE_OPEN"
+          | "STATE_CLOSED";
         /**
          * whether the channel is ordered or unordered
          * @description - ORDER_NONE_UNSPECIFIED: zero-value for channel ordering
@@ -18090,7 +18173,7 @@ export interface components {
          * @default ORDER_NONE_UNSPECIFIED
          * @enum {string}
          */
-        ordering: 'ORDER_NONE_UNSPECIFIED' | 'ORDER_UNORDERED' | 'ORDER_ORDERED';
+        ordering: "ORDER_NONE_UNSPECIFIED" | "ORDER_UNORDERED" | "ORDER_ORDERED";
         /** counterparty channel end */
         counterparty?: {
           /** @description port on the counterparty chain which owns the other end of the channel. */
@@ -18156,7 +18239,7 @@ export interface components {
     };
     /** QuerySequenceResponse is the request type for the
      *     Query/QueryNextSequenceReceiveResponse RPC method */
-    'ibc.core.channel.v1.QueryNextSequenceReceiveResponse': {
+    "ibc.core.channel.v1.QueryNextSequenceReceiveResponse": {
       /**
        * next sequence receive number
        * Format: uint64
@@ -18192,7 +18275,7 @@ export interface components {
     /** QueryPacketAcknowledgementResponse defines the client query response for a
      *     packet which also includes a proof and the height from which the
      *     proof was retrieved */
-    'ibc.core.channel.v1.QueryPacketAcknowledgementResponse': {
+    "ibc.core.channel.v1.QueryPacketAcknowledgementResponse": {
       /**
        * packet associated with the request fields
        * Format: byte
@@ -18227,7 +18310,7 @@ export interface components {
     };
     /** QueryPacketAcknowledgemetsResponse is the request type for the
      *     Query/QueryPacketAcknowledgements RPC method */
-    'ibc.core.channel.v1.QueryPacketAcknowledgementsResponse': {
+    "ibc.core.channel.v1.QueryPacketAcknowledgementsResponse": {
       acknowledgements?: {
         /** @description channel port identifier. */
         port_id?: string;
@@ -18293,7 +18376,7 @@ export interface components {
     /** QueryPacketCommitmentResponse defines the client query response for a packet
      *     which also includes a proof and the height from which the proof was
      *     retrieved */
-    'ibc.core.channel.v1.QueryPacketCommitmentResponse': {
+    "ibc.core.channel.v1.QueryPacketCommitmentResponse": {
       /**
        * packet associated with the request fields
        * Format: byte
@@ -18328,7 +18411,7 @@ export interface components {
     };
     /** QueryPacketCommitmentsResponse is the request type for the
      *     Query/QueryPacketCommitments RPC method */
-    'ibc.core.channel.v1.QueryPacketCommitmentsResponse': {
+    "ibc.core.channel.v1.QueryPacketCommitmentsResponse": {
       commitments?: {
         /** @description channel port identifier. */
         port_id?: string;
@@ -18394,7 +18477,7 @@ export interface components {
     /** QueryPacketReceiptResponse defines the client query response for a packet
      *     receipt which also includes a proof, and the height from which the proof was
      *     retrieved */
-    'ibc.core.channel.v1.QueryPacketReceiptResponse': {
+    "ibc.core.channel.v1.QueryPacketReceiptResponse": {
       /**
        * success flag for if receipt exists
        * Format: boolean
@@ -18429,7 +18512,7 @@ export interface components {
     };
     /** QueryUnreceivedAcksResponse is the response type for the
      *     Query/UnreceivedAcks RPC method */
-    'ibc.core.channel.v1.QueryUnreceivedAcksResponse': {
+    "ibc.core.channel.v1.QueryUnreceivedAcksResponse": {
       /** list of unreceived acknowledgement sequences */
       sequences?: string[];
       /**
@@ -18456,7 +18539,7 @@ export interface components {
     };
     /** QueryUnreceivedPacketsResponse is the response type for the
      *     Query/UnreceivedPacketCommitments RPC method */
-    'ibc.core.channel.v1.QueryUnreceivedPacketsResponse': {
+    "ibc.core.channel.v1.QueryUnreceivedPacketsResponse": {
       /** list of unreceived packet sequences */
       sequences?: string[];
       /**
@@ -18495,12 +18578,12 @@ export interface components {
      * @default STATE_UNINITIALIZED_UNSPECIFIED
      * @enum {string}
      */
-    'ibc.core.channel.v1.State':
-      | 'STATE_UNINITIALIZED_UNSPECIFIED'
-      | 'STATE_INIT'
-      | 'STATE_TRYOPEN'
-      | 'STATE_OPEN'
-      | 'STATE_CLOSED';
+    "ibc.core.channel.v1.State":
+      | "STATE_UNINITIALIZED_UNSPECIFIED"
+      | "STATE_INIT"
+      | "STATE_TRYOPEN"
+      | "STATE_OPEN"
+      | "STATE_CLOSED";
     /**
      * Height is a monotonically increasing data type
      *     that can be compared against another Height for the purposes of updating and
@@ -18512,7 +18595,7 @@ export interface components {
      *     height continues to be monitonically increasing even as the RevisionHeight
      *     gets reset
      */
-    'ibc.core.client.v1.Height': {
+    "ibc.core.client.v1.Height": {
       /**
        * the revision that the client is currently on
        * Format: uint64
@@ -18526,7 +18609,7 @@ export interface components {
     };
     /** @description IdentifiedClientState defines a client state with an additional client
      *     identifier field. */
-    'ibc.core.client.v1.IdentifiedClientState': {
+    "ibc.core.client.v1.IdentifiedClientState": {
       /** client identifier */
       client_id?: string;
       /**
@@ -18652,7 +18735,7 @@ export interface components {
     };
     /** @description ConsensusStateWithHeight defines a consensus state with an additional height
      *     field. */
-    'ibc.core.client.v1.ConsensusStateWithHeight': {
+    "ibc.core.client.v1.ConsensusStateWithHeight": {
       /**
        * consensus state height
        * @description Normally the RevisionHeight is incremented at each height while keeping
@@ -18796,13 +18879,13 @@ export interface components {
       };
     };
     /** @description Params defines the set of IBC light client parameters. */
-    'ibc.core.client.v1.Params': {
+    "ibc.core.client.v1.Params": {
       /** @description allowed_clients defines the list of allowed client state types. */
       allowed_clients?: string[];
     };
     /** @description QueryClientParamsResponse is the response type for the Query/ClientParams RPC
      *     method. */
-    'ibc.core.client.v1.QueryClientParamsResponse': {
+    "ibc.core.client.v1.QueryClientParamsResponse": {
       /** @description params defines the parameters of the module. */
       params?: {
         /** @description allowed_clients defines the list of allowed client state types. */
@@ -18812,7 +18895,7 @@ export interface components {
     /** @description QueryClientStateResponse is the response type for the Query/ClientState RPC
      *     method. Besides the client state, it includes a proof and the height from
      *     which the proof was retrieved. */
-    'ibc.core.client.v1.QueryClientStateResponse': {
+    "ibc.core.client.v1.QueryClientStateResponse": {
       /**
        * client state associated with the request identifier
        * @description `Any` contains an arbitrary serialized protocol buffer message along with a
@@ -18962,7 +19045,7 @@ export interface components {
     };
     /** @description QueryClientStatesResponse is the response type for the Query/ClientStates RPC
      *     method. */
-    'ibc.core.client.v1.QueryClientStatesResponse': {
+    "ibc.core.client.v1.QueryClientStatesResponse": {
       /** @description list of stored ClientStates of the chain. */
       client_states?: {
         /** client identifier */
@@ -19115,12 +19198,12 @@ export interface components {
     };
     /** @description QueryClientStatusResponse is the response type for the Query/ClientStatus RPC
      *     method. It returns the current status of the IBC client. */
-    'ibc.core.client.v1.QueryClientStatusResponse': {
+    "ibc.core.client.v1.QueryClientStatusResponse": {
       status?: string;
     };
     /** QueryConsensusStateHeightsResponse is the response type for the
      *     Query/ConsensusStateHeights RPC method */
-    'ibc.core.client.v1.QueryConsensusStateHeightsResponse': {
+    "ibc.core.client.v1.QueryConsensusStateHeightsResponse": {
       /** consensus state heights */
       consensus_state_heights?: {
         /**
@@ -19161,7 +19244,7 @@ export interface components {
     };
     /** QueryConsensusStateResponse is the response type for the Query/ConsensusState
      *     RPC method */
-    'ibc.core.client.v1.QueryConsensusStateResponse': {
+    "ibc.core.client.v1.QueryConsensusStateResponse": {
       /**
        * consensus state associated with the client identifier at the given height
        * @description `Any` contains an arbitrary serialized protocol buffer message along with a
@@ -19313,7 +19396,7 @@ export interface components {
     };
     /** QueryConsensusStatesResponse is the response type for the
      *     Query/ConsensusStates RPC method */
-    'ibc.core.client.v1.QueryConsensusStatesResponse': {
+    "ibc.core.client.v1.QueryConsensusStatesResponse": {
       /** consensus states associated with the identifier */
       consensus_states?: {
         /**
@@ -19485,7 +19568,7 @@ export interface components {
     };
     /** @description QueryUpgradedClientStateResponse is the response type for the
      *     Query/UpgradedClientState RPC method. */
-    'ibc.core.client.v1.QueryUpgradedClientStateResponse': {
+    "ibc.core.client.v1.QueryUpgradedClientStateResponse": {
       /**
        * client state associated with the request identifier
        * @description `Any` contains an arbitrary serialized protocol buffer message along with a
@@ -19609,7 +19692,7 @@ export interface components {
     };
     /** @description QueryUpgradedConsensusStateResponse is the response type for the
      *     Query/UpgradedConsensusState RPC method. */
-    'ibc.core.client.v1.QueryUpgradedConsensusStateResponse': {
+    "ibc.core.client.v1.QueryUpgradedConsensusStateResponse": {
       /**
        * Consensus state associated with the request identifier
        * @description `Any` contains an arbitrary serialized protocol buffer message along with a
@@ -19734,7 +19817,7 @@ export interface components {
     /** MerklePrefix is merkle path prefixed to the key.
      *     The constructed key from the Path and the key will be append(Path.KeyPath,
      *     append(Path.KeyPrefix, key...)) */
-    'ibc.core.commitment.v1.MerklePrefix': {
+    "ibc.core.commitment.v1.MerklePrefix": {
       /** Format: byte */
       key_prefix?: string;
     };
@@ -19742,7 +19825,7 @@ export interface components {
      *     separate one.
      *     NOTE: there must only be 2 defined ConnectionEnds to establish
      *     a connection between two chains. */
-    'ibc.core.connection.v1.ConnectionEnd': {
+    "ibc.core.connection.v1.ConnectionEnd": {
       /** @description client associated with this connection. */
       client_id?: string;
       /** @description IBC version which can be utilised to determine encodings or protocols for
@@ -19758,7 +19841,7 @@ export interface components {
        * @default STATE_UNINITIALIZED_UNSPECIFIED
        * @enum {string}
        */
-      state: 'STATE_UNINITIALIZED_UNSPECIFIED' | 'STATE_INIT' | 'STATE_TRYOPEN' | 'STATE_OPEN';
+      state: "STATE_UNINITIALIZED_UNSPECIFIED" | "STATE_INIT" | "STATE_TRYOPEN" | "STATE_OPEN";
       /** @description counterparty chain associated with this connection. */
       counterparty?: {
         /** @description identifies the client on the counterparty chain associated with a given
@@ -19787,7 +19870,7 @@ export interface components {
       delay_period?: string;
     };
     /** @description Counterparty defines the counterparty chain associated with a connection end. */
-    'ibc.core.connection.v1.Counterparty': {
+    "ibc.core.connection.v1.Counterparty": {
       /** @description identifies the client on the counterparty chain associated with a given
        *     connection. */
       client_id?: string;
@@ -19807,7 +19890,7 @@ export interface components {
     };
     /** @description IdentifiedConnection defines a connection with additional connection
      *     identifier field. */
-    'ibc.core.connection.v1.IdentifiedConnection': {
+    "ibc.core.connection.v1.IdentifiedConnection": {
       /** @description connection identifier. */
       id?: string;
       /** @description client associated with this connection. */
@@ -19825,7 +19908,7 @@ export interface components {
        * @default STATE_UNINITIALIZED_UNSPECIFIED
        * @enum {string}
        */
-      state: 'STATE_UNINITIALIZED_UNSPECIFIED' | 'STATE_INIT' | 'STATE_TRYOPEN' | 'STATE_OPEN';
+      state: "STATE_UNINITIALIZED_UNSPECIFIED" | "STATE_INIT" | "STATE_TRYOPEN" | "STATE_OPEN";
       /** @description counterparty chain associated with this connection. */
       counterparty?: {
         /** @description identifies the client on the counterparty chain associated with a given
@@ -19853,7 +19936,7 @@ export interface components {
     };
     /** QueryClientConnectionsResponse is the response type for the
      *     Query/ClientConnections RPC method */
-    'ibc.core.connection.v1.QueryClientConnectionsResponse': {
+    "ibc.core.connection.v1.QueryClientConnectionsResponse": {
       /** @description slice of all the connection paths associated with a client. */
       connection_paths?: string[];
       /**
@@ -19885,7 +19968,7 @@ export interface components {
     };
     /** QueryConnectionClientStateResponse is the response type for the
      *     Query/ConnectionClientState RPC method */
-    'ibc.core.connection.v1.QueryConnectionClientStateResponse': {
+    "ibc.core.connection.v1.QueryConnectionClientStateResponse": {
       /**
        * client state associated with the channel
        * @description IdentifiedClientState defines a client state with an additional client
@@ -20044,7 +20127,7 @@ export interface components {
     };
     /** QueryConnectionConsensusStateResponse is the response type for the
      *     Query/ConnectionConsensusState RPC method */
-    'ibc.core.connection.v1.QueryConnectionConsensusStateResponse': {
+    "ibc.core.connection.v1.QueryConnectionConsensusStateResponse": {
       /**
        * consensus state associated with the channel
        * @description `Any` contains an arbitrary serialized protocol buffer message along with a
@@ -20197,7 +20280,7 @@ export interface components {
     /** @description QueryConnectionResponse is the response type for the Query/Connection RPC
      *     method. Besides the connection end, it includes a proof and the height from
      *     which the proof was retrieved. */
-    'ibc.core.connection.v1.QueryConnectionResponse': {
+    "ibc.core.connection.v1.QueryConnectionResponse": {
       /**
        * connection associated with the request identifier
        * @description ConnectionEnd defines a stateful object on a chain connected to another
@@ -20221,7 +20304,7 @@ export interface components {
          * @default STATE_UNINITIALIZED_UNSPECIFIED
          * @enum {string}
          */
-        state: 'STATE_UNINITIALIZED_UNSPECIFIED' | 'STATE_INIT' | 'STATE_TRYOPEN' | 'STATE_OPEN';
+        state: "STATE_UNINITIALIZED_UNSPECIFIED" | "STATE_INIT" | "STATE_TRYOPEN" | "STATE_OPEN";
         /** @description counterparty chain associated with this connection. */
         counterparty?: {
           /** @description identifies the client on the counterparty chain associated with a given
@@ -20278,7 +20361,7 @@ export interface components {
     };
     /** @description QueryConnectionsResponse is the response type for the Query/Connections RPC
      *     method. */
-    'ibc.core.connection.v1.QueryConnectionsResponse': {
+    "ibc.core.connection.v1.QueryConnectionsResponse": {
       /** @description list of stored connections of the chain. */
       connections?: {
         /** @description connection identifier. */
@@ -20298,7 +20381,7 @@ export interface components {
          * @default STATE_UNINITIALIZED_UNSPECIFIED
          * @enum {string}
          */
-        state: 'STATE_UNINITIALIZED_UNSPECIFIED' | 'STATE_INIT' | 'STATE_TRYOPEN' | 'STATE_OPEN';
+        state: "STATE_UNINITIALIZED_UNSPECIFIED" | "STATE_INIT" | "STATE_TRYOPEN" | "STATE_OPEN";
         /** @description counterparty chain associated with this connection. */
         counterparty?: {
           /** @description identifies the client on the counterparty chain associated with a given
@@ -20382,14 +20465,14 @@ export interface components {
      * @default STATE_UNINITIALIZED_UNSPECIFIED
      * @enum {string}
      */
-    'ibc.core.connection.v1.State':
-      | 'STATE_UNINITIALIZED_UNSPECIFIED'
-      | 'STATE_INIT'
-      | 'STATE_TRYOPEN'
-      | 'STATE_OPEN';
+    "ibc.core.connection.v1.State":
+      | "STATE_UNINITIALIZED_UNSPECIFIED"
+      | "STATE_INIT"
+      | "STATE_TRYOPEN"
+      | "STATE_OPEN";
     /** @description Version defines the versioning scheme used to negotiate the IBC verison in
      *     the connection handshake. */
-    'ibc.core.connection.v1.Version': {
+    "ibc.core.connection.v1.Version": {
       /** unique version identifier */
       identifier?: string;
       /** list of features compatible with the specified identifier */
@@ -20397,7 +20480,7 @@ export interface components {
     };
     /** @description DenomTrace contains the base denomination for ICS20 fungible tokens and the
      *     source tracing information path. */
-    'ibc.applications.transfer.v1.DenomTrace': {
+    "ibc.applications.transfer.v1.DenomTrace": {
       /** @description path defines the chain of port/channel identifiers used for tracing the
        *     source of the fungible token. */
       path?: string;
@@ -20408,7 +20491,7 @@ export interface components {
      *     NOTE: To prevent a single token from being transferred, set the
      *     TransfersEnabled parameter to true and then set the bank module's SendEnabled
      *     parameter for the denomination to false. */
-    'ibc.applications.transfer.v1.Params': {
+    "ibc.applications.transfer.v1.Params": {
       /**
        * Format: boolean
        * @description send_enabled enables or disables all cross-chain token transfers from this
@@ -20424,13 +20507,13 @@ export interface components {
     };
     /** @description QueryDenomHashResponse is the response type for the Query/DenomHash RPC
      *     method. */
-    'ibc.applications.transfer.v1.QueryDenomHashResponse': {
+    "ibc.applications.transfer.v1.QueryDenomHashResponse": {
       /** @description hash (in hex format) of the denomination trace information. */
       hash?: string;
     };
     /** @description QueryDenomTraceResponse is the response type for the Query/DenomTrace RPC
      *     method. */
-    'ibc.applications.transfer.v1.QueryDenomTraceResponse': {
+    "ibc.applications.transfer.v1.QueryDenomTraceResponse": {
       /** @description DenomTrace contains the base denomination for ICS20 fungible tokens and the
        *     source tracing information path. */
       denom_trace?: {
@@ -20443,7 +20526,7 @@ export interface components {
     };
     /** @description QueryConnectionsResponse is the response type for the Query/DenomTraces RPC
      *     method. */
-    'ibc.applications.transfer.v1.QueryDenomTracesResponse': {
+    "ibc.applications.transfer.v1.QueryDenomTracesResponse": {
       /** @description denom_traces returns all denominations trace information. */
       denom_traces?: {
         /** @description path defines the chain of port/channel identifiers used for tracing the
@@ -20469,12 +20552,12 @@ export interface components {
       };
     };
     /** @description QueryEscrowAddressResponse is the response type of the EscrowAddress RPC method. */
-    'ibc.applications.transfer.v1.QueryEscrowAddressResponse': {
+    "ibc.applications.transfer.v1.QueryEscrowAddressResponse": {
       /** the escrow account address */
       escrow_address?: string;
     };
     /** @description QueryParamsResponse is the response type for the Query/Params RPC method. */
-    'ibc.applications.transfer.v1.QueryParamsResponse': {
+    "ibc.applications.transfer.v1.QueryParamsResponse": {
       /** @description params defines the parameters of the module. */
       params?: {
         /**
@@ -20493,7 +20576,7 @@ export interface components {
     };
     /** @description AbsoluteTxPosition is a unique transaction position that allows for global
      *     ordering of transactions. */
-    'cosmwasm.wasm.v1.AbsoluteTxPosition': {
+    "cosmwasm.wasm.v1.AbsoluteTxPosition": {
       /**
        * BlockHeight is the block the contract was created at
        * Format: uint64
@@ -20507,7 +20590,7 @@ export interface components {
       tx_index?: string;
     };
     /** @description AccessConfig access control type. */
-    'cosmwasm.wasm.v1.AccessConfig': {
+    "cosmwasm.wasm.v1.AccessConfig": {
       /**
        * AccessType permission types
        * @description - ACCESS_TYPE_UNSPECIFIED: AccessTypeUnspecified placeholder for empty value
@@ -20520,11 +20603,11 @@ export interface components {
        * @enum {string}
        */
       permission:
-        | 'ACCESS_TYPE_UNSPECIFIED'
-        | 'ACCESS_TYPE_NOBODY'
-        | 'ACCESS_TYPE_ONLY_ADDRESS'
-        | 'ACCESS_TYPE_EVERYBODY'
-        | 'ACCESS_TYPE_ANY_OF_ADDRESSES';
+        | "ACCESS_TYPE_UNSPECIFIED"
+        | "ACCESS_TYPE_NOBODY"
+        | "ACCESS_TYPE_ONLY_ADDRESS"
+        | "ACCESS_TYPE_EVERYBODY"
+        | "ACCESS_TYPE_ANY_OF_ADDRESSES";
       /** Address
        *     Deprecated: replaced by addresses */
       address?: string;
@@ -20541,14 +20624,14 @@ export interface components {
      * @default ACCESS_TYPE_UNSPECIFIED
      * @enum {string}
      */
-    'cosmwasm.wasm.v1.AccessType':
-      | 'ACCESS_TYPE_UNSPECIFIED'
-      | 'ACCESS_TYPE_NOBODY'
-      | 'ACCESS_TYPE_ONLY_ADDRESS'
-      | 'ACCESS_TYPE_EVERYBODY'
-      | 'ACCESS_TYPE_ANY_OF_ADDRESSES';
+    "cosmwasm.wasm.v1.AccessType":
+      | "ACCESS_TYPE_UNSPECIFIED"
+      | "ACCESS_TYPE_NOBODY"
+      | "ACCESS_TYPE_ONLY_ADDRESS"
+      | "ACCESS_TYPE_EVERYBODY"
+      | "ACCESS_TYPE_ANY_OF_ADDRESSES";
     /** CodeInfoResponse contains code meta data from CodeInfo */
-    'cosmwasm.wasm.v1.CodeInfoResponse': {
+    "cosmwasm.wasm.v1.CodeInfoResponse": {
       /** Format: uint64 */
       code_id?: string;
       creator?: string;
@@ -20568,11 +20651,11 @@ export interface components {
          * @enum {string}
          */
         permission:
-          | 'ACCESS_TYPE_UNSPECIFIED'
-          | 'ACCESS_TYPE_NOBODY'
-          | 'ACCESS_TYPE_ONLY_ADDRESS'
-          | 'ACCESS_TYPE_EVERYBODY'
-          | 'ACCESS_TYPE_ANY_OF_ADDRESSES';
+          | "ACCESS_TYPE_UNSPECIFIED"
+          | "ACCESS_TYPE_NOBODY"
+          | "ACCESS_TYPE_ONLY_ADDRESS"
+          | "ACCESS_TYPE_EVERYBODY"
+          | "ACCESS_TYPE_ANY_OF_ADDRESSES";
         /** Address
          *     Deprecated: replaced by addresses */
         address?: string;
@@ -20580,7 +20663,7 @@ export interface components {
       };
     };
     /** @description ContractCodeHistoryEntry metadata to a contract. */
-    'cosmwasm.wasm.v1.ContractCodeHistoryEntry': {
+    "cosmwasm.wasm.v1.ContractCodeHistoryEntry": {
       /**
        * ContractCodeHistoryOperationType actions that caused a code change
        * @description - CONTRACT_CODE_HISTORY_OPERATION_TYPE_UNSPECIFIED: ContractCodeHistoryOperationTypeUnspecified placeholder for empty value
@@ -20591,10 +20674,10 @@ export interface components {
        * @enum {string}
        */
       operation:
-        | 'CONTRACT_CODE_HISTORY_OPERATION_TYPE_UNSPECIFIED'
-        | 'CONTRACT_CODE_HISTORY_OPERATION_TYPE_INIT'
-        | 'CONTRACT_CODE_HISTORY_OPERATION_TYPE_MIGRATE'
-        | 'CONTRACT_CODE_HISTORY_OPERATION_TYPE_GENESIS';
+        | "CONTRACT_CODE_HISTORY_OPERATION_TYPE_UNSPECIFIED"
+        | "CONTRACT_CODE_HISTORY_OPERATION_TYPE_INIT"
+        | "CONTRACT_CODE_HISTORY_OPERATION_TYPE_MIGRATE"
+        | "CONTRACT_CODE_HISTORY_OPERATION_TYPE_GENESIS";
       /**
        * CodeID is the reference to the stored WASM code
        * Format: uint64
@@ -20626,13 +20709,13 @@ export interface components {
      * @default CONTRACT_CODE_HISTORY_OPERATION_TYPE_UNSPECIFIED
      * @enum {string}
      */
-    'cosmwasm.wasm.v1.ContractCodeHistoryOperationType':
-      | 'CONTRACT_CODE_HISTORY_OPERATION_TYPE_UNSPECIFIED'
-      | 'CONTRACT_CODE_HISTORY_OPERATION_TYPE_INIT'
-      | 'CONTRACT_CODE_HISTORY_OPERATION_TYPE_MIGRATE'
-      | 'CONTRACT_CODE_HISTORY_OPERATION_TYPE_GENESIS';
+    "cosmwasm.wasm.v1.ContractCodeHistoryOperationType":
+      | "CONTRACT_CODE_HISTORY_OPERATION_TYPE_UNSPECIFIED"
+      | "CONTRACT_CODE_HISTORY_OPERATION_TYPE_INIT"
+      | "CONTRACT_CODE_HISTORY_OPERATION_TYPE_MIGRATE"
+      | "CONTRACT_CODE_HISTORY_OPERATION_TYPE_GENESIS";
     /** ContractInfo stores a WASM contract instance */
-    'cosmwasm.wasm.v1.ContractInfo': {
+    "cosmwasm.wasm.v1.ContractInfo": {
       /**
        * CodeID is the reference to the stored Wasm code
        * Format: uint64
@@ -20778,7 +20861,7 @@ export interface components {
       };
     };
     /** Model is a struct that holds a KV pair */
-    'cosmwasm.wasm.v1.Model': {
+    "cosmwasm.wasm.v1.Model": {
       /**
        * hex-encode key to read it better (this is often ascii)
        * Format: byte
@@ -20791,7 +20874,7 @@ export interface components {
       value?: string;
     };
     /** @description Params defines the set of wasm parameters. */
-    'cosmwasm.wasm.v1.Params': {
+    "cosmwasm.wasm.v1.Params": {
       /** @description AccessConfig access control type. */
       code_upload_access?: {
         /**
@@ -20806,11 +20889,11 @@ export interface components {
          * @enum {string}
          */
         permission:
-          | 'ACCESS_TYPE_UNSPECIFIED'
-          | 'ACCESS_TYPE_NOBODY'
-          | 'ACCESS_TYPE_ONLY_ADDRESS'
-          | 'ACCESS_TYPE_EVERYBODY'
-          | 'ACCESS_TYPE_ANY_OF_ADDRESSES';
+          | "ACCESS_TYPE_UNSPECIFIED"
+          | "ACCESS_TYPE_NOBODY"
+          | "ACCESS_TYPE_ONLY_ADDRESS"
+          | "ACCESS_TYPE_EVERYBODY"
+          | "ACCESS_TYPE_ANY_OF_ADDRESSES";
         /** Address
          *     Deprecated: replaced by addresses */
         address?: string;
@@ -20828,15 +20911,15 @@ export interface components {
        * @enum {string}
        */
       instantiate_default_permission:
-        | 'ACCESS_TYPE_UNSPECIFIED'
-        | 'ACCESS_TYPE_NOBODY'
-        | 'ACCESS_TYPE_ONLY_ADDRESS'
-        | 'ACCESS_TYPE_EVERYBODY'
-        | 'ACCESS_TYPE_ANY_OF_ADDRESSES';
+        | "ACCESS_TYPE_UNSPECIFIED"
+        | "ACCESS_TYPE_NOBODY"
+        | "ACCESS_TYPE_ONLY_ADDRESS"
+        | "ACCESS_TYPE_EVERYBODY"
+        | "ACCESS_TYPE_ANY_OF_ADDRESSES";
     };
     /** QueryAllContractStateResponse is the response type for the
      *     Query/AllContractState RPC method */
-    'cosmwasm.wasm.v1.QueryAllContractStateResponse': {
+    "cosmwasm.wasm.v1.QueryAllContractStateResponse": {
       models?: {
         /**
          * hex-encode key to read it better (this is often ascii)
@@ -20866,7 +20949,7 @@ export interface components {
       };
     };
     /** QueryCodeResponse is the response type for the Query/Code RPC method */
-    'cosmwasm.wasm.v1.QueryCodeResponse': {
+    "cosmwasm.wasm.v1.QueryCodeResponse": {
       /** CodeInfoResponse contains code meta data from CodeInfo */
       code_info?: {
         /** Format: uint64 */
@@ -20888,11 +20971,11 @@ export interface components {
            * @enum {string}
            */
           permission:
-            | 'ACCESS_TYPE_UNSPECIFIED'
-            | 'ACCESS_TYPE_NOBODY'
-            | 'ACCESS_TYPE_ONLY_ADDRESS'
-            | 'ACCESS_TYPE_EVERYBODY'
-            | 'ACCESS_TYPE_ANY_OF_ADDRESSES';
+            | "ACCESS_TYPE_UNSPECIFIED"
+            | "ACCESS_TYPE_NOBODY"
+            | "ACCESS_TYPE_ONLY_ADDRESS"
+            | "ACCESS_TYPE_EVERYBODY"
+            | "ACCESS_TYPE_ANY_OF_ADDRESSES";
           /** Address
            *     Deprecated: replaced by addresses */
           address?: string;
@@ -20903,7 +20986,7 @@ export interface components {
       data?: string;
     };
     /** QueryCodesResponse is the response type for the Query/Codes RPC method */
-    'cosmwasm.wasm.v1.QueryCodesResponse': {
+    "cosmwasm.wasm.v1.QueryCodesResponse": {
       code_infos?: {
         /** Format: uint64 */
         code_id?: string;
@@ -20924,11 +21007,11 @@ export interface components {
            * @enum {string}
            */
           permission:
-            | 'ACCESS_TYPE_UNSPECIFIED'
-            | 'ACCESS_TYPE_NOBODY'
-            | 'ACCESS_TYPE_ONLY_ADDRESS'
-            | 'ACCESS_TYPE_EVERYBODY'
-            | 'ACCESS_TYPE_ANY_OF_ADDRESSES';
+            | "ACCESS_TYPE_UNSPECIFIED"
+            | "ACCESS_TYPE_NOBODY"
+            | "ACCESS_TYPE_ONLY_ADDRESS"
+            | "ACCESS_TYPE_EVERYBODY"
+            | "ACCESS_TYPE_ANY_OF_ADDRESSES";
           /** Address
            *     Deprecated: replaced by addresses */
           address?: string;
@@ -20953,7 +21036,7 @@ export interface components {
     };
     /** QueryContractHistoryResponse is the response type for the
      *     Query/ContractHistory RPC method */
-    'cosmwasm.wasm.v1.QueryContractHistoryResponse': {
+    "cosmwasm.wasm.v1.QueryContractHistoryResponse": {
       entries?: {
         /**
          * ContractCodeHistoryOperationType actions that caused a code change
@@ -20965,10 +21048,10 @@ export interface components {
          * @enum {string}
          */
         operation:
-          | 'CONTRACT_CODE_HISTORY_OPERATION_TYPE_UNSPECIFIED'
-          | 'CONTRACT_CODE_HISTORY_OPERATION_TYPE_INIT'
-          | 'CONTRACT_CODE_HISTORY_OPERATION_TYPE_MIGRATE'
-          | 'CONTRACT_CODE_HISTORY_OPERATION_TYPE_GENESIS';
+          | "CONTRACT_CODE_HISTORY_OPERATION_TYPE_UNSPECIFIED"
+          | "CONTRACT_CODE_HISTORY_OPERATION_TYPE_INIT"
+          | "CONTRACT_CODE_HISTORY_OPERATION_TYPE_MIGRATE"
+          | "CONTRACT_CODE_HISTORY_OPERATION_TYPE_GENESIS";
         /**
          * CodeID is the reference to the stored WASM code
          * Format: uint64
@@ -21009,7 +21092,7 @@ export interface components {
     };
     /** QueryContractInfoResponse is the response type for the Query/ContractInfo RPC
      *     method */
-    'cosmwasm.wasm.v1.QueryContractInfoResponse': {
+    "cosmwasm.wasm.v1.QueryContractInfoResponse": {
       /** address is the address of the contract */
       address?: string;
       /** ContractInfo stores a WASM contract instance */
@@ -21161,7 +21244,7 @@ export interface components {
     };
     /** QueryContractsByCodeResponse is the response type for the
      *     Query/ContractsByCode RPC method */
-    'cosmwasm.wasm.v1.QueryContractsByCodeResponse': {
+    "cosmwasm.wasm.v1.QueryContractsByCodeResponse": {
       /** contracts are a set of contract addresses */
       contracts?: string[];
       /** @description pagination defines the pagination in the response. */
@@ -21182,7 +21265,7 @@ export interface components {
     };
     /** @description QueryContractsByCreatorResponse is the response type for the
      *     Query/ContractsByCreator RPC method. */
-    'cosmwasm.wasm.v1.QueryContractsByCreatorResponse': {
+    "cosmwasm.wasm.v1.QueryContractsByCreatorResponse": {
       /** ContractAddresses result set */
       contract_addresses?: string[];
       /** @description Pagination defines the pagination in the response. */
@@ -21202,7 +21285,7 @@ export interface components {
       };
     };
     /** @description QueryParamsResponse is the response type for the Query/Params RPC method. */
-    'cosmwasm.wasm.v1.QueryParamsResponse': {
+    "cosmwasm.wasm.v1.QueryParamsResponse": {
       /** @description params defines the parameters of the module. */
       params?: {
         /** @description AccessConfig access control type. */
@@ -21219,11 +21302,11 @@ export interface components {
            * @enum {string}
            */
           permission:
-            | 'ACCESS_TYPE_UNSPECIFIED'
-            | 'ACCESS_TYPE_NOBODY'
-            | 'ACCESS_TYPE_ONLY_ADDRESS'
-            | 'ACCESS_TYPE_EVERYBODY'
-            | 'ACCESS_TYPE_ANY_OF_ADDRESSES';
+            | "ACCESS_TYPE_UNSPECIFIED"
+            | "ACCESS_TYPE_NOBODY"
+            | "ACCESS_TYPE_ONLY_ADDRESS"
+            | "ACCESS_TYPE_EVERYBODY"
+            | "ACCESS_TYPE_ANY_OF_ADDRESSES";
           /** Address
            *     Deprecated: replaced by addresses */
           address?: string;
@@ -21241,16 +21324,16 @@ export interface components {
          * @enum {string}
          */
         instantiate_default_permission:
-          | 'ACCESS_TYPE_UNSPECIFIED'
-          | 'ACCESS_TYPE_NOBODY'
-          | 'ACCESS_TYPE_ONLY_ADDRESS'
-          | 'ACCESS_TYPE_EVERYBODY'
-          | 'ACCESS_TYPE_ANY_OF_ADDRESSES';
+          | "ACCESS_TYPE_UNSPECIFIED"
+          | "ACCESS_TYPE_NOBODY"
+          | "ACCESS_TYPE_ONLY_ADDRESS"
+          | "ACCESS_TYPE_EVERYBODY"
+          | "ACCESS_TYPE_ANY_OF_ADDRESSES";
       };
     };
     /** QueryPinnedCodesResponse is the response type for the
      *     Query/PinnedCodes RPC method */
-    'cosmwasm.wasm.v1.QueryPinnedCodesResponse': {
+    "cosmwasm.wasm.v1.QueryPinnedCodesResponse": {
       code_ids?: string[];
       /** @description pagination defines the pagination in the response. */
       pagination?: {
@@ -21270,7 +21353,7 @@ export interface components {
     };
     /** QueryRawContractStateResponse is the response type for the
      *     Query/RawContractState RPC method */
-    'cosmwasm.wasm.v1.QueryRawContractStateResponse': {
+    "cosmwasm.wasm.v1.QueryRawContractStateResponse": {
       /**
        * Data contains the raw store data
        * Format: byte
@@ -21279,7 +21362,7 @@ export interface components {
     };
     /** QuerySmartContractStateResponse is the response type for the
      *     Query/SmartContractState RPC method */
-    'cosmwasm.wasm.v1.QuerySmartContractStateResponse': {
+    "cosmwasm.wasm.v1.QuerySmartContractStateResponse": {
       /**
        * Data contains the json data returned from the smart contract
        * Format: byte
@@ -21292,7 +21375,7 @@ export interface components {
   requestBodies: {
     KeygenOptInBody: {
       content: {
-        'application/json': {
+        "application/json": {
           /** Format: byte */
           sender?: string;
         };
@@ -21300,7 +21383,7 @@ export interface components {
     };
     DeregisterChainMaintainerBody: {
       content: {
-        'application/json': {
+        "application/json": {
           /** Format: byte */
           sender?: string;
           chains?: string[];
@@ -21309,7 +21392,7 @@ export interface components {
     };
     CreateTransferOperatorshipBody: {
       content: {
-        'application/json': {
+        "application/json": {
           /** Format: byte */
           sender?: string;
           chain?: string;
@@ -21319,7 +21402,7 @@ export interface components {
     };
     AddCustodianToGroupBody: {
       content: {
-        'application/json': {
+        "application/json": {
           /** Format: byte */
           sender?: string;
           guid?: string;
@@ -21331,7 +21414,7 @@ export interface components {
     };
     SignBtcCommandBody: {
       content: {
-        'application/json': {
+        "application/json": {
           /** Format: byte */
           sender?: string;
           chain?: string;
@@ -21340,7 +21423,7 @@ export interface components {
     };
     CreateCustodianGroupBody: {
       content: {
-        'application/json': {
+        "application/json": {
           /** Format: byte */
           sender?: string;
           uid?: string;
@@ -21351,7 +21434,7 @@ export interface components {
            * @default STATUS_UNSPECIFIED
            * @enum {string}
            */
-          status?: 'STATUS_UNSPECIFIED' | 'STATUS_ACTIVATED' | 'STATUS_DEACTIVATED' | 'STATUS_PENDING';
+          status?: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED" | "STATUS_PENDING";
           description?: string;
           custodian?: string[];
         };
@@ -21372,7 +21455,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        'application/json': {
+        "application/json": {
           /** Format: byte */
           sender?: string;
           /** Chain represents the properties of a registered blockchain */
@@ -21385,7 +21468,7 @@ export interface operations {
              * @default KEY_TYPE_UNSPECIFIED
              * @enum {string}
              */
-            key_type?: 'KEY_TYPE_UNSPECIFIED' | 'KEY_TYPE_NONE' | 'KEY_TYPE_THRESHOLD' | 'KEY_TYPE_MULTISIG';
+            key_type?: "KEY_TYPE_UNSPECIFIED" | "KEY_TYPE_NONE" | "KEY_TYPE_THRESHOLD" | "KEY_TYPE_MULTISIG";
             /** the module has two types: chains and scalarnet */
             module?: string;
           };
@@ -21408,7 +21491,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': Record<string, never>;
+          "*/*": Record<string, never>;
         };
       };
       /** @description An unexpected error response */
@@ -21417,7 +21500,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -21471,7 +21554,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        'application/json': {
+        "application/json": {
           /** Format: byte */
           sender?: string;
           chain?: string;
@@ -21502,7 +21585,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': Record<string, never>;
+          "*/*": Record<string, never>;
         };
       };
       /** @description An unexpected error response */
@@ -21511,7 +21594,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -21565,7 +21648,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        'application/json': {
+        "application/json": {
           /** Format: byte */
           sender?: string;
           /** Format: byte */
@@ -21581,7 +21664,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': Record<string, never>;
+          "*/*": Record<string, never>;
         };
       };
       /** @description An unexpected error response */
@@ -21590,7 +21673,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -21644,7 +21727,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        'application/json': {
+        "application/json": {
           /** Format: byte */
           sender?: string;
         };
@@ -21657,7 +21740,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': Record<string, never>;
+          "*/*": Record<string, never>;
         };
       };
       /** @description An unexpected error response */
@@ -21666,7 +21749,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -21720,7 +21803,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        'application/json': {
+        "application/json": {
           /** Format: byte */
           sender?: string;
           recipient_addr?: string;
@@ -21736,7 +21819,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             deposit_addr?: string;
           };
         };
@@ -21747,7 +21830,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -21801,7 +21884,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        'application/json': {
+        "application/json": {
           /** Format: byte */
           sender?: string;
           chain?: string;
@@ -21823,7 +21906,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': Record<string, never>;
+          "*/*": Record<string, never>;
         };
       };
       /** @description An unexpected error response */
@@ -21832,7 +21915,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -21886,7 +21969,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        'application/json': {
+        "application/json": {
           /** Format: byte */
           sender?: string;
           /** Format: byte */
@@ -21901,7 +21984,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': Record<string, never>;
+          "*/*": Record<string, never>;
         };
       };
       /** @description An unexpected error response */
@@ -21910,7 +21993,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -21964,7 +22047,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        'application/json': {
+        "application/json": {
           /** Format: byte */
           sender?: string;
           chain?: string;
@@ -21980,7 +22063,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': Record<string, never>;
+          "*/*": Record<string, never>;
         };
       };
       /** @description An unexpected error response */
@@ -21989,7 +22072,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -22043,7 +22126,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        'application/json': {
+        "application/json": {
           /** Format: byte */
           sender?: string;
         };
@@ -22056,7 +22139,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': Record<string, never>;
+          "*/*": Record<string, never>;
         };
       };
       /** @description An unexpected error response */
@@ -22065,7 +22148,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -22119,7 +22202,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        'application/json': {
+        "application/json": {
           /** Format: byte */
           sender?: string;
           id?: string;
@@ -22137,7 +22220,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': Record<string, never>;
+          "*/*": Record<string, never>;
         };
       };
       /** @description An unexpected error response */
@@ -22146,7 +22229,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -22208,7 +22291,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             chain?: string;
           };
         };
@@ -22219,7 +22302,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -22281,7 +22364,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             ibc_path?: string;
           };
         };
@@ -22292,7 +22375,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -22352,7 +22435,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             transfers_by_chain?: {
               [key: string]: number;
             };
@@ -22365,7 +22448,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -22425,7 +22508,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** Params represent the genesis parameters for the module */
             params?: {
               /**
@@ -22459,7 +22542,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -22513,7 +22596,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        'application/json': {
+        "application/json": {
           /** Format: byte */
           sender?: string;
           chain?: string;
@@ -22529,7 +22612,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': Record<string, never>;
+          "*/*": Record<string, never>;
         };
       };
       /** @description An unexpected error response */
@@ -22538,7 +22621,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -22592,7 +22675,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        'application/json': {
+        "application/json": {
           /** Format: byte */
           sender?: string;
           name?: string;
@@ -22608,7 +22691,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': Record<string, never>;
+          "*/*": Record<string, never>;
         };
       };
       /** @description An unexpected error response */
@@ -22617,7 +22700,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -22682,7 +22765,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             id?: string;
             data?: string;
             /**
@@ -22690,10 +22773,10 @@ export interface operations {
              * @enum {string}
              */
             status:
-              | 'BATCHED_COMMANDS_STATUS_UNSPECIFIED'
-              | 'BATCHED_COMMANDS_STATUS_SIGNING'
-              | 'BATCHED_COMMANDS_STATUS_ABORTED'
-              | 'BATCHED_COMMANDS_STATUS_SIGNED';
+              | "BATCHED_COMMANDS_STATUS_UNSPECIFIED"
+              | "BATCHED_COMMANDS_STATUS_SIGNING"
+              | "BATCHED_COMMANDS_STATUS_ABORTED"
+              | "BATCHED_COMMANDS_STATUS_SIGNED";
             key_id?: string;
             execute_data?: string;
             prev_batched_commands_id?: string;
@@ -22713,7 +22796,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -22775,7 +22858,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             chain?: string;
             burner_info?: {
               /** Format: byte */
@@ -22797,7 +22880,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -22860,7 +22943,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             bytecode?: string;
           };
         };
@@ -22871,7 +22954,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -22919,7 +23002,7 @@ export interface operations {
   ScalarChains: {
     parameters: {
       query?: {
-        status?: 'CHAIN_STATUS_UNSPECIFIED' | 'CHAIN_STATUS_ACTIVATED' | 'CHAIN_STATUS_DEACTIVATED';
+        status?: "CHAIN_STATUS_UNSPECIFIED" | "CHAIN_STATUS_ACTIVATED" | "CHAIN_STATUS_DEACTIVATED";
       };
       header?: never;
       path?: never;
@@ -22933,7 +23016,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             chains?: string[];
           };
         };
@@ -22944,7 +23027,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -23007,7 +23090,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             id?: string;
             type?: string;
             params?: {
@@ -23025,7 +23108,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -23079,7 +23162,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        'application/json': {
+        "application/json": {
           /** Format: byte */
           sender?: string;
           chain?: string;
@@ -23099,7 +23182,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': Record<string, never>;
+          "*/*": Record<string, never>;
         };
       };
       /** @description An unexpected error response */
@@ -23108,7 +23191,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -23162,7 +23245,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        'application/json': {
+        "application/json": {
           /** Format: byte */
           sender?: string;
           chain?: string;
@@ -23177,7 +23260,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': Record<string, never>;
+          "*/*": Record<string, never>;
         };
       };
       /** @description An unexpected error response */
@@ -23186,7 +23269,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -23240,7 +23323,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        'application/json': {
+        "application/json": {
           /** Format: byte */
           sender?: string;
           chain?: string;
@@ -23260,7 +23343,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': Record<string, never>;
+          "*/*": Record<string, never>;
         };
       };
       /** @description An unexpected error response */
@@ -23269,7 +23352,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -23331,7 +23414,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** Format: uint64 */
             height?: string;
           };
@@ -23343,7 +23426,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -23397,7 +23480,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        'application/json': {
+        "application/json": {
           /** Format: byte */
           sender?: string;
           chain?: string;
@@ -23411,7 +23494,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': Record<string, never>;
+          "*/*": Record<string, never>;
         };
       };
       /** @description An unexpected error response */
@@ -23420,7 +23503,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -23474,7 +23557,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        'application/json': {
+        "application/json": {
           /** Format: byte */
           sender?: string;
           chain?: string;
@@ -23492,7 +23575,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': Record<string, never>;
+          "*/*": Record<string, never>;
         };
       };
       /** @description An unexpected error response */
@@ -23501,7 +23584,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -23555,7 +23638,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        'application/json': {
+        "application/json": {
           /** Format: byte */
           sender?: string;
           chain?: string;
@@ -23569,7 +23652,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': Record<string, never>;
+          "*/*": Record<string, never>;
         };
       };
       /** @description An unexpected error response */
@@ -23578,7 +23661,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -23630,7 +23713,7 @@ export interface operations {
       path?: never;
       cookie?: never;
     };
-    requestBody: components['requestBodies']['CreateTransferOperatorshipBody'];
+    requestBody: components["requestBodies"]["CreateTransferOperatorshipBody"];
     responses: {
       /** @description A successful response. */
       200: {
@@ -23638,7 +23721,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': Record<string, never>;
+          "*/*": Record<string, never>;
         };
       };
       /** @description An unexpected error response */
@@ -23647,7 +23730,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -23695,7 +23778,7 @@ export interface operations {
   ERC20Tokens: {
     parameters: {
       query?: {
-        type?: 'TOKEN_TYPE_UNSPECIFIED' | 'TOKEN_TYPE_INTERNAL' | 'TOKEN_TYPE_EXTERNAL';
+        type?: "TOKEN_TYPE_UNSPECIFIED" | "TOKEN_TYPE_INTERNAL" | "TOKEN_TYPE_EXTERNAL";
       };
       header?: never;
       path: {
@@ -23711,7 +23794,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             tokens?: {
               asset?: string;
               symbol?: string;
@@ -23725,7 +23808,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -23788,7 +23871,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             event?: {
               chain?: string;
               /** Format: byte */
@@ -23797,7 +23880,7 @@ export interface operations {
                * @default STATUS_UNSPECIFIED
                * @enum {string}
                */
-              status: 'STATUS_UNSPECIFIED' | 'STATUS_CONFIRMED' | 'STATUS_COMPLETED' | 'STATUS_FAILED';
+              status: "STATUS_UNSPECIFIED" | "STATUS_CONFIRMED" | "STATUS_COMPLETED" | "STATUS_FAILED";
               /** Format: uint64 */
               index?: string;
               token_sent?: {
@@ -23824,6 +23907,8 @@ export interface operations {
                 script_pubkey?: string;
                 /** Format: int64 */
                 vout?: number;
+                /** Format: uint64 */
+                block_height?: string;
               };
               contract_call?: {
                 /** Format: byte */
@@ -23896,6 +23981,24 @@ export interface operations {
                 destination_contract_address?: string;
                 destination_recipient_address?: string;
               };
+              /** for btc */
+              redeem_token?: {
+                /** Format: byte */
+                sender?: string;
+                /** Format: uint64 */
+                sequence?: string;
+                /** Format: byte */
+                custodian_group_id?: string;
+                destination_chain?: string;
+                destination_contract_address?: string;
+                /** Format: byte */
+                payload_hash?: string;
+                /** Format: byte */
+                payload?: string;
+                symbol?: string;
+                /** Format: byte */
+                amount?: string;
+              };
             };
           };
         };
@@ -23906,7 +24009,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -23968,7 +24071,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             address?: string;
           };
         };
@@ -23979,7 +24082,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -24043,7 +24146,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             key_id?: string;
             addresses?: {
               address?: string;
@@ -24059,7 +24162,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -24113,7 +24216,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        'application/json': {
+        "application/json": {
           /** Format: byte */
           sender?: string;
           chain?: string;
@@ -24130,7 +24233,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             deposit_addr?: string;
           };
         };
@@ -24141,7 +24244,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -24203,7 +24306,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             params?: {
               chain?: string;
               /** Format: uint64 */
@@ -24241,6 +24344,13 @@ export interface operations {
               metadata?: {
                 [key: string]: string;
               };
+              /**
+               * limite redeem
+               * Format: uint64
+               */
+              redeem_session_amount_limit?: string;
+              /** Format: uint64 */
+              redeem_txs_vsize_limit?: string;
             };
           };
         };
@@ -24251,7 +24361,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -24313,7 +24423,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             commands?: {
               id?: string;
               type?: string;
@@ -24335,7 +24445,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -24397,7 +24507,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             redeem_session?: {
               /** Format: byte */
               custodian_group_uid?: string;
@@ -24407,7 +24517,7 @@ export interface operations {
                * @default PHASE_PREPARING
                * @enum {string}
                */
-              current_phase: 'PHASE_PREPARING' | 'PHASE_EXECUTING';
+              current_phase: "PHASE_PREPARING" | "PHASE_EXECUTING";
             }[];
           };
         };
@@ -24418,7 +24528,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -24472,7 +24582,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        'application/json': {
+        "application/json": {
           /** Format: byte */
           sender?: string;
           chain?: string;
@@ -24487,7 +24597,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': Record<string, never>;
+          "*/*": Record<string, never>;
         };
       };
       /** @description An unexpected error response */
@@ -24496,7 +24606,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -24550,7 +24660,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        'application/json': {
+        "application/json": {
           /** Format: byte */
           sender?: string;
           chain?: string;
@@ -24566,7 +24676,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': Record<string, never>;
+          "*/*": Record<string, never>;
         };
       };
       /** @description An unexpected error response */
@@ -24575,7 +24685,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -24627,7 +24737,7 @@ export interface operations {
       path?: never;
       cookie?: never;
     };
-    requestBody: components['requestBodies']['SignBtcCommandBody'];
+    requestBody: components["requestBodies"]["SignBtcCommandBody"];
     responses: {
       /** @description A successful response. */
       200: {
@@ -24635,7 +24745,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** Format: byte */
             batched_commands_id?: string;
             /** Format: int64 */
@@ -24649,7 +24759,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -24701,7 +24811,7 @@ export interface operations {
       path?: never;
       cookie?: never;
     };
-    requestBody: components['requestBodies']['SignBtcCommandBody'];
+    requestBody: components["requestBodies"]["SignBtcCommandBody"];
     responses: {
       /** @description A successful response. */
       200: {
@@ -24709,7 +24819,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** Format: byte */
             batched_commands_id?: string;
             /** Format: int64 */
@@ -24723,7 +24833,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -24789,7 +24899,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             asset?: string;
             details?: {
               token_name?: string;
@@ -24814,7 +24924,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -24868,7 +24978,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        'application/json': {
+        "application/json": {
           /** Format: byte */
           sender?: string;
           chain?: string;
@@ -24884,7 +24994,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': Record<string, never>;
+          "*/*": Record<string, never>;
         };
       };
       /** @description An unexpected error response */
@@ -24893,7 +25003,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -24944,7 +25054,7 @@ export interface operations {
         pubkey?: string;
         address?: string;
         name?: string;
-        status?: 'STATUS_UNSPECIFIED' | 'STATUS_ACTIVATED' | 'STATUS_DEACTIVATED' | 'STATUS_PENDING';
+        status?: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED" | "STATUS_PENDING";
       };
       header?: never;
       path?: never;
@@ -24958,7 +25068,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             protocols?: {
               /** Format: byte */
               scalar_address?: string;
@@ -24972,13 +25082,13 @@ export interface operations {
                  * @default LIQUIDITY_MODEL_UNSPECIFIED
                  * @enum {string}
                  */
-                model: 'LIQUIDITY_MODEL_UNSPECIFIED' | 'LIQUIDITY_MODEL_POOL' | 'LIQUIDITY_MODEL_UPC';
+                model: "LIQUIDITY_MODEL_UNSPECIFIED" | "LIQUIDITY_MODEL_POOL" | "LIQUIDITY_MODEL_UPC";
               };
               /**
                * @default STATUS_UNSPECIFIED
                * @enum {string}
                */
-              status: 'STATUS_UNSPECIFIED' | 'STATUS_ACTIVATED' | 'STATUS_DEACTIVATED' | 'STATUS_PENDING';
+              status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED" | "STATUS_PENDING";
               /** Format: byte */
               custodian_group_uid?: string;
               chains?: {
@@ -25009,7 +25119,7 @@ export interface operations {
                  * @default STATUS_UNSPECIFIED
                  * @enum {string}
                  */
-                status: 'STATUS_UNSPECIFIED' | 'STATUS_ACTIVATED' | 'STATUS_DEACTIVATED' | 'STATUS_PENDING';
+                status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED" | "STATUS_PENDING";
                 description?: string;
                 custodians?: {
                   name?: string;
@@ -25021,7 +25131,7 @@ export interface operations {
                    * @default STATUS_UNSPECIFIED
                    * @enum {string}
                    */
-                  status: 'STATUS_UNSPECIFIED' | 'STATUS_ACTIVATED' | 'STATUS_DEACTIVATED' | 'STATUS_PENDING';
+                  status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED" | "STATUS_PENDING";
                   description?: string;
                 }[];
               };
@@ -25051,7 +25161,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -25105,7 +25215,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        'application/json': {
+        "application/json": {
           /** Format: byte */
           sender?: string;
           chain?: {
@@ -25123,7 +25233,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             protocol?: {
               /** Format: byte */
               bitcoin_pubkey?: string;
@@ -25137,13 +25247,13 @@ export interface operations {
                  * @default LIQUIDITY_MODEL_UNSPECIFIED
                  * @enum {string}
                  */
-                model: 'LIQUIDITY_MODEL_UNSPECIFIED' | 'LIQUIDITY_MODEL_POOL' | 'LIQUIDITY_MODEL_UPC';
+                model: "LIQUIDITY_MODEL_UNSPECIFIED" | "LIQUIDITY_MODEL_POOL" | "LIQUIDITY_MODEL_UPC";
               };
               /**
                * @default STATUS_UNSPECIFIED
                * @enum {string}
                */
-              status: 'STATUS_UNSPECIFIED' | 'STATUS_ACTIVATED' | 'STATUS_DEACTIVATED' | 'STATUS_PENDING';
+              status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED" | "STATUS_PENDING";
               /** Format: byte */
               custodian_group_uid?: string;
               chains?: {
@@ -25177,7 +25287,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -25231,7 +25341,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        'application/json': {
+        "application/json": {
           /**
            * // TODO: Consider to add rbac for this message
            *     option (permission.exported.v1beta1.permission_role) =
@@ -25248,7 +25358,7 @@ export interface operations {
              * @default LIQUIDITY_MODEL_UNSPECIFIED
              * @enum {string}
              */
-            model?: 'LIQUIDITY_MODEL_UNSPECIFIED' | 'LIQUIDITY_MODEL_POOL' | 'LIQUIDITY_MODEL_UPC';
+            model?: "LIQUIDITY_MODEL_UNSPECIFIED" | "LIQUIDITY_MODEL_POOL" | "LIQUIDITY_MODEL_UPC";
           };
           /** Format: byte */
           custodian_group_uid?: string;
@@ -25273,7 +25383,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             protocol?: {
               /** Format: byte */
               bitcoin_pubkey?: string;
@@ -25287,13 +25397,13 @@ export interface operations {
                  * @default LIQUIDITY_MODEL_UNSPECIFIED
                  * @enum {string}
                  */
-                model: 'LIQUIDITY_MODEL_UNSPECIFIED' | 'LIQUIDITY_MODEL_POOL' | 'LIQUIDITY_MODEL_UPC';
+                model: "LIQUIDITY_MODEL_UNSPECIFIED" | "LIQUIDITY_MODEL_POOL" | "LIQUIDITY_MODEL_UPC";
               };
               /**
                * @default STATUS_UNSPECIFIED
                * @enum {string}
                */
-              status: 'STATUS_UNSPECIFIED' | 'STATUS_ACTIVATED' | 'STATUS_DEACTIVATED' | 'STATUS_PENDING';
+              status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED" | "STATUS_PENDING";
               /** Format: byte */
               custodian_group_uid?: string;
               chains?: {
@@ -25327,7 +25437,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -25393,7 +25503,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             protocol?: {
               /** Format: byte */
               scalar_address?: string;
@@ -25407,13 +25517,13 @@ export interface operations {
                  * @default LIQUIDITY_MODEL_UNSPECIFIED
                  * @enum {string}
                  */
-                model: 'LIQUIDITY_MODEL_UNSPECIFIED' | 'LIQUIDITY_MODEL_POOL' | 'LIQUIDITY_MODEL_UPC';
+                model: "LIQUIDITY_MODEL_UNSPECIFIED" | "LIQUIDITY_MODEL_POOL" | "LIQUIDITY_MODEL_UPC";
               };
               /**
                * @default STATUS_UNSPECIFIED
                * @enum {string}
                */
-              status: 'STATUS_UNSPECIFIED' | 'STATUS_ACTIVATED' | 'STATUS_DEACTIVATED' | 'STATUS_PENDING';
+              status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED" | "STATUS_PENDING";
               /** Format: byte */
               custodian_group_uid?: string;
               chains?: {
@@ -25444,7 +25554,7 @@ export interface operations {
                  * @default STATUS_UNSPECIFIED
                  * @enum {string}
                  */
-                status: 'STATUS_UNSPECIFIED' | 'STATUS_ACTIVATED' | 'STATUS_DEACTIVATED' | 'STATUS_PENDING';
+                status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED" | "STATUS_PENDING";
                 description?: string;
                 custodians?: {
                   name?: string;
@@ -25456,7 +25566,7 @@ export interface operations {
                    * @default STATUS_UNSPECIFIED
                    * @enum {string}
                    */
-                  status: 'STATUS_UNSPECIFIED' | 'STATUS_ACTIVATED' | 'STATUS_DEACTIVATED' | 'STATUS_PENDING';
+                  status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED" | "STATUS_PENDING";
                   description?: string;
                 }[];
               };
@@ -25484,7 +25594,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -25538,7 +25648,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        'application/json': {
+        "application/json": {
           /** Format: byte */
           sender?: string;
           name?: string;
@@ -25553,7 +25663,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             protocol?: {
               /** Format: byte */
               bitcoin_pubkey?: string;
@@ -25567,13 +25677,13 @@ export interface operations {
                  * @default LIQUIDITY_MODEL_UNSPECIFIED
                  * @enum {string}
                  */
-                model: 'LIQUIDITY_MODEL_UNSPECIFIED' | 'LIQUIDITY_MODEL_POOL' | 'LIQUIDITY_MODEL_UPC';
+                model: "LIQUIDITY_MODEL_UNSPECIFIED" | "LIQUIDITY_MODEL_POOL" | "LIQUIDITY_MODEL_UPC";
               };
               /**
                * @default STATUS_UNSPECIFIED
                * @enum {string}
                */
-              status: 'STATUS_UNSPECIFIED' | 'STATUS_ACTIVATED' | 'STATUS_DEACTIVATED' | 'STATUS_PENDING';
+              status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED" | "STATUS_PENDING";
               /** Format: byte */
               custodian_group_uid?: string;
               chains?: {
@@ -25607,7 +25717,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -25661,7 +25771,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        'application/json': {
+        "application/json": {
           /** Format: byte */
           sender?: string;
           chain_family?: string;
@@ -25671,7 +25781,7 @@ export interface operations {
            * @default STATUS_UNSPECIFIED
            * @enum {string}
            */
-          status?: 'STATUS_UNSPECIFIED' | 'STATUS_ACTIVATED' | 'STATUS_DEACTIVATED' | 'STATUS_PENDING';
+          status?: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED" | "STATUS_PENDING";
         };
       };
     };
@@ -25682,7 +25792,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             protocol?: {
               /** Format: byte */
               bitcoin_pubkey?: string;
@@ -25696,13 +25806,13 @@ export interface operations {
                  * @default LIQUIDITY_MODEL_UNSPECIFIED
                  * @enum {string}
                  */
-                model: 'LIQUIDITY_MODEL_UNSPECIFIED' | 'LIQUIDITY_MODEL_POOL' | 'LIQUIDITY_MODEL_UPC';
+                model: "LIQUIDITY_MODEL_UNSPECIFIED" | "LIQUIDITY_MODEL_POOL" | "LIQUIDITY_MODEL_UPC";
               };
               /**
                * @default STATUS_UNSPECIFIED
                * @enum {string}
                */
-              status: 'STATUS_UNSPECIFIED' | 'STATUS_ACTIVATED' | 'STATUS_DEACTIVATED' | 'STATUS_PENDING';
+              status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED" | "STATUS_PENDING";
               /** Format: byte */
               custodian_group_uid?: string;
               chains?: {
@@ -25736,7 +25846,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -25790,7 +25900,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        'application/json': {
+        "application/json": {
           /** Format: byte */
           sender?: string;
           address?: string;
@@ -25811,7 +25921,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': Record<string, never>;
+          "*/*": Record<string, never>;
         };
       };
       /** @description An unexpected error response */
@@ -25820,7 +25930,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -25870,7 +25980,7 @@ export interface operations {
       query?: {
         name?: string;
         pubkey?: string;
-        status?: 'STATUS_UNSPECIFIED' | 'STATUS_ACTIVATED' | 'STATUS_DEACTIVATED' | 'STATUS_PENDING';
+        status?: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED" | "STATUS_PENDING";
       };
       header?: never;
       path?: never;
@@ -25884,7 +25994,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             custodians?: {
               name?: string;
               val_address?: string;
@@ -25895,7 +26005,7 @@ export interface operations {
                * @default STATUS_UNSPECIFIED
                * @enum {string}
                */
-              status: 'STATUS_UNSPECIFIED' | 'STATUS_ACTIVATED' | 'STATUS_DEACTIVATED' | 'STATUS_PENDING';
+              status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED" | "STATUS_PENDING";
               description?: string;
             }[];
           };
@@ -25907,7 +26017,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -25959,7 +26069,7 @@ export interface operations {
       path?: never;
       cookie?: never;
     };
-    requestBody: components['requestBodies']['AddCustodianToGroupBody'];
+    requestBody: components["requestBodies"]["AddCustodianToGroupBody"];
     responses: {
       /** @description A successful response. */
       200: {
@@ -25967,7 +26077,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** CustodianGroup represents a group of custodians with their configuration
              *     uid is used as identity of the group, btc_pubkey is change by list of
              *     custodians */
@@ -25989,7 +26099,7 @@ export interface operations {
                * @default STATUS_UNSPECIFIED
                * @enum {string}
                */
-              status: 'STATUS_UNSPECIFIED' | 'STATUS_ACTIVATED' | 'STATUS_DEACTIVATED' | 'STATUS_PENDING';
+              status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED" | "STATUS_PENDING";
               description?: string;
               custodians?: {
                 name?: string;
@@ -26001,7 +26111,7 @@ export interface operations {
                  * @default STATUS_UNSPECIFIED
                  * @enum {string}
                  */
-                status: 'STATUS_UNSPECIFIED' | 'STATUS_ACTIVATED' | 'STATUS_DEACTIVATED' | 'STATUS_PENDING';
+                status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED" | "STATUS_PENDING";
                 description?: string;
               }[];
             };
@@ -26014,7 +26124,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -26068,7 +26178,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        'application/json': {
+        "application/json": {
           /** Format: byte */
           sender?: string;
           chain?: string;
@@ -26085,7 +26195,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': Record<string, never>;
+          "*/*": Record<string, never>;
         };
       };
       /** @description An unexpected error response */
@@ -26094,7 +26204,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -26148,7 +26258,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        'application/json': {
+        "application/json": {
           /** Format: byte */
           sender?: string;
           chain?: string;
@@ -26166,7 +26276,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': Record<string, never>;
+          "*/*": Record<string, never>;
         };
       };
       /** @description An unexpected error response */
@@ -26175,7 +26285,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -26229,7 +26339,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        'application/json': {
+        "application/json": {
           /** Format: byte */
           sender?: string;
           name?: string;
@@ -26239,7 +26349,7 @@ export interface operations {
            * @default STATUS_UNSPECIFIED
            * @enum {string}
            */
-          status?: 'STATUS_UNSPECIFIED' | 'STATUS_ACTIVATED' | 'STATUS_DEACTIVATED' | 'STATUS_PENDING';
+          status?: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED" | "STATUS_PENDING";
           description?: string;
         };
       };
@@ -26251,7 +26361,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** Custodian represents an individual custodian configuration */
             custodian?: {
               name?: string;
@@ -26263,7 +26373,7 @@ export interface operations {
                * @default STATUS_UNSPECIFIED
                * @enum {string}
                */
-              status: 'STATUS_UNSPECIFIED' | 'STATUS_ACTIVATED' | 'STATUS_DEACTIVATED' | 'STATUS_PENDING';
+              status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED" | "STATUS_PENDING";
               description?: string;
             };
           };
@@ -26275,7 +26385,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -26327,7 +26437,7 @@ export interface operations {
       path?: never;
       cookie?: never;
     };
-    requestBody: components['requestBodies']['CreateCustodianGroupBody'];
+    requestBody: components["requestBodies"]["CreateCustodianGroupBody"];
     responses: {
       /** @description A successful response. */
       200: {
@@ -26335,7 +26445,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** CustodianGroup represents a group of custodians with their configuration
              *     uid is used as identity of the group, btc_pubkey is change by list of
              *     custodians */
@@ -26357,7 +26467,7 @@ export interface operations {
                * @default STATUS_UNSPECIFIED
                * @enum {string}
                */
-              status: 'STATUS_UNSPECIFIED' | 'STATUS_ACTIVATED' | 'STATUS_DEACTIVATED' | 'STATUS_PENDING';
+              status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED" | "STATUS_PENDING";
               description?: string;
               custodians?: {
                 name?: string;
@@ -26369,7 +26479,7 @@ export interface operations {
                  * @default STATUS_UNSPECIFIED
                  * @enum {string}
                  */
-                status: 'STATUS_UNSPECIFIED' | 'STATUS_ACTIVATED' | 'STATUS_DEACTIVATED' | 'STATUS_PENDING';
+                status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED" | "STATUS_PENDING";
                 description?: string;
               }[];
             };
@@ -26382,7 +26492,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -26444,7 +26554,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             groups?: {
               /**
                * the UID is unique, to distinguish between custodian groups
@@ -26463,7 +26573,7 @@ export interface operations {
                * @default STATUS_UNSPECIFIED
                * @enum {string}
                */
-              status: 'STATUS_UNSPECIFIED' | 'STATUS_ACTIVATED' | 'STATUS_DEACTIVATED' | 'STATUS_PENDING';
+              status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED" | "STATUS_PENDING";
               description?: string;
               custodians?: {
                 name?: string;
@@ -26475,7 +26585,7 @@ export interface operations {
                  * @default STATUS_UNSPECIFIED
                  * @enum {string}
                  */
-                status: 'STATUS_UNSPECIFIED' | 'STATUS_ACTIVATED' | 'STATUS_DEACTIVATED' | 'STATUS_PENDING';
+                status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED" | "STATUS_PENDING";
                 description?: string;
               }[];
             }[];
@@ -26488,7 +26598,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -26542,7 +26652,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        'application/json': {
+        "application/json": {
           /** Format: byte */
           sender?: string;
           chain?: string;
@@ -26558,7 +26668,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': Record<string, never>;
+          "*/*": Record<string, never>;
         };
       };
       /** @description An unexpected error response */
@@ -26567,7 +26677,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -26627,7 +26737,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** Params represent the genesis parameters for the module */
             params?: {
               signing_threshold?: {
@@ -26658,7 +26768,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -26720,7 +26830,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             session?: {
               /** Format: byte */
               custodian_group_uid?: string;
@@ -26730,7 +26840,7 @@ export interface operations {
                * @default PHASE_PREPARING
                * @enum {string}
                */
-              current_phase: 'PHASE_PREPARING' | 'PHASE_EXECUTING';
+              current_phase: "PHASE_PREPARING" | "PHASE_EXECUTING";
               /** Format: byte */
               last_redeem_tx?: string;
               /** Format: boolean */
@@ -26747,7 +26857,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -26799,7 +26909,7 @@ export interface operations {
       path?: never;
       cookie?: never;
     };
-    requestBody: components['requestBodies']['AddCustodianToGroupBody'];
+    requestBody: components["requestBodies"]["AddCustodianToGroupBody"];
     responses: {
       /** @description A successful response. */
       200: {
@@ -26807,7 +26917,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** CustodianGroup represents a group of custodians with their configuration
              *     uid is used as identity of the group, btc_pubkey is change by list of
              *     custodians */
@@ -26829,7 +26939,7 @@ export interface operations {
                * @default STATUS_UNSPECIFIED
                * @enum {string}
                */
-              status: 'STATUS_UNSPECIFIED' | 'STATUS_ACTIVATED' | 'STATUS_DEACTIVATED' | 'STATUS_PENDING';
+              status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED" | "STATUS_PENDING";
               description?: string;
               custodians?: {
                 name?: string;
@@ -26841,7 +26951,7 @@ export interface operations {
                  * @default STATUS_UNSPECIFIED
                  * @enum {string}
                  */
-                status: 'STATUS_UNSPECIFIED' | 'STATUS_ACTIVATED' | 'STATUS_DEACTIVATED' | 'STATUS_PENDING';
+                status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED" | "STATUS_PENDING";
                 description?: string;
               }[];
             };
@@ -26854,7 +26964,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -26908,7 +27018,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        'application/json': {
+        "application/json": {
           /** Format: byte */
           sender?: string;
           chain?: string;
@@ -26922,7 +27032,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': Record<string, never>;
+          "*/*": Record<string, never>;
         };
       };
       /** @description An unexpected error response */
@@ -26931,7 +27041,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -26993,7 +27103,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** Format: byte */
             id?: string;
             data?: string;
@@ -27002,10 +27112,10 @@ export interface operations {
              * @enum {string}
              */
             status:
-              | 'STANDALONE_COMMAND_STATUS_UNSPECIFIED'
-              | 'STANDALONE_COMMAND_STATUS_SIGNING'
-              | 'STANDALONE_COMMAND_STATUS_ABORTED'
-              | 'STANDALONE_COMMAND_STATUS_SIGNED';
+              | "STANDALONE_COMMAND_STATUS_UNSPECIFIED"
+              | "STANDALONE_COMMAND_STATUS_SIGNING"
+              | "STANDALONE_COMMAND_STATUS_ABORTED"
+              | "STANDALONE_COMMAND_STATUS_SIGNED";
             key_id?: string;
             execute_data?: string;
           };
@@ -27017,7 +27127,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -27071,7 +27181,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        'application/json': {
+        "application/json": {
           /** Format: byte */
           sender?: string;
           /** Format: uint64 */
@@ -27102,7 +27212,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': Record<string, never>;
+          "*/*": Record<string, never>;
         };
       };
       /** @description An unexpected error response */
@@ -27111,7 +27221,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -27165,7 +27275,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        'application/json': {
+        "application/json": {
           /** Format: byte */
           sender?: string;
           /** Format: byte */
@@ -27175,7 +27285,7 @@ export interface operations {
            * @default STATUS_UNSPECIFIED
            * @enum {string}
            */
-          status?: 'STATUS_UNSPECIFIED' | 'STATUS_ACTIVATED' | 'STATUS_DEACTIVATED' | 'STATUS_PENDING';
+          status?: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED" | "STATUS_PENDING";
           description?: string;
         };
       };
@@ -27187,7 +27297,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** Custodian represents an individual custodian configuration */
             custodian?: {
               name?: string;
@@ -27199,7 +27309,7 @@ export interface operations {
                * @default STATUS_UNSPECIFIED
                * @enum {string}
                */
-              status: 'STATUS_UNSPECIFIED' | 'STATUS_ACTIVATED' | 'STATUS_DEACTIVATED' | 'STATUS_PENDING';
+              status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED" | "STATUS_PENDING";
               description?: string;
             };
           };
@@ -27211,7 +27321,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -27263,7 +27373,7 @@ export interface operations {
       path?: never;
       cookie?: never;
     };
-    requestBody: components['requestBodies']['CreateCustodianGroupBody'];
+    requestBody: components["requestBodies"]["CreateCustodianGroupBody"];
     responses: {
       /** @description A successful response. */
       200: {
@@ -27271,7 +27381,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** CustodianGroup represents a group of custodians with their configuration
              *     uid is used as identity of the group, btc_pubkey is change by list of
              *     custodians */
@@ -27293,7 +27403,7 @@ export interface operations {
                * @default STATUS_UNSPECIFIED
                * @enum {string}
                */
-              status: 'STATUS_UNSPECIFIED' | 'STATUS_ACTIVATED' | 'STATUS_DEACTIVATED' | 'STATUS_PENDING';
+              status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED" | "STATUS_PENDING";
               description?: string;
               custodians?: {
                 name?: string;
@@ -27305,7 +27415,7 @@ export interface operations {
                  * @default STATUS_UNSPECIFIED
                  * @enum {string}
                  */
-                status: 'STATUS_UNSPECIFIED' | 'STATUS_ACTIVATED' | 'STATUS_DEACTIVATED' | 'STATUS_PENDING';
+                status: "STATUS_UNSPECIFIED" | "STATUS_ACTIVATED" | "STATUS_DEACTIVATED" | "STATUS_PENDING";
                 description?: string;
               }[];
             };
@@ -27318,7 +27428,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -27380,7 +27490,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             utxo_snapshot?: {
               /** Format: byte */
               custodian_group_uid?: string;
@@ -27396,9 +27506,11 @@ export interface operations {
                 /** Format: uint64 */
                 amount_in_sats?: string;
                 /** Reserved amount for each request id */
-                reserved?: {
-                  [key: string]: string;
-                };
+                reservations?: {
+                  request?: string;
+                  /** Format: uint64 */
+                  amount?: string;
+                }[];
               }[];
             };
           };
@@ -27410,7 +27522,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -27462,7 +27574,7 @@ export interface operations {
       path?: never;
       cookie?: never;
     };
-    requestBody: components['requestBodies']['CreateTransferOperatorshipBody'];
+    requestBody: components["requestBodies"]["CreateTransferOperatorshipBody"];
     responses: {
       /** @description A successful response. */
       200: {
@@ -27470,7 +27582,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': Record<string, never>;
+          "*/*": Record<string, never>;
         };
       };
       /** @description An unexpected error response */
@@ -27479,7 +27591,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -27503,7 +27615,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        'application/json': {
+        "application/json": {
           sender?: string;
           key_id?: string;
         };
@@ -27516,7 +27628,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': Record<string, never>;
+          "*/*": Record<string, never>;
         };
       };
       /** @description An unexpected error response */
@@ -27525,7 +27637,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -27549,7 +27661,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        'application/json': {
+        "application/json": {
           sender?: string;
           key_id?: string;
           /** Format: byte */
@@ -27566,7 +27678,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': Record<string, never>;
+          "*/*": Record<string, never>;
         };
       };
       /** @description An unexpected error response */
@@ -27575,7 +27687,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -27599,7 +27711,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        'application/json': {
+        "application/json": {
           sender?: string;
           /** Format: uint64 */
           sig_id?: string;
@@ -27615,7 +27727,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': Record<string, never>;
+          "*/*": Record<string, never>;
         };
       };
       /** @description An unexpected error response */
@@ -27624,7 +27736,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -27656,13 +27768,13 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             key_id?: string;
             /**
              * @default KEY_STATE_UNSPECIFIED
              * @enum {string}
              */
-            state: 'KEY_STATE_UNSPECIFIED' | 'KEY_STATE_ASSIGNED' | 'KEY_STATE_ACTIVE';
+            state: "KEY_STATE_UNSPECIFIED" | "KEY_STATE_ASSIGNED" | "KEY_STATE_ACTIVE";
             /** Format: int64 */
             started_at?: string;
             /** Format: date-time */
@@ -27687,7 +27799,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -27719,7 +27831,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             key_id?: string;
           };
         };
@@ -27730,7 +27842,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -27752,7 +27864,7 @@ export interface operations {
       path?: never;
       cookie?: never;
     };
-    requestBody: components['requestBodies']['KeygenOptInBody'];
+    requestBody: components["requestBodies"]["KeygenOptInBody"];
     responses: {
       /** @description A successful response. */
       200: {
@@ -27760,7 +27872,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': Record<string, never>;
+          "*/*": Record<string, never>;
         };
       };
       /** @description An unexpected error response */
@@ -27769,7 +27881,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -27791,7 +27903,7 @@ export interface operations {
       path?: never;
       cookie?: never;
     };
-    requestBody: components['requestBodies']['KeygenOptInBody'];
+    requestBody: components["requestBodies"]["KeygenOptInBody"];
     responses: {
       /** @description A successful response. */
       200: {
@@ -27799,7 +27911,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': Record<string, never>;
+          "*/*": Record<string, never>;
         };
       };
       /** @description An unexpected error response */
@@ -27808,7 +27920,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -27840,7 +27952,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** Format: int64 */
             started_at?: string;
             /** Format: date-time */
@@ -27855,7 +27967,7 @@ export interface operations {
              * @default MULTISIG_STATE_UNSPECIFIED
              * @enum {string}
              */
-            state: 'MULTISIG_STATE_UNSPECIFIED' | 'MULTISIG_STATE_PENDING' | 'MULTISIG_STATE_COMPLETED';
+            state: "MULTISIG_STATE_UNSPECIFIED" | "MULTISIG_STATE_PENDING" | "MULTISIG_STATE_COMPLETED";
             /** Format: byte */
             keygen_threshold_weight?: string;
             /** Format: byte */
@@ -27878,7 +27990,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -27910,7 +28022,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             key_id?: string;
           };
         };
@@ -27921,7 +28033,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -27951,7 +28063,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** Params represent the genesis parameters for the module */
             params?: {
               keygen_threshold?: {
@@ -27994,7 +28106,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -28018,7 +28130,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        'application/json': {
+        "application/json": {
           /** Format: byte */
           sender?: string;
           chains?: string[];
@@ -28032,7 +28144,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': Record<string, never>;
+          "*/*": Record<string, never>;
         };
       };
       /** @description An unexpected error response */
@@ -28041,7 +28153,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -28095,7 +28207,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        'application/json': {
+        "application/json": {
           /** Format: byte */
           sender?: string;
           chains?: string[];
@@ -28109,7 +28221,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': Record<string, never>;
+          "*/*": Record<string, never>;
         };
       };
       /** @description An unexpected error response */
@@ -28118,7 +28230,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -28170,7 +28282,7 @@ export interface operations {
       path?: never;
       cookie?: never;
     };
-    requestBody: components['requestBodies']['DeregisterChainMaintainerBody'];
+    requestBody: components["requestBodies"]["DeregisterChainMaintainerBody"];
     responses: {
       /** @description A successful response. */
       200: {
@@ -28178,7 +28290,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': Record<string, never>;
+          "*/*": Record<string, never>;
         };
       };
       /** @description An unexpected error response */
@@ -28187,7 +28299,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -28241,7 +28353,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        'application/json': {
+        "application/json": {
           /** Format: byte */
           sender?: string;
           fee_info?: {
@@ -28264,7 +28376,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': Record<string, never>;
+          "*/*": Record<string, never>;
         };
       };
       /** @description An unexpected error response */
@@ -28273,7 +28385,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -28325,7 +28437,7 @@ export interface operations {
       path?: never;
       cookie?: never;
     };
-    requestBody: components['requestBodies']['DeregisterChainMaintainerBody'];
+    requestBody: components["requestBodies"]["DeregisterChainMaintainerBody"];
     responses: {
       /** @description A successful response. */
       200: {
@@ -28333,7 +28445,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': Record<string, never>;
+          "*/*": Record<string, never>;
         };
       };
       /** @description An unexpected error response */
@@ -28342,7 +28454,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -28396,7 +28508,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        'application/json': {
+        "application/json": {
           /** Format: byte */
           sender?: string;
           chain?: string;
@@ -28419,7 +28531,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': Record<string, never>;
+          "*/*": Record<string, never>;
         };
       };
       /** @description An unexpected error response */
@@ -28428,7 +28540,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -28490,7 +28602,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             assets?: string[];
           };
         };
@@ -28501,7 +28613,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -28563,7 +28675,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             maintainers?: string[];
           };
         };
@@ -28574,7 +28686,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -28636,7 +28748,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** ChainState represents the state of a registered blockchain */
             state?: {
               /** Chain represents the properties of a registered blockchain */
@@ -28650,10 +28762,10 @@ export interface operations {
                  * @enum {string}
                  */
                 key_type:
-                  | 'KEY_TYPE_UNSPECIFIED'
-                  | 'KEY_TYPE_NONE'
-                  | 'KEY_TYPE_THRESHOLD'
-                  | 'KEY_TYPE_MULTISIG';
+                  | "KEY_TYPE_UNSPECIFIED"
+                  | "KEY_TYPE_NONE"
+                  | "KEY_TYPE_THRESHOLD"
+                  | "KEY_TYPE_MULTISIG";
                 /** the module has two types: chains and scalarnet */
                 module?: string;
               };
@@ -28697,7 +28809,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -28745,7 +28857,7 @@ export interface operations {
   Chains: {
     parameters: {
       query?: {
-        status?: 'CHAIN_STATUS_UNSPECIFIED' | 'CHAIN_STATUS_ACTIVATED' | 'CHAIN_STATUS_DEACTIVATED';
+        status?: "CHAIN_STATUS_UNSPECIFIED" | "CHAIN_STATUS_ACTIVATED" | "CHAIN_STATUS_DEACTIVATED";
       };
       header?: never;
       path?: never;
@@ -28759,7 +28871,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             chains?: string[];
           };
         };
@@ -28770,7 +28882,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -28832,7 +28944,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             chains?: string[];
           };
         };
@@ -28843,7 +28955,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -28906,7 +29018,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             fee_info?: {
               chain?: string;
               asset?: string;
@@ -28926,7 +29038,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -28989,7 +29101,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             fee_info?: {
               chain?: string;
               asset?: string;
@@ -29009,7 +29121,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -29073,7 +29185,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             deposit_addr?: string;
           };
         };
@@ -29084,7 +29196,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -29146,7 +29258,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             message?: {
               id?: string;
               /** CrossChainAddress represents a generalized address on any registered chain */
@@ -29162,10 +29274,10 @@ export interface operations {
                    * @enum {string}
                    */
                   key_type:
-                    | 'KEY_TYPE_UNSPECIFIED'
-                    | 'KEY_TYPE_NONE'
-                    | 'KEY_TYPE_THRESHOLD'
-                    | 'KEY_TYPE_MULTISIG';
+                    | "KEY_TYPE_UNSPECIFIED"
+                    | "KEY_TYPE_NONE"
+                    | "KEY_TYPE_THRESHOLD"
+                    | "KEY_TYPE_MULTISIG";
                   /** the module has two types: chains and scalarnet */
                   module?: string;
                 };
@@ -29184,10 +29296,10 @@ export interface operations {
                    * @enum {string}
                    */
                   key_type:
-                    | 'KEY_TYPE_UNSPECIFIED'
-                    | 'KEY_TYPE_NONE'
-                    | 'KEY_TYPE_THRESHOLD'
-                    | 'KEY_TYPE_MULTISIG';
+                    | "KEY_TYPE_UNSPECIFIED"
+                    | "KEY_TYPE_NONE"
+                    | "KEY_TYPE_THRESHOLD"
+                    | "KEY_TYPE_MULTISIG";
                   /** the module has two types: chains and scalarnet */
                   module?: string;
                 };
@@ -29200,11 +29312,11 @@ export interface operations {
                * @enum {string}
                */
               status:
-                | 'STATUS_UNSPECIFIED'
-                | 'STATUS_APPROVED'
-                | 'STATUS_PROCESSING'
-                | 'STATUS_EXECUTED'
-                | 'STATUS_FAILED';
+                | "STATUS_UNSPECIFIED"
+                | "STATUS_APPROVED"
+                | "STATUS_PROCESSING"
+                | "STATUS_EXECUTED"
+                | "STATUS_FAILED";
               /** @description Coin defines a token with a denomination and an amount.
                *
                *     NOTE: The amount field is an Int which implements the custom method
@@ -29235,7 +29347,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -29295,7 +29407,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** Params represent the genesis parameters for the module */
             params?: {
               chain_activation_threshold?: {
@@ -29344,7 +29456,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -29407,7 +29519,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             recipient_addr?: string;
             recipient_chain?: string;
           };
@@ -29419,7 +29531,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -29483,7 +29595,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** @description Coin defines a token with a denomination and an amount.
              *
              *     NOTE: The amount field is an Int which implements the custom method
@@ -29501,7 +29613,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -29565,7 +29677,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** @description Coin defines a token with a denomination and an amount.
              *
              *     NOTE: The amount field is an Int which implements the custom method
@@ -29583,7 +29695,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -29646,7 +29758,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             transfer_rate_limit?: {
               /** Format: byte */
               limit?: string;
@@ -29671,7 +29783,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -29722,33 +29834,33 @@ export interface operations {
         /** @description key is a value returned in PageResponse.next_key to begin
          *     querying the next page most efficiently. Only one of offset or key
          *     should be set. */
-        'pagination.key'?: string;
+        "pagination.key"?: string;
         /** @description offset is a numeric offset that can be used when key is unavailable.
          *     It is less efficient than using key. Only one of offset or key should
          *     be set. */
-        'pagination.offset'?: string;
+        "pagination.offset"?: string;
         /** @description limit is the total number of results to be returned in the result page.
          *     If left empty it will default to a value to be set by each app. */
-        'pagination.limit'?: string;
+        "pagination.limit"?: string;
         /** @description count_total is set to true  to indicate that the result set should include
          *     a count of the total number of items available for pagination in UIs.
          *     count_total is only respected when offset is used. It is ignored when key
          *     is set. */
-        'pagination.count_total'?: boolean;
+        "pagination.count_total"?: boolean;
         /** @description reverse is set to true if results are to be returned in the descending order.
          *
          *     Since: cosmos-sdk 0.43 */
-        'pagination.reverse'?: boolean;
+        "pagination.reverse"?: boolean;
       };
       header?: never;
       path: {
         chain: string;
         state:
-          | 'TRANSFER_STATE_UNSPECIFIED'
-          | 'TRANSFER_STATE_PENDING'
-          | 'TRANSFER_STATE_ARCHIVED'
-          | 'TRANSFER_STATE_INSUFFICIENT_AMOUNT'
-          | 'TRANSFER_STATE_FAILED';
+          | "TRANSFER_STATE_UNSPECIFIED"
+          | "TRANSFER_STATE_PENDING"
+          | "TRANSFER_STATE_ARCHIVED"
+          | "TRANSFER_STATE_INSUFFICIENT_AMOUNT"
+          | "TRANSFER_STATE_FAILED";
       };
       cookie?: never;
     };
@@ -29760,7 +29872,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             transfers?: {
               /** CrossChainAddress represents a generalized address on any registered chain */
               recipient?: {
@@ -29775,10 +29887,10 @@ export interface operations {
                    * @enum {string}
                    */
                   key_type:
-                    | 'KEY_TYPE_UNSPECIFIED'
-                    | 'KEY_TYPE_NONE'
-                    | 'KEY_TYPE_THRESHOLD'
-                    | 'KEY_TYPE_MULTISIG';
+                    | "KEY_TYPE_UNSPECIFIED"
+                    | "KEY_TYPE_NONE"
+                    | "KEY_TYPE_THRESHOLD"
+                    | "KEY_TYPE_MULTISIG";
                   /** the module has two types: chains and scalarnet */
                   module?: string;
                 };
@@ -29799,11 +29911,11 @@ export interface operations {
                * @enum {string}
                */
               state:
-                | 'TRANSFER_STATE_UNSPECIFIED'
-                | 'TRANSFER_STATE_PENDING'
-                | 'TRANSFER_STATE_ARCHIVED'
-                | 'TRANSFER_STATE_INSUFFICIENT_AMOUNT'
-                | 'TRANSFER_STATE_FAILED';
+                | "TRANSFER_STATE_UNSPECIFIED"
+                | "TRANSFER_STATE_PENDING"
+                | "TRANSFER_STATE_ARCHIVED"
+                | "TRANSFER_STATE_INSUFFICIENT_AMOUNT"
+                | "TRANSFER_STATE_FAILED";
               /** Format: byte */
               source_tx_hash?: string;
             }[];
@@ -29837,7 +29949,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -29891,7 +30003,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        'application/json': {
+        "application/json": {
           /** Format: byte */
           sender?: string;
           /** @description `Any` contains an arbitrary serialized protocol buffer message along with a
@@ -30021,7 +30133,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** Format: byte */
             data?: string;
             log?: string;
@@ -30034,7 +30146,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -30096,7 +30208,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** Format: byte */
             inflation_rate?: string;
           };
@@ -30108,7 +30220,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -30170,7 +30282,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** Format: byte */
             inflation_rate?: string;
           };
@@ -30182,7 +30294,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -30242,7 +30354,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** Params represent the genesis parameters for the module */
             params?: {
               /** Format: byte */
@@ -30259,7 +30371,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -30311,7 +30423,7 @@ export interface operations {
       path?: never;
       cookie?: never;
     };
-    requestBody: components['requestBodies']['KeygenOptInBody'];
+    requestBody: components["requestBodies"]["KeygenOptInBody"];
     responses: {
       /** @description A successful response. */
       200: {
@@ -30319,7 +30431,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': Record<string, never>;
+          "*/*": Record<string, never>;
         };
       };
       /** @description An unexpected error response */
@@ -30328,7 +30440,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -30352,7 +30464,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        'application/json': {
+        "application/json": {
           /** Format: byte */
           sender?: string;
           /** Format: byte */
@@ -30367,7 +30479,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': Record<string, never>;
+          "*/*": Record<string, never>;
         };
       };
       /** @description An unexpected error response */
@@ -30376,7 +30488,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -30406,7 +30518,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** Params represent the genesis parameters for the module */
             params?: {
               /** Format: int64 */
@@ -30421,7 +30533,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -30445,7 +30557,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        'application/json': {
+        "application/json": {
           /** Format: byte */
           sender?: string;
           /** Deprecated: this field will be removed in the next release */
@@ -30460,7 +30572,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': Record<string, never>;
+          "*/*": Record<string, never>;
         };
       };
       /** @description An unexpected error response */
@@ -30469,7 +30581,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -30529,7 +30641,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** Params is the parameter set for this module */
             params?: {
               /** KeyRequirements defines the requirement for each key role */
@@ -30539,19 +30651,19 @@ export interface operations {
                  * @enum {string}
                  */
                 key_role:
-                  | 'KEY_ROLE_UNSPECIFIED'
-                  | 'KEY_ROLE_MASTER_KEY'
-                  | 'KEY_ROLE_SECONDARY_KEY'
-                  | 'KEY_ROLE_EXTERNAL_KEY';
+                  | "KEY_ROLE_UNSPECIFIED"
+                  | "KEY_ROLE_MASTER_KEY"
+                  | "KEY_ROLE_SECONDARY_KEY"
+                  | "KEY_ROLE_EXTERNAL_KEY";
                 /**
                  * @default KEY_TYPE_UNSPECIFIED
                  * @enum {string}
                  */
                 key_type:
-                  | 'KEY_TYPE_UNSPECIFIED'
-                  | 'KEY_TYPE_NONE'
-                  | 'KEY_TYPE_THRESHOLD'
-                  | 'KEY_TYPE_MULTISIG';
+                  | "KEY_TYPE_UNSPECIFIED"
+                  | "KEY_TYPE_NONE"
+                  | "KEY_TYPE_THRESHOLD"
+                  | "KEY_TYPE_MULTISIG";
                 min_keygen_threshold?: {
                   /**
                    * split threshold into Numerator and denominator to avoid floating point
@@ -30577,9 +30689,9 @@ export interface operations {
                  * @enum {string}
                  */
                 key_share_distribution_policy:
-                  | 'KEY_SHARE_DISTRIBUTION_POLICY_UNSPECIFIED'
-                  | 'KEY_SHARE_DISTRIBUTION_POLICY_WEIGHTED_BY_STAKE'
-                  | 'KEY_SHARE_DISTRIBUTION_POLICY_ONE_PER_VALIDATOR';
+                  | "KEY_SHARE_DISTRIBUTION_POLICY_UNSPECIFIED"
+                  | "KEY_SHARE_DISTRIBUTION_POLICY_WEIGHTED_BY_STAKE"
+                  | "KEY_SHARE_DISTRIBUTION_POLICY_ONE_PER_VALIDATOR";
                 /** Format: int64 */
                 max_total_share_count?: string;
                 /** Format: int64 */
@@ -30660,7 +30772,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -30714,7 +30826,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        'application/json': {
+        "application/json": {
           /** Format: byte */
           sender?: string;
           /** Format: byte */
@@ -30729,7 +30841,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': Record<string, never>;
+          "*/*": Record<string, never>;
         };
       };
       /** @description An unexpected error response */
@@ -30738,7 +30850,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -30792,7 +30904,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        'application/json': {
+        "application/json": {
           /** Format: byte */
           sender?: string;
           /** Format: byte */
@@ -30807,7 +30919,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': Record<string, never>;
+          "*/*": Record<string, never>;
         };
       };
       /** @description An unexpected error response */
@@ -30816,7 +30928,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -30870,7 +30982,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        'application/json': {
+        "application/json": {
           /** Format: byte */
           sender?: string;
           /** @description LegacyAminoPubKey specifies a public key type
@@ -30925,7 +31037,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': Record<string, never>;
+          "*/*": Record<string, never>;
         };
       };
       /** @description An unexpected error response */
@@ -30934,7 +31046,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -30994,7 +31106,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** @description LegacyAminoPubKey specifies a public key type
              *     which nests multiple public keys and a threshold,
              *     it uses legacy amino address rules. */
@@ -31046,7 +31158,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -31106,7 +31218,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** Params represent the genesis parameters for the module */
             params?: Record<string, never>;
           };
@@ -31118,7 +31230,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -31178,7 +31290,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** Params represent the genesis parameters for the module */
             params?: {
               default_voting_threshold?: {
@@ -31203,7 +31315,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -31257,10 +31369,9 @@ export interface operations {
     };
     requestBody: {
       content: {
-        'application/json': {
+        "application/json": {
           /** Format: byte */
           sender?: string;
-          /** Format: uint64 */
           poll_id?: string;
           /** @description `Any` contains an arbitrary serialized protocol buffer message along with a
            *     URL that describes the type of the serialized message.
@@ -31389,7 +31500,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             log?: string;
           };
         };
@@ -31400,7 +31511,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -31451,23 +31562,23 @@ export interface operations {
         /** @description key is a value returned in PageResponse.next_key to begin
          *     querying the next page most efficiently. Only one of offset or key
          *     should be set. */
-        'pagination.key'?: string;
+        "pagination.key"?: string;
         /** @description offset is a numeric offset that can be used when key is unavailable.
          *     It is less efficient than using key. Only one of offset or key should
          *     be set. */
-        'pagination.offset'?: string;
+        "pagination.offset"?: string;
         /** @description limit is the total number of results to be returned in the result page.
          *     If left empty it will default to a value to be set by each app. */
-        'pagination.limit'?: string;
+        "pagination.limit"?: string;
         /** @description count_total is set to true  to indicate that the result set should include
          *     a count of the total number of items available for pagination in UIs.
          *     count_total is only respected when offset is used. It is ignored when key
          *     is set. */
-        'pagination.count_total'?: boolean;
+        "pagination.count_total"?: boolean;
         /** @description reverse is set to true if results are to be returned in the descending order.
          *
          *     Since: cosmos-sdk 0.43 */
-        'pagination.reverse'?: boolean;
+        "pagination.reverse"?: boolean;
       };
       header?: never;
       path?: never;
@@ -31481,7 +31592,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** accounts are the existing accounts */
             accounts?: {
               /** @description A URL/resource name that uniquely identifies the type of the serialized
@@ -31542,7 +31653,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -31605,7 +31716,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** @description `Any` contains an arbitrary serialized protocol buffer message along with a
              *     URL that describes the type of the serialized message.
              *
@@ -31732,7 +31843,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -31794,7 +31905,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** @description `Any` contains an arbitrary serialized protocol buffer message along with a
              *     URL that describes the type of the serialized message.
              *
@@ -31921,7 +32032,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -31981,7 +32092,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** @description params defines the parameters of the module. */
             params?: {
               /** Format: uint64 */
@@ -32004,7 +32115,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -32055,23 +32166,23 @@ export interface operations {
         /** @description key is a value returned in PageResponse.next_key to begin
          *     querying the next page most efficiently. Only one of offset or key
          *     should be set. */
-        'pagination.key'?: string;
+        "pagination.key"?: string;
         /** @description offset is a numeric offset that can be used when key is unavailable.
          *     It is less efficient than using key. Only one of offset or key should
          *     be set. */
-        'pagination.offset'?: string;
+        "pagination.offset"?: string;
         /** @description limit is the total number of results to be returned in the result page.
          *     If left empty it will default to a value to be set by each app. */
-        'pagination.limit'?: string;
+        "pagination.limit"?: string;
         /** @description count_total is set to true  to indicate that the result set should include
          *     a count of the total number of items available for pagination in UIs.
          *     count_total is only respected when offset is used. It is ignored when key
          *     is set. */
-        'pagination.count_total'?: boolean;
+        "pagination.count_total"?: boolean;
         /** @description reverse is set to true if results are to be returned in the descending order.
          *
          *     Since: cosmos-sdk 0.43 */
-        'pagination.reverse'?: boolean;
+        "pagination.reverse"?: boolean;
       };
       header?: never;
       path: {
@@ -32088,7 +32199,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** @description balances is the balances of all the coins. */
             balances?: {
               denom?: string;
@@ -32118,7 +32229,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -32154,7 +32265,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** @description Coin defines a token with a denomination and an amount.
              *
              *     NOTE: The amount field is an Int which implements the custom method
@@ -32172,7 +32283,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -32193,23 +32304,23 @@ export interface operations {
         /** @description key is a value returned in PageResponse.next_key to begin
          *     querying the next page most efficiently. Only one of offset or key
          *     should be set. */
-        'pagination.key'?: string;
+        "pagination.key"?: string;
         /** @description offset is a numeric offset that can be used when key is unavailable.
          *     It is less efficient than using key. Only one of offset or key should
          *     be set. */
-        'pagination.offset'?: string;
+        "pagination.offset"?: string;
         /** @description limit is the total number of results to be returned in the result page.
          *     If left empty it will default to a value to be set by each app. */
-        'pagination.limit'?: string;
+        "pagination.limit"?: string;
         /** @description count_total is set to true  to indicate that the result set should include
          *     a count of the total number of items available for pagination in UIs.
          *     count_total is only respected when offset is used. It is ignored when key
          *     is set. */
-        'pagination.count_total'?: boolean;
+        "pagination.count_total"?: boolean;
         /** @description reverse is set to true if results are to be returned in the descending order.
          *
          *     Since: cosmos-sdk 0.43 */
-        'pagination.reverse'?: boolean;
+        "pagination.reverse"?: boolean;
       };
       header?: never;
       path?: never;
@@ -32223,7 +32334,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** @description metadata provides the client information for all the registered tokens. */
             metadatas?: {
               description?: string;
@@ -32283,7 +32394,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -32316,7 +32427,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** @description Metadata represents a struct that describes
              *     a basic token. */
             metadata?: {
@@ -32362,7 +32473,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -32392,7 +32503,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** @description Params defines the parameters for the bank module. */
             params?: {
               send_enabled?: {
@@ -32412,7 +32523,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -32433,23 +32544,23 @@ export interface operations {
         /** @description key is a value returned in PageResponse.next_key to begin
          *     querying the next page most efficiently. Only one of offset or key
          *     should be set. */
-        'pagination.key'?: string;
+        "pagination.key"?: string;
         /** @description offset is a numeric offset that can be used when key is unavailable.
          *     It is less efficient than using key. Only one of offset or key should
          *     be set. */
-        'pagination.offset'?: string;
+        "pagination.offset"?: string;
         /** @description limit is the total number of results to be returned in the result page.
          *     If left empty it will default to a value to be set by each app. */
-        'pagination.limit'?: string;
+        "pagination.limit"?: string;
         /** @description count_total is set to true  to indicate that the result set should include
          *     a count of the total number of items available for pagination in UIs.
          *     count_total is only respected when offset is used. It is ignored when key
          *     is set. */
-        'pagination.count_total'?: boolean;
+        "pagination.count_total"?: boolean;
         /** @description reverse is set to true if results are to be returned in the descending order.
          *
          *     Since: cosmos-sdk 0.43 */
-        'pagination.reverse'?: boolean;
+        "pagination.reverse"?: boolean;
       };
       header?: never;
       path: {
@@ -32466,7 +32577,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** @description balances is the spendable balances of all the coins. */
             balances?: {
               denom?: string;
@@ -32496,7 +32607,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -32517,23 +32628,23 @@ export interface operations {
         /** @description key is a value returned in PageResponse.next_key to begin
          *     querying the next page most efficiently. Only one of offset or key
          *     should be set. */
-        'pagination.key'?: string;
+        "pagination.key"?: string;
         /** @description offset is a numeric offset that can be used when key is unavailable.
          *     It is less efficient than using key. Only one of offset or key should
          *     be set. */
-        'pagination.offset'?: string;
+        "pagination.offset"?: string;
         /** @description limit is the total number of results to be returned in the result page.
          *     If left empty it will default to a value to be set by each app. */
-        'pagination.limit'?: string;
+        "pagination.limit"?: string;
         /** @description count_total is set to true  to indicate that the result set should include
          *     a count of the total number of items available for pagination in UIs.
          *     count_total is only respected when offset is used. It is ignored when key
          *     is set. */
-        'pagination.count_total'?: boolean;
+        "pagination.count_total"?: boolean;
         /** @description reverse is set to true if results are to be returned in the descending order.
          *
          *     Since: cosmos-sdk 0.43 */
-        'pagination.reverse'?: boolean;
+        "pagination.reverse"?: boolean;
       };
       header?: never;
       path?: never;
@@ -32547,7 +32658,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** supply is the supply of the coins */
             supply?: {
               denom?: string;
@@ -32579,7 +32690,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -32612,7 +32723,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** @description Coin defines a token with a denomination and an amount.
              *
              *     NOTE: The amount field is an Int which implements the custom method
@@ -32630,7 +32741,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -32660,7 +32771,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** BlockID */
             block_id?: {
               /** Format: byte */
@@ -32756,10 +32867,10 @@ export interface operations {
                        * @enum {string}
                        */
                       type:
-                        | 'SIGNED_MSG_TYPE_UNKNOWN'
-                        | 'SIGNED_MSG_TYPE_PREVOTE'
-                        | 'SIGNED_MSG_TYPE_PRECOMMIT'
-                        | 'SIGNED_MSG_TYPE_PROPOSAL';
+                        | "SIGNED_MSG_TYPE_UNKNOWN"
+                        | "SIGNED_MSG_TYPE_PREVOTE"
+                        | "SIGNED_MSG_TYPE_PRECOMMIT"
+                        | "SIGNED_MSG_TYPE_PROPOSAL";
                       /** Format: int64 */
                       height?: string;
                       /** Format: int32 */
@@ -32797,10 +32908,10 @@ export interface operations {
                        * @enum {string}
                        */
                       type:
-                        | 'SIGNED_MSG_TYPE_UNKNOWN'
-                        | 'SIGNED_MSG_TYPE_PREVOTE'
-                        | 'SIGNED_MSG_TYPE_PRECOMMIT'
-                        | 'SIGNED_MSG_TYPE_PROPOSAL';
+                        | "SIGNED_MSG_TYPE_UNKNOWN"
+                        | "SIGNED_MSG_TYPE_PREVOTE"
+                        | "SIGNED_MSG_TYPE_PRECOMMIT"
+                        | "SIGNED_MSG_TYPE_PROPOSAL";
                       /** Format: int64 */
                       height?: string;
                       /** Format: int32 */
@@ -32921,10 +33032,10 @@ export interface operations {
                              * @enum {string}
                              */
                             block_id_flag:
-                              | 'BLOCK_ID_FLAG_UNKNOWN'
-                              | 'BLOCK_ID_FLAG_ABSENT'
-                              | 'BLOCK_ID_FLAG_COMMIT'
-                              | 'BLOCK_ID_FLAG_NIL';
+                              | "BLOCK_ID_FLAG_UNKNOWN"
+                              | "BLOCK_ID_FLAG_ABSENT"
+                              | "BLOCK_ID_FLAG_COMMIT"
+                              | "BLOCK_ID_FLAG_NIL";
                             /** Format: byte */
                             validator_address?: string;
                             /** Format: date-time */
@@ -33018,10 +33129,10 @@ export interface operations {
                    * @enum {string}
                    */
                   block_id_flag:
-                    | 'BLOCK_ID_FLAG_UNKNOWN'
-                    | 'BLOCK_ID_FLAG_ABSENT'
-                    | 'BLOCK_ID_FLAG_COMMIT'
-                    | 'BLOCK_ID_FLAG_NIL';
+                    | "BLOCK_ID_FLAG_UNKNOWN"
+                    | "BLOCK_ID_FLAG_ABSENT"
+                    | "BLOCK_ID_FLAG_COMMIT"
+                    | "BLOCK_ID_FLAG_NIL";
                   /** Format: byte */
                   validator_address?: string;
                   /** Format: date-time */
@@ -33040,7 +33151,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -33102,7 +33213,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** BlockID */
             block_id?: {
               /** Format: byte */
@@ -33198,10 +33309,10 @@ export interface operations {
                        * @enum {string}
                        */
                       type:
-                        | 'SIGNED_MSG_TYPE_UNKNOWN'
-                        | 'SIGNED_MSG_TYPE_PREVOTE'
-                        | 'SIGNED_MSG_TYPE_PRECOMMIT'
-                        | 'SIGNED_MSG_TYPE_PROPOSAL';
+                        | "SIGNED_MSG_TYPE_UNKNOWN"
+                        | "SIGNED_MSG_TYPE_PREVOTE"
+                        | "SIGNED_MSG_TYPE_PRECOMMIT"
+                        | "SIGNED_MSG_TYPE_PROPOSAL";
                       /** Format: int64 */
                       height?: string;
                       /** Format: int32 */
@@ -33239,10 +33350,10 @@ export interface operations {
                        * @enum {string}
                        */
                       type:
-                        | 'SIGNED_MSG_TYPE_UNKNOWN'
-                        | 'SIGNED_MSG_TYPE_PREVOTE'
-                        | 'SIGNED_MSG_TYPE_PRECOMMIT'
-                        | 'SIGNED_MSG_TYPE_PROPOSAL';
+                        | "SIGNED_MSG_TYPE_UNKNOWN"
+                        | "SIGNED_MSG_TYPE_PREVOTE"
+                        | "SIGNED_MSG_TYPE_PRECOMMIT"
+                        | "SIGNED_MSG_TYPE_PROPOSAL";
                       /** Format: int64 */
                       height?: string;
                       /** Format: int32 */
@@ -33363,10 +33474,10 @@ export interface operations {
                              * @enum {string}
                              */
                             block_id_flag:
-                              | 'BLOCK_ID_FLAG_UNKNOWN'
-                              | 'BLOCK_ID_FLAG_ABSENT'
-                              | 'BLOCK_ID_FLAG_COMMIT'
-                              | 'BLOCK_ID_FLAG_NIL';
+                              | "BLOCK_ID_FLAG_UNKNOWN"
+                              | "BLOCK_ID_FLAG_ABSENT"
+                              | "BLOCK_ID_FLAG_COMMIT"
+                              | "BLOCK_ID_FLAG_NIL";
                             /** Format: byte */
                             validator_address?: string;
                             /** Format: date-time */
@@ -33460,10 +33571,10 @@ export interface operations {
                    * @enum {string}
                    */
                   block_id_flag:
-                    | 'BLOCK_ID_FLAG_UNKNOWN'
-                    | 'BLOCK_ID_FLAG_ABSENT'
-                    | 'BLOCK_ID_FLAG_COMMIT'
-                    | 'BLOCK_ID_FLAG_NIL';
+                    | "BLOCK_ID_FLAG_UNKNOWN"
+                    | "BLOCK_ID_FLAG_ABSENT"
+                    | "BLOCK_ID_FLAG_COMMIT"
+                    | "BLOCK_ID_FLAG_NIL";
                   /** Format: byte */
                   validator_address?: string;
                   /** Format: date-time */
@@ -33482,7 +33593,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -33542,7 +33653,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             default_node_info?: {
               protocol_version?: {
                 /** Format: uint64 */
@@ -33592,7 +33703,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -33652,7 +33763,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** Format: boolean */
             syncing?: boolean;
           };
@@ -33664,7 +33775,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -33715,23 +33826,23 @@ export interface operations {
         /** @description key is a value returned in PageResponse.next_key to begin
          *     querying the next page most efficiently. Only one of offset or key
          *     should be set. */
-        'pagination.key'?: string;
+        "pagination.key"?: string;
         /** @description offset is a numeric offset that can be used when key is unavailable.
          *     It is less efficient than using key. Only one of offset or key should
          *     be set. */
-        'pagination.offset'?: string;
+        "pagination.offset"?: string;
         /** @description limit is the total number of results to be returned in the result page.
          *     If left empty it will default to a value to be set by each app. */
-        'pagination.limit'?: string;
+        "pagination.limit"?: string;
         /** @description count_total is set to true  to indicate that the result set should include
          *     a count of the total number of items available for pagination in UIs.
          *     count_total is only respected when offset is used. It is ignored when key
          *     is set. */
-        'pagination.count_total'?: boolean;
+        "pagination.count_total"?: boolean;
         /** @description reverse is set to true if results are to be returned in the descending order.
          *
          *     Since: cosmos-sdk 0.43 */
-        'pagination.reverse'?: boolean;
+        "pagination.reverse"?: boolean;
       };
       header?: never;
       path?: never;
@@ -33745,7 +33856,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** Format: int64 */
             block_height?: string;
             validators?: {
@@ -33896,7 +34007,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -33947,23 +34058,23 @@ export interface operations {
         /** @description key is a value returned in PageResponse.next_key to begin
          *     querying the next page most efficiently. Only one of offset or key
          *     should be set. */
-        'pagination.key'?: string;
+        "pagination.key"?: string;
         /** @description offset is a numeric offset that can be used when key is unavailable.
          *     It is less efficient than using key. Only one of offset or key should
          *     be set. */
-        'pagination.offset'?: string;
+        "pagination.offset"?: string;
         /** @description limit is the total number of results to be returned in the result page.
          *     If left empty it will default to a value to be set by each app. */
-        'pagination.limit'?: string;
+        "pagination.limit"?: string;
         /** @description count_total is set to true  to indicate that the result set should include
          *     a count of the total number of items available for pagination in UIs.
          *     count_total is only respected when offset is used. It is ignored when key
          *     is set. */
-        'pagination.count_total'?: boolean;
+        "pagination.count_total"?: boolean;
         /** @description reverse is set to true if results are to be returned in the descending order.
          *
          *     Since: cosmos-sdk 0.43 */
-        'pagination.reverse'?: boolean;
+        "pagination.reverse"?: boolean;
       };
       header?: never;
       path: {
@@ -33979,7 +34090,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** Format: int64 */
             block_height?: string;
             validators?: {
@@ -34130,7 +34241,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -34190,7 +34301,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** @description pool defines community pool's coins. */
             pool?: {
               denom?: string;
@@ -34205,7 +34316,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -34238,7 +34349,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** @description rewards defines all the rewards accrued by a delegator. */
             rewards?: {
               validator_address?: string;
@@ -34261,7 +34372,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -34296,7 +34407,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** @description rewards defines the rewards accrued by a delegation. */
             rewards?: {
               denom?: string;
@@ -34311,7 +34422,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -34344,7 +34455,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** @description validators defines the validators a delegator is delegating for. */
             validators?: string[];
           };
@@ -34356,7 +34467,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -34389,7 +34500,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** @description withdraw_address defines the delegator address to query for. */
             withdraw_address?: string;
           };
@@ -34401,7 +34512,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -34431,7 +34542,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** @description params defines the parameters of the module. */
             params?: {
               community_tax?: string;
@@ -34449,7 +34560,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -34482,7 +34593,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** @description commission defines the commision the validator received. */
             commission?: {
               commission?: {
@@ -34499,7 +34610,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -34532,7 +34643,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** @description ValidatorOutstandingRewards represents outstanding (un-withdrawn) rewards
              *     for a validator inexpensive to track, allows simple sanity checks. */
             rewards?: {
@@ -34550,7 +34661,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -34575,23 +34686,23 @@ export interface operations {
         /** @description key is a value returned in PageResponse.next_key to begin
          *     querying the next page most efficiently. Only one of offset or key
          *     should be set. */
-        'pagination.key'?: string;
+        "pagination.key"?: string;
         /** @description offset is a numeric offset that can be used when key is unavailable.
          *     It is less efficient than using key. Only one of offset or key should
          *     be set. */
-        'pagination.offset'?: string;
+        "pagination.offset"?: string;
         /** @description limit is the total number of results to be returned in the result page.
          *     If left empty it will default to a value to be set by each app. */
-        'pagination.limit'?: string;
+        "pagination.limit"?: string;
         /** @description count_total is set to true  to indicate that the result set should include
          *     a count of the total number of items available for pagination in UIs.
          *     count_total is only respected when offset is used. It is ignored when key
          *     is set. */
-        'pagination.count_total'?: boolean;
+        "pagination.count_total"?: boolean;
         /** @description reverse is set to true if results are to be returned in the descending order.
          *
          *     Since: cosmos-sdk 0.43 */
-        'pagination.reverse'?: boolean;
+        "pagination.reverse"?: boolean;
       };
       header?: never;
       path: {
@@ -34608,7 +34719,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** @description slashes defines the slashes the validator received. */
             slashes?: {
               /** Format: uint64 */
@@ -34639,7 +34750,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -34674,7 +34785,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /**
              * Grant is stored in the KVStore to record a grant with full context
              * @description allowance is a allowance granted for grantee by granter.
@@ -34730,7 +34841,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -34781,23 +34892,23 @@ export interface operations {
         /** @description key is a value returned in PageResponse.next_key to begin
          *     querying the next page most efficiently. Only one of offset or key
          *     should be set. */
-        'pagination.key'?: string;
+        "pagination.key"?: string;
         /** @description offset is a numeric offset that can be used when key is unavailable.
          *     It is less efficient than using key. Only one of offset or key should
          *     be set. */
-        'pagination.offset'?: string;
+        "pagination.offset"?: string;
         /** @description limit is the total number of results to be returned in the result page.
          *     If left empty it will default to a value to be set by each app. */
-        'pagination.limit'?: string;
+        "pagination.limit"?: string;
         /** @description count_total is set to true  to indicate that the result set should include
          *     a count of the total number of items available for pagination in UIs.
          *     count_total is only respected when offset is used. It is ignored when key
          *     is set. */
-        'pagination.count_total'?: boolean;
+        "pagination.count_total"?: boolean;
         /** @description reverse is set to true if results are to be returned in the descending order.
          *
          *     Since: cosmos-sdk 0.43 */
-        'pagination.reverse'?: boolean;
+        "pagination.reverse"?: boolean;
       };
       header?: never;
       path: {
@@ -34813,7 +34924,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** @description allowances are allowance's granted for grantee by granter. */
             allowances?: {
               /** @description granter is the address of the user granting an allowance of their funds. */
@@ -34881,7 +34992,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -34932,23 +35043,23 @@ export interface operations {
         /** @description key is a value returned in PageResponse.next_key to begin
          *     querying the next page most efficiently. Only one of offset or key
          *     should be set. */
-        'pagination.key'?: string;
+        "pagination.key"?: string;
         /** @description offset is a numeric offset that can be used when key is unavailable.
          *     It is less efficient than using key. Only one of offset or key should
          *     be set. */
-        'pagination.offset'?: string;
+        "pagination.offset"?: string;
         /** @description limit is the total number of results to be returned in the result page.
          *     If left empty it will default to a value to be set by each app. */
-        'pagination.limit'?: string;
+        "pagination.limit"?: string;
         /** @description count_total is set to true  to indicate that the result set should include
          *     a count of the total number of items available for pagination in UIs.
          *     count_total is only respected when offset is used. It is ignored when key
          *     is set. */
-        'pagination.count_total'?: boolean;
+        "pagination.count_total"?: boolean;
         /** @description reverse is set to true if results are to be returned in the descending order.
          *
          *     Since: cosmos-sdk 0.43 */
-        'pagination.reverse'?: boolean;
+        "pagination.reverse"?: boolean;
       };
       header?: never;
       path: {
@@ -34964,7 +35075,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** @description allowances that have been issued by the granter. */
             allowances?: {
               /** @description granter is the address of the user granting an allowance of their funds. */
@@ -35032,7 +35143,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -35083,23 +35194,23 @@ export interface operations {
         /** @description key is a value returned in PageResponse.next_key to begin
          *     querying the next page most efficiently. Only one of offset or key
          *     should be set. */
-        'pagination.key'?: string;
+        "pagination.key"?: string;
         /** @description offset is a numeric offset that can be used when key is unavailable.
          *     It is less efficient than using key. Only one of offset or key should
          *     be set. */
-        'pagination.offset'?: string;
+        "pagination.offset"?: string;
         /** @description limit is the total number of results to be returned in the result page.
          *     If left empty it will default to a value to be set by each app. */
-        'pagination.limit'?: string;
+        "pagination.limit"?: string;
         /** @description count_total is set to true  to indicate that the result set should include
          *     a count of the total number of items available for pagination in UIs.
          *     count_total is only respected when offset is used. It is ignored when key
          *     is set. */
-        'pagination.count_total'?: boolean;
+        "pagination.count_total"?: boolean;
         /** @description reverse is set to true if results are to be returned in the descending order.
          *
          *     Since: cosmos-sdk 0.43 */
-        'pagination.reverse'?: boolean;
+        "pagination.reverse"?: boolean;
       };
       header?: never;
       path?: never;
@@ -35113,7 +35224,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** @description evidence returns all evidences. */
             evidence?: {
               /** @description A URL/resource name that uniquely identifies the type of the serialized
@@ -35174,7 +35285,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -35237,7 +35348,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** @description `Any` contains an arbitrary serialized protocol buffer message along with a
              *     URL that describes the type of the serialized message.
              *
@@ -35364,7 +35475,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -35428,7 +35539,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** @description voting_params defines the parameters related to voting. */
             voting_params?: {
               /** @description Length of the voting period. */
@@ -35474,7 +35585,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -35536,12 +35647,12 @@ export interface operations {
          *      - PROPOSAL_STATUS_FAILED: PROPOSAL_STATUS_FAILED defines a proposal status of a proposal that has
          *     failed. */
         proposal_status?:
-          | 'PROPOSAL_STATUS_UNSPECIFIED'
-          | 'PROPOSAL_STATUS_DEPOSIT_PERIOD'
-          | 'PROPOSAL_STATUS_VOTING_PERIOD'
-          | 'PROPOSAL_STATUS_PASSED'
-          | 'PROPOSAL_STATUS_REJECTED'
-          | 'PROPOSAL_STATUS_FAILED';
+          | "PROPOSAL_STATUS_UNSPECIFIED"
+          | "PROPOSAL_STATUS_DEPOSIT_PERIOD"
+          | "PROPOSAL_STATUS_VOTING_PERIOD"
+          | "PROPOSAL_STATUS_PASSED"
+          | "PROPOSAL_STATUS_REJECTED"
+          | "PROPOSAL_STATUS_FAILED";
         /** @description voter defines the voter address for the proposals. */
         voter?: string;
         /** @description depositor defines the deposit addresses from the proposals. */
@@ -35549,23 +35660,23 @@ export interface operations {
         /** @description key is a value returned in PageResponse.next_key to begin
          *     querying the next page most efficiently. Only one of offset or key
          *     should be set. */
-        'pagination.key'?: string;
+        "pagination.key"?: string;
         /** @description offset is a numeric offset that can be used when key is unavailable.
          *     It is less efficient than using key. Only one of offset or key should
          *     be set. */
-        'pagination.offset'?: string;
+        "pagination.offset"?: string;
         /** @description limit is the total number of results to be returned in the result page.
          *     If left empty it will default to a value to be set by each app. */
-        'pagination.limit'?: string;
+        "pagination.limit"?: string;
         /** @description count_total is set to true  to indicate that the result set should include
          *     a count of the total number of items available for pagination in UIs.
          *     count_total is only respected when offset is used. It is ignored when key
          *     is set. */
-        'pagination.count_total'?: boolean;
+        "pagination.count_total"?: boolean;
         /** @description reverse is set to true if results are to be returned in the descending order.
          *
          *     Since: cosmos-sdk 0.43 */
-        'pagination.reverse'?: boolean;
+        "pagination.reverse"?: boolean;
       };
       header?: never;
       path?: never;
@@ -35579,7 +35690,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             proposals?: {
               /** Format: uint64 */
               proposal_id?: string;
@@ -35718,12 +35829,12 @@ export interface operations {
                * @enum {string}
                */
               status:
-                | 'PROPOSAL_STATUS_UNSPECIFIED'
-                | 'PROPOSAL_STATUS_DEPOSIT_PERIOD'
-                | 'PROPOSAL_STATUS_VOTING_PERIOD'
-                | 'PROPOSAL_STATUS_PASSED'
-                | 'PROPOSAL_STATUS_REJECTED'
-                | 'PROPOSAL_STATUS_FAILED';
+                | "PROPOSAL_STATUS_UNSPECIFIED"
+                | "PROPOSAL_STATUS_DEPOSIT_PERIOD"
+                | "PROPOSAL_STATUS_VOTING_PERIOD"
+                | "PROPOSAL_STATUS_PASSED"
+                | "PROPOSAL_STATUS_REJECTED"
+                | "PROPOSAL_STATUS_FAILED";
               /** @description TallyResult defines a standard tally for a governance proposal. */
               final_tally_result?: {
                 yes?: string;
@@ -35768,7 +35879,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -35831,7 +35942,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** @description Proposal defines the core field members of a governance proposal. */
             proposal?: {
               /** Format: uint64 */
@@ -35971,12 +36082,12 @@ export interface operations {
                * @enum {string}
                */
               status:
-                | 'PROPOSAL_STATUS_UNSPECIFIED'
-                | 'PROPOSAL_STATUS_DEPOSIT_PERIOD'
-                | 'PROPOSAL_STATUS_VOTING_PERIOD'
-                | 'PROPOSAL_STATUS_PASSED'
-                | 'PROPOSAL_STATUS_REJECTED'
-                | 'PROPOSAL_STATUS_FAILED';
+                | "PROPOSAL_STATUS_UNSPECIFIED"
+                | "PROPOSAL_STATUS_DEPOSIT_PERIOD"
+                | "PROPOSAL_STATUS_VOTING_PERIOD"
+                | "PROPOSAL_STATUS_PASSED"
+                | "PROPOSAL_STATUS_REJECTED"
+                | "PROPOSAL_STATUS_FAILED";
               /** @description TallyResult defines a standard tally for a governance proposal. */
               final_tally_result?: {
                 yes?: string;
@@ -36006,7 +36117,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -36057,23 +36168,23 @@ export interface operations {
         /** @description key is a value returned in PageResponse.next_key to begin
          *     querying the next page most efficiently. Only one of offset or key
          *     should be set. */
-        'pagination.key'?: string;
+        "pagination.key"?: string;
         /** @description offset is a numeric offset that can be used when key is unavailable.
          *     It is less efficient than using key. Only one of offset or key should
          *     be set. */
-        'pagination.offset'?: string;
+        "pagination.offset"?: string;
         /** @description limit is the total number of results to be returned in the result page.
          *     If left empty it will default to a value to be set by each app. */
-        'pagination.limit'?: string;
+        "pagination.limit"?: string;
         /** @description count_total is set to true  to indicate that the result set should include
          *     a count of the total number of items available for pagination in UIs.
          *     count_total is only respected when offset is used. It is ignored when key
          *     is set. */
-        'pagination.count_total'?: boolean;
+        "pagination.count_total"?: boolean;
         /** @description reverse is set to true if results are to be returned in the descending order.
          *
          *     Since: cosmos-sdk 0.43 */
-        'pagination.reverse'?: boolean;
+        "pagination.reverse"?: boolean;
       };
       header?: never;
       path: {
@@ -36090,7 +36201,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             deposits?: {
               /** Format: uint64 */
               proposal_id?: string;
@@ -36124,7 +36235,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -36189,7 +36300,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** @description Deposit defines an amount deposited by an account address to an active
              *     proposal. */
             deposit?: {
@@ -36210,7 +36321,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -36273,7 +36384,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** @description TallyResult defines a standard tally for a governance proposal. */
             tally?: {
               yes?: string;
@@ -36290,7 +36401,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -36341,23 +36452,23 @@ export interface operations {
         /** @description key is a value returned in PageResponse.next_key to begin
          *     querying the next page most efficiently. Only one of offset or key
          *     should be set. */
-        'pagination.key'?: string;
+        "pagination.key"?: string;
         /** @description offset is a numeric offset that can be used when key is unavailable.
          *     It is less efficient than using key. Only one of offset or key should
          *     be set. */
-        'pagination.offset'?: string;
+        "pagination.offset"?: string;
         /** @description limit is the total number of results to be returned in the result page.
          *     If left empty it will default to a value to be set by each app. */
-        'pagination.limit'?: string;
+        "pagination.limit"?: string;
         /** @description count_total is set to true  to indicate that the result set should include
          *     a count of the total number of items available for pagination in UIs.
          *     count_total is only respected when offset is used. It is ignored when key
          *     is set. */
-        'pagination.count_total'?: boolean;
+        "pagination.count_total"?: boolean;
         /** @description reverse is set to true if results are to be returned in the descending order.
          *
          *     Since: cosmos-sdk 0.43 */
-        'pagination.reverse'?: boolean;
+        "pagination.reverse"?: boolean;
       };
       header?: never;
       path: {
@@ -36374,7 +36485,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** @description votes defined the queried votes. */
             votes?: {
               /** Format: uint64 */
@@ -36388,11 +36499,11 @@ export interface operations {
                * @enum {string}
                */
               option:
-                | 'VOTE_OPTION_UNSPECIFIED'
-                | 'VOTE_OPTION_YES'
-                | 'VOTE_OPTION_ABSTAIN'
-                | 'VOTE_OPTION_NO'
-                | 'VOTE_OPTION_NO_WITH_VETO';
+                | "VOTE_OPTION_UNSPECIFIED"
+                | "VOTE_OPTION_YES"
+                | "VOTE_OPTION_ABSTAIN"
+                | "VOTE_OPTION_NO"
+                | "VOTE_OPTION_NO_WITH_VETO";
               /** Since: cosmos-sdk 0.43 */
               options?: {
                 /**
@@ -36407,11 +36518,11 @@ export interface operations {
                  * @enum {string}
                  */
                 option:
-                  | 'VOTE_OPTION_UNSPECIFIED'
-                  | 'VOTE_OPTION_YES'
-                  | 'VOTE_OPTION_ABSTAIN'
-                  | 'VOTE_OPTION_NO'
-                  | 'VOTE_OPTION_NO_WITH_VETO';
+                  | "VOTE_OPTION_UNSPECIFIED"
+                  | "VOTE_OPTION_YES"
+                  | "VOTE_OPTION_ABSTAIN"
+                  | "VOTE_OPTION_NO"
+                  | "VOTE_OPTION_NO_WITH_VETO";
                 weight?: string;
               }[];
             }[];
@@ -36439,7 +36550,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -36504,7 +36615,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** @description Vote defines a vote on a governance proposal.
              *     A Vote consists of a proposal ID, the voter, and the vote option. */
             vote?: {
@@ -36519,11 +36630,11 @@ export interface operations {
                * @enum {string}
                */
               option:
-                | 'VOTE_OPTION_UNSPECIFIED'
-                | 'VOTE_OPTION_YES'
-                | 'VOTE_OPTION_ABSTAIN'
-                | 'VOTE_OPTION_NO'
-                | 'VOTE_OPTION_NO_WITH_VETO';
+                | "VOTE_OPTION_UNSPECIFIED"
+                | "VOTE_OPTION_YES"
+                | "VOTE_OPTION_ABSTAIN"
+                | "VOTE_OPTION_NO"
+                | "VOTE_OPTION_NO_WITH_VETO";
               /** Since: cosmos-sdk 0.43 */
               options?: {
                 /**
@@ -36538,11 +36649,11 @@ export interface operations {
                  * @enum {string}
                  */
                 option:
-                  | 'VOTE_OPTION_UNSPECIFIED'
-                  | 'VOTE_OPTION_YES'
-                  | 'VOTE_OPTION_ABSTAIN'
-                  | 'VOTE_OPTION_NO'
-                  | 'VOTE_OPTION_NO_WITH_VETO';
+                  | "VOTE_OPTION_UNSPECIFIED"
+                  | "VOTE_OPTION_YES"
+                  | "VOTE_OPTION_ABSTAIN"
+                  | "VOTE_OPTION_NO"
+                  | "VOTE_OPTION_NO_WITH_VETO";
                 weight?: string;
               }[];
             };
@@ -36555,7 +36666,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -36615,7 +36726,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /**
              * Format: byte
              * @description annual_provisions is the current minting annual provisions value.
@@ -36630,7 +36741,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -36660,7 +36771,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /**
              * Format: byte
              * @description inflation is the current minting inflation value.
@@ -36675,7 +36786,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -36705,7 +36816,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** @description params defines the parameters of the module. */
             params?: {
               /** type of coin to mint */
@@ -36733,7 +36844,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -36768,7 +36879,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** @description param defines the queried parameter. */
             param?: {
               subspace?: string;
@@ -36784,7 +36895,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -36814,7 +36925,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** @description Params represents the parameters used for by the slashing module. */
             params?: {
               /** Format: int64 */
@@ -36836,7 +36947,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -36857,23 +36968,23 @@ export interface operations {
         /** @description key is a value returned in PageResponse.next_key to begin
          *     querying the next page most efficiently. Only one of offset or key
          *     should be set. */
-        'pagination.key'?: string;
+        "pagination.key"?: string;
         /** @description offset is a numeric offset that can be used when key is unavailable.
          *     It is less efficient than using key. Only one of offset or key should
          *     be set. */
-        'pagination.offset'?: string;
+        "pagination.offset"?: string;
         /** @description limit is the total number of results to be returned in the result page.
          *     If left empty it will default to a value to be set by each app. */
-        'pagination.limit'?: string;
+        "pagination.limit"?: string;
         /** @description count_total is set to true  to indicate that the result set should include
          *     a count of the total number of items available for pagination in UIs.
          *     count_total is only respected when offset is used. It is ignored when key
          *     is set. */
-        'pagination.count_total'?: boolean;
+        "pagination.count_total"?: boolean;
         /** @description reverse is set to true if results are to be returned in the descending order.
          *
          *     Since: cosmos-sdk 0.43 */
-        'pagination.reverse'?: boolean;
+        "pagination.reverse"?: boolean;
       };
       header?: never;
       path?: never;
@@ -36887,7 +36998,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** info is the signing info of all validators */
             info?: {
               address?: string;
@@ -36951,7 +37062,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -36984,7 +37095,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /**
              * val_signing_info is the signing info of requested val cons address
              * @description ValidatorSigningInfo defines a validator's signing info for monitoring their
@@ -37031,7 +37142,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -37052,23 +37163,23 @@ export interface operations {
         /** @description key is a value returned in PageResponse.next_key to begin
          *     querying the next page most efficiently. Only one of offset or key
          *     should be set. */
-        'pagination.key'?: string;
+        "pagination.key"?: string;
         /** @description offset is a numeric offset that can be used when key is unavailable.
          *     It is less efficient than using key. Only one of offset or key should
          *     be set. */
-        'pagination.offset'?: string;
+        "pagination.offset"?: string;
         /** @description limit is the total number of results to be returned in the result page.
          *     If left empty it will default to a value to be set by each app. */
-        'pagination.limit'?: string;
+        "pagination.limit"?: string;
         /** @description count_total is set to true  to indicate that the result set should include
          *     a count of the total number of items available for pagination in UIs.
          *     count_total is only respected when offset is used. It is ignored when key
          *     is set. */
-        'pagination.count_total'?: boolean;
+        "pagination.count_total"?: boolean;
         /** @description reverse is set to true if results are to be returned in the descending order.
          *
          *     Since: cosmos-sdk 0.43 */
-        'pagination.reverse'?: boolean;
+        "pagination.reverse"?: boolean;
       };
       header?: never;
       path: {
@@ -37085,7 +37196,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** @description delegation_responses defines all the delegations' info of a delegator. */
             delegation_responses?: {
               /** @description Delegation represents the bond with tokens held by an account. It is
@@ -37132,7 +37243,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -37187,23 +37298,23 @@ export interface operations {
         /** @description key is a value returned in PageResponse.next_key to begin
          *     querying the next page most efficiently. Only one of offset or key
          *     should be set. */
-        'pagination.key'?: string;
+        "pagination.key"?: string;
         /** @description offset is a numeric offset that can be used when key is unavailable.
          *     It is less efficient than using key. Only one of offset or key should
          *     be set. */
-        'pagination.offset'?: string;
+        "pagination.offset"?: string;
         /** @description limit is the total number of results to be returned in the result page.
          *     If left empty it will default to a value to be set by each app. */
-        'pagination.limit'?: string;
+        "pagination.limit"?: string;
         /** @description count_total is set to true  to indicate that the result set should include
          *     a count of the total number of items available for pagination in UIs.
          *     count_total is only respected when offset is used. It is ignored when key
          *     is set. */
-        'pagination.count_total'?: boolean;
+        "pagination.count_total"?: boolean;
         /** @description reverse is set to true if results are to be returned in the descending order.
          *
          *     Since: cosmos-sdk 0.43 */
-        'pagination.reverse'?: boolean;
+        "pagination.reverse"?: boolean;
       };
       header?: never;
       path: {
@@ -37220,7 +37331,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             redelegation_responses?: {
               /** @description Redelegation contains the list of a particular delegator's redelegating bonds
                *     from a particular source validator to a particular destination validator. */
@@ -37294,7 +37405,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -37345,23 +37456,23 @@ export interface operations {
         /** @description key is a value returned in PageResponse.next_key to begin
          *     querying the next page most efficiently. Only one of offset or key
          *     should be set. */
-        'pagination.key'?: string;
+        "pagination.key"?: string;
         /** @description offset is a numeric offset that can be used when key is unavailable.
          *     It is less efficient than using key. Only one of offset or key should
          *     be set. */
-        'pagination.offset'?: string;
+        "pagination.offset"?: string;
         /** @description limit is the total number of results to be returned in the result page.
          *     If left empty it will default to a value to be set by each app. */
-        'pagination.limit'?: string;
+        "pagination.limit"?: string;
         /** @description count_total is set to true  to indicate that the result set should include
          *     a count of the total number of items available for pagination in UIs.
          *     count_total is only respected when offset is used. It is ignored when key
          *     is set. */
-        'pagination.count_total'?: boolean;
+        "pagination.count_total"?: boolean;
         /** @description reverse is set to true if results are to be returned in the descending order.
          *
          *     Since: cosmos-sdk 0.43 */
-        'pagination.reverse'?: boolean;
+        "pagination.reverse"?: boolean;
       };
       header?: never;
       path: {
@@ -37378,7 +37489,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             unbonding_responses?: {
               /** @description delegator_address is the bech32-encoded address of the delegator. */
               delegator_address?: string;
@@ -37426,7 +37537,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -37477,23 +37588,23 @@ export interface operations {
         /** @description key is a value returned in PageResponse.next_key to begin
          *     querying the next page most efficiently. Only one of offset or key
          *     should be set. */
-        'pagination.key'?: string;
+        "pagination.key"?: string;
         /** @description offset is a numeric offset that can be used when key is unavailable.
          *     It is less efficient than using key. Only one of offset or key should
          *     be set. */
-        'pagination.offset'?: string;
+        "pagination.offset"?: string;
         /** @description limit is the total number of results to be returned in the result page.
          *     If left empty it will default to a value to be set by each app. */
-        'pagination.limit'?: string;
+        "pagination.limit"?: string;
         /** @description count_total is set to true  to indicate that the result set should include
          *     a count of the total number of items available for pagination in UIs.
          *     count_total is only respected when offset is used. It is ignored when key
          *     is set. */
-        'pagination.count_total'?: boolean;
+        "pagination.count_total"?: boolean;
         /** @description reverse is set to true if results are to be returned in the descending order.
          *
          *     Since: cosmos-sdk 0.43 */
-        'pagination.reverse'?: boolean;
+        "pagination.reverse"?: boolean;
       };
       header?: never;
       path: {
@@ -37510,7 +37621,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** @description validators defines the the validators' info of a delegator. */
             validators?: {
               /** @description operator_address defines the address of the validator's operator; bech encoded in JSON. */
@@ -37643,10 +37754,10 @@ export interface operations {
                * @enum {string}
                */
               status:
-                | 'BOND_STATUS_UNSPECIFIED'
-                | 'BOND_STATUS_UNBONDED'
-                | 'BOND_STATUS_UNBONDING'
-                | 'BOND_STATUS_BONDED';
+                | "BOND_STATUS_UNSPECIFIED"
+                | "BOND_STATUS_UNBONDED"
+                | "BOND_STATUS_UNBONDING"
+                | "BOND_STATUS_BONDED";
               /** @description tokens define the delegated tokens (incl. self-delegation). */
               tokens?: string;
               /** @description delegator_shares defines total shares issued to a validator's delegators. */
@@ -37718,7 +37829,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -37783,7 +37894,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** @description Validator defines a validator, together with the total amount of the
              *     Validator's bond shares and their exchange rate to coins. Slashing results in
              *     a decrease in the exchange rate, allowing correct calculation of future
@@ -37923,10 +38034,10 @@ export interface operations {
                * @enum {string}
                */
               status:
-                | 'BOND_STATUS_UNSPECIFIED'
-                | 'BOND_STATUS_UNBONDED'
-                | 'BOND_STATUS_UNBONDING'
-                | 'BOND_STATUS_BONDED';
+                | "BOND_STATUS_UNSPECIFIED"
+                | "BOND_STATUS_UNBONDED"
+                | "BOND_STATUS_UNBONDING"
+                | "BOND_STATUS_BONDED";
               /** @description tokens define the delegated tokens (incl. self-delegation). */
               tokens?: string;
               /** @description delegator_shares defines total shares issued to a validator's delegators. */
@@ -37983,7 +38094,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -38046,7 +38157,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** @description hist defines the historical info at the given height. */
             hist?: {
               /** @description Header defines the structure of a block header. */
@@ -38239,10 +38350,10 @@ export interface operations {
                  * @enum {string}
                  */
                 status:
-                  | 'BOND_STATUS_UNSPECIFIED'
-                  | 'BOND_STATUS_UNBONDED'
-                  | 'BOND_STATUS_UNBONDING'
-                  | 'BOND_STATUS_BONDED';
+                  | "BOND_STATUS_UNSPECIFIED"
+                  | "BOND_STATUS_UNBONDED"
+                  | "BOND_STATUS_UNBONDING"
+                  | "BOND_STATUS_BONDED";
                 /** @description tokens define the delegated tokens (incl. self-delegation). */
                 tokens?: string;
                 /** @description delegator_shares defines total shares issued to a validator's delegators. */
@@ -38300,7 +38411,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -38360,7 +38471,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** @description params holds all the parameters of this module. */
             params?: {
               /** @description unbonding_time is the time duration of unbonding. */
@@ -38392,7 +38503,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -38452,7 +38563,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** @description pool defines the pool info. */
             pool?: {
               not_bonded_tokens?: string;
@@ -38467,7 +38578,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -38520,23 +38631,23 @@ export interface operations {
         /** @description key is a value returned in PageResponse.next_key to begin
          *     querying the next page most efficiently. Only one of offset or key
          *     should be set. */
-        'pagination.key'?: string;
+        "pagination.key"?: string;
         /** @description offset is a numeric offset that can be used when key is unavailable.
          *     It is less efficient than using key. Only one of offset or key should
          *     be set. */
-        'pagination.offset'?: string;
+        "pagination.offset"?: string;
         /** @description limit is the total number of results to be returned in the result page.
          *     If left empty it will default to a value to be set by each app. */
-        'pagination.limit'?: string;
+        "pagination.limit"?: string;
         /** @description count_total is set to true  to indicate that the result set should include
          *     a count of the total number of items available for pagination in UIs.
          *     count_total is only respected when offset is used. It is ignored when key
          *     is set. */
-        'pagination.count_total'?: boolean;
+        "pagination.count_total"?: boolean;
         /** @description reverse is set to true if results are to be returned in the descending order.
          *
          *     Since: cosmos-sdk 0.43 */
-        'pagination.reverse'?: boolean;
+        "pagination.reverse"?: boolean;
       };
       header?: never;
       path?: never;
@@ -38550,7 +38661,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** @description validators contains all the queried validators. */
             validators?: {
               /** @description operator_address defines the address of the validator's operator; bech encoded in JSON. */
@@ -38683,10 +38794,10 @@ export interface operations {
                * @enum {string}
                */
               status:
-                | 'BOND_STATUS_UNSPECIFIED'
-                | 'BOND_STATUS_UNBONDED'
-                | 'BOND_STATUS_UNBONDING'
-                | 'BOND_STATUS_BONDED';
+                | "BOND_STATUS_UNSPECIFIED"
+                | "BOND_STATUS_UNBONDED"
+                | "BOND_STATUS_UNBONDING"
+                | "BOND_STATUS_BONDED";
               /** @description tokens define the delegated tokens (incl. self-delegation). */
               tokens?: string;
               /** @description delegator_shares defines total shares issued to a validator's delegators. */
@@ -38758,7 +38869,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -38821,7 +38932,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** @description Validator defines a validator, together with the total amount of the
              *     Validator's bond shares and their exchange rate to coins. Slashing results in
              *     a decrease in the exchange rate, allowing correct calculation of future
@@ -38961,10 +39072,10 @@ export interface operations {
                * @enum {string}
                */
               status:
-                | 'BOND_STATUS_UNSPECIFIED'
-                | 'BOND_STATUS_UNBONDED'
-                | 'BOND_STATUS_UNBONDING'
-                | 'BOND_STATUS_BONDED';
+                | "BOND_STATUS_UNSPECIFIED"
+                | "BOND_STATUS_UNBONDED"
+                | "BOND_STATUS_UNBONDING"
+                | "BOND_STATUS_BONDED";
               /** @description tokens define the delegated tokens (incl. self-delegation). */
               tokens?: string;
               /** @description delegator_shares defines total shares issued to a validator's delegators. */
@@ -39021,7 +39132,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -39072,23 +39183,23 @@ export interface operations {
         /** @description key is a value returned in PageResponse.next_key to begin
          *     querying the next page most efficiently. Only one of offset or key
          *     should be set. */
-        'pagination.key'?: string;
+        "pagination.key"?: string;
         /** @description offset is a numeric offset that can be used when key is unavailable.
          *     It is less efficient than using key. Only one of offset or key should
          *     be set. */
-        'pagination.offset'?: string;
+        "pagination.offset"?: string;
         /** @description limit is the total number of results to be returned in the result page.
          *     If left empty it will default to a value to be set by each app. */
-        'pagination.limit'?: string;
+        "pagination.limit"?: string;
         /** @description count_total is set to true  to indicate that the result set should include
          *     a count of the total number of items available for pagination in UIs.
          *     count_total is only respected when offset is used. It is ignored when key
          *     is set. */
-        'pagination.count_total'?: boolean;
+        "pagination.count_total"?: boolean;
         /** @description reverse is set to true if results are to be returned in the descending order.
          *
          *     Since: cosmos-sdk 0.43 */
-        'pagination.reverse'?: boolean;
+        "pagination.reverse"?: boolean;
       };
       header?: never;
       path: {
@@ -39105,7 +39216,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             delegation_responses?: {
               /** @description Delegation represents the bond with tokens held by an account. It is
                *     owned by one delegator, and is associated with the voting power of one
@@ -39151,7 +39262,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -39216,7 +39327,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** @description DelegationResponse is equivalent to Delegation except that it contains a
              *     balance in addition to shares which is more suitable for client responses. */
             delegation_response?: {
@@ -39249,7 +39360,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -39314,7 +39425,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** @description UnbondingDelegation stores all of a single delegator's unbonding bonds
              *     for a single validator in an time-ordered list. */
             unbond?: {
@@ -39349,7 +39460,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -39400,23 +39511,23 @@ export interface operations {
         /** @description key is a value returned in PageResponse.next_key to begin
          *     querying the next page most efficiently. Only one of offset or key
          *     should be set. */
-        'pagination.key'?: string;
+        "pagination.key"?: string;
         /** @description offset is a numeric offset that can be used when key is unavailable.
          *     It is less efficient than using key. Only one of offset or key should
          *     be set. */
-        'pagination.offset'?: string;
+        "pagination.offset"?: string;
         /** @description limit is the total number of results to be returned in the result page.
          *     If left empty it will default to a value to be set by each app. */
-        'pagination.limit'?: string;
+        "pagination.limit"?: string;
         /** @description count_total is set to true  to indicate that the result set should include
          *     a count of the total number of items available for pagination in UIs.
          *     count_total is only respected when offset is used. It is ignored when key
          *     is set. */
-        'pagination.count_total'?: boolean;
+        "pagination.count_total"?: boolean;
         /** @description reverse is set to true if results are to be returned in the descending order.
          *
          *     Since: cosmos-sdk 0.43 */
-        'pagination.reverse'?: boolean;
+        "pagination.reverse"?: boolean;
       };
       header?: never;
       path: {
@@ -39433,7 +39544,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             unbonding_responses?: {
               /** @description delegator_address is the bech32-encoded address of the delegator. */
               delegator_address?: string;
@@ -39481,7 +39592,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -39535,7 +39646,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        'application/json': components['schemas']['cosmos.tx.v1beta1.SimulateRequest'];
+        "application/json": components["schemas"]["cosmos.tx.v1beta1.SimulateRequest"];
       };
     };
     responses: {
@@ -39545,7 +39656,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** @description gas_info is the information about gas used in the simulation. */
             gas_info?: {
               /**
@@ -39592,7 +39703,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -39645,27 +39756,27 @@ export interface operations {
         /** @description key is a value returned in PageResponse.next_key to begin
          *     querying the next page most efficiently. Only one of offset or key
          *     should be set. */
-        'pagination.key'?: string;
+        "pagination.key"?: string;
         /** @description offset is a numeric offset that can be used when key is unavailable.
          *     It is less efficient than using key. Only one of offset or key should
          *     be set. */
-        'pagination.offset'?: string;
+        "pagination.offset"?: string;
         /** @description limit is the total number of results to be returned in the result page.
          *     If left empty it will default to a value to be set by each app. */
-        'pagination.limit'?: string;
+        "pagination.limit"?: string;
         /** @description count_total is set to true  to indicate that the result set should include
          *     a count of the total number of items available for pagination in UIs.
          *     count_total is only respected when offset is used. It is ignored when key
          *     is set. */
-        'pagination.count_total'?: boolean;
+        "pagination.count_total"?: boolean;
         /** @description reverse is set to true if results are to be returned in the descending order.
          *
          *     Since: cosmos-sdk 0.43 */
-        'pagination.reverse'?: boolean;
+        "pagination.reverse"?: boolean;
         /** @description  - ORDER_BY_UNSPECIFIED: ORDER_BY_UNSPECIFIED specifies an unknown sorting order. OrderBy defaults to ASC in this case.
          *      - ORDER_BY_ASC: ORDER_BY_ASC defines ascending order
          *      - ORDER_BY_DESC: ORDER_BY_DESC defines descending order */
-        order_by?: 'ORDER_BY_UNSPECIFIED' | 'ORDER_BY_ASC' | 'ORDER_BY_DESC';
+        order_by?: "ORDER_BY_UNSPECIFIED" | "ORDER_BY_ASC" | "ORDER_BY_DESC";
       };
       header?: never;
       path?: never;
@@ -39679,7 +39790,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': components['schemas']['cosmos.tx.v1beta1.GetTxsEventResponse'];
+          "*/*": components["schemas"]["cosmos.tx.v1beta1.GetTxsEventResponse"];
         };
       };
       /** @description An unexpected error response */
@@ -39688,7 +39799,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -39742,7 +39853,7 @@ export interface operations {
     };
     requestBody: {
       content: {
-        'application/json': {
+        "application/json": {
           /**
            * Format: byte
            * @description tx_bytes is the raw transaction.
@@ -39762,10 +39873,10 @@ export interface operations {
            * @enum {string}
            */
           mode?:
-            | 'BROADCAST_MODE_UNSPECIFIED'
-            | 'BROADCAST_MODE_BLOCK'
-            | 'BROADCAST_MODE_SYNC'
-            | 'BROADCAST_MODE_ASYNC';
+            | "BROADCAST_MODE_UNSPECIFIED"
+            | "BROADCAST_MODE_BLOCK"
+            | "BROADCAST_MODE_SYNC"
+            | "BROADCAST_MODE_ASYNC";
         };
       };
     };
@@ -39776,7 +39887,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** @description TxResponse defines a structure containing relevant tx data and metadata. The
              *     tags are stringified and the log is JSON decoded. */
             tx_response?: {
@@ -39974,7 +40085,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -40025,23 +40136,23 @@ export interface operations {
         /** @description key is a value returned in PageResponse.next_key to begin
          *     querying the next page most efficiently. Only one of offset or key
          *     should be set. */
-        'pagination.key'?: string;
+        "pagination.key"?: string;
         /** @description offset is a numeric offset that can be used when key is unavailable.
          *     It is less efficient than using key. Only one of offset or key should
          *     be set. */
-        'pagination.offset'?: string;
+        "pagination.offset"?: string;
         /** @description limit is the total number of results to be returned in the result page.
          *     If left empty it will default to a value to be set by each app. */
-        'pagination.limit'?: string;
+        "pagination.limit"?: string;
         /** @description count_total is set to true  to indicate that the result set should include
          *     a count of the total number of items available for pagination in UIs.
          *     count_total is only respected when offset is used. It is ignored when key
          *     is set. */
-        'pagination.count_total'?: boolean;
+        "pagination.count_total"?: boolean;
         /** @description reverse is set to true if results are to be returned in the descending order.
          *
          *     Since: cosmos-sdk 0.43 */
-        'pagination.reverse'?: boolean;
+        "pagination.reverse"?: boolean;
       };
       header?: never;
       path: {
@@ -40058,7 +40169,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': components['schemas']['cosmos.tx.v1beta1.GetBlockWithTxsResponse'];
+          "*/*": components["schemas"]["cosmos.tx.v1beta1.GetBlockWithTxsResponse"];
         };
       };
       /** @description An unexpected error response */
@@ -40067,7 +40178,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -40130,7 +40241,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': components['schemas']['cosmos.tx.v1beta1.GetTxResponse'];
+          "*/*": components["schemas"]["cosmos.tx.v1beta1.GetTxResponse"];
         };
       };
       /** @description An unexpected error response */
@@ -40139,7 +40250,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -40202,7 +40313,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /**
              * Format: int64
              * @description height is the block height at which the plan was applied.
@@ -40217,7 +40328,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -40277,7 +40388,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** @description plan is the current upgrade plan. */
             plan?: {
               /** @description Sets the name for the upgrade. This name will be used by the upgraded
@@ -40431,7 +40542,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -40496,7 +40607,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** @description module_versions is a list of module names with their consensus versions. */
             module_versions?: {
               /** name of the app module */
@@ -40516,7 +40627,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -40580,7 +40691,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /**
              * Since: cosmos-sdk 0.43
              * Format: byte
@@ -40595,7 +40706,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -40646,23 +40757,23 @@ export interface operations {
         /** @description key is a value returned in PageResponse.next_key to begin
          *     querying the next page most efficiently. Only one of offset or key
          *     should be set. */
-        'pagination.key'?: string;
+        "pagination.key"?: string;
         /** @description offset is a numeric offset that can be used when key is unavailable.
          *     It is less efficient than using key. Only one of offset or key should
          *     be set. */
-        'pagination.offset'?: string;
+        "pagination.offset"?: string;
         /** @description limit is the total number of results to be returned in the result page.
          *     If left empty it will default to a value to be set by each app. */
-        'pagination.limit'?: string;
+        "pagination.limit"?: string;
         /** @description count_total is set to true  to indicate that the result set should include
          *     a count of the total number of items available for pagination in UIs.
          *     count_total is only respected when offset is used. It is ignored when key
          *     is set. */
-        'pagination.count_total'?: boolean;
+        "pagination.count_total"?: boolean;
         /** @description reverse is set to true if results are to be returned in the descending order.
          *
          *     Since: cosmos-sdk 0.43 */
-        'pagination.reverse'?: boolean;
+        "pagination.reverse"?: boolean;
       };
       header?: never;
       path?: never;
@@ -40676,7 +40787,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** @description list of stored channels of the chain. */
             channels?: {
               /**
@@ -40695,11 +40806,11 @@ export interface operations {
                * @enum {string}
                */
               state:
-                | 'STATE_UNINITIALIZED_UNSPECIFIED'
-                | 'STATE_INIT'
-                | 'STATE_TRYOPEN'
-                | 'STATE_OPEN'
-                | 'STATE_CLOSED';
+                | "STATE_UNINITIALIZED_UNSPECIFIED"
+                | "STATE_INIT"
+                | "STATE_TRYOPEN"
+                | "STATE_OPEN"
+                | "STATE_CLOSED";
               /**
                * whether the channel is ordered or unordered
                * @description - ORDER_NONE_UNSPECIFIED: zero-value for channel ordering
@@ -40709,7 +40820,7 @@ export interface operations {
                * @default ORDER_NONE_UNSPECIFIED
                * @enum {string}
                */
-              ordering: 'ORDER_NONE_UNSPECIFIED' | 'ORDER_UNORDERED' | 'ORDER_ORDERED';
+              ordering: "ORDER_NONE_UNSPECIFIED" | "ORDER_UNORDERED" | "ORDER_ORDERED";
               /** counterparty channel end */
               counterparty?: {
                 /** @description port on the counterparty chain which owns the other end of the channel. */
@@ -40781,7 +40892,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -40846,7 +40957,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /**
              * channel associated with the request identifiers
              * @description Channel defines pipeline for exactly-once packet delivery between specific
@@ -40870,11 +40981,11 @@ export interface operations {
                * @enum {string}
                */
               state:
-                | 'STATE_UNINITIALIZED_UNSPECIFIED'
-                | 'STATE_INIT'
-                | 'STATE_TRYOPEN'
-                | 'STATE_OPEN'
-                | 'STATE_CLOSED';
+                | "STATE_UNINITIALIZED_UNSPECIFIED"
+                | "STATE_INIT"
+                | "STATE_TRYOPEN"
+                | "STATE_OPEN"
+                | "STATE_CLOSED";
               /**
                * whether the channel is ordered or unordered
                * @description - ORDER_NONE_UNSPECIFIED: zero-value for channel ordering
@@ -40884,7 +40995,7 @@ export interface operations {
                * @default ORDER_NONE_UNSPECIFIED
                * @enum {string}
                */
-              ordering: 'ORDER_NONE_UNSPECIFIED' | 'ORDER_UNORDERED' | 'ORDER_ORDERED';
+              ordering: "ORDER_NONE_UNSPECIFIED" | "ORDER_UNORDERED" | "ORDER_ORDERED";
               /** counterparty channel end */
               counterparty?: {
                 /** @description port on the counterparty chain which owns the other end of the channel. */
@@ -40933,7 +41044,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -40998,7 +41109,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /**
              * client state associated with the channel
              * @description IdentifiedClientState defines a client state with an additional client
@@ -41163,7 +41274,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -41232,7 +41343,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /**
              * consensus state associated with the channel
              * @description `Any` contains an arbitrary serialized protocol buffer message along with a
@@ -41390,7 +41501,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -41455,7 +41566,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /**
              * next sequence receive number
              * Format: uint64
@@ -41496,7 +41607,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -41547,23 +41658,23 @@ export interface operations {
         /** @description key is a value returned in PageResponse.next_key to begin
          *     querying the next page most efficiently. Only one of offset or key
          *     should be set. */
-        'pagination.key'?: string;
+        "pagination.key"?: string;
         /** @description offset is a numeric offset that can be used when key is unavailable.
          *     It is less efficient than using key. Only one of offset or key should
          *     be set. */
-        'pagination.offset'?: string;
+        "pagination.offset"?: string;
         /** @description limit is the total number of results to be returned in the result page.
          *     If left empty it will default to a value to be set by each app. */
-        'pagination.limit'?: string;
+        "pagination.limit"?: string;
         /** @description count_total is set to true  to indicate that the result set should include
          *     a count of the total number of items available for pagination in UIs.
          *     count_total is only respected when offset is used. It is ignored when key
          *     is set. */
-        'pagination.count_total'?: boolean;
+        "pagination.count_total"?: boolean;
         /** @description reverse is set to true if results are to be returned in the descending order.
          *
          *     Since: cosmos-sdk 0.43 */
-        'pagination.reverse'?: boolean;
+        "pagination.reverse"?: boolean;
         /** @description list of packet sequences. */
         packet_commitment_sequences?: string[];
       };
@@ -41584,7 +41695,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             acknowledgements?: {
               /** @description channel port identifier. */
               port_id?: string;
@@ -41655,7 +41766,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -41722,7 +41833,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /**
              * packet associated with the request fields
              * Format: byte
@@ -41763,7 +41874,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -41814,23 +41925,23 @@ export interface operations {
         /** @description key is a value returned in PageResponse.next_key to begin
          *     querying the next page most efficiently. Only one of offset or key
          *     should be set. */
-        'pagination.key'?: string;
+        "pagination.key"?: string;
         /** @description offset is a numeric offset that can be used when key is unavailable.
          *     It is less efficient than using key. Only one of offset or key should
          *     be set. */
-        'pagination.offset'?: string;
+        "pagination.offset"?: string;
         /** @description limit is the total number of results to be returned in the result page.
          *     If left empty it will default to a value to be set by each app. */
-        'pagination.limit'?: string;
+        "pagination.limit"?: string;
         /** @description count_total is set to true  to indicate that the result set should include
          *     a count of the total number of items available for pagination in UIs.
          *     count_total is only respected when offset is used. It is ignored when key
          *     is set. */
-        'pagination.count_total'?: boolean;
+        "pagination.count_total"?: boolean;
         /** @description reverse is set to true if results are to be returned in the descending order.
          *
          *     Since: cosmos-sdk 0.43 */
-        'pagination.reverse'?: boolean;
+        "pagination.reverse"?: boolean;
       };
       header?: never;
       path: {
@@ -41849,7 +41960,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             commitments?: {
               /** @description channel port identifier. */
               port_id?: string;
@@ -41920,7 +42031,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -41987,7 +42098,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** list of unreceived acknowledgement sequences */
             sequences?: string[];
             /**
@@ -42020,7 +42131,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -42087,7 +42198,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** list of unreceived packet sequences */
             sequences?: string[];
             /**
@@ -42120,7 +42231,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -42187,7 +42298,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /**
              * packet associated with the request fields
              * Format: byte
@@ -42228,7 +42339,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -42295,7 +42406,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /**
              * success flag for if receipt exists
              * Format: boolean
@@ -42336,7 +42447,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -42387,23 +42498,23 @@ export interface operations {
         /** @description key is a value returned in PageResponse.next_key to begin
          *     querying the next page most efficiently. Only one of offset or key
          *     should be set. */
-        'pagination.key'?: string;
+        "pagination.key"?: string;
         /** @description offset is a numeric offset that can be used when key is unavailable.
          *     It is less efficient than using key. Only one of offset or key should
          *     be set. */
-        'pagination.offset'?: string;
+        "pagination.offset"?: string;
         /** @description limit is the total number of results to be returned in the result page.
          *     If left empty it will default to a value to be set by each app. */
-        'pagination.limit'?: string;
+        "pagination.limit"?: string;
         /** @description count_total is set to true  to indicate that the result set should include
          *     a count of the total number of items available for pagination in UIs.
          *     count_total is only respected when offset is used. It is ignored when key
          *     is set. */
-        'pagination.count_total'?: boolean;
+        "pagination.count_total"?: boolean;
         /** @description reverse is set to true if results are to be returned in the descending order.
          *
          *     Since: cosmos-sdk 0.43 */
-        'pagination.reverse'?: boolean;
+        "pagination.reverse"?: boolean;
       };
       header?: never;
       path: {
@@ -42420,7 +42531,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** @description list of channels associated with a connection. */
             channels?: {
               /**
@@ -42439,11 +42550,11 @@ export interface operations {
                * @enum {string}
                */
               state:
-                | 'STATE_UNINITIALIZED_UNSPECIFIED'
-                | 'STATE_INIT'
-                | 'STATE_TRYOPEN'
-                | 'STATE_OPEN'
-                | 'STATE_CLOSED';
+                | "STATE_UNINITIALIZED_UNSPECIFIED"
+                | "STATE_INIT"
+                | "STATE_TRYOPEN"
+                | "STATE_OPEN"
+                | "STATE_CLOSED";
               /**
                * whether the channel is ordered or unordered
                * @description - ORDER_NONE_UNSPECIFIED: zero-value for channel ordering
@@ -42453,7 +42564,7 @@ export interface operations {
                * @default ORDER_NONE_UNSPECIFIED
                * @enum {string}
                */
-              ordering: 'ORDER_NONE_UNSPECIFIED' | 'ORDER_UNORDERED' | 'ORDER_ORDERED';
+              ordering: "ORDER_NONE_UNSPECIFIED" | "ORDER_UNORDERED" | "ORDER_ORDERED";
               /** counterparty channel end */
               counterparty?: {
                 /** @description port on the counterparty chain which owns the other end of the channel. */
@@ -42525,7 +42636,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -42585,7 +42696,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** @description params defines the parameters of the module. */
             params?: {
               /** @description allowed_clients defines the list of allowed client state types. */
@@ -42600,7 +42711,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -42651,23 +42762,23 @@ export interface operations {
         /** @description key is a value returned in PageResponse.next_key to begin
          *     querying the next page most efficiently. Only one of offset or key
          *     should be set. */
-        'pagination.key'?: string;
+        "pagination.key"?: string;
         /** @description offset is a numeric offset that can be used when key is unavailable.
          *     It is less efficient than using key. Only one of offset or key should
          *     be set. */
-        'pagination.offset'?: string;
+        "pagination.offset"?: string;
         /** @description limit is the total number of results to be returned in the result page.
          *     If left empty it will default to a value to be set by each app. */
-        'pagination.limit'?: string;
+        "pagination.limit"?: string;
         /** @description count_total is set to true  to indicate that the result set should include
          *     a count of the total number of items available for pagination in UIs.
          *     count_total is only respected when offset is used. It is ignored when key
          *     is set. */
-        'pagination.count_total'?: boolean;
+        "pagination.count_total"?: boolean;
         /** @description reverse is set to true if results are to be returned in the descending order.
          *
          *     Since: cosmos-sdk 0.43 */
-        'pagination.reverse'?: boolean;
+        "pagination.reverse"?: boolean;
       };
       header?: never;
       path?: never;
@@ -42681,7 +42792,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** @description list of stored ClientStates of the chain. */
             client_states?: {
               /** client identifier */
@@ -42840,7 +42951,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -42903,7 +43014,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /**
              * client state associated with the request identifier
              * @description `Any` contains an arbitrary serialized protocol buffer message along with a
@@ -43059,7 +43170,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -43122,7 +43233,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             status?: string;
           };
         };
@@ -43133,7 +43244,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -43184,23 +43295,23 @@ export interface operations {
         /** @description key is a value returned in PageResponse.next_key to begin
          *     querying the next page most efficiently. Only one of offset or key
          *     should be set. */
-        'pagination.key'?: string;
+        "pagination.key"?: string;
         /** @description offset is a numeric offset that can be used when key is unavailable.
          *     It is less efficient than using key. Only one of offset or key should
          *     be set. */
-        'pagination.offset'?: string;
+        "pagination.offset"?: string;
         /** @description limit is the total number of results to be returned in the result page.
          *     If left empty it will default to a value to be set by each app. */
-        'pagination.limit'?: string;
+        "pagination.limit"?: string;
         /** @description count_total is set to true  to indicate that the result set should include
          *     a count of the total number of items available for pagination in UIs.
          *     count_total is only respected when offset is used. It is ignored when key
          *     is set. */
-        'pagination.count_total'?: boolean;
+        "pagination.count_total"?: boolean;
         /** @description reverse is set to true if results are to be returned in the descending order.
          *
          *     Since: cosmos-sdk 0.43 */
-        'pagination.reverse'?: boolean;
+        "pagination.reverse"?: boolean;
       };
       header?: never;
       path: {
@@ -43217,7 +43328,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** consensus states associated with the identifier */
             consensus_states?: {
               /**
@@ -43395,7 +43506,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -43446,23 +43557,23 @@ export interface operations {
         /** @description key is a value returned in PageResponse.next_key to begin
          *     querying the next page most efficiently. Only one of offset or key
          *     should be set. */
-        'pagination.key'?: string;
+        "pagination.key"?: string;
         /** @description offset is a numeric offset that can be used when key is unavailable.
          *     It is less efficient than using key. Only one of offset or key should
          *     be set. */
-        'pagination.offset'?: string;
+        "pagination.offset"?: string;
         /** @description limit is the total number of results to be returned in the result page.
          *     If left empty it will default to a value to be set by each app. */
-        'pagination.limit'?: string;
+        "pagination.limit"?: string;
         /** @description count_total is set to true  to indicate that the result set should include
          *     a count of the total number of items available for pagination in UIs.
          *     count_total is only respected when offset is used. It is ignored when key
          *     is set. */
-        'pagination.count_total'?: boolean;
+        "pagination.count_total"?: boolean;
         /** @description reverse is set to true if results are to be returned in the descending order.
          *
          *     Since: cosmos-sdk 0.43 */
-        'pagination.reverse'?: boolean;
+        "pagination.reverse"?: boolean;
       };
       header?: never;
       path: {
@@ -43479,7 +43590,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** consensus state heights */
             consensus_state_heights?: {
               /**
@@ -43526,7 +43637,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -43597,7 +43708,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /**
              * consensus state associated with the client identifier at the given height
              * @description `Any` contains an arbitrary serialized protocol buffer message along with a
@@ -43755,7 +43866,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -43815,7 +43926,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /**
              * client state associated with the request identifier
              * @description `Any` contains an arbitrary serialized protocol buffer message along with a
@@ -43945,7 +44056,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -44005,7 +44116,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /**
              * Consensus state associated with the request identifier
              * @description `Any` contains an arbitrary serialized protocol buffer message along with a
@@ -44135,7 +44246,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -44198,7 +44309,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** @description slice of all the connection paths associated with a client. */
             connection_paths?: string[];
             /**
@@ -44236,7 +44347,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -44287,23 +44398,23 @@ export interface operations {
         /** @description key is a value returned in PageResponse.next_key to begin
          *     querying the next page most efficiently. Only one of offset or key
          *     should be set. */
-        'pagination.key'?: string;
+        "pagination.key"?: string;
         /** @description offset is a numeric offset that can be used when key is unavailable.
          *     It is less efficient than using key. Only one of offset or key should
          *     be set. */
-        'pagination.offset'?: string;
+        "pagination.offset"?: string;
         /** @description limit is the total number of results to be returned in the result page.
          *     If left empty it will default to a value to be set by each app. */
-        'pagination.limit'?: string;
+        "pagination.limit"?: string;
         /** @description count_total is set to true  to indicate that the result set should include
          *     a count of the total number of items available for pagination in UIs.
          *     count_total is only respected when offset is used. It is ignored when key
          *     is set. */
-        'pagination.count_total'?: boolean;
+        "pagination.count_total"?: boolean;
         /** @description reverse is set to true if results are to be returned in the descending order.
          *
          *     Since: cosmos-sdk 0.43 */
-        'pagination.reverse'?: boolean;
+        "pagination.reverse"?: boolean;
       };
       header?: never;
       path?: never;
@@ -44317,7 +44428,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** @description list of stored connections of the chain. */
             connections?: {
               /** @description connection identifier. */
@@ -44337,7 +44448,7 @@ export interface operations {
                * @default STATE_UNINITIALIZED_UNSPECIFIED
                * @enum {string}
                */
-              state: 'STATE_UNINITIALIZED_UNSPECIFIED' | 'STATE_INIT' | 'STATE_TRYOPEN' | 'STATE_OPEN';
+              state: "STATE_UNINITIALIZED_UNSPECIFIED" | "STATE_INIT" | "STATE_TRYOPEN" | "STATE_OPEN";
               /** @description counterparty chain associated with this connection. */
               counterparty?: {
                 /** @description identifies the client on the counterparty chain associated with a given
@@ -44417,7 +44528,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -44480,7 +44591,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /**
              * connection associated with the request identifier
              * @description ConnectionEnd defines a stateful object on a chain connected to another
@@ -44504,7 +44615,7 @@ export interface operations {
                * @default STATE_UNINITIALIZED_UNSPECIFIED
                * @enum {string}
                */
-              state: 'STATE_UNINITIALIZED_UNSPECIFIED' | 'STATE_INIT' | 'STATE_TRYOPEN' | 'STATE_OPEN';
+              state: "STATE_UNINITIALIZED_UNSPECIFIED" | "STATE_INIT" | "STATE_TRYOPEN" | "STATE_OPEN";
               /** @description counterparty chain associated with this connection. */
               counterparty?: {
                 /** @description identifies the client on the counterparty chain associated with a given
@@ -44567,7 +44678,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -44630,7 +44741,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /**
              * client state associated with the channel
              * @description IdentifiedClientState defines a client state with an additional client
@@ -44795,7 +44906,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -44860,7 +44971,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /**
              * consensus state associated with the channel
              * @description `Any` contains an arbitrary serialized protocol buffer message along with a
@@ -45018,7 +45129,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -45083,7 +45194,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** the escrow account address */
             escrow_address?: string;
           };
@@ -45095,7 +45206,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -45128,7 +45239,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** @description hash (in hex format) of the denomination trace information. */
             hash?: string;
           };
@@ -45140,7 +45251,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -45161,23 +45272,23 @@ export interface operations {
         /** @description key is a value returned in PageResponse.next_key to begin
          *     querying the next page most efficiently. Only one of offset or key
          *     should be set. */
-        'pagination.key'?: string;
+        "pagination.key"?: string;
         /** @description offset is a numeric offset that can be used when key is unavailable.
          *     It is less efficient than using key. Only one of offset or key should
          *     be set. */
-        'pagination.offset'?: string;
+        "pagination.offset"?: string;
         /** @description limit is the total number of results to be returned in the result page.
          *     If left empty it will default to a value to be set by each app. */
-        'pagination.limit'?: string;
+        "pagination.limit"?: string;
         /** @description count_total is set to true  to indicate that the result set should include
          *     a count of the total number of items available for pagination in UIs.
          *     count_total is only respected when offset is used. It is ignored when key
          *     is set. */
-        'pagination.count_total'?: boolean;
+        "pagination.count_total"?: boolean;
         /** @description reverse is set to true if results are to be returned in the descending order.
          *
          *     Since: cosmos-sdk 0.43 */
-        'pagination.reverse'?: boolean;
+        "pagination.reverse"?: boolean;
       };
       header?: never;
       path?: never;
@@ -45191,7 +45302,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** @description denom_traces returns all denominations trace information. */
             denom_traces?: {
               /** @description path defines the chain of port/channel identifiers used for tracing the
@@ -45224,7 +45335,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -45257,7 +45368,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** @description DenomTrace contains the base denomination for ICS20 fungible tokens and the
              *     source tracing information path. */
             denom_trace?: {
@@ -45276,7 +45387,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -45306,7 +45417,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** @description params defines the parameters of the module. */
             params?: {
               /**
@@ -45331,7 +45442,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -45352,23 +45463,23 @@ export interface operations {
         /** @description key is a value returned in PageResponse.next_key to begin
          *     querying the next page most efficiently. Only one of offset or key
          *     should be set. */
-        'pagination.key'?: string;
+        "pagination.key"?: string;
         /** @description offset is a numeric offset that can be used when key is unavailable.
          *     It is less efficient than using key. Only one of offset or key should
          *     be set. */
-        'pagination.offset'?: string;
+        "pagination.offset"?: string;
         /** @description limit is the total number of results to be returned in the result page.
          *     If left empty it will default to a value to be set by each app. */
-        'pagination.limit'?: string;
+        "pagination.limit"?: string;
         /** @description count_total is set to true  to indicate that the result set should include
          *     a count of the total number of items available for pagination in UIs.
          *     count_total is only respected when offset is used. It is ignored when key
          *     is set. */
-        'pagination.count_total'?: boolean;
+        "pagination.count_total"?: boolean;
         /** @description reverse is set to true if results are to be returned in the descending order.
          *
          *     Since: cosmos-sdk 0.43 */
-        'pagination.reverse'?: boolean;
+        "pagination.reverse"?: boolean;
       };
       header?: never;
       path?: never;
@@ -45382,7 +45493,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             code_infos?: {
               /** Format: uint64 */
               code_id?: string;
@@ -45403,11 +45514,11 @@ export interface operations {
                  * @enum {string}
                  */
                 permission:
-                  | 'ACCESS_TYPE_UNSPECIFIED'
-                  | 'ACCESS_TYPE_NOBODY'
-                  | 'ACCESS_TYPE_ONLY_ADDRESS'
-                  | 'ACCESS_TYPE_EVERYBODY'
-                  | 'ACCESS_TYPE_ANY_OF_ADDRESSES';
+                  | "ACCESS_TYPE_UNSPECIFIED"
+                  | "ACCESS_TYPE_NOBODY"
+                  | "ACCESS_TYPE_ONLY_ADDRESS"
+                  | "ACCESS_TYPE_EVERYBODY"
+                  | "ACCESS_TYPE_ANY_OF_ADDRESSES";
                 /** Address
                  *     Deprecated: replaced by addresses */
                 address?: string;
@@ -45438,7 +45549,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -45500,7 +45611,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** CodeInfoResponse contains code meta data from CodeInfo */
             code_info?: {
               /** Format: uint64 */
@@ -45522,11 +45633,11 @@ export interface operations {
                  * @enum {string}
                  */
                 permission:
-                  | 'ACCESS_TYPE_UNSPECIFIED'
-                  | 'ACCESS_TYPE_NOBODY'
-                  | 'ACCESS_TYPE_ONLY_ADDRESS'
-                  | 'ACCESS_TYPE_EVERYBODY'
-                  | 'ACCESS_TYPE_ANY_OF_ADDRESSES';
+                  | "ACCESS_TYPE_UNSPECIFIED"
+                  | "ACCESS_TYPE_NOBODY"
+                  | "ACCESS_TYPE_ONLY_ADDRESS"
+                  | "ACCESS_TYPE_EVERYBODY"
+                  | "ACCESS_TYPE_ANY_OF_ADDRESSES";
                 /** Address
                  *     Deprecated: replaced by addresses */
                 address?: string;
@@ -45544,7 +45655,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -45595,23 +45706,23 @@ export interface operations {
         /** @description key is a value returned in PageResponse.next_key to begin
          *     querying the next page most efficiently. Only one of offset or key
          *     should be set. */
-        'pagination.key'?: string;
+        "pagination.key"?: string;
         /** @description offset is a numeric offset that can be used when key is unavailable.
          *     It is less efficient than using key. Only one of offset or key should
          *     be set. */
-        'pagination.offset'?: string;
+        "pagination.offset"?: string;
         /** @description limit is the total number of results to be returned in the result page.
          *     If left empty it will default to a value to be set by each app. */
-        'pagination.limit'?: string;
+        "pagination.limit"?: string;
         /** @description count_total is set to true  to indicate that the result set should include
          *     a count of the total number of items available for pagination in UIs.
          *     count_total is only respected when offset is used. It is ignored when key
          *     is set. */
-        'pagination.count_total'?: boolean;
+        "pagination.count_total"?: boolean;
         /** @description reverse is set to true if results are to be returned in the descending order.
          *
          *     Since: cosmos-sdk 0.43 */
-        'pagination.reverse'?: boolean;
+        "pagination.reverse"?: boolean;
       };
       header?: never;
       path: {
@@ -45627,7 +45738,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** contracts are a set of contract addresses */
             contracts?: string[];
             /** @description pagination defines the pagination in the response. */
@@ -45654,7 +45765,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -45714,7 +45825,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** @description params defines the parameters of the module. */
             params?: {
               /** @description AccessConfig access control type. */
@@ -45731,11 +45842,11 @@ export interface operations {
                  * @enum {string}
                  */
                 permission:
-                  | 'ACCESS_TYPE_UNSPECIFIED'
-                  | 'ACCESS_TYPE_NOBODY'
-                  | 'ACCESS_TYPE_ONLY_ADDRESS'
-                  | 'ACCESS_TYPE_EVERYBODY'
-                  | 'ACCESS_TYPE_ANY_OF_ADDRESSES';
+                  | "ACCESS_TYPE_UNSPECIFIED"
+                  | "ACCESS_TYPE_NOBODY"
+                  | "ACCESS_TYPE_ONLY_ADDRESS"
+                  | "ACCESS_TYPE_EVERYBODY"
+                  | "ACCESS_TYPE_ANY_OF_ADDRESSES";
                 /** Address
                  *     Deprecated: replaced by addresses */
                 address?: string;
@@ -45753,11 +45864,11 @@ export interface operations {
                * @enum {string}
                */
               instantiate_default_permission:
-                | 'ACCESS_TYPE_UNSPECIFIED'
-                | 'ACCESS_TYPE_NOBODY'
-                | 'ACCESS_TYPE_ONLY_ADDRESS'
-                | 'ACCESS_TYPE_EVERYBODY'
-                | 'ACCESS_TYPE_ANY_OF_ADDRESSES';
+                | "ACCESS_TYPE_UNSPECIFIED"
+                | "ACCESS_TYPE_NOBODY"
+                | "ACCESS_TYPE_ONLY_ADDRESS"
+                | "ACCESS_TYPE_EVERYBODY"
+                | "ACCESS_TYPE_ANY_OF_ADDRESSES";
             };
           };
         };
@@ -45768,7 +45879,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -45819,23 +45930,23 @@ export interface operations {
         /** @description key is a value returned in PageResponse.next_key to begin
          *     querying the next page most efficiently. Only one of offset or key
          *     should be set. */
-        'pagination.key'?: string;
+        "pagination.key"?: string;
         /** @description offset is a numeric offset that can be used when key is unavailable.
          *     It is less efficient than using key. Only one of offset or key should
          *     be set. */
-        'pagination.offset'?: string;
+        "pagination.offset"?: string;
         /** @description limit is the total number of results to be returned in the result page.
          *     If left empty it will default to a value to be set by each app. */
-        'pagination.limit'?: string;
+        "pagination.limit"?: string;
         /** @description count_total is set to true  to indicate that the result set should include
          *     a count of the total number of items available for pagination in UIs.
          *     count_total is only respected when offset is used. It is ignored when key
          *     is set. */
-        'pagination.count_total'?: boolean;
+        "pagination.count_total"?: boolean;
         /** @description reverse is set to true if results are to be returned in the descending order.
          *
          *     Since: cosmos-sdk 0.43 */
-        'pagination.reverse'?: boolean;
+        "pagination.reverse"?: boolean;
       };
       header?: never;
       path?: never;
@@ -45849,7 +45960,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             code_ids?: string[];
             /** @description pagination defines the pagination in the response. */
             pagination?: {
@@ -45875,7 +45986,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -45938,7 +46049,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** address is the address of the contract */
             address?: string;
             /** ContractInfo stores a WASM contract instance */
@@ -46096,7 +46207,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -46147,23 +46258,23 @@ export interface operations {
         /** @description key is a value returned in PageResponse.next_key to begin
          *     querying the next page most efficiently. Only one of offset or key
          *     should be set. */
-        'pagination.key'?: string;
+        "pagination.key"?: string;
         /** @description offset is a numeric offset that can be used when key is unavailable.
          *     It is less efficient than using key. Only one of offset or key should
          *     be set. */
-        'pagination.offset'?: string;
+        "pagination.offset"?: string;
         /** @description limit is the total number of results to be returned in the result page.
          *     If left empty it will default to a value to be set by each app. */
-        'pagination.limit'?: string;
+        "pagination.limit"?: string;
         /** @description count_total is set to true  to indicate that the result set should include
          *     a count of the total number of items available for pagination in UIs.
          *     count_total is only respected when offset is used. It is ignored when key
          *     is set. */
-        'pagination.count_total'?: boolean;
+        "pagination.count_total"?: boolean;
         /** @description reverse is set to true if results are to be returned in the descending order.
          *
          *     Since: cosmos-sdk 0.43 */
-        'pagination.reverse'?: boolean;
+        "pagination.reverse"?: boolean;
       };
       header?: never;
       path: {
@@ -46180,7 +46291,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             entries?: {
               /**
                * ContractCodeHistoryOperationType actions that caused a code change
@@ -46192,10 +46303,10 @@ export interface operations {
                * @enum {string}
                */
               operation:
-                | 'CONTRACT_CODE_HISTORY_OPERATION_TYPE_UNSPECIFIED'
-                | 'CONTRACT_CODE_HISTORY_OPERATION_TYPE_INIT'
-                | 'CONTRACT_CODE_HISTORY_OPERATION_TYPE_MIGRATE'
-                | 'CONTRACT_CODE_HISTORY_OPERATION_TYPE_GENESIS';
+                | "CONTRACT_CODE_HISTORY_OPERATION_TYPE_UNSPECIFIED"
+                | "CONTRACT_CODE_HISTORY_OPERATION_TYPE_INIT"
+                | "CONTRACT_CODE_HISTORY_OPERATION_TYPE_MIGRATE"
+                | "CONTRACT_CODE_HISTORY_OPERATION_TYPE_GENESIS";
               /**
                * CodeID is the reference to the stored WASM code
                * Format: uint64
@@ -46242,7 +46353,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -46306,7 +46417,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /**
              * Data contains the raw store data
              * Format: byte
@@ -46321,7 +46432,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -46386,7 +46497,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /**
              * Data contains the json data returned from the smart contract
              * Format: byte
@@ -46401,7 +46512,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -46452,23 +46563,23 @@ export interface operations {
         /** @description key is a value returned in PageResponse.next_key to begin
          *     querying the next page most efficiently. Only one of offset or key
          *     should be set. */
-        'pagination.key'?: string;
+        "pagination.key"?: string;
         /** @description offset is a numeric offset that can be used when key is unavailable.
          *     It is less efficient than using key. Only one of offset or key should
          *     be set. */
-        'pagination.offset'?: string;
+        "pagination.offset"?: string;
         /** @description limit is the total number of results to be returned in the result page.
          *     If left empty it will default to a value to be set by each app. */
-        'pagination.limit'?: string;
+        "pagination.limit"?: string;
         /** @description count_total is set to true  to indicate that the result set should include
          *     a count of the total number of items available for pagination in UIs.
          *     count_total is only respected when offset is used. It is ignored when key
          *     is set. */
-        'pagination.count_total'?: boolean;
+        "pagination.count_total"?: boolean;
         /** @description reverse is set to true if results are to be returned in the descending order.
          *
          *     Since: cosmos-sdk 0.43 */
-        'pagination.reverse'?: boolean;
+        "pagination.reverse"?: boolean;
       };
       header?: never;
       path: {
@@ -46485,7 +46596,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             models?: {
               /**
                * hex-encode key to read it better (this is often ascii)
@@ -46522,7 +46633,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;
@@ -46573,23 +46684,23 @@ export interface operations {
         /** @description key is a value returned in PageResponse.next_key to begin
          *     querying the next page most efficiently. Only one of offset or key
          *     should be set. */
-        'pagination.key'?: string;
+        "pagination.key"?: string;
         /** @description offset is a numeric offset that can be used when key is unavailable.
          *     It is less efficient than using key. Only one of offset or key should
          *     be set. */
-        'pagination.offset'?: string;
+        "pagination.offset"?: string;
         /** @description limit is the total number of results to be returned in the result page.
          *     If left empty it will default to a value to be set by each app. */
-        'pagination.limit'?: string;
+        "pagination.limit"?: string;
         /** @description count_total is set to true  to indicate that the result set should include
          *     a count of the total number of items available for pagination in UIs.
          *     count_total is only respected when offset is used. It is ignored when key
          *     is set. */
-        'pagination.count_total'?: boolean;
+        "pagination.count_total"?: boolean;
         /** @description reverse is set to true if results are to be returned in the descending order.
          *
          *     Since: cosmos-sdk 0.43 */
-        'pagination.reverse'?: boolean;
+        "pagination.reverse"?: boolean;
       };
       header?: never;
       path: {
@@ -46606,7 +46717,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             /** ContractAddresses result set */
             contract_addresses?: string[];
             /** @description Pagination defines the pagination in the response. */
@@ -46633,7 +46744,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': {
+          "*/*": {
             error?: string;
             /** Format: int32 */
             code?: number;

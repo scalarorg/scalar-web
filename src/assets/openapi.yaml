@@ -6195,6 +6195,9 @@ paths:
                           vout:
                             type: integer
                             format: int64
+                          block_height:
+                            type: string
+                            format: uint64
                       contract_call:
                         type: object
                         properties:
@@ -6319,6 +6322,34 @@ paths:
                             type: string
                           destination_recipient_address:
                             type: string
+                      redeem_token:
+                        title: for btc
+                        type: object
+                        properties:
+                          sender:
+                            type: string
+                            format: byte
+                          sequence:
+                            type: string
+                            format: uint64
+                          custodian_group_id:
+                            type: string
+                            format: byte
+                          destination_chain:
+                            type: string
+                          destination_contract_address:
+                            type: string
+                          payload_hash:
+                            type: string
+                            format: byte
+                          payload:
+                            type: string
+                            format: byte
+                          symbol:
+                            type: string
+                          amount:
+                            type: string
+                            format: byte
         default:
           description: An unexpected error response
           content:
@@ -7179,6 +7210,13 @@ paths:
                         type: object
                         additionalProperties:
                           type: string
+                      redeem_session_amount_limit:
+                        type: string
+                        format: uint64
+                        title: limite redeem
+                      redeem_txs_vsize_limit:
+                        type: string
+                        format: uint64
         default:
           description: An unexpected error response
           content:
@@ -14615,11 +14653,16 @@ paths:
                             amount_in_sats:
                               type: string
                               format: uint64
-                            reserved:
-                              type: object
-                              additionalProperties:
-                                type: string
-                                format: uint64
+                            reservations:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  request:
+                                    type: string
+                                  amount:
+                                    type: string
+                                    format: uint64
                               title: Reserved amount for each request id
         default:
           description: An unexpected error response
@@ -23329,7 +23372,6 @@ paths:
                   format: byte
                 poll_id:
                   type: string
-                  format: uint64
                 vote:
                   type: object
                   properties:
@@ -55024,6 +55066,9 @@ components:
             vout:
               type: integer
               format: int64
+            block_height:
+              type: string
+              format: uint64
         contract_call:
           type: object
           properties:
@@ -55147,6 +55192,34 @@ components:
               type: string
             destination_recipient_address:
               type: string
+        redeem_token:
+          title: for btc
+          type: object
+          properties:
+            sender:
+              type: string
+              format: byte
+            sequence:
+              type: string
+              format: uint64
+            custodian_group_id:
+              type: string
+              format: byte
+            destination_chain:
+              type: string
+            destination_contract_address:
+              type: string
+            payload_hash:
+              type: string
+              format: byte
+            payload:
+              type: string
+              format: byte
+            symbol:
+              type: string
+            amount:
+              type: string
+              format: byte
     scalar.chains.v1beta1.Event.Status:
       type: string
       enum:
@@ -55236,6 +55309,33 @@ components:
           items:
             type: string
             format: byte
+    scalar.chains.v1beta1.EventRedeemToken:
+      type: object
+      properties:
+        sender:
+          type: string
+          format: byte
+        sequence:
+          type: string
+          format: uint64
+        custodian_group_id:
+          type: string
+          format: byte
+        destination_chain:
+          type: string
+        destination_contract_address:
+          type: string
+        payload_hash:
+          type: string
+          format: byte
+        payload:
+          type: string
+          format: byte
+        symbol:
+          type: string
+        amount:
+          type: string
+          format: byte
     scalar.chains.v1beta1.EventResponse:
       type: object
       properties:
@@ -55297,6 +55397,9 @@ components:
                 vout:
                   type: integer
                   format: int64
+                block_height:
+                  type: string
+                  format: uint64
             contract_call:
               type: object
               properties:
@@ -55420,6 +55523,34 @@ components:
                   type: string
                 destination_recipient_address:
                   type: string
+            redeem_token:
+              title: for btc
+              type: object
+              properties:
+                sender:
+                  type: string
+                  format: byte
+                sequence:
+                  type: string
+                  format: uint64
+                custodian_group_id:
+                  type: string
+                  format: byte
+                destination_chain:
+                  type: string
+                destination_contract_address:
+                  type: string
+                payload_hash:
+                  type: string
+                  format: byte
+                payload:
+                  type: string
+                  format: byte
+                symbol:
+                  type: string
+                amount:
+                  type: string
+                  format: byte
     scalar.chains.v1beta1.EventTokenDeployed:
       type: object
       properties:
@@ -55465,6 +55596,9 @@ components:
         vout:
           type: integer
           format: int64
+        block_height:
+          type: string
+          format: uint64
     scalar.chains.v1beta1.EventTransfer:
       type: object
       properties:
@@ -55582,6 +55716,13 @@ components:
           type: object
           additionalProperties:
             type: string
+        redeem_session_amount_limit:
+          type: string
+          format: uint64
+          title: limite redeem
+        redeem_txs_vsize_limit:
+          type: string
+          format: uint64
     scalar.chains.v1beta1.ParamsResponse:
       type: object
       properties:
@@ -55641,6 +55782,13 @@ components:
               type: object
               additionalProperties:
                 type: string
+            redeem_session_amount_limit:
+              type: string
+              format: uint64
+              title: limite redeem
+            redeem_txs_vsize_limit:
+              type: string
+              format: uint64
     scalar.chains.v1beta1.PendingCommandsResponse:
       type: object
       properties:
@@ -57427,6 +57575,14 @@ components:
           format: byte
         description:
           type: string
+    scalar.covenant.v1beta1.Reservation:
+      type: object
+      properties:
+        request:
+          type: string
+        amount:
+          type: string
+          format: uint64
     scalar.covenant.v1beta1.ReserveRedeemUtxoRequest:
       type: object
       properties:
@@ -57549,11 +57705,16 @@ components:
         amount_in_sats:
           type: string
           format: uint64
-        reserved:
-          type: object
-          additionalProperties:
-            type: string
-            format: uint64
+        reservations:
+          type: array
+          items:
+            type: object
+            properties:
+              request:
+                type: string
+              amount:
+                type: string
+                format: uint64
           title: Reserved amount for each request id
     scalar.covenant.v1beta1.UTXOSnapshot:
       type: object
@@ -57581,11 +57742,16 @@ components:
               amount_in_sats:
                 type: string
                 format: uint64
-              reserved:
-                type: object
-                additionalProperties:
-                  type: string
-                  format: uint64
+              reservations:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    request:
+                      type: string
+                    amount:
+                      type: string
+                      format: uint64
                 title: Reserved amount for each request id
     scalar.covenant.v1beta1.UTXOSnapshotResponse:
       type: object
@@ -57616,11 +57782,16 @@ components:
                   amount_in_sats:
                     type: string
                     format: uint64
-                  reserved:
-                    type: object
-                    additionalProperties:
-                      type: string
-                      format: uint64
+                  reservations:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        request:
+                          type: string
+                        amount:
+                          type: string
+                          format: uint64
                     title: Reserved amount for each request id
     scalar.covenant.v1beta1.UpdateCustodianGroupRequest:
       type: object
@@ -60415,7 +60586,6 @@ components:
           format: byte
         poll_id:
           type: string
-          format: uint64
         vote:
           type: object
           properties:
