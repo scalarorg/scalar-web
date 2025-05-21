@@ -103,6 +103,7 @@ export class ScalarSigningStargateClient extends SigningStargateClient {
     this.messages = this.tx;
 
     if (tmClient) {
+      // biome-ignore lint/suspicious/noExplicitAny: used to avoid type errors
       this.query = createQueryClient(tmClient as any) as any;
     } else {
       this.query = undefined;
@@ -245,6 +246,7 @@ export class ScalarSigningStargateClient extends SigningStargateClient {
     return this.signAndBroadcast(creator, [createMsg], fee, memo);
   }
 
+  // biome-ignore lint/suspicious/useAwait: used to avoid type errors
   public async reserveRedeemUtxo(
     creator: string,
     params: ReserveRedeemUtxoParams,

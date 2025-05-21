@@ -39,13 +39,9 @@ export const useStandaloneCommand = (hex: string) =>
     },
     { enabled: !!hex },
   );
-export const useScalarPollingResult = () => {};
-
-interface TimeoutError extends Error {
-  name: "TimeoutError";
-}
 
 class TimeoutError extends Error {
+  name: "TimeoutError";
   constructor(message: string) {
     super(message);
     this.name = "TimeoutError";

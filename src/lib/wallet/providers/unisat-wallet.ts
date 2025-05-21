@@ -112,8 +112,6 @@ export class UnisatWallet extends WalletProvider {
         balance: balance?.total || 0,
       };
 
-      console.log("Unisat Wallet connected in constructor", this.unisatWalletInfo);
-
       return this;
     } catch (_error) {
       throw new Error("Could not connect to Unisat Wallet");
@@ -146,7 +144,7 @@ export class UnisatWallet extends WalletProvider {
   };
 
   signPsbts = async (psbtsHexes: string[]): Promise<string[]> => {
-    this.checkWalletProvider()
+    this.checkWalletProvider();
     // sign the PSBTs
     return await this.bitcoinNetworkProvider.signPsbts(psbtsHexes);
   };
@@ -204,7 +202,6 @@ export class UnisatWallet extends WalletProvider {
     await this.unisatWallet.disconnect();
   };
 
-
   init = async (): Promise<{
     balance: number;
     address: string;
@@ -241,6 +238,7 @@ export class UnisatWallet extends WalletProvider {
     return this.unisatWalletInfo!;
   };
 
+  // biome-ignore lint/suspicious/useAwait: used to avoid type errors
   checkWalletProvider = async (): Promise<void> => {
     if (!this.unisatWallet || !window[unisatProvider as keyof typeof window]) {
       throw new Error("Unisat Wallet extension not found");

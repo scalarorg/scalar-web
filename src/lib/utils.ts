@@ -67,22 +67,21 @@ export const handleError = (error: unknown) => {
   throw error instanceof Error ? error : new Error("An error occurred");
 };
 
-export const handleTokenApproval = async (
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-  args: {
-    owner: string;
-    gatewayAddress: `0x${string}`;
-    transferAmount: bigint;
-    checkAllowance: (
-      ownerAddress: string,
-      spenderAddress: string,
-    ) => Promise<any> | undefined;
-    approveERC20: (
-      spenderAddress: string,
-      burnAmount: bigint,
-    ) => Promise<any> | undefined;
-  },
-) => {
+export const handleTokenApproval = async (args: {
+  owner: string;
+  gatewayAddress: `0x${string}`;
+  transferAmount: bigint;
+  checkAllowance: (
+    ownerAddress: string,
+    spenderAddress: string,
+    // biome-ignore lint/suspicious/noExplicitAny: used to avoid type errors
+  ) => Promise<any> | undefined;
+  approveERC20: (
+    spenderAddress: string,
+    burnAmount: bigint,
+    // biome-ignore lint/suspicious/noExplicitAny: used to avoid type errors
+  ) => Promise<any> | undefined;
+}) => {
   const {
     owner,
     gatewayAddress,
