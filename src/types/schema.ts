@@ -4502,6 +4502,8 @@ export interface components {
         script_pubkey?: string;
         /** Format: int64 */
         vout?: number;
+        /** Format: uint64 */
+        block_height?: string;
       };
       contract_call?: {
         /** Format: byte */
@@ -4574,6 +4576,24 @@ export interface components {
         destination_contract_address?: string;
         destination_recipient_address?: string;
       };
+      /** for btc */
+      redeem_token?: {
+        /** Format: byte */
+        sender?: string;
+        /** Format: uint64 */
+        sequence?: string;
+        /** Format: byte */
+        custodian_group_id?: string;
+        destination_chain?: string;
+        destination_contract_address?: string;
+        /** Format: byte */
+        payload_hash?: string;
+        /** Format: byte */
+        payload?: string;
+        symbol?: string;
+        /** Format: byte */
+        amount?: string;
+      };
     };
     /**
      * @default STATUS_UNSPECIFIED
@@ -4630,6 +4650,23 @@ export interface components {
       new_threshold?: string;
       new_weights?: string[];
     };
+    "scalar.chains.v1beta1.EventRedeemToken": {
+      /** Format: byte */
+      sender?: string;
+      /** Format: uint64 */
+      sequence?: string;
+      /** Format: byte */
+      custodian_group_id?: string;
+      destination_chain?: string;
+      destination_contract_address?: string;
+      /** Format: byte */
+      payload_hash?: string;
+      /** Format: byte */
+      payload?: string;
+      symbol?: string;
+      /** Format: byte */
+      amount?: string;
+    };
     "scalar.chains.v1beta1.EventResponse": {
       event?: {
         chain?: string;
@@ -4670,6 +4707,8 @@ export interface components {
           script_pubkey?: string;
           /** Format: int64 */
           vout?: number;
+          /** Format: uint64 */
+          block_height?: string;
         };
         contract_call?: {
           /** Format: byte */
@@ -4742,6 +4781,24 @@ export interface components {
           destination_contract_address?: string;
           destination_recipient_address?: string;
         };
+        /** for btc */
+        redeem_token?: {
+          /** Format: byte */
+          sender?: string;
+          /** Format: uint64 */
+          sequence?: string;
+          /** Format: byte */
+          custodian_group_id?: string;
+          destination_chain?: string;
+          destination_contract_address?: string;
+          /** Format: byte */
+          payload_hash?: string;
+          /** Format: byte */
+          payload?: string;
+          symbol?: string;
+          /** Format: byte */
+          amount?: string;
+        };
       };
     };
     "scalar.chains.v1beta1.EventTokenDeployed": {
@@ -4773,6 +4830,8 @@ export interface components {
       script_pubkey?: string;
       /** Format: int64 */
       vout?: number;
+      /** Format: uint64 */
+      block_height?: string;
     };
     "scalar.chains.v1beta1.EventTransfer": {
       /** Format: byte */
@@ -4845,6 +4904,13 @@ export interface components {
       metadata?: {
         [key: string]: string;
       };
+      /**
+       * limite redeem
+       * Format: uint64
+       */
+      redeem_session_amount_limit?: string;
+      /** Format: uint64 */
+      redeem_txs_vsize_limit?: string;
     };
     "scalar.chains.v1beta1.ParamsResponse": {
       params?: {
@@ -4884,6 +4950,13 @@ export interface components {
         metadata?: {
           [key: string]: string;
         };
+        /**
+         * limite redeem
+         * Format: uint64
+         */
+        redeem_session_amount_limit?: string;
+        /** Format: uint64 */
+        redeem_txs_vsize_limit?: string;
       };
     };
     "scalar.chains.v1beta1.PendingCommandsResponse": {
@@ -6166,6 +6239,11 @@ export interface components {
       custodian_pubkey?: string;
       description?: string;
     };
+    "scalar.covenant.v1beta1.Reservation": {
+      request?: string;
+      /** Format: uint64 */
+      amount?: string;
+    };
     "scalar.covenant.v1beta1.ReserveRedeemUtxoRequest": {
       /** Format: byte */
       sender?: string;
@@ -6247,9 +6325,11 @@ export interface components {
       /** Format: uint64 */
       amount_in_sats?: string;
       /** Reserved amount for each request id */
-      reserved?: {
-        [key: string]: string;
-      };
+      reservations?: {
+        request?: string;
+        /** Format: uint64 */
+        amount?: string;
+      }[];
     };
     "scalar.covenant.v1beta1.UTXOSnapshot": {
       /** Format: byte */
@@ -6266,9 +6346,11 @@ export interface components {
         /** Format: uint64 */
         amount_in_sats?: string;
         /** Reserved amount for each request id */
-        reserved?: {
-          [key: string]: string;
-        };
+        reservations?: {
+          request?: string;
+          /** Format: uint64 */
+          amount?: string;
+        }[];
       }[];
     };
     "scalar.covenant.v1beta1.UTXOSnapshotResponse": {
@@ -6287,9 +6369,11 @@ export interface components {
           /** Format: uint64 */
           amount_in_sats?: string;
           /** Reserved amount for each request id */
-          reserved?: {
-            [key: string]: string;
-          };
+          reservations?: {
+            request?: string;
+            /** Format: uint64 */
+            amount?: string;
+          }[];
         }[];
       };
     };
@@ -8077,7 +8161,6 @@ export interface components {
     "scalar.vote.v1beta1.VoteRequest": {
       /** Format: byte */
       sender?: string;
-      /** Format: uint64 */
       poll_id?: string;
       /** @description `Any` contains an arbitrary serialized protocol buffer message along with a
        *     URL that describes the type of the serialized message.
@@ -24146,6 +24229,8 @@ export interface operations {
                 script_pubkey?: string;
                 /** Format: int64 */
                 vout?: number;
+                /** Format: uint64 */
+                block_height?: string;
               };
               contract_call?: {
                 /** Format: byte */
@@ -24217,6 +24302,24 @@ export interface operations {
                 payload?: string;
                 destination_contract_address?: string;
                 destination_recipient_address?: string;
+              };
+              /** for btc */
+              redeem_token?: {
+                /** Format: byte */
+                sender?: string;
+                /** Format: uint64 */
+                sequence?: string;
+                /** Format: byte */
+                custodian_group_id?: string;
+                destination_chain?: string;
+                destination_contract_address?: string;
+                /** Format: byte */
+                payload_hash?: string;
+                /** Format: byte */
+                payload?: string;
+                symbol?: string;
+                /** Format: byte */
+                amount?: string;
               };
             };
           };
@@ -24563,6 +24666,13 @@ export interface operations {
               metadata?: {
                 [key: string]: string;
               };
+              /**
+               * limite redeem
+               * Format: uint64
+               */
+              redeem_session_amount_limit?: string;
+              /** Format: uint64 */
+              redeem_txs_vsize_limit?: string;
             };
           };
         };
@@ -27851,9 +27961,11 @@ export interface operations {
                 /** Format: uint64 */
                 amount_in_sats?: string;
                 /** Reserved amount for each request id */
-                reserved?: {
-                  [key: string]: string;
-                };
+                reservations?: {
+                  request?: string;
+                  /** Format: uint64 */
+                  amount?: string;
+                }[];
               }[];
             };
           };
@@ -31724,7 +31836,6 @@ export interface operations {
         "application/json": {
           /** Format: byte */
           sender?: string;
-          /** Format: uint64 */
           poll_id?: string;
           /** @description `Any` contains an arbitrary serialized protocol buffer message along with a
            *     URL that describes the type of the serialized message.
