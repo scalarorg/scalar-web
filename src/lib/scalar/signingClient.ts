@@ -1,8 +1,8 @@
-import { type GeneratedType, type OfflineSigner, Registry } from '@cosmjs/proto-signing';
+import { type GeneratedType, type OfflineSigner, Registry } from "@cosmjs/proto-signing";
 
-import { fromBech32 } from '@cosmjs/encoding';
+import { fromBech32 } from "@cosmjs/encoding";
 
-import Long from 'long';
+import Long from "long";
 
 import {
   type DeliverTxResponse,
@@ -12,51 +12,51 @@ import {
   type StargateClientOptions,
   type StdFee,
   defaultRegistryTypes
-} from '@cosmjs/stargate';
+} from "@cosmjs/stargate";
 
-import { type HttpEndpoint, Tendermint37Client } from '@cosmjs/tendermint-rpc';
+import { type HttpEndpoint, Tendermint37Client } from "@cosmjs/tendermint-rpc";
 
 import {
   type CosmosEncodeObject,
   type ScalarEncodeObject,
   type ScalarMsgClient,
   createMsgClient
-} from '@scalar-lab/scalarjs-sdk/stargate/messages';
+} from "@scalar-lab/scalarjs-sdk/stargate/messages";
 
-import { type ScalarQueryClient, createQueryClient } from '@scalar-lab/scalarjs-sdk/stargate/queryClient';
+import { type ScalarQueryClient, createQueryClient } from "@scalar-lab/scalarjs-sdk/stargate/queryClient";
 
-import { CreateProtocolRequest } from '@scalar-lab/scalarjs-sdk/proto/scalar/protocol/v1beta1/tx';
+import { CreateProtocolRequest } from "@scalar-lab/scalarjs-sdk/proto/scalar/protocol/v1beta1/tx";
 
-import { STANDARD_GAS_PRICE } from './constants';
+import { STANDARD_GAS_PRICE } from "./constants";
 
-import { LiquidityModel } from '@scalar-lab/scalarjs-sdk/proto/scalar/protocol/exported/v1beta1/types';
-import type { TxRaw } from 'cosmjs-types/cosmos/tx/v1beta1/tx';
-import { isSecp256k1Pubkey } from '../utils';
+import { LiquidityModel } from "@scalar-lab/scalarjs-sdk/proto/scalar/protocol/exported/v1beta1/types";
+import type { TxRaw } from "cosmjs-types/cosmos/tx/v1beta1/tx";
+import { isSecp256k1Pubkey } from "../utils";
 import type {
   CreateDeployTokenEncodeObject,
   CreateProtocolEncodeObject,
   ReserveRedeemUtxoEncodeObject
-} from './interface';
+} from "./interface";
 
-import { CreateDeployTokenRequest } from '@scalar-lab/scalarjs-sdk/proto/scalar/chains/v1beta1/tx';
-import { ReserveRedeemUtxoRequest } from '@scalar-lab/scalarjs-sdk/proto/scalar/covenant/v1beta1/tx';
-import { isHexString } from 'ethers';
+import { CreateDeployTokenRequest } from "@scalar-lab/scalarjs-sdk/proto/scalar/chains/v1beta1/tx";
+import { ReserveRedeemUtxoRequest } from "@scalar-lab/scalarjs-sdk/proto/scalar/covenant/v1beta1/tx";
+import { isHexString } from "ethers";
 import {
   typeUrlCreateDeployTokenRequest,
   typeUrlCreateProtocolRequest,
   typeUrlReserveRedeemUtxoRequest
-} from './interface';
+} from "./interface";
 import {
   CreateDeployTokenParams,
   CreateProtocolParams,
   LiquidityModelParams,
   ReserveRedeemUtxoParams
-} from './params';
+} from "./params";
 import {
   validateCreateDeployTokenParams,
   validateProtocolParams,
   validateReserveRedeemUtxoParams
-} from './validation';
+} from "./validation";
 
 export const scalarTypes: ReadonlyArray<[string, GeneratedType]> = [
   [typeUrlCreateProtocolRequest, CreateProtocolRequest],
@@ -95,7 +95,6 @@ export class ScalarSigningStargateClient extends SigningStargateClient {
     this.messages = this.tx;
 
     if (tmClient) {
-      //
       this.query = createQueryClient(tmClient as any) as any;
     } else {
       this.query = undefined;
@@ -141,7 +140,7 @@ export class ScalarSigningStargateClient extends SigningStargateClient {
   override signAndBroadcast(
     signerAddress: string,
     messages: readonly ScalarSigningClientMessage[],
-    fee: number | StdFee | 'auto',
+    fee: number | StdFee | "auto",
     memo?: string
   ) {
     return super.signAndBroadcast(signerAddress, messages, fee, memo);
@@ -153,7 +152,7 @@ export class ScalarSigningStargateClient extends SigningStargateClient {
 
   protected override forceGetQueryClient() {
     if (this.query === undefined) {
-      throw new Error('Query client not available. You cannot use online functionality in offline mode.');
+      throw new Error("Query client not available. You cannot use online functionality in offline mode.");
     }
 
     return this.query;
@@ -162,35 +161,35 @@ export class ScalarSigningStargateClient extends SigningStargateClient {
   public createProtocol(
     creator: string,
     params: CreateProtocolParams,
-    fee: StdFee | 'auto' | number,
-    memo = ''
+    fee: StdFee | "auto" | number,
+    memo = ""
   ): Promise<DeliverTxResponse> {
     validateProtocolParams(params);
 
     if (!isSecp256k1Pubkey(params.bitcoin_pubkey!)) {
-      throw 'Invalid bitcoin pubkey';
+      throw "Invalid bitcoin pubkey";
     }
 
     const createMsg: CreateProtocolEncodeObject = {
       typeUrl: typeUrlCreateProtocolRequest,
       value: {
         sender: fromBech32(creator).data,
-        bitcoinPubkey: Uint8Array.from(Buffer.from(params.bitcoin_pubkey!.replace('0x', ''), 'hex')),
+        bitcoinPubkey: Uint8Array.from(Buffer.from(params.bitcoin_pubkey!.replace("0x", ""), "hex")),
         name: params.name!,
         tag: params.tag!,
         attributes: {
           model: mapLiquidityModel(params.attributes?.model)
         },
-        custodianGroupUid: Buffer.from(params.custodian_group_uid!, 'hex'),
+        custodianGroupUid: Buffer.from(params.custodian_group_uid!, "hex"),
         asset: {
           symbol: params?.asset?.symbol!,
           chain: params?.asset?.chain!
         },
-        avatar: Uint8Array.from(Buffer.from(params.avatar!, 'base64')),
-        tokenName: params.token_name ?? '',
+        avatar: Uint8Array.from(Buffer.from(params.avatar!, "base64")),
+        tokenName: params.token_name ?? "",
         tokenDecimals: params.token_decimals!,
         tokenCapacity: params.token_capacity!,
-        tokenDailyMintLimit: params.token_daily_mint_limit ?? '0'
+        tokenDailyMintLimit: params.token_daily_mint_limit ?? "0"
       }
     };
 
@@ -200,12 +199,12 @@ export class ScalarSigningStargateClient extends SigningStargateClient {
   public createDeployToken(
     creator: string,
     params: CreateDeployTokenParams,
-    fee: StdFee | 'auto' | number,
-    memo = ''
+    fee: StdFee | "auto" | number,
+    memo = ""
   ): Promise<DeliverTxResponse> {
     validateCreateDeployTokenParams(params);
     if (params.address && !isHexString(params.address)) {
-      throw 'Invalid params.address';
+      throw "Invalid params.address";
     }
 
     const createMsg: CreateDeployTokenEncodeObject = {
@@ -214,7 +213,7 @@ export class ScalarSigningStargateClient extends SigningStargateClient {
         sender: fromBech32(creator).data,
         chain: params?.chain!,
         tokenSymbol: params?.token_symbol!,
-        aliasedTokenName: params.aliased_token_name ?? '',
+        aliasedTokenName: params.aliased_token_name ?? "",
         address: Buffer.from([])
       }
     };
@@ -222,15 +221,16 @@ export class ScalarSigningStargateClient extends SigningStargateClient {
     return this.signAndBroadcast(creator, [createMsg], fee, memo);
   }
 
+  // biome-ignore lint/suspicious/useAwait: used to avoid type errors
   public async reserveRedeemUtxo(
     creator: string,
     params: ReserveRedeemUtxoParams,
-    fee: StdFee | 'auto' | number,
-    memo = ''
+    fee: StdFee | "auto" | number,
+    memo = ""
   ): Promise<DeliverTxResponse> {
     validateReserveRedeemUtxoParams(params);
     if (!isHexString(params.address)) {
-      throw 'Invalid params.address';
+      throw "Invalid params.address";
     }
     const msg: ReserveRedeemUtxoEncodeObject = {
       typeUrl: typeUrlReserveRedeemUtxoRequest,
@@ -241,7 +241,7 @@ export class ScalarSigningStargateClient extends SigningStargateClient {
         destChain: params.dest_chain!,
         symbol: params.symbol!,
         amount: Long.fromString(params.amount!),
-        lockingScript: Buffer.from(params.locking_script!, 'hex')
+        lockingScript: Buffer.from(params.locking_script!, "hex")
       }
     };
 
@@ -251,11 +251,11 @@ export class ScalarSigningStargateClient extends SigningStargateClient {
 
 const mapLiquidityModel = (model: LiquidityModelParams): LiquidityModel => {
   switch (model) {
-    case 'LIQUIDITY_MODEL_POOL':
+    case "LIQUIDITY_MODEL_POOL":
       return LiquidityModel.LIQUIDITY_MODEL_POOL;
-    case 'LIQUIDITY_MODEL_UPC':
+    case "LIQUIDITY_MODEL_UPC":
       return LiquidityModel.LIQUIDITY_MODEL_UPC;
     default:
-      throw 'Invalid liquidity model';
+      throw "Invalid liquidity model";
   }
 };

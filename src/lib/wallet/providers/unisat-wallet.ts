@@ -209,6 +209,7 @@ export class UnisatWallet extends WalletProvider {
     return this.unisatWalletInfo!;
   };
 
+  // biome-ignore lint/suspicious/useAwait: used to avoid type errors
   checkWalletProvider = async (): Promise<void> => {
     if (!this.unisatWallet || !window[unisatProvider as keyof typeof window]) {
       throw new Error('Unisat Wallet extension not found');
