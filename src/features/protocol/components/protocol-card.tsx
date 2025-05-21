@@ -47,7 +47,7 @@ export const ProtocolCard = ({ data }: ProtocolCardProps) => {
       <div className="flex grow flex-col divide-y overflow-auto border-hovering">
         {chains?.map((chain) => (
           <div
-            key={chain.address}
+            key={chain.chain}
             className="flex w-full items-center gap-5 py-2"
           >
             <div className="flex-1 overflow-hidden">
