@@ -2,10 +2,9 @@ import { ChainTypes } from "@/types/chains";
 import { TCustodian, TProtocolChain } from "@/types/types";
 import { type ClassValue, clsx } from "clsx";
 import dayjs from "dayjs";
-import type { OpUnitType } from "dayjs";
 import utc from "dayjs/plugin/utc";
 import { MaxUint256, isHexString } from "ethers";
-import { find, keyBy } from "lodash";
+import { keyBy } from "lodash";
 import numeral from "numeral";
 import { twMerge } from "tailwind-merge";
 import { formatUnits, parseUnits } from "viem";
@@ -276,29 +275,42 @@ export const formatDate = (date: number, formater = "DD/MM/YYYY") => {
 export const friendlyFormatDate = (date: number) => {
   const inputDate = dayjs(date * 1000);
   const currentDate = dayjs().utc();
-
-  const timeUnits: {
-    unit: OpUnitType;
-    singular: string;
-    plural: string;
-  }[] = [
-    { unit: "month", singular: "a month ago", plural: "months ago" },
-    { unit: "day", singular: "a day ago", plural: "days ago" },
-    { unit: "hour", singular: "an hour ago", plural: "hours ago" },
-    { unit: "minute", singular: "a minute ago", plural: "minutes ago" },
-    { unit: "second", singular: "a second ago", plural: "seconds ago" },
-  ];
-
-  const result = find(timeUnits, ({ unit }) => {
-    const diff = currentDate.diff(inputDate, unit);
-    return diff > 1;
-  });
-
-  if (result) {
-    const diff = currentDate.diff(inputDate, result.unit);
-    return diff === 1 ? result.singular : `${diff} ${result.plural}`;
+  //const currentDate = dayjs();
+  const diffInMonths = currentDate.diff(inputDate, "month");
+  if (diffInMonths > 1) {
+    return `${diffInMonths} months ago`;
   }
-
+  if (diffInMonths === 1) {
+    return "a month ago";
+  }
+  const diffInDays = currentDate.diff(inputDate, "day");
+  if (diffInDays > 1) {
+    return `${diffInDays} days ago`;
+  }
+  if (diffInDays === 1) {
+    return "a day ago";
+  }
+  const diffInHours = currentDate.diff(inputDate, "hour");
+  if (diffInHours > 1) {
+    return `${diffInHours} hours ago`;
+  }
+  if (diffInHours === 1) {
+    return "an hour ago";
+  }
+  const diffInMinutes = currentDate.diff(inputDate, "minute");
+  if (diffInMinutes > 1) {
+    return `${diffInMinutes} minutes ago`;
+  }
+  if (diffInMinutes === 1) {
+    return "a minute ago";
+  }
+  const diffInSeconds = currentDate.diff(inputDate, "second");
+  if (diffInSeconds > 1) {
+    return `${diffInSeconds} seconds ago`;
+  }
+  if (diffInSeconds === 1) {
+    return "a second ago";
+  }
   return "just now";
 };
 export const handle0xString = (str: string) => ({
