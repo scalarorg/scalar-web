@@ -1,4 +1,3 @@
-import { Heading } from "@/components/common";
 import { COMMON_DEFAULT_PAGE_SIZE, COMMON_VALIDATE_PAGE_SEARCH_PARAMS } from "@/constants";
 import { EExploreType, ExploreLinks, ExploreTable, useExploreQuery } from "@/features/explore";
 import { createFileRoute } from "@tanstack/react-router";
@@ -18,8 +17,7 @@ function ExploreBridge() {
   });
 
   return (
-    <div className='flex flex-col gap-5 py-[60px]'>
-      <Heading>Bridge</Heading>
+    <div className='flex flex-col gap-5 py-5'>
       <ExploreLinks type={EExploreType.BRIDGE} />
       <ExploreTable
         data={data ?? { data: [], total: 0 }}
