@@ -21,7 +21,7 @@ type TItem = {
 const Item = ({ label, content }: TItem) => {
   return (
     <div className='flex gap-1 py-3.5'>
-      <span className='w-[180px] shrink-0 font-medium text-base text-text-primary-500'>{label}</span>
+      <span className='w-45 shrink-0 font-medium text-base text-text-primary-500'>{label}</span>
       <div className='flex-1 overflow-hidden text-base'>{content}</div>
     </div>
   );
@@ -93,7 +93,7 @@ function RouteComponent() {
   ];
 
   return (
-    <div className='flex flex-col gap-5 py-[60px]'>
+    <div className='flex flex-col gap-5 py-15'>
       <Heading link={{ to: "/protocols" }}>Protocol Detail</Heading>
       <If
         condition={isEmpty(protocol)}

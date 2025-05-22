@@ -152,7 +152,7 @@ export const ProtocolForm = ({ setOpen }: Props) => {
         onSubmit={handleSubmit(onSubmit)}
         className={cn(
           // Layout
-          "max-h-[500px] space-y-5 overflow-y-auto px-1",
+          "max-h-125 space-y-5 overflow-y-auto px-1",
 
           // Position & Margin
           "relative mt-5",
@@ -189,7 +189,7 @@ export const ProtocolForm = ({ setOpen }: Props) => {
                   fallback={
                     <Avatar
                       {...getRootProps()}
-                      className='mx-auto size-[100px] cursor-pointer ring-2 ring-slate-200 ring-offset-2'
+                      className='mx-auto size-25 cursor-pointer ring-2 ring-slate-200 ring-offset-2'
                     >
                       <input {...getInputProps()} />
                       <AvatarImage src={DEFAULT_ICON} alt='icon' />
@@ -316,7 +316,7 @@ export const ProtocolForm = ({ setOpen }: Props) => {
                   value={value}
                   onChange={onChange}
                   options={LIQUIDITY_MODEL.LIST}
-                  classNames={{ wrapper: "w-[200px]" }}
+                  classNames={{ wrapper: "w-50" }}
                 />
                 <FormMessage />
               </FormItem>

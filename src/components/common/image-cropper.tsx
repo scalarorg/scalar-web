@@ -1,10 +1,10 @@
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Button } from '@/components/ui/button';
-import { Dialog, DialogClose, DialogContent, DialogFooter, DialogTrigger } from '@/components/ui/dialog';
-import { CropIcon, Trash2Icon } from 'lucide-react';
-import { type SyntheticEvent, useRef, useState } from 'react';
-import ReactCrop, { centerCrop, makeAspectCrop, type Crop, type PixelCrop } from 'react-image-crop';
-import 'react-image-crop/dist/ReactCrop.css';
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import { Dialog, DialogClose, DialogContent, DialogFooter, DialogTrigger } from "@/components/ui/dialog";
+import { CropIcon, Trash2Icon } from "lucide-react";
+import { type SyntheticEvent, useRef, useState } from "react";
+import ReactCrop, { centerCrop, makeAspectCrop, type Crop, type PixelCrop } from "react-image-crop";
+import "react-image-crop/dist/ReactCrop.css";
 
 type Props = {
   imageUrl: string;
@@ -19,7 +19,7 @@ export const ImageCropper = ({ imageUrl, onCropComplete, onCancel, dialogOpen, s
   const aspect = 1;
   const imgRef = useRef<HTMLImageElement | null>(null);
   const [crop, setCrop] = useState<Crop>();
-  const [croppedImageUrl, setCroppedImageUrl] = useState('');
+  const [croppedImageUrl, setCroppedImageUrl] = useState("");
 
   const onImageLoad = (e: SyntheticEvent<HTMLImageElement>) => {
     if (aspect) {
@@ -36,14 +36,14 @@ export const ImageCropper = ({ imageUrl, onCropComplete, onCancel, dialogOpen, s
   };
 
   const getCroppedImg = (image: HTMLImageElement, crop: PixelCrop): string => {
-    const canvas = document.createElement('canvas');
+    const canvas = document.createElement("canvas");
     const scaleX = image.naturalWidth / image.width;
     const scaleY = image.naturalHeight / image.height;
 
     canvas.width = crop.width * scaleX;
     canvas.height = crop.height * scaleY;
 
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext("2d");
 
     if (ctx) {
       ctx.imageSmoothingEnabled = false;
@@ -60,7 +60,7 @@ export const ImageCropper = ({ imageUrl, onCropComplete, onCancel, dialogOpen, s
       );
     }
 
-    return canvas.toDataURL('image/png', 1.0);
+    return canvas.toDataURL("image/png", 1.0);
   };
 
   const handleCrop = () => {
@@ -73,7 +73,7 @@ export const ImageCropper = ({ imageUrl, onCropComplete, onCancel, dialogOpen, s
   return (
     <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
       <DialogTrigger>
-        <Avatar className='size-[100px] cursor-pointer ring-2 ring-slate-200 ring-offset-2'>
+        <Avatar className='size-25 cursor-pointer ring-2 ring-slate-200 ring-offset-2'>
           <AvatarImage src={imageUrl} alt='icon' />
           <AvatarFallback>Icon</AvatarFallback>
         </Avatar>
@@ -96,12 +96,12 @@ export const ImageCropper = ({ imageUrl, onCropComplete, onCancel, dialogOpen, s
             <Avatar className='size-full rounded-none'>
               <AvatarImage
                 ref={imgRef}
-                className='aspect-auto size-full max-h-[460px] rounded-none'
+                className='aspect-auto size-full max-h-115 rounded-none'
                 alt='Image Cropper Shell'
                 src={imageUrl}
                 onLoad={onImageLoad}
               />
-              <AvatarFallback className='size-[460px] rounded-none bg-transparent'>Loading...</AvatarFallback>
+              <AvatarFallback className='size-115 rounded-none bg-transparent'>Loading...</AvatarFallback>
             </Avatar>
           </ReactCrop>
         </div>
@@ -126,7 +126,7 @@ export const centerAspectCrop = (mediaWidth: number, mediaHeight: number, aspect
   return centerCrop(
     makeAspectCrop(
       {
-        unit: '%',
+        unit: "%",
         width: 50,
         height: 50
       },
