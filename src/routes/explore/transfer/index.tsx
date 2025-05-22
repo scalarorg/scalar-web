@@ -17,7 +17,7 @@ function Transfer() {
   });
 
   return (
-    <div className='flex flex-col gap-5 py-5'>
+    <div className='flex flex-col gap-5 py-15'>
       <ExploreLinks type={EExploreType.TRANSFER} />
       <ExploreTable
         data={data ?? { data: [], total: 0 }}
