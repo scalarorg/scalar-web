@@ -1,4 +1,3 @@
-import { Heading } from "@/components/common";
 import {
   COMMON_DEFAULT_PAGE_SIZE,
   COMMON_VALIDATE_PAGE_SEARCH_PARAMS,
@@ -25,8 +24,7 @@ function Redeem() {
   });
 
   return (
-    <div className="flex flex-col gap-5 py-[60px]">
-      <Heading>Redeem</Heading>
+    <div className="flex flex-col gap-5 py-5">
       <ExploreLinks type={EExploreType.REDEEM} />
       <ExploreTable
         data={data ?? { data: [], total: 0 }}
