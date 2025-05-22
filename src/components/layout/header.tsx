@@ -18,8 +18,22 @@ type Props = {
   extra?: ReactNode;
 };
 
-const linkClassName =
-  "flex items-center gap-3 font-semibold [&.active]:text-primary hover:text-text-primary-500 text-[#767676] transition-colors duration-300 cursor-pointer";
+const linkClassName = cn(
+  // Layout
+  "flex items-center gap-3",
+
+  // Typography
+  "font-semibold text-[#767676]",
+
+  // Interactivity
+  "cursor-pointer transition-colors duration-300",
+
+  // Hover State
+  "hover:text-text-primary-500",
+
+  // Active State via Class
+  "[&.active]:text-primary",
+);
 
 const links: (
   | {
