@@ -40,17 +40,17 @@ const links: (
   {
     to: "/",
     label: "BRIDGE",
-    icon: <ThunderIcon className="h-[25px] w-auto" />,
+    icon: <ThunderIcon className="h-6.25 w-auto" />,
   },
   {
     to: "/protocols",
     label: "PROTOCOL",
-    icon: <ProtocolIcon className="h-[25px] w-auto" />,
+    icon: <ProtocolIcon className="h-6.25 w-auto" />,
   },
   {
     pathname: "/explore",
     label: "EXPLORER",
-    icon: <WrapIcon className="h-[25px] w-auto" />,
+    icon: <WrapIcon className="h-6.25 w-auto" />,
     subLinks: [
       { to: "/explore/bridge", label: "Bridge" },
       { to: "/explore/transfer", label: "Transfer" },
@@ -65,8 +65,8 @@ export const Header = ({ extra }: Props) => {
 
   return (
     <header className="container flex items-center justify-between gap-5 py-6">
-      <div className="flex items-center gap-[20px] md:gap-[30px]">
-        <ScaleIcon className="mr-[40px] md:mr-[60px]" />
+      <div className="flex items-center gap-5 md:gap-7.5">
+        <ScaleIcon className="mr-10 md:mr-15" />
         {links.map((link) => {
           if ("to" in link) {
             return (

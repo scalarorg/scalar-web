@@ -13,7 +13,7 @@ export function ExploreLinks({ type }: Props) {
         <Link key={item.value} to={item.path}>
           <Button
             variant={type === item.value ? "default" : "tab_link"}
-            className="min-w-[150px] font-semibold text-base"
+            className="min-w-37.5 font-semibold text-base"
           >
             {item.label}
           </Button>

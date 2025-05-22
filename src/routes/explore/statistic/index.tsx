@@ -181,7 +181,7 @@ function Statistic() {
   }, [time_bucket]);
 
   return (
-    <div className="flex flex-col gap-8 py-[60px]">
+    <div className="flex flex-col gap-8 py-15">
       <div
         className={cn(
           // Flexbox container
@@ -189,7 +189,7 @@ function Statistic() {
 
           // Apply styles to direct child div elements
           "[&>div]:w-[40%]",
-          "[&>div]:max-w-[690px]",
+          "[&>div]:max-w-172.5",
         )}
       >
         <Heading>Protocol Overview</Heading>
@@ -251,7 +251,7 @@ function Statistic() {
         >
           {Array.from({ length: 3 }).map((_, i) => (
             // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-            <Skeleton key={i} className="h-[150px] flex-1" />
+            <Skeleton key={i} className="h-37.5 flex-1" />
           ))}
         </If>
       </div>
@@ -286,7 +286,7 @@ function Statistic() {
           });
         }}
       >
-        <TabsList className="h-[60px] w-full justify-end gap-2 bg-background-secondary">
+        <TabsList className="h-15 w-full justify-end gap-2 bg-background-secondary">
           {tabs.map(({ name, value }) => (
             <TabsTrigger
               value={value}

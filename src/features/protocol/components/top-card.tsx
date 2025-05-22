@@ -50,7 +50,7 @@ export const TopCard = ({
                   showName
                 />
               </div>
-              <p className="min-w-[70px] text-right font-medium">
+              <p className="min-w-17.5 text-right font-medium">
                 {formatNumber(item.amount)}
               </p>
             </div>
@@ -94,8 +94,8 @@ export const TopCard = ({
 export const TopCardSkeleton = () => {
   return (
     <div className="flex h-full flex-col rounded-lg border p-6">
-      <Skeleton className="mb-4 h-8 w-[150px]" />
-      <div className="flex h-[200px] gap-5">
+      <Skeleton className="mb-4 h-8 w-37.5" />
+      <div className="flex h-50 gap-5">
         <Skeleton className="h-full flex-1" />
         <Separator orientation="vertical" />
         <Skeleton className="h-full flex-1" />

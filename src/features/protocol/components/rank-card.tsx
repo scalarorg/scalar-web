@@ -38,9 +38,9 @@ export const RankCard = ({
 export const RankCardSkeleton = () => {
   return (
     <div className="flex flex-1 flex-col gap-2">
-      <Skeleton className="h-8 w-[150px]" />
+      <Skeleton className="h-8 w-37.5" />
       <Skeleton className="h-6 w-full" />
-      <Skeleton className="h-[400px] w-full" />
+      <Skeleton className="h-100 w-full" />
     </div>
   );
 };

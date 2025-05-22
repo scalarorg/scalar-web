@@ -11,7 +11,7 @@ function RouteComponent() {
   const { slug } = Route.useParams();
 
   return (
-    <div className="flex flex-col gap-5 py-[60px]">
+    <div className="flex flex-col gap-5 py-15">
       <Heading link={{ to: "/explore/redeem/$slug", params: { slug } }}>
         Transaction detail
       </Heading>

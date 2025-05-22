@@ -30,7 +30,7 @@ type Props = {
 const Item = ({ label, content }: TTransactionInfoCardItem) => {
   return (
     <div className="flex gap-1 py-3.5">
-      <span className="w-[180px] font-medium text-base text-text-primary-500">
+      <span className="w-45 font-medium text-base text-text-primary-500">
         {label}
       </span>
       <div className="flex-1 text-base">{content}</div>
@@ -103,7 +103,7 @@ export const TransactionInfoCard = ({
           targetLink={senderLink}
           label={source?.sender}
           text={source?.sender || ""}
-          classNames={{ wrapper: "max-w-[200px]" }}
+          classNames={{ wrapper: "max-w-50" }}
         />
       ),
     },
@@ -114,7 +114,7 @@ export const TransactionInfoCard = ({
           targetLink={receiverLink}
           label={destination?.receiver}
           text={destination?.receiver || ""}
-          classNames={{ wrapper: "max-w-[200px]" }}
+          classNames={{ wrapper: "max-w-50" }}
         />
       ),
     },
@@ -145,7 +145,7 @@ export const TransactionInfoCard = ({
                     <Clipboard
                       label={sourceLabel}
                       text={sourceLabel}
-                      classNames={{ wrapper: "max-w-[250px]" }}
+                      classNames={{ wrapper: "max-w-50" }}
                     />
                   ))}
               </CardTitle>
@@ -167,5 +167,5 @@ export const TransactionInfoCard = ({
 };
 
 export const TransactionInfoCardSkeleton = () => {
-  return <Skeleton className="h-[200px] w-full" />;
+  return <Skeleton className="h-50 w-full" />;
 };

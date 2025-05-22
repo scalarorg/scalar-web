@@ -44,7 +44,7 @@ export const ConnectDropdown = () => {
           />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="min-w-[350px] shadow-md" align="end">
+      <DropdownMenuContent className="min-w-87.5 shadow-md" align="end">
         <DropdownMenuItem className="focus:bg-transparent">
           <ConnectBtc />
         </DropdownMenuItem>

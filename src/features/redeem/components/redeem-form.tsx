@@ -307,7 +307,7 @@ export const RedeemForm = () => {
       toast({
         title: "Transfer transaction successful",
         description: (
-          <div className="mt-2 w-[640px] rounded-md">
+          <div className="mt-2 w-160 rounded-md">
             <p className="text-white">
               Txid:{" "}
               <a

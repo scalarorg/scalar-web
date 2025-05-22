@@ -41,10 +41,7 @@ const tabs: {
 function Home() {
   return (
     <div className="flex justify-center gap-2 p-5">
-      <Tabs
-        defaultValue={tabs[0].value}
-        className="min-w-[500px] max-w-[800px]"
-      >
+      <Tabs defaultValue={tabs[0].value} className="min-w-125 max-w-200">
         <TabsList className="h-fit w-full gap-3 bg-background-secondary p-2.5">
           {tabs.map(({ name, value, icon }) => (
             <TabsTrigger

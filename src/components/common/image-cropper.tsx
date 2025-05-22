@@ -92,7 +92,7 @@ export const ImageCropper = ({
   return (
     <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
       <DialogTrigger>
-        <Avatar className="size-[100px] cursor-pointer ring-2 ring-slate-200 ring-offset-2">
+        <Avatar className="size-25 cursor-pointer ring-2 ring-slate-200 ring-offset-2">
           <AvatarImage src={imageUrl} alt="icon" />
           <AvatarFallback>Icon</AvatarFallback>
         </Avatar>
@@ -115,12 +115,12 @@ export const ImageCropper = ({
             <Avatar className="size-full rounded-none">
               <AvatarImage
                 ref={imgRef}
-                className="aspect-auto size-full max-h-[460px] rounded-none"
+                className="aspect-auto size-full max-h-115 rounded-none"
                 alt="Image Cropper Shell"
                 src={imageUrl}
                 onLoad={onImageLoad}
               />
-              <AvatarFallback className="size-[460px] rounded-none bg-transparent">
+              <AvatarFallback className="size-115 rounded-none bg-transparent">
                 Loading...
               </AvatarFallback>
             </Avatar>

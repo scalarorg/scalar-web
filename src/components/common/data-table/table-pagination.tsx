@@ -168,7 +168,7 @@ const generatePages = (current: number, total: number, siblings: number) => {
 
 // Skeleton Components
 const PageSkeleton = () => (
-  <Skeleton className="size-9 rounded-full md:h-10 md:w-[200px]" />
+  <Skeleton className="size-9 rounded-full md:h-10 md:w-50" />
 );
 
 const PaginationSkeleton = () => (

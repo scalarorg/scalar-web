@@ -61,7 +61,7 @@ export const ExploreTable = ({
               <Clipboard
                 label={label}
                 text={label}
-                classNames={{ wrapper: "max-w-[200px]" }}
+                classNames={{ wrapper: "max-w-50" }}
                 onClick={() =>
                   navigate({
                     to: `${pathname}/${tx_hash}`,
@@ -107,7 +107,7 @@ export const ExploreTable = ({
                 targetLink={link}
                 label={sender}
                 text={sender}
-                classNames={{ wrapper: "max-w-[200px]" }}
+                classNames={{ wrapper: "max-w-50" }}
               />
             </div>
           );
@@ -129,7 +129,7 @@ export const ExploreTable = ({
                 <Clipboard
                   label={label}
                   text={label}
-                  classNames={{ wrapper: "max-w-[200px]" }}
+                  classNames={{ wrapper: "max-w-50" }}
                 />
                 <If condition={newLink && blockExplorerIcon}>
                   <a
@@ -171,7 +171,7 @@ export const ExploreTable = ({
                 targetLink={link}
                 label={receiver}
                 text={receiver}
-                classNames={{ wrapper: "max-w-[200px]" }}
+                classNames={{ wrapper: "max-w-50" }}
               />
             </div>
           );
@@ -206,7 +206,7 @@ export const ExploreTable = ({
         header: "Created at",
         cell: ({ getValue }) => {
           const block_time = getValue();
-          return <p className="w-[130px]">{friendlyFormatDate(block_time)}</p>;
+          return <p className="w-32.5">{friendlyFormatDate(block_time)}</p>;
         },
       }),
     ],
