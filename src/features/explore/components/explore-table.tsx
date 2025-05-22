@@ -50,7 +50,7 @@ export const ExploreTable = ({ data, isLoading, isRefetching, size, page }: Prop
               <Clipboard
                 label={label}
                 text={label}
-                classNames={{ wrapper: "max-w-[200px]" }}
+                classNames={{ wrapper: "max-w-50" }}
                 onClick={() =>
                   navigate({
                     to: `${pathname}/${tx_hash}`
@@ -85,7 +85,7 @@ export const ExploreTable = ({ data, isLoading, isRefetching, size, page }: Prop
                 targetLink={link}
                 label={sender}
                 text={sender}
-                classNames={{ wrapper: "max-w-[200px]" }}
+                classNames={{ wrapper: "max-w-50" }}
               />
             </div>
           );
@@ -104,7 +104,7 @@ export const ExploreTable = ({ data, isLoading, isRefetching, size, page }: Prop
           return (
             <If condition={tx_hash && chain}>
               <div className='flex items-center gap-2'>
-                <Clipboard label={label} text={label} classNames={{ wrapper: "max-w-[200px]" }} />
+                <Clipboard label={label} text={label} classNames={{ wrapper: "max-w-50" }} />
                 <If condition={newLink && blockExplorerIcon}>
                   <a href={newLink} target='_blank' rel='noopener noreferrer' className='size-5 rounded-full'>
                     <img src={blockExplorerIcon} alt='block explorer icon' />
@@ -134,7 +134,7 @@ export const ExploreTable = ({ data, isLoading, isRefetching, size, page }: Prop
                 targetLink={link}
                 label={receiver}
                 text={receiver}
-                classNames={{ wrapper: "max-w-[200px]" }}
+                classNames={{ wrapper: "max-w-50" }}
               />
             </div>
           );
@@ -165,7 +165,7 @@ export const ExploreTable = ({ data, isLoading, isRefetching, size, page }: Prop
         header: "Created at",
         cell: ({ getValue }) => {
           const block_time = getValue();
-          return <p className='w-[130px]'>{friendlyFormatDate(block_time)}</p>;
+          return <p className='w-32.5'>{friendlyFormatDate(block_time)}</p>;
         }
       })
     ],

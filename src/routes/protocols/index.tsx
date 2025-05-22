@@ -46,7 +46,7 @@ function Protocols() {
   }, [data?.protocols, accountAddress]);
 
   return (
-    <div className='flex flex-col gap-5 py-[60px]'>
+    <div className='flex flex-col gap-5 py-15'>
       <Heading>All Protocols</Heading>
       <Card className='rounded-lg p-0'>
         <CardContent className='flex items-center gap-6 p-4'>
@@ -56,7 +56,7 @@ function Protocols() {
               "flex items-center justify-center",
 
               // Size
-              "size-[70px]",
+              "size-17.5",
 
               // Border Radius
               "rounded-lg",
@@ -100,7 +100,7 @@ function Protocols() {
                 </Link>
               </If>
             </If>
-            <DialogContent closeClassName="[&_svg:not([class*='size-'])]:size-6" className='min-w-[800px]'>
+            <DialogContent closeClassName="[&_svg:not([class*='size-'])]:size-6" className='min-w-200'>
               <DialogHeader>
                 <DialogTitle className='text-2xl'>New Protocol</DialogTitle>
                 <ProtocolForm setOpen={setOpen} />

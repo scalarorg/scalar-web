@@ -18,7 +18,7 @@ export const ProtocolCard = ({ data }: ProtocolCardProps) => {
   const { label, variant, className } = PROTOCOL_STATUS.OBJECT[status];
 
   return (
-    <div className='main-card-shadow flex h-[260px] flex-col gap-4 rounded-lg p-4'>
+    <div className='main-card-shadow flex h-65 flex-col gap-4 rounded-lg p-4'>
       <div className='flex items-center gap-2'>
         <Link
           to='/protocols/$slug'
@@ -55,7 +55,7 @@ export const ProtocolCard = ({ data }: ProtocolCardProps) => {
               showName
               classNames={{
                 name: "text-text-primary-500 text-xs",
-                wrapper: "w-[110px]",
+                wrapper: "w-27.5",
                 icon: "size-4"
               }}
             />
@@ -67,11 +67,11 @@ export const ProtocolCard = ({ data }: ProtocolCardProps) => {
 };
 
 export const ProtocolCardSkeleton = () => (
-  <div className='main-card-shadow flex h-[260px] flex-col gap-4 rounded-lg p-4'>
-    <div className='flex h-[30px] items-center gap-2'>
-      <Skeleton className='h-full w-[100px]' />
-      <Skeleton className='ml-auto h-full w-[100px]' />
-      <Skeleton className='h-full w-[100px] rounded-full' />
+  <div className='main-card-shadow flex h-65 flex-col gap-4 rounded-lg p-4'>
+    <div className='flex h-7.5 items-center gap-2'>
+      <Skeleton className='h-full w-25' />
+      <Skeleton className='ml-auto h-full w-25' />
+      <Skeleton className='h-full w-25 rounded-full' />
     </div>
     <Skeleton className='grow' />
   </div>

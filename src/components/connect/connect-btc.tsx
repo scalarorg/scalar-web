@@ -97,7 +97,7 @@ export const ConnectBtc = ({ hideTitle }: { hideTitle?: boolean }) => {
             <Clipboard
               label={walletInfo.address}
               text={walletInfo.address}
-              classNames={{ wrapper: "max-w-[100px]" }}
+              classNames={{ wrapper: "max-w-25" }}
             />
           </div>
           <div className='flex items-center justify-between gap-1'>

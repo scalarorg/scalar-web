@@ -12,7 +12,7 @@ function RouteComponent() {
   const { data, isLoading } = useExploreQuery.useDetail(slug, "transfer");
 
   return (
-    <div className='flex flex-col gap-5 py-[60px]'>
+    <div className='flex flex-col gap-5 py-15'>
       <Heading link={{ to: "/explore/transfer" }}>Transaction detail</Heading>
       <div className='flex flex-col gap-5'>
         <If condition={isLoading} fallback={<TransactionInfoCard data={data} />}>

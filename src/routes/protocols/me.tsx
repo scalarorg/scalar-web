@@ -102,8 +102,8 @@ function OwnProtocol() {
               <If
                 condition={isEmpty(address)}
                 fallback={address?.map(({ address }) => (
-                  <div key={address} className='max-w-[140px]'>
-                    <Clipboard label='Copyyyyyyyyyyyyyyyy' text={address!} />
+                  <div key={address} className='max-w-35'>
+                    <Clipboard label='Copy' text={address!} />
                   </div>
                 ))}
               >
@@ -236,7 +236,7 @@ function OwnProtocol() {
   };
 
   return (
-    <div className='flex flex-col gap-5 py-[60px]'>
+    <div className='flex flex-col gap-5 py-15'>
       <Heading link={{ to: "/protocols" }}>Your Protocol</Heading>
       <If
         condition={isConnected}
@@ -251,7 +251,7 @@ function OwnProtocol() {
           </Card>
         }
       >
-        <If condition={!isLoading} fallback={<Skeleton className='h-[100px] w-full' />}>
+        <If condition={!isLoading} fallback={<Skeleton className='h-25 w-full' />}>
           <If
             condition={isEmpty(protocol)}
             fallback={
@@ -272,7 +272,7 @@ function OwnProtocol() {
         <Card className='p-0'>
           <CardContent className='flex flex-col gap-4 p-4'>
             <div className='flex gap-5'>
-              <p className='text-base leading-[36px]'>Select a network to add for the selected protocol.</p>
+              <p className='text-base leading-9'>Select a network to add for the selected protocol.</p>
               <Form {...form}>
                 <form
                   onSubmit={(e) => {
