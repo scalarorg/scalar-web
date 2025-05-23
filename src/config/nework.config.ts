@@ -43,25 +43,20 @@ const regtestConfig: NetworkConfig = {
 };
 
 const config: Record<Network, NetworkConfig> = {
-  mainnet: mainnetConfig,
-  testnet: testnetConfig,
-  testnet4: testnet4Config,
-  regtest: regtestConfig,
+  [Network.MAINNET]: mainnetConfig,
+  [Network.TESTNET]: testnetConfig,
+  [Network.TESTNET4]: testnet4Config,
+  [Network.REGTEST]: regtestConfig,
 };
 
 export function getNetworkConfig(network = Network.TESTNET4): NetworkConfig {
-  switch (network) {
-    case Network.MAINNET:
-      return config.mainnet;
-    case Network.TESTNET:
-      return config.testnet;
-    case Network.TESTNET4:
-      return config.testnet4;
-    case Network.REGTEST:
-      return config.regtest;
-    default:
-      throw new Error(`Unsupported network: ${network}`);
+  const result = config[network];
+
+  if (!result) {
+    throw new Error(`Unsupported network: ${network}`);
   }
+
+  return result;
 }
 
 export function validateAddress(network: Network, address: string): void {
