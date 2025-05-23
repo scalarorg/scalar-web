@@ -139,7 +139,7 @@ export const prepareCustodianPubkeys = (custodians: TCustodian[]) => {
     );
 };
 
-// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+// biome-ignore lint/suspicious/noExplicitAny: used for type inference
 export const prepareCustodianPubkeysArray = (custodians: any[]) => {
   const custodianPubkeysBuffer = prepareCustodianPubkeys(custodians);
   if (!custodianPubkeysBuffer) throw new Error("Invalid custodian pubkeys");

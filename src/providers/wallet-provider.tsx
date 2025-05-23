@@ -188,7 +188,7 @@ const WalletProvider = ({ children }: { children: ReactNode }) => {
     }
     let timeId: NodeJS.Timeout | undefined;
     try {
-      // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+      // biome-ignore lint/suspicious/noExplicitAny: used for type inference
       const walletInstance = new (walletProvider as any)();
 
       setWalletProvider(walletInstance);

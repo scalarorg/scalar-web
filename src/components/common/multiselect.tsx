@@ -260,7 +260,7 @@ export const MultipleSelector = ({
     [handleUnselect, selected],
   );
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+  // biome-ignore lint/correctness/useExhaustiveDependencies: used for event listener
   useEffect(() => {
     if (open) {
       document.addEventListener("mousedown", handleClickOutside);
@@ -282,7 +282,7 @@ export const MultipleSelector = ({
     }
   }, [value]);
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+  // biome-ignore lint/correctness/useExhaustiveDependencies: used for options update
   useEffect(() => {
     /** If `onSearch` is provided, do not trigger options updated. */
     if (!arrayOptions || onSearch) {
@@ -294,7 +294,7 @@ export const MultipleSelector = ({
     }
   }, [arrayDefaultOptions, arrayOptions, groupBy, onSearch, options]);
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+  // biome-ignore lint/correctness/useExhaustiveDependencies: used for sync search
   useEffect(() => {
     /** sync search */
 
@@ -303,7 +303,7 @@ export const MultipleSelector = ({
       setOptions(transToGroupOption(res || [], groupBy));
     };
 
-    // biome-ignore lint/suspicious/useAwait: <explanation>
+    // biome-ignore lint/suspicious/useAwait: used for sync search
     const exec = async () => {
       if (!onSearchSync || !open) return;
 
@@ -320,7 +320,7 @@ export const MultipleSelector = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debouncedSearchTerm, groupBy, open, triggerSearchOnFocus]);
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+  // biome-ignore lint/correctness/useExhaustiveDependencies: used for async search
   useEffect(() => {
     /** async search */
 

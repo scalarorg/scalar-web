@@ -234,7 +234,7 @@ export const TransfersForm = () => {
         } else {
           throw new Error("Transfer failed");
         }
-        // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+        // biome-ignore lint/suspicious/noExplicitAny: used for error handling
       } catch (error: any) {
         if (error.message?.includes("contract runner")) {
           throw new Error(
@@ -243,7 +243,7 @@ export const TransfersForm = () => {
         }
         throw error;
       }
-      // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+      // biome-ignore lint/suspicious/noExplicitAny: used for error handling
     } catch (error: any) {
       let errorMessage = "";
 

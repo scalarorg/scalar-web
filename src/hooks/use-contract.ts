@@ -18,7 +18,7 @@ export const useContract = (abi: Abi, address?: string) => {
     }
     const contract = new ethers.Contract(
       address as `0x${string}`,
-      // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+      // biome-ignore lint/suspicious/noExplicitAny: used for contract
       abi as any,
       signer,
     );

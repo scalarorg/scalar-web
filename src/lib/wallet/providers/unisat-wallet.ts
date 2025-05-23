@@ -21,9 +21,9 @@ export const unisatProvider = "unisat";
 
 export class UnisatWallet extends WalletProvider {
   private unisatWalletInfo: WalletInfo | undefined;
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+  // biome-ignore lint/suspicious/noExplicitAny: used for type inference
   private unisatWallet: any;
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+  // biome-ignore lint/suspicious/noExplicitAny: used for type inference
   private bitcoinNetworkProvider: any;
   private networkEnv: Network | undefined;
 
@@ -118,18 +118,18 @@ export class UnisatWallet extends WalletProvider {
     }
   };
 
-  // biome-ignore lint/suspicious/useAwait: <explanation>
+  // biome-ignore lint/suspicious/useAwait: used for wallet provider name
   getWalletProviderName = async (): Promise<string> => {
     return "Unisat";
   };
 
-  // biome-ignore lint/suspicious/useAwait: <explanation>
+  // biome-ignore lint/suspicious/useAwait: used for wallet address
   getAddress = async (): Promise<string> => {
     this.checkWalletProvider();
     return this.getWalletInfo().address;
   };
 
-  // biome-ignore lint/suspicious/useAwait: <explanation>
+  // biome-ignore lint/suspicious/useAwait: used for wallet public key
   getPublicKeyHex = async (): Promise<string> => {
     return this.getWalletInfo().publicKeyHex;
   };
@@ -157,7 +157,7 @@ export class UnisatWallet extends WalletProvider {
     );
   };
 
-  // biome-ignore lint/suspicious/useAwait: <explanation>
+  // biome-ignore lint/suspicious/useAwait: used for network
   getNetwork = async (): Promise<Network> => {
     // unisat does not provide a way to get the network for Signet and Testnet
     // So we pass the check on connection and return the environment network

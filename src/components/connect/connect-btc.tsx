@@ -43,7 +43,7 @@ export const ConnectBtc = ({ hideTitle }: { hideTitle?: boolean }) => {
           if (!walletProvider) {
             throw new Error("Wallet provider not found");
           }
-          // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+          // biome-ignore lint/suspicious/noExplicitAny: used for wallet provider
           walletInstance = new (walletProvider as any)();
         }
         setWalletProvider(walletInstance);

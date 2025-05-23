@@ -155,7 +155,7 @@ export const BridgeForm = () => {
       if (!addressUtxos) throw new Error("Not enough UTXOs");
 
       const txData = {
-        // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+        // biome-ignore lint/suspicious/noExplicitAny: used for utxos
         utxos: addressUtxos.map((utxo) => ({ ...utxo, status: {} as any })),
         // TODO: apply dynamic feerates
 

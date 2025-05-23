@@ -21,7 +21,7 @@ export const validateRequired = <T>(
   return value;
 };
 
-// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+// biome-ignore lint/suspicious/noExplicitAny: used for type inference
 export const validateAsset = (asset: any): void => {
   validateRequired(asset, "asset");
   validateRequired(asset.chain, "asset.chain");
