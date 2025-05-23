@@ -23,10 +23,12 @@ const regtestSegwitAddressLength = 44;
 const taprootAddressLength = 62;
 
 export const isSupportedAddressType = (address: string): boolean => {
+  const addressLength = address.length;
+
   return (
-    address.length === nativeSegwitAddressLength ||
-    address.length === regtestSegwitAddressLength ||
-    address.length === taprootAddressLength
+    addressLength === nativeSegwitAddressLength ||
+    addressLength === regtestSegwitAddressLength ||
+    addressLength === taprootAddressLength
   );
 };
 
