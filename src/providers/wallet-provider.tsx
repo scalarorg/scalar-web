@@ -1,4 +1,4 @@
-import { NetworkConfig, getNetworkConfig } from '@/config/nework.config';
+import { NetworkConfig, getNetworkConfig } from "@/config/nework.config";
 import {
   WalletProvider as TWalletProvider,
   WalletError,
@@ -6,19 +6,19 @@ import {
   isSupportedAddressType,
   toNetwork,
   walletList
-} from '@/lib/wallet';
-import { useError } from '@/providers/error-provider';
-import { useNetwork } from '@/providers/network-provider';
-import { ErrorState } from '@/types/errors';
-import { BtcMempool } from '@scalar-lab/bitcoin-vault';
-import { networks } from 'bitcoinjs-lib';
-import { ReactNode, createContext, memo, useCallback, useContext, useEffect, useState } from 'react';
-import { toast } from 'sonner';
+} from "@/lib/wallet";
+import { useError } from "@/providers/error-provider";
+import { useNetwork } from "@/providers/network-provider";
+import { ErrorState } from "@/types/errors";
+import { BtcMempool } from "@scalar-lab/bitcoin-vault";
+import { networks } from "bitcoinjs-lib";
+import { ReactNode, createContext, memo, useCallback, useContext, useEffect, useState } from "react";
+import { toast } from "sonner";
 
 export const useWalletProvider = () => {
   const ctx = useContext(WalletProviderContext);
   if (!ctx) {
-    throw new Error('useWalletProvider must be used within a WalletProvider');
+    throw new Error("useWalletProvider must be used within a WalletProvider");
   }
   return {
     walletProvider: ctx.walletProvider,
@@ -34,7 +34,7 @@ export const useWalletProvider = () => {
 export const useWalletInfo = () => {
   const ctx = useContext(WalletProviderContext);
   if (!ctx) {
-    throw new Error('useWalletInfo must be used within a WalletProvider');
+    throw new Error("useWalletInfo must be used within a WalletProvider");
   }
 
   return ctx.walletInfo;
@@ -67,8 +67,8 @@ const WalletProviderContext = createContext<{
 const WalletProvider = ({ children }: { children: ReactNode }) => {
   const [walletInfo, setWalletInfo] = useState({
     balance: 0,
-    address: '',
-    pubkey: '',
+    address: "",
+    pubkey: "",
     isConnected: false
   });
   const [walletProvider, setWalletProvider] = useState<TWalletProvider>();
@@ -100,7 +100,7 @@ const WalletProvider = ({ children }: { children: ReactNode }) => {
 
       const supported = isSupportedAddressType(address);
       if (!supported) {
-        throw new Error('Invalid address type. Please use a Native SegWit or Taproot');
+        throw new Error("Invalid address type. Please use a Native SegWit or Taproot");
       }
 
       const balanceSat = await walletProvider.getBalance();
@@ -120,7 +120,7 @@ const WalletProvider = ({ children }: { children: ReactNode }) => {
       }
       showError({
         error: {
-          message: error instanceof Error ? error.message : 'Unknown error',
+          message: error instanceof Error ? error.message : "Unknown error",
           errorState: ErrorState.WALLET,
           errorTime: new Date()
         },
@@ -137,8 +137,8 @@ const WalletProvider = ({ children }: { children: ReactNode }) => {
     setNetworkConfig(undefined);
     setWalletInfo({
       balance: 0,
-      address: '',
-      pubkey: '',
+      address: "",
+      pubkey: "",
       isConnected: false
     });
     await walletProvider.disconnect();
@@ -166,9 +166,9 @@ const WalletProvider = ({ children }: { children: ReactNode }) => {
   }, [initProvider]);
 
   useEffect(() => {
-    const walletProvider = walletList.find((w) => w.name === 'Unisat')?.wallet;
+    const walletProvider = walletList.find((w) => w.name === "Unisat")?.wallet;
     if (!walletProvider) {
-      toast.error('Wallet provider not found');
+      toast.error("Wallet provider not found");
       return;
     }
     let timeId: NodeJS.Timeout | undefined;
@@ -177,7 +177,7 @@ const WalletProvider = ({ children }: { children: ReactNode }) => {
 
       setWalletProvider(walletInstance);
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      const errorMessage = error instanceof Error ? error.message : "Unknown error";
       timeId = setTimeout(() => {
         toast.error(errorMessage);
       }, 1000);

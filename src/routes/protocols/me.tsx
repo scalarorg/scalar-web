@@ -52,7 +52,7 @@ const ColumItem = ({ title, items, classNames }: TColumItem) => {
       <p className={cn("font-semibold text-lg text-text-primary-500", classNames?.title)}>{title}</p>
       <div className={cn("flex flex-col gap-3", classNames?.item)}>
         {newItems.map((item, index) => (
-          // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+          // biome-ignore lint/suspicious/noArrayIndexKey: used for mapping
           <Fragment key={index}>{item}</Fragment>
         ))}
       </div>

@@ -47,6 +47,7 @@ type DataTableProps<TData> = Pick<
   "pageCount" | "enableRowSelection" | "onRowSelectionChange" | "state" | "getRowId"
 > & {
   data: TData[] | undefined;
+  // biome-ignore lint/suspicious/noExplicitAny: used for table
   columns: ColumnDef<TData, any>[];
   classNames?: TableClassNames;
   pagination: Partial<PaginationState>;

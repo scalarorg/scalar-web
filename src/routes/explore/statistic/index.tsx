@@ -238,7 +238,7 @@ function Statistic() {
           }
         >
           {Array.from({ length: 3 }).map((_, i) => (
-            // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+            // biome-ignore lint/suspicious/noArrayIndexKey: used for mapping
             <Skeleton key={i} className='h-37.5 flex-1' />
           ))}
         </If>
@@ -256,7 +256,7 @@ function Statistic() {
           }
         >
           {Array.from({ length: 2 }).map((_, i) => (
-            // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+            // biome-ignore lint/suspicious/noArrayIndexKey: used for mapping
             <RankCardSkeleton key={i} />
           ))}
         </If>
@@ -295,7 +295,7 @@ function Statistic() {
           }
         >
           {Array.from({ length: 4 }).map((_, i) => (
-            // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+            // biome-ignore lint/suspicious/noArrayIndexKey: used for mapping
             <ChartCardSkeleton key={i} />
           ))}
         </If>
@@ -313,7 +313,7 @@ function Statistic() {
           }
         >
           {Array.from({ length: 2 }).map((_, i) => (
-            // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+            // biome-ignore lint/suspicious/noArrayIndexKey: used for mapping
             <TopCardSkeleton key={i} />
           ))}
         </If>
