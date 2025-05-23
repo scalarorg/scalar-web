@@ -40,6 +40,7 @@ export const ConnectBtc = ({ hideTitle }: { hideTitle?: boolean }) => {
           if (!walletProvider) {
             throw new Error("Wallet provider not found");
           }
+
           walletInstance = new (walletProvider as any)();
         }
         setWalletProvider(walletInstance);
