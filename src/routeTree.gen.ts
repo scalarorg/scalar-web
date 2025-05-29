@@ -13,6 +13,7 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
 import { Route as ProtocolsIndexImport } from './routes/protocols/index'
+import { Route as FaucetIndexImport } from './routes/faucet/index'
 import { Route as ExploreIndexImport } from './routes/explore/index'
 import { Route as ProtocolsMeImport } from './routes/protocols/me'
 import { Route as ProtocolsSlugImport } from './routes/protocols/$slug'
@@ -38,6 +39,12 @@ const IndexRoute = IndexImport.update({
 const ProtocolsIndexRoute = ProtocolsIndexImport.update({
   id: '/protocols/',
   path: '/protocols/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const FaucetIndexRoute = FaucetIndexImport.update({
+  id: '/faucet/',
+  path: '/faucet/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -151,6 +158,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ExploreIndexImport
       parentRoute: typeof rootRoute
     }
+    '/faucet/': {
+      id: '/faucet/'
+      path: '/faucet'
+      fullPath: '/faucet'
+      preLoaderRoute: typeof FaucetIndexImport
+      parentRoute: typeof rootRoute
+    }
     '/protocols/': {
       id: '/protocols/'
       path: '/protocols'
@@ -238,6 +252,7 @@ export interface FileRoutesByFullPath {
   '/protocols/$slug': typeof ProtocolsSlugRoute
   '/protocols/me': typeof ProtocolsMeRoute
   '/explore': typeof ExploreIndexRoute
+  '/faucet': typeof FaucetIndexRoute
   '/protocols': typeof ProtocolsIndexRoute
   '/explore/bridge': typeof ExploreBridgeIndexRoute
   '/explore/redeem': typeof ExploreRedeemIndexRoute
@@ -256,6 +271,7 @@ export interface FileRoutesByTo {
   '/protocols/$slug': typeof ProtocolsSlugRoute
   '/protocols/me': typeof ProtocolsMeRoute
   '/explore': typeof ExploreIndexRoute
+  '/faucet': typeof FaucetIndexRoute
   '/protocols': typeof ProtocolsIndexRoute
   '/explore/bridge': typeof ExploreBridgeIndexRoute
   '/explore/redeem': typeof ExploreRedeemIndexRoute
@@ -275,6 +291,7 @@ export interface FileRoutesById {
   '/protocols/$slug': typeof ProtocolsSlugRoute
   '/protocols/me': typeof ProtocolsMeRoute
   '/explore/': typeof ExploreIndexRoute
+  '/faucet/': typeof FaucetIndexRoute
   '/protocols/': typeof ProtocolsIndexRoute
   '/explore/bridge/': typeof ExploreBridgeIndexRoute
   '/explore/redeem/': typeof ExploreRedeemIndexRoute
@@ -295,6 +312,7 @@ export interface FileRouteTypes {
     | '/protocols/$slug'
     | '/protocols/me'
     | '/explore'
+    | '/faucet'
     | '/protocols'
     | '/explore/bridge'
     | '/explore/redeem'
@@ -312,6 +330,7 @@ export interface FileRouteTypes {
     | '/protocols/$slug'
     | '/protocols/me'
     | '/explore'
+    | '/faucet'
     | '/protocols'
     | '/explore/bridge'
     | '/explore/redeem'
@@ -329,6 +348,7 @@ export interface FileRouteTypes {
     | '/protocols/$slug'
     | '/protocols/me'
     | '/explore/'
+    | '/faucet/'
     | '/protocols/'
     | '/explore/bridge/'
     | '/explore/redeem/'
@@ -348,6 +368,7 @@ export interface RootRouteChildren {
   ProtocolsSlugRoute: typeof ProtocolsSlugRoute
   ProtocolsMeRoute: typeof ProtocolsMeRoute
   ExploreIndexRoute: typeof ExploreIndexRoute
+  FaucetIndexRoute: typeof FaucetIndexRoute
   ProtocolsIndexRoute: typeof ProtocolsIndexRoute
   ExploreBridgeIndexRoute: typeof ExploreBridgeIndexRoute
   ExploreRedeemIndexRoute: typeof ExploreRedeemIndexRoute
@@ -366,6 +387,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProtocolsSlugRoute: ProtocolsSlugRoute,
   ProtocolsMeRoute: ProtocolsMeRoute,
   ExploreIndexRoute: ExploreIndexRoute,
+  FaucetIndexRoute: FaucetIndexRoute,
   ProtocolsIndexRoute: ProtocolsIndexRoute,
   ExploreBridgeIndexRoute: ExploreBridgeIndexRoute,
   ExploreRedeemIndexRoute: ExploreRedeemIndexRoute,
@@ -393,6 +415,7 @@ export const routeTree = rootRoute
         "/protocols/$slug",
         "/protocols/me",
         "/explore/",
+        "/faucet/",
         "/protocols/",
         "/explore/bridge/",
         "/explore/redeem/",
@@ -417,6 +440,9 @@ export const routeTree = rootRoute
     },
     "/explore/": {
       "filePath": "explore/index.tsx"
+    },
+    "/faucet/": {
+      "filePath": "faucet/index.tsx"
     },
     "/protocols/": {
       "filePath": "protocols/index.tsx"
