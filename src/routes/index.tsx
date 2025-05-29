@@ -1,14 +1,14 @@
-import BridgeIcon from "@/assets/icons/bridge.svg";
-import RedeemIcon from "@/assets/icons/redeem.svg";
-import TransfersIcon from "@/assets/icons/transfers.svg";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { BridgeForm } from "@/features/bridge";
-import { RedeemForm } from "@/features/redeem";
-import { TransfersForm } from "@/features/transfers";
-import { createFileRoute } from "@tanstack/react-router";
-import { ReactNode } from "react";
+import BridgeIcon from '@/assets/icons/bridge.svg';
+import RedeemIcon from '@/assets/icons/redeem.svg';
+import TransfersIcon from '@/assets/icons/transfers.svg';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { BridgeForm } from '@/features/bridge';
+import { RedeemForm } from '@/features/redeem';
+import { TransfersForm } from '@/features/transfers';
+import { createFileRoute } from '@tanstack/react-router';
+import { ReactNode } from 'react';
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute('/')({
   component: Home
 });
 
@@ -19,20 +19,20 @@ const tabs: {
   icon: ReactNode;
 }[] = [
   {
-    name: "Bridge",
-    value: "bridge",
+    name: 'Bridge',
+    value: 'bridge',
     content: <BridgeForm />,
     icon: <BridgeIcon className='!w-4.5' />
   },
   {
-    name: "Transfers",
-    value: "transfers",
+    name: 'Transfers',
+    value: 'transfers',
     content: <TransfersForm />,
     icon: <TransfersIcon className='!w-3.5' />
   },
   {
-    name: "Redeem",
-    value: "redeem",
+    name: 'Redeem',
+    value: 'redeem',
     content: <RedeemForm />,
     icon: <RedeemIcon className='!w-4.5' />
   }

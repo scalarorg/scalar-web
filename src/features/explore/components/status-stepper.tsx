@@ -1,4 +1,4 @@
-import { If } from "@/components/common";
+import { If } from '@/components/common';
 import {
   Stepper,
   StepperIndicator,
@@ -6,24 +6,24 @@ import {
   StepperSeparator,
   StepperTitle,
   StepperTrigger
-} from "@/components/ui/stepper";
+} from '@/components/ui/stepper';
 
 const steps = [
   {
     step: 1,
-    title: "Linked"
+    title: 'Linked'
   },
   {
     step: 2,
-    title: "Sent"
+    title: 'Sent'
   },
   {
     step: 3,
-    title: "Deposit Address"
+    title: 'Deposit Address'
   },
   {
     step: 4,
-    title: "Received"
+    title: 'Received'
   }
 ];
 

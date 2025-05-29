@@ -1,13 +1,11 @@
-import type { ElementType, ReactNode } from "react";
+import type { ElementType, ReactNode } from 'react';
 
 type ProvidersType = [ElementType, Record<string, unknown>?]; // Props is optional
 type ChildrenType = {
   children: ReactNode;
 };
 
-export const buildProvidersTree = (
-  componentsWithProps: Array<ProvidersType>,
-) => {
+export const buildProvidersTree = (componentsWithProps: Array<ProvidersType>) => {
   const initialComponent = ({ children }: ChildrenType) => <>{children}</>;
 
   return componentsWithProps.reduce(
@@ -18,6 +16,6 @@ export const buildProvidersTree = (
         </AccumulatedComponents>
       );
     },
-    initialComponent,
+    initialComponent
   );
 };

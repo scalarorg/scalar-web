@@ -1,13 +1,13 @@
-import { Clipboard, If } from "@/components/common";
-import { formatBTC } from "@/lib/utils";
-import { WalletProvider, walletList } from "@/lib/wallet";
-import { useWalletInfo, useWalletProvider } from "@/providers/wallet-provider";
-import { Power } from "lucide-react";
-import { createElement, useEffect, useMemo, useState } from "react";
-import { toast } from "sonner";
+import { Clipboard, If } from '@/components/common';
+import { formatBTC } from '@/lib/utils';
+import { WalletProvider, walletList } from '@/lib/wallet';
+import { useWalletInfo, useWalletProvider } from '@/providers/wallet-provider';
+import { Power } from 'lucide-react';
+import { createElement, useEffect, useMemo, useState } from 'react';
+import { toast } from 'sonner';
 
 // And whether or not it should be injected
-const BROWSER = "btcwallet" as keyof typeof window;
+const BROWSER = 'btcwallet' as keyof typeof window;
 
 export const ConnectBtc = ({ hideTitle }: { hideTitle?: boolean }) => {
   const walletInfo = useWalletInfo();
@@ -17,7 +17,7 @@ export const ConnectBtc = ({ hideTitle }: { hideTitle?: boolean }) => {
   const { setWalletProvider, connectWallet, disconnectWallet, networkConfig } = useWalletProvider();
 
   const isInjectable = useMemo(() => {
-    if (typeof window === "undefined") {
+    if (typeof window === 'undefined') {
       return false;
     }
     return !!window[BROWSER];
@@ -30,7 +30,7 @@ export const ConnectBtc = ({ hideTitle }: { hideTitle?: boolean }) => {
 
         if (selectedWallet === BROWSER) {
           if (!isInjectable) {
-            throw new Error("Browser selected without an injectable interface");
+            throw new Error('Browser selected without an injectable interface');
           }
           // we are using the browser wallet
           walletInstance = window[BROWSER];
@@ -38,7 +38,7 @@ export const ConnectBtc = ({ hideTitle }: { hideTitle?: boolean }) => {
           // we are using a custom wallet
           const walletProvider = walletList.find((w) => w.name === selectedWallet)?.wallet;
           if (!walletProvider) {
-            throw new Error("Wallet provider not found");
+            throw new Error('Wallet provider not found');
           }
 
           walletInstance = new (walletProvider as any)();
@@ -46,7 +46,7 @@ export const ConnectBtc = ({ hideTitle }: { hideTitle?: boolean }) => {
         setWalletProvider(walletInstance);
       }
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : "Unknown error";
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
       toast.error(errorMessage);
     }
   }, [setWalletProvider, selectedWallet, isInjectable]);
@@ -61,7 +61,7 @@ export const ConnectBtc = ({ hideTitle }: { hideTitle?: boolean }) => {
               <Power className='size-5' />
             </button>
           </If>
-        </div>{" "}
+        </div>{' '}
       </If>
       <If
         condition={walletInfo.isConnected}
@@ -83,7 +83,7 @@ export const ConnectBtc = ({ hideTitle }: { hideTitle?: boolean }) => {
                   }}
                 >
                   {createElement(icon, {
-                    className: "size-8 rounded-full object-cover bg-white p-1 shadow-md"
+                    className: 'size-8 rounded-full object-cover bg-white p-1 shadow-md'
                   })}
                   <span className='text-base'>{name}</span>
                 </button>
@@ -98,7 +98,7 @@ export const ConnectBtc = ({ hideTitle }: { hideTitle?: boolean }) => {
             <Clipboard
               label={walletInfo.address}
               text={walletInfo.address}
-              classNames={{ wrapper: "max-w-25" }}
+              classNames={{ wrapper: 'max-w-25' }}
             />
           </div>
           <div className='flex items-center justify-between gap-1'>

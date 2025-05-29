@@ -1,8 +1,8 @@
-import FaucetIcon from "@/assets/icons/faucet.svg";
-import { ConnectDropdown, ConnectScalar } from "@/components/connect";
-import { Footer, Header } from "@/components/layout";
-import { Button } from "@/components/ui/button";
-import { Link, Outlet, createRootRoute } from "@tanstack/react-router";
+import FaucetIcon from '@/assets/icons/faucet.svg';
+import { ConnectDropdown, ConnectScalar } from '@/components/connect';
+import { Footer, Header } from '@/components/layout';
+import { Button } from '@/components/ui/button';
+import { Link, Outlet, createRootRoute } from '@tanstack/react-router';
 
 export const Route = createRootRoute({
   component: () => (

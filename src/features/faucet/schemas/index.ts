@@ -1,1 +1,1 @@
-export * from "./faucet-form";
+export * from './faucet-form';

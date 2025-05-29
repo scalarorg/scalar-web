@@ -1,8 +1,8 @@
-import { cn } from "@/lib/utils";
-import { Link, LinkComponentProps } from "@tanstack/react-router";
-import { ArrowLeftIcon } from "lucide-react";
-import { ReactNode } from "react";
-import { If } from "./if";
+import { cn } from '@/lib/utils';
+import { Link, LinkComponentProps } from '@tanstack/react-router';
+import { ArrowLeftIcon } from 'lucide-react';
+import { ReactNode } from 'react';
+import { If } from './if';
 
 interface HeadingProps {
   children: ReactNode;
@@ -11,7 +11,7 @@ interface HeadingProps {
 }
 
 export const Heading = ({ children, className, link }: HeadingProps) => {
-  const headingClass = cn("font-semibold text-2xl text-text-primary-500", className);
+  const headingClass = cn('font-semibold text-2xl text-text-primary-500', className);
 
   return (
     <If condition={link} fallback={<h1 className={headingClass}>{children}</h1>}>

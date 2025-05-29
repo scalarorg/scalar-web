@@ -1,12 +1,12 @@
-import type { PropsWithoutRef, ReactNode } from "react";
-import { useMemo } from "react";
+import type { PropsWithoutRef, ReactNode } from 'react';
+import { useMemo } from 'react';
 
-type Condition<Value = unknown> = Value | false | null | undefined | 0 | "";
+type Condition<Value = unknown> = Value | false | null | undefined | 0 | '';
 
 export function If<Value = unknown>({
   condition,
   children,
-  fallback,
+  fallback
 }: PropsWithoutRef<{
   condition: Condition<Value>;
   children: ReactNode | ((value: Value) => ReactNode);
@@ -14,7 +14,7 @@ export function If<Value = unknown>({
 }>) {
   return useMemo(() => {
     if (condition) {
-      if (typeof children === "function") {
+      if (typeof children === 'function') {
         return <>{children(condition)}</>;
       }
 

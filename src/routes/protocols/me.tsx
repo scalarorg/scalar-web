@@ -7,31 +7,31 @@ import {
   SelectSearch,
   confirmDialogConfig,
   useConfirm
-} from "@/components/common";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Skeleton } from "@/components/ui/skeleton";
-import { PROTOCOL_STATUS, TNetworkForm, networkFormSchema } from "@/features/protocol";
-import { useScalarChains, useScalarOwnProtocol } from "@/hooks";
-import { Chains } from "@/lib/chains";
-import { CreateDeployTokenParams } from "@/lib/scalar/params";
-import { cn, isBtcChain, parseKeplrError, shortenText } from "@/lib/utils";
-import { useAccount, useConnectKeplr, useKeplrClient } from "@/providers/keplr-provider";
-import { SupportedChains } from "@/types/chains";
-import { fromBech32 } from "@cosmjs/encoding";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useQueryClient } from "@tanstack/react-query";
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { isArray, isEmpty } from "lodash";
-import { CircleAlert } from "lucide-react";
-import { Fragment, ReactNode, useMemo, useState } from "react";
-import { useForm } from "react-hook-form";
-import { toast } from "sonner";
+} from '@/components/common';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { Skeleton } from '@/components/ui/skeleton';
+import { PROTOCOL_STATUS, TNetworkForm, networkFormSchema } from '@/features/protocol';
+import { useScalarChains, useScalarOwnProtocol } from '@/hooks';
+import { Chains } from '@/lib/chains';
+import { CreateDeployTokenParams } from '@/lib/scalar/params';
+import { cn, isBtcChain, parseKeplrError, shortenText } from '@/lib/utils';
+import { useAccount, useConnectKeplr, useKeplrClient } from '@/providers/keplr-provider';
+import { SupportedChains } from '@/types/chains';
+import { fromBech32 } from '@cosmjs/encoding';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useQueryClient } from '@tanstack/react-query';
+import { createFileRoute, useNavigate } from '@tanstack/react-router';
+import { isArray, isEmpty } from 'lodash';
+import { CircleAlert } from 'lucide-react';
+import { Fragment, ReactNode, useMemo, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 
-export const Route = createFileRoute("/protocols/me")({
+export const Route = createFileRoute('/protocols/me')({
   component: OwnProtocol
 });
 
@@ -48,9 +48,9 @@ const ColumItem = ({ title, items, classNames }: TColumItem) => {
   const newItems = isArray(items) ? items : [items];
 
   return (
-    <div className={cn("flex flex-col gap-2", classNames?.wrapper)}>
-      <p className={cn("font-semibold text-lg text-text-primary-500", classNames?.title)}>{title}</p>
-      <div className={cn("flex flex-col gap-3", classNames?.item)}>
+    <div className={cn('flex flex-col gap-2', classNames?.wrapper)}>
+      <p className={cn('font-semibold text-lg text-text-primary-500', classNames?.title)}>{title}</p>
+      <div className={cn('flex flex-col gap-3', classNames?.item)}>
         {newItems.map((item, index) => (
           // biome-ignore lint/suspicious/noArrayIndexKey: used for mapping
           <Fragment key={index}>{item}</Fragment>
@@ -67,8 +67,8 @@ function OwnProtocol() {
   const navigate = useNavigate();
 
   const accountAddress = account?.address
-    ? Buffer.from(fromBech32(account?.address).data).toString("base64")
-    : "";
+    ? Buffer.from(fromBech32(account?.address).data).toString('base64')
+    : '';
 
   const { data: scalarClient, isLoading: isScalarClientLoading } = useKeplrClient();
 
@@ -84,7 +84,7 @@ function OwnProtocol() {
       ? []
       : [
           {
-            title: "Protocol",
+            title: 'Protocol',
             items: (
               <div className='flex items-center gap-2'>
                 <Base64Icon url={protocol.avatar} className='size-6' />
@@ -93,11 +93,11 @@ function OwnProtocol() {
             )
           },
           {
-            title: "Token",
+            title: 'Token',
             items: <ChainIcon chain={protocol?.asset?.chain as SupportedChains} showName />
           },
           {
-            title: "Address",
+            title: 'Address',
             items: (
               <If
                 condition={isEmpty(address)}
@@ -112,7 +112,7 @@ function OwnProtocol() {
             )
           },
           {
-            title: "Network",
+            title: 'Network',
             items: (
               <If
                 condition={isEmpty(protocol?.chains)}
@@ -125,7 +125,7 @@ function OwnProtocol() {
             )
           },
           {
-            title: "Status",
+            title: 'Status',
             items: (
               <Badge
                 variant={PROTOCOL_STATUS.OBJECT[protocol?.status].variant}
@@ -171,12 +171,12 @@ function OwnProtocol() {
         aliased_token_name
       };
 
-      const result = await scalarClient.raw.createDeployToken(account.address, newValues, "auto", "");
+      const result = await scalarClient.raw.createDeployToken(account.address, newValues, 'auto', '');
 
       const txHash = result.transactionHash;
 
       queryClient.invalidateQueries({
-        queryKey: ["get", "/scalar/protocol/v1beta1"]
+        queryKey: ['get', '/scalar/protocol/v1beta1']
       });
       reset();
 
@@ -190,20 +190,20 @@ function OwnProtocol() {
             rel='noopener noreferrer'
             className='text-primary underline'
           >
-            {" "}
+            {' '}
             {shortenText(txHash, 8)}
           </a>
         </p>
       );
 
-      navigate({ to: "/protocols" });
+      navigate({ to: '/protocols' });
     } catch (error) {
-      const parsedError = parseKeplrError((error as Error).message || "");
+      const parsedError = parseKeplrError((error as Error).message || '');
 
       if (parsedError) {
         const { detail } = parsedError;
-        const desc = typeof detail === "string" ? detail : detail[0].desc;
-        const [needMessage] = desc.split(":");
+        const desc = typeof detail === 'string' ? detail : detail[0].desc;
+        const [needMessage] = desc.split(':');
 
         if (needMessage) {
           toast.error(needMessage);
@@ -218,11 +218,11 @@ function OwnProtocol() {
     const isConfirmed = await confirm({
       ...confirmDialogConfig.warning,
       icon: <CircleAlert className='size-5 text-primary' />,
-      title: "Network Selection Confirmation",
+      title: 'Network Selection Confirmation',
       description: (
         <div className='flex flex-col gap-2'>
           <p>
-            Once you choose a network for this protocol and save your selection, it will be{" "}
+            Once you choose a network for this protocol and save your selection, it will be{' '}
             <span className='font-semibold'>permanent</span>. You won’t be able to remove or change it later.
           </p>
           <p className='text-secondary-500'>Please double-check your choice before proceeding.</p>
@@ -237,7 +237,7 @@ function OwnProtocol() {
 
   return (
     <div className='flex flex-col gap-5 py-15'>
-      <Heading link={{ to: "/protocols" }}>Your Protocol</Heading>
+      <Heading link={{ to: '/protocols' }}>Your Protocol</Heading>
       <If
         condition={isConnected}
         fallback={
@@ -257,7 +257,7 @@ function OwnProtocol() {
             fallback={
               <div className='flex gap-5 rounded-lg bg-background-secondary p-5'>
                 {protocolData.map((item) => (
-                  <ColumItem key={item.title} {...item} classNames={{ wrapper: "flex-1" }} />
+                  <ColumItem key={item.title} {...item} classNames={{ wrapper: 'flex-1' }} />
                 ))}
               </div>
             }
@@ -291,7 +291,7 @@ function OwnProtocol() {
                           placeholder='Select Network'
                           searchByHideValue
                           options={
-                            filterChains?.map((name = "") => ({
+                            filterChains?.map((name = '') => ({
                               label: <ChainIcon chain={name as SupportedChains} showName />,
                               value: name,
                               disabled: curentNetwork?.includes(name),
@@ -319,7 +319,7 @@ function OwnProtocol() {
                     type='button'
                     className='w-full text-base'
                     onClick={handleConfirm}
-                    disabled={!(watch("chain") && watch("alias"))}
+                    disabled={!(watch('chain') && watch('alias'))}
                     isLoading={formLoading || isScalarClientLoading}
                   >
                     Save

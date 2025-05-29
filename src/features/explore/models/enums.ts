@@ -18,7 +18,7 @@ export enum ETimeBucket {
 }
 
 export enum EExploreType {
-  BRIDGE = "bridge",
-  TRANSFER = "transfer",
-  REDEEM = "redeem",
+  BRIDGE = 'bridge',
+  TRANSFER = 'transfer',
+  REDEEM = 'redeem'
 }

@@ -1,32 +1,32 @@
-import { IGateway_ABI } from "@/abis/igateway";
-import { Base64Icon, ChainIcon, If, SelectSearch } from "@/components/common";
-import { ConnectEvm } from "@/components/connect";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { toast } from "@/components/ui/use-toast";
-import { useERC20, useGateway, useGatewayContract, useScalarProtocols } from "@/hooks";
-import { Chains } from "@/lib/chains";
-import { getChainID, handleTokenApproval, isBtcChain, isEvmChain, validateTransferConfig } from "@/lib/utils";
-import { getWagmiChain, isSupportedChain } from "@/lib/wagmi";
-import { useWalletProvider } from "@/providers/wallet-provider";
-import { SupportedChains } from "@/types/chains";
-import { TProtocolDetails } from "@/types/types";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useQuery } from "@tanstack/react-query";
-import { isNil, keyBy } from "lodash";
-import { ArrowRightLeft } from "lucide-react";
-import { useCallback, useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { toast as sonnerToast } from "sonner";
-import { Hex, decodeErrorResult, formatUnits, parseUnits } from "viem";
-import { useAccount, useChainId, useSwitchChain } from "wagmi";
-import { TTransfersForm, transfersFormSchema } from "../schemas";
+import { IGateway_ABI } from '@/abis/igateway';
+import { Base64Icon, ChainIcon, If, SelectSearch } from '@/components/common';
+import { ConnectEvm } from '@/components/connect';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { toast } from '@/components/ui/use-toast';
+import { useERC20, useGateway, useGatewayContract, useScalarProtocols } from '@/hooks';
+import { Chains } from '@/lib/chains';
+import { getChainID, handleTokenApproval, isBtcChain, isEvmChain, validateTransferConfig } from '@/lib/utils';
+import { getWagmiChain, isSupportedChain } from '@/lib/wagmi';
+import { useWalletProvider } from '@/providers/wallet-provider';
+import { SupportedChains } from '@/types/chains';
+import { TProtocolDetails } from '@/types/types';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useQuery } from '@tanstack/react-query';
+import { isNil, keyBy } from 'lodash';
+import { ArrowRightLeft } from 'lucide-react';
+import { useCallback, useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { toast as sonnerToast } from 'sonner';
+import { Hex, decodeErrorResult, formatUnits, parseUnits } from 'viem';
+import { useAccount, useChainId, useSwitchChain } from 'wagmi';
+import { TTransfersForm, transfersFormSchema } from '../schemas';
 
 const MIN_EVM = 2;
 
-const filterEvmChains = (chains: TProtocolDetails["chains"] = []) => chains.filter((c) => isEvmChain(c));
+const filterEvmChains = (chains: TProtocolDetails['chains'] = []) => chains.filter((c) => isEvmChain(c));
 
 export const TransfersForm = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -38,7 +38,7 @@ export const TransfersForm = () => {
   } = useScalarProtocols();
   const { networkConfig } = useWalletProvider();
   const filterProtocols = protocols.filter((p) => filterEvmChains(p.chains).length >= MIN_EVM);
-  const keyByFilterProtocols = keyBy(filterProtocols, "scalar_address");
+  const keyByFilterProtocols = keyBy(filterProtocols, 'scalar_address');
 
   const form = useForm<TTransfersForm>({
     resolver: zodResolver(transfersFormSchema)
@@ -62,10 +62,10 @@ export const TransfersForm = () => {
 
   const { data: sourceChainBalance } = useQuery({
     queryKey: [
-      "sourceChainBalance",
+      'sourceChainBalance',
       keyByFilterProtocols[watchForm.token]?.asset?.symbol,
       watchForm.sourceChain,
-      evmAddress ?? ""
+      evmAddress ?? ''
     ],
     queryFn: async () => {
       if (!watchForm.sourceChain) return BigInt(0);
@@ -80,7 +80,7 @@ export const TransfersForm = () => {
 
   const showSuccessTx = useCallback(
     (txid: string, chain: string) => {
-      let link = "";
+      let link = '';
       if (isBtcChain(chain)) {
         link = `${networkConfig?.mempoolApiUrl}/tx/${txid}`;
       } else if (isEvmChain(chain)) {
@@ -91,11 +91,11 @@ export const TransfersForm = () => {
         link = `${wagmiChain.blockExplorers?.default.url}/tx/${txid}`;
       }
       toast({
-        title: "Transfer transaction successful",
+        title: 'Transfer transaction successful',
         description: (
           <div className='mt-2 w-160 rounded-md'>
             <p className='text-white'>
-              Txid:{" "}
+              Txid:{' '}
               <a className='text-blue-500 underline' href={link} target='_blank' rel='noopener noreferrer'>
                 {txid.slice(0, 8)}...{txid.slice(-8)} (click to view)
               </a>
@@ -121,12 +121,12 @@ export const TransfersForm = () => {
   useEffect(() => {
     if (decimals && watchForm.transferAmount && sourceChainBalance) {
       if (parseUnits(String(watchForm.transferAmount), Number(decimals)) > sourceChainBalance) {
-        setError("transferAmount", {
-          type: "manual",
-          message: "Amount exceeds available balance"
+        setError('transferAmount', {
+          type: 'manual',
+          message: 'Amount exceeds available balance'
         });
       } else {
-        clearErrors("transferAmount");
+        clearErrors('transferAmount');
       }
     }
   }, [decimals, watchForm.transferAmount, sourceChainBalance, setError, clearErrors]);
@@ -138,11 +138,11 @@ export const TransfersForm = () => {
       validateTransferConfig(sourceTokenAddress, gateway);
 
       if (!isEvmChain(values.destinationChain) || !isEvmChain(values.sourceChain)) {
-        throw new Error("Invalid chain types");
+        throw new Error('Invalid chain types');
       }
 
       if (!evmAddress) {
-        throw new Error("Please connect your wallet first");
+        throw new Error('Please connect your wallet first');
       }
 
       const balance = sourceChainBalance || 0n;
@@ -167,30 +167,30 @@ export const TransfersForm = () => {
         const transferTx = await sendToken({
           destinationChain: values.destinationChain,
           destinationAddress: values.destRecipientAddress,
-          symbol: protocol?.asset?.symbol || "",
+          symbol: protocol?.asset?.symbol || '',
           amount: BigInt(newTransferAmount)
         });
 
-        if (!transferTx) throw new Error("Failed to create transfer transaction");
+        if (!transferTx) throw new Error('Failed to create transfer transaction');
 
         const transferConfirmed = await Promise.race([
-          new Promise((_, reject) => setTimeout(() => reject(new Error("Transfer timeout")), 60000)),
+          new Promise((_, reject) => setTimeout(() => reject(new Error('Transfer timeout')), 60000)),
           transferTx.wait()
         ]);
 
         if (transferConfirmed) {
           showSuccessTx(transferTx.hash, values.sourceChain);
         } else {
-          throw new Error("Transfer failed");
+          throw new Error('Transfer failed');
         }
       } catch (error: any) {
-        if (error.message?.includes("contract runner")) {
-          throw new Error("Please ensure your wallet is connected and network is correct");
+        if (error.message?.includes('contract runner')) {
+          throw new Error('Please ensure your wallet is connected and network is correct');
         }
         throw error;
       }
     } catch (error: any) {
-      let errorMessage = "";
+      let errorMessage = '';
 
       if (error.data) {
         try {
@@ -201,7 +201,7 @@ export const TransfersForm = () => {
 
           errorMessage = `Contract error: ${decodedError.errorName}`;
           if (decodedError.args) {
-            errorMessage += ` (${decodedError.args.join(", ")})`;
+            errorMessage += ` (${decodedError.args.join(', ')})`;
           }
         } catch (_decodeError) {}
       }
@@ -234,14 +234,14 @@ export const TransfersForm = () => {
                     <SelectSearch
                       value={value}
                       onChange={(newValue) => {
-                        setValue("sourceChain", "");
-                        setValue("destinationChain", "");
+                        setValue('sourceChain', '');
+                        setValue('destinationChain', '');
                         onChange(newValue);
                       }}
                       placeholder='Select Token'
                       searchByHideValue
                       options={filterProtocols.map(({ asset, scalar_address, avatar }) => ({
-                        value: scalar_address || "",
+                        value: scalar_address || '',
                         label: (
                           <div className='flex items-center gap-2'>
                             <Base64Icon url={avatar} className='size-6' />
@@ -273,9 +273,9 @@ export const TransfersForm = () => {
                 )}
               />
               <p className='text-right text-base text-text-primary-500/50'>
-                <span>Available wallet:</span>{" "}
+                <span>Available wallet:</span>{' '}
                 <span>
-                  {!isNil(sourceChainBalance) ? formatUnits(sourceChainBalance, Number(decimals)) : 0}{" "}
+                  {!isNil(sourceChainBalance) ? formatUnits(sourceChainBalance, Number(decimals)) : 0}{' '}
                   {keyByFilterProtocols[watchForm.token]?.asset?.symbol}
                 </span>
               </p>
@@ -296,13 +296,13 @@ export const TransfersForm = () => {
                       placeholder='Select chain'
                       searchByHideValue
                       options={chainsFromToken.map(({ chain, name }) => ({
-                        value: chain || "",
+                        value: chain || '',
                         label: (
                           <ChainIcon
                             chain={chain as SupportedChains}
                             showName
                             customName={name}
-                            classNames={{ icon: "size-5", name: "text-base" }}
+                            classNames={{ icon: 'size-5', name: 'text-base' }}
                           />
                         ),
                         disabled: chain === watchForm.destinationChain,
@@ -318,8 +318,8 @@ export const TransfersForm = () => {
                 size='icon'
                 className='mt-auto mb-4'
                 onClick={() => {
-                  setValue("sourceChain", watchForm.destinationChain);
-                  setValue("destinationChain", watchForm.sourceChain);
+                  setValue('sourceChain', watchForm.destinationChain);
+                  setValue('destinationChain', watchForm.sourceChain);
                 }}
                 disabled={!(watchForm.sourceChain || watchForm.destinationChain)}
               >
@@ -338,13 +338,13 @@ export const TransfersForm = () => {
                       placeholder='Select chain'
                       searchByHideValue
                       options={chainsFromToken.map(({ chain, name }) => ({
-                        value: chain || "",
+                        value: chain || '',
                         label: (
                           <ChainIcon
                             chain={chain as SupportedChains}
                             showName
                             customName={name}
-                            classNames={{ icon: "size-5", name: "text-base" }}
+                            classNames={{ icon: 'size-5', name: 'text-base' }}
                           />
                         ),
                         disabled: chain === watchForm.sourceChain,

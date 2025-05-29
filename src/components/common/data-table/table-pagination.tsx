@@ -1,10 +1,10 @@
-import { Button } from "@/components/ui/button";
-import { Skeleton } from "@/components/ui/skeleton";
-import { cn } from "@/lib/utils";
-import { type Table as TableType } from "@tanstack/react-table";
-import { range } from "lodash";
-import { ChevronLeft, ChevronRight, ChevronsLeftIcon, ChevronsRightIcon } from "lucide-react";
-import { If } from "../if";
+import { Button } from '@/components/ui/button';
+import { Skeleton } from '@/components/ui/skeleton';
+import { cn } from '@/lib/utils';
+import { type Table as TableType } from '@tanstack/react-table';
+import { range } from 'lodash';
+import { ChevronLeft, ChevronRight, ChevronsLeftIcon, ChevronsRightIcon } from 'lucide-react';
+import { If } from '../if';
 
 type TablePaginationProps<TData> = {
   className?: string;
@@ -13,7 +13,7 @@ type TablePaginationProps<TData> = {
   pageSizeOptions?: number[];
 };
 
-const ELLIPSIS = "...";
+const ELLIPSIS = '...';
 
 export function TablePagination<TData>({ table, className, isLoading = false }: TablePaginationProps<TData>) {
   const {
@@ -36,13 +36,13 @@ export function TablePagination<TData>({ table, className, isLoading = false }: 
     <div
       className={cn(
         // Background
-        "bg-white",
+        'bg-white',
 
         // Layout
-        "flex flex-wrap items-center",
+        'flex flex-wrap items-center',
 
         // Spacing
-        "gap-4 py-4 md:px-2",
+        'gap-4 py-4 md:px-2',
         className
       )}
     >
@@ -87,9 +87,9 @@ export function TablePagination<TData>({ table, className, isLoading = false }: 
                     }
                   }}
                   className={cn(
-                    "bg-hovering",
-                    pageNumber === page && "bg-primary text-white hover:text-white",
-                    pageNumber === ELLIPSIS && "bg-transparent"
+                    'bg-hovering',
+                    pageNumber === page && 'bg-primary text-white hover:text-white',
+                    pageNumber === ELLIPSIS && 'bg-transparent'
                   )}
                   size='icon'
                   disabled={pageNumber === ELLIPSIS}
@@ -127,7 +127,7 @@ export function TablePagination<TData>({ table, className, isLoading = false }: 
   );
 }
 
-const ELLIPSES = "...";
+const ELLIPSES = '...';
 
 const generatePages = (current: number, total: number, siblings: number) => {
   const totalNumbers = siblings * 2 + 3;

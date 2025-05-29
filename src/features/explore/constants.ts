@@ -1,5 +1,5 @@
-import { UtilityList } from "@/lib/utils";
-import { ECrossChainStatus, EExploreType } from "./models";
+import { UtilityList } from '@/lib/utils';
+import { ECrossChainStatus, EExploreType } from './models';
 
 export const CROSS_CHAIN_STATUS = new UtilityList<{
   label: string;
@@ -7,44 +7,44 @@ export const CROSS_CHAIN_STATUS = new UtilityList<{
   className?: string;
 }>([
   {
-    label: "Pending",
+    label: 'Pending',
     value: ECrossChainStatus.PENDING,
-    className: "bg-pending"
+    className: 'bg-pending'
   },
   {
-    label: "Verifying",
+    label: 'Verifying',
     value: ECrossChainStatus.VERIFYING,
-    className: "bg-primary"
+    className: 'bg-primary'
   },
   {
-    label: "Approved",
+    label: 'Approved',
     value: ECrossChainStatus.APPROVED
   },
   {
-    label: "Signing",
+    label: 'Signing',
     value: ECrossChainStatus.SIGNING
   },
   {
-    label: "Executing",
+    label: 'Executing',
     value: ECrossChainStatus.EXECUTING,
-    className: "bg-executing"
+    className: 'bg-executing'
   },
   {
-    label: "Success",
+    label: 'Success',
     value: ECrossChainStatus.SUCCESS,
-    className: "bg-success"
+    className: 'bg-success'
   },
   {
-    label: "Failed",
+    label: 'Failed',
     value: ECrossChainStatus.FAILED,
-    className: "bg-failed"
+    className: 'bg-failed'
   },
   {
-    label: "Cancelled",
+    label: 'Cancelled',
     value: ECrossChainStatus.CANCELLED
   },
   {
-    label: "Deleted",
+    label: 'Deleted',
     value: ECrossChainStatus.DELETED
   }
 ]);
@@ -54,11 +54,11 @@ export const EXPLORE_TYPE = new UtilityList<{
   value: EExploreType;
   path: string;
 }>([
-  { label: "Bridge", value: EExploreType.BRIDGE, path: "/explore/bridge" },
+  { label: 'Bridge', value: EExploreType.BRIDGE, path: '/explore/bridge' },
   {
-    label: "Transfer",
+    label: 'Transfer',
     value: EExploreType.TRANSFER,
-    path: "/explore/transfer"
+    path: '/explore/transfer'
   },
-  { label: "Redeem", value: EExploreType.REDEEM, path: "/explore/redeem" }
+  { label: 'Redeem', value: EExploreType.REDEEM, path: '/explore/redeem' }
 ]);

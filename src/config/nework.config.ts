@@ -1,4 +1,4 @@
-import { Network } from "@/lib/wallet";
+import { Network } from '@/lib/wallet';
 
 const mempoolApiUrl = import.meta.env.VITE_MEMPOOL_API;
 
@@ -11,33 +11,33 @@ export interface NetworkConfig {
 }
 
 const mainnetConfig: NetworkConfig = {
-  coinName: "BTC",
-  coinSymbol: "BTC",
-  networkName: "BTC",
+  coinName: 'BTC',
+  coinSymbol: 'BTC',
+  networkName: 'BTC',
   mempoolApiUrl,
   network: Network.MAINNET
 };
 
 const testnetConfig: NetworkConfig = {
-  coinName: "Testnet BTC",
-  coinSymbol: "tBTC",
-  networkName: "BTC testnet",
+  coinName: 'Testnet BTC',
+  coinSymbol: 'tBTC',
+  networkName: 'BTC testnet',
   mempoolApiUrl: `${mempoolApiUrl}/testnet`,
   network: Network.TESTNET
 };
 
 const testnet4Config: NetworkConfig = {
-  coinName: "Testnet BTC",
-  coinSymbol: "tBTC",
-  networkName: "BTC testnet4",
+  coinName: 'Testnet BTC',
+  coinSymbol: 'tBTC',
+  networkName: 'BTC testnet4',
   mempoolApiUrl: `${mempoolApiUrl}/testnet4`,
   network: Network.TESTNET4
 };
 
 const regtestConfig: NetworkConfig = {
-  coinName: "Regtest BTC",
-  coinSymbol: "rBTC",
-  networkName: "BTC regtest",
+  coinName: 'Regtest BTC',
+  coinSymbol: 'rBTC',
+  networkName: 'BTC regtest',
   mempoolApiUrl,
   network: Network.REGTEST
 };
@@ -60,10 +60,10 @@ export function getNetworkConfig(network = Network.TESTNET4): NetworkConfig {
 }
 
 export function validateAddress(network: Network, address: string): void {
-  if (network === Network.MAINNET && !address.startsWith("bc1")) {
+  if (network === Network.MAINNET && !address.startsWith('bc1')) {
     throw new Error("Incorrect address prefix for Mainnet. Expected address to start with 'bc1'.");
   }
-  if ([Network.TESTNET, Network.TESTNET4].includes(network) && !address.startsWith("tb1")) {
+  if ([Network.TESTNET, Network.TESTNET4].includes(network) && !address.startsWith('tb1')) {
     throw new Error("Incorrect address prefix for Testnet / Signet. Expected address to start with 'tb1'.");
   }
   if (![Network.MAINNET, Network.TESTNET, Network.TESTNET4].includes(network)) {

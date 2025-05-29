@@ -1,20 +1,20 @@
-import NoteIcon from "@/assets/icons/note.svg";
-import WalletIcon from "@/assets/icons/wallet.svg";
-import { Heading, If, InputSearchBox } from "@/components/common";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { COMMON_VALIDATE_PAGE_SEARCH_PARAMS } from "@/constants";
-import { ProtocolCard, ProtocolCardSkeleton, ProtocolForm } from "@/features/protocol";
-import { useScalarProtocols } from "@/hooks";
-import { cn, fuzzyMatch } from "@/lib/utils";
-import { useAccount, useConnectKeplr, useKeplrClient } from "@/providers/keplr-provider";
-import { fromBech32 } from "@cosmjs/encoding";
-import { Link, createFileRoute } from "@tanstack/react-router";
-import { isEmpty, range } from "lodash";
-import { useMemo, useState } from "react";
+import NoteIcon from '@/assets/icons/note.svg';
+import WalletIcon from '@/assets/icons/wallet.svg';
+import { Heading, If, InputSearchBox } from '@/components/common';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { COMMON_VALIDATE_PAGE_SEARCH_PARAMS } from '@/constants';
+import { ProtocolCard, ProtocolCardSkeleton, ProtocolForm } from '@/features/protocol';
+import { useScalarProtocols } from '@/hooks';
+import { cn, fuzzyMatch } from '@/lib/utils';
+import { useAccount, useConnectKeplr, useKeplrClient } from '@/providers/keplr-provider';
+import { fromBech32 } from '@cosmjs/encoding';
+import { Link, createFileRoute } from '@tanstack/react-router';
+import { isEmpty, range } from 'lodash';
+import { useMemo, useState } from 'react';
 
-export const Route = createFileRoute("/protocols/")({
+export const Route = createFileRoute('/protocols/')({
   component: Protocols,
   validateSearch: COMMON_VALIDATE_PAGE_SEARCH_PARAMS
 });
@@ -31,13 +31,13 @@ function Protocols() {
   const { data, isLoading } = useScalarProtocols();
 
   const filteredProtocols = useMemo(
-    () => data?.protocols?.filter((protocol) => fuzzyMatch(protocol?.name || "", q || "")),
+    () => data?.protocols?.filter((protocol) => fuzzyMatch(protocol?.name || '', q || '')),
     [data?.protocols, q]
   );
 
   const accountAddress = account?.address
-    ? Buffer.from(fromBech32(account?.address).data).toString("base64")
-    : "";
+    ? Buffer.from(fromBech32(account?.address).data).toString('base64')
+    : '';
 
   const isOwnCreated = useMemo(() => {
     if (isEmpty(data?.protocols) || !accountAddress) return false;
@@ -53,16 +53,16 @@ function Protocols() {
           <div
             className={cn(
               // Flexbox Container
-              "flex items-center justify-center",
+              'flex items-center justify-center',
 
               // Size
-              "size-17.5",
+              'size-17.5',
 
               // Border Radius
-              "rounded-lg",
+              'rounded-lg',
 
               // Color
-              "bg-[#EDF1FF] text-text-primary-500"
+              'bg-[#EDF1FF] text-text-primary-500'
             )}
           >
             <If condition={isConnect} fallback={<WalletIcon />}>
@@ -72,9 +72,9 @@ function Protocols() {
           <p className='mr-auto text-text-primary-500'>
             {isConnect
               ? isOwnCreated
-                ? "You have created a protocol."
-                : "Rigister your protocol."
-              : "Connect your wallet to register protocol."}
+                ? 'You have created a protocol.'
+                : 'Rigister your protocol.'
+              : 'Connect your wallet to register protocol.'}
           </p>
           <Dialog open={open} onOpenChange={setOpen}>
             <If

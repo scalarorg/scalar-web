@@ -1,7 +1,7 @@
-import DEFAULT_ICON from "@/assets/images/default-icon.png";
-import { ChainIcon, If, ImageCropper, SelectSearch } from "@/components/common";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
+import DEFAULT_ICON from '@/assets/images/default-icon.png';
+import { ChainIcon, If, ImageCropper, SelectSearch } from '@/components/common';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
@@ -10,23 +10,23 @@ import {
   FormItem,
   FormLabel,
   FormMessage
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { useScalarChains, useScalarCustodianGroups } from "@/hooks";
-import { Chains } from "@/lib/chains";
-import { CreateProtocolParams, LiquidityModelParams } from "@/lib/scalar/params";
-import { cn, extractBase64Data, isBtcChain, parseKeplrError, shortenText } from "@/lib/utils";
-import { convertToBytes } from "@/lib/wallet";
-import { useAccount, useKeplrClient } from "@/providers/keplr-provider";
-import { SupportedChains } from "@/types/chains";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useQueryClient } from "@tanstack/react-query";
-import { Dispatch, SetStateAction, useCallback, useState } from "react";
-import { FileWithPath, useDropzone } from "react-dropzone";
-import { useForm } from "react-hook-form";
-import { toast } from "sonner";
-import { LIQUIDITY_MODEL, MAX_FILE_SIZE } from "../constans";
-import { TProtocolForm, protocolFormSchema } from "../schemas";
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { useScalarChains, useScalarCustodianGroups } from '@/hooks';
+import { Chains } from '@/lib/chains';
+import { CreateProtocolParams, LiquidityModelParams } from '@/lib/scalar/params';
+import { cn, extractBase64Data, isBtcChain, parseKeplrError, shortenText } from '@/lib/utils';
+import { convertToBytes } from '@/lib/wallet';
+import { useAccount, useKeplrClient } from '@/providers/keplr-provider';
+import { SupportedChains } from '@/types/chains';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useQueryClient } from '@tanstack/react-query';
+import { Dispatch, SetStateAction, useCallback, useState } from 'react';
+import { FileWithPath, useDropzone } from 'react-dropzone';
+import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
+import { LIQUIDITY_MODEL, MAX_FILE_SIZE } from '../constans';
+import { TProtocolForm, protocolFormSchema } from '../schemas';
 
 type Props = {
   setOpen: Dispatch<SetStateAction<boolean>>;
@@ -51,10 +51,10 @@ export const ProtocolForm = ({ setOpen }: Props) => {
   const form = useForm<TProtocolForm>({
     resolver: zodResolver(protocolFormSchema),
     defaultValues: {
-      model: "LIQUIDITY_MODEL_POOL",
+      model: 'LIQUIDITY_MODEL_POOL',
       token_decimals: 8,
-      token_daily_mint_limit: "0",
-      token_capacity: "0"
+      token_daily_mint_limit: '0',
+      token_capacity: '0'
     }
   });
 
@@ -67,13 +67,13 @@ export const ProtocolForm = ({ setOpen }: Props) => {
       const file = acceptedFiles[0];
       const fileSize = file.size;
 
-      if (fileSize > convertToBytes(MAX_FILE_SIZE, "MB")) {
-        toast.error("Selected image is too large!");
+      if (fileSize > convertToBytes(MAX_FILE_SIZE, 'MB')) {
+        toast.error('Selected image is too large!');
         return;
       }
 
       const preview = URL.createObjectURL(file);
-      setValue("avatar", preview);
+      setValue('avatar', preview);
       setOpenCropper(true);
     },
     [setValue]
@@ -82,7 +82,7 @@ export const ProtocolForm = ({ setOpen }: Props) => {
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
     accept: {
-      "image/*": []
+      'image/*': []
     }
   });
 
@@ -104,12 +104,12 @@ export const ProtocolForm = ({ setOpen }: Props) => {
         avatar: extractBase64Data(avatar)
       };
 
-      const result = await scalarClient.raw.createProtocol(account.address, newValues, "auto", "");
+      const result = await scalarClient.raw.createProtocol(account.address, newValues, 'auto', '');
 
       const txHash = result.transactionHash;
 
       queryClient.invalidateQueries({
-        queryKey: ["get", "/scalar/protocol/v1beta1"]
+        queryKey: ['get', '/scalar/protocol/v1beta1']
       });
 
       toast.success(
@@ -122,7 +122,7 @@ export const ProtocolForm = ({ setOpen }: Props) => {
             rel='noopener noreferrer'
             className='text-primary underline'
           >
-            {" "}
+            {' '}
             {shortenText(txHash, 8)}
           </a>
         </p>
@@ -130,12 +130,12 @@ export const ProtocolForm = ({ setOpen }: Props) => {
 
       setOpen(false);
     } catch (error) {
-      const parsedError = parseKeplrError((error as Error).message || "");
+      const parsedError = parseKeplrError((error as Error).message || '');
 
       if (parsedError) {
         const { detail } = parsedError;
-        const desc = typeof detail === "string" ? detail : detail[0].desc;
-        const [needMessage] = desc.split(":");
+        const desc = typeof detail === 'string' ? detail : detail[0].desc;
+        const [needMessage] = desc.split(':');
 
         if (needMessage) {
           toast.error(needMessage);
@@ -152,17 +152,17 @@ export const ProtocolForm = ({ setOpen }: Props) => {
         onSubmit={handleSubmit(onSubmit)}
         className={cn(
           // Layout
-          "max-h-125 space-y-5 overflow-y-auto px-1",
+          'max-h-125 space-y-5 overflow-y-auto px-1',
 
           // Position & Margin
-          "relative mt-5",
+          'relative mt-5',
 
           // Styling for label elements with data-slot="form-label"
-          "[&_label[data-slot=form-label]]:text-base",
+          '[&_label[data-slot=form-label]]:text-base',
 
           // Styling for input elements with data-slot="form-control"
-          "[&_input[data-slot=form-control]]:h-10",
-          "[&_button[data-slot=form-control]]:h-10"
+          '[&_input[data-slot=form-control]]:h-10',
+          '[&_button[data-slot=form-control]]:h-10'
         )}
       >
         <div className='flex items-center gap-5'>
@@ -203,7 +203,7 @@ export const ProtocolForm = ({ setOpen }: Props) => {
                       setDialogOpen={setOpenCropper}
                       imageUrl={imageUrl}
                       onCropComplete={onChange}
-                      onCancel={() => onChange("")}
+                      onCancel={() => onChange('')}
                     />
                   )}
                 </If>
@@ -316,7 +316,7 @@ export const ProtocolForm = ({ setOpen }: Props) => {
                   value={value}
                   onChange={onChange}
                   options={LIQUIDITY_MODEL.LIST}
-                  classNames={{ wrapper: "w-50" }}
+                  classNames={{ wrapper: 'w-50' }}
                 />
                 <FormMessage />
               </FormItem>
@@ -334,8 +334,8 @@ export const ProtocolForm = ({ setOpen }: Props) => {
                   placeholder='Select custodian group'
                   searchByHideValue
                   options={
-                    groups?.map(({ uid = "", name = "" }) => ({
-                      value: Buffer.from(Uint8Array.from(uid)).toString("hex"),
+                    groups?.map(({ uid = '', name = '' }) => ({
+                      value: Buffer.from(Uint8Array.from(uid)).toString('hex'),
                       label: name,
                       hideValue: name
                     })) || []
@@ -359,7 +359,7 @@ export const ProtocolForm = ({ setOpen }: Props) => {
                   placeholder='Select chain'
                   searchByHideValue
                   options={
-                    filterChains?.map((name = "") => ({
+                    filterChains?.map((name = '') => ({
                       value: name,
                       label: <ChainIcon chain={name as SupportedChains} showName />,
                       hideValue: name || Chains[name as SupportedChains]?.name

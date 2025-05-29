@@ -1,11 +1,11 @@
-import LockedIcon from "@/assets/icons/locked.svg";
-import TransactionIcon from "@/assets/icons/transaction.svg";
-import UserIcon from "@/assets/icons/user.svg";
-import { Heading, If, InputSearchBox } from "@/components/common";
-import { Skeleton } from "@/components/ui/skeleton";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { COMMON_VALIDATE_PAGE_SEARCH_PARAMS } from "@/constants";
-import { ETimeBucket, useExploreQuery } from "@/features/explore";
+import LockedIcon from '@/assets/icons/locked.svg';
+import TransactionIcon from '@/assets/icons/transaction.svg';
+import UserIcon from '@/assets/icons/user.svg';
+import { Heading, If, InputSearchBox } from '@/components/common';
+import { Skeleton } from '@/components/ui/skeleton';
+import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { COMMON_VALIDATE_PAGE_SEARCH_PARAMS } from '@/constants';
+import { ETimeBucket, useExploreQuery } from '@/features/explore';
 import {
   ChartCard,
   ChartCardSkeleton,
@@ -15,14 +15,14 @@ import {
   type TTopCardProps,
   TopCard,
   TopCardSkeleton
-} from "@/features/protocol";
-import { cn, formatDate, formatNumber } from "@/lib/utils";
-import { createFileRoute } from "@tanstack/react-router";
-import { isEmpty } from "lodash";
-import { ReactNode, useMemo } from "react";
-import { z } from "zod";
+} from '@/features/protocol';
+import { cn, formatDate, formatNumber } from '@/lib/utils';
+import { createFileRoute } from '@tanstack/react-router';
+import { isEmpty } from 'lodash';
+import { ReactNode, useMemo } from 'react';
+import { z } from 'zod';
 
-export const Route = createFileRoute("/explore/statistic/")({
+export const Route = createFileRoute('/explore/statistic/')({
   component: Statistic,
   validateSearch: COMMON_VALIDATE_PAGE_SEARCH_PARAMS.extend({
     time_bucket: z.nativeEnum(ETimeBucket).optional()
@@ -46,12 +46,12 @@ const tabs: {
   name: string;
   value: ETimeBucket;
 }[] = [
-  { name: "7D", value: ETimeBucket.WEEK },
-  { name: "30D", value: ETimeBucket.MONTH },
-  { name: "ALL", value: ETimeBucket.DAY }
+  { name: '7D', value: ETimeBucket.WEEK },
+  { name: '30D', value: ETimeBucket.MONTH },
+  { name: 'ALL', value: ETimeBucket.DAY }
 ];
 
-const formatDateChart = (date: number) => formatDate(date, "DD-MM");
+const formatDateChart = (date: number) => formatDate(date, 'DD-MM');
 
 const NoData = () => <p className='text-center font-semibold text-2xl'>No data available</p>;
 
@@ -71,36 +71,36 @@ function Statistic() {
 
     return [
       {
-        title: "Transaction",
+        title: 'Transaction',
         data: data?.txs?.map((i) => ({
           xAxis: formatDateChart(i.time),
           yAxis: i.data
         })),
-        chartLabel: "Transaction"
+        chartLabel: 'Transaction'
       },
       {
-        title: "Volume",
+        title: 'Volume',
         data: data?.volumes?.map((i) => ({
           xAxis: formatDateChart(i.time),
           yAxis: i.data
         })),
-        chartLabel: "Volume"
+        chartLabel: 'Volume'
       },
       {
-        title: "Active users",
+        title: 'Active users',
         data: data?.active_users?.map((i) => ({
           xAxis: formatDateChart(i.time),
           yAxis: i.data
         })),
-        chartLabel: "Users"
+        chartLabel: 'Users'
       },
       {
-        title: "New users",
+        title: 'New users',
         data: data?.new_users?.map((i) => ({
           xAxis: formatDateChart(i.time),
           yAxis: i.data
         })),
-        chartLabel: "Users"
+        chartLabel: 'Users'
       }
     ];
   }, [data]);
@@ -110,18 +110,18 @@ function Statistic() {
 
     return [
       {
-        label: "Total transactions",
+        label: 'Total transactions',
         value: data?.total_txs,
         icon: <TransactionIcon />
       },
       {
-        label: "Total value locked",
+        label: 'Total value locked',
         value: data?.total_volumes,
         icon: <LockedIcon />,
-        unit: "$"
+        unit: '$'
       },
       {
-        label: "Users",
+        label: 'Users',
         value: data?.total_users,
         icon: <UserIcon />
       }
@@ -133,16 +133,16 @@ function Statistic() {
 
     return [
       {
-        title: "Top Users",
-        description: "Top Users by token transfers transactions",
+        title: 'Top Users',
+        description: 'Top Users by token transfers transactions',
         data: data?.top_users?.map(({ address: name, amount: value }) => ({
           name,
           value
         }))
       },
       {
-        title: "Top Holder",
-        description: "Top users by BTC deposits through the bridge",
+        title: 'Top Holder',
+        description: 'Top users by BTC deposits through the bridge',
         data: data?.top_bridges?.map(({ address: name, amount: value }) => ({
           name,
           value
@@ -156,13 +156,13 @@ function Statistic() {
 
     return [
       {
-        title: "By transactions",
+        title: 'By transactions',
         pathsData: data?.top_paths_by_tx,
         sourceData: data?.top_source_chains_by_tx,
         destinationData: data?.top_destination_chains_by_tx
       },
       {
-        title: "By volume",
+        title: 'By volume',
         pathsData: data?.top_paths_by_volume,
         sourceData: data?.top_source_chains_by_volume,
         destinationData: data?.top_destination_chains_by_volume
@@ -183,11 +183,11 @@ function Statistic() {
       <div
         className={cn(
           // Flexbox container
-          "flex items-center justify-between gap-2",
+          'flex items-center justify-between gap-2',
 
           // Apply styles to direct child div elements
-          "[&>div]:w-[40%]",
-          "[&>div]:max-w-172.5"
+          '[&>div]:w-[40%]',
+          '[&>div]:max-w-172.5'
         )}
       >
         <Heading>Protocol Overview</Heading>
@@ -204,30 +204,30 @@ function Statistic() {
                   key={label}
                   className={cn(
                     // Padding
-                    "p-6",
+                    'p-6',
 
                     // Border Radius
-                    "rounded-lg",
+                    'rounded-lg',
 
                     // Background Color
-                    "bg-primary",
+                    'bg-primary',
 
                     // Flexbox Container
-                    "flex flex-1 items-center justify-between gap-2",
+                    'flex flex-1 items-center justify-between gap-2',
                     className?.container
                   )}
                 >
                   <div
                     className={cn(
-                      "flex h-full flex-col gap-1 text-white uppercase",
+                      'flex h-full flex-col gap-1 text-white uppercase',
                       className?.contentWrapper
                     )}
                   >
-                    <p className={cn("font-semibold text-[40px]", className?.content)}>
+                    <p className={cn('font-semibold text-[40px]', className?.content)}>
                       {unit}
                       {formatNumber(value)}
                     </p>
-                    <p className={cn("text-lg", className?.label)}>{label}</p>
+                    <p className={cn('text-lg', className?.label)}>{label}</p>
                   </div>
                   {icon}
                 </div>
