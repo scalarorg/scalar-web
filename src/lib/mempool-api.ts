@@ -1,6 +1,6 @@
-import { getNetworkConfig } from "@/config/nework.config";
-import { Fees, Network, UTXO } from "@/lib/wallet";
-import { MempoolUTXO } from "@/types/btc";
+import { getNetworkConfig } from '@/config/nework.config';
+import { Fees, Network, UTXO } from '@/lib/wallet';
+import { MempoolUTXO } from '@/types/btc';
 
 const { mempoolApiUrl } = getNetworkConfig();
 
@@ -50,10 +50,7 @@ function txInfoUrl(txId: string): URL {
 
 export function mempoolWebTxUrl(txId: string, network = Network.TESTNET): URL {
   const mempool_web_url = import.meta.env.VITE_MEMPOOL_API;
-  const tx_preview_prefix =
-    network === Network.MAINNET || network === Network.REGTEST
-      ? ""
-      : "testnet/";
+  const tx_preview_prefix = network === Network.MAINNET || network === Network.REGTEST ? '' : 'testnet/';
   return new URL(`${mempool_web_url}/${tx_preview_prefix}tx/${txId}`);
 }
 
@@ -64,24 +61,24 @@ export function mempoolWebTxUrl(txId: string, network = Network.TESTNET): URL {
  */
 export async function pushTx(txHex: string): Promise<string> {
   const response = await fetch(pushTxUrl(), {
-    method: "POST",
-    body: txHex,
+    method: 'POST',
+    body: txHex
   });
   if (!response.ok) {
     try {
       const mempoolError = await response.text();
       // Extract the error message from the response
       const message = mempoolError?.split('"message":"')[1]?.split('"}')[0];
-      if (mempoolError.includes("error") || mempoolError.includes("message")) {
+      if (mempoolError.includes('error') || mempoolError.includes('message')) {
         throw new Error(message);
       }
-      throw new Error("Error broadcasting transaction. Please try again");
+      throw new Error('Error broadcasting transaction. Please try again');
     } catch (error: unknown) {
-      let errorMessage = "An unknown error occurred";
+      let errorMessage = 'An unknown error occurred';
 
       if (error instanceof Error) {
         errorMessage = error.message;
-      } else if (typeof error === "string") {
+      } else if (typeof error === 'string') {
         errorMessage = error;
       }
 
@@ -105,10 +102,7 @@ export async function getAddressBalance(address: string): Promise<number> {
     throw new Error(err);
   }
   const addressInfo = await response.json();
-  return (
-    addressInfo.chain_stats.funded_txo_sum -
-    addressInfo.chain_stats.spent_txo_sum
-  );
+  return addressInfo.chain_stats.funded_txo_sum - addressInfo.chain_stats.spent_txo_sum;
 }
 
 /**
@@ -132,7 +126,7 @@ export async function getTipHeight(): Promise<number> {
   }
   const height = Number(result);
   if (Number.isNaN(height)) {
-    throw new Error("Invalid result returned");
+    throw new Error('Invalid result returned');
   }
   return height;
 }
@@ -148,7 +142,7 @@ export async function getTipHeight(): Promise<number> {
 export async function getFundingUTXOs(
   address: string,
   amount?: number,
-  nominatedUTXOs?: MempoolUTXO[],
+  nominatedUTXOs?: MempoolUTXO[]
 ): Promise<UTXO[]> {
   // Get all UTXOs for the given address
 
@@ -161,11 +155,11 @@ export async function getFundingUTXOs(
       utxos = await response.json();
     }
   } catch (error: unknown) {
-    let errorMessage = "An unknown error occurred";
+    let errorMessage = 'An unknown error occurred';
 
     if (error instanceof Error) {
       errorMessage = error.message;
-    } else if (typeof error === "string") {
+    } else if (typeof error === 'string') {
       errorMessage = error;
     }
 
@@ -177,9 +171,7 @@ export async function getFundingUTXOs(
   // We want them in descending order, as we prefer to find the least number
   // of inputs that will satisfy the `amount` requirement,
   // as less inputs lead to a smaller transaction and therefore smaller fees.
-  const confirmedUTXOs = utxos
-    .filter((utxo) => utxo?.status?.confirmed)
-    .sort((a, b) => b.value - a.value);
+  const confirmedUTXOs = utxos.filter((utxo) => utxo?.status?.confirmed).sort((a, b) => b.value - a.value);
 
   // If amount is provided, reduce the list of UTXOs into a list that
   // contains just enough UTXOs to satisfy the `amount` requirement.
@@ -209,7 +201,7 @@ export async function getFundingUTXOs(
   const addressInfo = await response.json();
   const { isvalid, scriptPubKey } = addressInfo;
   if (!isvalid) {
-    throw new Error("Invalid address");
+    throw new Error('Invalid address');
   }
 
   // Iterate through the final list of UTXOs to construct the result list.
@@ -219,7 +211,7 @@ export async function getFundingUTXOs(
       txid: s.txid,
       vout: s.vout,
       value: s.value,
-      scriptPubKey: scriptPubKey,
+      scriptPubKey: scriptPubKey
     };
   });
 }

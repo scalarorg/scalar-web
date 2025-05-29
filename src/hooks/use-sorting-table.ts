@@ -1,7 +1,7 @@
-import { ESortDirection } from "@/enums";
-import { useRouter } from "@tanstack/react-router";
-import type { OnChangeFn, SortingState } from "@tanstack/react-table";
-import { useCallback, useMemo, useTransition } from "react";
+import { ESortDirection } from '@/enums';
+import { useRouter } from '@tanstack/react-router';
+import type { OnChangeFn, SortingState } from '@tanstack/react-table';
+import { useCallback, useMemo, useTransition } from 'react';
 
 export function useSortingTable() {
   const router = useRouter();
@@ -17,16 +17,16 @@ export function useSortingTable() {
         ? [
             {
               desc: sortDirection === ESortDirection.DESC,
-              id: sort,
-            },
+              id: sort
+            }
           ]
         : [],
-    [sort, sortDirection],
+    [sort, sortDirection]
   );
 
   const onSortingChange = useCallback<OnChangeFn<SortingState>>(
     (updaterOrValue) => {
-      if (typeof updaterOrValue === "function") {
+      if (typeof updaterOrValue === 'function') {
         const sorts = updaterOrValue(sorting);
         const sort = sorts.at(0);
 
@@ -43,17 +43,17 @@ export function useSortingTable() {
         startTransition(() => {
           navigate({
             to: pathname,
-            search: { ...search, sort: sortId, sortDirection },
+            search: { ...search, sort: sortId, sortDirection }
           });
         });
       }
     },
-    [sorting, navigate, pathname, search],
+    [sorting, navigate, pathname, search]
   );
 
   return {
     sorting,
     isPending,
-    onSortingChange,
+    onSortingChange
   };
 }

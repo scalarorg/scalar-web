@@ -1,14 +1,11 @@
-import { Heading } from "@/components/common";
-import {
-  COMMON_DEFAULT_PAGE_SIZE,
-  COMMON_VALIDATE_PAGE_SEARCH_PARAMS,
-} from "@/constants";
-import { ExploreTable, useExploreQuery } from "@/features/explore";
-import { createFileRoute } from "@tanstack/react-router";
+import { Heading } from '@/components/common';
+import { COMMON_DEFAULT_PAGE_SIZE, COMMON_VALIDATE_PAGE_SEARCH_PARAMS } from '@/constants';
+import { ExploreTable, useExploreQuery } from '@/features/explore';
+import { createFileRoute } from '@tanstack/react-router';
 
-export const Route = createFileRoute("/explore/bridge/")({
+export const Route = createFileRoute('/explore/bridge/')({
   component: ExploreBridge,
-  validateSearch: COMMON_VALIDATE_PAGE_SEARCH_PARAMS,
+  validateSearch: COMMON_VALIDATE_PAGE_SEARCH_PARAMS
 });
 
 function ExploreBridge() {
@@ -17,11 +14,11 @@ function ExploreBridge() {
   const { data, isLoading, isRefetching } = useExploreQuery.useList({
     size,
     page,
-    type: "bridge",
+    type: 'bridge'
   });
 
   return (
-    <div className="flex flex-col gap-5 py-[60px]">
+    <div className='flex flex-col gap-5 py-[60px]'>
       <Heading>Bridge</Heading>
       <ExploreTable
         data={data ?? { data: [], total: 0 }}

@@ -1,1 +1,1 @@
-export * from "./protocol-form";
+export * from './protocol-form';

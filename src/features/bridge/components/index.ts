@@ -1,1 +1,1 @@
-export * from "./bridge-form";
+export * from './bridge-form';

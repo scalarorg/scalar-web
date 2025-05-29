@@ -1,19 +1,19 @@
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 export const ConnectEvm = ({
   hideTitle,
-  className,
+  className
 }: {
   hideTitle?: boolean;
   className?: string;
 }) => {
   return (
-    <div className="flex w-full flex-col gap-2">
+    <div className='flex w-full flex-col gap-2'>
       {!hideTitle && (
-        <div className="flex items-center justify-between gap-2">
-          <span className="font-semibold text-lg">EVM</span>
+        <div className='flex items-center justify-between gap-2'>
+          <span className='font-semibold text-lg'>EVM</span>
         </div>
       )}
       <ConnectButton.Custom>
@@ -24,26 +24,23 @@ export const ConnectEvm = ({
           openChainModal,
           openConnectModal,
           authenticationStatus,
-          mounted,
+          mounted
         }) => {
           // Note: If your app doesn't use authentication, you
           // can remove all 'authenticationStatus' checks
-          const ready = mounted && authenticationStatus !== "loading";
+          const ready = mounted && authenticationStatus !== 'loading';
           const connected =
-            ready &&
-            account &&
-            chain &&
-            (!authenticationStatus || authenticationStatus === "authenticated");
+            ready && account && chain && (!authenticationStatus || authenticationStatus === 'authenticated');
 
           return (
             <div
               {...(!ready && {
-                "aria-hidden": true,
+                'aria-hidden': true,
                 style: {
                   opacity: 0,
-                  pointerEvents: "none",
-                  userSelect: "none",
-                },
+                  pointerEvents: 'none',
+                  userSelect: 'none'
+                }
               })}
             >
               {(() => {
@@ -51,9 +48,9 @@ export const ConnectEvm = ({
                   return (
                     <Button
                       onClick={openConnectModal}
-                      type="button"
-                      className={cn("w-full", className)}
-                      size="lg"
+                      type='button'
+                      className={cn('w-full', className)}
+                      size='lg'
                     >
                       Connect wallet
                     </Button>
@@ -62,48 +59,33 @@ export const ConnectEvm = ({
 
                 if (chain.unsupported) {
                   return (
-                    <Button
-                      onClick={openChainModal}
-                      type="button"
-                      className="w-full"
-                    >
+                    <Button onClick={openChainModal} type='button' className='w-full'>
                       Wrong network
                     </Button>
                   );
                 }
 
                 return (
-                  <div className="flex gap-3">
+                  <div className='flex gap-3'>
                     <Button
                       onClick={openChainModal}
-                      className="flex items-center"
-                      type="button"
-                      variant="outline"
+                      className='flex items-center'
+                      type='button'
+                      variant='outline'
                     >
                       {chain.hasIcon && (
-                        <div className="mr-1 size-3 overflow-hidden rounded-full">
+                        <div className='mr-1 size-3 overflow-hidden rounded-full'>
                           {chain.iconUrl && (
-                            <img
-                              alt={chain.name ?? "Chain icon"}
-                              src={chain.iconUrl}
-                              className="size-3"
-                            />
+                            <img alt={chain.name ?? 'Chain icon'} src={chain.iconUrl} className='size-3' />
                           )}
                         </div>
                       )}
                       {chain.name}
                     </Button>
 
-                    <Button
-                      onClick={openAccountModal}
-                      type="button"
-                      className="grow"
-                      variant="outline"
-                    >
+                    <Button onClick={openAccountModal} type='button' className='grow' variant='outline'>
                       {account.displayName}
-                      {account.displayBalance
-                        ? ` (${account.displayBalance})`
-                        : ""}
+                      {account.displayBalance ? ` (${account.displayBalance})` : ''}
                     </Button>
                   </div>
                 );

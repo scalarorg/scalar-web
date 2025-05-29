@@ -1,6 +1,6 @@
-import { TPageSearchParams } from "@/constants";
-import { SupportedChains } from "@/types/chains";
-import { ECrossChainStatus, ETimeBucket } from "./enums";
+import { TPageSearchParams } from '@/constants';
+import { SupportedChains } from '@/types/chains';
+import { ECrossChainStatus, ETimeBucket } from './enums';
 
 type TList<T> = {
   data: T[];

@@ -1,21 +1,16 @@
-import { Command as CommandPrimitive, useCommandState } from "cmdk";
-import { XIcon } from "lucide-react";
-import * as React from "react";
-import { useEffect } from "react";
-import { z } from "zod";
+import { Command as CommandPrimitive, useCommandState } from 'cmdk';
+import { XIcon } from 'lucide-react';
+import * as React from 'react';
+import { useEffect } from 'react';
+import { z } from 'zod';
 
-import {
-  Command,
-  CommandGroup,
-  CommandItem,
-  CommandList,
-} from "@/components/ui/command";
-import { cn } from "@/lib/utils";
+import { Command, CommandGroup, CommandItem, CommandList } from '@/components/ui/command';
+import { cn } from '@/lib/utils';
 
 export const multiSelectOptionSchema = z.object({
   label: z.string(),
   value: z.string(),
-  disable: z.boolean().optional(),
+  disable: z.boolean().optional()
 });
 export interface MultiSelectOption {
   value: string;
@@ -81,7 +76,7 @@ interface MultipleSelectorProps {
   /** Props of `CommandInput` */
   inputProps?: Omit<
     React.ComponentPropsWithoutRef<typeof CommandPrimitive.Input>,
-    "value" | "placeholder" | "disabled"
+    'value' | 'placeholder' | 'disabled'
   >;
   /** hide the clear all button. */
   hideClearAllButton?: boolean;
@@ -114,13 +109,13 @@ function transToGroupOption(options: MultiSelectOption[], groupBy?: string) {
   }
   if (!groupBy) {
     return {
-      "": options,
+      '': options
     };
   }
 
   const groupOption: GroupOption = {};
   for (const option of options) {
-    const key = (option[groupBy] as string) || "";
+    const key = (option[groupBy] as string) || '';
     if (!groupOption[key]) {
       groupOption[key] = [];
     }
@@ -130,28 +125,18 @@ function transToGroupOption(options: MultiSelectOption[], groupBy?: string) {
   return groupOption;
 }
 
-function removePickedOption(
-  groupOption: GroupOption,
-  picked: MultiSelectOption[],
-) {
+function removePickedOption(groupOption: GroupOption, picked: MultiSelectOption[]) {
   const cloneOption = JSON.parse(JSON.stringify(groupOption)) as GroupOption;
 
   for (const [key, value] of Object.entries(cloneOption)) {
-    cloneOption[key] = value.filter(
-      (val) => !picked.find((p) => p.value === val.value),
-    );
+    cloneOption[key] = value.filter((val) => !picked.find((p) => p.value === val.value));
   }
   return cloneOption;
 }
 
-function isOptionsExist(
-  groupOption: GroupOption,
-  targetOption: MultiSelectOption[],
-) {
+function isOptionsExist(groupOption: GroupOption, targetOption: MultiSelectOption[]) {
   for (const [, value] of Object.entries(groupOption)) {
-    if (
-      value.some((option) => targetOption.find((p) => p.value === option.value))
-    ) {
+    if (value.some((option) => targetOption.find((p) => p.value === option.value))) {
       return true;
     }
   }
@@ -168,9 +153,9 @@ export const CommandEmpty = ({
 
   return (
     <div
-      className={cn("px-2 py-4 text-center text-sm", className)}
-      cmdk-empty=""
-      role="presentation"
+      className={cn('px-2 py-4 text-center text-sm', className)}
+      cmdk-empty=''
+      role='presentation'
       {...props}
     />
   );
@@ -199,7 +184,7 @@ export const MultipleSelector = ({
   triggerSearchOnFocus = false,
   commandProps,
   inputProps,
-  hideClearAllButton = false,
+  hideClearAllButton = false
 }: MultipleSelectorProps) => {
   const inputRef = React.useRef<HTMLInputElement>(null);
   const [open, setOpen] = React.useState(false);
@@ -207,13 +192,9 @@ export const MultipleSelector = ({
   const [isLoading, setIsLoading] = React.useState(false);
   const dropdownRef = React.useRef<HTMLDivElement>(null); // Added this
 
-  const [selected, setSelected] = React.useState<MultiSelectOption[]>(
-    value || [],
-  );
-  const [options, setOptions] = React.useState<GroupOption>(
-    transToGroupOption(arrayDefaultOptions, groupBy),
-  );
-  const [inputValue, setInputValue] = React.useState("");
+  const [selected, setSelected] = React.useState<MultiSelectOption[]>(value || []);
+  const [options, setOptions] = React.useState<GroupOption>(transToGroupOption(arrayDefaultOptions, groupBy));
+  const [inputValue, setInputValue] = React.useState('');
   const debouncedSearchTerm = useDebounce(inputValue, delay || 500);
 
   const handleClickOutside = (event: MouseEvent | TouchEvent) => {
@@ -234,15 +215,15 @@ export const MultipleSelector = ({
       setSelected(newOptions);
       onChange?.(newOptions);
     },
-    [onChange, selected],
+    [onChange, selected]
   );
 
   const handleKeyDown = React.useCallback(
     (e: React.KeyboardEvent<HTMLDivElement>) => {
       const input = inputRef.current;
       if (input) {
-        if (e.key === "Delete" || e.key === "Backspace") {
-          if (input.value === "" && selected.length > 0) {
+        if (e.key === 'Delete' || e.key === 'Backspace') {
+          if (input.value === '' && selected.length > 0) {
             const lastSelectOption = selected[selected.length - 1];
             // If last item is fixed, we should not remove it.
             if (!lastSelectOption.fixed) {
@@ -251,27 +232,26 @@ export const MultipleSelector = ({
           }
         }
         // This is not a default behavior of the <input /> field
-        if (e.key === "Escape") {
+        if (e.key === 'Escape') {
           input.blur();
         }
       }
     },
-    [handleUnselect, selected],
+    [handleUnselect, selected]
   );
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     if (open) {
-      document.addEventListener("mousedown", handleClickOutside);
-      document.addEventListener("touchend", handleClickOutside);
+      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('touchend', handleClickOutside);
     } else {
-      document.removeEventListener("mousedown", handleClickOutside);
-      document.removeEventListener("touchend", handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchend', handleClickOutside);
     }
 
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-      document.removeEventListener("touchend", handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchend', handleClickOutside);
     };
   }, [open]);
 
@@ -281,7 +261,6 @@ export const MultipleSelector = ({
     }
   }, [value]);
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     /** If `onSearch` is provided, do not trigger options updated. */
     if (!arrayOptions || onSearch) {
@@ -293,7 +272,6 @@ export const MultipleSelector = ({
     }
   }, [arrayDefaultOptions, arrayOptions, groupBy, onSearch, options]);
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     /** sync search */
 
@@ -302,7 +280,6 @@ export const MultipleSelector = ({
       setOptions(transToGroupOption(res || [], groupBy));
     };
 
-    // biome-ignore lint/suspicious/useAwait: <explanation>
     const exec = async () => {
       if (!onSearchSync || !open) return;
 
@@ -319,7 +296,6 @@ export const MultipleSelector = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debouncedSearchTerm, groupBy, open, triggerSearchOnFocus]);
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     /** async search */
 
@@ -358,7 +334,7 @@ export const MultipleSelector = ({
     const Item = (
       <CommandItem
         value={inputValue}
-        className="cursor-pointer"
+        className='cursor-pointer'
         onMouseDown={(e) => {
           e.preventDefault();
           e.stopPropagation();
@@ -368,7 +344,7 @@ export const MultipleSelector = ({
             onMaxSelected?.(selected.length);
             return;
           }
-          setInputValue("");
+          setInputValue('');
           const newOptions = [...selected, { value, label: value }];
           setSelected(newOptions);
           onChange?.(newOptions);
@@ -397,7 +373,7 @@ export const MultipleSelector = ({
     // For async search that showing emptyIndicator
     if (onSearch && !creatable && Object.keys(options).length === 0) {
       return (
-        <CommandItem value="-" disabled>
+        <CommandItem value='-' disabled>
           {emptyIndicator}
         </CommandItem>
       );
@@ -408,7 +384,7 @@ export const MultipleSelector = ({
 
   const selectables = React.useMemo<GroupOption>(
     () => removePickedOption(options, selected),
-    [options, selected],
+    [options, selected]
   );
 
   /** Avoid Creatable Selector freezing or lagging when paste a long string. */
@@ -434,51 +410,44 @@ export const MultipleSelector = ({
         handleKeyDown(e);
         commandProps?.onKeyDown?.(e);
       }}
-      className={cn(
-        "h-auto overflow-visible bg-transparent",
-        commandProps?.className,
-      )}
-      shouldFilter={
-        commandProps?.shouldFilter !== undefined
-          ? commandProps.shouldFilter
-          : !onSearch
-      } // When onSearch is provided, we don&lsquo;t want to filter the options. You can still override it.
+      className={cn('h-auto overflow-visible bg-transparent', commandProps?.className)}
+      shouldFilter={commandProps?.shouldFilter !== undefined ? commandProps.shouldFilter : !onSearch} // When onSearch is provided, we don&lsquo;t want to filter the options. You can still override it.
       filter={commandFilter()}
     >
       <button
-        type="button"
+        type='button'
         className={cn(
-          "relative min-h-[38px] rounded-md border border-input text-sm outline-none transition-[color,box-shadow] focus-within:border-ring focus-within:ring-[3px] focus-within:ring-ring/50 has-disabled:pointer-events-none has-disabled:cursor-not-allowed has-aria-invalid:border-destructive has-disabled:opacity-50 has-aria-invalid:ring-destructive/20 dark:has-aria-invalid:ring-destructive/40",
+          'relative min-h-[38px] rounded-md border border-input text-sm outline-none transition-[color,box-shadow] focus-within:border-ring focus-within:ring-[3px] focus-within:ring-ring/50 has-disabled:pointer-events-none has-disabled:cursor-not-allowed has-aria-invalid:border-destructive has-disabled:opacity-50 has-aria-invalid:ring-destructive/20 dark:has-aria-invalid:ring-destructive/40',
           {
-            "p-1": selected.length !== 0,
-            "cursor-text": !disabled && selected.length !== 0,
+            'p-1': selected.length !== 0,
+            'cursor-text': !disabled && selected.length !== 0
           },
-          !hideClearAllButton && "pe-9",
-          className,
+          !hideClearAllButton && 'pe-9',
+          className
         )}
         onClick={() => {
           if (disabled) return;
           inputRef?.current?.focus();
         }}
       >
-        <div className="flex flex-wrap gap-1">
+        <div className='flex flex-wrap gap-1'>
           {selected.map((option) => {
             return (
               <div
                 key={option.value}
                 className={cn(
-                  "relative inline-flex h-7 animate-fadeIn cursor-default items-center rounded-md border bg-background ps-2 pe-7 pl-2 font-medium text-secondary-foreground text-xs transition-all hover:bg-background disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 data-fixed:pe-2",
-                  badgeClassName,
+                  'relative inline-flex h-7 animate-fadeIn cursor-default items-center rounded-md border bg-background ps-2 pe-7 pl-2 font-medium text-secondary-foreground text-xs transition-all hover:bg-background disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 data-fixed:pe-2',
+                  badgeClassName
                 )}
                 data-fixed={option.fixed}
                 data-disabled={disabled || undefined}
               >
                 {option.label}
                 <button
-                  type="button"
-                  className="-inset-y-px -end-px absolute flex size-7 items-center justify-center rounded-e-md border border-transparent p-0 text-muted-foreground/80 outline-none outline-hidden transition-[color,box-shadow] hover:text-foreground focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50"
+                  type='button'
+                  className='-inset-y-px -end-px absolute flex size-7 items-center justify-center rounded-e-md border border-transparent p-0 text-muted-foreground/80 outline-none outline-hidden transition-[color,box-shadow] hover:text-foreground focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50'
                   onKeyDown={(e) => {
-                    if (e.key === "Enter") {
+                    if (e.key === 'Enter') {
                       handleUnselect(option);
                     }
                   }}
@@ -487,9 +456,9 @@ export const MultipleSelector = ({
                     e.stopPropagation();
                   }}
                   onClick={() => handleUnselect(option)}
-                  aria-label="Remove"
+                  aria-label='Remove'
                 >
-                  <XIcon size={14} aria-hidden="true" />
+                  <XIcon size={14} aria-hidden='true' />
                 </button>
               </div>
             );
@@ -517,53 +486,49 @@ export const MultipleSelector = ({
               }
               inputProps?.onFocus?.(event);
             }}
-            placeholder={
-              hidePlaceholderWhenSelected && selected.length !== 0
-                ? ""
-                : placeholder
-            }
+            placeholder={hidePlaceholderWhenSelected && selected.length !== 0 ? '' : placeholder}
             className={cn(
-              "flex-1 bg-transparent outline-hidden placeholder:text-muted-foreground/70 disabled:cursor-not-allowed",
+              'flex-1 bg-transparent outline-hidden placeholder:text-muted-foreground/70 disabled:cursor-not-allowed',
               {
-                "w-full": hidePlaceholderWhenSelected,
-                "px-3 py-2": selected.length === 0,
-                "ml-1": selected.length !== 0,
+                'w-full': hidePlaceholderWhenSelected,
+                'px-3 py-2': selected.length === 0,
+                'ml-1': selected.length !== 0
               },
-              inputProps?.className,
+              inputProps?.className
             )}
           />
           <button
-            type="button"
+            type='button'
             onClick={() => {
               setSelected(selected.filter((s) => s.fixed));
               onChange?.(selected.filter((s) => s.fixed));
             }}
             className={cn(
-              "absolute end-0 top-0 flex size-9 items-center justify-center rounded-md border border-transparent text-muted-foreground/80 outline-none transition-[color,box-shadow] hover:text-foreground focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50",
+              'absolute end-0 top-0 flex size-9 items-center justify-center rounded-md border border-transparent text-muted-foreground/80 outline-none transition-[color,box-shadow] hover:text-foreground focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50',
               (hideClearAllButton ||
                 disabled ||
                 selected.length < 1 ||
                 selected.filter((s) => s.fixed).length === selected.length) &&
-                "hidden",
+                'hidden'
             )}
-            aria-label="Clear all"
+            aria-label='Clear all'
           >
-            <XIcon size={16} aria-hidden="true" />
+            <XIcon size={16} aria-hidden='true' />
           </button>
         </div>
       </button>
-      <div className="relative">
+      <div className='relative'>
         <div
           className={cn(
-            "absolute top-2 z-10 w-full overflow-hidden rounded-md border border-input",
-            "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:animate-out data-[state=open]:animate-in",
-            !open && "hidden",
+            'absolute top-2 z-10 w-full overflow-hidden rounded-md border border-input',
+            'data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:animate-out data-[state=open]:animate-in',
+            !open && 'hidden'
           )}
-          data-state={open ? "open" : "closed"}
+          data-state={open ? 'open' : 'closed'}
         >
           {open && (
             <CommandList
-              className="bg-popover text-popover-foreground shadow-lg outline-hidden"
+              className='bg-popover text-popover-foreground shadow-lg outline-hidden'
               onMouseLeave={() => {
                 setOnScrollbar(false);
               }}
@@ -580,15 +545,9 @@ export const MultipleSelector = ({
                 <>
                   {EmptyItem()}
                   {CreatableItem()}
-                  {!selectFirstItem && (
-                    <CommandItem value="-" className="hidden" />
-                  )}
+                  {!selectFirstItem && <CommandItem value='-' className='hidden' />}
                   {Object.entries(selectables).map(([key, dropdowns]) => (
-                    <CommandGroup
-                      key={key}
-                      heading={key}
-                      className="h-full overflow-auto"
-                    >
+                    <CommandGroup key={key} heading={key} className='h-full overflow-auto'>
                       {dropdowns.map((option) => {
                         return (
                           <CommandItem
@@ -604,15 +563,14 @@ export const MultipleSelector = ({
                                 onMaxSelected?.(selected.length);
                                 return;
                               }
-                              setInputValue("");
+                              setInputValue('');
                               const newOptions = [...selected, option];
                               setSelected(newOptions);
                               onChange?.(newOptions);
                             }}
                             className={cn(
-                              "cursor-pointer",
-                              option.disable &&
-                                "pointer-events-none cursor-not-allowed opacity-50",
+                              'cursor-pointer',
+                              option.disable && 'pointer-events-none cursor-not-allowed opacity-50'
                             )}
                           >
                             {option.label}

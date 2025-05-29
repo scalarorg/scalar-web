@@ -1,5 +1,5 @@
-import { UtilityList } from "@/lib/utils";
-import { ECrossChainStatus } from "./models";
+import { UtilityList } from '@/lib/utils';
+import { ECrossChainStatus } from './models';
 
 export const CROSS_CHAIN_STATUS = new UtilityList<{
   label: string;
@@ -7,44 +7,44 @@ export const CROSS_CHAIN_STATUS = new UtilityList<{
   className?: string;
 }>([
   {
-    label: "Pending",
+    label: 'Pending',
     value: ECrossChainStatus.PENDING,
-    className: "bg-pending",
+    className: 'bg-pending'
   },
   {
-    label: "Verifying",
+    label: 'Verifying',
     value: ECrossChainStatus.VERIFYING,
-    className: "bg-primary",
+    className: 'bg-primary'
   },
   {
-    label: "Approved",
-    value: ECrossChainStatus.APPROVED,
+    label: 'Approved',
+    value: ECrossChainStatus.APPROVED
   },
   {
-    label: "Signing",
-    value: ECrossChainStatus.SIGNING,
+    label: 'Signing',
+    value: ECrossChainStatus.SIGNING
   },
   {
-    label: "Executing",
+    label: 'Executing',
     value: ECrossChainStatus.EXECUTING,
-    className: "bg-executing",
+    className: 'bg-executing'
   },
   {
-    label: "Success",
+    label: 'Success',
     value: ECrossChainStatus.SUCCESS,
-    className: "bg-success",
+    className: 'bg-success'
   },
   {
-    label: "Failed",
+    label: 'Failed',
     value: ECrossChainStatus.FAILED,
-    className: "bg-failed",
+    className: 'bg-failed'
   },
   {
-    label: "Cancelled",
-    value: ECrossChainStatus.CANCELLED,
+    label: 'Cancelled',
+    value: ECrossChainStatus.CANCELLED
   },
   {
-    label: "Deleted",
-    value: ECrossChainStatus.DELETED,
-  },
+    label: 'Deleted',
+    value: ECrossChainStatus.DELETED
+  }
 ]);

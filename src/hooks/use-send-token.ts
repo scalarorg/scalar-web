@@ -1,6 +1,6 @@
-import { IGateway_ABI } from "@/abis/igateway";
-import { useCallback, useState } from "react";
-import { useContract } from "./use-contract";
+import { IGateway_ABI } from '@/abis/igateway';
+import { useCallback, useState } from 'react';
+import { useContract } from './use-contract';
 
 interface SendTokenParams {
   destinationChain: string;
@@ -18,7 +18,7 @@ interface CallContractWithTokenParams {
 }
 
 export const useGatewayContract = (gatewayAddress: `0x${string}`) => {
-  const contract = useContract(IGateway_ABI, gatewayAddress);
+  const { contract, key } = useContract(IGateway_ABI, gatewayAddress);
   const [error, setError] = useState<string | null>(null);
   const [isPending, setIsPending] = useState(false);
 
@@ -31,7 +31,7 @@ export const useGatewayContract = (gatewayAddress: `0x${string}`) => {
           params.destinationChain,
           params.destinationAddress,
           params.symbol,
-          params.amount,
+          params.amount
         );
       } catch (error) {
         setError(error as string);
@@ -39,7 +39,7 @@ export const useGatewayContract = (gatewayAddress: `0x${string}`) => {
         setIsPending(false);
       }
     },
-    [contract],
+    [contract, key]
   );
 
   const callContractWithToken = useCallback(
@@ -52,7 +52,7 @@ export const useGatewayContract = (gatewayAddress: `0x${string}`) => {
           params.destinationContractAddress,
           params.payload,
           params.symbol,
-          params.amount,
+          params.amount
         );
       } catch (error) {
         setError(error as string);
@@ -60,13 +60,13 @@ export const useGatewayContract = (gatewayAddress: `0x${string}`) => {
         setIsPending(false);
       }
     },
-    [contract],
+    [contract, key]
   );
 
   return {
     error,
     sendToken,
     callContractWithToken,
-    isPending,
+    isPending
   };
 };

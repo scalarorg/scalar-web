@@ -1,8 +1,8 @@
-import { useEthersSigner } from "@/lib/ethers";
-import { ethers } from "ethers";
-import { useMemo } from "react";
-import { Abi } from "viem";
-import { useChainId } from "wagmi";
+import { useEthersSigner } from '@/lib/ethers';
+import { ethers } from 'ethers';
+import { useMemo } from 'react';
+import { Abi } from 'viem';
+import { useChainId } from 'wagmi';
 
 const Contracts: Record<string, ethers.Contract> = {};
 
@@ -11,18 +11,23 @@ export const useContract = (abi: Abi, address?: string) => {
   const signer = useEthersSigner({ chainId });
 
   return useMemo(() => {
-    if (!address || !abi || !signer) return null;
+    if (!address || !abi || !signer)
+      return {
+        contract: undefined,
+        key: ''
+      };
     const key = `${address}-${chainId}`;
     if (Contracts[key]) {
-      return Contracts[key];
+      return {
+        contract: Contracts[key],
+        key: key
+      };
     }
-    const contract = new ethers.Contract(
-      address as `0x${string}`,
-      // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-      abi as any,
-      signer,
-    );
+    const contract = new ethers.Contract(address as `0x${string}`, abi as any, signer);
     Contracts[key] = contract;
-    return contract;
+    return {
+      contract: contract,
+      key: key
+    };
   }, [address, abi, signer, chainId]);
 };

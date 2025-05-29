@@ -1,12 +1,12 @@
 export enum WalletErrorType {
-  ConnectionCancelled = "ConnectionCancelled",
+  ConnectionCancelled = 'ConnectionCancelled'
 }
 
 export class WalletError extends Error {
   private type: WalletErrorType;
   constructor(type: WalletErrorType, message: string) {
     super(message);
-    this.name = "WalletError";
+    this.name = 'WalletError';
     this.type = type;
   }
 

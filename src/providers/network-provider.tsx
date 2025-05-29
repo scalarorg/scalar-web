@@ -1,5 +1,5 @@
-import { Network } from "@/lib/wallet";
-import { ReactNode, createContext, memo, useContext, useState } from "react";
+import { Network } from '@/lib/wallet';
+import { ReactNode, createContext, memo, useContext, useState } from 'react';
 
 const NetworkProviderContext = createContext<{
   network: Network;
@@ -9,7 +9,7 @@ const NetworkProviderContext = createContext<{
 export const useNetwork = () => {
   const context = useContext(NetworkProviderContext);
   if (!context) {
-    throw new Error("useNetwork must be used within a NetworkProvider");
+    throw new Error('useNetwork must be used within a NetworkProvider');
   }
 
   return context;
@@ -22,7 +22,7 @@ const NetworkProvider = ({ children }: { children: ReactNode }) => {
     <NetworkProviderContext.Provider
       value={{
         network,
-        setNetwork,
+        setNetwork
       }}
     >
       {children}

@@ -37,19 +37,19 @@ export interface UTXO {
 
 // supported networks
 export enum Network {
-  MAINNET = "mainnet",
-  TESTNET = "testnet",
-  TESTNET4 = "testnet4",
-  REGTEST = "regtest",
+  MAINNET = 'mainnet',
+  TESTNET = 'testnet',
+  TESTNET4 = 'testnet4',
+  REGTEST = 'regtest'
   // SIGNET = "signet",
 }
 
 export const INTERNAL_NETWORK_NAMES = {
-  [Network.MAINNET]: "livenet",
-  [Network.TESTNET]: "testnet",
-  [Network.TESTNET4]: "testnet4",
+  [Network.MAINNET]: 'livenet',
+  [Network.TESTNET]: 'testnet',
+  [Network.TESTNET4]: 'testnet4',
   // [Network.SIGNET]: "signet",
-  [Network.REGTEST]: "regtest",
+  [Network.REGTEST]: 'regtest'
 };
 // WalletInfo is a structure defining attributes for a wallet
 export type WalletInfo = {

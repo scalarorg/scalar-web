@@ -1,9 +1,9 @@
-import { useRouter } from "@tanstack/react-router";
-import type { OnChangeFn, PaginationState } from "@tanstack/react-table";
-import { useCallback, useTransition } from "react";
+import { useRouter } from '@tanstack/react-router';
+import type { OnChangeFn, PaginationState } from '@tanstack/react-table';
+import { useCallback, useTransition } from 'react';
 
 export function usePaginationTable({
-  pagination,
+  pagination
 }: {
   pagination: PaginationState;
 }) {
@@ -14,7 +14,7 @@ export function usePaginationTable({
 
   const onPaginationChange = useCallback<OnChangeFn<PaginationState>>(
     (updaterOrValue) => {
-      if (typeof updaterOrValue === "function") {
+      if (typeof updaterOrValue === 'function') {
         const { pageSize, pageIndex } = updaterOrValue(pagination);
 
         startTransition(() => {
@@ -23,17 +23,17 @@ export function usePaginationTable({
             search: (prev) => ({
               ...prev,
               page: pageIndex,
-              size: pageSize,
-            }),
+              size: pageSize
+            })
           });
         });
       }
     },
-    [navigate, pagination, pathname],
+    [navigate, pagination, pathname]
   );
 
   return {
     isPending,
-    onPaginationChange,
+    onPaginationChange
   };
 }

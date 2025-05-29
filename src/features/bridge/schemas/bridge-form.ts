@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from 'zod';
 
 export const bridgeFormSchema = z.object({
   // sourceChain: z.string({
@@ -11,13 +11,13 @@ export const bridgeFormSchema = z.object({
   //   required_error: "Please select a destination chain.",
   // }),
   destRecipientAddress: z.string({
-    required_error: "Please enter your token receiver address.",
+    required_error: 'Please enter your token receiver address.'
   }),
   transferAmount: z.coerce
     .number({
-      required_error: "Please enter the amount.",
+      required_error: 'Please enter the amount.'
     })
-    .positive("Must be a number"),
+    .positive('Must be a number'),
   // btcFeeRate: z
   //   .enum([
   //     "fastestFee",
@@ -34,8 +34,8 @@ export const bridgeFormSchema = z.object({
   //   .positive("Please enter a positive number.")
   //   .optional(),
   destinationChain: z.string({
-    required_error: "Please choose one token",
-  }),
+    required_error: 'Please choose one token'
+  })
 });
 
 export type TBridgeForm = z.infer<typeof bridgeFormSchema>;

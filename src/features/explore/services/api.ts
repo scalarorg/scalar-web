@@ -1,14 +1,11 @@
 const BASE_URL = import.meta.env.VITE_SCALAR_SCAN_URL;
-const headers: HeadersInit = { "Content-Type": "application/json" };
+const headers: HeadersInit = { 'Content-Type': 'application/json' };
 
-const fetchData = async <TResponse>(
-  url: string,
-  init: RequestInit,
-): Promise<TResponse | null> => {
+const fetchData = async <TResponse>(url: string, init: RequestInit): Promise<TResponse | null> => {
   try {
     const response = await fetch(`${BASE_URL}/api/${url}`, {
       headers,
-      ...init,
+      ...init
     });
 
     if (!response.ok) {
@@ -16,39 +13,33 @@ const fetchData = async <TResponse>(
     }
 
     return (await response.json()) as TResponse;
-  } catch (error) {
-    console.error("Fetch error:", error);
+  } catch (_error) {
     return null;
   }
 };
 
 const buildQueryString = (params: Record<string, unknown>): string => {
   const queryString = new URLSearchParams(
-    Object.fromEntries(
-      Object.entries(params).map(([key, value]) => [key, String(value)]),
-    ),
+    Object.fromEntries(Object.entries(params).map(([key, value]) => [key, String(value)]))
   ).toString();
-  return queryString ? `?${queryString}` : "";
+  return queryString ? `?${queryString}` : '';
 };
 
 export const getByPostMethod = async <TParams, TResponse>(
   url: string,
-  params: TParams,
+  params: TParams
 ): Promise<TResponse | null> => {
   return await fetchData<TResponse>(url, {
-    method: "POST",
-    body: JSON.stringify(params),
+    method: 'POST',
+    body: JSON.stringify(params)
   });
 };
 
-export const getByGetMethod = async <
-  TParams extends Record<string, unknown>,
-  TResponse,
->(
+export const getByGetMethod = async <TParams extends Record<string, unknown>, TResponse>(
   url: string,
-  params: TParams,
+  params: TParams
 ): Promise<TResponse | null> => {
   return await fetchData<TResponse>(`${url}${buildQueryString(params)}`, {
-    method: "GET",
+    method: 'GET'
   });
 };

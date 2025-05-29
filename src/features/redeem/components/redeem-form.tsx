@@ -1,27 +1,11 @@
-import {
-  Base64Icon,
-  ChainIcon,
-  SelectSearch,
-  TSelectSearchGroup,
-} from "@/components/common";
-import { ConnectBtc, ConnectEvm } from "@/components/connect";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import { toast } from "@/components/ui/use-toast";
+import { Base64Icon, ChainIcon, SelectSearch, TSelectSearchGroup } from '@/components/common';
+import { ConnectBtc, ConnectEvm } from '@/components/connect';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { toast } from '@/components/ui/use-toast';
 import {
   useERC20,
   useFeeRates,
@@ -29,16 +13,13 @@ import {
   useGatewayContract,
   useScalarProtocols,
   useScalarStandaloneCommandResult,
-  useVault,
-} from "@/hooks";
-import { Chains } from "@/lib/chains";
-import { useEthersSigner } from "@/lib/ethers";
-import {
-  decodeScalarBytesToString,
-  decodeScalarBytesToUint8Array,
-} from "@/lib/scalar";
-import { EventType } from "@/lib/scalar/events";
-import { ReserveRedeemUtxoParams } from "@/lib/scalar/params";
+  useVault
+} from '@/hooks';
+import { Chains } from '@/lib/chains';
+import { useEthersSigner } from '@/lib/ethers';
+import { decodeScalarBytesToString, decodeScalarBytesToUint8Array } from '@/lib/scalar';
+import { EventType } from '@/lib/scalar/events';
+import { ReserveRedeemUtxoParams } from '@/lib/scalar/params';
 import {
   EMPTY_ADDRESS,
   VOUT_INDEX_OF_LOCKING_OUTPUT,
@@ -49,34 +30,31 @@ import {
   isEvmChain,
   parseSats,
   prepareCustodianPubkeysArray,
-  validateTransferConfig,
-} from "@/lib/utils";
-import { getWagmiChain, isSupportedChain } from "@/lib/wagmi";
-import {
-  useKeplrClient,
-  useAccount as useScalarAccount,
-} from "@/providers/keplr-provider";
-import { useWalletInfo, useWalletProvider } from "@/providers/wallet-provider";
-import { SupportedChains } from "@/types/chains";
-import { zodResolver } from "@hookform/resolvers/zod";
+  validateTransferConfig
+} from '@/lib/utils';
+import { getWagmiChain, isSupportedChain } from '@/lib/wagmi';
+import { useKeplrClient, useAccount as useScalarAccount } from '@/providers/keplr-provider';
+import { useWalletInfo, useWalletProvider } from '@/providers/wallet-provider';
+import { SupportedChains } from '@/types/chains';
+import { zodResolver } from '@hookform/resolvers/zod';
 import {
   TBuildUPCUnstakingPsbt,
   bytesToHex,
   calculateContractCallWithTokenPayload,
-  hexToBytes,
-} from "@scalar-lab/bitcoin-vault";
-import { useQuery } from "@tanstack/react-query";
-import * as bitcoin from "bitcoinjs-lib";
-import { isNil } from "lodash";
-import { useCallback, useEffect, useMemo, useState } from "react";
-import { useForm } from "react-hook-form";
-import { toast as sonnerToast } from "sonner";
-import { formatUnits, parseUnits } from "viem";
-import { useAccount, useChainId, useSwitchChain } from "wagmi";
-import { TRedeemForm, redeemFormSchema } from "../schemas";
+  hexToBytes
+} from '@scalar-lab/bitcoin-vault';
+import { useQuery } from '@tanstack/react-query';
+import * as bitcoin from 'bitcoinjs-lib';
+import { isNil } from 'lodash';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { toast as sonnerToast } from 'sonner';
+import { formatUnits, parseUnits } from 'viem';
+import { useAccount, useChainId, useSwitchChain } from 'wagmi';
+import { TRedeemForm, redeemFormSchema } from '../schemas';
 
-const getChainSelected = (value = "") => {
-  const [_, chain] = value.split("-") || [];
+const getChainSelected = (value = '') => {
+  const [_, chain] = value.split('-') || [];
 
   return chain;
 };
@@ -84,30 +62,23 @@ const getChainSelected = (value = "") => {
 export const RedeemForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { switchChain } = useSwitchChain();
+  const chainId = useChainId();
   const { address: evmAddress, isConnected: isConnectedEvm } = useAccount();
-  const { data: scalarClient, isLoading: isScalarClientLoading } =
-    useKeplrClient();
+  const { data: scalarClient, isLoading: isScalarClientLoading } = useKeplrClient();
   const { account: scalarAccount } = useScalarAccount();
 
-  const chainId = useChainId();
-
   const form = useForm<TRedeemForm>({
-    resolver: zodResolver(redeemFormSchema),
+    resolver: zodResolver(redeemFormSchema)
   });
 
   const { control, watch, setError, clearErrors, handleSubmit } = form;
   const watchForm = watch();
 
+  const { pubkey: btcPubkey, address: btcAddress, isConnected: isConnectedBtc } = useWalletInfo();
   const {
-    pubkey: btcPubkey,
-    address: btcAddress,
-    isConnected: isConnectedBtc,
-  } = useWalletInfo();
-  const {
-    data: { protocols = [] } = {},
+    data: { protocols = [] } = {}
   } = useScalarProtocols();
-  const { networkConfig, btcNetwork, mempoolClient, walletProvider } =
-    useWalletProvider();
+  const { networkConfig, btcNetwork, mempoolClient, walletProvider } = useWalletProvider();
 
   const feeRates = useFeeRates(btcAddress, mempoolClient);
   const filterProtocols = protocols.filter((p) => isBtcChain(p?.asset?.chain));
@@ -115,12 +86,12 @@ export const RedeemForm = () => {
   const selectOptions: TSelectSearchGroup[] = useMemo(() => {
     return filterProtocols.map(({ scalar_address, asset, chains, avatar }) => ({
       groupLabel: (
-        <div className="flex items-center gap-2">
-          <Base64Icon url={avatar} className="size-6" />
-          <span className="font-semibold text-base">{asset?.symbol}</span>
+        <div className='flex items-center gap-2'>
+          <Base64Icon url={avatar} className='size-6' />
+          <span className='font-semibold text-base'>{asset?.symbol}</span>
         </div>
       ),
-      key: scalar_address || "",
+      key: scalar_address || '',
       items:
         chains
           ?.filter((c) => c.chain !== asset?.chain)
@@ -131,25 +102,19 @@ export const RedeemForm = () => {
                 chain={chain as SupportedChains}
                 showName
                 customName={name}
-                classNames={{ icon: "size-5", name: "text-base" }}
+                classNames={{ icon: 'size-5', name: 'text-base' }}
               />
             ),
-            hideValue: name || Chains[chain as SupportedChains]?.name,
-          })) || [],
+            hideValue: name || Chains[chain as SupportedChains]?.name
+          })) || []
     }));
   }, [filterProtocols]);
 
   const selectedProtocol = filterProtocols.find((p) =>
-    p?.chains?.find(
-      (c) => `${p?.asset?.symbol}-${c?.chain}` === watchForm.sourceChain,
-    ),
+    p?.chains?.find((c) => `${p?.asset?.symbol}-${c?.chain}` === watchForm.sourceChain)
   );
 
-  const vault = useVault(
-    selectedProtocol?.tag
-      ? decodeScalarBytesToString(selectedProtocol.tag)
-      : undefined,
-  );
+  const vault = useVault(selectedProtocol?.tag ? decodeScalarBytesToString(selectedProtocol.tag) : undefined);
 
   const sourceChainSelected = getChainSelected(watchForm.sourceChain);
 
@@ -166,20 +131,18 @@ export const RedeemForm = () => {
     }
 
     const custodianPubkeysBufferArray = prepareCustodianPubkeysArray(
-      selectedProtocol.custodian_group.custodians,
+      selectedProtocol.custodian_group.custodians
     );
 
-    const userPubkey = hexToBytes(btcPubkey.replace("0x", ""));
+    const userPubkey = hexToBytes(btcPubkey.replace('0x', ''));
 
-    const protocolPubkey = decodeScalarBytesToUint8Array(
-      selectedProtocol.bitcoin_pubkey,
-    );
+    const protocolPubkey = decodeScalarBytesToUint8Array(selectedProtocol.bitcoin_pubkey);
 
     const script = vault.upcLockingScript({
       userPubkey,
       protocolPubkey,
       custodianPubkeys: custodianPubkeysBufferArray,
-      custodianQuorum: selectedProtocol.custodian_group.quorum,
+      custodianQuorum: selectedProtocol.custodian_group.quorum
     });
 
     return Buffer.from(script);
@@ -190,72 +153,86 @@ export const RedeemForm = () => {
     return bitcoin.address.fromOutputScript(upcLockingScript, btcNetwork);
   }, [upcLockingScript, btcNetwork]);
 
-  const { data: availableUnstakedUtxos } = useQuery({
+  const { data: unstakeableUtxos } = useQuery({
     queryKey: [
-      "availableUnstakedUtxos",
+      'selectedUnstakableUtxos',
       upcLockingAddress,
+      selectedProtocol?.asset,
       sourceChainSelected,
+      watchForm.transferAmount
     ],
     queryFn: async () => {
-      const satsAmount = parseSats(
-        watchForm.transferAmount ? String(watchForm.transferAmount) : "",
-      );
+      const satsAmount = parseSats(watchForm.transferAmount ? String(watchForm.transferAmount) : '');
 
-      if (!isBtcChain(selectedProtocol?.asset?.chain)) return [];
+      if (!isBtcChain(selectedProtocol?.asset?.chain))
+        return {
+          utxos: [],
+          total: BigInt(0)
+        };
 
-      const addressUtxos = await mempoolClient!.addresses.getAddressTxsUtxo({
-        address: upcLockingAddress!,
+      let addressUtxos = await mempoolClient?.addresses.getAddressTxsUtxo({
+        address: upcLockingAddress as string
       });
 
-      let total = 0;
+      addressUtxos = addressUtxos?.sort((a, b) => b.value - a.value || b.txid.localeCompare(a.txid));
+      if (!addressUtxos)
+        return {
+          utxos: [],
+          total: BigInt(0)
+        };
+
+      let totalNeeded = 0;
+      let totalAvailable = 0;
       const utxos = [];
       for (const utxo of addressUtxos) {
         if (!utxo.status.confirmed) {
           continue;
         }
-        if (total > satsAmount) {
-          break;
+        if (totalNeeded < satsAmount) {
+          utxos.push(utxo);
+          totalNeeded += utxo.value;
         }
-
-        utxos.push(utxo);
-        total += utxo.value;
+        totalAvailable += utxo.value;
       }
 
-      return utxos.sort(
-        (a, b) => b.value - a.value || b.txid.localeCompare(a.txid),
-      );
+      return {
+        utxos: utxos,
+        total: BigInt(totalAvailable)
+      };
     },
-    enabled: !!(upcLockingAddress && mempoolClient),
+    enabled: !!(upcLockingAddress && mempoolClient)
   });
 
   const { data: gateway } = useGateway(sourceChainSelected);
-  const { callContractWithToken } = useGatewayContract(
-    gateway?.address as `0x${string}`,
-  );
+  const { callContractWithToken } = useGatewayContract(gateway?.address as `0x${string}`);
 
-  const tokenAddress = selectedProtocol?.chains?.find(
-    (c) => c.chain === sourceChainSelected,
-  )?.address;
+  const tokenAddress = selectedProtocol?.chains?.find((c) => c.chain === sourceChainSelected)?.address;
 
   const {
     balanceOf,
     checkAllowance,
     approve: approveERC20,
-    decimals,
+    decimals
   } = useERC20(tokenAddress as `0x${string}`);
 
-  const { data: sourceChainBalance } = useQuery({
-    queryKey: ["sourceChainBalance", sourceChainSelected, evmAddress ?? ""],
+  const { data: sourceChainTokenBalance } = useQuery({
+    queryKey: [
+      'sourceChainTokenBalance',
+      sourceChainSelected,
+      selectedProtocol?.asset,
+      chainId,
+      evmAddress ?? ''
+    ],
     queryFn: async () => {
-      if (!sourceChainSelected) return BigInt(0);
-      let balance = BigInt(0);
-      if (isEvmChain(sourceChainSelected)) {
-        balance = await balanceOf(evmAddress as `0x${string}`);
-      }
-      return balance;
+      const balance = await balanceOf(evmAddress as `0x${string}`);
+      return balance || BigInt(0);
     },
     enabled:
-      !!sourceChainSelected && isEvmChain(sourceChainSelected) && !!evmAddress,
+      !!evmAddress &&
+      !!sourceChainSelected &&
+      !!selectedProtocol?.asset &&
+      isEvmChain(sourceChainSelected) &&
+      Number(getChainID(sourceChainSelected)) === chainId
   });
 
   useEffect(() => {
@@ -270,30 +247,21 @@ export const RedeemForm = () => {
   }, [sourceChainSelected, switchChain, chainId]);
 
   useEffect(() => {
-    if (watchForm.transferAmount && sourceChainBalance && decimals) {
-      if (
-        parseUnits(String(watchForm.transferAmount), Number(decimals)) >
-        sourceChainBalance
-      ) {
-        setError("transferAmount", {
-          type: "manual",
-          message: "Amount exceeds available balance",
+    if (watchForm.transferAmount && sourceChainTokenBalance && decimals) {
+      if (parseUnits(String(watchForm.transferAmount), Number(decimals)) > sourceChainTokenBalance) {
+        setError('transferAmount', {
+          type: 'manual',
+          message: 'Amount exceeds available balance'
         });
       } else {
-        clearErrors("transferAmount");
+        clearErrors('transferAmount');
       }
     }
-  }, [
-    decimals,
-    watchForm.transferAmount,
-    sourceChainBalance,
-    setError,
-    clearErrors,
-  ]);
+  }, [decimals, watchForm.transferAmount, sourceChainTokenBalance, setError, clearErrors]);
 
   const showSuccessTx = useCallback(
     (txid: string, chain: string) => {
-      let link = "";
+      let link = '';
       if (isBtcChain(chain)) {
         link = `${networkConfig?.mempoolApiUrl}/tx/${txid}`;
       } else if (isEvmChain(chain)) {
@@ -304,25 +272,20 @@ export const RedeemForm = () => {
         link = `${wagmiChain.blockExplorers?.default.url}/tx/${txid}`;
       }
       toast({
-        title: "Transfer transaction successful",
+        title: 'Transfer transaction successful',
         description: (
-          <div className="mt-2 w-[640px] rounded-md">
-            <p className="text-white">
-              Txid:{" "}
-              <a
-                className="text-blue-500 underline"
-                href={link}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+          <div className='mt-2 w-[640px] rounded-md'>
+            <p className='text-white'>
+              Txid:{' '}
+              <a className='text-blue-500 underline' href={link} target='_blank' rel='noopener noreferrer'>
                 {txid.slice(0, 8)}...{txid.slice(-8)} (click to view)
               </a>
             </p>
           </div>
-        ),
+        )
       });
     },
-    [networkConfig?.mempoolApiUrl],
+    [networkConfig?.mempoolApiUrl]
   );
 
   const { startPolling } = useScalarStandaloneCommandResult();
@@ -332,31 +295,27 @@ export const RedeemForm = () => {
   const onSubmit = async (values: TRedeemForm) => {
     setIsLoading(true);
     try {
-      if (isScalarClientLoading || !scalarAccount || !scalarClient) {
-        throw new Error("Please connect to Scalar");
+      if (selectedProtocol?.attributes?.model === 'LIQUIDITY_MODEL_POOL') {
+        if (isScalarClientLoading || !scalarAccount || !scalarClient) {
+          throw new Error('Please connect to Scalar');
+        }
       }
       validateTransferConfig(tokenAddress, gateway);
 
       const sourceChain = getChainSelected(values.sourceChain);
 
-      if (
-        !isEvmChain(sourceChain) ||
-        !isBtcChain(selectedProtocol?.asset?.chain)
-      ) {
-        throw new Error("Invalid chain types");
+      if (!isEvmChain(sourceChain) || !isBtcChain(selectedProtocol?.asset?.chain)) {
+        throw new Error('Invalid chain types');
       }
 
-      const newTransferAmount = parseUnits(
-        String(values.transferAmount),
-        Number(decimals),
-      );
+      const newTransferAmount = parseUnits(String(values.transferAmount), Number(decimals));
 
-      if ((sourceChainBalance || 0n) < BigInt(newTransferAmount)) {
-        throw new Error("Insufficient balance");
+      if ((sourceChainTokenBalance || 0n) < BigInt(newTransferAmount)) {
+        throw new Error('Insufficient balance');
       }
 
       if (!evmAddress) {
-        throw new Error("Invalid EVM address");
+        throw new Error('Invalid EVM address');
       }
 
       await handleTokenApproval({
@@ -364,18 +323,19 @@ export const RedeemForm = () => {
         gatewayAddress: gateway?.address as `0x${string}`,
         transferAmount: BigInt(newTransferAmount),
         checkAllowance,
-        approveERC20,
+        approveERC20
       });
 
-      const redeemLockingScript = bitcoin.address.toOutputScript(
-        values.destRecipientAddress,
-        btcNetwork,
-      );
+      const redeemLockingScript = bitcoin.address.toOutputScript(values.destRecipientAddress, btcNetwork);
 
-      let payload = "";
+      let payload = '';
 
-      if (selectedProtocol?.attributes?.model === "LIQUIDITY_MODEL_POOL") {
-        const lockingScript = Buffer.from(redeemLockingScript).toString("hex");
+      if (selectedProtocol?.attributes?.model === 'LIQUIDITY_MODEL_POOL') {
+        if (!scalarAccount?.address) {
+          throw new Error('Invalid Scalar address');
+        }
+
+        const lockingScript = Buffer.from(redeemLockingScript).toString('hex');
 
         const params: ReserveRedeemUtxoParams = {
           sender: scalarAccount.address,
@@ -384,54 +344,44 @@ export const RedeemForm = () => {
           dest_chain: selectedProtocol.asset?.chain!,
           symbol: selectedProtocol.asset?.symbol,
           amount: parseSats(values.transferAmount.toString()).toString(),
-          locking_script: lockingScript,
+          locking_script: lockingScript
         };
 
-        const result = await scalarClient.raw.reserveRedeemUtxo(
-          scalarAccount.address,
-          params,
-          "auto",
-          "",
-        );
+        const result = await scalarClient?.raw.reserveRedeemUtxo(scalarAccount.address, params, 'auto', '');
 
-        const event = result.events.find(
-          (e) => e.type === EventType.ReserveRedeemUtxo,
-        );
+        const event = result?.events.find((e) => e.type === EventType.ReserveRedeemUtxo);
         if (!event) {
-          throw new Error("Failed to redeem UPC");
+          throw new Error('Failed to redeem UPC');
         }
 
         const command = event.attributes.find(
-          (a) => a.key === Buffer.from("commandId", "ascii").toString("base64"),
+          (a) => a.key === Buffer.from('commandId', 'ascii').toString('base64')
         );
 
         if (!command) {
-          throw new Error("Failed to redeem UPC");
+          throw new Error('Failed to redeem UPC');
         }
 
-        const commandId = Buffer.from(command.value, "base64").toString(
-          "ascii",
-        );
+        const commandId = Buffer.from(command.value, 'base64').toString('ascii');
 
         const commandRs = await startPolling({
           hex: commandId,
-          validator: (data) =>
-            data.status === "STANDALONE_COMMAND_STATUS_SIGNED",
+          validator: (data) => data.status === 'STANDALONE_COMMAND_STATUS_SIGNED'
         });
         if (!command) {
-          throw new Error("Failed to redeem UPC");
+          throw new Error('Failed to redeem UPC');
         }
 
         if (!commandRs.execute_data) {
-          throw new Error("Execute data not found");
+          throw new Error('Execute data not found');
         }
 
         const payload = commandRs.execute_data;
 
         const response = await signer?.sendTransaction({
           to: gateway?.address as `0x${string}`,
-          data: payload.startsWith("0x") ? payload : `0x${payload}`,
-          value: 0,
+          data: payload.startsWith('0x') ? payload : `0x${payload}`,
+          value: 0
         });
 
         // wait for tx to be mined
@@ -439,35 +389,32 @@ export const RedeemForm = () => {
         showSuccessTx(response?.hash as string, sourceChain);
         return;
       }
-      if (!availableUnstakedUtxos || !availableUnstakedUtxos.length) {
-        throw new Error("Not enough balances");
+
+      if (!unstakeableUtxos?.utxos || !unstakeableUtxos?.utxos.length) {
+        throw new Error('Not enough balances');
       }
 
       if (!upcLockingScript) {
-        throw new Error("Invalid locking script");
+        throw new Error('Invalid locking script');
       }
 
-      const protocolPubkey = decodeScalarBytesToUint8Array(
-        selectedProtocol!.bitcoin_pubkey!,
-      );
+      const protocolPubkey = decodeScalarBytesToUint8Array(selectedProtocol?.bitcoin_pubkey!);
 
-      const custodianPubkeys = prepareCustodianPubkeysArray(
-        selectedProtocol!.custodian_group!.custodians!,
-      );
+      const custodianPubkeys = prepareCustodianPubkeysArray(selectedProtocol?.custodian_group?.custodians!);
 
-      const custodianQuorum = selectedProtocol!.custodian_group!.quorum!;
-      const stakerPubkey = hexToBytes(btcPubkey.replace("0x", ""));
+      const custodianQuorum = selectedProtocol?.custodian_group?.quorum!;
+      const stakerPubkey = hexToBytes(btcPubkey.replace('0x', ''));
 
       const params: TBuildUPCUnstakingPsbt = {
-        inputs: availableUnstakedUtxos?.map((tx) => ({
+        inputs: unstakeableUtxos.utxos?.map((tx) => ({
           txid: tx.txid,
           vout: VOUT_INDEX_OF_LOCKING_OUTPUT,
           value: BigInt(tx.value),
-          script_pubkey: Uint8Array.from(upcLockingScript),
+          script_pubkey: Uint8Array.from(upcLockingScript)
         })),
         output: {
           script: redeemLockingScript,
-          value: newTransferAmount,
+          value: newTransferAmount
         },
         stakerPubkey,
         protocolPubkey,
@@ -475,7 +422,7 @@ export const RedeemForm = () => {
         custodianQuorum,
         feeRate: BigInt(feeRates.minimumFee),
         rbf: true,
-        type: "user_custodian",
+        type: 'user_custodian'
       };
 
       const unsignedPsbtHex = vault?.buildUPCUnstakingPsbt(params);
@@ -487,99 +434,73 @@ export const RedeemForm = () => {
         toSignInputs: params.inputs.map((_input, index) => ({
           index,
           address: btcAddress,
-          disableTweakSigner: true,
-        })),
+          disableTweakSigner: true
+        }))
       });
 
       payload = calculateContractCallWithTokenPayload({
-        type: "upc",
+        type: 'upc',
         upc: {
-          psbt: `0x${signedPsbt}`,
-        },
+          psbt: `0x${signedPsbt}`
+        }
       });
+
       const contractCallTx = await callContractWithToken({
         destinationChain: selectedProtocol?.asset?.chain!,
         destinationContractAddress: EMPTY_ADDRESS,
         payload,
-        symbol: selectedProtocol?.asset?.symbol || "",
-        amount: BigInt(newTransferAmount),
+        symbol: selectedProtocol?.asset?.symbol || '',
+        amount: BigInt(newTransferAmount)
       });
 
+      if (!contractCallTx) {
+        throw new Error('Initializing transfer failed');
+      }
+
       const contractCallConfirmed = await Promise.race([
-        new Promise((_, reject) =>
-          setTimeout(() => reject(new Error("Transfer timeout")), 60000),
-        ),
-        contractCallTx.wait(),
+        new Promise((_, reject) => setTimeout(() => reject(new Error('Transfer timeout')), 60000)),
+        contractCallTx.wait()
       ]);
 
       if (contractCallConfirmed) {
         showSuccessTx(contractCallTx.hash, sourceChain);
       } else {
-        throw new Error("Transfer failed");
+        throw new Error('Transfer failed');
       }
     } catch (error) {
-      sonnerToast.error((error as Error).message || "Something went wrong");
+      sonnerToast.error((error as Error).message || 'Something went wrong');
     } finally {
       setIsLoading(false);
     }
   };
 
-  const availableBalance = useMemo(() => {
-    const total =
-      availableUnstakedUtxos?.reduce(
-        (acc, tx) => acc + BigInt(tx.value),
-        BigInt(0),
-      ) || BigInt(0);
-    return total;
-  }, [availableUnstakedUtxos]);
-
   return (
-    <Card className="mx-auto w-full max-w-2xl border-none shadow-none">
-      {/* <CardHeader className="flex flex-row items-center justify-between px-0">
-        <CardTitle className="font-bold text-xl">Redeem</CardTitle>
-        <div className="text-right">
-          <span>
-            {formatBTC(availableBalance)}{" "}
-            <span className="text-base text-muted-foreground font-medium">BTC</span>
-          </span>
-          {selectedProtocol?.asset?.symbol && (
-            <>
-              <span className="mx-2">|</span>
-              <span className="text-base text-muted-foreground font-medium">
-                {selectedProtocol?.asset?.symbol}
-              </span>
-            </>
-          )}
-          {!isNil(sourceChainBalance) && (
-            <span>: {formatUnits(sourceChainBalance, Number(decimals))}</span>
-          )}
-        </div>
-      </CardHeader> */}
-      <CardContent className="px-0">
+    <Card className='mx-auto w-full max-w-2xl border-none shadow-none'>
+      <CardContent className='px-0'>
         <Form {...form}>
-          <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
+          <form className='space-y-6' onSubmit={handleSubmit(onSubmit)}>
             {/* From Section */}
-            <div className="space-y-1 rounded-lg bg-background-secondary p-4">
+            <div className='space-y-1 rounded-lg bg-background-secondary p-4'>
               <FormField
                 control={control}
-                name="sourceChain"
+                name='sourceChain'
                 render={({ field: { value, onChange } }) => (
-                  <FormItem className="mb-3">
-                    <div className="flex items-center gap-2 rounded-lg">
-                      <div className="flex flex-1 flex-col gap-2">
-                        <div className="flex items-center justify-between gap-2">
-                          <FormLabel className="text-base">From</FormLabel>
+                  <FormItem className='mb-3'>
+                    <div className='flex items-center gap-2 rounded-lg'>
+                      <div className='flex flex-1 flex-col gap-2'>
+                        <div className='flex items-center justify-between gap-2'>
+                          <FormLabel className='text-base'>From</FormLabel>
                           <SelectSearch
                             value={value}
                             onChange={onChange}
-                            placeholder="Select Token"
+                            placeholder='Select Token'
                             options={selectOptions}
                             searchByHideValue
                             classNames={{
                               command: {
-                                group: "py-1",
-                                list: "max-h-60",
-                              },
+                                group: 'py-1',
+                                list: 'max-h-60'
+                              }
                             }}
                           />
                         </div>
@@ -591,60 +512,58 @@ export const RedeemForm = () => {
               />
               <FormField
                 control={form.control}
-                name="transferAmount"
+                name='transferAmount'
                 render={({ field }) => (
                   <FormItem>
                     <FormControl>
                       <Input
                         {...field}
-                        type="number"
-                        placeholder="Please enter the amount"
-                        className="!text-base rounded-none border-0 border-accent border-b-2 bg-transparent px-0 shadow-none ring-0 focus-visible:ring-0"
+                        type='number'
+                        placeholder='Please enter the amount'
+                        className='!text-base rounded-none border-0 border-accent border-b-2 bg-transparent px-0 shadow-none ring-0 focus-visible:ring-0'
                       />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-              <p className="text-right text-base text-text-primary-500/50">
-                <span>Available wallet:</span>{" "}
-                <span className="mr-1 border-text-primary-500/50 border-r-2 pr-1">
-                  {formatBTC(availableBalance)} BTC
+              <p className='text-right text-base text-text-primary-500/50'>
+                <span>Redeemable amount:</span>{' '}
+                <span className='mr-1 border-text-primary-500/50 border-r-2 pr-1'>
+                  {unstakeableUtxos ? formatBTC(unstakeableUtxos?.total) : 0} BTC
                 </span>
                 <span>
-                  {!isNil(sourceChainBalance)
-                    ? formatUnits(sourceChainBalance, Number(decimals))
+                  {!isNil(sourceChainTokenBalance)
+                    ? formatUnits(sourceChainTokenBalance, Number(decimals))
                     : 0}
                 </span>
-                {selectedProtocol?.asset?.symbol && (
-                  <span> {selectedProtocol?.asset?.symbol}</span>
-                )}
+                {selectedProtocol?.asset?.symbol && <span> {selectedProtocol?.asset?.symbol}</span>}
               </p>
             </div>
 
             {/* To Section */}
-            <p className="flex items-center justify-between gap-2 rounded-lg bg-background-secondary p-4 text-base">
-              To{" "}
+            <div className='flex items-center justify-between gap-2 rounded-lg bg-background-secondary p-4 text-base'>
+              To{' '}
               {selectedProtocol?.asset?.chain && (
                 <ChainIcon
                   chain={selectedProtocol?.asset?.chain as SupportedChains}
                   showName
-                  classNames={{ wrapper: "gap-1" }}
+                  classNames={{ wrapper: 'gap-1' }}
                 />
               )}
-            </p>
+            </div>
 
             {/* Destination Address */}
             <FormField
               control={control}
-              name="destRecipientAddress"
+              name='destRecipientAddress'
               render={({ field }) => (
-                <FormItem className="space-y-4 rounded-lg bg-background-secondary p-4">
+                <FormItem className='space-y-4 rounded-lg bg-background-secondary p-4'>
                   <FormControl>
                     <Input
                       {...field}
-                      placeholder="Destination address"
-                      className="!text-base rounded-none border-0 border-accent border-b-2 bg-transparent px-0 shadow-none ring-0 focus-visible:ring-0"
+                      placeholder='Destination address'
+                      className='!text-base rounded-none border-0 border-accent border-b-2 bg-transparent px-0 shadow-none ring-0 focus-visible:ring-0'
                     />
                   </FormControl>
                   <FormMessage />
@@ -653,25 +572,24 @@ export const RedeemForm = () => {
             />
 
             {isConnectedEvm ? (
-              selectedProtocol?.attributes?.model === "LIQUIDITY_MODEL_UPC" &&
-              !isConnectedBtc ? (
+              selectedProtocol?.attributes?.model === 'LIQUIDITY_MODEL_UPC' && !isConnectedBtc ? (
                 <Popover>
-                  <PopoverTrigger className="w-full" asChild>
-                    <Button type="button" className="w-full" size="lg">
+                  <PopoverTrigger className='w-full' asChild>
+                    <Button type='button' className='w-full' size='lg'>
                       Connect wallet
                     </Button>
                   </PopoverTrigger>
-                  <PopoverContent side="top">
+                  <PopoverContent side='top'>
                     <ConnectBtc hideTitle />
                   </PopoverContent>
                 </Popover>
               ) : (
                 <Button
-                  type="submit"
-                  className="w-full"
-                  disabled={!sourceChainBalance}
+                  type='submit'
+                  className='w-full'
+                  disabled={!sourceChainTokenBalance}
                   isLoading={isLoading}
-                  size="lg"
+                  size='lg'
                 >
                   Redeem
                 </Button>

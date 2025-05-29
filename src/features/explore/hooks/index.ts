@@ -1,1 +1,1 @@
-export * from "./use-explore-query";
+export * from './use-explore-query';

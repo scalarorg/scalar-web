@@ -1,13 +1,10 @@
-import { Heading } from "@/components/common";
-import {
-  COMMON_DEFAULT_PAGE_SIZE,
-  COMMON_VALIDATE_PAGE_SEARCH_PARAMS,
-} from "@/constants";
-import { ExploreTable, useExploreQuery } from "@/features/explore";
-import { createFileRoute } from "@tanstack/react-router";
-export const Route = createFileRoute("/explore/redeem/")({
+import { Heading } from '@/components/common';
+import { COMMON_DEFAULT_PAGE_SIZE, COMMON_VALIDATE_PAGE_SEARCH_PARAMS } from '@/constants';
+import { ExploreTable, useExploreQuery } from '@/features/explore';
+import { createFileRoute } from '@tanstack/react-router';
+export const Route = createFileRoute('/explore/redeem/')({
   component: Redeem,
-  validateSearch: COMMON_VALIDATE_PAGE_SEARCH_PARAMS,
+  validateSearch: COMMON_VALIDATE_PAGE_SEARCH_PARAMS
 });
 
 function Redeem() {
@@ -16,11 +13,11 @@ function Redeem() {
   const { data, isLoading, isRefetching } = useExploreQuery.useList({
     size,
     page,
-    type: "redeem",
+    type: 'redeem'
   });
 
   return (
-    <div className="flex flex-col gap-5 py-[60px]">
+    <div className='flex flex-col gap-5 py-[60px]'>
       <Heading>Redeem</Heading>
       <ExploreTable
         data={data ?? { data: [], total: 0 }}

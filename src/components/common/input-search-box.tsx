@@ -1,20 +1,14 @@
-import { IconInput, TIconInput } from "@/components/ui/input";
-import { usePathname } from "@/hooks";
-import { cn } from "@/lib/utils";
-import { useRouter } from "@tanstack/react-router";
-import { SearchIcon } from "lucide-react";
-import {
-  ChangeEvent,
-  useCallback,
-  useDeferredValue,
-  useEffect,
-  useState,
-} from "react";
-import { useDebounceCallback } from "usehooks-ts";
+import { IconInput, TIconInput } from '@/components/ui/input';
+import { usePathname } from '@/hooks';
+import { cn } from '@/lib/utils';
+import { useRouter } from '@tanstack/react-router';
+import { SearchIcon } from 'lucide-react';
+import { ChangeEvent, useCallback, useDeferredValue, useEffect, useState } from 'react';
+import { useDebounceCallback } from 'usehooks-ts';
 
 type Props = {
   keyword?: string;
-} & Omit<TIconInput, "onChange" | "value">;
+} & Omit<TIconInput, 'onChange' | 'value'>;
 export const InputSearchBox = ({ keyword, className, ...props }: Props) => {
   const { navigate } = useRouter();
   const pathname = usePathname();
@@ -32,10 +26,10 @@ export const InputSearchBox = ({ keyword, className, ...props }: Props) => {
         to: pathname,
         search: (prev) => ({
           ...prev,
-          q: keyword || undefined,
-        }),
+          q: keyword || undefined
+        })
       }),
-    300,
+    300
   );
 
   useEffect(() => {
@@ -49,12 +43,12 @@ export const InputSearchBox = ({ keyword, className, ...props }: Props) => {
 
   return (
     <IconInput
-      startIcon={<SearchIcon className="size-5" />}
-      placeholder="Search"
+      startIcon={<SearchIcon className='size-5' />}
+      placeholder='Search'
       {...props}
-      className={cn("!text-base !rounded-lg h-10 border-none pl-10", className)}
-      wrapperClassName="main-card-shadow rounded-lg"
-      iconClassName="size-10"
+      className={cn('!text-base !rounded-lg h-10 border-none pl-10', className)}
+      wrapperClassName='main-card-shadow rounded-lg'
+      iconClassName='size-10'
       onChange={onSearch}
       value={debouncedValueSearch}
     />

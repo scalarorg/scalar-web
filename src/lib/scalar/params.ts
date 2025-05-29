@@ -1,14 +1,11 @@
-import { operations } from "@/types/schema";
+import { operations } from '@/types/schema';
 
-export type CreateProtocolParams =
-  operations["CreateProtocol"]["requestBody"]["content"]["application/json"];
+export type CreateProtocolParams = operations['CreateProtocol']['requestBody']['content']['application/json'];
 
-export type LiquidityModelParams = NonNullable<
-  CreateProtocolParams["attributes"]
->["model"];
+export type LiquidityModelParams = NonNullable<CreateProtocolParams['attributes']>['model'];
 
 export type CreateDeployTokenParams =
-  operations["CreateDeployToken"]["requestBody"]["content"]["application/json"];
+  operations['CreateDeployToken']['requestBody']['content']['application/json'];
 
 export type ReserveRedeemUtxoParams =
-  operations["ReserveRedeemUtxo"]["requestBody"]["content"]["application/json"];
+  operations['ReserveRedeemUtxo']['requestBody']['content']['application/json'];

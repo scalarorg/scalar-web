@@ -1,12 +1,6 @@
-import React, {
-  ReactNode,
-  createContext,
-  useCallback,
-  useContext,
-  useState,
-} from "react";
+import React, { ReactNode, createContext, useCallback, useContext, useState } from 'react';
 
-import { ErrorType, ShowErrorParams } from "@/types/errors";
+import { ErrorType, ShowErrorParams } from '@/types/errors';
 
 const ErrorContext = createContext<ErrorContextType | undefined>(undefined);
 
@@ -25,13 +19,11 @@ interface ErrorContextType {
 export const ErrorProvider: React.FC<ErrorProviderProps> = ({ children }) => {
   const [isErrorOpen, setIsErrorOpen] = useState(false);
   const [error, setError] = useState<ErrorType>({
-    message: "",
+    message: '',
     errorTime: new Date(),
-    errorState: undefined,
+    errorState: undefined
   });
-  const [retryErrorAction, setRetryErrorAction] = useState<
-    (() => void) | undefined
-  >();
+  const [retryErrorAction, setRetryErrorAction] = useState<(() => void) | undefined>();
 
   const showError = useCallback(({ error, retryAction }: ShowErrorParams) => {
     setError(error);
@@ -43,9 +35,9 @@ export const ErrorProvider: React.FC<ErrorProviderProps> = ({ children }) => {
     setIsErrorOpen(false);
     setTimeout(() => {
       setError({
-        message: "",
+        message: '',
         errorTime: new Date(),
-        errorState: undefined,
+        errorState: undefined
       });
       setRetryErrorAction(undefined);
     }, 300);
@@ -56,18 +48,16 @@ export const ErrorProvider: React.FC<ErrorProviderProps> = ({ children }) => {
     error,
     showError,
     hideError,
-    retryErrorAction,
+    retryErrorAction
   };
 
-  return (
-    <ErrorContext.Provider value={value}>{children}</ErrorContext.Provider>
-  );
+  return <ErrorContext.Provider value={value}>{children}</ErrorContext.Provider>;
 };
 
 export const useError = () => {
   const context = useContext(ErrorContext);
   if (context === undefined) {
-    throw new Error("useError must be used within an ErrorProvider");
+    throw new Error('useError must be used within an ErrorProvider');
   }
   return context;
 };

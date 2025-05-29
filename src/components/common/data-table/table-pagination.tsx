@@ -1,14 +1,9 @@
-import { Button } from "@/components/ui/button";
-import { Skeleton } from "@/components/ui/skeleton";
-import { cn } from "@/lib/utils";
-import { type Table as TableType } from "@tanstack/react-table";
-import { range } from "lodash";
-import {
-  ChevronLeft,
-  ChevronRight,
-  ChevronsLeftIcon,
-  ChevronsRightIcon,
-} from "lucide-react";
+import { Button } from '@/components/ui/button';
+import { Skeleton } from '@/components/ui/skeleton';
+import { cn } from '@/lib/utils';
+import { type Table as TableType } from '@tanstack/react-table';
+import { range } from 'lodash';
+import { ChevronLeft, ChevronRight, ChevronsLeftIcon, ChevronsRightIcon } from 'lucide-react';
 
 type TablePaginationProps<TData> = {
   className?: string;
@@ -20,12 +15,12 @@ type TablePaginationProps<TData> = {
 
 // const PAGE_SIZE_OPTIONS = [50, 75, 100];
 
-const ELLIPSIS = "...";
+const ELLIPSIS = '...';
 
 export function TablePagination<TData>({
   table,
   className,
-  isLoading = false,
+  isLoading = false
   // pageSizeOptions = PAGE_SIZE_OPTIONS,
   // isSimple = false,
 }: TablePaginationProps<TData>) {
@@ -37,7 +32,7 @@ export function TablePagination<TData>({
     getPageCount,
     getCanNextPage,
     nextPage,
-    setPagination,
+    setPagination
   } = table;
 
   const page = getState().pagination.pageIndex + 1;
@@ -49,20 +44,20 @@ export function TablePagination<TData>({
     <div
       className={cn(
         // Background
-        "bg-white",
+        'bg-white',
 
         // Layout
-        "flex flex-wrap items-center",
+        'flex flex-wrap items-center',
 
         // Spacing
-        "gap-4 py-4 md:px-2",
-        className,
+        'gap-4 py-4 md:px-2',
+        className
       )}
     >
       {isLoading ? (
         <PaginationSkeleton />
       ) : (
-        <div className="flex w-full items-center gap-4">
+        <div className='flex w-full items-center gap-4'>
           {/* {!isSimple && (
             <div
               className={cn(
@@ -94,51 +89,50 @@ export function TablePagination<TData>({
               <span>of {pageCount}</span>
             </div>
           )} */}
-          <div className="mx-auto flex items-center gap-2">
+          <div className='mx-auto flex items-center gap-2'>
             <Button
-              aria-label="First page"
+              aria-label='First page'
               disabled={!getCanPreviousPage()}
               onClick={() => {
                 setPageIndex(0);
               }}
-              title="First page"
-              variant="pagination"
-              className="p-0"
-              size="icon"
+              title='First page'
+              variant='pagination'
+              className='p-0'
+              size='icon'
             >
               <ChevronsLeftIcon size={20} />
             </Button>
             <Button
-              aria-label="Previous page"
+              aria-label='Previous page'
               disabled={!getCanPreviousPage()}
               onClick={previousPage}
-              title="Previous page"
-              variant="pagination"
-              className="p-0"
-              size="icon"
+              title='Previous page'
+              variant='pagination'
+              className='p-0'
+              size='icon'
             >
               <ChevronLeft size={20} />
             </Button>
-            <div className="flex items-center gap-1 whitespace-nowrap text-sm">
+            <div className='flex items-center gap-1 whitespace-nowrap text-sm'>
               {items.map((pageNumber) => (
                 <Button
                   key={crypto.randomUUID()}
-                  variant="pagination_link"
+                  variant='pagination_link'
                   onClick={() => {
                     if (pageNumber !== ELLIPSIS) {
                       setPagination((old) => ({
                         ...old,
-                        pageIndex: (pageNumber as number) - 1,
+                        pageIndex: (pageNumber as number) - 1
                       }));
                     }
                   }}
                   className={cn(
-                    "bg-hovering",
-                    pageNumber === page &&
-                      "bg-primary text-white hover:text-white",
-                    pageNumber === ELLIPSIS && "bg-transparent",
+                    'bg-hovering',
+                    pageNumber === page && 'bg-primary text-white hover:text-white',
+                    pageNumber === ELLIPSIS && 'bg-transparent'
                   )}
-                  size="icon"
+                  size='icon'
                   disabled={pageNumber === ELLIPSIS}
                 >
                   {pageNumber}
@@ -146,24 +140,24 @@ export function TablePagination<TData>({
               ))}
             </div>
             <Button
-              aria-label="Next page"
+              aria-label='Next page'
               disabled={!getCanNextPage()}
               onClick={nextPage}
-              title="Next page"
-              variant="pagination"
-              className="p-0"
-              size="icon"
+              title='Next page'
+              variant='pagination'
+              className='p-0'
+              size='icon'
             >
               <ChevronRight size={20} />
             </Button>
             <Button
-              aria-label="Last page"
+              aria-label='Last page'
               disabled={!getCanNextPage()}
               onClick={() => setPageIndex(pageCount)}
-              title="Last page"
-              variant="pagination"
-              className="p-0"
-              size="icon"
+              title='Last page'
+              variant='pagination'
+              className='p-0'
+              size='icon'
             >
               <ChevronsRightIcon size={20} />
             </Button>
@@ -233,9 +227,7 @@ const generatePages = (current: number, total: number, siblings: number) => {
 };
 
 // Skeleton Components
-const PageSkeleton = () => (
-  <Skeleton className="size-9 rounded-full md:h-10 md:w-[200px]" />
-);
+const PageSkeleton = () => <Skeleton className='size-9 rounded-full md:h-10 md:w-[200px]' />;
 
 // const ButtonSkeleton = () => (
 //   <Skeleton
@@ -250,7 +242,7 @@ const PageSkeleton = () => (
 // );
 
 const PaginationSkeleton = () => (
-  <div className="flex w-full items-center justify-between">
+  <div className='flex w-full items-center justify-between'>
     {/* <ButtonSkeleton /> */}
     <PageSkeleton />
     {/* <ButtonSkeleton /> */}

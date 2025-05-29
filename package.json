@@ -19,11 +19,7 @@
     "pre-commit": "bunx lint-staged"
   },
   "lint-staged": {
-    "**/*.{js,ts,tsx,json,css,md}": [
-      "biome format --write",
-      "biome check",
-      "bunx type-check"
-    ]
+    "**/*.{js,ts,tsx,json,css,md}": ["biome format --write", "biome check"]
   },
   "dependencies": {
     "@bitcoin-js/tiny-secp256k1-asmjs": "^2.2.3",

@@ -1,5 +1,5 @@
 export const decodeScalarBytes = (scalarBytes: string) => {
-  return Buffer.from(scalarBytes, "base64");
+  return Buffer.from(scalarBytes, 'base64');
 };
 
 export const decodeScalarBytesToUint8Array = (scalarBytes: string) => {
@@ -7,9 +7,9 @@ export const decodeScalarBytesToUint8Array = (scalarBytes: string) => {
 };
 
 export const decodeScalarBytesToHex = (scalarBytes: string) => {
-  return Buffer.from(decodeScalarBytes(scalarBytes)).toString("hex");
+  return Buffer.from(decodeScalarBytes(scalarBytes)).toString('hex');
 };
 
 export const decodeScalarBytesToString = (scalarBytes: string) => {
-  return Buffer.from(decodeScalarBytes(scalarBytes)).toString("utf-8");
+  return Buffer.from(decodeScalarBytes(scalarBytes)).toString('utf-8');
 };

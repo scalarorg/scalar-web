@@ -1,11 +1,5 @@
-import { getNetworkConfig, validateAddress } from "@/config/nework.config";
-import {
-  getAddressBalance,
-  getFundingUTXOs,
-  getNetworkFees,
-  getTipHeight,
-  pushTx,
-} from "@/lib/mempool-api";
+import { getNetworkConfig, validateAddress } from '@/config/nework.config';
+import { getAddressBalance, getFundingUTXOs, getNetworkFees, getTipHeight, pushTx } from '@/lib/mempool-api';
 import {
   Fees,
   INTERNAL_NETWORK_NAMES,
@@ -13,17 +7,15 @@ import {
   UTXO,
   UnisatOptions,
   WalletInfo,
-  WalletProvider,
-} from "../wallet-provider";
+  WalletProvider
+} from '../wallet-provider';
 
 // window object for Unisat Wallet extension
-export const unisatProvider = "unisat";
+export const unisatProvider = 'unisat';
 
 export class UnisatWallet extends WalletProvider {
   private unisatWalletInfo: WalletInfo | undefined;
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   private unisatWallet: any;
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   private bitcoinNetworkProvider: any;
   private networkEnv: Network | undefined;
 
@@ -32,7 +24,7 @@ export class UnisatWallet extends WalletProvider {
 
     // check whether there is an Unisat Wallet extension
     if (!window[unisatProvider as keyof typeof window]) {
-      throw new Error("Unisat Wallet extension not found");
+      throw new Error('Unisat Wallet extension not found');
     }
 
     this.unisatWallet = window[unisatProvider as keyof typeof window];
@@ -43,34 +35,27 @@ export class UnisatWallet extends WalletProvider {
   }
 
   connectWallet = async (network = Network.TESTNET4): Promise<this> => {
-    const workingVersion = "1.4.5";
+    const workingVersion = '1.4.5';
 
     try {
-      const version =
-        await window[unisatProvider as keyof typeof window].getVersion();
+      const version = await window[unisatProvider as keyof typeof window].getVersion();
 
       if (compareVersions(version, workingVersion) < 0) {
-        throw new Error("Please update Unisat Wallet to the latest version");
+        throw new Error('Please update Unisat Wallet to the latest version');
       }
 
       switch (this.networkEnv) {
         case Network.MAINNET:
-          await this.bitcoinNetworkProvider.switchNetwork(
-            INTERNAL_NETWORK_NAMES.mainnet,
-          );
+          await this.bitcoinNetworkProvider.switchNetwork(INTERNAL_NETWORK_NAMES.mainnet);
           break;
         case Network.TESTNET:
-          await this.bitcoinNetworkProvider.switchNetwork(
-            INTERNAL_NETWORK_NAMES.testnet,
-          );
+          await this.bitcoinNetworkProvider.switchNetwork(INTERNAL_NETWORK_NAMES.testnet);
           break;
         case Network.TESTNET4:
-          await this.bitcoinNetworkProvider.switchNetwork(
-            INTERNAL_NETWORK_NAMES.testnet,
-          );
+          await this.bitcoinNetworkProvider.switchNetwork(INTERNAL_NETWORK_NAMES.testnet);
           break;
         default:
-          throw new Error("Unsupported network");
+          throw new Error('Unsupported network');
       }
 
       // try {
@@ -88,20 +73,17 @@ export class UnisatWallet extends WalletProvider {
         // this will not throw an error even if user has no network enabled
         result = await this.bitcoinNetworkProvider.requestAccounts();
       } catch (error) {
-        throw new Error(
-          `BTC ${this.networkEnv} is not enabled in Unisat Wallet, ${error}`,
-        );
+        throw new Error(`BTC ${this.networkEnv} is not enabled in Unisat Wallet, ${error}`);
       }
 
       const address = result[0];
 
       validateAddress(network, address);
 
-      const compressedPublicKey =
-        await this.bitcoinNetworkProvider.getPublicKey();
+      const compressedPublicKey = await this.bitcoinNetworkProvider.getPublicKey();
 
       if (!compressedPublicKey || !address) {
-        throw new Error("Could not connect to Unisat Wallet");
+        throw new Error('Could not connect to Unisat Wallet');
       }
 
       const balance = await this.bitcoinNetworkProvider.getBalance();
@@ -109,62 +91,50 @@ export class UnisatWallet extends WalletProvider {
       this.unisatWalletInfo = {
         publicKeyHex: compressedPublicKey,
         address,
-        balance: balance?.total || 0,
+        balance: balance?.total || 0
       };
-
-      console.log("Unisat Wallet connected in constructor", this.unisatWalletInfo);
 
       return this;
     } catch (_error) {
-      throw new Error("Could not connect to Unisat Wallet");
+      throw new Error('Could not connect to Unisat Wallet');
     }
   };
 
-  // biome-ignore lint/suspicious/useAwait: <explanation>
   getWalletProviderName = async (): Promise<string> => {
-    return "Unisat";
+    return 'Unisat';
   };
 
-  // biome-ignore lint/suspicious/useAwait: <explanation>
   getAddress = async (): Promise<string> => {
     this.checkWalletProvider();
     return this.getWalletInfo().address;
   };
 
-  // biome-ignore lint/suspicious/useAwait: <explanation>
   getPublicKeyHex = async (): Promise<string> => {
     return this.getWalletInfo().publicKeyHex;
   };
 
-  signPsbt = async (
-    psbtHex: string,
-    options?: UnisatOptions,
-  ): Promise<string> => {
+  signPsbt = async (psbtHex: string, options?: UnisatOptions): Promise<string> => {
     this.checkWalletProvider();
     // Use signPsbt since it shows the fees
     return await this.bitcoinNetworkProvider.signPsbt(psbtHex, options);
   };
 
   signPsbts = async (psbtsHexes: string[]): Promise<string[]> => {
-    this.checkWalletProvider()
+    this.checkWalletProvider();
     // sign the PSBTs
     return await this.bitcoinNetworkProvider.signPsbts(psbtsHexes);
   };
 
   signMessageBIP322 = async (message: string): Promise<string> => {
     this.checkWalletProvider();
-    return await this.bitcoinNetworkProvider.signMessage(
-      message,
-      "bip322-simple",
-    );
+    return await this.bitcoinNetworkProvider.signMessage(message, 'bip322-simple');
   };
 
-  // biome-ignore lint/suspicious/useAwait: <explanation>
   getNetwork = async (): Promise<Network> => {
     // unisat does not provide a way to get the network for Signet and Testnet
     // So we pass the check on connection and return the environment network
     if (!this.networkEnv) {
-      throw new Error("Network not set");
+      throw new Error('Network not set');
     }
     return this.networkEnv;
   };
@@ -172,7 +142,7 @@ export class UnisatWallet extends WalletProvider {
   on = (eventName: string, callBack: () => void) => {
     this.checkWalletProvider();
     // subscribe to account change event
-    if (eventName === "accountChanged") {
+    if (eventName === 'accountChanged') {
       return this.unisatWallet.on(eventName, callBack);
     }
   };
@@ -204,7 +174,6 @@ export class UnisatWallet extends WalletProvider {
     await this.unisatWallet.disconnect();
   };
 
-
   init = async (): Promise<{
     balance: number;
     address: string;
@@ -213,24 +182,23 @@ export class UnisatWallet extends WalletProvider {
     const accounts = await this.bitcoinNetworkProvider.getAccounts();
 
     if (accounts.length === 0) {
-      throw new Error("No accounts found");
+      throw new Error('No accounts found');
     }
 
     const address = accounts[0];
-    const compressedPublicKey =
-      await this.bitcoinNetworkProvider.getPublicKey();
+    const compressedPublicKey = await this.bitcoinNetworkProvider.getPublicKey();
     const balance = await this.bitcoinNetworkProvider.getBalance();
 
     this.unisatWalletInfo = {
       publicKeyHex: compressedPublicKey,
       address,
-      balance,
+      balance
     };
 
     return {
       address,
       balance: balance?.total || 0,
-      pubkey: compressedPublicKey,
+      pubkey: compressedPublicKey
     };
   };
 
@@ -243,14 +211,14 @@ export class UnisatWallet extends WalletProvider {
 
   checkWalletProvider = async (): Promise<void> => {
     if (!this.unisatWallet || !window[unisatProvider as keyof typeof window]) {
-      throw new Error("Unisat Wallet extension not found");
+      throw new Error('Unisat Wallet extension not found');
     }
   };
 }
 
 function compareVersions(v1: string, v2: string): number {
-  const parts1 = v1.split(".").map(Number);
-  const parts2 = v2.split(".").map(Number);
+  const parts1 = v1.split('.').map(Number);
+  const parts2 = v2.split('.').map(Number);
 
   for (let i = 0; i < Math.max(parts1.length, parts2.length); i++) {
     const part1 = parts1[i] || 0;

@@ -1,14 +1,11 @@
-import { Heading } from "@/components/common";
-import {
-  COMMON_DEFAULT_PAGE_SIZE,
-  COMMON_VALIDATE_PAGE_SEARCH_PARAMS,
-} from "@/constants";
-import { ExploreTable, useExploreQuery } from "@/features/explore";
-import { createFileRoute } from "@tanstack/react-router";
+import { Heading } from '@/components/common';
+import { COMMON_DEFAULT_PAGE_SIZE, COMMON_VALIDATE_PAGE_SEARCH_PARAMS } from '@/constants';
+import { ExploreTable, useExploreQuery } from '@/features/explore';
+import { createFileRoute } from '@tanstack/react-router';
 
-export const Route = createFileRoute("/explore/transfer/")({
+export const Route = createFileRoute('/explore/transfer/')({
   component: Transfer,
-  validateSearch: COMMON_VALIDATE_PAGE_SEARCH_PARAMS,
+  validateSearch: COMMON_VALIDATE_PAGE_SEARCH_PARAMS
 });
 
 function Transfer() {
@@ -17,11 +14,11 @@ function Transfer() {
   const { data, isLoading, isRefetching } = useExploreQuery.useList({
     size,
     page,
-    type: "transfer",
+    type: 'transfer'
   });
 
   return (
-    <div className="flex flex-col gap-5 py-[60px]">
+    <div className='flex flex-col gap-5 py-[60px]'>
       <Heading>Transfer</Heading>
       <ExploreTable
         data={data ?? { data: [], total: 0 }}

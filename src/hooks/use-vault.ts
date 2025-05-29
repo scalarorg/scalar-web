@@ -1,20 +1,17 @@
-import { useScalarNetParams } from "@/hooks";
-import { decodeScalarBytesToString } from "@/lib/scalar";
-import { TNetwork, VaultUtils } from "@scalar-lab/bitcoin-vault";
-import { useNetwork } from "../providers/network-provider";
+import { useScalarNetParams } from '@/hooks';
+import { decodeScalarBytesToString } from '@/lib/scalar';
+import { TNetwork, VaultUtils } from '@scalar-lab/bitcoin-vault';
+import { useNetwork } from '../providers/network-provider';
 
 type TVaultUtilsInstances = Record<
   string,
-  ReturnType<
-    typeof import("@scalar-lab/bitcoin-vault").VaultUtils["getInstance"]
-  >
+  ReturnType<typeof import('@scalar-lab/bitcoin-vault').VaultUtils['getInstance']>
 >;
 
 const vaultUtilsInstances: TVaultUtilsInstances = {} as TVaultUtilsInstances;
 
 export const useVault = (protocolTag?: string) => {
-  const { data: scalarnetParams, isLoading: isLoadingScalarnetParams } =
-    useScalarNetParams();
+  const { data: scalarnetParams, isLoading: isLoadingScalarnetParams } = useScalarNetParams();
   const { network } = useNetwork();
 
   if (!protocolTag) {
@@ -27,13 +24,13 @@ export const useVault = (protocolTag?: string) => {
   }
 
   if (!scalarnetParams) {
-    throw new Error("Scalarnet params not found");
+    throw new Error('Scalarnet params not found');
   }
   if (!scalarnetParams.params?.tag) {
-    throw new Error("Scalarnet params tag not found");
+    throw new Error('Scalarnet params tag not found');
   }
   if (!scalarnetParams.params?.version) {
-    throw new Error("Scalarnet params version not found");
+    throw new Error('Scalarnet params version not found');
   }
 
   const aliasedNetwork = network as TNetwork;
@@ -46,7 +43,7 @@ export const useVault = (protocolTag?: string) => {
       decodeScalarBytesToString(scalarnetParams.params.tag),
       protocolTag,
       Number(scalarnetParams.params.version),
-      aliasedNetwork,
+      aliasedNetwork
     );
   }
 

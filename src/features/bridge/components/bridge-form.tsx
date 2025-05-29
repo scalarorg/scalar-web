@@ -1,29 +1,13 @@
-import {
-  Base64Icon,
-  ChainIcon,
-  SelectSearch,
-  TSelectSearchGroup,
-} from "@/components/common";
-import { ConnectBtc } from "@/components/connect";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import { toast } from "@/components/ui/use-toast";
-import { useFeeRates, useScalarProtocols, useVault } from "@/hooks";
-import { Chains } from "@/lib/chains";
+import { Base64Icon, ChainIcon, SelectSearch, TSelectSearchGroup } from '@/components/common';
+import { ConnectBtc } from '@/components/connect';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { toast } from '@/components/ui/use-toast';
+import { useFeeRates, useScalarProtocols, useVault } from '@/hooks';
+import { Chains } from '@/lib/chains';
 import {
   BTC_DECIMALS,
   formatBTC,
@@ -32,27 +16,27 @@ import {
   isEvmChain,
   parseSats,
   prepareCustodianPubkeysArray,
-  validateRequiredFields,
-} from "@/lib/utils";
-import { getWagmiChain, isSupportedChain } from "@/lib/wagmi";
-import { useWalletInfo, useWalletProvider } from "@/providers/wallet-provider";
-import { SupportedChains } from "@/types/chains";
-import { TProtocolDetails } from "@/types/types";
-import { zodResolver } from "@hookform/resolvers/zod";
+  validateRequiredFields
+} from '@/lib/utils';
+import { getWagmiChain, isSupportedChain } from '@/lib/wagmi';
+import { useWalletInfo, useWalletProvider } from '@/providers/wallet-provider';
+import { SupportedChains } from '@/types/chains';
+import { TProtocolDetails } from '@/types/types';
+import { zodResolver } from '@hookform/resolvers/zod';
 import {
   ChainType,
   DestinationChain,
   TBuildCustodianOnlyStakingPsbt,
-  hexToBytes,
-} from "@scalar-lab/bitcoin-vault";
-import * as bitcoin from "bitcoinjs-lib";
-import { useCallback, useEffect, useMemo, useState } from "react";
-import { useForm } from "react-hook-form";
-import { toast as sonnerToast } from "sonner";
-import { Hex, hexToBytes as hexToBytesViem } from "viem";
-import { TBridgeForm, bridgeFormSchema } from "../schemas";
+  hexToBytes
+} from '@scalar-lab/bitcoin-vault';
+import * as bitcoin from 'bitcoinjs-lib';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { toast as sonnerToast } from 'sonner';
+import { Hex, hexToBytes as hexToBytesViem } from 'viem';
+import { TBridgeForm, bridgeFormSchema } from '../schemas';
 
-const btcChain = Chains["bitcoin|4"];
+const btcChain = Chains['bitcoin|4'];
 
 export const BridgeForm = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -64,18 +48,18 @@ export const BridgeForm = () => {
   const feeRates = useFeeRates(walletInfo.address, mempoolClient);
 
   const form = useForm<TBridgeForm>({
-    resolver: zodResolver(bridgeFormSchema),
+    resolver: zodResolver(bridgeFormSchema)
   });
   const { watch, setError, clearErrors } = form;
 
-  const destinationChainForm = watch("destinationChain");
-  const transferAmountForm = watch("transferAmount");
+  const destinationChainForm = watch('destinationChain');
+  const transferAmountForm = watch('transferAmount');
 
   const { data } = useScalarProtocols();
 
   const showSuccessTx = useCallback(
     (txid: string, chain: string) => {
-      let link = "";
+      let link = '';
       if (isBtcChain(chain)) {
         link = `${networkConfig?.mempoolApiUrl}/tx/${txid}`;
       } else if (isEvmChain(chain)) {
@@ -86,39 +70,32 @@ export const BridgeForm = () => {
         link = `${wagmiChain.blockExplorers?.default.url}/tx/${txid}`;
       }
       toast({
-        title: "Transfer transaction successful",
+        title: 'Transfer transaction successful',
         description: (
-          <div className="mt-2 w-[640px] rounded-md">
-            <p className="text-white">
-              Txid:{" "}
-              <a
-                className="text-blue-500 underline"
-                href={link}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+          <div className='mt-2 w-[640px] rounded-md'>
+            <p className='text-white'>
+              Txid:{' '}
+              <a className='text-blue-500 underline' href={link} target='_blank' rel='noopener noreferrer'>
                 {txid.slice(0, 8)}...{txid.slice(-8)} (click to view)
               </a>
             </p>
           </div>
-        ),
+        )
       });
     },
-    [networkConfig?.mempoolApiUrl],
+    [networkConfig?.mempoolApiUrl]
   );
 
   const onSubmit = async (values: TBridgeForm) => {
-    const [_, chainSeleted] = values.destinationChain?.split("-") || [];
+    const [_, chainSeleted] = values.destinationChain?.split('-') || [];
 
-    const parseTransferAmount = parseSats(
-      values.transferAmount.toFixed(BTC_DECIMALS),
-    );
+    const parseTransferAmount = parseSats(values.transferAmount.toFixed(BTC_DECIMALS));
 
     setIsLoading(true);
 
     try {
       if (!isBtcChain(protocol?.asset?.chain) || !isEvmChain(chainSeleted)) {
-        throw new Error("Invalid chain types");
+        throw new Error('Invalid chain types');
       }
 
       const btcNetwork = networkConfig?.network;
@@ -126,9 +103,7 @@ export const BridgeForm = () => {
       const btcAddress = walletInfo.address;
       const currentChains = protocol?.chains || [];
 
-      const [destination] = currentChains.filter(
-        (c) => c.chain === chainSeleted,
-      );
+      const [destination] = currentChains.filter((c) => c.chain === chainSeleted);
 
       validateRequiredFields({
         vault,
@@ -139,22 +114,18 @@ export const BridgeForm = () => {
         custodians: protocol?.custodian_group?.custodians,
         quorum: protocol?.custodian_group?.quorum,
         btcPubkey,
-        btcAddress,
+        btcAddress
       });
 
-      if (protocol?.custodian_group?.quorum! < 1) {
-        throw new Error("Quorum must be greater than 0");
+      if ((protocol?.custodian_group?.quorum ?? 0) < 1) {
+        throw new Error('Quorum must be greater than 0');
       }
 
-      const addressUtxos = await walletProvider?.getUtxos(
-        btcAddress,
-        Number(parseTransferAmount),
-      );
+      const addressUtxos = await walletProvider?.getUtxos(btcAddress, Number(parseTransferAmount));
 
-      if (!addressUtxos) throw new Error("Not enough UTXOs");
+      if (!addressUtxos) throw new Error('Not enough UTXOs');
 
       const txData = {
-        // biome-ignore lint/suspicious/noExplicitAny: <explanation>
         utxos: addressUtxos.map((utxo) => ({ ...utxo, status: {} as any })),
         // TODO: apply dynamic feerates
 
@@ -166,24 +137,19 @@ export const BridgeForm = () => {
         feeRate: feeRates.minimumFee,
         addresses: {
           btcUserPk: hexToBytes(btcPubkey),
-          destinationRecipient: hexToBytesViem(
-            values.destRecipientAddress as Hex,
-          ),
-          destinationToken: hexToBytesViem(destination.address as Hex),
-        },
+          destinationRecipient: hexToBytesViem(values.destRecipientAddress as Hex),
+          destinationToken: hexToBytesViem(destination.address as Hex)
+        }
       };
 
       const custodianPubkeysBufferArray = prepareCustodianPubkeysArray(
-        protocol?.custodian_group?.custodians || [],
+        protocol?.custodian_group?.custodians || []
       );
 
       const chainID = getChainID(chainSeleted);
-      if (!chainID) throw new Error("Invalid destination chain");
+      if (!chainID) throw new Error('Invalid destination chain');
 
-      const destinationChain = new DestinationChain(
-        ChainType.EVM,
-        BigInt(chainID),
-      );
+      const destinationChain = new DestinationChain(ChainType.EVM, BigInt(chainID));
 
       const psbtFormData: TBuildCustodianOnlyStakingPsbt = {
         stakingAmount: BigInt(parseTransferAmount),
@@ -196,59 +162,50 @@ export const BridgeForm = () => {
         destinationRecipientAddress: txData.addresses.destinationRecipient,
         availableUTXOs: txData.utxos,
         feeRate: txData.feeRate,
-        rbf: true,
+        rbf: true
       };
 
-      const { psbt: unsignedVaultPsbt } =
-        vault!.buildCustodianOnlyStakingPsbt(psbtFormData);
+      const result = vault?.buildCustodianOnlyStakingPsbt(psbtFormData);
+      if (!result) throw new Error('Failed to build the PSBT');
+      const { psbt: unsignedVaultPsbt } = result;
 
-      console.log("Before signing PSBT")
-      console.log(unsignedVaultPsbt.toHex())
+      const signedPsbt = await walletProvider?.signPsbt(unsignedVaultPsbt.toHex(), {
+        autoFinalized: true
+      });
 
-      const signedPsbt = await walletProvider?.signPsbt(
-        unsignedVaultPsbt.toHex(),
-        {
-          autoFinalized: true,
-        },
-      );
+      if (!signedPsbt) throw new Error('Failed to sign the PSBT');
 
-      if (!signedPsbt) throw new Error("Failed to sign the PSBT");
-
-      const txHex = bitcoin.Psbt.fromHex(signedPsbt)
-        .extractTransaction()
-        .toHex();
+      const txHex = bitcoin.Psbt.fromHex(signedPsbt).extractTransaction().toHex();
       const txId = await walletProvider?.pushTx(txHex);
+      if (!txId) throw new Error('Failed to push the PSBT');
 
-      showSuccessTx(txId!, protocol?.asset?.chain as string);
+      showSuccessTx(txId, protocol?.asset?.chain as string);
     } catch (error) {
-      sonnerToast.error((error as Error).message || "Something went wrong");
+      sonnerToast.error((error as Error).message || 'Something went wrong');
     } finally {
       setIsLoading(false);
     }
   };
 
   useEffect(() => {
-    const [_, chainSeleted] = destinationChainForm?.split("-") || [];
+    const [_, chainSeleted] = destinationChainForm?.split('-') || [];
     const [newProtocol] =
-      data?.protocols?.filter(
-        (p) =>
-          (p.chains?.filter((c) => c.chain === chainSeleted) || []).length > 0,
-      ) || [];
+      data?.protocols?.filter((p) => (p.chains?.filter((c) => c.chain === chainSeleted) || []).length > 0) ||
+      [];
     setProtocol(newProtocol);
   }, [destinationChainForm, data]);
 
   useEffect(() => {
     if (
       transferAmountForm &&
-      parseSats(Number(transferAmountForm).toFixed(BTC_DECIMALS)) >
-        Number(walletInfo.balance)
+      parseSats(Number(transferAmountForm).toFixed(BTC_DECIMALS)) > Number(walletInfo.balance)
     ) {
-      setError("transferAmount", {
-        type: "manual",
-        message: "Amount exceeds available balance",
+      setError('transferAmount', {
+        type: 'manual',
+        message: 'Amount exceeds available balance'
       });
     } else {
-      clearErrors("transferAmount");
+      clearErrors('transferAmount');
     }
   }, [transferAmountForm, walletInfo.balance, setError, clearErrors]);
 
@@ -257,12 +214,12 @@ export const BridgeForm = () => {
       data?.protocols
         ? data.protocols.map(({ asset, avatar, scalar_address, chains }) => ({
             groupLabel: (
-              <div className="flex items-center gap-2">
-                <Base64Icon url={avatar} className="size-6" />
-                <span className="font-semibold text-base">{asset?.symbol}</span>
+              <div className='flex items-center gap-2'>
+                <Base64Icon url={avatar} className='size-6' />
+                <span className='font-semibold text-base'>{asset?.symbol}</span>
               </div>
             ),
-            key: scalar_address || "",
+            key: scalar_address || '',
             items:
               chains?.map(({ name, chain }) => ({
                 value: `${asset?.symbol}-${chain}`,
@@ -271,46 +228,42 @@ export const BridgeForm = () => {
                     chain={chain as SupportedChains}
                     showName
                     customName={name}
-                    classNames={{ icon: "size-5", name: "text-base" }}
+                    classNames={{ icon: 'size-5', name: 'text-base' }}
                   />
                 ),
-                hideValue: name || Chains[chain as SupportedChains]?.name,
-              })) || [],
+                hideValue: name || Chains[chain as SupportedChains]?.name
+              })) || []
           }))
         : [],
-    [data?.protocols],
+    [data?.protocols]
   );
 
   return (
-    <Card className="mx-auto w-full max-w-2xl border-none shadow-none">
+    <Card className='mx-auto w-full max-w-2xl border-none shadow-none'>
       {/* <CardHeader className="flex flex-row items-center justify-between px-0">
         <CardTitle className="font-bold text-xl">Bridge</CardTitle>
       </CardHeader> */}
-      <CardContent className="px-0">
+      <CardContent className='px-0'>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-6'>
             {/* From Section */}
             <FormField
               control={form.control}
-              name="transferAmount"
+              name='transferAmount'
               render={({ field }) => (
-                <FormItem className="space-y-1 rounded-lg bg-background-secondary p-4">
-                  <div className="flex items-center justify-between gap-2">
-                    <FormLabel className="text-base">From</FormLabel>
-                    <ChainIcon
-                      chain={btcChain.chain}
-                      showName
-                      classNames={{ wrapper: "gap-1" }}
-                    />
+                <FormItem className='space-y-1 rounded-lg bg-background-secondary p-4'>
+                  <div className='flex items-center justify-between gap-2'>
+                    <FormLabel className='text-base'>From</FormLabel>
+                    <ChainIcon chain={btcChain.chain} showName classNames={{ wrapper: 'gap-1' }} />
                   </div>
-                  <div className="flex items-center gap-2 rounded-lg">
-                    <div className="flex flex-1 flex-col gap-2">
+                  <div className='flex items-center gap-2 rounded-lg'>
+                    <div className='flex flex-1 flex-col gap-2'>
                       <FormControl>
                         <Input
                           {...field}
-                          type="number"
-                          placeholder="Please enter the amount"
-                          className="!text-base rounded-none border-0 border-accent border-b-2 bg-transparent px-0 shadow-none ring-0 focus-visible:ring-0"
+                          type='number'
+                          placeholder='Please enter the amount'
+                          className='!text-base rounded-none border-0 border-accent border-b-2 bg-transparent px-0 shadow-none ring-0 focus-visible:ring-0'
                         />
                       </FormControl>
                     </div>
@@ -319,7 +272,7 @@ export const BridgeForm = () => {
                       tBTC
                     </div> */}
                   </div>
-                  <p className="text-right text-base text-text-primary-500/50">
+                  <p className='text-right text-base text-text-primary-500/50'>
                     Available wallet: {formatBTC(walletInfo.balance)} BTC
                   </p>
                   <FormMessage />
@@ -328,33 +281,31 @@ export const BridgeForm = () => {
             />
 
             {/* To Section */}
-            <div className="space-y-4">
+            <div className='space-y-4'>
               <FormField
                 control={form.control}
-                name="destinationChain"
+                name='destinationChain'
                 render={({ field: { value, onChange } }) => (
-                  <FormItem className="space-y-4 rounded-lg bg-background-secondary p-4">
-                    <div className="flex items-center gap-2 rounded-lg">
-                      <div className="flex flex-1 flex-col gap-2">
-                        <div className="flex items-center justify-between gap-2">
-                          <FormLabel className="text-base">To</FormLabel>
+                  <FormItem className='space-y-4 rounded-lg bg-background-secondary p-4'>
+                    <div className='flex items-center gap-2 rounded-lg'>
+                      <div className='flex flex-1 flex-col gap-2'>
+                        <div className='flex items-center justify-between gap-2'>
+                          <FormLabel className='text-base'>To</FormLabel>
                           <SelectSearch
                             value={value}
                             onChange={onChange}
-                            placeholder="Select Token"
+                            placeholder='Select Token'
                             options={selectOptions}
                             classNames={{
                               command: {
-                                group: "py-1",
-                                list: "max-h-60",
-                              },
+                                group: 'py-1',
+                                list: 'max-h-60'
+                              }
                             }}
                             searchByHideValue
                           />
                         </div>
-                        <span className="text-base">
-                          {watch("transferAmount") || 0}
-                        </span>
+                        <span className='text-base'>{watch('transferAmount') || 0}</span>
                       </div>
                     </div>
                     <FormMessage />
@@ -366,14 +317,14 @@ export const BridgeForm = () => {
             {/* Destination Address */}
             <FormField
               control={form.control}
-              name="destRecipientAddress"
+              name='destRecipientAddress'
               render={({ field }) => (
-                <FormItem className="space-y-4 rounded-lg bg-background-secondary p-4">
+                <FormItem className='space-y-4 rounded-lg bg-background-secondary p-4'>
                   <FormControl>
                     <Input
                       {...field}
-                      placeholder="Destination address"
-                      className="!text-base rounded-none border-0 border-accent border-b-2 bg-transparent px-0 shadow-none ring-0 focus-visible:ring-0"
+                      placeholder='Destination address'
+                      className='!text-base rounded-none border-0 border-accent border-b-2 bg-transparent px-0 shadow-none ring-0 focus-visible:ring-0'
                     />
                   </FormControl>
                   <FormMessage />
@@ -397,9 +348,9 @@ export const BridgeForm = () => {
 
             {walletInfo.isConnected ? (
               <Button
-                type="submit"
-                size="lg"
-                className="w-full"
+                type='submit'
+                size='lg'
+                className='w-full'
                 disabled={!walletInfo.balance}
                 isLoading={isLoading}
               >
@@ -407,12 +358,12 @@ export const BridgeForm = () => {
               </Button>
             ) : (
               <Popover>
-                <PopoverTrigger className="w-full" asChild>
-                  <Button type="button" size="lg">
+                <PopoverTrigger className='w-full' asChild>
+                  <Button type='button' size='lg'>
                     Connect wallet
                   </Button>
                 </PopoverTrigger>
-                <PopoverContent side="top" className="rounded-lg p-2">
+                <PopoverContent side='top' className='rounded-lg p-2'>
                   <ConnectBtc hideTitle />
                 </PopoverContent>
               </Popover>

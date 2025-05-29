@@ -7,10 +7,10 @@ import {
   use,
   useCallback,
   useMemo,
-  useState,
-} from "react";
+  useState
+} from 'react';
 
-import { CircleAlert, CircleCheck, Trash2 } from "lucide-react";
+import { CircleAlert, CircleCheck, Trash2 } from 'lucide-react';
 
 import {
   AlertDialog,
@@ -22,10 +22,10 @@ import {
   AlertDialogHeader,
   AlertDialogOverlay,
   AlertDialogPortal,
-  AlertDialogTitle,
-} from "@/components/ui/alert-dialog";
-import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+  AlertDialogTitle
+} from '@/components/ui/alert-dialog';
+import { buttonVariants } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 
 export interface CustomActionsProps {
   confirm: () => void;
@@ -34,14 +34,9 @@ export interface CustomActionsProps {
   setConfig: ConfigUpdater;
 }
 
-export type ConfigUpdater = (
-  config: ConfirmOptions | ((prev: ConfirmOptions) => ConfirmOptions),
-) => void;
+export type ConfigUpdater = (config: ConfirmOptions | ((prev: ConfirmOptions) => ConfirmOptions)) => void;
 
-export type LegacyCustomActions = (
-  onConfirm: () => void,
-  onCancel: () => void,
-) => ReactNode;
+export type LegacyCustomActions = (onConfirm: () => void, onCancel: () => void) => ReactNode;
 
 export type EnhancedCustomActions = (props: CustomActionsProps) => ReactNode;
 
@@ -79,27 +74,23 @@ export interface ConfirmFunction {
   updateConfig?: ConfigUpdater;
 }
 
-export const ConfirmContext = createContext<ConfirmContextValue | undefined>(
-  undefined,
-);
+export const ConfirmContext = createContext<ConfirmContextValue | undefined>(undefined);
 
 const baseDefaultOptions: ConfirmOptions = {
-  title: "",
-  description: "",
-  confirmText: "Confirm",
-  cancelText: "Cancel",
+  title: '',
+  description: '',
+  confirmText: 'Confirm',
+  cancelText: 'Cancel',
   confirmButton: {},
   cancelButton: {},
   alertDialogContent: {},
   alertDialogHeader: {},
   alertDialogTitle: {},
   alertDialogDescription: {},
-  alertDialogFooter: {},
+  alertDialogFooter: {}
 };
 
-function isLegacyCustomActions(
-  fn: LegacyCustomActions | EnhancedCustomActions,
-): fn is LegacyCustomActions {
+function isLegacyCustomActions(fn: LegacyCustomActions | EnhancedCustomActions): fn is LegacyCustomActions {
   return fn.length === 2;
 }
 
@@ -107,9 +98,7 @@ const ConfirmDialogContent: FC<{
   config: ConfirmOptions;
   onConfirm: () => void;
   onCancel: () => void;
-  setConfig: (
-    config: ConfirmOptions | ((prev: ConfirmOptions) => ConfirmOptions),
-  ) => void;
+  setConfig: (config: ConfirmOptions | ((prev: ConfirmOptions) => ConfirmOptions)) => void;
 }> = memo(({ config, onConfirm, onCancel, setConfig }) => {
   const {
     title,
@@ -126,7 +115,7 @@ const ConfirmDialogContent: FC<{
     alertDialogHeader,
     alertDialogTitle,
     alertDialogDescription,
-    alertDialogFooter,
+    alertDialogFooter
   } = config;
 
   const renderActions = () => {
@@ -153,7 +142,7 @@ const ConfirmDialogContent: FC<{
       confirm: onConfirm,
       cancel: onCancel,
       config,
-      setConfig,
+      setConfig
     });
   };
 
@@ -177,21 +166,17 @@ const ConfirmDialogContent: FC<{
         <AlertDialogHeader {...alertDialogHeader}>
           {renderTitle()}
           {description && (
-            <AlertDialogDescription {...alertDialogDescription}>
-              {description}
-            </AlertDialogDescription>
+            <AlertDialogDescription {...alertDialogDescription}>{description}</AlertDialogDescription>
           )}
           {contentSlot}
         </AlertDialogHeader>
-        <AlertDialogFooter {...alertDialogFooter}>
-          {renderActions()}
-        </AlertDialogFooter>
+        <AlertDialogFooter {...alertDialogFooter}>{renderActions()}</AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialogPortal>
   );
 });
 
-ConfirmDialogContent.displayName = "ConfirmDialogContent";
+ConfirmDialogContent.displayName = 'ConfirmDialogContent';
 
 const ConfirmDialog: FC<{
   isOpen: boolean;
@@ -199,23 +184,14 @@ const ConfirmDialog: FC<{
   config: ConfirmOptions;
   onConfirm: () => void;
   onCancel: () => void;
-  setConfig: (
-    config: ConfirmOptions | ((prev: ConfirmOptions) => ConfirmOptions),
-  ) => void;
-}> = memo(
-  ({ isOpen, onOpenChange, config, onConfirm, onCancel, setConfig }) => (
-    <AlertDialog open={isOpen} onOpenChange={onOpenChange}>
-      <ConfirmDialogContent
-        config={config}
-        onConfirm={onConfirm}
-        onCancel={onCancel}
-        setConfig={setConfig}
-      />
-    </AlertDialog>
-  ),
-);
+  setConfig: (config: ConfirmOptions | ((prev: ConfirmOptions) => ConfirmOptions)) => void;
+}> = memo(({ isOpen, onOpenChange, config, onConfirm, onCancel, setConfig }) => (
+  <AlertDialog open={isOpen} onOpenChange={onOpenChange}>
+    <ConfirmDialogContent config={config} onConfirm={onConfirm} onCancel={onCancel} setConfig={setConfig} />
+  </AlertDialog>
+));
 
-ConfirmDialog.displayName = "ConfirmDialog";
+ConfirmDialog.displayName = 'ConfirmDialog';
 
 export const ConfirmDialogProvider: FC<{
   defaultOptions?: ConfirmOptions;
@@ -224,30 +200,25 @@ export const ConfirmDialogProvider: FC<{
   const [dialogState, setDialogState] = useState<ConfirmDialogState>({
     isOpen: false,
     config: baseDefaultOptions,
-    resolver: null,
+    resolver: null
   });
 
   const mergedDefaultOptions = useMemo(
     () => ({
       ...baseDefaultOptions,
-      ...defaultOptions,
+      ...defaultOptions
     }),
-    [defaultOptions],
+    [defaultOptions]
   );
 
   const updateConfig = useCallback(
-    (
-      newConfig: ConfirmOptions | ((prev: ConfirmOptions) => ConfirmOptions),
-    ) => {
+    (newConfig: ConfirmOptions | ((prev: ConfirmOptions) => ConfirmOptions)) => {
       setDialogState((prev) => ({
         ...prev,
-        config:
-          typeof newConfig === "function"
-            ? newConfig(prev.config)
-            : { ...prev.config, ...newConfig },
+        config: typeof newConfig === 'function' ? newConfig(prev.config) : { ...prev.config, ...newConfig }
       }));
     },
-    [],
+    []
   );
 
   const confirm = useCallback(
@@ -255,16 +226,16 @@ export const ConfirmDialogProvider: FC<{
       setDialogState((prev) => ({
         isOpen: true,
         config: { ...mergedDefaultOptions, ...options },
-        resolver: prev.resolver,
+        resolver: prev.resolver
       }));
       return new Promise<boolean>((resolve) => {
         setDialogState((prev) => ({
           ...prev,
-          resolver: resolve,
+          resolver: resolve
         }));
       });
     },
-    [mergedDefaultOptions],
+    [mergedDefaultOptions]
   );
 
   const handleConfirm = useCallback(() => {
@@ -275,7 +246,7 @@ export const ConfirmDialogProvider: FC<{
       return {
         ...prev,
         isOpen: false,
-        resolver: null,
+        resolver: null
       };
     });
   }, []);
@@ -288,7 +259,7 @@ export const ConfirmDialogProvider: FC<{
       return {
         ...prev,
         isOpen: false,
-        resolver: null,
+        resolver: null
       };
     });
   }, []);
@@ -299,15 +270,15 @@ export const ConfirmDialogProvider: FC<{
         handleCancel();
       }
     },
-    [handleCancel],
+    [handleCancel]
   );
 
   const contextValue = useMemo(
     () => ({
       confirm,
-      updateConfig,
+      updateConfig
     }),
-    [confirm, updateConfig],
+    [confirm, updateConfig]
   );
 
   return (
@@ -328,7 +299,7 @@ export const ConfirmDialogProvider: FC<{
 export const useConfirm = () => {
   const context = use(ConfirmContext);
   if (!context) {
-    throw new Error("useConfirm must be used within a ConfirmDialogProvider");
+    throw new Error('useConfirm must be used within a ConfirmDialogProvider');
   }
 
   const { confirm, updateConfig } = context;
@@ -337,65 +308,58 @@ export const useConfirm = () => {
   enhancedConfirm.updateConfig = updateConfig;
 
   return enhancedConfirm as ConfirmFunction & {
-    updateConfig: ConfirmContextValue["updateConfig"];
+    updateConfig: ConfirmContextValue['updateConfig'];
   };
 };
 
-type ConfirmType = "delete" | "warning" | "successs";
+type ConfirmType = 'delete' | 'warning' | 'successs';
 
 const IconWrapper = ({
   children,
-  className,
+  className
 }: {
   children: ReactNode;
   className?: string;
 }) => (
-  <div
-    className={cn(
-      "flex size-10 items-center justify-center rounded-full",
-      className,
-    )}
-  >
-    {children}
-  </div>
+  <div className={cn('flex size-10 items-center justify-center rounded-full', className)}>{children}</div>
 );
 
 const alertDialogTitle = {
-  className: "flex items-center gap-2",
+  className: 'flex items-center gap-2'
 };
 export const confirmDialogConfig: Record<ConfirmType, ConfirmOptions> = {
   delete: {
     icon: (
       <IconWrapper>
-        <Trash2 className="size-5 text-fail" />
+        <Trash2 className='size-5 text-fail' />
       </IconWrapper>
     ),
     confirmButton: {
-      className: buttonVariants({ variant: "destructive" }),
+      className: buttonVariants({ variant: 'destructive' })
     },
-    alertDialogTitle,
+    alertDialogTitle
   },
   warning: {
     icon: (
       <IconWrapper>
-        <CircleAlert className="size-5 text-pending" />
+        <CircleAlert className='size-5 text-pending' />
       </IconWrapper>
     ),
     confirmButton: {
-      className: buttonVariants({ variant: "default" }),
+      className: buttonVariants({ variant: 'default' })
     },
-    alertDialogTitle,
+    alertDialogTitle
   },
   successs: {
     icon: (
       <IconWrapper>
-        <CircleCheck className="size-5 text-success" />
+        <CircleCheck className='size-5 text-success' />
       </IconWrapper>
     ),
     confirmButton: {
-      className: buttonVariants({ variant: "default" }),
+      className: buttonVariants({ variant: 'default' })
     },
     cancelButton: null,
-    alertDialogTitle,
-  },
+    alertDialogTitle
+  }
 };

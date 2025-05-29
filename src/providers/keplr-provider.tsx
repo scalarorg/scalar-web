@@ -1,10 +1,10 @@
-import { ScalarSigningStargateClient } from "@/lib/scalar/signingClient";
-import { formatTokenAmount } from "@/lib/utils";
-import { OfflineSigner } from "@cosmjs/proto-signing";
-import type { ChainInfo, Keplr } from "@keplr-wallet/types";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { createContext, use, useEffect, useState } from "react";
-import { toast as toastSonner } from "sonner";
+import { ScalarSigningStargateClient } from '@/lib/scalar/signingClient';
+import { formatTokenAmount } from '@/lib/utils';
+import { OfflineSigner } from '@cosmjs/proto-signing';
+import type { ChainInfo, Keplr } from '@keplr-wallet/types';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { createContext, use, useEffect, useState } from 'react';
+import { toast as toastSonner } from 'sonner';
 
 interface KeplrContextProps {
   config: ChainInfo;
@@ -22,9 +22,7 @@ let _scalarClient: {
 } | null = null;
 
 export const KeplrProvider: React.FC<
-  React.PropsWithChildren<
-    Omit<KeplrContextProps, "keplr" | "isLoading" | "isInstalled">
-  >
+  React.PropsWithChildren<Omit<KeplrContextProps, 'keplr' | 'isLoading' | 'isInstalled'>>
 > = ({ children, config, reconnectOnMount = false }) => {
   const [keplr, setKeplr] = useState<Keplr | undefined>(undefined);
   const [isLoading, setIsLoading] = useState(true);
@@ -40,24 +38,24 @@ export const KeplrProvider: React.FC<
           if (!keplr) {
             // throw new Error("Please install Keplr");
             toastSonner(
-              <p className="w-fit">
-                You need to install Keplr on{" "}
+              <p className='w-fit'>
+                You need to install Keplr on{' '}
                 <a
-                  href="https://chromewebstore.google.com/detail/keplr/dmkamcknogkgcdfhhbddcghachkejeap"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-primary underline"
+                  href='https://chromewebstore.google.com/detail/keplr/dmkamcknogkgcdfhhbddcghachkejeap'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='text-primary underline'
                 >
                   Chrome Web Extension
                 </a>
-              </p>,
+              </p>
             );
 
             return;
           }
 
           if (!window.getOfflineSigner) {
-            throw new Error("Please update Keplr");
+            throw new Error('Please update Keplr');
           }
 
           setKeplr(keplr);
@@ -65,9 +63,7 @@ export const KeplrProvider: React.FC<
             await connectKeplr(keplr, config);
           }
         } catch (error) {
-          toastSonner.error(
-            error instanceof Error ? error.message : "Unknown error",
-          );
+          toastSonner.error(error instanceof Error ? error.message : 'Unknown error');
         } finally {
           setIsLoading(false);
         }
@@ -81,7 +77,7 @@ export const KeplrProvider: React.FC<
         }
       };
     },
-    [config, keplr, reconnectOnMount],
+    [config, keplr, reconnectOnMount]
   );
 
   if (isLoading) {
@@ -95,7 +91,7 @@ export const KeplrProvider: React.FC<
         reconnectOnMount,
         keplr: keplr!,
         isLoading,
-        isInstalled,
+        isInstalled
       }}
     >
       {children}
@@ -106,7 +102,7 @@ export const KeplrProvider: React.FC<
 export const useKeplr = () => {
   const context = use(KeplrContext);
   if (!context) {
-    throw new Error("useKeplr must be used within KeplrProvider");
+    throw new Error('useKeplr must be used within KeplrProvider');
   }
   return context;
 };
@@ -115,9 +111,9 @@ export const useKeplrClient = () => {
   const { config, isInstalled, isLoading } = useKeplr();
 
   return useQuery({
-    queryKey: ["keplr-client", config.chainId],
+    queryKey: ['keplr-client', config.chainId],
     queryFn: () => _scalarClient,
-    enabled: !!_scalarClient && isInstalled && !isLoading,
+    enabled: !!_scalarClient && isInstalled && !isLoading
   });
 };
 
@@ -126,15 +122,15 @@ export const useConnectKeplr = () => {
   const queryClient = useQueryClient();
 
   const { mutate, mutateAsync, ...result } = useMutation({
-    mutationKey: ["keplr-connect", config.chainId],
+    mutationKey: ['keplr-connect', config.chainId],
     mutationFn: async () => {
       await connectKeplr(keplr, config);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ["keplr-client", config.chainId],
+        queryKey: ['keplr-client', config.chainId]
       });
-    },
+    }
   });
 
   return { ...result, connect: mutate, connectAsync: mutateAsync };
@@ -144,7 +140,7 @@ export const useDisconnectKeplr = () => {
   const { config, keplr } = useKeplr();
   const queryClient = useQueryClient();
   const { mutate, mutateAsync, ...result } = useMutation({
-    mutationKey: ["keplr-disconnect", config.chainId],
+    mutationKey: ['keplr-disconnect', config.chainId],
     mutationFn: async () => {
       if (keplr) {
         await keplr.disable(config.chainId);
@@ -154,9 +150,9 @@ export const useDisconnectKeplr = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ["keplr-client", config.chainId],
+        queryKey: ['keplr-client', config.chainId]
       });
-    },
+    }
   });
 
   return { ...result, disconnect: mutate, disconnectAsync: mutateAsync };
@@ -167,16 +163,16 @@ export const useAccount = () => {
   const { data: client } = useKeplrClient();
 
   const { data, ...result } = useQuery({
-    queryKey: ["keplr-account", config.chainId],
+    queryKey: ['keplr-account', config.chainId],
     queryFn: async () => {
       const accounts = await client?.offlineSigner.getAccounts();
       const account = accounts?.[0];
       return {
         account,
-        isConnected: Boolean(account),
+        isConnected: Boolean(account)
       };
     },
-    enabled: !!client && isInstalled && !isLoading,
+    enabled: !!client && isInstalled && !isLoading
   });
 
   return {
@@ -184,7 +180,7 @@ export const useAccount = () => {
     account: data?.account,
     isConnected: data?.isConnected,
     isInstalled,
-    isLoading,
+    isLoading
   };
 };
 
@@ -193,18 +189,13 @@ export const useBalance = () => {
   const { data: client } = useKeplrClient();
   const { account, isConnected } = useAccount();
   return useQuery({
-    queryKey: [
-      "keplr-balance",
-      config.chainId,
-      client?.offlineSigner,
-      account?.address,
-    ],
+    queryKey: ['keplr-balance', config.chainId, client?.offlineSigner, account?.address],
     queryFn: async () => {
-      const balance = await client?.raw.getBalance(account?.address!, "ascal");
-      const formattedAmount = formatTokenAmount(BigInt(balance?.amount ?? "0"));
+      const balance = await client?.raw.getBalance(account?.address!, 'ascal');
+      const formattedAmount = formatTokenAmount(BigInt(balance?.amount ?? '0'));
       return formattedAmount;
     },
-    enabled: !!client && !!account && isConnected,
+    enabled: !!client && !!account && isConnected
   });
 };
 
@@ -213,20 +204,20 @@ const connectKeplr = async (keplr: Keplr, config: ChainInfo) => {
     await keplr.experimentalSuggestChain(config);
     await keplr.enable(config.chainId);
 
-    const offlineSigner = window!.getOfflineSigner!(config.chainId);
+    const offlineSigner = window?.getOfflineSigner?.(config.chainId);
+    if (!offlineSigner) {
+      throw new Error('Keplr is not installed');
+    }
     _scalarClient = {
-      raw: await ScalarSigningStargateClient.connectWithSigner(
-        config.rpc,
-        offlineSigner,
-      ),
-      offlineSigner,
+      raw: await ScalarSigningStargateClient.connectWithSigner(config.rpc, offlineSigner),
+      offlineSigner
     };
   }
   return _scalarClient;
 };
 
 const getKeplrFromWindow: () => Promise<Keplr | undefined> = async () => {
-  if (typeof window === "undefined") {
+  if (typeof window === 'undefined') {
     return undefined;
   }
 
@@ -234,21 +225,18 @@ const getKeplrFromWindow: () => Promise<Keplr | undefined> = async () => {
     return window.keplr;
   }
 
-  if (document.readyState === "complete") {
+  if (document.readyState === 'complete') {
     return window.keplr;
   }
 
   return new Promise((resolve) => {
     const documentStateChange = (event: Event) => {
-      if (
-        event.target &&
-        (event.target as Document).readyState === "complete"
-      ) {
+      if (event.target && (event.target as Document).readyState === 'complete') {
         resolve(window.keplr);
-        document.removeEventListener("readystatechange", documentStateChange);
+        document.removeEventListener('readystatechange', documentStateChange);
       }
     };
 
-    document.addEventListener("readystatechange", documentStateChange);
+    document.addEventListener('readystatechange', documentStateChange);
   });
 };

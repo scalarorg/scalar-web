@@ -1,14 +1,9 @@
-import { Clipboard } from "@/components/common";
-import { Button } from "@/components/ui/button";
-import { usePathname } from "@/hooks";
-import { cn } from "@/lib/utils";
-import {
-  useAccount,
-  useConnectKeplr,
-  useDisconnectKeplr,
-  useKeplrClient,
-} from "@/providers/keplr-provider";
-import { Power } from "lucide-react";
+import { Clipboard } from '@/components/common';
+import { Button } from '@/components/ui/button';
+import { usePathname } from '@/hooks';
+import { cn } from '@/lib/utils';
+import { useAccount, useConnectKeplr, useDisconnectKeplr, useKeplrClient } from '@/providers/keplr-provider';
+import { Power } from 'lucide-react';
 
 export const ConnectScalar = () => {
   const { data: client } = useKeplrClient();
@@ -17,27 +12,23 @@ export const ConnectScalar = () => {
   const { disconnect } = useDisconnectKeplr();
   const pathname = usePathname();
 
-  const isHidden = pathname.includes("/explore");
+  const isHidden = pathname.includes('/explore');
 
   return (
-    <div className={cn("flex items-center gap-1", isHidden && "hidden")}>
+    <div className={cn('flex items-center gap-1', isHidden && 'hidden')}>
       {client && isConnected ? (
         <>
           <Clipboard
-            label={account?.address || ""}
-            text={account?.address || ""}
-            classNames={{ wrapper: "max-w-[100px]" }}
+            label={account?.address || ''}
+            text={account?.address || ''}
+            classNames={{ wrapper: 'max-w-[100px]' }}
           />
-          <button
-            type="button"
-            onClick={() => disconnect()}
-            className="cursor-pointer"
-          >
-            <Power className="size-5" />
+          <button type='button' onClick={() => disconnect()} className='cursor-pointer'>
+            <Power className='size-5' />
           </button>
         </>
       ) : (
-        <Button onClick={() => connect()} size="lg">
+        <Button onClick={() => connect()} size='lg'>
           Connect Scalar
         </Button>
       )}
@@ -72,7 +63,7 @@ export const ProtocolTxForm = () => {
 
   return (
     <div>
-      <h2 className="font-bold text-2xl">Submit Protocol Transaction</h2>
+      <h2 className='font-bold text-2xl'>Submit Protocol Transaction</h2>
       {/* <button
                 type="button"
                 onClick={handleSubmit}

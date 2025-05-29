@@ -1,9 +1,9 @@
 export enum ErrorState {
-  SERVER_ERROR = "SERVER_ERROR",
-  UNBONDING = "UNBONDING",
-  WALLET = "WALLET",
-  WITHDRAW = "WITHDRAW",
-  STAKING = "STAKING",
+  SERVER_ERROR = 'SERVER_ERROR',
+  UNBONDING = 'UNBONDING',
+  WALLET = 'WALLET',
+  WITHDRAW = 'WITHDRAW',
+  STAKING = 'STAKING'
 }
 
 export interface ErrorType {

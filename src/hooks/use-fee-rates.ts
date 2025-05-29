@@ -1,5 +1,5 @@
-import { BtcMempool } from "@scalar-lab/bitcoin-vault";
-import { useEffect, useState } from "react";
+import { BtcMempool } from '@scalar-lab/bitcoin-vault';
+import { useEffect, useState } from 'react';
 
 interface FeeRates {
   fastestFee: number;
@@ -7,14 +7,11 @@ interface FeeRates {
   minimumFee: number;
 }
 
-export const useFeeRates = (
-  address: string | undefined,
-  mempoolClient: BtcMempool | undefined,
-) => {
+export const useFeeRates = (address: string | undefined, mempoolClient: BtcMempool | undefined) => {
   const [feeRates, setFeeRates] = useState<FeeRates>({
     fastestFee: 1,
     hourFee: 1,
-    minimumFee: 1,
+    minimumFee: 1
   });
 
   useEffect(() => {
@@ -23,20 +20,18 @@ export const useFeeRates = (
       if (!address) return;
       try {
         const { fees } = mempoolClient;
-        const { fastestFee, hourFee, minimumFee } =
-          await fees.getFeesRecommended();
+        const { fastestFee, hourFee, minimumFee } = await fees.getFeesRecommended();
 
         setFeeRates({
           fastestFee,
           hourFee,
-          minimumFee,
+          minimumFee
         });
-      } catch (error) {
-        console.warn("Error fetching fee rates:", error);
+      } catch (_error) {
         setFeeRates({
           fastestFee: 1,
           hourFee: 1,
-          minimumFee: 1,
+          minimumFee: 1
         });
       }
     };
