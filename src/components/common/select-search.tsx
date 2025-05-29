@@ -28,6 +28,7 @@ export type TSelectSearchGroup = {
 };
 
 export type TSelectSearchOption = TSelectSearchOptionItem | TSelectSearchGroup;
+
 export type TSelectSearchProps = {
   value: string;
   onChange: (value: string) => void;
@@ -46,6 +47,7 @@ export type TSelectSearchProps = {
     }>;
   }>;
   searchByHideValue?: boolean;
+  showGroupLabelOfValue?: boolean;
 };
 
 // Type Guard
@@ -64,7 +66,8 @@ export const SelectSearch = ({
   searchPlaceholder = 'Search',
   options,
   classNames,
-  searchByHideValue = false
+  searchByHideValue = false,
+  showGroupLabelOfValue = false
 }: TSelectSearchProps) => {
   const [open, setOpen] = useState<boolean>(false);
 
@@ -78,6 +81,19 @@ export const SelectSearch = ({
     onChange(newValue);
     setOpen(false);
   };
+  type TSelectItemWithOptionalGroup = TSelectSearchOptionItem & { groupLabel?: ReactNode };
+
+  const flatItemWithGroup: TSelectItemWithOptionalGroup[] = options.flatMap((option) => {
+    if (isGroup(option)) {
+      return option.items.map((item) => ({
+        ...item,
+        groupLabel: option.groupLabel
+      }));
+    }
+    return [{ ...option }];
+  });
+
+  const selectedItem = flatItemWithGroup.find((item) => item.value === value);
 
   return (
     <div className={cn('*:not-first:mt-2', classNames?.wrapper)}>
@@ -87,41 +103,23 @@ export const SelectSearch = ({
             variant='ghost'
             aria-expanded={open}
             className={cn(
-              // Cursor
-              'cursor-pointer',
-
-              // Width
-              'w-full',
-
-              // Flexbox Alignment
-              'flex justify-between',
-
-              // Borders
-              'border-none',
-
-              // Background Color
-              'bg-white hover:bg-white',
-
-              // Padding
-              'px-3',
-
-              // Font Weight
-              'font-normal',
-
-              // Box Shadow
-              'main-shadow',
-
-              // Outline
-              'outline-none',
-
+              'cursor-pointer w-full flex justify-between border-none bg-white hover:bg-white px-3 font-normal main-shadow outline-none',
               classNames?.button
             )}
             disabled={disabled}
           >
             <span className={cn('truncate text-base', !value && 'text-muted-foreground')}>
-              {options
-                .flatMap((option) => (isGroup(option) ? option.items : option))
-                .find((item) => item.value === value)?.label || placeholder}
+              <If condition={!!selectedItem}>
+                <If condition={showGroupLabelOfValue && selectedItem?.groupLabel}>
+                  <div className='flex items-center text-start'>
+                    <span className='text-muted-foreground text-xs'>{selectedItem?.groupLabel}</span>
+                    <span className='mx-1'>/</span>
+                    <span>{selectedItem?.label}</span>
+                  </div>
+                </If>
+                <If condition={!showGroupLabelOfValue || !selectedItem?.groupLabel}>{selectedItem?.label}</If>
+              </If>
+              <If condition={!selectedItem}>{placeholder}</If>
             </span>
             <ChevronDownIcon size={16} className='shrink-0 text-muted-foreground/80' aria-hidden='true' />
           </Button>
@@ -139,20 +137,7 @@ export const SelectSearch = ({
             <CommandInput
               placeholder={searchPlaceholder}
               wrapperClassName={cn(
-                // Flexbox
-                'flex flex-row-reverse',
-
-                // Margin
-                'm-2 mb-0',
-
-                // Padding
-                'py-1',
-
-                // Border
-                'rounded-lg border border-secondary-500',
-
-                // Box Shadow
-                'shadow-inner'
+                'flex flex-row-reverse m-2 mb-0 py-1 rounded-lg border border-secondary-500 shadow-inner'
               )}
               className='h-6 text-base'
             />
