@@ -1,9 +1,9 @@
-import { Heading } from "@/components/common";
-import { Badge } from "@/components/ui/badge";
-import { TransactionInfoCard } from "@/features/explore/components";
-import { createFileRoute } from "@tanstack/react-router";
+import { Heading } from '@/components/common';
+import { Badge } from '@/components/ui/badge';
+import { TransactionInfoCard } from '@/features/explore/components';
+import { createFileRoute } from '@tanstack/react-router';
 
-export const Route = createFileRoute("/explore/bridge/$slug/$status")({
+export const Route = createFileRoute('/explore/bridge/$slug/$status')({
   component: RouteComponent
 });
 
@@ -12,7 +12,7 @@ function RouteComponent() {
 
   return (
     <div className='flex flex-col gap-5 py-15'>
-      <Heading link={{ to: "/explore/bridge/$slug", params: { slug } }}>Transaction detail</Heading>
+      <Heading link={{ to: '/explore/bridge/$slug', params: { slug } }}>Transaction detail</Heading>
       <div className='flex flex-col gap-5'>
         <TransactionInfoCard />
         <Heading>Events</Heading>

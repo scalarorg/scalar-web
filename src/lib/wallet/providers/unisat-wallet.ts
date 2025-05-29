@@ -1,5 +1,5 @@
-import { getNetworkConfig, validateAddress } from "@/config/nework.config";
-import { getAddressBalance, getFundingUTXOs, getNetworkFees, getTipHeight, pushTx } from "@/lib/mempool-api";
+import { getNetworkConfig, validateAddress } from '@/config/nework.config';
+import { getAddressBalance, getFundingUTXOs, getNetworkFees, getTipHeight, pushTx } from '@/lib/mempool-api';
 import {
   Fees,
   INTERNAL_NETWORK_NAMES,
@@ -8,10 +8,10 @@ import {
   UnisatOptions,
   WalletInfo,
   WalletProvider
-} from "../wallet-provider";
+} from '../wallet-provider';
 
 // window object for Unisat Wallet extension
-export const unisatProvider = "unisat";
+export const unisatProvider = 'unisat';
 
 export class UnisatWallet extends WalletProvider {
   private unisatWalletInfo: WalletInfo | undefined;
@@ -24,7 +24,7 @@ export class UnisatWallet extends WalletProvider {
 
     // check whether there is an Unisat Wallet extension
     if (!window[unisatProvider as keyof typeof window]) {
-      throw new Error("Unisat Wallet extension not found");
+      throw new Error('Unisat Wallet extension not found');
     }
 
     this.unisatWallet = window[unisatProvider as keyof typeof window];
@@ -35,13 +35,13 @@ export class UnisatWallet extends WalletProvider {
   }
 
   connectWallet = async (network = Network.TESTNET4): Promise<this> => {
-    const workingVersion = "1.4.5";
+    const workingVersion = '1.4.5';
 
     try {
       const version = await window[unisatProvider as keyof typeof window].getVersion();
 
       if (compareVersions(version, workingVersion) < 0) {
-        throw new Error("Please update Unisat Wallet to the latest version");
+        throw new Error('Please update Unisat Wallet to the latest version');
       }
 
       switch (this.networkEnv) {
@@ -55,7 +55,7 @@ export class UnisatWallet extends WalletProvider {
           await this.bitcoinNetworkProvider.switchNetwork(INTERNAL_NETWORK_NAMES.testnet);
           break;
         default:
-          throw new Error("Unsupported network");
+          throw new Error('Unsupported network');
       }
 
       // try {
@@ -83,7 +83,7 @@ export class UnisatWallet extends WalletProvider {
       const compressedPublicKey = await this.bitcoinNetworkProvider.getPublicKey();
 
       if (!compressedPublicKey || !address) {
-        throw new Error("Could not connect to Unisat Wallet");
+        throw new Error('Could not connect to Unisat Wallet');
       }
 
       const balance = await this.bitcoinNetworkProvider.getBalance();
@@ -96,12 +96,12 @@ export class UnisatWallet extends WalletProvider {
 
       return this;
     } catch (_error) {
-      throw new Error("Could not connect to Unisat Wallet");
+      throw new Error('Could not connect to Unisat Wallet');
     }
   };
 
   getWalletProviderName = async (): Promise<string> => {
-    return "Unisat";
+    return 'Unisat';
   };
 
   getAddress = async (): Promise<string> => {
@@ -127,14 +127,14 @@ export class UnisatWallet extends WalletProvider {
 
   signMessageBIP322 = async (message: string): Promise<string> => {
     this.checkWalletProvider();
-    return await this.bitcoinNetworkProvider.signMessage(message, "bip322-simple");
+    return await this.bitcoinNetworkProvider.signMessage(message, 'bip322-simple');
   };
 
   getNetwork = async (): Promise<Network> => {
     // unisat does not provide a way to get the network for Signet and Testnet
     // So we pass the check on connection and return the environment network
     if (!this.networkEnv) {
-      throw new Error("Network not set");
+      throw new Error('Network not set');
     }
     return this.networkEnv;
   };
@@ -142,7 +142,7 @@ export class UnisatWallet extends WalletProvider {
   on = (eventName: string, callBack: () => void) => {
     this.checkWalletProvider();
     // subscribe to account change event
-    if (eventName === "accountChanged") {
+    if (eventName === 'accountChanged') {
       return this.unisatWallet.on(eventName, callBack);
     }
   };
@@ -182,7 +182,7 @@ export class UnisatWallet extends WalletProvider {
     const accounts = await this.bitcoinNetworkProvider.getAccounts();
 
     if (accounts.length === 0) {
-      throw new Error("No accounts found");
+      throw new Error('No accounts found');
     }
 
     const address = accounts[0];
@@ -209,17 +209,16 @@ export class UnisatWallet extends WalletProvider {
     return this.unisatWalletInfo!;
   };
 
-  // biome-ignore lint/suspicious/useAwait: used to avoid type errors
   checkWalletProvider = async (): Promise<void> => {
     if (!this.unisatWallet || !window[unisatProvider as keyof typeof window]) {
-      throw new Error("Unisat Wallet extension not found");
+      throw new Error('Unisat Wallet extension not found');
     }
   };
 }
 
 function compareVersions(v1: string, v2: string): number {
-  const parts1 = v1.split(".").map(Number);
-  const parts2 = v2.split(".").map(Number);
+  const parts1 = v1.split('.').map(Number);
+  const parts2 = v2.split('.').map(Number);
 
   for (let i = 0; i < Math.max(parts1.length, parts2.length); i++) {
     const part1 = parts1[i] || 0;

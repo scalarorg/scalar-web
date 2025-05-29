@@ -30,7 +30,6 @@ export const useERC20 = (tokenAddress?: `0x${string}`) => {
   );
 
   const balanceOf = useCallback(
-    // biome-ignore lint/suspicious/useAwait: used to avoid type errors
     async (ownerAddress: string) => {
       if (!contract) throw Error('No contract');
       const balance = contract.balanceOf?.(ownerAddress);

@@ -1,14 +1,14 @@
-import { ChainIcon, Clipboard, If } from "@/components/common";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Skeleton } from "@/components/ui/skeleton";
-import { Chains } from "@/lib/chains";
-import { cn, formatDate, handle0xString, isBtcChain, isEvmChain } from "@/lib/utils";
-import { SupportedChains } from "@/types/chains";
-import { isEmpty } from "lodash";
-import { ReactNode } from "react";
-import { TExploreDetail } from "../models";
-import { StatusStepper } from "./status-stepper";
+import { ChainIcon, Clipboard, If } from '@/components/common';
+import { Badge } from '@/components/ui/badge';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Skeleton } from '@/components/ui/skeleton';
+import { Chains } from '@/lib/chains';
+import { cn, formatDate, handle0xString, isBtcChain, isEvmChain } from '@/lib/utils';
+import { SupportedChains } from '@/types/chains';
+import { isEmpty } from 'lodash';
+import { ReactNode } from 'react';
+import { TExploreDetail } from '../models';
+import { StatusStepper } from './status-stepper';
 
 export type TTransactionInfoCardItem = {
   label: string;
@@ -42,7 +42,7 @@ const handleChain = (chain: string, text: string) => {
 export const TransactionInfoCard = ({ data, isSecondary = false, title }: Props) => {
   const { source, destination, type } = data || {};
 
-  const { label: sourceLabel } = handleChain(source?.chain || "", source?.tx_hash || "");
+  const { label: sourceLabel } = handleChain(source?.chain || '', source?.tx_hash || '');
 
   const { blockExplorer: sourceBlockExplorer } = Chains[source?.chain as SupportedChains] || {};
   const { blockExplorer: destinationBlockExplorer } = Chains[destination?.chain as SupportedChains] || {};
@@ -53,14 +53,14 @@ export const TransactionInfoCard = ({ data, isSecondary = false, title }: Props)
     destinationBlockExplorer && `${destinationBlockExplorer}/address/${destination?.receiver}`;
 
   const items: TTransactionInfoCardItem[] = [
-    { label: "Type", content: <Badge className='capitalize'>{type}</Badge> },
-    { label: "Status", content: <StatusStepper /> },
+    { label: 'Type', content: <Badge className='capitalize'>{type}</Badge> },
+    { label: 'Status', content: <StatusStepper /> },
     {
-      label: "Source Chain",
+      label: 'Source Chain',
       content: <ChainIcon chain={source?.chain as SupportedChains} showName customName={source?.chain_name} />
     },
     {
-      label: "Destination Chain",
+      label: 'Destination Chain',
       content: (
         <ChainIcon
           chain={destination?.chain as SupportedChains}
@@ -69,40 +69,40 @@ export const TransactionInfoCard = ({ data, isSecondary = false, title }: Props)
         />
       )
     },
-    { label: "Asset", content: source?.asset.symbol },
-    { label: "Transfer Fee", content: source?.fee },
+    { label: 'Asset', content: source?.asset.symbol },
+    { label: 'Transfer Fee', content: source?.fee },
     {
-      label: "Sender",
+      label: 'Sender',
       content: (
         <Clipboard
           targetLink={senderLink}
           label={source?.sender}
-          text={source?.sender || ""}
-          classNames={{ wrapper: "max-w-50" }}
+          text={source?.sender || ''}
+          classNames={{ wrapper: 'max-w-50' }}
         />
       )
     },
     {
-      label: "Recipient",
+      label: 'Recipient',
       content: (
         <Clipboard
           targetLink={receiverLink}
           label={destination?.receiver}
-          text={destination?.receiver || ""}
-          classNames={{ wrapper: "max-w-50" }}
+          text={destination?.receiver || ''}
+          classNames={{ wrapper: 'max-w-50' }}
         />
       )
     },
-    { label: "Transfer ID", content: "..." },
+    { label: 'Transfer ID', content: '...' },
     {
-      label: "Created",
-      content: source?.created_at && formatDate(source.created_at, "DD/MM/YYYY HH:mm")
+      label: 'Created',
+      content: source?.created_at && formatDate(source.created_at, 'DD/MM/YYYY HH:mm')
     },
-    { label: "Time Spent", content: "..." }
+    { label: 'Time Spent', content: '...' }
   ];
 
   return (
-    <Card className={cn("gap-0 rounded-lg p-0", isSecondary && "bg-background-secondary")}>
+    <Card className={cn('gap-0 rounded-lg p-0', isSecondary && 'bg-background-secondary')}>
       <If
         condition={isEmpty(data)}
         fallback={
@@ -111,7 +111,7 @@ export const TransactionInfoCard = ({ data, isSecondary = false, title }: Props)
               <CardTitle>
                 {title ||
                   (sourceLabel && (
-                    <Clipboard label={sourceLabel} text={sourceLabel} classNames={{ wrapper: "max-w-50" }} />
+                    <Clipboard label={sourceLabel} text={sourceLabel} classNames={{ wrapper: 'max-w-50' }} />
                   ))}
               </CardTitle>
             </CardHeader>

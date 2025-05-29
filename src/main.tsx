@@ -6,23 +6,23 @@ import {
   WagmiProvider,
   WalletProvider,
   buildProvidersTree
-} from "@/providers";
-import * as ec from "@bitcoin-js/tiny-secp256k1-asmjs";
-import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
-import * as bitcoin from "bitcoinjs-lib";
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import "@rainbow-me/rainbowkit/styles.css";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { Toaster } from "@/components/ui/toaster";
-import { RouterProvider, createRouter } from "@tanstack/react-router";
-import { scalarConfig } from "./lib/scalar";
-import { routeTree } from "./routeTree.gen";
-import "./index.css";
-import { ConfirmDialogProvider } from "./components/common";
+} from '@/providers';
+import * as ec from '@bitcoin-js/tiny-secp256k1-asmjs';
+import { RainbowKitProvider } from '@rainbow-me/rainbowkit';
+import * as bitcoin from 'bitcoinjs-lib';
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import '@rainbow-me/rainbowkit/styles.css';
+import { Toaster as Sonner } from '@/components/ui/sonner';
+import { Toaster } from '@/components/ui/toaster';
+import { RouterProvider, createRouter } from '@tanstack/react-router';
+import { scalarConfig } from './lib/scalar';
+import { routeTree } from './routeTree.gen';
+import './index.css';
+import { ConfirmDialogProvider } from './components/common';
 
 const router = createRouter({ routeTree });
-declare module "@tanstack/react-router" {
+declare module '@tanstack/react-router' {
   interface Register {
     router: typeof router;
   }
@@ -41,7 +41,7 @@ const ProvidersTree = buildProvidersTree([
   [ConfirmDialogProvider]
 ]);
 
-createRoot(document.getElementById("root")!).render(
+createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <ProvidersTree>
       <RouterProvider router={router} />

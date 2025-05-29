@@ -1,6 +1,6 @@
-import { If } from "../common";
-import { Toast, ToastClose, ToastDescription, ToastProvider, ToastTitle, ToastViewport } from "./toast";
-import { useToast } from "./use-toast";
+import { If } from '../common';
+import { Toast, ToastClose, ToastDescription, ToastProvider, ToastTitle, ToastViewport } from './toast';
+import { useToast } from './use-toast';
 
 export function Toaster() {
   const { toasts } = useToast();

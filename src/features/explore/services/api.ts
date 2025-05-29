@@ -1,5 +1,5 @@
 const BASE_URL = import.meta.env.VITE_SCALAR_SCAN_URL;
-const headers: HeadersInit = { "Content-Type": "application/json" };
+const headers: HeadersInit = { 'Content-Type': 'application/json' };
 
 const fetchData = async <TResponse>(url: string, init: RequestInit): Promise<TResponse | null> => {
   try {
@@ -22,12 +22,12 @@ const buildQueryString = (params: Record<string, unknown>): string => {
   const queryString = new URLSearchParams(
     Object.fromEntries(Object.entries(params).map(([key, value]) => [key, String(value)]))
   ).toString();
-  return queryString ? `?${queryString}` : "";
+  return queryString ? `?${queryString}` : '';
 };
 
 export const postMethod = async <TBody, TResponse>(url: string, body: TBody): Promise<TResponse | null> => {
   return await fetchData<TResponse>(url, {
-    method: "POST",
+    method: 'POST',
     body: JSON.stringify(body)
   });
 };
@@ -42,6 +42,6 @@ export const getByGetMethod = async <TParams extends Record<string, unknown>, TR
   params: TParams
 ): Promise<TResponse | null> => {
   return await fetchData<TResponse>(`${url}${buildQueryString(params)}`, {
-    method: "GET"
+    method: 'GET'
   });
 };

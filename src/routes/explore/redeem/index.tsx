@@ -1,7 +1,7 @@
-import { COMMON_DEFAULT_PAGE_SIZE, COMMON_VALIDATE_PAGE_SEARCH_PARAMS } from "@/constants";
-import { EExploreType, ExploreLinks, ExploreTable, useExploreQuery } from "@/features/explore";
-import { createFileRoute } from "@tanstack/react-router";
-export const Route = createFileRoute("/explore/redeem/")({
+import { COMMON_DEFAULT_PAGE_SIZE, COMMON_VALIDATE_PAGE_SEARCH_PARAMS } from '@/constants';
+import { EExploreType, ExploreLinks, ExploreTable, useExploreQuery } from '@/features/explore';
+import { createFileRoute } from '@tanstack/react-router';
+export const Route = createFileRoute('/explore/redeem/')({
   component: Redeem,
   validateSearch: COMMON_VALIDATE_PAGE_SEARCH_PARAMS
 });

@@ -1,11 +1,11 @@
-import { Base64Icon, ChainIcon, If, SelectSearch, TSelectSearchGroup } from "@/components/common";
-import { ConnectBtc, ConnectEvm } from "@/components/connect";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { toast } from "@/components/ui/use-toast";
+import { Base64Icon, ChainIcon, If, SelectSearch, TSelectSearchGroup } from '@/components/common';
+import { ConnectBtc, ConnectEvm } from '@/components/connect';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { toast } from '@/components/ui/use-toast';
 import {
   useERC20,
   useFeeRates,
@@ -14,12 +14,12 @@ import {
   useScalarProtocols,
   useScalarStandaloneCommandResult,
   useVault
-} from "@/hooks";
-import { Chains } from "@/lib/chains";
-import { useEthersSigner } from "@/lib/ethers";
-import { decodeScalarBytesToString, decodeScalarBytesToUint8Array } from "@/lib/scalar";
-import { EventType } from "@/lib/scalar/events";
-import { ReserveRedeemUtxoParams } from "@/lib/scalar/params";
+} from '@/hooks';
+import { Chains } from '@/lib/chains';
+import { useEthersSigner } from '@/lib/ethers';
+import { decodeScalarBytesToString, decodeScalarBytesToUint8Array } from '@/lib/scalar';
+import { EventType } from '@/lib/scalar/events';
+import { ReserveRedeemUtxoParams } from '@/lib/scalar/params';
 import {
   EMPTY_ADDRESS,
   VOUT_INDEX_OF_LOCKING_OUTPUT,
@@ -31,30 +31,30 @@ import {
   parseSats,
   prepareCustodianPubkeysArray,
   validateTransferConfig
-} from "@/lib/utils";
-import { getWagmiChain, isSupportedChain } from "@/lib/wagmi";
-import { useKeplrClient, useAccount as useScalarAccount } from "@/providers/keplr-provider";
-import { useWalletInfo, useWalletProvider } from "@/providers/wallet-provider";
-import { SupportedChains } from "@/types/chains";
-import { zodResolver } from "@hookform/resolvers/zod";
+} from '@/lib/utils';
+import { getWagmiChain, isSupportedChain } from '@/lib/wagmi';
+import { useKeplrClient, useAccount as useScalarAccount } from '@/providers/keplr-provider';
+import { useWalletInfo, useWalletProvider } from '@/providers/wallet-provider';
+import { SupportedChains } from '@/types/chains';
+import { zodResolver } from '@hookform/resolvers/zod';
 import {
   TBuildUPCUnstakingPsbt,
   bytesToHex,
   calculateContractCallWithTokenPayload,
   hexToBytes
-} from "@scalar-lab/bitcoin-vault";
-import { useQuery } from "@tanstack/react-query";
-import * as bitcoin from "bitcoinjs-lib";
-import { isNil } from "lodash";
-import { useCallback, useEffect, useMemo, useState } from "react";
-import { useForm } from "react-hook-form";
-import { toast as sonnerToast } from "sonner";
-import { formatUnits, parseUnits } from "viem";
-import { useAccount, useChainId, useSwitchChain } from "wagmi";
-import { TRedeemForm, redeemFormSchema } from "../schemas";
+} from '@scalar-lab/bitcoin-vault';
+import { useQuery } from '@tanstack/react-query';
+import * as bitcoin from 'bitcoinjs-lib';
+import { isNil } from 'lodash';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { toast as sonnerToast } from 'sonner';
+import { formatUnits, parseUnits } from 'viem';
+import { useAccount, useChainId, useSwitchChain } from 'wagmi';
+import { TRedeemForm, redeemFormSchema } from '../schemas';
 
-const getChainSelected = (value = "") => {
-  const [_, chain] = value.split("-") || [];
+const getChainSelected = (value = '') => {
+  const [_, chain] = value.split('-') || [];
 
   return chain;
 };
@@ -91,7 +91,7 @@ export const RedeemForm = () => {
           <span className='font-semibold text-base'>{asset?.symbol}</span>
         </div>
       ),
-      key: scalar_address || "",
+      key: scalar_address || '',
       items:
         chains
           ?.filter((c) => c.chain !== asset?.chain)
@@ -102,7 +102,7 @@ export const RedeemForm = () => {
                 chain={chain as SupportedChains}
                 showName
                 customName={name}
-                classNames={{ icon: "size-5", name: "text-base" }}
+                classNames={{ icon: 'size-5', name: 'text-base' }}
               />
             ),
             hideValue: name || Chains[chain as SupportedChains]?.name
@@ -134,7 +134,7 @@ export const RedeemForm = () => {
       selectedProtocol.custodian_group.custodians
     );
 
-    const userPubkey = hexToBytes(btcPubkey.replace("0x", ""));
+    const userPubkey = hexToBytes(btcPubkey.replace('0x', ''));
 
     const protocolPubkey = decodeScalarBytesToUint8Array(selectedProtocol.bitcoin_pubkey);
 
@@ -155,14 +155,14 @@ export const RedeemForm = () => {
 
   const { data: unstakeableUtxos } = useQuery({
     queryKey: [
-      "selectedUnstakableUtxos",
+      'selectedUnstakableUtxos',
       upcLockingAddress,
       selectedProtocol?.asset,
       sourceChainSelected,
       watchForm.transferAmount
     ],
     queryFn: async () => {
-      const satsAmount = parseSats(watchForm.transferAmount ? String(watchForm.transferAmount) : "");
+      const satsAmount = parseSats(watchForm.transferAmount ? String(watchForm.transferAmount) : '');
 
       if (!isBtcChain(selectedProtocol?.asset?.chain))
         return {
@@ -217,11 +217,11 @@ export const RedeemForm = () => {
 
   const { data: sourceChainTokenBalance } = useQuery({
     queryKey: [
-      "sourceChainTokenBalance",
+      'sourceChainTokenBalance',
       sourceChainSelected,
       selectedProtocol?.asset,
       chainId,
-      evmAddress ?? ""
+      evmAddress ?? ''
     ],
     queryFn: async () => {
       const balance = await balanceOf(evmAddress as `0x${string}`);
@@ -249,19 +249,19 @@ export const RedeemForm = () => {
   useEffect(() => {
     if (watchForm.transferAmount && sourceChainTokenBalance && decimals) {
       if (parseUnits(String(watchForm.transferAmount), Number(decimals)) > sourceChainTokenBalance) {
-        setError("transferAmount", {
-          type: "manual",
-          message: "Amount exceeds available balance"
+        setError('transferAmount', {
+          type: 'manual',
+          message: 'Amount exceeds available balance'
         });
       } else {
-        clearErrors("transferAmount");
+        clearErrors('transferAmount');
       }
     }
   }, [decimals, watchForm.transferAmount, sourceChainTokenBalance, setError, clearErrors]);
 
   const showSuccessTx = useCallback(
     (txid: string, chain: string) => {
-      let link = "";
+      let link = '';
       if (isBtcChain(chain)) {
         link = `${networkConfig?.mempoolApiUrl}/tx/${txid}`;
       } else if (isEvmChain(chain)) {
@@ -272,11 +272,11 @@ export const RedeemForm = () => {
         link = `${wagmiChain.blockExplorers?.default.url}/tx/${txid}`;
       }
       toast({
-        title: "Transfer transaction successful",
+        title: 'Transfer transaction successful',
         description: (
           <div className='mt-2 w-160 rounded-md'>
             <p className='text-white'>
-              Txid:{" "}
+              Txid:{' '}
               <a className='text-blue-500 underline' href={link} target='_blank' rel='noopener noreferrer'>
                 {txid.slice(0, 8)}...{txid.slice(-8)} (click to view)
               </a>
@@ -295,9 +295,9 @@ export const RedeemForm = () => {
   const onSubmit = async (values: TRedeemForm) => {
     setIsLoading(true);
     try {
-      if (selectedProtocol?.attributes?.model === "LIQUIDITY_MODEL_POOL") {
+      if (selectedProtocol?.attributes?.model === 'LIQUIDITY_MODEL_POOL') {
         if (isScalarClientLoading || !scalarAccount || !scalarClient) {
-          throw new Error("Please connect to Scalar");
+          throw new Error('Please connect to Scalar');
         }
       }
       validateTransferConfig(tokenAddress, gateway);
@@ -305,17 +305,17 @@ export const RedeemForm = () => {
       const sourceChain = getChainSelected(values.sourceChain);
 
       if (!isEvmChain(sourceChain) || !isBtcChain(selectedProtocol?.asset?.chain)) {
-        throw new Error("Invalid chain types");
+        throw new Error('Invalid chain types');
       }
 
       const newTransferAmount = parseUnits(String(values.transferAmount), Number(decimals));
 
       if ((sourceChainTokenBalance || 0n) < BigInt(newTransferAmount)) {
-        throw new Error("Insufficient balance");
+        throw new Error('Insufficient balance');
       }
 
       if (!evmAddress) {
-        throw new Error("Invalid EVM address");
+        throw new Error('Invalid EVM address');
       }
 
       await handleTokenApproval({
@@ -328,14 +328,14 @@ export const RedeemForm = () => {
 
       const redeemLockingScript = bitcoin.address.toOutputScript(values.destRecipientAddress, btcNetwork);
 
-      let payload = "";
+      let payload = '';
 
-      if (selectedProtocol?.attributes?.model === "LIQUIDITY_MODEL_POOL") {
+      if (selectedProtocol?.attributes?.model === 'LIQUIDITY_MODEL_POOL') {
         if (!scalarAccount?.address) {
-          throw new Error("Invalid Scalar address");
+          throw new Error('Invalid Scalar address');
         }
 
-        const lockingScript = Buffer.from(redeemLockingScript).toString("hex");
+        const lockingScript = Buffer.from(redeemLockingScript).toString('hex');
 
         const params: ReserveRedeemUtxoParams = {
           sender: scalarAccount.address,
@@ -347,40 +347,40 @@ export const RedeemForm = () => {
           locking_script: lockingScript
         };
 
-        const result = await scalarClient?.raw.reserveRedeemUtxo(scalarAccount.address, params, "auto", "");
+        const result = await scalarClient?.raw.reserveRedeemUtxo(scalarAccount.address, params, 'auto', '');
 
         const event = result?.events.find((e) => e.type === EventType.ReserveRedeemUtxo);
         if (!event) {
-          throw new Error("Failed to redeem UPC");
+          throw new Error('Failed to redeem UPC');
         }
 
         const command = event.attributes.find(
-          (a) => a.key === Buffer.from("commandId", "ascii").toString("base64")
+          (a) => a.key === Buffer.from('commandId', 'ascii').toString('base64')
         );
 
         if (!command) {
-          throw new Error("Failed to redeem UPC");
+          throw new Error('Failed to redeem UPC');
         }
 
-        const commandId = Buffer.from(command.value, "base64").toString("ascii");
+        const commandId = Buffer.from(command.value, 'base64').toString('ascii');
 
         const commandRs = await startPolling({
           hex: commandId,
-          validator: (data) => data.status === "STANDALONE_COMMAND_STATUS_SIGNED"
+          validator: (data) => data.status === 'STANDALONE_COMMAND_STATUS_SIGNED'
         });
         if (!command) {
-          throw new Error("Failed to redeem UPC");
+          throw new Error('Failed to redeem UPC');
         }
 
         if (!commandRs.execute_data) {
-          throw new Error("Execute data not found");
+          throw new Error('Execute data not found');
         }
 
         const payload = commandRs.execute_data;
 
         const response = await signer?.sendTransaction({
           to: gateway?.address as `0x${string}`,
-          data: payload.startsWith("0x") ? payload : `0x${payload}`,
+          data: payload.startsWith('0x') ? payload : `0x${payload}`,
           value: 0
         });
 
@@ -391,11 +391,11 @@ export const RedeemForm = () => {
       }
 
       if (!unstakeableUtxos?.utxos || !unstakeableUtxos?.utxos.length) {
-        throw new Error("Not enough balances");
+        throw new Error('Not enough balances');
       }
 
       if (!upcLockingScript) {
-        throw new Error("Invalid locking script");
+        throw new Error('Invalid locking script');
       }
 
       const protocolPubkey = decodeScalarBytesToUint8Array(selectedProtocol?.bitcoin_pubkey!);
@@ -403,7 +403,7 @@ export const RedeemForm = () => {
       const custodianPubkeys = prepareCustodianPubkeysArray(selectedProtocol?.custodian_group?.custodians!);
 
       const custodianQuorum = selectedProtocol?.custodian_group?.quorum!;
-      const stakerPubkey = hexToBytes(btcPubkey.replace("0x", ""));
+      const stakerPubkey = hexToBytes(btcPubkey.replace('0x', ''));
 
       const params: TBuildUPCUnstakingPsbt = {
         inputs: unstakeableUtxos.utxos?.map((tx) => ({
@@ -422,7 +422,7 @@ export const RedeemForm = () => {
         custodianQuorum,
         feeRate: BigInt(feeRates.minimumFee),
         rbf: true,
-        type: "user_custodian"
+        type: 'user_custodian'
       };
 
       const unsignedPsbtHex = vault?.buildUPCUnstakingPsbt(params);
@@ -439,7 +439,7 @@ export const RedeemForm = () => {
       });
 
       payload = calculateContractCallWithTokenPayload({
-        type: "upc",
+        type: 'upc',
         upc: {
           psbt: `0x${signedPsbt}`
         }
@@ -449,26 +449,26 @@ export const RedeemForm = () => {
         destinationChain: selectedProtocol?.asset?.chain!,
         destinationContractAddress: EMPTY_ADDRESS,
         payload,
-        symbol: selectedProtocol?.asset?.symbol || "",
+        symbol: selectedProtocol?.asset?.symbol || '',
         amount: BigInt(newTransferAmount)
       });
 
       if (!contractCallTx) {
-        throw new Error("Initializing transfer failed");
+        throw new Error('Initializing transfer failed');
       }
 
       const contractCallConfirmed = await Promise.race([
-        new Promise((_, reject) => setTimeout(() => reject(new Error("Transfer timeout")), 60000)),
+        new Promise((_, reject) => setTimeout(() => reject(new Error('Transfer timeout')), 60000)),
         contractCallTx.wait()
       ]);
 
       if (contractCallConfirmed) {
         showSuccessTx(contractCallTx.hash, sourceChain);
       } else {
-        throw new Error("Transfer failed");
+        throw new Error('Transfer failed');
       }
     } catch (error) {
-      sonnerToast.error((error as Error).message || "Something went wrong");
+      sonnerToast.error((error as Error).message || 'Something went wrong');
     } finally {
       setIsLoading(false);
     }
@@ -498,8 +498,8 @@ export const RedeemForm = () => {
                             searchByHideValue
                             classNames={{
                               command: {
-                                group: "py-1",
-                                list: "max-h-60"
+                                group: 'py-1',
+                                list: 'max-h-60'
                               }
                             }}
                           />
@@ -528,7 +528,7 @@ export const RedeemForm = () => {
                 )}
               />
               <p className='text-right text-base text-text-primary-500/50'>
-                <span>Redeemable amount:</span>{" "}
+                <span>Redeemable amount:</span>{' '}
                 <span className='mr-1 border-text-primary-500/50 border-r-2 pr-1'>
                   {unstakeableUtxos ? formatBTC(unstakeableUtxos?.total) : 0} BTC
                 </span>
@@ -543,10 +543,10 @@ export const RedeemForm = () => {
 
             {/* To Section */}
             <p className='flex items-center justify-between gap-2 rounded-lg bg-background-secondary p-4 text-base'>
-              To{" "}
+              To{' '}
               <If condition={selectedProtocol?.asset?.chain}>
                 {(chain) => (
-                  <ChainIcon chain={chain as SupportedChains} showName classNames={{ wrapper: "gap-1" }} />
+                  <ChainIcon chain={chain as SupportedChains} showName classNames={{ wrapper: 'gap-1' }} />
                 )}
               </If>
             </p>
@@ -571,7 +571,7 @@ export const RedeemForm = () => {
 
             <If condition={isConnectedEvm} fallback={<ConnectEvm hideTitle />}>
               <If
-                condition={selectedProtocol?.attributes?.model === "LIQUIDITY_MODEL_UPC" && !isConnectedBtc}
+                condition={selectedProtocol?.attributes?.model === 'LIQUIDITY_MODEL_UPC' && !isConnectedBtc}
                 fallback={
                   <Button
                     type='submit'

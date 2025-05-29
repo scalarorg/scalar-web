@@ -1,7 +1,7 @@
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
-import { If } from "../common";
+import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
+import { ConnectButton } from '@rainbow-me/rainbowkit';
+import { If } from '../common';
 
 export const ConnectEvm = ({
   hideTitle,
@@ -29,18 +29,18 @@ export const ConnectEvm = ({
         }) => {
           // Note: If your app doesn't use authentication, you
           // can remove all 'authenticationStatus' checks
-          const ready = mounted && authenticationStatus !== "loading";
+          const ready = mounted && authenticationStatus !== 'loading';
           const connected =
-            ready && account && chain && (!authenticationStatus || authenticationStatus === "authenticated");
+            ready && account && chain && (!authenticationStatus || authenticationStatus === 'authenticated');
 
           return (
             <div
               {...(!ready && {
-                "aria-hidden": true,
+                'aria-hidden': true,
                 style: {
                   opacity: 0,
-                  pointerEvents: "none",
-                  userSelect: "none"
+                  pointerEvents: 'none',
+                  userSelect: 'none'
                 }
               })}
             >
@@ -50,7 +50,7 @@ export const ConnectEvm = ({
                     <Button
                       onClick={openConnectModal}
                       type='button'
-                      className={cn("w-full", className)}
+                      className={cn('w-full', className)}
                       size='lg'
                     >
                       Connect wallet
@@ -77,7 +77,7 @@ export const ConnectEvm = ({
                       <If condition={chain.hasIcon}>
                         <div className='mr-1 size-3 overflow-hidden rounded-full'>
                           <If condition={chain.iconUrl}>
-                            <img alt={chain.name ?? "Chain icon"} src={chain.iconUrl} className='size-3' />
+                            <img alt={chain.name ?? 'Chain icon'} src={chain.iconUrl} className='size-3' />
                           </If>
                         </div>
                       </If>
@@ -86,7 +86,7 @@ export const ConnectEvm = ({
 
                     <Button onClick={openAccountModal} type='button' className='grow' variant='outline'>
                       {account.displayName}
-                      {account.displayBalance ? ` (${account.displayBalance})` : ""}
+                      {account.displayBalance ? ` (${account.displayBalance})` : ''}
                     </Button>
                   </div>
                 );

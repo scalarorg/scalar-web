@@ -1,1 +1,1 @@
-export * from "./use-faucet-query";
+export * from './use-faucet-query';

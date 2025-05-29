@@ -1,9 +1,9 @@
-import { Clipboard, If } from "@/components/common";
-import { Button } from "@/components/ui/button";
-import { usePathname } from "@/hooks";
-import { cn } from "@/lib/utils";
-import { useAccount, useConnectKeplr, useDisconnectKeplr, useKeplrClient } from "@/providers/keplr-provider";
-import { Power } from "lucide-react";
+import { Clipboard, If } from '@/components/common';
+import { Button } from '@/components/ui/button';
+import { usePathname } from '@/hooks';
+import { cn } from '@/lib/utils';
+import { useAccount, useConnectKeplr, useDisconnectKeplr, useKeplrClient } from '@/providers/keplr-provider';
+import { Power } from 'lucide-react';
 
 export const ConnectScalar = () => {
   const { data: client } = useKeplrClient();
@@ -12,10 +12,10 @@ export const ConnectScalar = () => {
   const { disconnect } = useDisconnectKeplr();
   const pathname = usePathname();
 
-  const isHidden = pathname.includes("/explore");
+  const isHidden = pathname.includes('/explore');
 
   return (
-    <div className={cn("flex items-center gap-1", isHidden && "hidden")}>
+    <div className={cn('flex items-center gap-1', isHidden && 'hidden')}>
       <If
         condition={client && isConnected}
         fallback={
@@ -25,9 +25,9 @@ export const ConnectScalar = () => {
         }
       >
         <Clipboard
-          label={account?.address || ""}
-          text={account?.address || ""}
-          classNames={{ wrapper: "max-w-25" }}
+          label={account?.address || ''}
+          text={account?.address || ''}
+          classNames={{ wrapper: 'max-w-25' }}
         />
         <button type='button' onClick={() => disconnect()} className='cursor-pointer'>
           <Power className='size-5' />

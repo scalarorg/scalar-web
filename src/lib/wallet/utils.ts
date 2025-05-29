@@ -1,5 +1,5 @@
-import { networks } from "bitcoinjs-lib";
-import { Network } from "./wallet-provider";
+import { networks } from 'bitcoinjs-lib';
+import { Network } from './wallet-provider';
 
 const NETWORK_OBJECTS = {
   [Network.MAINNET]: networks.bitcoin,
@@ -12,7 +12,7 @@ export const toNetwork = (network: Network): networks.Network => {
   const networkObject = NETWORK_OBJECTS[network];
 
   if (!networkObject) {
-    throw new Error("Unsupported network");
+    throw new Error('Unsupported network');
   }
 
   return networkObject;
@@ -34,7 +34,7 @@ export const isSupportedAddressType = (address: string): boolean => {
 
 const BYTES_IN_KB = 1024;
 
-export const convertToBytes = (value: number, unit: "B" | "KB" | "MB" | "GB" | "TB"): number => {
+export const convertToBytes = (value: number, unit: 'B' | 'KB' | 'MB' | 'GB' | 'TB'): number => {
   const unitMap: Record<string, number> = {
     B: 1,
     KB: BYTES_IN_KB,
