@@ -49,7 +49,7 @@ export const FaucetFormLayout = ({ children, isPending = false }: Props) => {
             className="h-10 w-full gap-2 font-normal text-lg"
             isLoading={isPending}
           >
-            Lorem ipsum dolor sit amet
+            Get Testnet Tokens
           </Button>
         </div>
         <p className="mx-auto max-w-99 text-center text-secondary-500">
