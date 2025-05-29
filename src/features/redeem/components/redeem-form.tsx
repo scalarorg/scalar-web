@@ -502,6 +502,7 @@ export const RedeemForm = () => {
                                 list: 'max-h-60'
                               }
                             }}
+                            showGroupLabelOfValue
                           />
                         </div>
                       </div>
