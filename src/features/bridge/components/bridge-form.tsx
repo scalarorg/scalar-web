@@ -303,6 +303,7 @@ export const BridgeForm = () => {
                               }
                             }}
                             searchByHideValue
+                            showGroupLabelOfValue
                           />
                         </div>
                         <span className='text-base'>{watch('transferAmount') || 0}</span>
