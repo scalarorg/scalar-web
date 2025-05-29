@@ -7,7 +7,7 @@ import {
   faucetFormSchema,
 } from "@/features/faucet";
 import { faucetQuery } from "@/features/faucet";
-import { useAccount, useKeplrClient } from "@/providers/keplr-provider";
+import { useAccount } from "@/providers/keplr-provider";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createFileRoute } from "@tanstack/react-router";
 import { SubmitHandler } from "node_modules/react-hook-form/dist/types";
@@ -20,8 +20,7 @@ export const Route = createFileRoute("/faucet/")({
 });
 
 function FaucetPage() {
-  const { data: client } = useKeplrClient();
-  const { account, isConnected } = useAccount();
+  const { account } = useAccount();
 
   const { mutate, isPending } = faucetQuery.mutate.useCreatFaucet();
   const scalarAddress = account?.address || "";
@@ -47,8 +46,8 @@ function FaucetPage() {
   };
 
   useEffect(() => {
-    setValue("address", client && isConnected ? scalarAddress : "");
-  }, [scalarAddress, setValue, client, isConnected]);
+    setValue("address", scalarAddress);
+  }, [scalarAddress, setValue]);
 
   return (
     <div className="flex flex-col gap-5 py-15">
