@@ -339,7 +339,7 @@ export const RedeemForm = () => {
 
         const params: ReserveRedeemUtxoParams = {
           sender: scalarAccount.address,
-          address: EMPTY_ADDRESS,
+          address: evmAddress,
           source_chain: sourceChain,
           dest_chain: selectedProtocol.asset?.chain!,
           symbol: selectedProtocol.asset?.symbol,
