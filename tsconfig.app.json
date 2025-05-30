@@ -23,5 +23,5 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src", "src/lib/scalar/signingClient.ts"]
+  "include": ["src", "src/lib/scalar/signingClient.ts", "../scalar-healer-ui/src/store/btc-network.ts"]
 }
