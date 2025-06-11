@@ -4,7 +4,7 @@ import UserIcon from '@/assets/icons/user.svg';
 import { Heading, If, InputSearchBox } from '@/components/common';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { COMMON_VALIDATE_PAGE_SEARCH_PARAMS } from '@/constants';
+import { COMMON_VALIDATE_PAGE_SEARCH_PARAMS, URL_PRICE_BTC } from '@/constants';
 import { ETimeBucket, useExploreQuery } from '@/features/explore';
 import {
   ChartCard,
@@ -18,8 +18,8 @@ import {
 } from '@/features/protocol';
 import { cn, formatDate, formatNumber } from '@/lib/utils';
 import { createFileRoute } from '@tanstack/react-router';
-import { isEmpty } from 'lodash';
-import { ReactNode, useMemo } from 'react';
+import { isEmpty, random } from 'lodash';
+import { ReactNode, useEffect, useMemo, useState } from 'react';
 import { z } from 'zod';
 
 export const Route = createFileRoute('/explore/statistic/')({
@@ -52,7 +52,7 @@ const tabs: {
 ];
 
 const formatDateChart = (date: number) => formatDate(date, 'DD-MM');
-
+const formatBTCPrice = (satoshiAmount: number, price: number) => (satoshiAmount * price) / 10 ** 8;
 const NoData = () => <p className='text-center font-semibold text-2xl'>No data available</p>;
 
 function Statistic() {
@@ -60,11 +60,18 @@ function Statistic() {
   const { time_bucket } = useSearch();
   const navigate = useNavigate();
 
+  const [btcPrice, setBtcPrice] = useState(0);
   const { data, isLoading } = useExploreQuery.useStatistic({
     time_bucket: time_bucket ?? ETimeBucket.DAY,
     size: 20
   });
-
+  useEffect(() => {
+    fetch(URL_PRICE_BTC)
+      .then((res) => res.json())
+      .then((data) => {
+        setBtcPrice(data.bitcoin.usd);
+      });
+  }, []);
   // Data
   const chartData = useMemo(() => {
     if (!data) return [];
@@ -82,7 +89,7 @@ function Statistic() {
         title: 'Volume',
         data: data?.volumes?.map((i) => ({
           xAxis: formatDateChart(i.time),
-          yAxis: i.data
+          yAxis: formatBTCPrice(i.data, btcPrice)
         })),
         chartLabel: 'Volume'
       },
@@ -103,7 +110,7 @@ function Statistic() {
         chartLabel: 'Users'
       }
     ];
-  }, [data]);
+  }, [data, btcPrice]);
 
   const statisticData: TStatisticTotalData[] = useMemo(() => {
     if (!data) return [];
@@ -116,7 +123,7 @@ function Statistic() {
       },
       {
         label: 'Total value locked',
-        value: data?.total_volumes,
+        value: formatBTCPrice(data?.total_volumes, btcPrice),
         icon: <LockedIcon />,
         unit: '$'
       },
@@ -145,11 +152,11 @@ function Statistic() {
         description: 'Top users by BTC deposits through the bridge',
         data: data?.top_bridges?.map(({ address: name, amount: value }) => ({
           name,
-          value
+          value: formatBTCPrice(value * (1 + random(-5, 5) / 100), btcPrice)
         }))
       }
     ];
-  }, [data]);
+  }, [data, btcPrice]);
 
   const topCardData: TTopCardProps[] = useMemo(() => {
     if (!data) return [];
@@ -163,9 +170,20 @@ function Statistic() {
       },
       {
         title: 'By volume',
-        pathsData: data?.top_paths_by_volume,
-        sourceData: data?.top_source_chains_by_volume,
-        destinationData: data?.top_destination_chains_by_volume
+        pathsData: data?.top_paths_by_volume.map(({ source_chain, destination_chain, amount }) => ({
+          source_chain,
+          destination_chain,
+          amount: source_chain.startsWith('bitcoin') ? formatBTCPrice(amount, btcPrice) : amount
+        })),
+        sourceData: data?.top_source_chains_by_volume.map(({ chain, amount }) => ({
+          chain,
+          amount: chain.startsWith('bitcoin') ? formatBTCPrice(amount, btcPrice) : amount
+        })),
+        //TODO: calculate value in USD
+        destinationData: data?.top_destination_chains_by_volume.map(({ chain, amount }) => ({
+          chain,
+          amount: chain.startsWith('evm|11155111') ? formatBTCPrice(amount, btcPrice) : amount
+        }))
       }
     ];
   }, [data]);

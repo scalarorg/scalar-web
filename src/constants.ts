@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import { ESortDirection } from './enums';
 export const COMMON_DEFAULT_PAGE_SIZE = 20;
+export const URL_PRICE_BTC = 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd';
 export const COMMON_VALIDATE_PAGE_SEARCH_PARAMS = z.object({
   size: z.number().optional(),
   page: z.number().optional(),
