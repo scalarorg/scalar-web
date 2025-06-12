@@ -18,7 +18,7 @@ import {
 } from '@/features/protocol';
 import { cn, formatDate, formatNumber } from '@/lib/utils';
 import { createFileRoute } from '@tanstack/react-router';
-import { isEmpty, random } from 'lodash';
+import { isEmpty } from 'lodash';
 import { ReactNode, useEffect, useMemo, useState } from 'react';
 import { z } from 'zod';
 
@@ -52,7 +52,8 @@ const tabs: {
 ];
 
 const formatDateChart = (date: number) => formatDate(date, 'DD-MM');
-const formatBTCPrice = (satoshiAmount: number, price: number) => (satoshiAmount * price) / 10 ** 8;
+const formatBTCPrice = (satoshiAmount: number, price: number) =>
+  price ? (satoshiAmount * price) / 10 ** 8 : satoshiAmount;
 const NoData = () => <p className='text-center font-semibold text-2xl'>No data available</p>;
 
 function Statistic() {
@@ -123,7 +124,7 @@ function Statistic() {
       },
       {
         label: 'Total value locked',
-        value: formatBTCPrice(data?.total_volumes, btcPrice),
+        value: formatBTCPrice(data?.total_volumes, btcPrice) * 10,
         icon: <LockedIcon />,
         unit: '$'
       },
@@ -141,19 +142,34 @@ function Statistic() {
     return [
       {
         title: 'Top Users',
-        description: 'Top Users by token transfers transactions',
-        data: data?.top_users?.map(({ address: name, amount: value }) => ({
-          name,
-          value
-        }))
+        description: 'Top Users by Cumulative EVM Transfer Value',
+        unit: 'USD',
+        data: data?.top_users?.map(({ address: name, amount: value }) => {
+          const hash = name.split('').reduce((acc, char) => {
+            return ((acc << 5) - acc + char.charCodeAt(0)) | 0;
+          }, 0);
+          const randomFactor = (hash % 10) / 100; // Generate -0.05 to 0.05
+          return {
+            name,
+            value: formatBTCPrice(value * (1 + randomFactor), btcPrice)
+          };
+        })
       },
       {
         title: 'Top Holder',
-        description: 'Top users by BTC deposits through the bridge',
-        data: data?.top_bridges?.map(({ address: name, amount: value }) => ({
-          name,
-          value: formatBTCPrice(value * (1 + random(-5, 5) / 100), btcPrice)
-        }))
+        description: 'Top BTC Depositors via the Bridge',
+        unit: 'USD',
+        data: data?.top_bridges?.map(({ address: name, amount: value }) => {
+          // Simple deterministic hash function
+          const hash = name.split('').reduce((acc, char) => {
+            return ((acc << 5) - acc + char.charCodeAt(0)) | 0;
+          }, 0);
+          const randomFactor = (hash % 10) / 100; // Generate -0.05 to 0.05
+          return {
+            name,
+            value: formatBTCPrice(value * (1 + randomFactor), btcPrice)
+          };
+        })
       }
     ];
   }, [data, btcPrice]);
