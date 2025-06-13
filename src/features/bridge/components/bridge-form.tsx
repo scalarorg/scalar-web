@@ -1,10 +1,11 @@
-import { Base64Icon, ChainIcon, If, SelectSearch, TSelectSearchGroup } from '@/components/common';
+import { ChainIcon, If, SelectSearch, TSelectSearchGroup } from '@/components/common';
 import { ConnectBtc } from '@/components/connect';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { SelectTokens } from '@/components/ui/select-tokens';
 import { toast } from '@/components/ui/use-toast';
 import { useFeeRates, useScalarProtocols, useVault } from '@/hooks';
 import { Chains } from '@/lib/chains';
@@ -20,7 +21,7 @@ import {
 } from '@/lib/utils';
 import { getWagmiChain, isSupportedChain } from '@/lib/wagmi';
 import { useWalletInfo, useWalletProvider } from '@/providers/wallet-provider';
-import { SupportedChains } from '@/types/chains';
+import { SupportedChains, isCommingChains } from '@/types/chains';
 import { TProtocolDetails } from '@/types/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
@@ -210,31 +211,7 @@ export const BridgeForm = () => {
   }, [transferAmountForm, walletInfo.balance, setError, clearErrors]);
 
   const selectOptions: TSelectSearchGroup[] = useMemo(
-    () =>
-      data?.protocols
-        ? data.protocols.map(({ asset, avatar, scalar_address, chains }) => ({
-            groupLabel: (
-              <div className='flex items-center gap-2'>
-                <Base64Icon url={avatar} className='size-6' />
-                <span className='font-semibold text-base'>{asset?.symbol}</span>
-              </div>
-            ),
-            key: scalar_address || '',
-            items:
-              chains?.map(({ name, chain }) => ({
-                value: `${asset?.symbol}-${chain}`,
-                label: (
-                  <ChainIcon
-                    chain={chain as SupportedChains}
-                    showName
-                    customName={name}
-                    classNames={{ icon: 'size-5', name: 'text-base' }}
-                  />
-                ),
-                hideValue: name || Chains[chain as SupportedChains]?.name
-              })) || []
-          }))
-        : [],
+    () => SelectTokens({ protocols: data?.protocols }),
     [data?.protocols]
   );
 
@@ -293,7 +270,11 @@ export const BridgeForm = () => {
                           <FormLabel className='text-base'>To</FormLabel>
                           <SelectSearch
                             value={value}
-                            onChange={onChange}
+                            onChange={(val) => {
+                              const parsedVal = val.split('-')[1];
+                              if (isCommingChains(parsedVal as SupportedChains)) return;
+                              onChange(val);
+                            }}
                             placeholder='Select Token'
                             options={selectOptions}
                             classNames={{

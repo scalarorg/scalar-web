@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { commingChains } from '@/components/ui/select-tokens';
 import { toast } from '@/components/ui/use-toast';
 import { useERC20, useGateway, useGatewayContract, useScalarProtocols } from '@/hooks';
 import { Chains } from '@/lib/chains';
@@ -37,7 +38,14 @@ export const TransfersForm = () => {
     data: { protocols = [] } = {}
   } = useScalarProtocols();
   const { networkConfig } = useWalletProvider();
-  const filterProtocols = protocols.filter((p) => filterEvmChains(p.chains).length >= MIN_EVM);
+
+  const filterProtocols = protocols
+    .filter((p) => filterEvmChains(p.chains).length >= MIN_EVM)
+    .map((p) => ({
+      ...p,
+      chains: [...p.chains!, ...commingChains!]
+    }));
+
   const keyByFilterProtocols = keyBy(filterProtocols, 'scalar_address');
 
   const form = useForm<TTransfersForm>({
@@ -295,7 +303,7 @@ export const TransfersForm = () => {
                       onChange={onChange}
                       placeholder='Select chain'
                       searchByHideValue
-                      options={chainsFromToken.map(({ chain, name }) => ({
+                      options={chainsFromToken.map(({ chain, name, address }) => ({
                         value: chain || '',
                         label: (
                           <ChainIcon
@@ -305,7 +313,7 @@ export const TransfersForm = () => {
                             classNames={{ icon: 'size-5', name: 'text-base' }}
                           />
                         ),
-                        disabled: chain === watchForm.destinationChain,
+                        disabled: !address || chain === watchForm.destinationChain,
                         hideValue: name || Chains[chain as SupportedChains]?.name
                       }))}
                     />
@@ -337,7 +345,7 @@ export const TransfersForm = () => {
                       value={value}
                       placeholder='Select chain'
                       searchByHideValue
-                      options={chainsFromToken.map(({ chain, name }) => ({
+                      options={chainsFromToken.map(({ chain, name, address }) => ({
                         value: chain || '',
                         label: (
                           <ChainIcon
@@ -347,7 +355,7 @@ export const TransfersForm = () => {
                             classNames={{ icon: 'size-5', name: 'text-base' }}
                           />
                         ),
-                        disabled: chain === watchForm.sourceChain,
+                        disabled: !address || chain === watchForm.sourceChain,
                         hideValue: name || Chains[chain as SupportedChains]?.name
                       }))}
                     />

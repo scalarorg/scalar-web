@@ -1,10 +1,11 @@
-import { Base64Icon, ChainIcon, If, SelectSearch, TSelectSearchGroup } from '@/components/common';
+import { ChainIcon, If, SelectSearch, TSelectSearchGroup } from '@/components/common';
 import { ConnectBtc, ConnectEvm } from '@/components/connect';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { SelectTokens } from '@/components/ui/select-tokens';
 import { toast } from '@/components/ui/use-toast';
 import {
   useERC20,
@@ -15,7 +16,6 @@ import {
   useScalarStandaloneCommandResult,
   useVault
 } from '@/hooks';
-import { Chains } from '@/lib/chains';
 import { useEthersSigner } from '@/lib/ethers';
 import { decodeScalarBytesToString, decodeScalarBytesToUint8Array } from '@/lib/scalar';
 import { EventType } from '@/lib/scalar/events';
@@ -35,7 +35,7 @@ import {
 import { getWagmiChain, isSupportedChain } from '@/lib/wagmi';
 import { useKeplrClient, useAccount as useScalarAccount } from '@/providers/keplr-provider';
 import { useWalletInfo, useWalletProvider } from '@/providers/wallet-provider';
-import { SupportedChains } from '@/types/chains';
+import { SupportedChains, isCommingChains } from '@/types/chains';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
   TBuildUPCUnstakingPsbt,
@@ -83,32 +83,10 @@ export const RedeemForm = () => {
   const feeRates = useFeeRates(btcAddress, mempoolClient);
   const filterProtocols = protocols.filter((p) => isBtcChain(p?.asset?.chain));
 
-  const selectOptions: TSelectSearchGroup[] = useMemo(() => {
-    return filterProtocols.map(({ scalar_address, asset, chains, avatar }) => ({
-      groupLabel: (
-        <div className='flex items-center gap-2'>
-          <Base64Icon url={avatar} className='size-6' />
-          <span className='font-semibold text-base'>{asset?.symbol}</span>
-        </div>
-      ),
-      key: scalar_address || '',
-      items:
-        chains
-          ?.filter((c) => c.chain !== asset?.chain)
-          .map(({ name, chain }) => ({
-            value: `${asset?.symbol}-${chain}`,
-            label: (
-              <ChainIcon
-                chain={chain as SupportedChains}
-                showName
-                customName={name}
-                classNames={{ icon: 'size-5', name: 'text-base' }}
-              />
-            ),
-            hideValue: name || Chains[chain as SupportedChains]?.name
-          })) || []
-    }));
-  }, [filterProtocols]);
+  const selectOptions: TSelectSearchGroup[] = useMemo(
+    () => SelectTokens({ protocols: filterProtocols }),
+    [filterProtocols]
+  );
 
   const selectedProtocol = filterProtocols.find((p) =>
     p?.chains?.find((c) => `${p?.asset?.symbol}-${c?.chain}` === watchForm.sourceChain)
@@ -492,7 +470,11 @@ export const RedeemForm = () => {
                           <FormLabel className='text-base'>From</FormLabel>
                           <SelectSearch
                             value={value}
-                            onChange={onChange}
+                            onChange={(val) => {
+                              const parsedVal = val.split('-')[1];
+                              if (isCommingChains(parsedVal as SupportedChains)) return;
+                              onChange(val);
+                            }}
                             placeholder='Select Token'
                             options={selectOptions}
                             searchByHideValue
