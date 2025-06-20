@@ -16,7 +16,9 @@ import starknetIcon from '@/assets/images/starknet.png';
 import mempool from '@/assets/images/mempool.png';
 import { Chain, ChainTypes, SupportedChains } from '@/types/chains';
 
-export const Chains: Record<SupportedChains, Chain> = {
+type TChains = Record<SupportedChains, Chain>;
+
+export const Chains: TChains = {
   'bitcoin|1': {
     chain: 'bitcoin|1',
     type: ChainTypes.Bitcoin,
@@ -126,3 +128,8 @@ export const Chains: Record<SupportedChains, Chain> = {
     name: 'Solana'
   }
 };
+
+export const getChain = <T extends keyof TChains>(key: T): TChains[T] => Chains[key];
+
+export const getChainProps = <C extends keyof TChains, P extends keyof Chain>(c: C, p: P): Chain[P] =>
+  getChain(c)[p];
