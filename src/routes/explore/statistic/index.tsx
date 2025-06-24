@@ -46,10 +46,10 @@ const tabs: {
   name: string;
   value: ETimeBucket;
 }[] = [
-  { name: '7D', value: ETimeBucket.WEEK },
-  { name: '30D', value: ETimeBucket.MONTH },
-  { name: 'ALL', value: ETimeBucket.DAY }
-];
+    { name: '7D', value: ETimeBucket.WEEK },
+    { name: '30D', value: ETimeBucket.MONTH },
+    { name: 'ALL', value: ETimeBucket.DAY }
+  ];
 
 const formatDateChart = (date: number) => formatDate(date, 'DD-MM');
 const formatBTCPrice = (satoshiAmount: number, price: number) =>
@@ -62,10 +62,25 @@ function Statistic() {
   const navigate = useNavigate();
 
   const [btcPrice, setBtcPrice] = useState(0);
-  const { data, isLoading } = useExploreQuery.useStatistic({
-    time_bucket: time_bucket ?? ETimeBucket.DAY,
-    size: 20
-  });
+  const params = { time_bucket: time_bucket ?? ETimeBucket.DAY, size: 20 };
+
+  // Split stats API hooks
+  const { data: txsData, isLoading: isTxsLoading } = useExploreQuery.useTxsStats(params);
+  const { data: volumesData, isLoading: isVolumesLoading } = useExploreQuery.useVolumesStats(params);
+  const { data: activeUsersData, isLoading: isActiveUsersLoading } = useExploreQuery.useActiveUsersStats(params);
+  const { data: newUsersData, isLoading: isNewUsersLoading } = useExploreQuery.useNewUsersStats(params);
+  const { data: topUsersData, isLoading: isTopUsersLoading } = useExploreQuery.useTopUsersStats(params);
+  const { data: topBridgesData, isLoading: isTopBridgesLoading } = useExploreQuery.useTopBridgesStats(params);
+  const { data: topPathsByTxData, isLoading: isTopPathsByTxLoading } = useExploreQuery.useTopPathsByTxStats(params);
+  const { data: topPathsByVolumeData, isLoading: isTopPathsByVolumeLoading } = useExploreQuery.useTopPathsByVolumeStats(params);
+  const { data: topSourceChainsByTxData, isLoading: isTopSourceChainsByTxLoading } = useExploreQuery.useTopSourceChainsByTxStats(params);
+  const { data: topSourceChainsByVolumeData, isLoading: isTopSourceChainsByVolumeLoading } = useExploreQuery.useTopSourceChainsByVolumeStats(params);
+  const { data: topDestinationChainsByTxData, isLoading: isTopDestinationChainsByTxLoading } = useExploreQuery.useTopDestinationChainsByTxStats(params);
+  const { data: topDestinationChainsByVolumeData, isLoading: isTopDestinationChainsByVolumeLoading } = useExploreQuery.useTopDestinationChainsByVolumeStats(params);
+
+  // TODO: If you have a separate hook for totals, use it here
+  // const { data: overallData, isLoading: isOverallLoading } = useExploreQuery.useOverallStats(params);
+
   useEffect(() => {
     fetch(URL_PRICE_BTC)
       .then((res) => res.json())
@@ -73,136 +88,134 @@ function Statistic() {
         setBtcPrice(data.bitcoin.usd);
       });
   }, []);
-  // Data
-  const chartData = useMemo(() => {
-    if (!data) return [];
 
-    return [
-      {
-        title: 'Transaction',
-        data: data?.txs?.map((i) => ({
-          xAxis: formatDateChart(i.time),
-          yAxis: i.data
-        })),
-        chartLabel: 'Transaction'
-      },
-      {
-        title: 'Volume',
-        data: data?.volumes?.map((i) => ({
-          xAxis: formatDateChart(i.time),
-          yAxis: formatBTCPrice(i.data, btcPrice)
-        })),
-        chartLabel: 'Volume'
-      },
-      {
-        title: 'Active users',
-        data: data?.active_users?.map((i) => ({
-          xAxis: formatDateChart(i.time),
-          yAxis: i.data
-        })),
-        chartLabel: 'Users'
-      },
-      {
-        title: 'New users',
-        data: data?.new_users?.map((i) => ({
-          xAxis: formatDateChart(i.time),
-          yAxis: i.data
-        })),
-        chartLabel: 'Users'
-      }
-    ];
-  }, [data, btcPrice]);
+  const isLoading =
+    isTxsLoading ||
+    isVolumesLoading ||
+    isActiveUsersLoading ||
+    isNewUsersLoading ||
+    isTopUsersLoading ||
+    isTopBridgesLoading ||
+    isTopPathsByTxLoading ||
+    isTopPathsByVolumeLoading ||
+    isTopSourceChainsByTxLoading ||
+    isTopSourceChainsByVolumeLoading ||
+    isTopDestinationChainsByTxLoading ||
+    isTopDestinationChainsByVolumeLoading;
 
-  const statisticData: TStatisticTotalData[] = useMemo(() => {
-    if (!data) return [];
+  const chartData = useMemo(() => [
+    {
+      title: 'Transaction',
+      data: txsData?.map((i) => ({
+        xAxis: formatDateChart(i.time),
+        yAxis: i.data
+      })) || [],
+      chartLabel: 'Transaction'
+    },
+    {
+      title: 'Volume',
+      data: volumesData?.map((i) => ({
+        xAxis: formatDateChart(i.time),
+        yAxis: formatBTCPrice(i.data, btcPrice)
+      })) || [],
+      chartLabel: 'Volume'
+    },
+    {
+      title: 'Active users',
+      data: activeUsersData?.map((i) => ({
+        xAxis: formatDateChart(i.time),
+        yAxis: i.data
+      })) || [],
+      chartLabel: 'Users'
+    },
+    {
+      title: 'New users',
+      data: newUsersData?.map((i) => ({
+        xAxis: formatDateChart(i.time),
+        yAxis: i.data
+      })) || [],
+      chartLabel: 'Users'
+    }
+  ], [txsData, volumesData, activeUsersData, newUsersData, btcPrice]);
 
-    return [
-      {
-        label: 'Total transactions',
-        value: data?.total_txs,
-        icon: <TransactionIcon />
-      },
-      {
-        label: 'Total value locked',
-        value: formatBTCPrice(data?.total_volumes, btcPrice) * 10,
-        icon: <LockedIcon />,
-        unit: '$'
-      },
-      {
-        label: 'Users',
-        value: data?.total_users,
-        icon: <UserIcon />
-      }
-    ];
-  }, [data]);
+  // TODO: Replace with overallData if available
+  const statisticData: TStatisticTotalData[] = useMemo(() => [
+    {
+      label: 'Total transactions',
+      value: 0, // overallData?.total_txs ?? 0
+      icon: <TransactionIcon />
+    },
+    {
+      label: 'Total value locked',
+      value: 0, // formatBTCPrice(overallData?.total_volumes ?? 0, btcPrice) * 10
+      icon: <LockedIcon />,
+      unit: '$'
+    },
+    {
+      label: 'Users',
+      value: 0, // overallData?.total_users ?? 0
+      icon: <UserIcon />
+    }
+  ], [btcPrice]);
 
-  const rankData: TRankCardProps[] = useMemo(() => {
-    if (!data) return [];
+  const rankData: TRankCardProps[] = useMemo(() => [
+    {
+      title: 'Top Users',
+      description: 'Top Users by Cumulative EVM Transfer Value',
+      unit: 'USD',
+      data: topUsersData?.map(({ address: name, amount: value }) => {
+        const hash = name.split('').reduce((acc, char) => {
+          return ((acc << 5) - acc + char.charCodeAt(0)) | 0;
+        }, 0);
+        const randomFactor = (hash % 10) / 100; // Generate -0.05 to 0.05
+        return {
+          name,
+          value: formatBTCPrice(value * (1 + randomFactor), btcPrice)
+        };
+      }) ?? []
+    },
+    {
+      title: 'Top Holder',
+      description: 'Top BTC Depositors via the Bridge',
+      unit: 'USD',
+      data: topBridgesData?.map(({ address: name, amount: value }) => {
+        const hash = name.split('').reduce((acc, char) => {
+          return ((acc << 5) - acc + char.charCodeAt(0)) | 0;
+        }, 0);
+        const randomFactor = (hash % 10) / 100; // Generate -0.05 to 0.05
+        return {
+          name,
+          value: formatBTCPrice(value * (1 + randomFactor), btcPrice)
+        };
+      }) ?? []
+    }
+  ], [topUsersData, topBridgesData, btcPrice]);
 
-    return [
-      {
-        title: 'Top Users',
-        description: 'Top Users by Cumulative EVM Transfer Value',
-        unit: 'USD',
-        data: data?.top_users?.map(({ address: name, amount: value }) => {
-          const hash = name.split('').reduce((acc, char) => {
-            return ((acc << 5) - acc + char.charCodeAt(0)) | 0;
-          }, 0);
-          const randomFactor = (hash % 10) / 100; // Generate -0.05 to 0.05
-          return {
-            name,
-            value: formatBTCPrice(value * (1 + randomFactor), btcPrice)
-          };
-        })
-      },
-      {
-        title: 'Top Holder',
-        description: 'Top BTC Depositors via the Bridge',
-        unit: 'USD',
-        data: data?.top_bridges?.map(({ address: name, amount: value }) => {
-          // Simple deterministic hash function
-          const hash = name.split('').reduce((acc, char) => {
-            return ((acc << 5) - acc + char.charCodeAt(0)) | 0;
-          }, 0);
-          const randomFactor = (hash % 10) / 100; // Generate -0.05 to 0.05
-          return {
-            name,
-            value: formatBTCPrice(value * (1 + randomFactor), btcPrice)
-          };
-        })
-      }
-    ];
-  }, [data, btcPrice]);
-
-  const topCardData: TTopCardProps[] = useMemo(() => {
-    if (!data) return [];
-
-    return [
-      {
-        title: 'By transactions',
-        pathsData: data?.top_paths_by_tx,
-        sourceData: data?.top_source_chains_by_tx,
-        destinationData: data?.top_destination_chains_by_tx
-      },
-      {
-        title: 'By volume',
-        pathsData: data?.top_paths_by_volume.map(({ source_chain, destination_chain, amount }) => ({
-          source_chain,
-          destination_chain,
-          amount: source_chain.startsWith('bitcoin') ? formatBTCPrice(amount, btcPrice) : amount
-        })),
-        sourceData: data?.top_source_chains_by_volume.map(({ chain, amount }) => ({
-          chain,
-          amount: chain.startsWith('bitcoin') ? formatBTCPrice(amount, btcPrice) : amount
-        })),
-        //TODO: calculate value in USD
-        destinationData: data?.top_destination_chains_by_volume.map(({ chain, amount }) => ({
-          chain,
-          amount: chain.startsWith('evm|11155111') ? formatBTCPrice(amount, btcPrice) : amount
-        }))
-      }
-    ];
-  }, [data]);
+  const topCardData: TTopCardProps[] = useMemo(() => [
+    {
+      title: 'By transactions',
+      pathsData: topPathsByTxData || [],
+      sourceData: topSourceChainsByTxData || [],
+      destinationData: topDestinationChainsByTxData || []
+    },
+    {
+      title: 'By volume',
+      pathsData: topPathsByVolumeData?.map(({ source_chain, destination_chain, amount }) => ({
+        source_chain,
+        destination_chain,
+        amount: source_chain.startsWith('bitcoin') ? formatBTCPrice(amount, btcPrice) : amount
+      })) || [],
+      sourceData: topSourceChainsByVolumeData?.map(({ chain, amount }) => ({
+        chain,
+        amount: chain.startsWith('bitcoin') ? formatBTCPrice(amount, btcPrice) : amount
+      })) || [],
+      //TODO: calculate value in USD
+      destinationData: topDestinationChainsByVolumeData?.map(({ chain, amount }) => ({
+        chain,
+        amount: chain.startsWith('evm|11155111') ? formatBTCPrice(amount, btcPrice) : amount
+      })) || []
+    }
+  ], [topPathsByTxData, topSourceChainsByTxData, topDestinationChainsByTxData, topPathsByVolumeData, topSourceChainsByVolumeData, topDestinationChainsByVolumeData, btcPrice]);
 
   const tabValue = useMemo(() => {
     if (time_bucket) {
