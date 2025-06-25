@@ -28,6 +28,7 @@ import {
   ChainType,
   DestinationChain,
   TBuildCustodianOnlyStakingPsbt,
+  TBuildUPCStakingPsbt,
   hexToBytes
 } from '@scalar-lab/bitcoin-vault';
 import * as bitcoin from 'bitcoinjs-lib';
@@ -36,6 +37,7 @@ import { useForm } from 'react-hook-form';
 import { toast as sonnerToast } from 'sonner';
 import { Hex, hexToBytes as hexToBytesViem } from 'viem';
 import { TBridgeForm, bridgeFormSchema } from '../schemas';
+import { decodeScalarBytes } from '@/lib/scalar';
 
 const btcChain = Chains['bitcoin|4'];
 
@@ -152,22 +154,49 @@ export const BridgeForm = () => {
 
       const destinationChain = new DestinationChain(ChainType.EVM, BigInt(chainID));
 
-      const psbtFormData: TBuildCustodianOnlyStakingPsbt = {
-        stakingAmount: BigInt(parseTransferAmount),
-        stakerPubkey: txData.addresses.btcUserPk,
-        stakerAddress: btcAddress,
-        custodianPubkeys: custodianPubkeysBufferArray,
-        custodianQuorum: protocol?.custodian_group?.quorum || 0,
-        destinationChain,
-        destinationContractAddress: txData.addresses.destinationToken,
-        destinationRecipientAddress: txData.addresses.destinationRecipient,
-        availableUTXOs: txData.utxos,
-        feeRate: txData.feeRate,
-        rbf: true
-      };
+      let psbtFormData: TBuildCustodianOnlyStakingPsbt | TBuildUPCStakingPsbt | null = null;
+      let result: {
+        psbt: bitcoin.Psbt;
+        fee: number;
+      } | null = null;
 
-      const result = vault?.buildCustodianOnlyStakingPsbt(psbtFormData);
+      if (protocol?.attributes?.model === 'LIQUIDITY_MODEL_UPC') {
+        psbtFormData = {
+          stakingAmount: BigInt(parseTransferAmount),
+          stakerPubkey: txData.addresses.btcUserPk,
+          stakerAddress: btcAddress,
+          custodianPubkeys: custodianPubkeysBufferArray,
+          custodianQuorum: protocol?.custodian_group?.quorum || 0,
+          protocolPubkey: decodeScalarBytes(protocol?.bitcoin_pubkey || ''),
+          destinationChain,
+          destinationContractAddress: txData.addresses.destinationToken,
+          destinationRecipientAddress: txData.addresses.destinationRecipient,
+          availableUTXOs: txData.utxos,
+          feeRate: txData.feeRate,
+          rbf: true
+        }
+        result = vault?.buildUPCStakingPsbt(psbtFormData) || null;
+      } else if (protocol?.attributes?.model === 'LIQUIDITY_MODEL_POOL') {
+        psbtFormData = {
+          stakingAmount: BigInt(parseTransferAmount),
+          stakerPubkey: txData.addresses.btcUserPk,
+          stakerAddress: btcAddress,
+          custodianPubkeys: custodianPubkeysBufferArray,
+          custodianQuorum: protocol?.custodian_group?.quorum || 0,
+          destinationChain,
+          destinationContractAddress: txData.addresses.destinationToken,
+          destinationRecipientAddress: txData.addresses.destinationRecipient,
+          availableUTXOs: txData.utxos,
+          feeRate: txData.feeRate,
+          rbf: true
+        };
+
+        result = vault?.buildCustodianOnlyStakingPsbt(psbtFormData) || null;
+      }
+
       if (!result) throw new Error('Failed to build the PSBT');
+
+
       const { psbt: unsignedVaultPsbt } = result;
 
       const signedPsbt = await walletProvider?.signPsbt(unsignedVaultPsbt.toHex(), {
