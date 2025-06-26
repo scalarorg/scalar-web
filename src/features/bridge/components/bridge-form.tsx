@@ -56,6 +56,7 @@ export const BridgeForm = () => {
   const { watch, setError, clearErrors } = form;
 
   const destinationChainForm = watch('destinationChain');
+
   const transferAmountForm = watch('transferAmount');
 
   const { data } = useScalarProtocols();
@@ -218,10 +219,14 @@ export const BridgeForm = () => {
   };
 
   useEffect(() => {
-    const [_, chainSeleted] = destinationChainForm?.split('-') || [];
-    const [newProtocol] =
-      data?.protocols?.filter((p) => (p.chains?.filter((c) => c.chain === chainSeleted) || []).length > 0) ||
-      [];
+    const [toTokenChain, chainSeleted] = destinationChainForm?.split('-') || [];
+
+    const newProtocol = data?.protocols?.find((p) =>
+      p.asset?.symbol === toTokenChain && p.chains?.some((c) => c.chain === chainSeleted)
+    );
+
+    if (!newProtocol) return;
+
     setProtocol(newProtocol);
   }, [destinationChainForm, data]);
 
