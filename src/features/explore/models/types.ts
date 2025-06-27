@@ -93,3 +93,9 @@ export type TExploreStatisticData = {
 };
 
 export type TExploreDetail = { command_id: string } & TExplore;
+
+export type TSummaryStats = {
+  total_txs: number;
+  total_volumes: number;
+  total_users: number;
+};

@@ -10,7 +10,8 @@ import {
   TStatisticRankItem,
   TStatisticPathItem,
   TStatisticSourceItem,
-  TStatisticDestinationItem
+  TStatisticDestinationItem,
+  TSummaryStats
 } from '../models';
 import { getByGetMethod, getByPostMethod } from '../services';
 
@@ -19,76 +20,82 @@ const defaultStatsParams: TExploreStatisticParams = {
   time_bucket: ETimeBucket.DAY
 };
 
-const useTxsStats = (params: TExploreStatisticParams = defaultStatsParams) =>
-  useQuery({
-    queryKey: ['explore', 'stats', 'txs', params],
-    queryFn: () => getByGetMethod<TExploreStatisticParams, TStatisticChartItem[]>('stats/txs', params)
-  });
-
-const useVolumesStats = (params: TExploreStatisticParams = defaultStatsParams) =>
-  useQuery({
-    queryKey: ['explore', 'stats', 'volumes', params],
-    queryFn: () => getByGetMethod<TExploreStatisticParams, TStatisticChartItem[]>('stats/volumes', params)
-  });
-
-const useActiveUsersStats = (params: TExploreStatisticParams = defaultStatsParams) =>
-  useQuery({
-    queryKey: ['explore', 'stats', 'active-users', params],
-    queryFn: () => getByGetMethod<TExploreStatisticParams, TStatisticChartItem[]>('stats/active-users', params)
-  });
-
-const useNewUsersStats = (params: TExploreStatisticParams = defaultStatsParams) =>
-  useQuery({
-    queryKey: ['explore', 'stats', 'new-users', params],
-    queryFn: () => getByGetMethod<TExploreStatisticParams, TStatisticChartItem[]>('stats/new-users', params)
-  });
-
+// Volume api
 const useTopUsersStats = (params: TExploreStatisticParams = defaultStatsParams) =>
   useQuery({
     queryKey: ['explore', 'stats', 'top-users', params],
-    queryFn: () => getByGetMethod<TExploreStatisticParams, TStatisticRankItem[]>('stats/top-users', params)
+    queryFn: () => getByGetMethod<TExploreStatisticParams, TStatisticRankItem[]>('stats/volume/top-users', params)
   });
 
 const useTopBridgesStats = (params: TExploreStatisticParams = defaultStatsParams) =>
   useQuery({
     queryKey: ['explore', 'stats', 'top-bridges', params],
-    queryFn: () => getByGetMethod<TExploreStatisticParams, TStatisticRankItem[]>('stats/top-bridges', params)
+    queryFn: () => getByGetMethod<TExploreStatisticParams, TStatisticRankItem[]>('stats/volume/top-bridges', params)
   });
 
-const useTopPathsByTxStats = (params: TExploreStatisticParams = defaultStatsParams) =>
+const useTopSourceChainsByVolume = (params: TExploreStatisticParams = defaultStatsParams) =>
   useQuery({
-    queryKey: ['explore', 'stats', 'top-paths-by-tx', params],
-    queryFn: () => getByGetMethod<TExploreStatisticParams, TStatisticPathItem[]>('stats/top-paths-by-tx', params)
+    queryKey: ['explore', 'stats', 'top-source-chains', params],
+    queryFn: () => getByGetMethod<TExploreStatisticParams, TStatisticSourceItem[]>('stats/volume/top-source-chains', params)
   });
 
-const useTopPathsByVolumeStats = (params: TExploreStatisticParams = defaultStatsParams) =>
+const useTopDestinationChainsByVolume = (params: TExploreStatisticParams = defaultStatsParams) =>
   useQuery({
-    queryKey: ['explore', 'stats', 'top-paths-by-volume', params],
-    queryFn: () => getByGetMethod<TExploreStatisticParams, TStatisticPathItem[]>('stats/top-paths-by-volume', params)
+    queryKey: ['explore', 'stats', 'top-destination-chains', params],
+    queryFn: () => getByGetMethod<TExploreStatisticParams, TStatisticDestinationItem[]>('stats/volume/top-destination-chains', params)
   });
 
-const useTopSourceChainsByTxStats = (params: TExploreStatisticParams = defaultStatsParams) =>
+const useTopPathsByVolume = (params: TExploreStatisticParams = defaultStatsParams) =>
+  useQuery({
+    queryKey: ['explore', 'stats', 'top-paths', params],
+    queryFn: () => getByGetMethod<TExploreStatisticParams, TStatisticPathItem[]>('stats/volume/top-paths', params)
+  });
+
+
+// Transaction api
+
+const useTopSourceChainsByTx = (params: TExploreStatisticParams = defaultStatsParams) =>
   useQuery({
     queryKey: ['explore', 'stats', 'top-source-chains-by-tx', params],
-    queryFn: () => getByGetMethod<TExploreStatisticParams, TStatisticSourceItem[]>('stats/top-source-chains-by-tx', params)
+    queryFn: () => getByGetMethod<TExploreStatisticParams, TStatisticSourceItem[]>('stats/transaction/top-source-chains', params)
   });
 
-const useTopSourceChainsByVolumeStats = (params: TExploreStatisticParams = defaultStatsParams) =>
-  useQuery({
-    queryKey: ['explore', 'stats', 'top-source-chains-by-volume', params],
-    queryFn: () => getByGetMethod<TExploreStatisticParams, TStatisticSourceItem[]>('stats/top-source-chains-by-volume', params)
-  });
-
-const useTopDestinationChainsByTxStats = (params: TExploreStatisticParams = defaultStatsParams) =>
+const useTopDestinationChainsByTx = (params: TExploreStatisticParams = defaultStatsParams) =>
   useQuery({
     queryKey: ['explore', 'stats', 'top-destination-chains-by-tx', params],
-    queryFn: () => getByGetMethod<TExploreStatisticParams, TStatisticDestinationItem[]>('stats/top-destination-chains-by-tx', params)
+    queryFn: () => getByGetMethod<TExploreStatisticParams, TStatisticDestinationItem[]>('stats/transaction/top-destination-chains', params)
   });
 
-const useTopDestinationChainsByVolumeStats = (params: TExploreStatisticParams = defaultStatsParams) =>
+const useTopPathsByTx = (params: TExploreStatisticParams = defaultStatsParams) =>
   useQuery({
-    queryKey: ['explore', 'stats', 'top-destination-chains-by-volume', params],
-    queryFn: () => getByGetMethod<TExploreStatisticParams, TStatisticDestinationItem[]>('stats/top-destination-chains-by-volume', params)
+    queryKey: ['explore', 'stats', 'top-paths-by-tx', params],
+    queryFn: () => getByGetMethod<TExploreStatisticParams, TStatisticPathItem[]>('stats/transaction/top-paths', params)
+  });
+
+
+// Chart api
+const useTxsStats = (params: TExploreStatisticParams = defaultStatsParams) =>
+  useQuery({
+    queryKey: ['explore', 'stats', 'txs', params],
+    queryFn: () => getByGetMethod<TExploreStatisticParams, TStatisticChartItem[]>('stats/chart/txs', params)
+  });
+
+const useVolumesStats = (params: TExploreStatisticParams = defaultStatsParams) =>
+  useQuery({
+    queryKey: ['explore', 'stats', 'volumes', params],
+    queryFn: () => getByGetMethod<TExploreStatisticParams, TStatisticChartItem[]>('stats/chart/volumes', params)
+  });
+
+const useActiveUsersStats = (params: TExploreStatisticParams = defaultStatsParams) =>
+  useQuery({
+    queryKey: ['explore', 'stats', 'active-users', params],
+    queryFn: () => getByGetMethod<TExploreStatisticParams, TStatisticChartItem[]>('stats/chart/active-users', params)
+  });
+
+const useNewUsersStats = (params: TExploreStatisticParams = defaultStatsParams) =>
+  useQuery({
+    queryKey: ['explore', 'stats', 'new-users', params],
+    queryFn: () => getByGetMethod<TExploreStatisticParams, TStatisticChartItem[]>('stats/chart/new-users', params)
   });
 
 const useList = (params: TExploreParams) =>
@@ -103,19 +110,30 @@ const useDetail = (id: string, type: 'bridge' | 'transfer' | 'redeem') =>
     queryFn: () => getByGetMethod<Record<string, string>, TExploreDetail>(`x/${type}/${id}`, {})
   });
 
+const useSummaryStats = () =>
+  useQuery({
+    queryKey: ['explore', 'stats', 'summary'],
+    queryFn: () => getByGetMethod<Record<string, string>, TSummaryStats>('stats/summary', {})
+  });
+
 export const useExploreQuery = {
-  useList,
+  useSummaryStats,
+
+  useTopUsersStats,
+  useTopBridgesStats,
+  useTopSourceChainsByVolume,
+  useTopDestinationChainsByVolume,
+  useTopPathsByVolume,
+
+  useTopSourceChainsByTx,
+  useTopDestinationChainsByTx,
+  useTopPathsByTx,
+
   useTxsStats,
   useVolumesStats,
   useActiveUsersStats,
   useNewUsersStats,
-  useTopUsersStats,
-  useTopBridgesStats,
-  useTopPathsByTxStats,
-  useTopPathsByVolumeStats,
-  useTopSourceChainsByTxStats,
-  useTopSourceChainsByVolumeStats,
-  useTopDestinationChainsByTxStats,
-  useTopDestinationChainsByVolumeStats,
+
+  useList,
   useDetail
 };

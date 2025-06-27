@@ -64,19 +64,26 @@ function Statistic() {
   const [btcPrice, setBtcPrice] = useState(0);
   const params = { time_bucket: time_bucket ?? ETimeBucket.DAY, size: 20 };
 
+  // Summary api
+  const { data: summaryData, isLoading: isSummaryLoading } = useExploreQuery.useSummaryStats();
+
+  // Volume api
+  const { data: topUsersData, isLoading: isTopUsersLoading } = useExploreQuery.useTopUsersStats(params);
+  const { data: topBridgesData, isLoading: isTopBridgesLoading } = useExploreQuery.useTopBridgesStats(params);
+  const { data: topSourceChainsByVolumeData, isLoading: isTopSourceChainsByVolumeLoading } = useExploreQuery.useTopSourceChainsByVolume(params);
+  const { data: topDestinationChainsByVolumeData, isLoading: isTopDestinationChainsByVolumeLoading } = useExploreQuery.useTopDestinationChainsByVolume(params);
+  const { data: topPathsByVolumeData, isLoading: isTopPathsByVolumeLoading } = useExploreQuery.useTopPathsByVolume(params);
+
+  // Transaction api
+  const { data: topSourceChainsByTxData, isLoading: isTopSourceChainsByTxLoading } = useExploreQuery.useTopSourceChainsByTx(params);
+  const { data: topDestinationChainsByTxData, isLoading: isTopDestinationChainsByTxLoading } = useExploreQuery.useTopDestinationChainsByTx(params);
+  const { data: topPathsByTxData, isLoading: isTopPathsByTxLoading } = useExploreQuery.useTopPathsByTx(params);
+
   // Split stats API hooks
   const { data: txsData, isLoading: isTxsLoading } = useExploreQuery.useTxsStats(params);
   const { data: volumesData, isLoading: isVolumesLoading } = useExploreQuery.useVolumesStats(params);
   const { data: activeUsersData, isLoading: isActiveUsersLoading } = useExploreQuery.useActiveUsersStats(params);
   const { data: newUsersData, isLoading: isNewUsersLoading } = useExploreQuery.useNewUsersStats(params);
-  const { data: topUsersData, isLoading: isTopUsersLoading } = useExploreQuery.useTopUsersStats(params);
-  const { data: topBridgesData, isLoading: isTopBridgesLoading } = useExploreQuery.useTopBridgesStats(params);
-  const { data: topPathsByTxData, isLoading: isTopPathsByTxLoading } = useExploreQuery.useTopPathsByTxStats(params);
-  const { data: topPathsByVolumeData, isLoading: isTopPathsByVolumeLoading } = useExploreQuery.useTopPathsByVolumeStats(params);
-  const { data: topSourceChainsByTxData, isLoading: isTopSourceChainsByTxLoading } = useExploreQuery.useTopSourceChainsByTxStats(params);
-  const { data: topSourceChainsByVolumeData, isLoading: isTopSourceChainsByVolumeLoading } = useExploreQuery.useTopSourceChainsByVolumeStats(params);
-  const { data: topDestinationChainsByTxData, isLoading: isTopDestinationChainsByTxLoading } = useExploreQuery.useTopDestinationChainsByTxStats(params);
-  const { data: topDestinationChainsByVolumeData, isLoading: isTopDestinationChainsByVolumeLoading } = useExploreQuery.useTopDestinationChainsByVolumeStats(params);
 
   // TODO: If you have a separate hook for totals, use it here
   // const { data: overallData, isLoading: isOverallLoading } = useExploreQuery.useOverallStats(params);
@@ -89,19 +96,6 @@ function Statistic() {
       });
   }, []);
 
-  const isLoading =
-    isTxsLoading ||
-    isVolumesLoading ||
-    isActiveUsersLoading ||
-    isNewUsersLoading ||
-    isTopUsersLoading ||
-    isTopBridgesLoading ||
-    isTopPathsByTxLoading ||
-    isTopPathsByVolumeLoading ||
-    isTopSourceChainsByTxLoading ||
-    isTopSourceChainsByVolumeLoading ||
-    isTopDestinationChainsByTxLoading ||
-    isTopDestinationChainsByVolumeLoading;
 
   const chartData = useMemo(() => [
     {
@@ -142,21 +136,21 @@ function Statistic() {
   const statisticData: TStatisticTotalData[] = useMemo(() => [
     {
       label: 'Total transactions',
-      value: 0, // overallData?.total_txs ?? 0
+      value: summaryData?.total_txs ?? 0, // overallData?.total_txs ?? 0
       icon: <TransactionIcon />
     },
     {
       label: 'Total value locked',
-      value: 0, // formatBTCPrice(overallData?.total_volumes ?? 0, btcPrice) * 10
+      value: formatBTCPrice(summaryData?.total_volumes ?? 0, btcPrice) * 10,
       icon: <LockedIcon />,
       unit: '$'
     },
     {
       label: 'Users',
-      value: 0, // overallData?.total_users ?? 0
+      value: summaryData?.total_users ?? 0,
       icon: <UserIcon />
     }
-  ], [btcPrice]);
+  ], [btcPrice, summaryData]);
 
   const rankData: TRankCardProps[] = useMemo(() => [
     {
@@ -225,6 +219,8 @@ function Statistic() {
     return ETimeBucket.DAY;
   }, [time_bucket]);
 
+  // const isLoading = isSummaryLoading || isTopUsersLoading || isTopBridgesLoading || isTopSourceChainsByVolumeLoading || isTopDestinationChainsByVolumeLoading || isTopPathsByVolumeLoading || isTopSourceChainsByTxLoading || isTopDestinationChainsByTxLoading || isTopPathsByTxLoading || isTxsLoading || isVolumesLoading || isActiveUsersLoading || isNewUsersLoading
+
   return (
     <div className='flex flex-col gap-8 py-15'>
       <div
@@ -242,10 +238,10 @@ function Statistic() {
       </div>
       <div className='flex flex-col gap-8 md:flex-row'>
         <If
-          condition={isLoading}
+          condition={false}
           fallback={
             <If
-              condition={isEmpty(statisticData)}
+              condition={isSummaryLoading}
               fallback={statisticData.map(({ label, value, icon, unit, className }) => (
                 <div
                   key={label}
@@ -292,7 +288,7 @@ function Statistic() {
       </div>
       <div className='flex flex-col gap-8 *:data-[slot=rank-card]:flex-1 md:flex-row'>
         <If
-          condition={isLoading}
+          condition={isTopUsersLoading || isTopBridgesLoading}
           fallback={
             <If
               condition={isEmpty(rankData)}
@@ -331,7 +327,7 @@ function Statistic() {
       </Tabs>
       <div className='grid grid-cols-1 gap-8 lg:grid-cols-2'>
         <If
-          condition={isLoading}
+          condition={isTxsLoading || isVolumesLoading || isActiveUsersLoading || isNewUsersLoading}
           fallback={
             <If
               condition={isEmpty(chartData)}
@@ -349,7 +345,7 @@ function Statistic() {
       </div>
       <div className='flex flex-col gap-8'>
         <If
-          condition={isLoading}
+          condition={isTopPathsByTxLoading || isTopSourceChainsByTxLoading || isTopDestinationChainsByTxLoading || isTopPathsByVolumeLoading || isTopSourceChainsByVolumeLoading || isTopDestinationChainsByVolumeLoading}
           fallback={
             <If
               condition={isEmpty(topCardData)}
