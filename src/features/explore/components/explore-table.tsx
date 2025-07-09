@@ -152,7 +152,7 @@ export const ExploreTable = ({ data, isLoading, isRefetching, size, page }: Prop
         header: 'Status',
         cell: ({ getValue }) => {
           const status = getValue();
-          const { label, className } = CROSS_CHAIN_STATUS.OBJECT[status];
+          const { label, className } = CROSS_CHAIN_STATUS.OBJECT[status || 'pending'];
 
           return <div className={cn('rounded-full px-3 py-1 text-white', className)}>{label}</div>;
         },
