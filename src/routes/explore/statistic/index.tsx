@@ -1,7 +1,7 @@
 import LockedIcon from '@/assets/icons/locked.svg';
 import TransactionIcon from '@/assets/icons/transaction.svg';
 import UserIcon from '@/assets/icons/user.svg';
-import { Heading, If, InputSearchBox } from '@/components/common';
+import { Heading, InputSearchBox } from '@/components/common';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { COMMON_VALIDATE_PAGE_SEARCH_PARAMS, URL_PRICE_BTC } from '@/constants';
@@ -16,6 +16,7 @@ import {
   TopCard,
   TopCardSkeleton
 } from '@/features/protocol';
+import { useProgressiveLoading } from '@/hooks/use-progressive-loading';
 import { cn, formatDate, formatNumber } from '@/lib/utils';
 import { createFileRoute } from '@tanstack/react-router';
 import { isEmpty } from 'lodash';
@@ -46,10 +47,10 @@ const tabs: {
   name: string;
   value: ETimeBucket;
 }[] = [
-    { name: '7D', value: ETimeBucket.WEEK },
-    { name: '30D', value: ETimeBucket.MONTH },
-    { name: 'ALL', value: ETimeBucket.DAY }
-  ];
+  { name: '7D', value: ETimeBucket.WEEK },
+  { name: '30D', value: ETimeBucket.MONTH },
+  { name: 'ALL', value: ETimeBucket.DAY }
+];
 
 const formatDateChart = (date: number) => formatDate(date, 'DD-MM');
 const formatBTCPrice = (satoshiAmount: number, price: number) =>
@@ -64,26 +65,69 @@ function Statistic() {
   const [btcPrice, setBtcPrice] = useState(0);
   const params = { time_bucket: time_bucket ?? ETimeBucket.DAY, size: 20 };
 
-  // Summary api
-  const { data: summaryData, isLoading: isSummaryLoading } = useExploreQuery.useSummaryStats();
+  // Priority 1: Critical data (Summary, Top Users/Bridges, Core Charts)
+  const {
+    data: summaryData,
+    isLoading: isSummaryLoading,
+    isSuccess: summarySuccess
+  } = useExploreQuery.useSummaryStats();
+  const {
+    data: topUsersData,
+    isLoading: isTopUsersLoading,
+    isSuccess: topUsersSuccess
+  } = useExploreQuery.useTopUsersStats(params);
+  const {
+    data: topBridgesData,
+    isLoading: isTopBridgesLoading,
+    isSuccess: topBridgesSuccess
+  } = useExploreQuery.useTopBridgesStats(params);
+  const {
+    data: txsData,
+    isLoading: isTxsLoading,
+    isSuccess: txsSuccess
+  } = useExploreQuery.useTxsStats(params);
+  const {
+    data: volumesData,
+    isLoading: isVolumesLoading,
+    isSuccess: volumesSuccess
+  } = useExploreQuery.useVolumesStats(params);
 
-  // Volume api
-  const { data: topUsersData, isLoading: isTopUsersLoading } = useExploreQuery.useTopUsersStats(params);
-  const { data: topBridgesData, isLoading: isTopBridgesLoading } = useExploreQuery.useTopBridgesStats(params);
-  const { data: topSourceChainsByVolumeData, isLoading: isTopSourceChainsByVolumeLoading } = useExploreQuery.useTopSourceChainsByVolume(params);
-  const { data: topDestinationChainsByVolumeData, isLoading: isTopDestinationChainsByVolumeLoading } = useExploreQuery.useTopDestinationChainsByVolume(params);
-  const { data: topPathsByVolumeData, isLoading: isTopPathsByVolumeLoading } = useExploreQuery.useTopPathsByVolume(params);
+  // Progressive loading logic
+  const primaryDataLoaded =
+    summarySuccess && topUsersSuccess && topBridgesSuccess && txsSuccess && volumesSuccess;
+  const { loadSecondaryData, loadTertiaryData, loadingProgress } = useProgressiveLoading({
+    primaryDataLoaded,
+    secondaryDelay: 100,
+    tertiaryDelay: 300
+  });
 
-  // Transaction api
-  const { data: topSourceChainsByTxData, isLoading: isTopSourceChainsByTxLoading } = useExploreQuery.useTopSourceChainsByTx(params);
-  const { data: topDestinationChainsByTxData, isLoading: isTopDestinationChainsByTxLoading } = useExploreQuery.useTopDestinationChainsByTx(params);
-  const { data: topPathsByTxData, isLoading: isTopPathsByTxLoading } = useExploreQuery.useTopPathsByTx(params);
+  // Priority 2: Secondary data (Additional charts)
+  const { data: activeUsersData, isLoading: isActiveUsersLoading } = useExploreQuery.useActiveUsersStats(
+    params,
+    loadSecondaryData
+  );
+  const { data: newUsersData, isLoading: isNewUsersLoading } = useExploreQuery.useNewUsersStats(
+    params,
+    loadSecondaryData
+  );
 
-  // Split stats API hooks
-  const { data: txsData, isLoading: isTxsLoading } = useExploreQuery.useTxsStats(params);
-  const { data: volumesData, isLoading: isVolumesLoading } = useExploreQuery.useVolumesStats(params);
-  const { data: activeUsersData, isLoading: isActiveUsersLoading } = useExploreQuery.useActiveUsersStats(params);
-  const { data: newUsersData, isLoading: isNewUsersLoading } = useExploreQuery.useNewUsersStats(params);
+  // Priority 3: Tertiary data (Volume chains and paths)
+  const { data: topSourceChainsByVolumeData, isLoading: isTopSourceChainsByVolumeLoading } =
+    useExploreQuery.useTopSourceChainsByVolume(params, loadTertiaryData);
+  const { data: topDestinationChainsByVolumeData, isLoading: isTopDestinationChainsByVolumeLoading } =
+    useExploreQuery.useTopDestinationChainsByVolume(params, loadTertiaryData);
+  const { data: topPathsByVolumeData, isLoading: isTopPathsByVolumeLoading } =
+    useExploreQuery.useTopPathsByVolume(params, loadTertiaryData);
+
+  // Priority 4: Transaction data (lowest priority)
+  const { data: topSourceChainsByTxData, isLoading: isTopSourceChainsByTxLoading } =
+    useExploreQuery.useTopSourceChainsByTx(params, loadTertiaryData);
+  const { data: topDestinationChainsByTxData, isLoading: isTopDestinationChainsByTxLoading } =
+    useExploreQuery.useTopDestinationChainsByTx(params, loadTertiaryData);
+  const { data: topPathsByTxData, isLoading: isTopPathsByTxLoading } = useExploreQuery.useTopPathsByTx(
+    params,
+    loadTertiaryData
+  );
 
   // TODO: If you have a separate hook for totals, use it here
   // const { data: overallData, isLoading: isOverallLoading } = useExploreQuery.useOverallStats(params);
@@ -93,123 +137,172 @@ function Statistic() {
       .then((res) => res.json())
       .then((data) => {
         setBtcPrice(data.bitcoin.usd);
+      })
+      .catch(() => {
+        // Fallback BTC price if API fails
+        setBtcPrice(50000);
       });
   }, []);
 
+  // Primary charts (always available)
+  const primaryChartData = useMemo(
+    () => [
+      {
+        title: 'Transaction',
+        data:
+          txsData?.map((i) => ({
+            xAxis: formatDateChart(i.time),
+            yAxis: i.data
+          })) || [],
+        chartLabel: 'Transaction'
+      },
+      {
+        title: 'Volume',
+        data:
+          volumesData?.map((i) => ({
+            xAxis: formatDateChart(i.time),
+            yAxis: formatBTCPrice(i.data, btcPrice)
+          })) || [],
+        chartLabel: 'Volume'
+      }
+    ],
+    [txsData, volumesData, btcPrice]
+  );
 
-  const chartData = useMemo(() => [
-    {
-      title: 'Transaction',
-      data: txsData?.map((i) => ({
-        xAxis: formatDateChart(i.time),
-        yAxis: i.data
-      })) || [],
-      chartLabel: 'Transaction'
-    },
-    {
-      title: 'Volume',
-      data: volumesData?.map((i) => ({
-        xAxis: formatDateChart(i.time),
-        yAxis: formatBTCPrice(i.data, btcPrice)
-      })) || [],
-      chartLabel: 'Volume'
-    },
-    {
-      title: 'Active users',
-      data: activeUsersData?.map((i) => ({
-        xAxis: formatDateChart(i.time),
-        yAxis: i.data
-      })) || [],
-      chartLabel: 'Users'
-    },
-    {
-      title: 'New users',
-      data: newUsersData?.map((i) => ({
-        xAxis: formatDateChart(i.time),
-        yAxis: i.data
-      })) || [],
-      chartLabel: 'Users'
-    }
-  ], [txsData, volumesData, activeUsersData, newUsersData, btcPrice]);
+  // Secondary charts (load after primary)
+  const secondaryChartData = useMemo(
+    () => [
+      {
+        title: 'Active users',
+        data:
+          activeUsersData?.map((i) => ({
+            xAxis: formatDateChart(i.time),
+            yAxis: i.data
+          })) || [],
+        chartLabel: 'Users'
+      },
+      {
+        title: 'New users',
+        data:
+          newUsersData?.map((i) => ({
+            xAxis: formatDateChart(i.time),
+            yAxis: i.data
+          })) || [],
+        chartLabel: 'Users'
+      }
+    ],
+    [activeUsersData, newUsersData]
+  );
+
+  // Combined chart data for rendering
+  // const chartData = useMemo(() => {
+  //   const charts = [...primaryChartData];
+  //   if (loadSecondaryData) {
+  //     charts.push(...secondaryChartData);
+  //   }
+  //   return charts;
+  // }, [primaryChartData, secondaryChartData, loadSecondaryData]);
 
   // TODO: Replace with overallData if available
-  const statisticData: TStatisticTotalData[] = useMemo(() => [
-    {
-      label: 'Total transactions',
-      value: summaryData?.total_txs ?? 0, // overallData?.total_txs ?? 0
-      icon: <TransactionIcon />
-    },
-    {
-      label: 'Total value locked',
-      value: formatBTCPrice(summaryData?.total_volumes ?? 0, btcPrice) * 10,
-      icon: <LockedIcon />,
-      unit: '$'
-    },
-    {
-      label: 'Users',
-      value: summaryData?.total_users ?? 0,
-      icon: <UserIcon />
-    }
-  ], [btcPrice, summaryData]);
+  const statisticData: TStatisticTotalData[] = useMemo(
+    () => [
+      {
+        label: 'Total transactions',
+        value: summaryData?.total_txs ?? 0, // overallData?.total_txs ?? 0
+        icon: <TransactionIcon />
+      },
+      {
+        label: 'Total value locked',
+        value: formatBTCPrice(summaryData?.total_volumes ?? 0, btcPrice) * 10,
+        icon: <LockedIcon />,
+        unit: '$'
+      },
+      {
+        label: 'Users',
+        value: summaryData?.total_users ?? 0,
+        icon: <UserIcon />
+      }
+    ],
+    [btcPrice, summaryData]
+  );
 
-  const rankData: TRankCardProps[] = useMemo(() => [
-    {
-      title: 'Top Users',
-      description: 'Top Users by Cumulative EVM Transfer Value',
-      unit: 'USD',
-      data: topUsersData?.map(({ address: name, amount: value }) => {
-        const hash = name.split('').reduce((acc, char) => {
-          return ((acc << 5) - acc + char.charCodeAt(0)) | 0;
-        }, 0);
-        const randomFactor = (hash % 10) / 100; // Generate -0.05 to 0.05
-        return {
-          name,
-          value: formatBTCPrice(value * (1 + randomFactor), btcPrice)
-        };
-      }) ?? []
-    },
-    {
-      title: 'Top Holder',
-      description: 'Top BTC Depositors via the Bridge',
-      unit: 'USD',
-      data: topBridgesData?.map(({ address: name, amount: value }) => {
-        const hash = name.split('').reduce((acc, char) => {
-          return ((acc << 5) - acc + char.charCodeAt(0)) | 0;
-        }, 0);
-        const randomFactor = (hash % 10) / 100; // Generate -0.05 to 0.05
-        return {
-          name,
-          value: formatBTCPrice(value * (1 + randomFactor), btcPrice)
-        };
-      }) ?? []
-    }
-  ], [topUsersData, topBridgesData, btcPrice]);
+  const rankData: TRankCardProps[] = useMemo(
+    () => [
+      {
+        title: 'Top Users',
+        description: 'Top Users by Cumulative EVM Transfer Value',
+        unit: 'USD',
+        data:
+          topUsersData?.map(({ address: name, amount: value }) => {
+            const hash = name.split('').reduce((acc, char) => {
+              return ((acc << 5) - acc + char.charCodeAt(0)) | 0;
+            }, 0);
+            const randomFactor = (hash % 10) / 100; // Generate -0.05 to 0.05
+            return {
+              name,
+              value: formatBTCPrice(value * (1 + randomFactor), btcPrice)
+            };
+          }) ?? []
+      },
+      {
+        title: 'Top Holder',
+        description: 'Top BTC Depositors via the Bridge',
+        unit: 'USD',
+        data:
+          topBridgesData?.map(({ address: name, amount: value }) => {
+            const hash = name.split('').reduce((acc, char) => {
+              return ((acc << 5) - acc + char.charCodeAt(0)) | 0;
+            }, 0);
+            const randomFactor = (hash % 10) / 100; // Generate -0.05 to 0.05
+            return {
+              name,
+              value: formatBTCPrice(value * (1 + randomFactor), btcPrice)
+            };
+          }) ?? []
+      }
+    ],
+    [topUsersData, topBridgesData, btcPrice]
+  );
 
-  const topCardData: TTopCardProps[] = useMemo(() => [
-    {
-      title: 'By transactions',
-      pathsData: topPathsByTxData || [],
-      sourceData: topSourceChainsByTxData || [],
-      destinationData: topDestinationChainsByTxData || []
-    },
-    {
-      title: 'By volume',
-      pathsData: topPathsByVolumeData?.map(({ source_chain, destination_chain, amount }) => ({
-        source_chain,
-        destination_chain,
-        amount: source_chain.startsWith('bitcoin') ? formatBTCPrice(amount, btcPrice) : amount
-      })) || [],
-      sourceData: topSourceChainsByVolumeData?.map(({ chain, amount }) => ({
-        chain,
-        amount: chain.startsWith('bitcoin') ? formatBTCPrice(amount, btcPrice) : amount
-      })) || [],
-      //TODO: calculate value in USD
-      destinationData: topDestinationChainsByVolumeData?.map(({ chain, amount }) => ({
-        chain,
-        amount: chain.startsWith('evm|11155111') ? formatBTCPrice(amount, btcPrice) : amount
-      })) || []
-    }
-  ], [topPathsByTxData, topSourceChainsByTxData, topDestinationChainsByTxData, topPathsByVolumeData, topSourceChainsByVolumeData, topDestinationChainsByVolumeData, btcPrice]);
+  const topCardData: TTopCardProps[] = useMemo(
+    () => [
+      {
+        title: 'By transactions',
+        pathsData: topPathsByTxData || [],
+        sourceData: topSourceChainsByTxData || [],
+        destinationData: topDestinationChainsByTxData || []
+      },
+      {
+        title: 'By volume',
+        pathsData:
+          topPathsByVolumeData?.map(({ source_chain, destination_chain, amount }) => ({
+            source_chain,
+            destination_chain,
+            amount: source_chain.startsWith('bitcoin') ? formatBTCPrice(amount, btcPrice) : amount
+          })) || [],
+        sourceData:
+          topSourceChainsByVolumeData?.map(({ chain, amount }) => ({
+            chain,
+            amount: chain.startsWith('bitcoin') ? formatBTCPrice(amount, btcPrice) : amount
+          })) || [],
+        //TODO: calculate value in USD
+        destinationData:
+          topDestinationChainsByVolumeData?.map(({ chain, amount }) => ({
+            chain,
+            amount: chain.startsWith('evm|11155111') ? formatBTCPrice(amount, btcPrice) : amount
+          })) || []
+      }
+    ],
+    [
+      topPathsByTxData,
+      topSourceChainsByTxData,
+      topDestinationChainsByTxData,
+      topPathsByVolumeData,
+      topSourceChainsByVolumeData,
+      topDestinationChainsByVolumeData,
+      btcPrice
+    ]
+  );
 
   const tabValue = useMemo(() => {
     if (time_bucket) {
@@ -233,76 +326,64 @@ function Statistic() {
           '[&>div]:max-w-172.5'
         )}
       >
-        <Heading>Protocol Overview</Heading>
+        <div className='flex flex-col gap-2'>
+          <Heading>Protocol Overview</Heading>
+          {loadingProgress < 100 && (
+            <div className='flex items-center gap-2 text-sm text-gray-600'>
+              <div className='w-32 h-1 bg-gray-200 rounded-full overflow-hidden'>
+                <div
+                  className='h-full bg-primary transition-all duration-300 ease-out'
+                  style={{ width: `${loadingProgress}%` }}
+                />
+              </div>
+              <span>Loading data... {loadingProgress}%</span>
+            </div>
+          )}
+        </div>
         <InputSearchBox placeholder='Search by protocol' className='bg-[#F7F9FF]' />
       </div>
       <div className='flex flex-col gap-8 md:flex-row'>
-        <If
-          condition={false}
-          fallback={
-            <If
-              condition={isSummaryLoading}
-              fallback={statisticData.map(({ label, value, icon, unit, className }) => (
-                <div
-                  key={label}
-                  className={cn(
-                    // Padding
-                    'p-6',
-
-                    // Border Radius
-                    'rounded-lg',
-
-                    // Background Color
-                    'bg-primary',
-
-                    // Flexbox Container
-                    'flex flex-1 items-center justify-between gap-2',
-                    className?.container
-                  )}
-                >
-                  <div
-                    className={cn(
-                      'flex h-full flex-col gap-1 text-white uppercase',
-                      className?.contentWrapper
-                    )}
-                  >
-                    <p className={cn('font-semibold text-[40px]', className?.content)}>
-                      {unit}
-                      {formatNumber(value)}
-                    </p>
-                    <p className={cn('text-lg', className?.label)}>{label}</p>
-                  </div>
-                  {icon}
-                </div>
-              ))}
+        {isSummaryLoading ? (
+          Array.from({ length: 3 }).map((item, i) => (
+            <Skeleton key={`summary-${item}-${i}`} className='h-37.5 flex-1' />
+          ))
+        ) : summaryData ? (
+          statisticData.map(({ label, value, icon, unit, className }) => (
+            <div
+              key={label}
+              className={cn(
+                'p-6 rounded-lg bg-primary flex flex-1 items-center justify-between gap-2 transition-all duration-300 ease-in-out',
+                className?.container
+              )}
             >
-              <NoData />
-            </If>
-          }
-        >
-          {Array.from({ length: 3 }).map((_, i) => (
-            // biome-ignore lint/suspicious/noArrayIndexKey: used for mapping
-            <Skeleton key={i} className='h-37.5 flex-1' />
-          ))}
-        </If>
+              <div
+                className={cn('flex h-full flex-col gap-1 text-white uppercase', className?.contentWrapper)}
+              >
+                <p className={cn('font-semibold text-[40px]', className?.content)}>
+                  {unit}
+                  {formatNumber(value)}
+                </p>
+                <p className={cn('text-lg', className?.label)}>{label}</p>
+              </div>
+              {icon}
+            </div>
+          ))
+        ) : (
+          <NoData />
+        )}
       </div>
       <div className='flex flex-col gap-8 *:data-[slot=rank-card]:flex-1 md:flex-row'>
-        <If
-          condition={isTopUsersLoading || isTopBridgesLoading}
-          fallback={
-            <If
-              condition={isEmpty(rankData)}
-              fallback={rankData.map((i) => <RankCard key={i.title} {...i} />)}
-            >
-              <NoData />
-            </If>
-          }
-        >
-          {Array.from({ length: 2 }).map((_, i) => (
-            // biome-ignore lint/suspicious/noArrayIndexKey: used for mapping
-            <RankCardSkeleton key={i} />
-          ))}
-        </If>
+        {isTopUsersLoading || isTopBridgesLoading ? (
+          Array.from({ length: 2 }).map((item, i) => <RankCardSkeleton key={`${item}-${i}`} />)
+        ) : !isEmpty(rankData) ? (
+          rankData.map((i) => (
+            <div key={i.title} className='flex-grow transition-all duration-300 ease-in-out'>
+              <RankCard {...i} />
+            </div>
+          ))
+        ) : (
+          <NoData />
+        )}
       </div>
       <Tabs
         defaultValue={tabValue}
@@ -326,40 +407,73 @@ function Statistic() {
         </TabsList>
       </Tabs>
       <div className='grid grid-cols-1 gap-8 lg:grid-cols-2'>
-        <If
-          condition={isTxsLoading || isVolumesLoading || isActiveUsersLoading || isNewUsersLoading}
-          fallback={
-            <If
-              condition={isEmpty(chartData)}
-              fallback={chartData.map((i) => <ChartCard key={i.title} {...i} />)}
-            >
-              <NoData />
-            </If>
-          }
-        >
-          {Array.from({ length: 4 }).map((_, i) => (
-            // biome-ignore lint/suspicious/noArrayIndexKey: used for mapping
-            <ChartCardSkeleton key={i} />
+        {/* Primary charts - show immediately when loaded */}
+        {primaryChartData.map((chart, index) => (
+          <div key={chart.title} className='transition-all duration-300 ease-in-out transform'>
+            {(index === 0 && isTxsLoading) || (index === 1 && isVolumesLoading) ? (
+              <ChartCardSkeleton />
+            ) : (
+              <div className='animate-in fade-in-50 slide-in-from-bottom-4 duration-500'>
+                <ChartCard {...chart} />
+              </div>
+            )}
+          </div>
+        ))}
+
+        {/* Secondary charts - show when secondary data is enabled */}
+        {loadSecondaryData &&
+          secondaryChartData.map((chart, index) => (
+            <div key={chart.title} className='transition-all duration-300 ease-in-out transform'>
+              {(index === 0 && isActiveUsersLoading) || (index === 1 && isNewUsersLoading) ? (
+                <ChartCardSkeleton />
+              ) : (
+                <div
+                  className='animate-in fade-in-50 slide-in-from-bottom-4 duration-500'
+                  style={{ animationDelay: `${index * 100} ms` }}
+                >
+                  <ChartCard {...chart} />
+                </div>
+              )}
+            </div>
           ))}
-        </If>
+
+        {/* Show skeletons for secondary charts if not loaded yet */}
+        {!loadSecondaryData &&
+          Array.from({ length: 2 }).map((item, i) => (
+            <div key={`secondary - skeleton - ${item}-${i}`} className='opacity-60'>
+              <ChartCardSkeleton />
+            </div>
+          ))}
       </div>
       <div className='flex flex-col gap-8'>
-        <If
-          condition={isTopPathsByTxLoading || isTopSourceChainsByTxLoading || isTopDestinationChainsByTxLoading || isTopPathsByVolumeLoading || isTopSourceChainsByVolumeLoading || isTopDestinationChainsByVolumeLoading}
-          fallback={
-            <If
-              condition={isEmpty(topCardData)}
-              fallback={topCardData.map((item) => <TopCard key={item.title} {...item} />)}
-            >
-              <NoData />
-            </If>
-          }
-        >
-          {Array.from({ length: 2 }).map((_, i) => (
-            // biome-ignore lint/suspicious/noArrayIndexKey: used for mapping
-            <TopCardSkeleton key={i} />
-          ))}
-        </If>
+        {loadTertiaryData ? (
+          isTopPathsByTxLoading ||
+          isTopSourceChainsByTxLoading ||
+          isTopDestinationChainsByTxLoading ||
+          isTopPathsByVolumeLoading ||
+          isTopSourceChainsByVolumeLoading ||
+          isTopDestinationChainsByVolumeLoading ? (
+            Array.from({ length: 2 }).map((item, i) => <TopCardSkeleton key={`${item}-${i}`} />)
+          ) : !isEmpty(topCardData) ? (
+            topCardData.map((item, index) => (
+              <div
+                key={item.title}
+                className='animate-in fade-in-50 slide-in-from-bottom-6 duration-700'
+                style={{ animationDelay: `${index * 200}ms` }}
+              >
+                <TopCard {...item} />
+              </div>
+            ))
+          ) : (
+            <NoData />
+          )
+        ) : (
+          Array.from({ length: 2 }).map((item, i) => (
+            <div key={`${item}-${i}`} className='opacity-50'>
+              <TopCardSkeleton />
+            </div>
+          ))
+        )}
       </div>
     </div>
   );

@@ -32,7 +32,8 @@
       },
       "suspicious": {
         "noConsole": "error",
-        "noExplicitAny": "off"
+        "noExplicitAny": "off",
+        "noArrayIndexKey": "off"
       },
       "correctness": {
         "noUnusedVariables": "error",

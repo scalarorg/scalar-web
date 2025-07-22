@@ -9,6 +9,7 @@ import { SelectTokens } from '@/components/ui/select-tokens';
 import { toast } from '@/components/ui/use-toast';
 import { useFeeRates, useScalarProtocols, useVault } from '@/hooks';
 import { Chains } from '@/lib/chains';
+import { decodeScalarBytes } from '@/lib/scalar';
 import {
   BTC_DECIMALS,
   formatBTC,
@@ -37,7 +38,6 @@ import { useForm } from 'react-hook-form';
 import { toast as sonnerToast } from 'sonner';
 import { Hex, hexToBytes as hexToBytesViem } from 'viem';
 import { TBridgeForm, bridgeFormSchema } from '../schemas';
-import { decodeScalarBytes } from '@/lib/scalar';
 
 const btcChain = Chains['bitcoin|4'];
 
@@ -175,7 +175,7 @@ export const BridgeForm = () => {
           availableUTXOs: txData.utxos,
           feeRate: txData.feeRate,
           rbf: true
-        }
+        };
         result = vault?.buildUPCStakingPsbt(psbtFormData) || null;
       } else if (protocol?.attributes?.model === 'LIQUIDITY_MODEL_POOL') {
         psbtFormData = {
@@ -196,7 +196,6 @@ export const BridgeForm = () => {
       }
 
       if (!result) throw new Error('Failed to build the PSBT');
-
 
       const { psbt: unsignedVaultPsbt } = result;
 
@@ -221,8 +220,8 @@ export const BridgeForm = () => {
   useEffect(() => {
     const [toTokenChain, chainSeleted] = destinationChainForm?.split('-') || [];
 
-    const newProtocol = data?.protocols?.find((p) =>
-      p.asset?.symbol === toTokenChain && p.chains?.some((c) => c.chain === chainSeleted)
+    const newProtocol = data?.protocols?.find(
+      (p) => p.asset?.symbol === toTokenChain && p.chains?.some((c) => c.chain === chainSeleted)
     );
 
     if (!newProtocol) return;

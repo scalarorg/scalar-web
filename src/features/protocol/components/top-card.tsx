@@ -21,11 +21,7 @@ export const TopCard = ({ title, pathsData, sourceData, destinationData }: TTopC
         <div className='flex-1 space-y-2'>
           <p className='font-medium text-lg'>Top Paths</p>
           {pathsData?.map((item, index) => (
-            <div
-              // biome-ignore lint/suspicious/noArrayIndexKey: used for mapping
-              key={index}
-              className='flex items-center justify-between gap-1'
-            >
+            <div key={index} className='flex items-center justify-between gap-1'>
               <div className='flex grow items-center gap-2'>
                 <ChainIcon chain={item.source_chain} classNames={{ wrapper: 'flex-1' }} showName />
                 <ChevronRight className='mx-1 size-5' />
@@ -39,11 +35,7 @@ export const TopCard = ({ title, pathsData, sourceData, destinationData }: TTopC
         <div className='flex-1 space-y-2'>
           <p className='font-medium text-lg'>Top Sources</p>
           {sourceData?.map((item, index) => (
-            <div
-              // biome-ignore lint/suspicious/noArrayIndexKey: used for mapping
-              key={index}
-              className='flex items-center justify-between gap-2'
-            >
+            <div key={index} className='flex items-center justify-between gap-2'>
               <ChainIcon chain={item.chain} classNames={{ wrapper: 'flex-1' }} showName />
               <p className='font-medium'>{formatNumber(item.amount)}</p>
             </div>
@@ -53,11 +45,7 @@ export const TopCard = ({ title, pathsData, sourceData, destinationData }: TTopC
         <div className='flex-1 space-y-2'>
           <p className='font-medium text-lg'>Top Destinations</p>
           {destinationData?.map((item, index) => (
-            <div
-              // biome-ignore lint/suspicious/noArrayIndexKey: used for mapping
-              key={index}
-              className='flex items-center justify-between gap-2'
-            >
+            <div key={index} className='flex items-center justify-between gap-2'>
               <ChainIcon chain={item.chain} classNames={{ wrapper: 'flex-1' }} showName />
               <p className='font-medium'>{formatNumber(item.amount)}</p>
             </div>
