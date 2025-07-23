@@ -65,5 +65,10 @@ export default defineConfig({
     rollupOptions: {
       external: ['vite-plugin-node-polyfills/shims/buffer', 'vite-plugin-node-polyfills/shims/process']
     }
+  },
+  server: {
+    hmr: {
+      overlay: false
+    }
   }
 });

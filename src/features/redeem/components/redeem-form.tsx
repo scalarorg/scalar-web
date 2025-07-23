@@ -36,13 +36,9 @@ import { getWagmiChain, isSupportedChain } from '@/lib/wagmi';
 import { useKeplrClient, useAccount as useScalarAccount } from '@/providers/keplr-provider';
 import { useWalletInfo, useWalletProvider } from '@/providers/wallet-provider';
 import { SupportedChains, isCommingChains } from '@/types/chains';
+import { encodeUPCPayload } from '@/utils/btc';
 import { zodResolver } from '@hookform/resolvers/zod';
-import {
-  TBuildUPCUnstakingPsbt,
-  bytesToHex,
-  calculateContractCallWithTokenPayload,
-  hexToBytes
-} from '@scalar-lab/bitcoin-vault';
+import { TBuildUPCUnstakingPsbt, bytesToHex, hexToBytes } from '@scalar-lab/bitcoin-vault';
 import { useQuery } from '@tanstack/react-query';
 import * as bitcoin from 'bitcoinjs-lib';
 import { isNil } from 'lodash';
@@ -329,7 +325,7 @@ export const RedeemForm = () => {
 
         const event = result?.events.find((e) => e.type === EventType.ReserveRedeemUtxo);
         if (!event) {
-          throw new Error('Failed to redeem UPC');
+          throw new Error('Failed to redeem Pool');
         }
 
         const command = event.attributes.find(
@@ -337,7 +333,7 @@ export const RedeemForm = () => {
         );
 
         if (!command) {
-          throw new Error('Failed to redeem UPC');
+          throw new Error('Failed to redeem Pool');
         }
 
         const commandId = Buffer.from(command.value, 'base64').toString('ascii');
@@ -347,7 +343,7 @@ export const RedeemForm = () => {
           validator: (data) => data.status === 'STANDALONE_COMMAND_STATUS_SIGNED'
         });
         if (!command) {
-          throw new Error('Failed to redeem UPC');
+          throw new Error('Failed to redeem Pool');
         }
 
         if (!commandRs.execute_data) {
@@ -416,12 +412,11 @@ export const RedeemForm = () => {
         }))
       });
 
-      payload = calculateContractCallWithTokenPayload({
-        type: 'upc',
-        upc: {
-          psbt: `0x${signedPsbt}`
-        }
-      });
+      if (!signedPsbt) {
+        throw new Error('Failed to sign UPC');
+      }
+
+      payload = encodeUPCPayload(signedPsbt);
 
       const contractCallTx = await callContractWithToken({
         destinationChain: selectedProtocol?.asset?.chain!,

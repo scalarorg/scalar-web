@@ -80,7 +80,7 @@ export class ScalarSigningStargateClient extends SigningStargateClient {
   public readonly messages: ScalarMsgClient;
   public readonly query: ScalarQueryClient | undefined;
 
-  protected constructor(
+  constructor(
     tmClient: Tendermint37Client | undefined,
     signer: OfflineSigner,
     options: SigningStargateClientOptions
@@ -91,7 +91,7 @@ export class ScalarSigningStargateClient extends SigningStargateClient {
       ...options
     });
 
-    this.tx = createMsgClient(this);
+    this.tx = createMsgClient(this as any);
     this.messages = this.tx;
 
     if (tmClient) {
@@ -147,7 +147,7 @@ export class ScalarSigningStargateClient extends SigningStargateClient {
   }
 
   protected override getQueryClient() {
-    return this.query;
+    return this.query as any;
   }
 
   protected override forceGetQueryClient() {
@@ -155,7 +155,7 @@ export class ScalarSigningStargateClient extends SigningStargateClient {
       throw new Error('Query client not available. You cannot use online functionality in offline mode.');
     }
 
-    return this.query;
+    return this.query as any;
   }
 
   public createProtocol(

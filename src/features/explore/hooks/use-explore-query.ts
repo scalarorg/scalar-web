@@ -13,7 +13,7 @@ import {
   TStatisticSourceItem,
   TSummaryStats
 } from '../models';
-import { getByGetMethod, getByPostMethod } from '../services';
+import { getByGetMethod } from '../services';
 
 const defaultStatsParams: TExploreStatisticParams = {
   size: COMMON_DEFAULT_PAGE_SIZE,
@@ -169,7 +169,7 @@ const useNewUsersStats = (params: TExploreStatisticParams = defaultStatsParams, 
 const useList = (params: TExploreParams) =>
   useQuery({
     queryKey: ['explore', 'x', params],
-    queryFn: () => getByPostMethod<TExploreParams, TExploreList>('x', params)
+    queryFn: () => getByGetMethod<TExploreParams, TExploreList>('x', params)
   });
 
 const useDetail = (id: string, type: 'bridge' | 'transfer' | 'redeem') =>

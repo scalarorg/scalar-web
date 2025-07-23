@@ -8,244 +8,106 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-// Import Routes
+import { Route as rootRouteImport } from './routes/__root'
+import { Route as IndexRouteImport } from './routes/index'
+import { Route as ProtocolsIndexRouteImport } from './routes/protocols/index'
+import { Route as FaucetIndexRouteImport } from './routes/faucet/index'
+import { Route as ExploreIndexRouteImport } from './routes/explore/index'
+import { Route as ProtocolsMeRouteImport } from './routes/protocols/me'
+import { Route as ProtocolsSlugRouteImport } from './routes/protocols/$slug'
+import { Route as ExploreTransferIndexRouteImport } from './routes/explore/transfer/index'
+import { Route as ExploreStatisticIndexRouteImport } from './routes/explore/statistic/index'
+import { Route as ExploreRedeemIndexRouteImport } from './routes/explore/redeem/index'
+import { Route as ExploreBridgeIndexRouteImport } from './routes/explore/bridge/index'
+import { Route as ExploreTransferSlugIndexRouteImport } from './routes/explore/transfer/$slug/index'
+import { Route as ExploreRedeemSlugIndexRouteImport } from './routes/explore/redeem/$slug/index'
+import { Route as ExploreBridgeSlugIndexRouteImport } from './routes/explore/bridge/$slug/index'
+import { Route as ExploreTransferSlugStatusRouteImport } from './routes/explore/transfer/$slug/$status'
+import { Route as ExploreRedeemSlugStatusRouteImport } from './routes/explore/redeem/$slug/$status'
+import { Route as ExploreBridgeSlugStatusRouteImport } from './routes/explore/bridge/$slug/$status'
 
-import { Route as rootRoute } from './routes/__root'
-import { Route as IndexImport } from './routes/index'
-import { Route as ProtocolsIndexImport } from './routes/protocols/index'
-import { Route as FaucetIndexImport } from './routes/faucet/index'
-import { Route as ExploreIndexImport } from './routes/explore/index'
-import { Route as ProtocolsMeImport } from './routes/protocols/me'
-import { Route as ProtocolsSlugImport } from './routes/protocols/$slug'
-import { Route as ExploreTransferIndexImport } from './routes/explore/transfer/index'
-import { Route as ExploreStatisticIndexImport } from './routes/explore/statistic/index'
-import { Route as ExploreRedeemIndexImport } from './routes/explore/redeem/index'
-import { Route as ExploreBridgeIndexImport } from './routes/explore/bridge/index'
-import { Route as ExploreTransferSlugIndexImport } from './routes/explore/transfer/$slug/index'
-import { Route as ExploreRedeemSlugIndexImport } from './routes/explore/redeem/$slug/index'
-import { Route as ExploreBridgeSlugIndexImport } from './routes/explore/bridge/$slug/index'
-import { Route as ExploreTransferSlugStatusImport } from './routes/explore/transfer/$slug/$status'
-import { Route as ExploreRedeemSlugStatusImport } from './routes/explore/redeem/$slug/$status'
-import { Route as ExploreBridgeSlugStatusImport } from './routes/explore/bridge/$slug/$status'
-
-// Create/Update Routes
-
-const IndexRoute = IndexImport.update({
+const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const ProtocolsIndexRoute = ProtocolsIndexImport.update({
+const ProtocolsIndexRoute = ProtocolsIndexRouteImport.update({
   id: '/protocols/',
   path: '/protocols/',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const FaucetIndexRoute = FaucetIndexImport.update({
+const FaucetIndexRoute = FaucetIndexRouteImport.update({
   id: '/faucet/',
   path: '/faucet/',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const ExploreIndexRoute = ExploreIndexImport.update({
+const ExploreIndexRoute = ExploreIndexRouteImport.update({
   id: '/explore/',
   path: '/explore/',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const ProtocolsMeRoute = ProtocolsMeImport.update({
+const ProtocolsMeRoute = ProtocolsMeRouteImport.update({
   id: '/protocols/me',
   path: '/protocols/me',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const ProtocolsSlugRoute = ProtocolsSlugImport.update({
+const ProtocolsSlugRoute = ProtocolsSlugRouteImport.update({
   id: '/protocols/$slug',
   path: '/protocols/$slug',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const ExploreTransferIndexRoute = ExploreTransferIndexImport.update({
+const ExploreTransferIndexRoute = ExploreTransferIndexRouteImport.update({
   id: '/explore/transfer/',
   path: '/explore/transfer/',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const ExploreStatisticIndexRoute = ExploreStatisticIndexImport.update({
+const ExploreStatisticIndexRoute = ExploreStatisticIndexRouteImport.update({
   id: '/explore/statistic/',
   path: '/explore/statistic/',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const ExploreRedeemIndexRoute = ExploreRedeemIndexImport.update({
+const ExploreRedeemIndexRoute = ExploreRedeemIndexRouteImport.update({
   id: '/explore/redeem/',
   path: '/explore/redeem/',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const ExploreBridgeIndexRoute = ExploreBridgeIndexImport.update({
+const ExploreBridgeIndexRoute = ExploreBridgeIndexRouteImport.update({
   id: '/explore/bridge/',
   path: '/explore/bridge/',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const ExploreTransferSlugIndexRoute = ExploreTransferSlugIndexImport.update({
-  id: '/explore/transfer/$slug/',
-  path: '/explore/transfer/$slug/',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const ExploreRedeemSlugIndexRoute = ExploreRedeemSlugIndexImport.update({
+const ExploreTransferSlugIndexRoute =
+  ExploreTransferSlugIndexRouteImport.update({
+    id: '/explore/transfer/$slug/',
+    path: '/explore/transfer/$slug/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ExploreRedeemSlugIndexRoute = ExploreRedeemSlugIndexRouteImport.update({
   id: '/explore/redeem/$slug/',
   path: '/explore/redeem/$slug/',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const ExploreBridgeSlugIndexRoute = ExploreBridgeSlugIndexImport.update({
+const ExploreBridgeSlugIndexRoute = ExploreBridgeSlugIndexRouteImport.update({
   id: '/explore/bridge/$slug/',
   path: '/explore/bridge/$slug/',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const ExploreTransferSlugStatusRoute = ExploreTransferSlugStatusImport.update({
-  id: '/explore/transfer/$slug/$status',
-  path: '/explore/transfer/$slug/$status',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const ExploreRedeemSlugStatusRoute = ExploreRedeemSlugStatusImport.update({
+const ExploreTransferSlugStatusRoute =
+  ExploreTransferSlugStatusRouteImport.update({
+    id: '/explore/transfer/$slug/$status',
+    path: '/explore/transfer/$slug/$status',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ExploreRedeemSlugStatusRoute = ExploreRedeemSlugStatusRouteImport.update({
   id: '/explore/redeem/$slug/$status',
   path: '/explore/redeem/$slug/$status',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const ExploreBridgeSlugStatusRoute = ExploreBridgeSlugStatusImport.update({
+const ExploreBridgeSlugStatusRoute = ExploreBridgeSlugStatusRouteImport.update({
   id: '/explore/bridge/$slug/$status',
   path: '/explore/bridge/$slug/$status',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-// Populate the FileRoutesByPath interface
-
-declare module '@tanstack/react-router' {
-  interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/protocols/$slug': {
-      id: '/protocols/$slug'
-      path: '/protocols/$slug'
-      fullPath: '/protocols/$slug'
-      preLoaderRoute: typeof ProtocolsSlugImport
-      parentRoute: typeof rootRoute
-    }
-    '/protocols/me': {
-      id: '/protocols/me'
-      path: '/protocols/me'
-      fullPath: '/protocols/me'
-      preLoaderRoute: typeof ProtocolsMeImport
-      parentRoute: typeof rootRoute
-    }
-    '/explore/': {
-      id: '/explore/'
-      path: '/explore'
-      fullPath: '/explore'
-      preLoaderRoute: typeof ExploreIndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/faucet/': {
-      id: '/faucet/'
-      path: '/faucet'
-      fullPath: '/faucet'
-      preLoaderRoute: typeof FaucetIndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/protocols/': {
-      id: '/protocols/'
-      path: '/protocols'
-      fullPath: '/protocols'
-      preLoaderRoute: typeof ProtocolsIndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/explore/bridge/': {
-      id: '/explore/bridge/'
-      path: '/explore/bridge'
-      fullPath: '/explore/bridge'
-      preLoaderRoute: typeof ExploreBridgeIndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/explore/redeem/': {
-      id: '/explore/redeem/'
-      path: '/explore/redeem'
-      fullPath: '/explore/redeem'
-      preLoaderRoute: typeof ExploreRedeemIndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/explore/statistic/': {
-      id: '/explore/statistic/'
-      path: '/explore/statistic'
-      fullPath: '/explore/statistic'
-      preLoaderRoute: typeof ExploreStatisticIndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/explore/transfer/': {
-      id: '/explore/transfer/'
-      path: '/explore/transfer'
-      fullPath: '/explore/transfer'
-      preLoaderRoute: typeof ExploreTransferIndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/explore/bridge/$slug/$status': {
-      id: '/explore/bridge/$slug/$status'
-      path: '/explore/bridge/$slug/$status'
-      fullPath: '/explore/bridge/$slug/$status'
-      preLoaderRoute: typeof ExploreBridgeSlugStatusImport
-      parentRoute: typeof rootRoute
-    }
-    '/explore/redeem/$slug/$status': {
-      id: '/explore/redeem/$slug/$status'
-      path: '/explore/redeem/$slug/$status'
-      fullPath: '/explore/redeem/$slug/$status'
-      preLoaderRoute: typeof ExploreRedeemSlugStatusImport
-      parentRoute: typeof rootRoute
-    }
-    '/explore/transfer/$slug/$status': {
-      id: '/explore/transfer/$slug/$status'
-      path: '/explore/transfer/$slug/$status'
-      fullPath: '/explore/transfer/$slug/$status'
-      preLoaderRoute: typeof ExploreTransferSlugStatusImport
-      parentRoute: typeof rootRoute
-    }
-    '/explore/bridge/$slug/': {
-      id: '/explore/bridge/$slug/'
-      path: '/explore/bridge/$slug'
-      fullPath: '/explore/bridge/$slug'
-      preLoaderRoute: typeof ExploreBridgeSlugIndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/explore/redeem/$slug/': {
-      id: '/explore/redeem/$slug/'
-      path: '/explore/redeem/$slug'
-      fullPath: '/explore/redeem/$slug'
-      preLoaderRoute: typeof ExploreRedeemSlugIndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/explore/transfer/$slug/': {
-      id: '/explore/transfer/$slug/'
-      path: '/explore/transfer/$slug'
-      fullPath: '/explore/transfer/$slug'
-      preLoaderRoute: typeof ExploreTransferSlugIndexImport
-      parentRoute: typeof rootRoute
-    }
-  }
-}
-
-// Create and export the route tree
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -265,7 +127,6 @@ export interface FileRoutesByFullPath {
   '/explore/redeem/$slug': typeof ExploreRedeemSlugIndexRoute
   '/explore/transfer/$slug': typeof ExploreTransferSlugIndexRoute
 }
-
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/protocols/$slug': typeof ProtocolsSlugRoute
@@ -284,9 +145,8 @@ export interface FileRoutesByTo {
   '/explore/redeem/$slug': typeof ExploreRedeemSlugIndexRoute
   '/explore/transfer/$slug': typeof ExploreTransferSlugIndexRoute
 }
-
 export interface FileRoutesById {
-  __root__: typeof rootRoute
+  __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/protocols/$slug': typeof ProtocolsSlugRoute
   '/protocols/me': typeof ProtocolsMeRoute
@@ -304,7 +164,6 @@ export interface FileRoutesById {
   '/explore/redeem/$slug/': typeof ExploreRedeemSlugIndexRoute
   '/explore/transfer/$slug/': typeof ExploreTransferSlugIndexRoute
 }
-
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
@@ -362,7 +221,6 @@ export interface FileRouteTypes {
     | '/explore/transfer/$slug/'
   fileRoutesById: FileRoutesById
 }
-
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ProtocolsSlugRoute: typeof ProtocolsSlugRoute
@@ -380,6 +238,123 @@ export interface RootRouteChildren {
   ExploreBridgeSlugIndexRoute: typeof ExploreBridgeSlugIndexRoute
   ExploreRedeemSlugIndexRoute: typeof ExploreRedeemSlugIndexRoute
   ExploreTransferSlugIndexRoute: typeof ExploreTransferSlugIndexRoute
+}
+
+declare module '@tanstack/react-router' {
+  interface FileRoutesByPath {
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/protocols/': {
+      id: '/protocols/'
+      path: '/protocols'
+      fullPath: '/protocols'
+      preLoaderRoute: typeof ProtocolsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faucet/': {
+      id: '/faucet/'
+      path: '/faucet'
+      fullPath: '/faucet'
+      preLoaderRoute: typeof FaucetIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/explore/': {
+      id: '/explore/'
+      path: '/explore'
+      fullPath: '/explore'
+      preLoaderRoute: typeof ExploreIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/protocols/me': {
+      id: '/protocols/me'
+      path: '/protocols/me'
+      fullPath: '/protocols/me'
+      preLoaderRoute: typeof ProtocolsMeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/protocols/$slug': {
+      id: '/protocols/$slug'
+      path: '/protocols/$slug'
+      fullPath: '/protocols/$slug'
+      preLoaderRoute: typeof ProtocolsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/explore/transfer/': {
+      id: '/explore/transfer/'
+      path: '/explore/transfer'
+      fullPath: '/explore/transfer'
+      preLoaderRoute: typeof ExploreTransferIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/explore/statistic/': {
+      id: '/explore/statistic/'
+      path: '/explore/statistic'
+      fullPath: '/explore/statistic'
+      preLoaderRoute: typeof ExploreStatisticIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/explore/redeem/': {
+      id: '/explore/redeem/'
+      path: '/explore/redeem'
+      fullPath: '/explore/redeem'
+      preLoaderRoute: typeof ExploreRedeemIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/explore/bridge/': {
+      id: '/explore/bridge/'
+      path: '/explore/bridge'
+      fullPath: '/explore/bridge'
+      preLoaderRoute: typeof ExploreBridgeIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/explore/transfer/$slug/': {
+      id: '/explore/transfer/$slug/'
+      path: '/explore/transfer/$slug'
+      fullPath: '/explore/transfer/$slug'
+      preLoaderRoute: typeof ExploreTransferSlugIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/explore/redeem/$slug/': {
+      id: '/explore/redeem/$slug/'
+      path: '/explore/redeem/$slug'
+      fullPath: '/explore/redeem/$slug'
+      preLoaderRoute: typeof ExploreRedeemSlugIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/explore/bridge/$slug/': {
+      id: '/explore/bridge/$slug/'
+      path: '/explore/bridge/$slug'
+      fullPath: '/explore/bridge/$slug'
+      preLoaderRoute: typeof ExploreBridgeSlugIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/explore/transfer/$slug/$status': {
+      id: '/explore/transfer/$slug/$status'
+      path: '/explore/transfer/$slug/$status'
+      fullPath: '/explore/transfer/$slug/$status'
+      preLoaderRoute: typeof ExploreTransferSlugStatusRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/explore/redeem/$slug/$status': {
+      id: '/explore/redeem/$slug/$status'
+      path: '/explore/redeem/$slug/$status'
+      fullPath: '/explore/redeem/$slug/$status'
+      preLoaderRoute: typeof ExploreRedeemSlugStatusRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/explore/bridge/$slug/$status': {
+      id: '/explore/bridge/$slug/$status'
+      path: '/explore/bridge/$slug/$status'
+      fullPath: '/explore/bridge/$slug/$status'
+      preLoaderRoute: typeof ExploreBridgeSlugStatusRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+  }
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -400,83 +375,6 @@ const rootRouteChildren: RootRouteChildren = {
   ExploreRedeemSlugIndexRoute: ExploreRedeemSlugIndexRoute,
   ExploreTransferSlugIndexRoute: ExploreTransferSlugIndexRoute,
 }
-
-export const routeTree = rootRoute
+export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-/* ROUTE_MANIFEST_START
-{
-  "routes": {
-    "__root__": {
-      "filePath": "__root.tsx",
-      "children": [
-        "/",
-        "/protocols/$slug",
-        "/protocols/me",
-        "/explore/",
-        "/faucet/",
-        "/protocols/",
-        "/explore/bridge/",
-        "/explore/redeem/",
-        "/explore/statistic/",
-        "/explore/transfer/",
-        "/explore/bridge/$slug/$status",
-        "/explore/redeem/$slug/$status",
-        "/explore/transfer/$slug/$status",
-        "/explore/bridge/$slug/",
-        "/explore/redeem/$slug/",
-        "/explore/transfer/$slug/"
-      ]
-    },
-    "/": {
-      "filePath": "index.tsx"
-    },
-    "/protocols/$slug": {
-      "filePath": "protocols/$slug.tsx"
-    },
-    "/protocols/me": {
-      "filePath": "protocols/me.tsx"
-    },
-    "/explore/": {
-      "filePath": "explore/index.tsx"
-    },
-    "/faucet/": {
-      "filePath": "faucet/index.tsx"
-    },
-    "/protocols/": {
-      "filePath": "protocols/index.tsx"
-    },
-    "/explore/bridge/": {
-      "filePath": "explore/bridge/index.tsx"
-    },
-    "/explore/redeem/": {
-      "filePath": "explore/redeem/index.tsx"
-    },
-    "/explore/statistic/": {
-      "filePath": "explore/statistic/index.tsx"
-    },
-    "/explore/transfer/": {
-      "filePath": "explore/transfer/index.tsx"
-    },
-    "/explore/bridge/$slug/$status": {
-      "filePath": "explore/bridge/$slug/$status.tsx"
-    },
-    "/explore/redeem/$slug/$status": {
-      "filePath": "explore/redeem/$slug/$status.tsx"
-    },
-    "/explore/transfer/$slug/$status": {
-      "filePath": "explore/transfer/$slug/$status.tsx"
-    },
-    "/explore/bridge/$slug/": {
-      "filePath": "explore/bridge/$slug/index.tsx"
-    },
-    "/explore/redeem/$slug/": {
-      "filePath": "explore/redeem/$slug/index.tsx"
-    },
-    "/explore/transfer/$slug/": {
-      "filePath": "explore/transfer/$slug/index.tsx"
-    }
-  }
-}
-ROUTE_MANIFEST_END */
