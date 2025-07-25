@@ -361,84 +361,83 @@ export const RedeemForm = () => {
         // wait for tx to be mined
         await response?.wait();
         showSuccessTx(response?.hash as string, sourceChain);
-        return;
-      }
+      } else if (selectedProtocol?.attributes?.model === 'LIQUIDITY_MODEL_UPC') {
+        if (!unstakeableUtxos?.utxos || !unstakeableUtxos?.utxos.length) {
+          throw new Error('Not enough balances');
+        }
 
-      if (!unstakeableUtxos?.utxos || !unstakeableUtxos?.utxos.length) {
-        throw new Error('Not enough balances');
-      }
+        if (!upcLockingScript) {
+          throw new Error('Invalid locking script');
+        }
 
-      if (!upcLockingScript) {
-        throw new Error('Invalid locking script');
-      }
+        const protocolPubkey = decodeScalarBytesToUint8Array(selectedProtocol?.bitcoin_pubkey!);
 
-      const protocolPubkey = decodeScalarBytesToUint8Array(selectedProtocol?.bitcoin_pubkey!);
+        const custodianPubkeys = prepareCustodianPubkeysArray(selectedProtocol?.custodian_group?.custodians!);
 
-      const custodianPubkeys = prepareCustodianPubkeysArray(selectedProtocol?.custodian_group?.custodians!);
+        const custodianQuorum = selectedProtocol?.custodian_group?.quorum!;
+        const stakerPubkey = hexToBytes(btcPubkey.replace('0x', ''));
 
-      const custodianQuorum = selectedProtocol?.custodian_group?.quorum!;
-      const stakerPubkey = hexToBytes(btcPubkey.replace('0x', ''));
+        const params: TBuildUPCUnstakingPsbt = {
+          inputs: unstakeableUtxos.utxos?.map((tx) => ({
+            txid: tx.txid,
+            vout: VOUT_INDEX_OF_LOCKING_OUTPUT,
+            value: BigInt(tx.value),
+            script_pubkey: Uint8Array.from(upcLockingScript)
+          })),
+          output: {
+            script: redeemLockingScript,
+            value: newTransferAmount
+          },
+          stakerPubkey,
+          protocolPubkey,
+          custodianPubkeys,
+          custodianQuorum,
+          feeRate: BigInt(feeRates.minimumFee),
+          rbf: true,
+          type: 'user_custodian'
+        };
 
-      const params: TBuildUPCUnstakingPsbt = {
-        inputs: unstakeableUtxos.utxos?.map((tx) => ({
-          txid: tx.txid,
-          vout: VOUT_INDEX_OF_LOCKING_OUTPUT,
-          value: BigInt(tx.value),
-          script_pubkey: Uint8Array.from(upcLockingScript)
-        })),
-        output: {
-          script: redeemLockingScript,
-          value: newTransferAmount
-        },
-        stakerPubkey,
-        protocolPubkey,
-        custodianPubkeys,
-        custodianQuorum,
-        feeRate: BigInt(feeRates.minimumFee),
-        rbf: true,
-        type: 'user_custodian'
-      };
+        const unsignedPsbtHex = vault?.buildUPCUnstakingPsbt(params);
 
-      const unsignedPsbtHex = vault?.buildUPCUnstakingPsbt(params);
+        const hexPsbt = bytesToHex(unsignedPsbtHex!);
 
-      const hexPsbt = bytesToHex(unsignedPsbtHex!);
+        const signedPsbt = await walletProvider?.signPsbt(hexPsbt, {
+          autoFinalized: false,
+          toSignInputs: params.inputs.map((_input, index) => ({
+            index,
+            address: btcAddress,
+            disableTweakSigner: true
+          }))
+        });
 
-      const signedPsbt = await walletProvider?.signPsbt(hexPsbt, {
-        autoFinalized: false,
-        toSignInputs: params.inputs.map((_input, index) => ({
-          index,
-          address: btcAddress,
-          disableTweakSigner: true
-        }))
-      });
+        if (!signedPsbt) {
+          throw new Error('Failed to sign UPC');
+        }
 
-      if (!signedPsbt) {
-        throw new Error('Failed to sign UPC');
-      }
+        payload = encodeUPCPayload(signedPsbt);
 
-      payload = encodeUPCPayload(signedPsbt);
+        const contractCallTx = await callContractWithToken({
+          destinationChain: selectedProtocol?.asset?.chain!,
+          destinationContractAddress: EMPTY_ADDRESS,
+          payload,
+          symbol: selectedProtocol?.asset?.symbol || '',
+          amount: BigInt(newTransferAmount)
+        });
 
-      const contractCallTx = await callContractWithToken({
-        destinationChain: selectedProtocol?.asset?.chain!,
-        destinationContractAddress: EMPTY_ADDRESS,
-        payload,
-        symbol: selectedProtocol?.asset?.symbol || '',
-        amount: BigInt(newTransferAmount)
-      });
+        if (!contractCallTx) {
+          throw new Error('Initializing transfer failed');
+        }
 
-      if (!contractCallTx) {
-        throw new Error('Initializing transfer failed');
-      }
+        const contractCallConfirmed = await Promise.race([
+          new Promise((_, reject) => setTimeout(() => reject(new Error('Transfer timeout')), 60000)),
+          contractCallTx.wait()
+        ]);
 
-      const contractCallConfirmed = await Promise.race([
-        new Promise((_, reject) => setTimeout(() => reject(new Error('Transfer timeout')), 60000)),
-        contractCallTx.wait()
-      ]);
-
-      if (contractCallConfirmed) {
-        showSuccessTx(contractCallTx.hash, sourceChain);
-      } else {
-        throw new Error('Transfer failed');
+        if (contractCallConfirmed) {
+          showSuccessTx(contractCallTx.hash, sourceChain);
+        } else {
+          throw new Error('Transfer failed');
+        }
       }
     } catch (error) {
       sonnerToast.error((error as Error).message || 'Something went wrong');
